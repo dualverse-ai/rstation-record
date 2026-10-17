@@ -1,0 +1,28 @@
+name: Preserve public papers
+on:
+  schedule:
+    # Midnight Hong Kong time (UTC+8). GitHub may start scheduled jobs later.
+    - cron: '0 16 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: public-publication-record
+  cancel-in-progress: false
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - name: Test the exporter
+        run: python3 -m unittest discover -s tests -v
+      - name: Fetch and audit public publications
+        run: python3 scripts/sync_papers.py --assets "$RUNNER_TEMP/supplements"
+      - name: Publish records and verified attachments
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/publish_snapshot.py --assets "$RUNNER_TEMP/supplements"
