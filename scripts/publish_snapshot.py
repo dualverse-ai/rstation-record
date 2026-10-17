@@ -35,7 +35,7 @@ class GitHub:
         headers = {'Authorization': 'Bearer ' + self.token, 'Accept': 'application/vnd.github+json',
                    'User-Agent': 'rStation-Public-Record', 'X-GitHub-Api-Version': '2022-11-28'}
         if data is not None:
-            headers['Content-Type'] = 'application/zip' if raw else 'application/json'
+            headers['Content-Type'] = ('application/json' if path.endswith('.json') else 'application/zip') if raw else 'application/json'
         payload = data if raw else (json_bytes(data) if data is not None else None)
         for attempt in range(5):
             if method != 'GET':
@@ -140,7 +140,7 @@ def publish(api, root, asset_dir, client):
     for path in sorted((root / 'snapshots').glob('*.json')):
         manifest = load_json(path)
         tag = manifest['snapshot']
-        if not re.fullmatch(r'snapshot-\d{8}T\d{12}Z', tag):
+        if not re.fullmatch(r'snapshot-\d{8}T\d{12}Z(?:-\d{3,})?', tag):
             raise ValueError('Invalid snapshot tag')
         release = releases.get(tag)
         if release and not release['draft']:

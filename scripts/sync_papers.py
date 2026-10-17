@@ -205,6 +205,16 @@ def export_version(client, root, asset_dir, item, version, snapshot, observed_at
     scan_secret(json_bytes(metadata), f'{item["paper_id"]}/v{version}/metadata')
     write_json(folder / 'metadata.json', metadata)
     files.append(file_record(root, folder / 'metadata.json'))
+    readme = version_readme(metadata)
+    (folder / 'README.md').write_text(readme)
+    files.append(file_record(root, folder / 'README.md'))
+    return {'paper_id': item['paper_id'], 'version': version, 'files': files, 'supplement': supplement, 'snapshot': snapshot}
+
+
+def version_readme(metadata):
+    meta = metadata
+    version = metadata["version"]
+    supplement = metadata.get("supplement")
     author_names = ['u/' + meta['author']]
     for person in metadata['coauthors']:
         label = ('u/' + person['handle']) if person.get('handle') else person.get('name', '')
@@ -217,9 +227,7 @@ def export_version(client, root, asset_dir, item, version, snapshot, observed_at
     readme += meta['abstract'] + '\n'
     if supplement:
         readme += f'\n[Download supplement]({supplement["url"]})\n'
-    (folder / 'README.md').write_text(readme)
-    files.append(file_record(root, folder / 'README.md'))
-    return {'paper_id': item['paper_id'], 'version': version, 'files': files, 'supplement': supplement}
+    return readme
 
 
 def version_complete(root, name, number, version):
@@ -288,7 +296,9 @@ def sync(root, asset_dir, client, workers=2, now=None):
         if len(seen) % 25 == 0:
             print(f'Checked {len(seen)}/{len(paper_list)} paper histories', flush=True)
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
-        tasks = [pool.submit(export_version, client, root, asset_dir, paper, version, snapshot, observed) for paper, version in jobs]
+        tasks = [pool.submit(export_version, client, root, asset_dir, paper, version,
+                             snapshot if len(jobs) <= 900 else snapshot + f'-{index // 900 + 1:03d}',
+                             observed) for index, (paper, version) in enumerate(jobs)]
         for task in concurrent.futures.as_completed(tasks):
             new_versions.append(task.result())
             print(f'Exported {len(new_versions)}/{len(jobs)} accepted versions', flush=True)
@@ -300,14 +310,22 @@ def sync(root, asset_dir, client, workers=2, now=None):
     make_index(root, catalog)
     prior_snapshots = sorted((root / 'snapshots').glob('*.json')) if (root / 'snapshots').exists() else []
     previous = prior_snapshots[-1] if prior_snapshots else None
-    manifest = {'snapshot': snapshot, 'collection_started_at': observed, 'observed_at': iso(utcnow()), 'source': ORIGIN,
-                'note': 'Publication dates are reported by rStation. This snapshot records when the material was independently mirrored; historical records are not backdated.',
-                'papers_seen_this_run': len(paper_list), 'papers_recorded_total': len(catalog),
-                'versions_recorded_total': sum(len(p['recorded_versions']) for p in catalog.values()),
-                'catalog': file_record(root, root / 'catalog.json'),
-                'previous_snapshot': file_record(root, previous) if previous else None,
-                'new_versions': sorted(new_versions, key=lambda x: (x['paper_id'], x['version']))}
-    write_json(root / 'snapshots' / (snapshot + '.json'), manifest)
+    batches = {}
+    for version in new_versions:
+        batches.setdefault(version['snapshot'], []).append(version)
+    if not batches:
+        batches[snapshot] = []
+    for tag, versions in sorted(batches.items()):
+        manifest = {'snapshot': tag, 'collection_started_at': observed, 'observed_at': iso(utcnow()), 'source': ORIGIN,
+                    'note': 'Publication dates are reported by rStation. This snapshot records when the material was independently mirrored; historical records are not backdated.',
+                    'papers_seen_this_run': len(paper_list), 'papers_recorded_total': len(catalog),
+                    'versions_recorded_total': sum(len(p['recorded_versions']) for p in catalog.values()),
+                    'catalog': file_record(root, root / 'catalog.json'),
+                    'previous_snapshot': file_record(root, previous) if previous else None,
+                    'new_versions': sorted(versions, key=lambda x: (x['paper_id'], x['version']))}
+        target = root / 'snapshots' / (tag + '.json')
+        write_json(target, manifest)
+        previous = target
     print(f'Snapshot ready: {len(catalog)} papers, {manifest["versions_recorded_total"]} versions; {len(new_versions)} new versions.', flush=True)
     return manifest
 

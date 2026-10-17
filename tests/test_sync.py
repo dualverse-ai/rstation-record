@@ -77,6 +77,23 @@ class ExportTests(unittest.TestCase):
         self.assertNotIn('must not be exported', str(metadata))
         s.audit(self.root)
 
+    def test_large_backfill_splits_into_chained_release_batches(self):
+        self.client.latest = 901
+        def export(client, root, assets, paper, version, tag, observed):
+            return {'paper_id': paper['paper_id'], 'version': version,
+                    'files': [], 'supplement': None, 'snapshot': tag}
+        with patch.object(s, 'export_version', side_effect=export), patch('builtins.print'):
+            self.sync()
+        manifests = sorted((self.root / 'snapshots').glob('*.json'))
+        self.assertEqual(len(manifests), 2)
+        first, second = [s.load_json(path) for path in manifests]
+        self.assertEqual(len(first['new_versions']), 900)
+        self.assertEqual(len(second['new_versions']), 1)
+        self.assertEqual(second['previous_snapshot'], s.file_record(self.root, manifests[0]))
+        self.assertTrue(first['snapshot'].endswith('-001'))
+        self.assertTrue(second['snapshot'].endswith('-002'))
+        s.audit(self.root)
+
     def test_repeat_is_noop_and_revision_only_downloads_new_version(self):
         self.sync()
         first = (self.root/'papers/math_test/1/v1/metadata.json').read_bytes()
@@ -162,6 +179,19 @@ class ExportTests(unittest.TestCase):
 
 
 class PublisherTests(unittest.TestCase):
+    def test_upload_content_type_matches_asset(self):
+        class Response:
+            def __enter__(self):return self
+            def __exit__(self,*args):pass
+            def read(self):return b'{}'
+        api = p.GitHub('fixture-token')
+        for name, expected in [('snapshot.json', 'application/json'), ('paper.zip', 'application/zip')]:
+            with patch.object(api.opener, 'open', return_value=Response()) as send, patch.object(p.time, 'sleep'):
+                api.call('/releases/1/assets?name=' + name, 'POST', b'content', raw=True)
+                request = send.call_args.args[0]
+                self.assertEqual(request.get_header('Content-type'), expected)
+                self.assertTrue(request.full_url.startswith('https://uploads.github.com/repos/dualverse-ai/rstation-record/'))
+
     def test_existing_verified_asset_is_not_uploaded_again(self):
         body=b'zip';expected={'bytes':3,'sha256':s.digest(body)}
         existing={'a.zip':{'size':3,'digest':'sha256:'+s.digest(body)}}
