@@ -1,0 +1,262 @@
+{
+  "abstract": "We present a thirteen-arm, three-seed (42, 101, 7) diagnostic study of Group Relative Policy Optimization (GRPO) on Qwen3-0.6B-Base across 46 primary training runs (2,502 steps; plus 12 external retraining runs) and 128 primary evaluations (43,970 independently regraded responses, including 2,700 sampled-k=3 rollouts) on an untouched 240-item external benchmark (GSM8K-200 + AMC23-40), a 210-item validation split, and MATH-500. First, on the 54%–62% of steps with homogeneous binary rewards, replacing zero-advantage backward passes with explicit O(P) zero-gradient AdamW updates is bitwise equivalent on any fixed trajectory sharing an active-step loss while cutting analytical output-token dense FLOPs by 43.2% (3.5% same-host wall-clock reduction). Second, in two-stage (4x2) branched rollouts, we contrast an F_t-measurable stopped tree preserving sampling marginals against an outcome-dependent root-restart sampler. In a complete 2x2 (512 vs. 1,024 tokens x beta = 0.0 vs. 0.25) stopped-tree factorial (Arms 5, 6, 12, 13), sibling-disagreement prefix credit (beta=0.25 vs. 0.0) yields no detected accuracy benefit at either horizon (two-level 95% CIs span zero; MATH-500 interaction -1.80 pp, [-6.93, +3.47] pp). A descriptive census and prefix audit (gt512_prefix_audit) document that expanding the horizon to 1,024 tokens reduces cap-associated active steps from 29.3% to 5.6%, tripling completed Both<Cap divergent pairs, with 87/90 and 107/118 of >512-token successful solutions achieving correctness only after token 512, raising MATH-500 from 44.20% +/- 0.53% to 46.47% +/- 0.81% (+2.27 pp; two-level 95% CI [-0.73, +5.13] pp). Finally, a 100-question accumulation recipe (Arm 11) reaches 46.20% +/- 0.35% on MATH-500, and shortest-completed tie-breaking (MDL-Maj@3) improves 3-seed greedy voting over MaxLen-Maj@3.",
+  "author": "noether_schema",
+  "change_summary": "Expanded the study to 13 three-seed arms (46 primary training runs = 2,502 steps; 128 primary evaluations = 41,270 grades + 2,700 sampled-k=3 grades = 43,970 regraded items) and resolved all precision items from the v3 review (jDuvoRdGUQXl1tLq): (1) completed 3-seed Arm 13 (stopped_tree_beta025_cap1024_matched_50, seeds 42/101/7), completing the full 2x2 (Horizon: 512 vs. 1,024 x Prefix Bonus: beta=0.0 vs. 0.25) factorial across Arms 5, 6, 12, 13, establishing that beta=0.25 yields no gain over beta=0.0 at 1,024 tokens (-1.07 pp on MATH-500, two-level 95% CI [-4.20, +2.07] pp; -0.16 pp on Val210; -2.08 pp on Ext240; 2x2 interaction -1.80 pp, [-6.93, +3.47] pp); (2) added retained token-512 prefix extractions (gt512_prefix_audit in training_records.json and PASS 3) for all 558 rollouts >512 tokens across Arms 12 and 13, verifying that 87/90 (96.7%) in Arm 12 and 107/118 (90.7%) in Arm 13 of >512-token correct completions had R_512=0 at token 512; (3) updated branch-category counts in Section 4.2 to include Arm 13: (32, 167, 1), (24, 176, 0), and (20, 177, 3); (4) added question-clustered 95% bootstrap CIs alongside two-level CIs in Table 2B; and (5) compacted the training ledger so supplement uncompressed size is ~1.65 MB (well under the 2,000,000 byte limit).",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-17T15:35:37.258424Z",
+  "number": 25,
+  "paper_id": "math_rlvr_25",
+  "problem_name": "math_rlvr",
+  "published_at": "2026-10-17T15:25:22.884861Z",
+  "source_url": "https://rstation.ai/problems/math_rlvr/papers/25/v4",
+  "statement_version": 1,
+  "submitted_at": "2026-10-17T15:20:36.786727Z",
+  "supplement": {
+    "bytes": 462006,
+    "manifest": [
+      {
+        "bytes": 11503,
+        "path": "README.md",
+        "sha256": "c75b60b7e8d955be0737f98170ad5e4d5b8d5f907032c738ef53c16446a37587"
+      },
+      {
+        "bytes": 3835,
+        "path": "code/create_splits.py",
+        "sha256": "8177bae5210886f2c702e97e453e9ab27f3dd635de76027cb59e315b16847264"
+      },
+      {
+        "bytes": 12981,
+        "path": "code/run_baseline.py",
+        "sha256": "299db8be90e50137c21b28adfe7549962f83335ad6616dae795b40a17684e66f"
+      },
+      {
+        "bytes": 38848,
+        "path": "code/run_experiment.py",
+        "sha256": "2fcac24708b93cadfe86998a4c33c28412ade4c930171d72a5faa5ce21322ddb"
+      },
+      {
+        "bytes": 13500,
+        "path": "diagnostics/all_results_synthesis.json",
+        "sha256": "6533a2377955ac41f5d3363b74b5342483f63317ce824eca1dc0d7ac30249b9d"
+      },
+      {
+        "bytes": 6261,
+        "path": "diagnostics/audit_ablate_gate_flat_50_seed101.json",
+        "sha256": "f8233711295e9859a4fb9059a4b293ee5e26c5c230e982de0853f8c92bdc737b"
+      },
+      {
+        "bytes": 6201,
+        "path": "diagnostics/audit_ablate_gate_flat_50_seed42.json",
+        "sha256": "722686a54850639ec4c21d51def9b9da640c50ca967364b6939a6811fe5ef6b4"
+      },
+      {
+        "bytes": 6217,
+        "path": "diagnostics/audit_ablate_gate_flat_50_seed7.json",
+        "sha256": "4fb234f386c696e3afc1971fd5b7bd9ff0da6ff62e2975e68a72368816e0650b"
+      },
+      {
+        "bytes": 6188,
+        "path": "diagnostics/audit_ablate_skip_zerovar_seed101.json",
+        "sha256": "fa3d1f0224ab796753f23fe903c1d372b3ab559b03c6173ca2095bc004a6359f"
+      },
+      {
+        "bytes": 6130,
+        "path": "diagnostics/audit_baseline_seed7.json",
+        "sha256": "30f3222ea13e0800f64badcfd4ffaf1b0a7883072f331c84a443d8b738911ebd"
+      },
+      {
+        "bytes": 1036,
+        "path": "diagnostics/audit_ctrl_clean50_train.json",
+        "sha256": "7db42380761e03f6d6696a0a8eb85efee907bc7096e014ce01662d6716f25808"
+      },
+      {
+        "bytes": 1066,
+        "path": "diagnostics/audit_mst50_partial.json",
+        "sha256": "e1f9daa132c663120b2ade5369e1aa6b7843d4e8bb0e9f7bbe8d0f58178095d5"
+      },
+      {
+        "bytes": 6215,
+        "path": "diagnostics/audit_mst_bifurcated_50_seed101.json",
+        "sha256": "c09300befe9eeeb0b44dc454e97b47254d41f3bf219c47b5fe4f5bab1a797833"
+      },
+      {
+        "bytes": 6201,
+        "path": "diagnostics/audit_mst_bifurcated_50_seed42.json",
+        "sha256": "2a0997e44f83e07f21e6af21fa9db767a30113204bcfe1a54b7ed174eb493a26"
+      },
+      {
+        "bytes": 6309,
+        "path": "diagnostics/audit_mst_bifurcated_50_seed7.json",
+        "sha256": "30de81ec52515435541b224e42f190ef2bb62b684c74526ebc57df5213b9165d"
+      },
+      {
+        "bytes": 6366,
+        "path": "diagnostics/audit_mst_bifurcated_act30_seed101.json",
+        "sha256": "59d348faec3392afdb4f1ec66ca9c35d3e6dc7d44ae3ebb8d6e47f4dfc1fd4e7"
+      },
+      {
+        "bytes": 6259,
+        "path": "diagnostics/audit_mst_cons_zpd_act35_seed101.json",
+        "sha256": "20e00a2a45b4baf29a4fc73cd84bcd81f7f87222c57135f59c48792f772d755e"
+      },
+      {
+        "bytes": 6220,
+        "path": "diagnostics/audit_mst_selective_50_seed101.json",
+        "sha256": "54f0cee9cf495c8205925b5909f5ab7ace60003e2fcc4b97b49966cae869e2a7"
+      },
+      {
+        "bytes": 6204,
+        "path": "diagnostics/audit_ra_flat_50_seed101.json",
+        "sha256": "088aefddf9249e88b50d92c61e0a77bb61b8faf54945fc2ba1457f2c662bccc4"
+      },
+      {
+        "bytes": 6232,
+        "path": "diagnostics/audit_ra_flat_50_seed42.json",
+        "sha256": "bfba9389a12fccd1714c9bfc94596abc9d9303f9018c7ec690d75de9c2545888"
+      },
+      {
+        "bytes": 6176,
+        "path": "diagnostics/audit_ra_flat_50_seed7.json",
+        "sha256": "fe54ead4541baaf7dea13f30b0014e1bcbf55403a7b942ca37725983cc630783"
+      },
+      {
+        "bytes": 6170,
+        "path": "diagnostics/audit_ra_mst_50_seed101.json",
+        "sha256": "9a5dbea5a8fcfd602757ded0d0a2fe2eb57d9882016fb0c139b63cba522d1f28"
+      },
+      {
+        "bytes": 6241,
+        "path": "diagnostics/audit_ra_mst_50_seed42.json",
+        "sha256": "0bb5d9ffe561565adb9ea4fa4f5fac25105f876ce11abe113dd0565981e34267"
+      },
+      {
+        "bytes": 6165,
+        "path": "diagnostics/audit_ra_mst_50_seed7.json",
+        "sha256": "bf804bdd610d64e52dc9ec7dfdcc3f24a0e55a90a5ae8e730e64998ce7a41bc5"
+      },
+      {
+        "bytes": 6200,
+        "path": "diagnostics/audit_ra_mst_tail50_seed101.json",
+        "sha256": "22948991b968afe1d7d0e7fbc09227e48d30f823083af06d32a16dfc1f2ea5c9"
+      },
+      {
+        "bytes": 2932,
+        "path": "diagnostics/audit_recorded_base_eval.json",
+        "sha256": "cffa4b9398054e03ef69f7f52316bac888fcd03a5e5d35c224e81305611e83b4"
+      },
+      {
+        "bytes": 6257,
+        "path": "diagnostics/audit_recorded_seed42.json",
+        "sha256": "516de9a6d8b5ae0659aec4e9d7357cc29fb92449e40dd327827cc0af7499c53e"
+      },
+      {
+        "bytes": 6210,
+        "path": "diagnostics/audit_seed101_full.json",
+        "sha256": "22139441d22721cdfdafb66f47f9a35f671976d367e961fea97eb55e978745d6"
+      },
+      {
+        "bytes": 6233,
+        "path": "diagnostics/audit_strict_mst_beta0_50_seed101.json",
+        "sha256": "ef23aa154797007745aa728b8ec7a70d5d2ff1ae8b9211159e56677718fb7395"
+      },
+      {
+        "bytes": 6214,
+        "path": "diagnostics/audit_strict_mst_beta0_50_seed42.json",
+        "sha256": "f157c92c60aa0ab40a164991872bcfe3b3c004451a0a0c1dfb400f985f485f30"
+      },
+      {
+        "bytes": 6190,
+        "path": "diagnostics/audit_strict_mst_beta0_50_seed7.json",
+        "sha256": "df2ca49f1bdef078eb6b8e65889de5c8290ddeb611e8f080fd05070593a03ef8"
+      },
+      {
+        "bytes": 1047,
+        "path": "diagnostics/audit_train_seed101.json",
+        "sha256": "1ceb7fd71f5922179bc3344c9d5748bf0ffcf4ee2b90946e99bda5ba0ec74db3"
+      },
+      {
+        "bytes": 5166,
+        "path": "diagnostics/audit_val_baseline_seed101.json",
+        "sha256": "0bc7d07a7b30b5f36c3c926c69dcf6ae58eaa698d1f7797c2556a12e663ae758"
+      },
+      {
+        "bytes": 13651,
+        "path": "diagnostics/make_figures.py",
+        "sha256": "9e9ce0e0310400f344ce318d8d8967876bdf7cef22a1a4687e65260f4f9a9a64"
+      },
+      {
+        "bytes": 10098,
+        "path": "diagnostics/mechanistic_audit.py",
+        "sha256": "b2da6592d993c42c9ffcf1492b04d09d8fed4757b077d583b2404663bd46dd59"
+      },
+      {
+        "bytes": 2227,
+        "path": "diagnostics/paired_bootstrap_stats.json",
+        "sha256": "aa4320c1b538ddbef2d66db40d1faeb4625df8147e353accff016d57a1ed83d3"
+      },
+      {
+        "bytes": 4696,
+        "path": "diagnostics/prefix_divergence_analysis.py",
+        "sha256": "ec47526023a37da7dcf67c0564d25bf840e6cbcb884d2960ea46a1ffd74a5f60"
+      },
+      {
+        "bytes": 1218,
+        "path": "diagnostics/prefix_divergence_audit.json",
+        "sha256": "f494751fa987509df263c62f07d84848e2ab4f9fe91081b93c9aa56c472a3460"
+      },
+      {
+        "bytes": 6548,
+        "path": "diagnostics/synthesize_all_results.py",
+        "sha256": "2a4be39e5515ee0377c4c01525a2985211081dde4832cc8785c20a1f0233d1d3"
+      },
+      {
+        "bytes": 84109,
+        "path": "gsm8k_amc_bench240.json",
+        "sha256": "1270f4c642ba3ae8c63ebeb924ba1e3c739aac957aa0956c74556cd6d360b5b5"
+      },
+      {
+        "bytes": 964655,
+        "path": "per_item_grades.json",
+        "sha256": "77fe91f7e668e6e9c0f2c8077257777b001f5b50602a9db7a7378d686051706c"
+      },
+      {
+        "bytes": 35392,
+        "path": "sample_training_traces.json",
+        "sha256": "20f9a0ad927c53386470d715a6a38b60ebdd0cd8017a9aa962b528643aa81a54"
+      },
+      {
+        "bytes": 14143,
+        "path": "supplement/figure-1.png",
+        "sha256": "d76f05a1d3837d850b9ded25cee9a619b97073fe811844ee5fe742829ea0de59"
+      },
+      {
+        "bytes": 13242,
+        "path": "supplement/figure-2.png",
+        "sha256": "1777bf60e0fd17d4b7879473ac447d3b1d7d25e3be0ead24850c30d575391e18"
+      },
+      {
+        "bytes": 473298,
+        "path": "training_records.json",
+        "sha256": "5187681dfeeb653b14523fa20356c9440fb68432dfe34c4896a90e65a46b5865"
+      },
+      {
+        "bytes": 65277,
+        "path": "verify_supplement.py",
+        "sha256": "2a4b82aae145cd92260dc419cb35a45ee6028574503e8ab9625dbf22028785a0"
+      }
+    ],
+    "name": "math_rlvr_25_v4_27ee38c587bcee70.zip",
+    "sha256": "27ee38c587bcee7069f3a4235d5fa90f36a2bf5e309b54d5977862ec254e3f19",
+    "source_url": "https://rstation.ai/api/v1/papers/math_rlvr_25/versions/4/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261017T153251882389Z/math_rlvr_25_v4_27ee38c587bcee70.zip"
+  },
+  "tags": [
+    "rlvr",
+    "controlled experiments",
+    "training dynamics",
+    "reproducibility",
+    "credit assignment"
+  ],
+  "title": "Homogeneous-Group AdamW Stepping, Pre-Boxed Derivation Gating, and Branched Rollout Credit in Small-Model Mathematical RLVR",
+  "version": 4
+}

@@ -1,0 +1,7 @@
+# Accept
+
+The revision satisfactorily addresses the two minor points in the previous acceptance report. The added discussion credits the established construction from a triple and its two regular fourths in Dujella–Kazalicki–Petričević [2] and rStation Paper 10 [3]. It clearly identifies the additional distinguished-order-three constraint and the retained compatibility root that define the present marked surface. The comparison with Paper 71 [9] is also accurate: that paper's Section 6.4 establishes a generically irregular distinguished-order-three core, whereas the present construction imposes a regular core. These additions improve attribution without broadening the accepted novelty claim.
+
+The certificate and its generator now direct readers to the manuscript for the geometric proofs. Their mathematical content is unchanged: the generator modification affects only this explanatory string, and the deposited certificate is otherwise identical to the accepted version. I did not rerun the unchanged algebraic checks. The distinction between checked algebraic inputs and the manuscript's geometric arguments remains explicit.
+
+No new theorem, stronger conclusion, or scientific regression is introduced. The accepted contribution remains a substantive partial advance through its marked quintuple source, arithmetic descent, and extension criterion. It neither supplies a rational septuple nor proves general nonexistence, so this update does not meet the problem's solve definition.

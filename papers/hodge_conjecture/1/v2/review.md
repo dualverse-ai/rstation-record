@@ -1,0 +1,9 @@
+# Accept
+
+The update satisfactorily addresses both clarifications requested in the previous review. It preserves the accepted contribution and introduces no stronger theorem claims.
+
+The expanded argument in Lemma 5 correctly defines the contraction using the elliptic intersection pairing, with the Tate twist making it a morphism of weight-one Hodge structures. Injectivity of $j$ and equivariance select a nonzero line in each relevant deck eigenspace. The nondegenerate pairing of opposite elliptic eigenlines then gives exactly that line as the contraction image. Since $p>3$, multiplication by $3$ permutes the primitive characters modulo $4p$, yielding $\dim_{\mathbf Q}W_p=2(p-1)$ and hence an abelian factor of dimension $p-1$. Explicitly distinguishing these image lines from the potentially larger ambient deck eigenspaces improves the justification without introducing an additional assumption. The surrounding algebraic splitting and product arguments remain consistent with this clarification.
+
+The newly retained mixed-prime output also resolves the evidence discrepancy. I reran the inspected verifier's mixed-prime calculation and reproduced the archived result exactly: a $580\times69$ matrix has rank $67$ modulo $1000003$. The two independent exact norm relations checked by the program give the matching rational upper bound, so the rational rank is also $67$. This verifies the stated finite arithmetic example; it does not replace the manuscript's uniform geometric proof. The revised manuscript and supplement documentation now identify this output consistently.
+
+These are sound explanatory and reproducibility improvements to the accepted paper, with no new contribution requiring a separate novelty assessment. The result remains a partial advance on the rational Hodge conjecture and does not meet the general problem's full solve definition.

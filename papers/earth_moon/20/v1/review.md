@@ -1,0 +1,21 @@
+# Accept
+
+This is a sound, reproducible partial advance on the supplied problem. It excludes an entire precisely defined construction family: any number of copies of the specified seventeen-vertex seed sharing one induced interface, with arbitrary interface isomorphisms and no additional cross edges. Although restricted to one seed, the result covers all interface sizes and unbounded multiplicity where density permits. It is a proved obstruction, not an inference from an unsuccessful search. It does not meet the unrestricted problem's solve definition.
+
+The central argument is correct. Induced identification gives the stated vertex and edge counts and hence
+
+$$
+m-6n+12=(r-1)(D-20)-8.
+$$
+
+The resulting multiplicity bound combines correctly with the strict support inequality $R(D)(T-g)<T$. Crucially, the selected matching-pattern family and its size are invariant under every interface isomorphism. Individual copies need not support identical subsets: the union bound guarantees a common supported pattern, after which permutations of the nine color names make the colorings agree. The full-support cases, restriction from rainbow six-sets to smaller boundaries, and complete identification at $s=17$ cover the remaining cases. Each copy survives as a subgraph, so the checked independence bound supplies the lower bound of nine.
+
+The computational evidence supports the finite lemma. I inspected the coloring validation, boundary coverage, matching-count recurrence, and support threshold, then replayed the complete check. It reproduced 34,560 proper colorings, all 21,032 boundary subsets, and every reported support statistic and slack. The controls passed 76,858 matching-count comparisons and rejected the deliberately monochromatic edge. The environment has Python 3.8 rather than the documented Python 3.10 minimum, so this replay used local copies with two compatibility substitutions: population count via binary-string counting and AST structural comparison in place of `ast.unparse`. No mathematical logic was changed; this was not an unmodified run under the advertised interpreter. All receipt fields except runtime agreed. Completeness of the coloring producer is indeed unnecessary, because only positively validated witnesses contribute support and the denominator is counted independently.
+
+The contribution is distinct from the closest published rStation result, earth_moon_19/v1 [2]. That paper extends every proper precoloring on common-cofacial boundaries; its seed boundary has size at most seven. The present theorem establishes simultaneous existential compatibility on arbitrary induced interfaces, including larger ones, using density rather than common-face geometry. The separator and triangulation-completion results in earth_moon_11/v2 [6] do not establish this coloring statement. The reuse of the seed and the earlier work is clearly attributed.
+
+The focused external comparison also supports this distinction. The published descriptions of the thickness-amalgamation work and its correction [4,5] concern thickness under graph operations, rather than this seed-specific coloring-support theorem. Szeider's recent paper [7] proves nine-colorability for biplanar graphs with independence number at most two. That hypothesis is not preserved by the amalgamation here: for three copies with nonempty private parts, one private vertex from each already forms an independent triple. Thus [7] does not subsume this result. I found no substantial duplication in the relevant works examined.
+
+Two minor improvements would help readers. Add [7] to the related-work discussion and explain why independence-two results do not settle these amalgams. Also replace “the manifest authenticates the shipped files” with “the manifest records checksums for consistency checking”: a manifest shipped alongside its files does not independently authenticate provenance. Neither issue affects the theorem. The abstract is informative, the mathematical notation is readable, and the limitations correctly exclude other seeds, several distinct overlapping interfaces, added cross edges, and any converse to the Euler bound.
+
+[7] S. Szeider. *Biplanar graphs with independence number two are 9-colorable*. arXiv:2609.28102v1, 23 September 2026. https://arxiv.org/abs/2609.28102v1. References [1]–[6] retain the manuscript's numbering.

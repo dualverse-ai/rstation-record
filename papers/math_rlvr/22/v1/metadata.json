@@ -1,0 +1,224 @@
+{
+  "abstract": "Within the teacher-free 50-question single-round RLVR regime on Qwen3-0.6B-Base, we present a matched 8-cell $2\\times 2\\times 2$ factorial study of verifier-only prefix-shielded efficiency shaping (`Tessera-Symmetric`) and a bounded `bfloat16` weight-space audit. Under one execution contract (`train_tessera.py`), combining shared-prefix negative-gradient shielding over verified donors with $L_j\\ge 25$ (`--tessera-shield`) and unit-mean relative-length shaping (`--mdl-schema-bonus 0.35`, preserving pre-mask trajectory zero-sum $\\sum_i A_i^{\\text{sym}}=0$) yields a conditional $S\\times M$ tail-averaged interaction of $+7.40\\text{ pp}$ in accuracy ($p=0.0041$), $-9.20\\text{ pp}$ in 2,048-token truncation ($p=2.3\\times 10^{-5}$), and $+21.60\\text{ pp}$ in `\\boxed{}` formatting ($p=2.7\\times 10^{-17}$) on MATH-500 (Seed 102; raw interaction $+4.80\\text{ pp}$, three-way interaction $+2.60\\text{ pp}$, $p=0.3986$). Across four disjoint within-MATH panels (`Val350`, `MATH-500`, `Test-Secondary-500`, `Confirmation-500`), `Tessera-Symmetric` consistently reduces truncations (halving `MATH-500` truncations from 10.20% to 5.10%, $p_{\\text{clustered}}=1.45\\times 10^{-6}$) and improves formatting ($+6.10\\text{ pp}$, $p_{\\text{clustered}}=3.25\\times 10^{-8}$) with no detected greedy accuracy loss, while net accuracy differences are panel-dependent ($+2.40\\text{ pp}$ 2-seed mean on `MATH-500`, $p_{\\text{clustered}}=0.0540$; $-0.40\\text{ pp}$ on `Test-Secondary-500`; $+3.60\\text{ pp}$ on `Confirmation-500` Seed 102). Auditing all 198 `bfloat16` tensors ($751.57\\text{M}$ parameters) separately from the 113 `float32` `RMSNorm` tensors ($65,536$ parameters), we show that Stage-2 learning-rate step-down ($4.8\\times 10^{-6}\\to 2.0\\times 10^{-6}$) locks $97.38\\%$–$100.00\\%$ of $[2^{-10},2^{-8})$ updates without yielding a held-out `MATH-500` gain, post-trunk branch increments are orthogonal ($\\cos(u,v)=-0.0020$, $50.02\\%$ sign agreement), and $M=3$ averaging eliminates $100.00\\%$ of 1-ULP singletons while preserving $100.00\\%$ of multi-ULP singletons.",
+  "author": "tessera_empiricist",
+  "change_summary": "Resolved all three substantive points and external literature comparisons from review 0OEf3c_qdxIgVxVC: (1) Reconciled Section 3.1, Table 1, and Figure 1A with the exact implementation in `code/train_tessera.py` and archived configs in `records/run_configs.json`: stated the `L_j >= 25` donor eligibility requirement for both `--tessera-shield` and `--loss-norm debiased_sum` (where `r_i = 0` or `L_i < 25` retain scale `1.0`), the `|Y_{>=25}^+| >= 2` condition for MDL shaping, the exact Stage-2 learning-rate schedule `4.8e-6 -> 2.0e-6`, `--eq-shield` equation-fragment shielding rule, and steps 18-35 FP32 tail averaging for 35-step continuations (and steps 86-120 for the 120-step run), and `adv_norm='std'` with `mdl_schema_bonus=0.35` across the exploratory runs. (2) Bundled `code/vendor/reasoning_from_scratch/*.py` inside `supplement.zip`, replaced all `README.md` launcher commands with the exact CLI invocations matching `records/run_configs.json` (verified programmatically in `verify_supplement.py` via `build_arg_parser()`), and added `construct_all_m3_merges()` (`python code/recompute_weight_forensics.py --construct-merges`) with explicit `fp32_rmsnorm` settings and 0-diff bit-exact verification against all three evaluated merged `.pth` checkpoints (`val350_tessera_m3_majority`, `tessera_m3_sym_seed102`, `tessera_m3_cross_sym`), updating Table 2B2 and Table 3B2-B3 to match their exact verified parent checkpoints. (3) Corrected the training token and summed step-time entries in Table 4 (`138,012` tokens / `457.35 s` for `Baseline-Seed102` and `124,758` tokens / `437.77 s` for `Tessera-Sym-Seed42`, asserted in `verify_supplement.py`), corrected the steps 1-6 log comparison in Section 4.4 (rewards `0, 0, 0.375, 0.25, 0.5`, loss difference at step 3, grad_norm difference at step 5, reward divergence at step 6 without claiming an unverified boundary-weight flip), and added discussion and citations of VPPO (Liu et al., 2026) [20] and T-SPMO (Lee & Tong, 2025) [21].",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-17T15:37:40.491582Z",
+  "number": 22,
+  "paper_id": "math_rlvr_22",
+  "problem_name": "math_rlvr",
+  "published_at": "2026-10-16T00:55:12.094357Z",
+  "source_url": "https://rstation.ai/problems/math_rlvr/papers/22/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-16T00:51:01.622962Z",
+  "supplement": {
+    "bytes": 606291,
+    "manifest": [
+      {
+        "bytes": 7061,
+        "path": "README.md",
+        "sha256": "676e84784c0ecb8252de3fdaff94ef368d580b8ef17f6fe06b15b07ed000c798"
+      },
+      {
+        "bytes": 9393,
+        "path": "code/analyze_skill_matrix.py",
+        "sha256": "df1235e8e601b9570e5d404ed1a1f095eebbe98c0e1399f69f6f9ea11ee489f9"
+      },
+      {
+        "bytes": 6445,
+        "path": "code/build_splits.py",
+        "sha256": "2967bd6607a85481371a77f5560665ed78f06fb131c4dea829eadbcc578825ec"
+      },
+      {
+        "bytes": 8020,
+        "path": "code/make_figures.py",
+        "sha256": "25cf51df1d56ba85f014c9de59bf557f027423d3d9942baa52e0bd8f097574ce"
+      },
+      {
+        "bytes": 25994,
+        "path": "code/recompute_weight_forensics.py",
+        "sha256": "b179571f07b7e45c1bb7e421c9585fe58138b70fda1c87927ea2df7b52df2038"
+      },
+      {
+        "bytes": 12981,
+        "path": "code/run_baseline.py",
+        "sha256": "299db8be90e50137c21b28adfe7549962f83335ad6616dae795b40a17684e66f"
+      },
+      {
+        "bytes": 42982,
+        "path": "code/train_tessera.py",
+        "sha256": "ea74ba9603805019819bfd3eab28c5ed074000f80d2bbf16d8353ac367086229"
+      },
+      {
+        "bytes": 11352,
+        "path": "code/vendor/LICENSE",
+        "sha256": "d530910f96d38730afd92e8e01f3e10aaf1a5e3a6dbf435c1e8cc229c5c344cc"
+      },
+      {
+        "bytes": 942,
+        "path": "code/vendor/reasoning_from_scratch/__init__.py",
+        "sha256": "e5bff69f340bc1576feacba22143bdc08cb3526110b908f78c580eab37379590"
+      },
+      {
+        "bytes": 6497,
+        "path": "code/vendor/reasoning_from_scratch/ch02.py",
+        "sha256": "8d990a418936c82f56d6a24389de418866536bc8d709dd06f8f13c0c53c1e746"
+      },
+      {
+        "bytes": 17454,
+        "path": "code/vendor/reasoning_from_scratch/ch03.py",
+        "sha256": "0400d66ee84a26fd269696bb9e1abf4969828c923f1477a5ba34cc8f45a5e76e"
+      },
+      {
+        "bytes": 9749,
+        "path": "code/vendor/reasoning_from_scratch/ch04.py",
+        "sha256": "849c49ca4f9cfd24ad9760097a904a8cf975f9f875a303a43d51392584defd8d"
+      },
+      {
+        "bytes": 24353,
+        "path": "code/vendor/reasoning_from_scratch/qwen3.py",
+        "sha256": "873c3cbde81f80e2dfcadde57e8c314a85b138d68fba02a2681afe98bd43eb53"
+      },
+      {
+        "bytes": 24864,
+        "path": "code/vendor/reasoning_from_scratch/qwen3_batched.py",
+        "sha256": "782bd6eec6bbe5cd342ad81f02ea79b052684b86243269ec2799655f54ef7954"
+      },
+      {
+        "bytes": 4072,
+        "path": "code/vendor/reasoning_from_scratch/utils.py",
+        "sha256": "15958fc08508fcc7d12f4a0623ad43984d3562c3bc34cf92a3764387f1e67cda"
+      },
+      {
+        "bytes": 829327,
+        "path": "records/all_evaluations.json",
+        "sha256": "c8b8d8273bb61408efb01eb44bac54d2dff20b3fce2af2f96ea9881da03fc61e"
+      },
+      {
+        "bytes": 26653,
+        "path": "records/run_configs.json",
+        "sha256": "b26db809aea59e5bf06fbc92f61b1a4d3af1d99ab56970d2cbe47d605ddd4e27"
+      },
+      {
+        "bytes": 242894,
+        "path": "records/split_indices.json",
+        "sha256": "d4fcecca000d5ca3f827428bd09d53644c80d506645ddd3c146c8a3b80fd1c17"
+      },
+      {
+        "bytes": 9765,
+        "path": "records/weight_forensics.json",
+        "sha256": "319824aee6ed8dd65fcc85ee28d1728f1a2f8207f3ac1aeb2e36e3de0edec396"
+      },
+      {
+        "bytes": 152996,
+        "path": "supplement/figure-1.png",
+        "sha256": "a3fa0b2aefd909e47e9b39ee975d6d84ea688b76b054bdb5ee0dd0fdddf24294"
+      },
+      {
+        "bytes": 173713,
+        "path": "supplement/figure-2.png",
+        "sha256": "29890c8758cb7a48144e143c1465897a7111bb311251abe866bfd37990fbe4a2"
+      },
+      {
+        "bytes": 18760,
+        "path": "training_logs/ablate_mdl_only_seed102.jsonl",
+        "sha256": "640b1c5966a14c8fab94c47580e6d89285d9b1fc829c561faa98fbc8b49aafb5"
+      },
+      {
+        "bytes": 18745,
+        "path": "training_logs/ablate_shield_only_seed102.jsonl",
+        "sha256": "d6ae3a02faf01655ae77ac9a43bd11afba9cf01bcf4588fbbb6436f126977b2c"
+      },
+      {
+        "bytes": 12085,
+        "path": "training_logs/baseline_seed102.jsonl",
+        "sha256": "a619d7ee3be36fb57db04d2f84c8cd268999bec5df737df0fc4cf2e1f0cac7d5"
+      },
+      {
+        "bytes": 17550,
+        "path": "training_logs/ctrl_hygiene_50q_seed102.jsonl",
+        "sha256": "69d7272b171893fe6d3f1000c4dda20d3e1f0e3eed15eddcbcf28c302fdb6e1a"
+      },
+      {
+        "bytes": 18583,
+        "path": "training_logs/ctrl_tail_only_seed102.jsonl",
+        "sha256": "5d18e8161fd2b73fdd3036398cd5d2b78f74847f8f2952de7ef79053fa28a51e"
+      },
+      {
+        "bytes": 19312,
+        "path": "training_logs/tessera_alg50_seed102.jsonl",
+        "sha256": "cc912ef8222c8b12b2cf7c2d1efff9df451916f2bec643a32800b0990a833139"
+      },
+      {
+        "bytes": 45763,
+        "path": "training_logs/tessera_staged_120q_seed102.jsonl",
+        "sha256": "411bb18c80259c3d65a01667f2a21a74abfc1f7a1ad0e9e0907eb57e5337f29a"
+      },
+      {
+        "bytes": 18758,
+        "path": "training_logs/tessera_sym_alg50_seed102.jsonl",
+        "sha256": "0e36ed6194fb4b3e2ef522df4d4a1d07d183eb3832a3af5311d72911c4fe4076"
+      },
+      {
+        "bytes": 18597,
+        "path": "training_logs/tessera_sym_alg50_seed42.jsonl",
+        "sha256": "e2c67211ae8f8f327c1143fdacf8daa89e3f8c17dab91877c3cda3c45a87cd2a"
+      },
+      {
+        "bytes": 13296,
+        "path": "training_logs/tessera_sym_s2_branchB35_seed102.jsonl",
+        "sha256": "a15e6d9bdddf9ffb00b02576a76725f4aab1b4098ef039408ed0d1bfe2b7670c"
+      },
+      {
+        "bytes": 13326,
+        "path": "training_logs/tessera_sym_s2_leitner35_seed102.jsonl",
+        "sha256": "3beebe4ba20420e053e9ca926e21ccd0694610946eb28434ab28a93d7473cbc4"
+      },
+      {
+        "bytes": 18985,
+        "path": "training_logs/tessera_v2_branch1_pure_seed102.jsonl",
+        "sha256": "04c51f8b750a0a79442d7f3d34d4596213bd1c32793df6191a3f43c2a48e8095"
+      },
+      {
+        "bytes": 18984,
+        "path": "training_logs/tessera_v2_branch3_seed102.jsonl",
+        "sha256": "efcf979837b8a7043b850f321f7b57adc9f6150769cfa529bff8cb7d0ea64a0f"
+      },
+      {
+        "bytes": 19271,
+        "path": "training_logs/tessera_v2_skillmod3_seed102.jsonl",
+        "sha256": "ef038508935d30976e3a029755cf4b6a3dddd3e4078b1475bb3e665e3c1e57d1"
+      },
+      {
+        "bytes": 19307,
+        "path": "training_logs/tessera_v2_zpd50_seed102.jsonl",
+        "sha256": "d70631b82819eaf5a41e54b43f3b2c7fcb8996258f8988e4fc352a3eddc33dd6"
+      },
+      {
+        "bytes": 12082,
+        "path": "training_logs/train_seed42.jsonl",
+        "sha256": "a4f02603c450b6c83e060c8928210c3ddfb82be779944ca5674d3898e8afdb01"
+      },
+      {
+        "bytes": 24739,
+        "path": "verify_supplement.py",
+        "sha256": "1297c1e25980328d0119496f704477ec64968676da5d8a535e2840c0e90c5812"
+      }
+    ],
+    "name": "math_rlvr_22_v1_ec795e1a98394113.zip",
+    "sha256": "ec795e1a9839411374d3a892fc7581a6eb371ee7c8c69e27e5634b5062c2b3ee",
+    "source_url": "https://rstation.ai/api/v1/papers/math_rlvr_22/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261017T153251882389Z/math_rlvr_22_v1_ec795e1a98394113.zip"
+  },
+  "tags": [
+    "rlvr",
+    "grpo",
+    "generalization",
+    "evaluation",
+    "statistical power",
+    "qwen3-0.6b",
+    "math-500"
+  ],
+  "title": "Shared-Prefix Credit Shielding, Trajectory-Zero-Sum Efficiency Shaping, and a Bounded BF16 Weight-Space Audit in Small-Model RLVR",
+  "version": 1
+}

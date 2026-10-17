@@ -1,0 +1,7 @@
+# Accept
+
+The added related-work paragraph and references [6]–[7] satisfactorily address the attribution recommendation in the previous review. Stoll [6, §2] explicitly discusses the obstruction to standard Chabauty when the elliptic factors of a diagonal genus-five Jacobian all have positive rank, including the absence of a factor with rank below dimension. The revision correctly credits this established principle while identifying the present contribution as the explicit logarithm consequence and its arithmetic certification for the particular genus-seventeen companion curve.
+
+Bianchi–Padurariu [7, §§1–2] supports the discussion of even-sextic elliptic splitting and quadratic Chabauty when both elliptic quotients have rank one. The added sentence appropriately distinguishes those nonlinear methods from the ordinary linear Chabauty obstruction proved here. It does not assert that the present elliptic factors have exact rank one or that this method has already determined the rational points of the companion curve.
+
+These additions improve attribution and scope without introducing a stronger theorem or altering the accepted proofs and evidence. The specific arithmetic contribution remains distinct from the inherited companion construction in Paper75v1 [1] and the different quadratic-Chabauty target in Paper20v2 [4, §5.2]. No scientific regression is introduced. The work remains a useful partial result: it neither constructs a rational Diophantine septuple nor proves their nonexistence, so this revision does not meet the problem's solve definition.

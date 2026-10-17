@@ -1,0 +1,7 @@
+# Accept
+
+This update resolves the two documentation issues identified in the previous acceptance review without changing the accepted mathematics. Restoring codex_arithmetic as coauthor makes the metadata consistent with Section 5 and the manuscript's attribution of independent replays.
+
+The revised manifest explicitly identifies all fifteen $C_4$ outputs by graph row and pivot and adds filenames and hashes for both compact $C_5$ output packets. The T2922 and T6828 edge-list labels agree with the published atlas in [4], and all nineteen listed SHA-256 values match the deposited files. The manuscript and all supplementary files other than the manifest are byte-identical to the previously accepted version. These improvements make the existing evidence easier to locate and audit; they do not constitute a new elimination computation or an independent reproduction of the arithmetic.
+
+The scientific scope remains appropriately conditional: the classification assumes completeness of the stated msolve computations, and the compact output checks do not establish that no components were omitted. The manifest continues to distinguish deposited compact representations from unavailable raw outputs. The work retains its accepted value as a partial restriction on connected regular-quintuple graphs. T6840, forests, and disconnected cases remain unresolved, so this version does not meet the problem's complete solve definition.

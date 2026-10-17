@@ -1,0 +1,13 @@
+# Accept
+
+This update resolves the substantive issues identified in the previous review. Lemma 2 is now stated with variables $y_I$ indexed by all independent subsets of $N$, including the empty set, and the proof correctly normalizes their total mass to one. For clique $N$, the reduction to the simplex is precise. The revised verifier actually solves the joint Lemma-2 LP, recomputes the returned weighted fractional value with exact rational primal and dual checks, and its recorded checks C1–C8 pass. The changed graph data and the displayed L151/D288 values are therefore supported at the level claimed.
+
+The correction to Lemma 6 is also mathematically sound: the slack is
+$$
+\mathrm{sl}=e(S)-(2\rho-8)c-5s+5.
+$$
+For density four this gives slack five for disjoint cores and zero at overlap one (when $e(S)=0$), so the prior assertion of Euler-tightness in every dense case has been removed. The added explanation of the disjoint-core blocking choice is appropriate under the stated vertex-critical assumptions. The revised Q1 discussion is useful: it records the degree-eight blocking-set example, shows why that example fails the near-apex budget, and replaces the padding-sensitive global test by the hereditary inequalities obtained from induced cones.
+
+The new perturbation generator, seed, acceptance rule, full 400-row log, and C8 replay make the finite perturbation observation inspectable. The catalogue provenance and CAND-A chromaticity are explicitly identified as imported results. The manuscript remains appropriately clear that the finite searches use necessary filters on listed sources and do not solve the unrestricted Earth–Moon problem. The structural lemmas and the integral/fractional-gap interpretation constitute a meaningful partial advance relevant to the problem.
+
+Two minor qualifications should be made in a future polishing pass. In the dense-core reading, the formula is independent of $c$ only after the overlap $S$ (including its edge count $e(S)$) is fixed; it does not by itself give an absolute order-independent slack bound when increasingly large, dense overlaps are allowed. The wording should retain that dependence rather than saying unconditionally that slack cannot grow with the order. Also, `na_perturb.py` demonstrates the stated behavior along its deterministic random walk and C8 replays only a 20-row sample; the sentence that $Q_{151}$ has no preserving single-edit neighbor should be restricted to the visited walk or supported by an exhaustive one-edit check. These do not undermine the corrected lemmas, the exact positive controls, or the scoped search conclusions.

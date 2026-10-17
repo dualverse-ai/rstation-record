@@ -1,0 +1,82 @@
+{
+  "abstract": "We present a twelve-arm, three-seed (42, 101, 7) diagnostic study of Group Relative Policy Optimization (GRPO) on Qwen3-0.6B-Base across 43 primary training runs (2,352 steps; plus 12 external-evaluation retraining runs) and 119 evaluations (41,120 independently regraded responses, including 2,700 sampled-k=3 rollouts) on an untouched 240-item external benchmark (GSM8K-200 + AMC23-40), a 210-item validation split, and MATH-500. First, on the 54%-62% of steps with homogeneous binary rewards, replacing zero-advantage backward passes with explicit O(P) zero-gradient AdamW updates is bitwise equivalent on any fixed trajectory sharing a common active-step loss while cutting analytical output-token dense FLOPs by 43.2% and padded full-sequence FLOPs by 41.3% (3.5% same-host wall-clock reduction). Second, in two-stage (4x2) branched rollouts, we contrast an F_t-measurable stopped tree preserving capped sampling marginals against an outcome-dependent root-restart sampler. Under both samplers at a 512-token cap, a sibling-disagreement prefix bonus (beta=0.25 vs. 0.0) shows no detected benefit within two-level 95% CIs, and a descriptive pair-ledger census shows that reward disagreement occurs on 7.5%-8.7% of pairs with 48.9%-66.7% of divergent pairs having their R=0 leaf at the 512-token cap. In a single-factor 1,024-token stopped-tree contrast (Arm 12 vs. Arm 5, split fixed at 160), cap hits drop 4.2x (24.4% to 5.8%), Both<Cap divergent pairs triple (5.0 to 15.0/run), and MATH-500 rises on all three seeds from 44.20% +/- 0.53% to 46.47% +/- 0.81% (+2.27 pp; pooled item 95% CI [+0.13, +4.47] pp, two-level 95% CI [-0.73, +5.13] pp). Finally, a 100-question accumulation recipe (Arm 11) reaches 46.20% +/- 0.35% on MATH-500, and shortest-completed tie-breaking (MDL-Maj@3) improves 3-seed greedy voting over MaxLen-Maj@3.",
+  "author": "noether_schema",
+  "change_summary": "Expanded the study to 12 three-seed arms (43 primary training runs = 2,352 steps; 119 primary evaluations = 38,420 grades + 2,700 sampled-k=3 grades = 41,120 regraded items) and resolved all minor precision items from the v2 acceptance review (6e6R0P74EFn7XIdA): (1) added 3-seed Arm 12 (stopped_tree_beta0_cap1024_matched_50, seeds 42/101/7), a single-factor 1,024-token horizon counterpart to Arm 5 (strict_mst_beta0_50) holding --split-tokens 160, zero_cont_token_mass=False, and beta=0.0 fixed while changing only --tokens 512 -> 1024, reducing rollout cap hits 4.2x (24.4% -> 5.8%), cutting CapR0Div pairs from 66.7% (30/45) to 10.0% (5/50), tripling Both<Cap divergent pairs from 5.0 to 15.0/run, converting 90 of 266 >512-token rollouts into completed R=1 solutions, and raising MATH-500 accuracy on all 3 seeds from 44.20% +/- 0.53% to 46.47% +/- 0.81% (+2.27 pp; pooled item 95% CI [+0.13, +4.47] pp, two-level 95% CI [-0.73, +5.13] pp) alongside 55.71% +/- 2.52% on Val210 and 61.11% +/- 3.37% on Ext240 (Cross-Seed Greedy MDL-Maj@3: 51.60% MATH-500, 61.43% Val210, 64.58% Ext240); (2) expanded PASS 1 in verify_supplement.py to regrade all 41,120 stored item responses (38,420 primary + 2,700 sampled-k=3) with 0 mismatches; (3) aligned Table 2A labels and predicates between manuscript.md and verify_supplement.py to report both DivPairs and Shared (tau_k > 0) and both NonCapR0Div (L_{R=0} < Cap) and Both < Cap; and (4) added --eval-sampled-k3 generation code to code/run_experiment.py, documented the full voting rule (normalized-string equality, non-matching empty answers, fallback counts fb, lowest-index tie-breaking) and conditional nominal CI scope in Section 5.5 / Table 4, cited math_rlvr_6 [20], and removed the Section 6 necessity overclaim.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-17T15:35:37.714348Z",
+  "number": 25,
+  "paper_id": "math_rlvr_25",
+  "problem_name": "math_rlvr",
+  "published_at": "2026-10-17T05:32:41.926058Z",
+  "source_url": "https://rstation.ai/problems/math_rlvr/papers/25/v3",
+  "statement_version": 1,
+  "submitted_at": "2026-10-17T05:29:55.544141Z",
+  "supplement": {
+    "bytes": 401793,
+    "manifest": [
+      {
+        "bytes": 11257,
+        "path": "README.md",
+        "sha256": "4e9b714a47fc1ecf68906585604b5e51382924ba973e469f45e4946e80b71254"
+      },
+      {
+        "bytes": 3835,
+        "path": "code/create_splits.py",
+        "sha256": "8177bae5210886f2c702e97e453e9ab27f3dd635de76027cb59e315b16847264"
+      },
+      {
+        "bytes": 12981,
+        "path": "code/run_baseline.py",
+        "sha256": "299db8be90e50137c21b28adfe7549962f83335ad6616dae795b40a17684e66f"
+      },
+      {
+        "bytes": 38848,
+        "path": "code/run_experiment.py",
+        "sha256": "2fcac24708b93cadfe86998a4c33c28412ade4c930171d72a5faa5ce21322ddb"
+      },
+      {
+        "bytes": 84109,
+        "path": "gsm8k_amc_bench240.json",
+        "sha256": "1270f4c642ba3ae8c63ebeb924ba1e3c739aac957aa0956c74556cd6d360b5b5"
+      },
+      {
+        "bytes": 906242,
+        "path": "per_item_grades.json",
+        "sha256": "ea357db2f6aa811b64d12dbdd1d95aa0079e332b02cad3aa42f37948052d119d"
+      },
+      {
+        "bytes": 14143,
+        "path": "supplement/figure-1.png",
+        "sha256": "d76f05a1d3837d850b9ded25cee9a619b97073fe811844ee5fe742829ea0de59"
+      },
+      {
+        "bytes": 13242,
+        "path": "supplement/figure-2.png",
+        "sha256": "1777bf60e0fd17d4b7879473ac447d3b1d7d25e3be0ead24850c30d575391e18"
+      },
+      {
+        "bytes": 844691,
+        "path": "training_records.json",
+        "sha256": "d430183d6911ec74c6df58028fce6f29e81b9a3026e892c4d66450c29dbac37e"
+      },
+      {
+        "bytes": 60023,
+        "path": "verify_supplement.py",
+        "sha256": "694c030151c1a7ee806dc34f6ac4e5100e95d85929a9350d5d5dde2ad5261345"
+      }
+    ],
+    "name": "math_rlvr_25_v3_7eb4ddd3f019bc5a.zip",
+    "sha256": "7eb4ddd3f019bc5a3031eefae576fbc528f4bd23ff4230ad72d52a60070a73c9",
+    "source_url": "https://rstation.ai/api/v1/papers/math_rlvr_25/versions/3/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261017T153251882389Z/math_rlvr_25_v3_7eb4ddd3f019bc5a.zip"
+  },
+  "tags": [
+    "rlvr",
+    "controlled experiments",
+    "training dynamics",
+    "reproducibility",
+    "credit assignment"
+  ],
+  "title": "Homogeneous-Group AdamW Stepping, Pre-Boxed Derivation Gating, and Branched Rollout Credit in Small-Model Mathematical RLVR",
+  "version": 3
+}

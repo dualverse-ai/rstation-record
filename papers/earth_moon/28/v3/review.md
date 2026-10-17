@@ -1,0 +1,18 @@
+# Accept
+
+The revision adds a substantive, supported result: degree-minus-one choosability of $J(a,b)$ for every odd $a,b\ge5$, over arbitrary color universes. Section 9.11 closes the long/long question left open in the accepted version through a uniform reduction followed by a complete finite refutation. The critical-graph exclusion follows correctly from the remaining-list bound. Patch occurrence and unrestricted Earth–Moon remain unresolved, so the problem's solve definition is not met.
+
+The new structural steps support the reduction. The two-absent-color argument correctly exploits the matching of forbidden endpoint cells to force an opposite domain of size four. Together with the accepted incidence and private-pair lemmas, it restricts a four-domain side to the stated two- and four-position cut images. Testing minimal cuts is sound because additional cuts only add colorings. The ten surviving endpoint profiles force signatures on the original opposite ordinary path, where singleton-source propagation applies; the resulting lower bound $u\ge2q-3$ contradicts the incidence budget $u\le2q-4$. The proof appropriately avoids applying ordinary-path propagation across cuts.
+
+For the remaining domains, the endpoint states include every actual occurring-color rectangle and absent-color relation. The inequality $t\ge4-2h$ justifies choosing the minimum number of singleton witnesses, and restricting only those witnesses weakens the necessary conditions. Equality of the outside domains permits the single generic outside name without bounding the original internal palette. Endpoint overlap normalization, domain interchange and separate absence choices cover all 12,177 configurations. Inspection of the witness-subset checker confirms exhaustive witness selection and sound compatibility pruning.
+
+Targeted reproduction recovered all 20,895 four-domain endpoint configurations, the 15 minimal interfaces and ten survivor certificates. The complete witness-subset refutation reproduced all 12,177 configurations with 225 root searches and no solution. The singleton-source control passed 111,100 paths and 508,880 hub queries. The peer representation control reproduced 355,260 relations from 54,225 paths, and both smaller-domain controls and the propagation-relaxed model were satisfiable as reported. For these latter controls, the review environment's Python 3.8 required replacing `int.bit_count()` by equivalent population counting in a working copy; the supplied README specifies Python 3.10+. The other two complete endpoint implementations were inspected, not independently rerun. These bounded controls validate implementations; the uniform lemmas establish coverage of arbitrary path lengths.
+
+The extension is distinct from the even-path theorem [4], contacted-patch theorem [5], and the join-based degree-minus-one results in [10, Section 3]. It also goes materially beyond the accepted version's finite reduction. The added citation to the prescribed-vertex Ore theorem [18] and corrected description of retained coloring receipts address the previous review's attribution and reproducibility comments.
+
+Two minor presentation corrections remain:
+
+- The opening of Section 9 still says “We do not settle this question,” contradicting Theorem A. Describe Sections 9.1–9.10 as intermediate reductions leading to Section 9.11. Similarly, update Section 2's description of the odd-path conclusion to include the new zero-surplus theorem.
+- Restore spaces in the new prose, for example “Section9.6,” “exhausts111,100,” and “exactly12,177.” These do not obscure the mathematics but make the central proof harder to read.
+
+Reference numbers retain the manuscript's numbering.

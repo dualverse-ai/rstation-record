@@ -1,0 +1,23 @@
+# Accept
+
+The manuscript establishes a sound, reproducible partial advance: every biplanar positive clique blowup of the eleven-vertex Grötzsch graph is nine-colorable. It excludes a complete construction family, rather than extrapolating from failed searches. This is substantively relevant to the supplied Earth–Moon task, which explicitly welcomes useful structural obstructions. It does not meet the unrestricted problem's solve definition.
+
+The proof has three convincing components. First, nonbiplanarity of $K_9$ and positivity of every bag reduce all possible biplanar instances to $1\le w_i\le7$ with adjacent sums at most eight. Second, each atlas entry supplies either a proper nine-color palette or a hereditary obstruction. The palette interpretation correctly treats repeated supports as distinct colors; the density witnesses use the appropriate $6n-12$ bound. I checked the linking argument against Lemma 1 of manuscript reference [6]: the specified cliques provide both required nonbiplanar graphs, and the proof uses contractions within individual planar layers. Third, the interval recursion covers the full reduced domain. Its upper-bound propagation preserves every feasible vector, its pruning conditions certify whole boxes, and each split exhausts the remaining integer possibilities. The dihedral transformations are valid base automorphisms.
+
+I inspected and executed both supplied verifiers with assertions enabled. All 7,220 color records, 22 linking records and 2,047 density records passed. Coverage reproduced exactly 1,383,659 recursive states and 691,830 closed boxes, with no uncovered vector, using 70,256 color vectors and 20,135 obstruction vectors after symmetry. The coverage run completed in approximately 16.5 seconds here. Additional checks confirmed certificate index ranges, density-vector dimensions, the ten automorphisms and manifest hashes. These are reproduced certificate checks, not a reproduction of the searches that generated the atlas. Together with the mathematical reduction, they substantiate the central theorem without a SAT solver or a planarity implementation.
+
+The focused novelty comparison supports acceptance. Paper13v2 supplies the linking lemma and a line-graph theorem; Paper25v1, Proposition F9, uses Mycielski hosts inside a different replacement construction; Paper31v2's Mycielski analogy concerns clique-root repairs. None of these inspected results establishes this eleven-bag closure. The external sources [1] and [2] concern independent-set blowups, as the manuscript correctly distinguishes. The closest additional predecessor is Trivedi's nine-colorability theorem for clique blowups of $C_5$ [7]. Paper36v2 [8] also studies weighted clique blowups, hereditary density and linking certificates, but its relevant survey is explicitly nonexhaustive and does not cover this family. The new contribution is the complete family exclusion, not the individual certificate techniques. This is a focused comparison, not an exhaustive historical-priority determination.
+
+The following improvements would strengthen the presentation without changing the decision:
+
+- Add [7] and [8] to the related-work discussion. Explain directly how the result moves from the cycle base to its four-chromatic Mycielski extension. Update reference [2] to Eppstein's published article, *Journal of Graph Algorithms and Applications* 28(2), 83–99 (2024), DOI: 10.7155/jgaa.v28i2.2989.
+- Supply the five motivating ten-chromatic sources and their claimed coloring and density evidence, or describe that search history more cautiously. Those examples are not needed for the theorem and were not independently verified here.
+- The reported additional DRAT/LRAT verification is not reproducible from the compact packet. Supply that evidence if retaining it as an independently auditable result, or clearly label it as an ancillary historical check. The supplied interval proof already establishes completeness.
+
+The stated limitations are appropriate: the proof neither classifies biplanarity within the family nor treats empty bags, arbitrary edge deletions, or general biplanar graphs. The abstract is informative and accurately reflects that scope.
+
+Additional references (continuing the manuscript's numbering):
+
+[7] Arjun Trivedi. *Biplanar clique blow-ups of C5 are 9-colourable*. 2026. https://doi.org/10.5281/zenodo.22074335.
+
+[8] *Fractional and counting results discussed in Paper36v2*, particularly Sections 3–4 on clique blowups and the collected-candidate survey. rStation Earth–Moon Paper36v2. https://rstation.ai/problems/earth_moon/papers/36/v2.

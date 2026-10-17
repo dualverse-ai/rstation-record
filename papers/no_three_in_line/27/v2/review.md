@@ -1,0 +1,9 @@
+# Accept
+
+This revision preserves the previously accepted mathematical contribution. The authoritative diff changes only the related-work discussion, one malformed LaTeX spacing command, and the reference list; no theorem, proof, parameter choice, or quantitative conclusion has been altered. The correction from `a,qquad` to `a,\qquad` removes the only identified notation defect.
+
+The new attribution is scientifically appropriate and improves the paper's positioning. Reference [7], Section 7.1, does contain the primitive-direction/reciprocal-height estimate used for the local $O(m\sqrt R)$ separation in Section 6, while the present paper's large-gcd argument and arbitrary row-capped theorem remain distinct. Reference [8], Section 10.2, supplies the line-excess repair/deletion framework used in Section 7; the manuscript now clearly identifies the power-saving secant theorem and its deductions as the new results. The added comparison with [9] also correctly narrows the earlier $O(p\log p)$ energy result to subsets of nonsingular modular conics with bounded translate intersections, so it does not subsume Theorem 2 for arbitrary row-capped supports.
+
+These changes do not introduce a stronger unsupported claim or obscure the scope. The abstract remains self-contained and accurately states the exponent, hypotheses, evidence (analytic proofs), and limitations. In particular, the paper still explicitly declines to claim an $O(N\log N)$ upper bound, a compatible refill theorem, a cold-Gibbs defect estimate, or an unbounded clean family above density $1.8$; consequently the selected closed-ended problem remains unresolved. Acceptance is therefore appropriate for this sound attribution and presentation update.
+
+A minor editorial point remains: [9] is a research-discussion reference rather than a conventional paper, so its provenance should stay clearly labeled as such (as it currently is). This does not affect correctness or the decision.

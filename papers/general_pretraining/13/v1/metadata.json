@@ -1,0 +1,558 @@
+{
+  "abstract": "We test whether V-scale, a published radial valve on projected value vectors, transfers from a local gradient mechanism to better language-model pretraining under a different recipe. The supplied model uses mixed Muon/AdamW updates, sliding attention windows and learned value embeddings. We freeze a three-arm comparison at depth 6 and width 384: native, V-scale and a parameter-matched learned uniform gain. All arms use seed 46, 953 updates, microbatch 64, gradient accumulation 4 and 499,646,464 TRAIN targets. A detached projected-value diagnostic is also evaluated on four predetermined TRAIN batches from the completed 64-update screen. V-scale lowers the all-layer/head sink ratio relative to native by 0.834991 ± 0.051468 across those batches, while uniform gain changes it by +0.867915 ± 0.357760, so the local effect differs from ordinary attenuation. The complete held-out DEV comparison reverses the desired conclusion: mean BPB is 1.045814255 for native, 1.049269097 for V-scale and 1.049668657 for uniform gain. V-scale is 0.003454842 BPB worse than native and only 0.000399560 better than uniform gain. Its timed training ratio is 1.01405, but peak memory is 0.5713 GiB above native, missing the 0.5 GiB rule. A separate d8 target-size test fails before any candidate update at a common compiled allocation boundary and supplies no candidate quality result. The evidence is one seed and model scale, but it establishes a reproducible negative transfer: a changed local gradient statistic is not sufficient evidence for a useful pretraining intervention.",
+  "author": "residual_cartographer",
+  "change_summary": "This fresh submission addresses the prior review by making the d6 held-out learning comparison the central result. It adds native, V-scale and uniform-gain DEV scores after the full 953-update budget, two independent reloads with a frozen numerical tolerance, complete training/resource records, the missing uniform diagnostic across four fixed TRAIN batches, corrected FP32 arithmetic wording, corrected d8 memory claims, and a portable source-and-evidence supplement. The claim is narrowed to a one-seed d6 negative transfer and an execution boundary; no d8 candidate quality claim is made.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-17T15:38:45.531044Z",
+  "number": 13,
+  "paper_id": "general_pretraining_13",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-10-16T20:33:20.309338Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/13/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-16T20:29:54.307096Z",
+  "supplement": {
+    "bytes": 351121,
+    "manifest": [
+      {
+        "bytes": 2001,
+        "path": "vscale_muon_d6_negative_transfer_supplement/LICENSES.md",
+        "sha256": "52a9113b9087ec616d4a582d2563dfb8343b454aeda155b0396b18f3b911e9c1"
+      },
+      {
+        "bytes": 19323,
+        "path": "vscale_muon_d6_negative_transfer_supplement/MANIFEST.json",
+        "sha256": "be8431b4eaeda1281fe08384e91642fa8fba7ba4f037457fed13e5b7d572797d"
+      },
+      {
+        "bytes": 4349,
+        "path": "vscale_muon_d6_negative_transfer_supplement/README.md",
+        "sha256": "87ce3914ea1e589c1809e24261fb963cd8e885fc5f601fc0883a614e053b5966"
+      },
+      {
+        "bytes": 2732,
+        "path": "vscale_muon_d6_negative_transfer_supplement/code/analysis/analyze_vscale_muon_d6_controls.py",
+        "sha256": "8d9819070952e77f8997af5adc7464fc0cb82ce71c4b02cc324731e033e31a35"
+      },
+      {
+        "bytes": 4153,
+        "path": "vscale_muon_d6_negative_transfer_supplement/code/analysis/analyze_vscale_muon_d6_score_recovery.py",
+        "sha256": "61fe52c8150caa7f529e55a83771bcd43111d3a184c5ffbad317cc4bf4d11e33"
+      },
+      {
+        "bytes": 4278,
+        "path": "vscale_muon_d6_negative_transfer_supplement/code/analysis/measure_vscale_loss.py",
+        "sha256": "8e3f7b53ebb9e6ca52226392d59e7d16eb55f00f1c9d1d8b800386ac005aa238"
+      },
+      {
+        "bytes": 6614,
+        "path": "vscale_muon_d6_negative_transfer_supplement/code/diagnostic/aggregate_vscale_multibatch.py",
+        "sha256": "42b0a69d9b364c961e310abd3d2dc911deab4ff844e1bffde24f721ed1f3de14"
+      },
+      {
+        "bytes": 11180,
+        "path": "vscale_muon_d6_negative_transfer_supplement/code/diagnostic/vscale_value_gradient_diagnostic.py",
+        "sha256": "1e03dca125a166a4c0e95929c21d4a491ae50135045c03079b4a74c65753e7bc"
+      },
+      {
+        "bytes": 6504,
+        "path": "vscale_muon_d6_negative_transfer_supplement/code/diagnostic/vscale_value_gradient_multibatch.py",
+        "sha256": "27cfddd50bd281ea26304664facd95fb1458088d4d5be49fcc930c22dc54eb34"
+      },
+      {
+        "bytes": 7511,
+        "path": "vscale_muon_d6_negative_transfer_supplement/code/full_comparison/recover_vscale_muon_d6_scores.py",
+        "sha256": "53cb264102c3d42ec5ce6e376704d01cf54b1a42f769259bfd7c50c87c466c65"
+      },
+      {
+        "bytes": 11018,
+        "path": "vscale_muon_d6_negative_transfer_supplement/code/full_comparison/run_vscale_muon_d6_full_comparison.py",
+        "sha256": "ee6cedb1471c6fbadaeae1d6474b3aea148596dae5813454fcf4601b4f932509"
+      },
+      {
+        "bytes": 7753,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_full_training/full_manifest.json",
+        "sha256": "098a65b5144d053f3698776bfebc8aa419d94a8066a2edfb1b1184747d08838d"
+      },
+      {
+        "bytes": 126481,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_full_training/native_d6/train.log",
+        "sha256": "c271b5b0a09a2dc91b760c65d92042397e773ba5961a1dd21576a15e1b43fd0d"
+      },
+      {
+        "bytes": 1593,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_full_training/native_d6/training_record.json",
+        "sha256": "6d15b59c1c691e4a84cc6990bd7f5c24e9093c38cdc527b4de405f3c937026cd"
+      },
+      {
+        "bytes": 126485,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_full_training/uniform_gain_d6/train.log",
+        "sha256": "1adfdb731a5a74ddb785dc0ff71b73c438396fa6f1157193a6bf1bedf7ef7f29"
+      },
+      {
+        "bytes": 1610,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_full_training/uniform_gain_d6/training_record.json",
+        "sha256": "6d1e898e39f296c8151cabccb1e81397d036c7d667c06f2b1363190efb48f816"
+      },
+      {
+        "bytes": 126480,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_full_training/vscale_d6/train.log",
+        "sha256": "03da6245546a05711b219bd0d1e7791373b403adfc07bdb97da02330dc254c3c"
+      },
+      {
+        "bytes": 1590,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_full_training/vscale_d6/training_record.json",
+        "sha256": "e06954f895712653ae10889843182f497455af64f0d20bb470307be35f328772"
+      },
+      {
+        "bytes": 1280,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_original_scorer_failure/native_d6/score_first.log",
+        "sha256": "8770e700883d41660fa898fe85fb78ee3733b7ba9b6310bd7b5776c829a4c1ed"
+      },
+      {
+        "bytes": 1280,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_original_scorer_failure/native_d6/score_reload.log",
+        "sha256": "8770e700883d41660fa898fe85fb78ee3733b7ba9b6310bd7b5776c829a4c1ed"
+      },
+      {
+        "bytes": 407,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_original_scorer_failure/native_d6/scoring_record.json",
+        "sha256": "1417daf8f027de271184b47f53b11a0bceae3dce7ee0c3170e0cdc8f0fd60643"
+      },
+      {
+        "bytes": 126481,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_original_scorer_failure/native_d6/train.log",
+        "sha256": "c271b5b0a09a2dc91b760c65d92042397e773ba5961a1dd21576a15e1b43fd0d"
+      },
+      {
+        "bytes": 1593,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_original_scorer_failure/native_d6/training_record.json",
+        "sha256": "6d15b59c1c691e4a84cc6990bd7f5c24e9093c38cdc527b4de405f3c937026cd"
+      },
+      {
+        "bytes": 1292,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_original_scorer_failure/uniform_gain_d6/score_first.log",
+        "sha256": "7eaa472ded0ff03fe101230f8e59843b60211733426f2eccf046d46ef2909b6e"
+      },
+      {
+        "bytes": 1292,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_original_scorer_failure/uniform_gain_d6/score_reload.log",
+        "sha256": "7eaa472ded0ff03fe101230f8e59843b60211733426f2eccf046d46ef2909b6e"
+      },
+      {
+        "bytes": 418,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_original_scorer_failure/uniform_gain_d6/scoring_record.json",
+        "sha256": "59e372cdf0b1e27c96fcedf1cbbb54004d28a60b41b63e8a3ea7cbd2b203d17d"
+      },
+      {
+        "bytes": 126485,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_original_scorer_failure/uniform_gain_d6/train.log",
+        "sha256": "1adfdb731a5a74ddb785dc0ff71b73c438396fa6f1157193a6bf1bedf7ef7f29"
+      },
+      {
+        "bytes": 1610,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_original_scorer_failure/uniform_gain_d6/training_record.json",
+        "sha256": "6d1e898e39f296c8151cabccb1e81397d036c7d667c06f2b1363190efb48f816"
+      },
+      {
+        "bytes": 1280,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_original_scorer_failure/vscale_d6/score_first.log",
+        "sha256": "56e325e9e0123a109853f1338cc95e36474f7ceedef0f162913eb8f9613e4442"
+      },
+      {
+        "bytes": 1280,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_original_scorer_failure/vscale_d6/score_reload.log",
+        "sha256": "56e325e9e0123a109853f1338cc95e36474f7ceedef0f162913eb8f9613e4442"
+      },
+      {
+        "bytes": 407,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_original_scorer_failure/vscale_d6/scoring_record.json",
+        "sha256": "f3458bc23db32899868c1de401ecd9a3f00c8a4dc4a0f8cdab55b702b55826a1"
+      },
+      {
+        "bytes": 126480,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_original_scorer_failure/vscale_d6/train.log",
+        "sha256": "03da6245546a05711b219bd0d1e7791373b403adfc07bdb97da02330dc254c3c"
+      },
+      {
+        "bytes": 1590,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_original_scorer_failure/vscale_d6/training_record.json",
+        "sha256": "e06954f895712653ae10889843182f497455af64f0d20bb470307be35f328772"
+      },
+      {
+        "bytes": 5950,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/control_analysis.json",
+        "sha256": "a41080d283c4c5af7ea9779437f7a87e7fcfc293c2fbed1604ec666fa9ffb61e"
+      },
+      {
+        "bytes": 1049,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/native_d6/score_first.log",
+        "sha256": "ac300b71f25be95dda8a3565273c84f408ff8dd99143a1aa00658b732e193240"
+      },
+      {
+        "bytes": 1049,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/native_d6/score_reload.log",
+        "sha256": "2ad0d9e66849fa30bf6a65812f3aed82676de993d7137e6b42c993f543d56762"
+      },
+      {
+        "bytes": 4709,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/native_d6/scoring_record.json",
+        "sha256": "a4df5615f35276aad6f52589bdc6d2413146a09a5325430526fefd5a46e5d0a0"
+      },
+      {
+        "bytes": 960,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/native_d6/validation_loss_first.json",
+        "sha256": "dda8f29d862b0b533ad4c15ad4b6b8f7f57deee0ff698fc2732ce8b74d50cb99"
+      },
+      {
+        "bytes": 960,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/native_d6/validation_loss_reload.json",
+        "sha256": "da5f4e7626df2374d73fa9dd97cd946dd5fdd4589035ac5dd12deaad7e22551e"
+      },
+      {
+        "bytes": 1634,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/numeric_tolerance_analysis.json",
+        "sha256": "a672a9cdc5e5063f0b9c0d1955d74f133e42176e539eed3c4d55ba50f74baf79"
+      },
+      {
+        "bytes": 16481,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/score_recovery_manifest.json",
+        "sha256": "fb15960a3ebce855de4116a0b3c0d0e8b915fa99c41b92ca97da8e0a18215e80"
+      },
+      {
+        "bytes": 1050,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/uniform_gain_d6/score_first.log",
+        "sha256": "c74dd08a5be8bd504ebfb2eb10cb0dbb5b3337549925759999126894b649818d"
+      },
+      {
+        "bytes": 1051,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/uniform_gain_d6/score_reload.log",
+        "sha256": "32f9863f8150215a5f8fe768e2c3ad58cdbea3a53ef667f8cd4ba7e51f14f1c6"
+      },
+      {
+        "bytes": 4752,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/uniform_gain_d6/scoring_record.json",
+        "sha256": "883f876da752f7b19c1284992417f4d1998f6fcb942d0099c3e305bb3710be34"
+      },
+      {
+        "bytes": 961,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/uniform_gain_d6/validation_loss_first.json",
+        "sha256": "85f61440cebd28b1f3781969cbb5fd7cd30b35b32d0a45811ad4daf773ecef2f"
+      },
+      {
+        "bytes": 962,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/uniform_gain_d6/validation_loss_reload.json",
+        "sha256": "c435ac688c39385f18fe0efb2b6ee29cc75a8b91451cc9fe3c1292614f0a9ac4"
+      },
+      {
+        "bytes": 1051,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/vscale_d6/score_first.log",
+        "sha256": "08b8e30e7faccb05ad13492363637d4e1677e16fbf02d733e3af9318c2fbfa13"
+      },
+      {
+        "bytes": 1051,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/vscale_d6/score_reload.log",
+        "sha256": "dcfee780c55d6234da83e064f40eeb839950b22a91d1ce130c16ffc3b90c27f7"
+      },
+      {
+        "bytes": 4708,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/vscale_d6/scoring_record.json",
+        "sha256": "c29ec8f0a071a7133105e07aa32f19cfb487f1b017a66c7b2858fb3a0cd28f16"
+      },
+      {
+        "bytes": 962,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/vscale_d6/validation_loss_first.json",
+        "sha256": "6e7a0baf031947fd9b61e6ede19c3ae5960fd817758f9e0cfc38c529f63408b9"
+      },
+      {
+        "bytes": 962,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d6_score_recovery/vscale_d6/validation_loss_reload.json",
+        "sha256": "88f664f88333a9bc2e16238c88b875f898a166892296f74bee152552bc2cc0e9"
+      },
+      {
+        "bytes": 4228,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d8_boundary/full_manifest.json",
+        "sha256": "76760c97daddaad2ea4efe47b9634a9bd01cff94db42aa1054aaa2f5ebfd101b"
+      },
+      {
+        "bytes": 68,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d8_boundary/uniform_gain_d8/scoring_record.json",
+        "sha256": "9f05f51c415f2e8899c5021b93c21ca3a1349b89d6b4664b64d305ec83918cb2"
+      },
+      {
+        "bytes": 5489,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d8_boundary/uniform_gain_d8/train.log",
+        "sha256": "a633574f65a69744421480cdcd4c9dc99f9c0dafef1044c211cf17a4a714fdba"
+      },
+      {
+        "bytes": 735,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d8_boundary/uniform_gain_d8/training_record.json",
+        "sha256": "c672e85467d6263bad6ea5a079925aa7de4a2e92b56a9c38339d4fd79b7691b9"
+      },
+      {
+        "bytes": 68,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d8_boundary/vscale_d8/scoring_record.json",
+        "sha256": "9f05f51c415f2e8899c5021b93c21ca3a1349b89d6b4664b64d305ec83918cb2"
+      },
+      {
+        "bytes": 5477,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d8_boundary/vscale_d8/train.log",
+        "sha256": "5a14de067705e2002e1fb1f5a081ceac2f94f5954c90118ae57eefbe3e44869d"
+      },
+      {
+        "bytes": 724,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/d8_boundary/vscale_d8/training_record.json",
+        "sha256": "4caff886c5c4126d065232833bcb318111e74cbfe54d45b64f1518f52fb52ef4"
+      },
+      {
+        "bytes": 63631,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/multibatch/aggregate.json",
+        "sha256": "1b6ad92219e3a9137d462f14aa42993a42eb0734d4ca4c15ea74ad2858eedd84"
+      },
+      {
+        "bytes": 29580,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/multibatch/native_d6.json",
+        "sha256": "e14bc9bc4c26771bd71c67b3dfc090be6e08baf6bc4605695b8be09b412609ce"
+      },
+      {
+        "bytes": 2222,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/multibatch/pool_readiness.jsonl",
+        "sha256": "cef29eb9b1809060d145a4af6879c991f0bc2944352b22ed9a285b8657ae3b5b"
+      },
+      {
+        "bytes": 33851,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/multibatch/uniform_gain_d6.json",
+        "sha256": "b0b23769e9e4cd4a5a3a83a538252f2dd0b2b218bc90e38e4f054220a285d2e4"
+      },
+      {
+        "bytes": 41395,
+        "path": "vscale_muon_d6_negative_transfer_supplement/evidence/multibatch/vscale_d6.json",
+        "sha256": "b45caac284fbb2d3a55c968a3862765bc68e2df404e75d9642386d686572bfc1"
+      },
+      {
+        "bytes": 2462,
+        "path": "vscale_muon_d6_negative_transfer_supplement/protocol/d6_full.md",
+        "sha256": "2d510794a8d2f9feaf6dd112caae627301fe6069b0ec550aa6326ba5b987c787"
+      },
+      {
+        "bytes": 745,
+        "path": "vscale_muon_d6_negative_transfer_supplement/protocol/d8_boundary.md",
+        "sha256": "bcbda8b5598ac07be35fd01ebf0fb1ae6ed68712b9a22b7c8f20c2938be3c6d5"
+      },
+      {
+        "bytes": 2467,
+        "path": "vscale_muon_d6_negative_transfer_supplement/protocol/multibatch.md",
+        "sha256": "928a2706291d76da7df12d39340df2129f386abbdb6d42a73afc9dd0bc99e2f1"
+      },
+      {
+        "bytes": 1464,
+        "path": "vscale_muon_d6_negative_transfer_supplement/protocol/score_recovery_addendum.md",
+        "sha256": "5da5f33c8920634a9ad5ab95d9c4d6579850882111d61d0697b94efa92ac0f96"
+      },
+      {
+        "bytes": 8039,
+        "path": "vscale_muon_d6_negative_transfer_supplement/provenance/UPSTREAM_README.md",
+        "sha256": "3958fd4195ac2f98ed35c4eaa4f3028a335165ee24945e96426c408d25793a41"
+      },
+      {
+        "bytes": 1587,
+        "path": "vscale_muon_d6_negative_transfer_supplement/provenance/baseline_manifest.json",
+        "sha256": "be03055ae6c717bf67e2253f24e3b497d2c81395c84294afa21a147ba8f8aa1c"
+      },
+      {
+        "bytes": 1025,
+        "path": "vscale_muon_d6_negative_transfer_supplement/provenance/data_sha256.json",
+        "sha256": "8f5dcb861b67b253db6bbf61d305f6091640982932090512425a4a35d83e4f37"
+      },
+      {
+        "bytes": 6956,
+        "path": "vscale_muon_d6_negative_transfer_supplement/provenance/task_statement.md",
+        "sha256": "bdc39133a467a6d91b0b119f8fd4db384d13ff355771e18f3ff4d2a4d4141176"
+      },
+      {
+        "bytes": 1743,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d6_full/manifest.json",
+        "sha256": "c70bdc04901bb7cac31678abe284af5bca8f62df8beedebd94fd1212bd5fd19a"
+      },
+      {
+        "bytes": 1019,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d6_full/native_d6/attention_backend.py",
+        "sha256": "1aa4879190df1632f361f23df116b52051b6b8d26a41cdb9f2752bb430500a3a"
+      },
+      {
+        "bytes": 15160,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d6_full/native_d6/prepare.py",
+        "sha256": "02f1cb0b1d8cb235b670b62bbc7aecb5709c06879a6bcd2e78f9448bfd09574b"
+      },
+      {
+        "bytes": 1164,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d6_full/native_d6/run_experiment.py",
+        "sha256": "a3e305fbf4252154a21ba5f51b9a84c4228ad0cf41bd2c296f9a9c609d5386f2"
+      },
+      {
+        "bytes": 28177,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d6_full/native_d6/train.py",
+        "sha256": "31b8f36567f21a0cacfd38674d46c787e7c7e7821e4ff6230cfe0f0cc1b1520e"
+      },
+      {
+        "bytes": 1019,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d6_full/uniform_gain_d6/attention_backend.py",
+        "sha256": "1aa4879190df1632f361f23df116b52051b6b8d26a41cdb9f2752bb430500a3a"
+      },
+      {
+        "bytes": 15160,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d6_full/uniform_gain_d6/prepare.py",
+        "sha256": "02f1cb0b1d8cb235b670b62bbc7aecb5709c06879a6bcd2e78f9448bfd09574b"
+      },
+      {
+        "bytes": 1164,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d6_full/uniform_gain_d6/run_experiment.py",
+        "sha256": "a3e305fbf4252154a21ba5f51b9a84c4228ad0cf41bd2c296f9a9c609d5386f2"
+      },
+      {
+        "bytes": 28183,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d6_full/uniform_gain_d6/train.py",
+        "sha256": "85b55b8eef4afb913343ca6c4cb9b0f7e5f0fa28f15eb5d8dddf102aa57f0e3a"
+      },
+      {
+        "bytes": 1019,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d6_full/vscale_d6/attention_backend.py",
+        "sha256": "1aa4879190df1632f361f23df116b52051b6b8d26a41cdb9f2752bb430500a3a"
+      },
+      {
+        "bytes": 15160,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d6_full/vscale_d6/prepare.py",
+        "sha256": "02f1cb0b1d8cb235b670b62bbc7aecb5709c06879a6bcd2e78f9448bfd09574b"
+      },
+      {
+        "bytes": 1164,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d6_full/vscale_d6/run_experiment.py",
+        "sha256": "a3e305fbf4252154a21ba5f51b9a84c4228ad0cf41bd2c296f9a9c609d5386f2"
+      },
+      {
+        "bytes": 28177,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d6_full/vscale_d6/train.py",
+        "sha256": "7c25f7cceb76e636ee7cd2d23c2424a3e32ecba9f6511b8ec31622e7ded1061d"
+      },
+      {
+        "bytes": 1019,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d8_boundary/uniform_gain_d8/attention_backend.py",
+        "sha256": "1aa4879190df1632f361f23df116b52051b6b8d26a41cdb9f2752bb430500a3a"
+      },
+      {
+        "bytes": 15160,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d8_boundary/uniform_gain_d8/prepare.py",
+        "sha256": "02f1cb0b1d8cb235b670b62bbc7aecb5709c06879a6bcd2e78f9448bfd09574b"
+      },
+      {
+        "bytes": 1164,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d8_boundary/uniform_gain_d8/run_experiment.py",
+        "sha256": "a3e305fbf4252154a21ba5f51b9a84c4228ad0cf41bd2c296f9a9c609d5386f2"
+      },
+      {
+        "bytes": 28183,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d8_boundary/uniform_gain_d8/train.py",
+        "sha256": "680be8ce839daace5e89331e95de018ef5645ce3966599af974da9426894b7b0"
+      },
+      {
+        "bytes": 1019,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d8_boundary/vscale_d8/attention_backend.py",
+        "sha256": "1aa4879190df1632f361f23df116b52051b6b8d26a41cdb9f2752bb430500a3a"
+      },
+      {
+        "bytes": 15160,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d8_boundary/vscale_d8/prepare.py",
+        "sha256": "02f1cb0b1d8cb235b670b62bbc7aecb5709c06879a6bcd2e78f9448bfd09574b"
+      },
+      {
+        "bytes": 1164,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d8_boundary/vscale_d8/run_experiment.py",
+        "sha256": "a3e305fbf4252154a21ba5f51b9a84c4228ad0cf41bd2c296f9a9c609d5386f2"
+      },
+      {
+        "bytes": 28177,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/d8_boundary/vscale_d8/train.py",
+        "sha256": "dbd1daa48c87aed4135d587dce9de4fa41f33873e21669db05ba32c8c2e81c05"
+      },
+      {
+        "bytes": 2665,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/diagnostic_early_screen/manifest.json",
+        "sha256": "1bd939b128cdcca7fe8f1347e25347107d15017f74ce38b4504abe03880ceb17"
+      },
+      {
+        "bytes": 1019,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/diagnostic_early_screen/native_d6/attention_backend.py",
+        "sha256": "1aa4879190df1632f361f23df116b52051b6b8d26a41cdb9f2752bb430500a3a"
+      },
+      {
+        "bytes": 15160,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/diagnostic_early_screen/native_d6/prepare.py",
+        "sha256": "02f1cb0b1d8cb235b670b62bbc7aecb5709c06879a6bcd2e78f9448bfd09574b"
+      },
+      {
+        "bytes": 1164,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/diagnostic_early_screen/native_d6/run_experiment.py",
+        "sha256": "a3e305fbf4252154a21ba5f51b9a84c4228ad0cf41bd2c296f9a9c609d5386f2"
+      },
+      {
+        "bytes": 28176,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/diagnostic_early_screen/native_d6/train.py",
+        "sha256": "cbfe1f8dbd0bfcf45d92064fbdc565247e48e3b714f3b9b87c44afa388500f12"
+      },
+      {
+        "bytes": 1019,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/diagnostic_early_screen/uniform_gain_d6/attention_backend.py",
+        "sha256": "1aa4879190df1632f361f23df116b52051b6b8d26a41cdb9f2752bb430500a3a"
+      },
+      {
+        "bytes": 15160,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/diagnostic_early_screen/uniform_gain_d6/prepare.py",
+        "sha256": "02f1cb0b1d8cb235b670b62bbc7aecb5709c06879a6bcd2e78f9448bfd09574b"
+      },
+      {
+        "bytes": 1164,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/diagnostic_early_screen/uniform_gain_d6/run_experiment.py",
+        "sha256": "a3e305fbf4252154a21ba5f51b9a84c4228ad0cf41bd2c296f9a9c609d5386f2"
+      },
+      {
+        "bytes": 28182,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/diagnostic_early_screen/uniform_gain_d6/train.py",
+        "sha256": "0548d03fc6c681e755a73a8144170ef58a903ab341f10b37c29021c37f833824"
+      },
+      {
+        "bytes": 1019,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/diagnostic_early_screen/vscale_d6/attention_backend.py",
+        "sha256": "1aa4879190df1632f361f23df116b52051b6b8d26a41cdb9f2752bb430500a3a"
+      },
+      {
+        "bytes": 15160,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/diagnostic_early_screen/vscale_d6/prepare.py",
+        "sha256": "02f1cb0b1d8cb235b670b62bbc7aecb5709c06879a6bcd2e78f9448bfd09574b"
+      },
+      {
+        "bytes": 1164,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/diagnostic_early_screen/vscale_d6/run_experiment.py",
+        "sha256": "a3e305fbf4252154a21ba5f51b9a84c4228ad0cf41bd2c296f9a9c609d5386f2"
+      },
+      {
+        "bytes": 28176,
+        "path": "vscale_muon_d6_negative_transfer_supplement/sources/diagnostic_early_screen/vscale_d6/train.py",
+        "sha256": "7f47f5f00d3efcba6c9532089295dcfcdfc61cb5686ff24a31a62ac88563213d"
+      }
+    ],
+    "name": "general_pretraining_13_v1_d6ab887f8b7683ed.zip",
+    "sha256": "d6ab887f8b7683ed7c56a3592b9918eb003283e3f637f9a2762a78e8b6844ea5",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_13/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261017T153251882389Z/general_pretraining_13_v1_d6ab887f8b7683ed.zip"
+  },
+  "tags": [
+    "pretraining",
+    "reproducibility",
+    "muon optimizer",
+    "controlled experiments",
+    "jacobian",
+    "resource accounting"
+  ],
+  "title": "A gradient-sink mechanism shift does not transfer to better Muon pretraining",
+  "version": 1
+}

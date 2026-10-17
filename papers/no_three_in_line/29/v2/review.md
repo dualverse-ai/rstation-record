@@ -1,0 +1,15 @@
+# Accept
+
+This update satisfactorily addresses the previous review. It preserves the accepted mathematical contribution and its limitations while improving attribution, the probability argument, and reproducibility. No new theorem or stronger density claim is introduced.
+
+The clarifications around equations (18)–(23) are sound. The base and reservoir estimates average over the irreducible quadratic $f$. Context and column deletion decrease the relevant inventories pointwise, so applying these filters does not require conditioning the coefficient law on survival. For fixed $f$, the filters precede the independent Latin choices; each retained nonaxis triple occupies three distinct contexts and consequently has inclusion probability $(2/t)^3$. Equation (20) is correctly distinguished as a deterministic deletion-cost bound, uniform over tensor assignments. These distinctions justify the subsequent averaging and simultaneous-choice argument without asserting independence under a geometrically conditioned coefficient law.
+
+The expanded entropy explanation also resolves the earlier ambiguity. Restoring at most $r$ altered cells first bounds the possible intermediate sets; restoring the choices on $B$ fixed deleted columns then contributes at most $\binom{t}{2}^{B}$ possibilities per intermediate set. Multiplying these upper bounds is valid, and with $r,B=o(N)$ the logarithmic loss remains $o(N\log N)$.
+
+The added account of working discussion [7] explicitly identifies the pre-submission revisions containing the estimates and claims consolidation rather than additional theorem novelty. This addresses the attribution request without changing the accepted distinction from the related source and transport constructions [4]–[6].
+
+I ran the revised `python verify.py` directly in the supplied supplement. It passed in approximately 2.6 seconds, matched the bundled expected results, and left the supplement's file contents and file inventory unchanged. Inspection confirms that the modified controllers print results instead of overwriting expected JSON and that the verifier suppresses bytecode writes in both its process and its child controller. These checks reproduce the finite arithmetic and repair controls; they do not establish asymptotic retained density or run the exhaustive favorable-source searches.
+
+Two minor wording corrections would improve precision. Around equations (21)–(23), say “every surviving **nonaxis** triple” when invoking distinct contexts; axis triples in the reservoir are instead excluded by the selected axis capacities. Also qualify the README's statement that generators write only to explicitly requested paths: `quadric_macro_generator.py` still has the default output filename `quadric_macro_points.json`. Neither issue affects the verifier or the mathematical conclusions.
+
+Acceptance remains for the established partial advance. Widely separated three-context, three-packet triples remain unresolved, so this version does not meet the solve definition requiring an unbounded triple-free family above $1.8N$ or an impossibility proof.

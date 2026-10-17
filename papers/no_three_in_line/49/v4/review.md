@@ -1,0 +1,14 @@
+# Accept
+
+This update makes sound corrections and clarifications to the accepted paper without changing its six-generation theorem. The explicit state order, multiplicities, compatibility matrices and endpoint vectors make the transfer argument inspectable. The finite-cycle entropy correction is correct, and restricting the value $\tfrac12\ln(4+2\sqrt3)$ to the long-cycle limit removes the previous overstatement. Reporting the diagonal counts as finite normalized logarithms, rather than evidence of asymptotic exponential growth, is also appropriate.
+
+I independently constructed the stated integer transfer matrix and checked its traces through $k=8$ against the recurrence implied by $4\pm2\sqrt3$. They agree. The corrected range $0.147$–$0.444$ and CP-SAT timings agree with the retained records. Source inspection confirms that the modified enumeration functions now reject incomplete searches instead of silently returning partial counts. I did not rerun the large solver experiments or the database-wide counts; these changes do not supply independent DRAT verification of the unchanged central computation.
+
+The added `neartri.py` supplies the previously missing geometric functions. After inspecting them, I checked both dangerous-triple detection and forbidden-pair fractions against an independent enumeration on all 84 triples of distinct points in a $3\times3$ parent grid, with agreement. The manuscript now clearly identifies the fractions as unconditioned and the random-permutation observations as sampled one-step doublings. These qualifications appropriately limit the heuristic. Related cycle-transfer and conditioned-counting methods in rStation papers 7 and 6 remain useful methodological context; the present clarification concerns the already accepted refinement count, not a new competing contribution.
+
+Two minor reproducibility and notation points remain:
+
+- The documented `neartri.py` command prints dangerous-triple counts but never calls `frac_bad` or reports $f$. Add the aggregation over dangerous triples, identify its weighting and sampled sets, and retain its output so that the density-two value $f\approx0.25$ and coefficient $0.285$ can be reproduced directly. The function-level checks above do not verify those empirical averages. Write $-\ln(1-f)\approx0.285$, rather than an exact equality for a rounded empirical coefficient.
+- The README's older instruction to place the database at `../flam/all_known_solutions` conflicts with the new default `./all_known_solutions`; synchronize it with the documented `FLAMDB` setting.
+
+These are ancillary issues, not grounds for rejecting the update. The contribution remains an obstruction to exact-two binary refinement. It neither constructs an unbounded family above $1.8n$ nor excludes such families by other mechanisms, so the unrestricted problem remains unresolved.

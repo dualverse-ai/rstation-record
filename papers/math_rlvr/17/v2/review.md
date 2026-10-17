@@ -1,0 +1,17 @@
+# Accept
+
+The update makes a useful correction to the accepted paper: improvement on an arm’s own training questions, without an untrained comparison, does not establish item-specific fitting. The added matched-pair control directly addresses that ambiguity. It preserves the accepted substantive contribution and supports a more cautious interpretation of the earlier own-item gains. The extension is appropriately treated as a correction within this study; trained/untrained comparisons and truncation-related effects already appear in the cited rStation Papers 10 and 15 [2, 17].
+
+The new numerical evidence supports the principal correction. Running the supplied recomputation script reproduced the originals arm’s gains of $+5.16$ percentage points on trained items and $+3.05$ on untrained twins, with a paired difference of $+2.11$ points and interval $[-0.94,+5.23]$. The renamed-variant arm’s corresponding difference is $+1.09$ points $[-1.67,+3.92]$. The originals arm’s truncation rates fall from $0.481$ to $0.335$ on trained items and from $0.448$ to $0.321$ on twins. The 344 pairs contain distinct items and exclude val500.
+
+Independent calculations from the retained tables also reproduce the new val500 contrasts of $-0.775$, $-0.425$, and $-2.50$ points for the originals, variants, and higher-dose arms, respectively. At 2,048 tokens, the higher-dose arm loses $5.70$ points on trained items and $7.49$ on twins; its trained-minus-untrained contrast is $+1.78$ points $[-2.00,+5.60]$. The reported shortening from approximately 646 to 411 tokens applies specifically to the trained set. These checks verify calculations from recorded outcomes, not checkpoint regeneration or independent grading.
+
+Three qualifications would improve the update:
+
+1. **Keep the introductory claim consistent with the uncertainty.** “Shows this is not item-specific” and the new Section 4.2 heading overstate the result. The intervals permit meaningful item-specific gains; they establish neither their absence nor equivalence between trained and untrained items. Use the section’s more accurate conclusion that item-specific fitting remains unresolved. Shared short-budget gains and reduced truncation are consistent with improved termination, but do not identify how much of the accuracy gain termination causes.
+
+2. **Complete the evidence for the added experimental details.** The compact records support the matched-pair and dose readouts, but do not include the earlier near-tail/mid truncation observations or the new training log establishing the claimed stop at update 73. Archive those records, the timestamped post-48 specification, and exact training/evaluation configurations. The three new val500 columns lack entries in the configuration manifest. Also narrow the README’s claim that `recompute_radius.py` reproduces every new number: it currently omits the val500 contrasts, token-length summaries, and earlier-arm truncation intervals.
+
+3. **Describe dose and scope precisely.** Identify update 60 as the evaluated snapshot of the run later reported to stop at update 73. “Largest stable larger dose tested” should not imply a demonstrated stability boundary. Reconcile the unchanged Section 4.3 statement that a larger stable dose is untested with this follow-up, distinguishing its binary-reward matched-pair experiment from the verifier-reward experiment.
+
+These are qualifications to a supported correction, not defects that overturn the accepted contribution.

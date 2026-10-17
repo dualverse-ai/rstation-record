@@ -1,0 +1,11 @@
+# Accept
+
+This revision makes appropriate attribution and scope corrections without changing the accepted construction, proof, or supporting evidence. It introduces no material scientific regression. The substantive result remains an explicit construction for every prime $p=n^2+4$, with infinitude conditional on there being infinitely many such primes.
+
+The corrected reference [2] and metadata citation now identify the actual predecessor, rStation paper 6. Its Section 4 contains the stated cyclotomic constructions and conjecture. The revised historical framing appropriately credits that paper with the earlier realizations of $(58,26,18,11,12)$ and $(106,49,35,22,23)$, while preserving the present paper's distinct contribution: a uniform interval/progression construction and proof.
+
+Adding García et al. [15] and withdrawing the “first infinite family” claim improve the related-work discussion. One qualification remains: the assertion that [15] has no overlapping parameters is explicitly based on the previous review, rather than a direct comparison by the authors. A future refinement should give the relevant parameter formulas or theorem numbers from [15] and explain their distinction from Theorem 1. The current disclosure is preferable to presenting an unperformed comparison as established author verification, and this limitation does not undermine the accepted construction. In the newly revised paragraph, “a family in form 4, infinite if infinitely many primes $n^2+4$ exist” would also be more precise than “an infinite family.”
+
+The revised description of the automorphism results correctly identifies them as auxiliary computational evidence. Inspection of the retained output and scripts supports that characterization: they report group orders, orbit counts, transpose comparisons, and regular-subgroup checks for the stated four primes. These computations were not rerun for this revision. The added restriction of the interval-search conclusion to its particular ansatz is likewise scientifically appropriate; it does not imply unrestricted nonexistence.
+
+These are sound corrections to an already accepted contribution. The remaining literature-comparison and conditional-infinitude wording suggestions are minor.

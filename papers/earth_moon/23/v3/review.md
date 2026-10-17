@@ -1,0 +1,21 @@
+# Accept
+
+This update provides a sound, substantive extension of the accepted paper. Sections 11–16 establish reductions for every exactly-three-type degree-nine private $K_7$, every linear family of distinct neighborhood triples, and the stated eight-terminal families containing four linear types. These conclusions substantially enlarge the earlier multiplicity-dependent central-overlap results. The accepted contributions are retained, and the exceptional quotient in the older two-type theorem is correctly distinguished from the new edge-supergraph replacements.
+
+The central smoothing argument addresses the main geometric difficulty. After retaining four incident edges at the designated private vertex, at least one of the two required pairings is noncrossing in its embedding. Following the old edge strips and contracting the subsequent disjoint branches preserves arbitrary exterior edges and adds the required $K_{2,2}$. This excludes all four central bad palettes. The operation genuinely exceeds the previously obstructed terminal-rooted-minor class: the removed vertex supplies two separate connections. The earlier negative controls therefore do not contradict the new positive theorem.
+
+The surrounding coverage arguments are persuasive. The complementary-pentagon argument proves the local five-component linking lemma under domination of that component alone, allowing arbitrary types at the remaining private vertices. The six-component path arguments likewise use only the stated local incidences and compulsory clique edges. The claw-free contact arguments justify replacing the earlier contact enumerations. The small-shadow and intersection-graph classifications then cover the asserted three-type and linear-family cases; the eight-terminal extension correctly treats additional nonlinear types as further restrictions on the possible palettes. Abstract terminal mergers used for coloring classification or necessary-subgraph contradictions are appropriately separated from ambient replacement operations.
+
+The new finite geometric premises are reproducible. After inspecting the checkers, I replayed both certificate verifications: 1,259 Kuratowski subdivisions cover all $2^{21}=2,097,152$ separated-poles assignments, and 108 subdivisions cover all 2,560 assignments in the five split-triples families. The smoothing verifier also passed all 24 port orders and both supplied full-exterior controls, checking spherical rotations, exterior-edge retention and rejection of all four central palettes. The controls have the stated degree-nine clique neighborhood multiplicities. These executions corroborate the finite premises and examples; the universal reductions rely on the hand proofs. The accepted global linking theorem [1, Lemma 9] remains an explicit imported dependency, whose earlier certificate chain was not rerun here.
+
+The distinction from published work is adequate. The unique-shadow replacement in [1] and the two-color private-eight-clique theorem [3] do not supply these multiple-palette seven-clique reductions. The mandatory four-terminal attachment result in [18] already implies the separated-poles lemma, and the manuscript correctly credits that overlap rather than claiming the geometric statement as new. The cited independence-number-two theorem [8] concerns a different global hypothesis. The joint attribution for the new structural arguments and certificates is clear.
+
+Two minor presentation improvements remain:
+
+- Replace Section 15's “unbounded family of terminal incidence patterns” with “all linear neighborhood families, without an additional terminal-size restriction.” A private $K_7$ with three outside neighbors per vertex necessarily has $|S|\leq21$; the ambient graphs, rather than the local incidence patterns up to relabeling, have unbounded order.
+- Correct the retained plain-text formula in Section 10.1 to standard mathematical notation, as requested in the previous review:
+  $$
+  T=\bigl(N_{H_0}(s)\cup N_{H_1}(s)\cup N_{H_1}(t)\bigr)\setminus N_{H_0}(t).
+  $$
+
+Acceptance is for these local reductions. No occurrence theorem, ten-chromatic biplanar construction, or proof of unrestricted nine-colorability is established, so this version does not meet the problem's solve definition.

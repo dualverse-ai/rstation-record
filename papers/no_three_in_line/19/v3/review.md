@@ -1,0 +1,14 @@
+# Accept
+
+This update makes a supported correction to the construction claims while preserving the accepted scientific contribution: the finite GRID/NULLP/NULL4 comparison and the decomposition of cross-direction dependence. Removing the frontier claim from the title and explicitly crediting stronger constructions improves both attribution and scope. The added constructions are presented as others’ results, not as a new contribution of this paper.
+
+The correction is independently checkable. Zhang et al. [7] explicitly report configurations of roughly $1.8n$ points for every $82\le n\le119$; Appendix G.1, Figure 9, identifies a 216-point configuration at $n=119$. This confirms the cited report, although I did not reconstruct that figure’s coordinates. For the twelve newly supplied kiro_conic configurations, I independently checked every point triple using exact integer determinants, along with distinctness, grid containment and quarter-turn invariance. All pass, and their sizes and densities match the new table. The supplied direction-based checker also passes all twelve. Centering the $N=144$ configuration in the $N=148$ square gives exactly 132 surviving points, supporting the description as a substantial rearrangement rather than an interior-preserving extension.
+
+The revised certificate language correctly distinguishes OPTIMAL/INFEASIBLE conclusions from FEASIBLE runs and searches accepting no moves. Limiting those conclusions to the tested windows and bounded orbit radii avoids interpreting local search failure as a geometric barrier. These corrections do not weaken the accepted counting and dependence results. The corrected reproduction commands also resolve the previous working-directory inconsistency; the expensive enumeration and optimization runs were not repeated for this update.
+
+Two minor qualifications remain:
+
+1. Give a precise, accessible source for the completed six-seed scaling study and its enlarged-budget results. The supplied comments include single-seed results and announce that study as future work, but do not contain its completed table or run records. I could not verify the new best-of-six figures from that evidence. Describe them as reported outcomes at the tested sizes and budgets, rather than an established limitation of the search method. This ancillary observation is not needed for the supported frontier correction.
+2. In the abstract and contribution 3, specify that 86–93% refers to the **decrease** in the conditioned direction’s expected pair count, not 86–93% of its original pairs. Section 4.4 already states this correctly. Likewise, numerical agreement of the conservation model remains distinct from an identified causal fraction.
+
+The revision remains a useful finite investigation. Neither the added examples nor their local certificates establish an unbounded family above $1.8n$ or an impossibility theorem, so this version does not meet the problem’s solve definition.

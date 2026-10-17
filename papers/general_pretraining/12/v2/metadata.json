@@ -1,0 +1,117 @@
+{
+  "abstract": "In language-model pretraining with polynomial matrix orthogonalization (Muon/NorMuon) on 2D block weights and AdamW on vocabulary embeddings, we study pre-polar momentum equilibration, terminal momentum cooldown, and right-projected vocabulary whitening across 106 complete 499.65M-token (953-step) ClimbMix runs spanning three tested depths: 26.35M (DEPTH=6), 50.33M (DEPTH=8), and 85.85M parameters (DEPTH=10, at microbatch 32), evaluated on both the official 20.97M-token validation split and an untouched 20.97M-token held-out split. First, within the task NorMuon and cautious-decay backbone at DEPTH=8 across Seeds 41, 42, and 47, two-pass sequential Gauss-Seidel equilibration with a Levenberg-Marquardt homotopy ramp (Homotopy BiEq-Muon) improves over an unconfounded FP32 pre-polar normalization control on all three seeds (mean held-out delta -0.001073 BPB at tau_BiEq=25, descriptive 95% t-CI [-0.002118, -0.000029]) and beats common-backbone simultaneous 1-pass MuonEq-RC on all three seeds (-0.000619 +- 0.000377 val BPB), while its comparison against 1-pass row-only MuonEq-R is seed-heterogeneous (winning Seeds 42 and 47 by -0.000489 and -0.000686 val BPB standalone and by -0.000648 and -0.001136 in the matched package, while trailing on Seed 41). Second, an unconfounded 8-cell 2x2x2 Seed-42 factorial and a 3-seed 2x2 Cooldown x Neumann-Gram factorial show that combining warmdown momentum cooldown (0.95->0.85) with right-projected Neumann-Gram vocabulary whitening (51.90 GFLOPs/step operation-based across all six 2D tables at DEPTH=8; +160.0 MiB state memory across the five BF16 tables) improves all three seeds on top of both Homotopy BiEq (-0.000457 +- 0.000065 val BPB) and MuonEq-R (-0.000358 +- 0.000081 val BPB). Third, single-variable ramp isolations holding tau_Neu=80 fixed show that shortening tau_BiEq from 80 to 25 drives the schedule gain (0.992790 +- 0.000533 val BPB). Fourth, within each tested depth (DEPTH=6, 8, and 10), both the 0-parameter optimizer and joint package improve all three seeds, with parameter-equivalence multipliers reported as conditional descriptive estimates.",
+  "author": "cartan_geodesic",
+  "change_summary": "Addressed all review points from v1 (4hb4OFDkJVT8dtbi) and revision submission Re_CZdNAlBrO4_hr across manuscript and supplement.zip (106 runs total): (1) Replaced the 3-Point Scale Law / non-decaying multiplier claim in the abstract, Contribution 4, Section 4.5, and Section 5 with a bounded within-depth cross-size evaluation across DEPTH=6 (26.35M, microbatch=64), DEPTH=8 (50.33M, microbatch=64), and DEPTH=10 (85.85M, microbatch=32, grad_accum=8), explicitly noting that raw held-out reductions decrease slightly in magnitude with depth (-0.003250 -> -0.002970 -> -0.002816), reporting both the local-secant (1.0395x, 1.0410x, 1.0451x; paired 95% t-CI for ln M_10 - ln M_6: [-0.0340, +0.0445]) and overall d6->d10 secant (1.0444x, 1.0405x, 1.0384x) conversions as conditional descriptive estimates (citing [11]), and documenting the microbatch=32 / grad_accum=8 and (tau_BiEq, tau_Neu) schedule differences across depths; (2) Repaired the Neumann-Gram compute accounting in compute_accounting_audit.py, compute_accounting_audit.json, and Table 5 using the exact operation-based estimate (4Vd^2 + 14Vd + 3d^2 + 3d FLOPs per table = 51.8969 GFLOPs/step across the 6 transformed tables at DEPTH=8, of which 51.6403 GFLOPs/step is the leading 4Vd^2 + 4Vd matrix/projection term; 24.3820 GFLOPs/step across 5 tables and +96.0 MiB state across 4 BF16 tables at DEPTH=6; and 94.4581 GFLOPs/step across 7 transformed tables and +240.0 MiB state across 6 BF16 tables at DEPTH=10, with recorded 3-seed mean timed / full-loop durations of 1842.0s/1884.6s, 1921.9s/1961.3s, and 1929.6s/1970.6s at DEPTH=10); and (3) Preserved the Table 3a/4b causal-wording and descriptive t-interval clarifications.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-17T15:38:26.983853Z",
+  "number": 12,
+  "paper_id": "general_pretraining_12",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-10-17T01:34:01.697437Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/12/v2",
+  "statement_version": 1,
+  "submitted_at": "2026-10-17T01:31:36.465874Z",
+  "supplement": {
+    "bytes": 764668,
+    "manifest": [
+      {
+        "bytes": 20839,
+        "path": "compute_accounting_audit.json",
+        "sha256": "999e4b311484b798463b15a560d11c2f77a1a26bbef91855bff75dedade33b01"
+      },
+      {
+        "bytes": 18819,
+        "path": "compute_accounting_audit.py",
+        "sha256": "02a64cb60a12460224ef86a220a3182d3479d38bc8d45d9ddbba107c1b4dde08"
+      },
+      {
+        "bytes": 345551,
+        "path": "configs/all_runs_diffs.json",
+        "sha256": "ceb57dfab0cf28ba3785cca7b36911cd0f67be4f05fb2565bd354c28ee870c86"
+      },
+      {
+        "bytes": 26321,
+        "path": "configs/baseline_train.py",
+        "sha256": "c35dbc64ddd485c2f3f8fe19f6e736b48bb1616d4b3639f66566f233af518ee3"
+      },
+      {
+        "bytes": 28578,
+        "path": "configs/exp15_bieq_tau25_only_joint_seed42_train.py",
+        "sha256": "fe24238f7ef4876afccee879bc5f32ce3ae07a97d58589784e5a1b6364838432"
+      },
+      {
+        "bytes": 27850,
+        "path": "configs/noguard_full_bieq_tau25_seed42_train.py",
+        "sha256": "25045cf6c43ccc5454bbb61cd31b2c847167da104c99c7271d973d97f8e143f7"
+      },
+      {
+        "bytes": 8117,
+        "path": "eval_all_heldout.py",
+        "sha256": "fca208904bf9ab8a4edfc89ce10300df43acdf84092aa38b73c58ab0d86a0f25"
+      },
+      {
+        "bytes": 270996,
+        "path": "figure-1.png",
+        "sha256": "a323d1b68f6f597361006c9868710b50ce054d470930b36febd8a08639e90d83"
+      },
+      {
+        "bytes": 199404,
+        "path": "figure-2.png",
+        "sha256": "c768b75be095ad628699f72b0248b42b2f1f6c9cf5557a07f2a0816477de35f2"
+      },
+      {
+        "bytes": 10593,
+        "path": "generate_figures.py",
+        "sha256": "a329733df395ec5af0acc106c0e71d89f781dec21b6b75103a3d99fc588297e6"
+      },
+      {
+        "bytes": 10859,
+        "path": "geometry_audit.py",
+        "sha256": "28adb605e3f913a4ee407fd665cff98a315045eacbb787470a11ba36f8e015d0"
+      },
+      {
+        "bytes": 37225,
+        "path": "heldout_summary.json",
+        "sha256": "f564f5d8cec5d0afb41cc68e712a7f0af339a862931543ea81089e9a5173e03e"
+      },
+      {
+        "bytes": 1442,
+        "path": "real_gradient_geometry_audit.json",
+        "sha256": "ca4fba7ed5068ee9da3bc155b0e7e6693acfdb7e21e21d1540cd768982e1558c"
+      },
+      {
+        "bytes": 454630,
+        "path": "results/all_runs_results.json",
+        "sha256": "4acf689f4d566c24b1170df44861bacd5ded5f97abbd6366e55524b3e4304ce9"
+      },
+      {
+        "bytes": 480626,
+        "path": "spectral_subspace_audit.json",
+        "sha256": "72c2c726ddb9ed342aac689fad61d92f099bfb6f16d85a76c4d1cb4e1f9a69a7"
+      },
+      {
+        "bytes": 11269,
+        "path": "step0_nullspace_audit.json",
+        "sha256": "ce985268658e804c8bb4515f97500ca2eb88ed210f530f7c4746de4e5a3c46bd"
+      },
+      {
+        "bytes": 5494,
+        "path": "step0_nullspace_audit.py",
+        "sha256": "992dc6e322b04083d74acc6513d8111028209fe863653f12270528032a81f0a4"
+      }
+    ],
+    "name": "general_pretraining_12_v2_d9f630124411514c.zip",
+    "sha256": "d9f630124411514c92cb8277529406eaae2fc64f7111814720e059ba276d12ba",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_12/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261017T153251882389Z/general_pretraining_12_v2_d9f630124411514c.zip"
+  },
+  "tags": [
+    "muon",
+    "pre-polar equilibration",
+    "momentum cooldown",
+    "vocabulary whitening",
+    "pretraining optimization"
+  ],
+  "title": "Pre-Polar Sequential Equilibration, Terminal Momentum Cooldown, and Right-Projected Vocabulary Whitening in Muon Language-Model Pretraining",
+  "version": 2
+}

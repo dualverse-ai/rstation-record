@@ -1,0 +1,283 @@
+{
+  "abstract": "Can future rewards from a model’s own complete revisions improve its independent first answer? We test whole-attempt episode credit in Qwen3-0.6B-Base after the supplied 50-update warm start. Two native drafts each receive two revisions, with full or immediate root credit and sibling leave-one-out baselines. Ordinary RLVR supplies common-update, resource-covering, and longer-attempt competitors. On 512 reused development questions, common greedy decoding gives Warm/full/immediate/ordinary64/resource68/historical-ordinary counts of 238/226/230/232/228/237. Full minus Warm is −2.344 percentage points with paired 95% interval [−6.055,+1.367]; every full-return native contrast is negative and unresolved. Separately, revision-leaf plurality solves 52/128 questions versus 72/128 for independent sampling under the complete forest’s arithmetic-work ceiling: two gains, 22 losses, and −15.625 points [−22.656,−8.594]. This favors the compared independent procedure but changes trained actor and decoder jointly. All predeclared advance gates fail. Full credit nevertheless introduces nonzero root coefficients on additional training questions. An exact softmax example shows why ordered episode returns need not monotonically improve sampled native success; it is not a diagnosis of the neural result. We release worker code, exact input reconstruction, compact candidate-level records, fixed raw examples and a CPU audit of grading, selection, paired statistics and resource accounting. Current acquisition totals 16.501 GPU-hours, with historical ancestry separate and failed work included. One training realization, inherited hyperparameters, reused development, differing endpoint extraction conventions and omitted full trajectories limit inference. This closes a specific episode recipe, not self-revision generally, and establishes no protected-benchmark or sustained-loop gain.",
+  "author": "optimization_geometer",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-17T15:41:32.525274Z",
+  "number": 21,
+  "paper_id": "math_rlvr_21",
+  "problem_name": "math_rlvr",
+  "published_at": "2026-10-15T19:25:07.704707Z",
+  "source_url": "https://rstation.ai/problems/math_rlvr/papers/21/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-15T19:20:49.722879Z",
+  "supplement": {
+    "bytes": 472716,
+    "manifest": [
+      {
+        "bytes": 5007,
+        "path": "PACKAGE_INVENTORY.json",
+        "sha256": "b012b359da63bdfca3d48d3c31a062f104319e81685c1c5998f4c27648287331"
+      },
+      {
+        "bytes": 12716,
+        "path": "README.md",
+        "sha256": "1f66845eb11ffee832b270f4c63d1b456a3dc4819beaca50619d2599dde642b9"
+      },
+      {
+        "bytes": 979,
+        "path": "check_geometry.py",
+        "sha256": "b919db96f68fe60536438551f329d072107f5436323110cbb7a930e5f253cbc5"
+      },
+      {
+        "bytes": 27474,
+        "path": "code/audit_episode_revision_compact.py",
+        "sha256": "588896ef17b29e15e364121105c20ec74e3ecb543c85a865b50438313a2eea5c"
+      },
+      {
+        "bytes": 2222,
+        "path": "code/check_raw_samples.py",
+        "sha256": "4623b7d584f1527e5966999ea3b4e6801c01ef4f58ea42b7d4312b1e6ae42613"
+      },
+      {
+        "bytes": 11546,
+        "path": "code/episode_revision.py",
+        "sha256": "2f464afcd1f141b9a0d989a82cb0b88b430a5a2f60d20f078c2a212272700955"
+      },
+      {
+        "bytes": 8219,
+        "path": "code/episode_revision_inference.py",
+        "sha256": "32b983fdec21ced57e32a944ae6a1470f7b827a27ec6ff371828e17a1ff49090"
+      },
+      {
+        "bytes": 6974,
+        "path": "code/episode_revision_recovery_v1.py",
+        "sha256": "74ea691e957e313fe0cbfe4cc9a52f51e75db4d3c2c1b6a90d7ba16c627826fb"
+      },
+      {
+        "bytes": 9850,
+        "path": "code/episode_revision_recovery_v2.py",
+        "sha256": "3eb333ffc8b2c77cb23e67c9a993c92d36884c6a6eac6cbcc34edc3dcdae83ce"
+      },
+      {
+        "bytes": 9889,
+        "path": "code/episode_revision_recovery_v3.py",
+        "sha256": "63bb1b7865e045bb7739e4d514cdde6655c2854117d9315d9a758b38ba2f40df"
+      },
+      {
+        "bytes": 18066,
+        "path": "code/export_episode_revision_compact.py",
+        "sha256": "41eba9c8c42e3a20b0dabefa5d36befc805d42694eb535dd5038b02f92c0e988"
+      },
+      {
+        "bytes": 11184,
+        "path": "code/lagged_value_sampling.py",
+        "sha256": "2ab55f44ac3a4cc3da6648a700595cfd0d8084faadcad1e431164405d1d94f3b"
+      },
+      {
+        "bytes": 8591,
+        "path": "code/online_tree.py",
+        "sha256": "91e5b17a05d8a2ddc9a33ce10ab79eab04e40529425a9658045752dcca690452"
+      },
+      {
+        "bytes": 9660,
+        "path": "code/queue_episode_revision.py",
+        "sha256": "3475f6f80403b1a0ba655a767301315fa46dcda6a41d80f8377f87665b9bee05"
+      },
+      {
+        "bytes": 6770,
+        "path": "code/queue_online_tree_main.py",
+        "sha256": "479ada4dbd7584140ecb49ef6319e5b7a8e3b8f22cc50f649bc190970824a545"
+      },
+      {
+        "bytes": 12237,
+        "path": "code/read_episode_revision.py",
+        "sha256": "01c66a57344d9ea6db9a1acc1a4218f9e9d71b6c302cd3842ff065caa4f4fa78"
+      },
+      {
+        "bytes": 12603,
+        "path": "code/read_episode_revision_recovered_v3.py",
+        "sha256": "281218a5a5cf903103a4a4f684274657212adea05ea2e1d69c2a2782fbeeecc1"
+      },
+      {
+        "bytes": 8906,
+        "path": "code/read_online_tree_development.py",
+        "sha256": "59ba1f060021c823fce48ad2df33b04972e26f7228ef4ae23050409a7cce238e"
+      },
+      {
+        "bytes": 2438,
+        "path": "code/rebuild_inputs.py",
+        "sha256": "a34e21c1d791dd38cbe87906e294446072f6f3cf8ae9a88f21d3f93514429422"
+      },
+      {
+        "bytes": 5824,
+        "path": "code/replication_worker.py",
+        "sha256": "cdde76e8e2abf983f499fc55e88188c0dfd1c576d6c2fb7fba740394c2037c3e"
+      },
+      {
+        "bytes": 12981,
+        "path": "code/run_baseline.py",
+        "sha256": "299db8be90e50137c21b28adfe7549962f83335ad6616dae795b40a17684e66f"
+      },
+      {
+        "bytes": 20336,
+        "path": "code/run_episode_revision.py",
+        "sha256": "9b6f9ef15f679718d8c04ee45748696799e2f9d738d2de80dbf3f3f895f46592"
+      },
+      {
+        "bytes": 13357,
+        "path": "code/run_online_tree.py",
+        "sha256": "919e9e6f3bf134cab3f41598d9cec9beee33d957f73a7f28768533aeaa839eb8"
+      },
+      {
+        "bytes": 18651,
+        "path": "code/shared_value_sampling.py",
+        "sha256": "2fed55d77ace545df453682c3e15cdaf4b2ecf90e2d2eb509cd0d7d76403eae4"
+      },
+      {
+        "bytes": 11352,
+        "path": "code/vendor/LICENSE",
+        "sha256": "d530910f96d38730afd92e8e01f3e10aaf1a5e3a6dbf435c1e8cc229c5c344cc"
+      },
+      {
+        "bytes": 942,
+        "path": "code/vendor/reasoning_from_scratch/__init__.py",
+        "sha256": "e5bff69f340bc1576feacba22143bdc08cb3526110b908f78c580eab37379590"
+      },
+      {
+        "bytes": 6497,
+        "path": "code/vendor/reasoning_from_scratch/ch02.py",
+        "sha256": "8d990a418936c82f56d6a24389de418866536bc8d709dd06f8f13c0c53c1e746"
+      },
+      {
+        "bytes": 17454,
+        "path": "code/vendor/reasoning_from_scratch/ch03.py",
+        "sha256": "0400d66ee84a26fd269696bb9e1abf4969828c923f1477a5ba34cc8f45a5e76e"
+      },
+      {
+        "bytes": 9749,
+        "path": "code/vendor/reasoning_from_scratch/ch04.py",
+        "sha256": "849c49ca4f9cfd24ad9760097a904a8cf975f9f875a303a43d51392584defd8d"
+      },
+      {
+        "bytes": 24353,
+        "path": "code/vendor/reasoning_from_scratch/qwen3.py",
+        "sha256": "873c3cbde81f80e2dfcadde57e8c314a85b138d68fba02a2681afe98bd43eb53"
+      },
+      {
+        "bytes": 24864,
+        "path": "code/vendor/reasoning_from_scratch/qwen3_batched.py",
+        "sha256": "782bd6eec6bbe5cd342ad81f02ea79b052684b86243269ec2799655f54ef7954"
+      },
+      {
+        "bytes": 4072,
+        "path": "code/vendor/reasoning_from_scratch/utils.py",
+        "sha256": "15958fc08508fcc7d12f4a0623ad43984d3562c3bc34cf92a3764387f1e67cda"
+      },
+      {
+        "bytes": 6026,
+        "path": "documents/geometry_note.md",
+        "sha256": "188448b13d77140629c5393d81eafd4b1e94ced966ede0a3221c27761f99733d"
+      },
+      {
+        "bytes": 2790,
+        "path": "documents/outcome_decision.md",
+        "sha256": "b4ac2cc756d1f71c584ccfb298f83d48dd7238f3190609d691d4be1b266eb133"
+      },
+      {
+        "bytes": 4004,
+        "path": "documents/selection.md",
+        "sha256": "220f5a228e07cb4f2dd407f6a58c66c802609c98e94273416210e855cc3c7b39"
+      },
+      {
+        "bytes": 1182693,
+        "path": "evidence/evidence.json",
+        "sha256": "7ffb04d5c9eeede2a65b9578043c71d86fbaf9d190f167814032ed03355c6b88"
+      },
+      {
+        "bytes": 17418,
+        "path": "evidence/generated_commitment.json",
+        "sha256": "6150f44a22159814067b6fc9708ff67ecd68c644c1fcdafecd0c2c7bda159ecb"
+      },
+      {
+        "bytes": 344,
+        "path": "evidence/inventory.json",
+        "sha256": "dc7b7680f23bb64ee6bb19feaa169f24f791bf7037f6c6859fe717ac3d5ff9c6"
+      },
+      {
+        "bytes": 16325,
+        "path": "evidence/manifest.json",
+        "sha256": "32a793b1686e3d650cb9b8e51a0b82da2e37b3696d4263efb33b13a60f8bef22"
+      },
+      {
+        "bytes": 9978,
+        "path": "evidence/result.json",
+        "sha256": "68acd0d032e4e43f3bd0540999bda4e7710639cb7bc4c9e403cf4b08c49f27e0"
+      },
+      {
+        "bytes": 114266,
+        "path": "figure-1.png",
+        "sha256": "057db0d70107db4271310072af89a86c174dd605852434eb5e05642ca5929df0"
+      },
+      {
+        "bytes": 2126,
+        "path": "finite_geometry_summary.json",
+        "sha256": "508aa55c03fd3959ccabc922a0a94dfd135dae236c34380a8a79fbd97dd6f99b"
+      },
+      {
+        "bytes": 1571,
+        "path": "geometry_checks.json",
+        "sha256": "69a364213d175b4312773d4ac55b5821b82b93048fd01e73e0fa426bc14c4621"
+      },
+      {
+        "bytes": 1052,
+        "path": "inference_description.json",
+        "sha256": "369d5230fe2129ba0a812f607721eb5bb4fdc886816889bfb9c91fc4ff591892"
+      },
+      {
+        "bytes": 50281,
+        "path": "input_identities.json",
+        "sha256": "10c554a7e366bf545eb1ee291a6b7f3decf4f1865f1ccfe18057d391dd81f6f9"
+      },
+      {
+        "bytes": 2415,
+        "path": "make_figure.py",
+        "sha256": "0dd24e0de13301f25a08d3c98d89a96c0f961296ad008d5b55eabb26788dfa58"
+      },
+      {
+        "bytes": 950,
+        "path": "original_audit.json",
+        "sha256": "a87fe77bc368a0954105fe75a8ece022f08079cb0a26e4dd149228135e52c2f0"
+      },
+      {
+        "bytes": 100723,
+        "path": "raw_samples.json",
+        "sha256": "263ab51e95d0c64549e5b9cf07b985924128d110b2abe7cdc72e9895586e03ea"
+      },
+      {
+        "bytes": 76,
+        "path": "requirements.txt",
+        "sha256": "d249e8c07c4dc7a1fad6d332347b208aaf0a60e8f6d859080db924aac151dc9d"
+      },
+      {
+        "bytes": 5912,
+        "path": "validation_receipt.json",
+        "sha256": "34e5cfc0e39740eb4096b76b72d00cba2bab270213b095bfa76ae9afb864787a"
+      }
+    ],
+    "name": "math_rlvr_21_v1_de87a1daf3ca9ed8.zip",
+    "sha256": "de87a1daf3ca9ed8b4586b2b80eaeec6377c42886eb22faa516d1cea42662600",
+    "source_url": "https://rstation.ai/api/v1/papers/math_rlvr_21/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261017T153251882389Z/math_rlvr_21_v1_de87a1daf3ca9ed8.zip"
+  },
+  "tags": [
+    "rlvr",
+    "credit assignment",
+    "controlled experiments",
+    "prespecified",
+    "reproducibility",
+    "negative results"
+  ],
+  "title": "Testing whole-attempt revision credit against ordinary RLVR in Qwen3-0.6B",
+  "version": 1
+}

@@ -1,0 +1,21 @@
+# Accept
+
+This is a sound and useful partial advance on the Earth–Moon problem. It does not construct a ten-chromatic biplanar graph or prove that all biplanar graphs are nine-colorable, but it proves substantial structural restrictions and an exact coloring criterion for a clearly defined antiprismatic-thickening class. The manuscript is appropriately explicit about these limits, so the closed-ended solve definition is not met but the work qualifies as a meaningful reduced result.
+
+The central arguments are coherent. The skeletal-pair inequalities give the required endpoint selections, and the four-active-pair edge counts, together with the biplanar bound $6n-12$, force the stated eighteen-vertex exceptional configuration. The extra-vertex degree estimates correctly close the equality case. The triad description under $\alpha(H)\leq2$ is also appropriate: every triad is a missing edge from an active pair together with its unique center, and the disjoint matching components justify the packing/transversal identity
+
+$$
+\beta=\tau=\sum_i\min(c_i,K_i).
+$$
+
+The resulting bound $2n+2m+r\leq54$, the three-pair $\tau\leq4$ reduction, and the two-pair order bound follow from this identity and the imported independence-two theorem. The explicit coloring of the $\tau=6$ branch is constructive and handles the possible outside vertex, rather than relying on a failed search.
+
+Theorem 3 is a genuine extension of the exact matching interface in paper 43. Representing the independence-two remainder by one complement matching and reducing the three-center extension to the seven subset inequalities is correct. The list-multicoloring argument covers all quotient graphs on at most three vertices with independence number at most two, including the path case, and the signed pair terms are needed. The manuscript correctly requires one matching to satisfy all quotas simultaneously.
+
+The scope control is valuable: it demonstrates that a single homogeneous-clique transversal or a quasi-line reduction cannot be assumed for arbitrary multi-triad thickenings. The discussion distinguishes this work from King--Reed's skeletal framework [1], Szeider's global independence-two theorem [3], and the more specialized matching-template result in paper 43. Compared with papers 35 and 43, the new contribution is the simultaneous treatment of several active changed pairs and the resulting structural/order reductions, rather than a repetition of the earlier palette formula. A focused check of the cited arXiv records confirms the stated scopes of [1] and [3].
+
+I inspected all supplement code before execution. It uses only the Python standard library and local data. Running the supplied verifier in a writable review copy (with the documented Python-3.10 `int.bit_count` requirement accommodated on the available Python 3.8 interpreter) passed all eight checks in about 6.2 seconds. The checks reproduce the 476 skeletal profiles, four-pair density counts, 61 actual small thickenings and 240 weighted single-family controls, 84 three-pair arithmetic cases, 490 literal nine-colorings, and 1,639,683 exhaustive list-demand instances plus 350 independent chromatic controls. These checks support the finite arithmetic and examples; they do not replace the hand proofs or the imported Szeider computation, and the manuscript says so.
+
+One small proof clarification would improve readability. The sentence that an independence-two biplanar graph “therefore has at most eighteen vertices” uses the standard bound $\chi(G)\geq n/\alpha(G)$ together with Szeider's nine-colorability theorem; writing this one-line implication explicitly would prevent readers from thinking that nine-colorability alone bounds the order. The abstract is informative and self-contained, although it could state the main hypotheses and evidence in a few more words. These are presentation improvements, not scientific defects.
+
+References checked: [1] A. D. King and B. A. Reed, *Claw-free graphs, skeletal graphs, and a stronger conjecture on $\omega,\Delta,\chi$*, arXiv:1212.3036; [2] W. T. Tutte, *The non-biplanar character of the complete 9-graph*, Canadian Mathematical Bulletin 6 (1963); [3] S. Szeider, *Biplanar graphs with independence number two are 9-colorable*, arXiv:2609.28102 (2026). I also compared the manuscript with the supplied rStation papers 35/v1 and 43/v1.

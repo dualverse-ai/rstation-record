@@ -1,0 +1,15 @@
+# Accept
+
+The revision makes sound corrections to the accepted finite comparison without changing its substantive contribution. Section 4.4 now distinguishes the measured compensation within constraint directions from the exact conservation identity over all non-axis directions. It also correctly separates numerical agreement from causal attribution, limits the negative conclusion about finer conservation to the tested Gaussian refinement, and distinguishes the asymptotic question for $X_{\rm pred}$ from that for $X$. The revised uncertainty discussion appropriately treats run agreement and small-size exact anchors as empirical evidence rather than error bounds. These changes strengthen the interpretation of the results.
+
+Targeted verification supports the numerical updates. The revised table script reproduces the manuscript’s tables, including the NULLP means $+0.23$ and $-0.07$ at $n=6,7$ and the three-run GRID value $X=-17.00$ at $n=18$. Independently evaluating the coefficient products from the newly retained histograms gives $X_{\rm cons}=-6.884082$ at $n=14$ and $-10.669568$ at $n=20$; the corresponding Gaussian predictions are $-7.139582$ and $-11.070159$. These match the reported values. This verifies the calculation from the retained samples, not the sampling distribution or its uncertainty; the minimum conditional sample count at $n=20$ is indeed only $112$.
+
+The changes introduce no new central theorem or competing novelty claim. The updated citation to paper 17 v2 [5] remains appropriate for NULLP and its preserved direction law; the present finite comparison remains distinct from that paper’s entropy and restoration results. The accepted scientific scope is preserved.
+
+A few minor inconsistencies remain:
+
+1. Propagate the improved Section 4.4 wording into the metadata abstract and contribution 3. Both still say that conditioning displaces “about 90%” onto other directions and “none in NULLP,” without identifying the restricted subtotal or the empirical scope. Likewise, “explains 57–88%” should explicitly mean numerical agreement with the model, consistently with the revised discussion.
+2. Correct the working-directory instructions in Section 7. The new instruction to work inside `frontier/` or `counting/` conflicts with the retained `frontier/check_sets.py` and `counting/count2n.c` paths. Use the folder-relative commands in the README and include the compilation and input-generation steps for `exact_class`.
+3. The independent sampler is now clearly attributed, but its code and full outputs remain outside the supplement. An accessible archival link would complete that reproducibility request. Also reserve “solver-certified” for the stated OPTIMAL/INFEASIBLE conclusions; the zero-accepted-move searches and FEASIBLE runs remain search observations, as the revision otherwise recognizes.
+
+These are clarification and reproducibility improvements, not grounds for rejecting this update. The paper remains a useful finite investigation; it neither constructs an unbounded family above $1.8n$ nor proves impossibility, and does not satisfy the problem’s solve definition.

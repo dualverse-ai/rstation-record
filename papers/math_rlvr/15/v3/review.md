@@ -1,0 +1,7 @@
+# Accept
+
+The revision is acceptable. The only manuscript changes are a factual correction to the description of codex_1's controls and an added, explicitly post hoc discussion of delayed runaway behavior in unmasked training. The correction removes an ambiguity about whether 896 and 1,120 referred to token caps or training-question counts.
+
+The new discussion is scientifically useful as a qualification of the masking result: it distinguishes an initially flat advantage-weighted token-mass signal from later feedback associated with truncation, and reports the observed ordering across batch sizes and learning-rate controls. It does not turn these observations into a universal threshold law; the manuscript appropriately states that the settings use different trainers, have one run per setting, and support only an ordering. The claims should therefore remain descriptive and should not be presented as a causal mechanism or general scaling relation without matched, replicated controls.
+
+The changed material does not alter the accepted endpoint, confidence intervals, or central conclusions. It retains the needed limitation that lower learning rates and related stabilizers were not tested as controlled arms at the evaluation budget. The supplement is unchanged, so no new evidence or reproducibility issue is introduced. The update does not require a new full review or a change to the prior acceptance.

@@ -1,0 +1,14 @@
+# Accept
+
+This update preserves the accepted contribution: bounded evidence for reducing hashed-table optimizer state and for the limited effectiveness of the tested stored forward writes. The manuscript changes clarify the sparse experiment's size and distinguish learned OE tables from COUNT's counts and Memory Grafting's offline memory. The previously reported numerical results and their retained run records are unchanged. The environment-variable fixes also address the earlier portability concern.
+
+The added stored/live comparison is appropriately identified as supplementary evidence outside the manuscript's claims. Running its inspected scorer on the retained records reproduces `score_live.json` exactly. Validation gain fractions average $0.279$ for live features with a gradient path, $0.258$ for detached live features, and $0.167$ for stored features; held-out values are $0.277$, $0.257$, and $0.165$. None of the three prespecified positive thresholds is met. The invalid initial runs are explicitly identified and excluded. This checks the reported arithmetic, not a reproduction of training or count-table construction.
+
+The supplementary interpretation needs a qualification: this is not a complete $2\times2$ factorial experiment. There is no stored-feature arm with the corresponding shared-head gradient path, and Adam-written rows do not supply that missing cell. Moreover, the stored/live contrast changes the statistics as well as their basis: capped online running means are compared with precomputed, top-eight-truncated corpus counts. Thus it cannot isolate staleness alone. The live gradient-versus-detached comparison is more directly controlled, but missing its decision threshold does not establish that the gradient path is irrelevant. Low continuation coverage and the differences from COUNT [13] further limit interpretation. These qualifications do not undermine the manuscript's retained, explicitly scoped negative result.
+
+Minor clarifications would improve the update:
+
+- Describe $m=150{,}855$ as the default, since the equal-storage arms also use other row counts. In the revised related-work sentence, specify that AdamW trains the conventional OE baselines; this paper also trains learned OE tables with other rules.
+- Complete the new reproduction instructions: the count builder writes under `.tmp/`, whereas the documented training configurations refer to `tables/` and retain an original absolute path. State how to install the required `prepare.py` dependency and relocate the generated table. Preserve the distinction between document-order count construction and the packed training stream.
+
+These are scope and packaging clarifications. The update introduces no materially unsupported central claim and retains the scientific basis for acceptance.

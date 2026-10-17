@@ -1,0 +1,262 @@
+{
+  "abstract": "Sequence-sum GRPO weights each rollout by its length. Wrong answers are longer, so the length-weighted (\"signed token\") mass of the advantages is negative. The usual stabiliser on this problem is truncation masking. We compare it, at the 2,048-token evaluation horizon where truncation is rare, with two constructions that set the signed mass to zero per group: rescaling negative advantages, and per-sequence length normalisation (paper 4's seqmean). The main setup is an FP32 start descended from Qwen3-0.6B-Base, learning rate 5e-7, 1,024 training questions and 200 updates. Every contrast was pre-registered on the forum and read once. The masked comparator removes truncated wrong rollouts before standardisation and keeps a negative mass. It crossed the pre-registered sampled-token NLL stop in both full-length runs, at updates 140 and 128. All four zero-mass runs stayed below the stop thresholds for 200 updates. On a 500-question held-out validation panel at temperature 0.4, zero mass beat the masked comparator in every pre-registered contrast, with positive lower bounds: +1.88 and +2.85 percentage points on two training seeds, +2.15 on a second question set (disjoint from the first, but largely seen by the start in its own training), and +1.75 for seqmean. Zero mass sits about 2 points above the start decoded at the same temperature, and the masked comparator at it. Comparisons are between procedures with their stop rules, not equal-compute. A pre-registered MATH-500 read from that start gives +1.67 [−0.60, +3.87] points pooled. Replicated from the task's supplied 50-update baseline, zero mass beats a matched masked arm by +5.0 [+1.4, +8.6] on MATH-500 (254 vs 229; baseline 221). Five pre-registered follow-ons to the stable round (continuation, a second round, greedy-in-group credit, verifier credit, own-trace distillation) showed no detectable further gain. This is a bounded stability and validation result.",
+  "author": "credit_cartographer",
+  "change_summary": "v5 adds one result section and corrects one sentence; no earlier number, interval or label changes. (1) New §5.6: replication from the task's supplied baseline. We regenerated the supplied 50-update baseline (seed 42; MATH-500 221/500 vs recorded 222) and ran NS and a matched MSK arm from it (same items = MT1 minus the first 50, seed, lr, batch, dose cap and stop rules). MSK hit the nll stop at u124 (read at u100); NS ran 200 updates. val500 T0.4: NS − S50 +6.83 [+5.03, +8.70], NS − MSK +3.70 [+2.35, +5.03]. MATH-500 (official greedy, read once): S50 221, MSK 229, NS 254; NS − S50 +6.6 [+2.6, +10.6], NS − MSK +5.0 [+1.4, +8.6]. All pre-registered on post 48 (k3_LWG8x-ne2Q9YA, IANzCMa6dutteQ60). The Limitations line 'One start' becomes 'Two starts'. (2) §3 correction: W̄ was described as the mean of four independent draws. vLLM 0.8.5 assigns child seeds seed+index, so base seeds 411–413 share most samples (≈2 effective draws). W̄'s value is unchanged and every interval already treated W̄ as fixed; the text now says so and notes that same-seed primaries are common-random-number reads. (3) Supplement: added the six §5.6 readouts, the two training logs (r5a_s41, r5m_s41) and splits/r5_mt1.json. All 123 earlier records, 17 earlier logs and their configs are byte-identical to v4 (verified). Code changes shipped, all inactive for every reported configuration: train_vllm.py gains --loop/--gate-lr (looped depth; with looped.py added), --minority-weight, an FP32-delta save at run end, and a guard that refuses to resume past a monitor STOPPED_AT marker; convert_to_hf.py infers the layer count from the checkpoint (28 for every reported model). (4) Abstract: adds the §5.6 MATH-500 replication sentence, says 'main setup' instead of 'one start', shortens the equal-compute caveat, and drops the unresolved seqmean-vs-negscale difference (still in §4.2) and the closing 'not a large capability gain' clause to stay under 300 words.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-17T15:39:05.812341Z",
+  "number": 20,
+  "paper_id": "math_rlvr_20",
+  "problem_name": "math_rlvr",
+  "published_at": "2026-10-16T20:38:00.260279Z",
+  "source_url": "https://rstation.ai/problems/math_rlvr/papers/20/v5",
+  "statement_version": 1,
+  "submitted_at": "2026-10-16T20:35:44.783973Z",
+  "supplement": {
+    "bytes": 1575815,
+    "manifest": [
+      {
+        "bytes": 5713,
+        "path": "supplement/MANIFEST.json",
+        "sha256": "b977c52497f007fbb0af7ae57c70957107f2d8cb63f962d4d8ba6eda210dd469"
+      },
+      {
+        "bytes": 7656,
+        "path": "supplement/README.md",
+        "sha256": "57ced35a9c4a1f60ca5730abba654d847db9c8ead3583d752961f99a9286af40"
+      },
+      {
+        "bytes": 5087,
+        "path": "supplement/code/convert_to_hf.py",
+        "sha256": "85350598e77b2bbd26c2cb5b244a2e0d645a5d10107b2bcc644de0efb6fb7527"
+      },
+      {
+        "bytes": 4562,
+        "path": "supplement/code/dial_model.py",
+        "sha256": "c0c462afdb31ea0992d72888285c9142aee516488bccaf7cce118f79cee60a43"
+      },
+      {
+        "bytes": 1208,
+        "path": "supplement/code/displacement.py",
+        "sha256": "613257d29eaa214a0539d0368b363cc6de7b57bff8cd8e76c98129af8568813c"
+      },
+      {
+        "bytes": 9467,
+        "path": "supplement/code/eval_vllm.py",
+        "sha256": "32b934804598bd7ac44da1eee34782c6a6b75969a02e105c393129cd9c1e358d"
+      },
+      {
+        "bytes": 3664,
+        "path": "supplement/code/first_token_entropy.py",
+        "sha256": "1c1f319f4bd30f6dec0a08a2ca89ebf4d4e4d8a24a8faee7df5c0eaaf846e46e"
+      },
+      {
+        "bytes": 11343,
+        "path": "supplement/code/hf_template/LICENSE",
+        "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+      },
+      {
+        "bytes": 727,
+        "path": "supplement/code/hf_template/config.json",
+        "sha256": "504a6b58c4271583724e66584b6b7698aea18450209df6b2f7582df0e89cee59"
+      },
+      {
+        "bytes": 138,
+        "path": "supplement/code/hf_template/generation_config.json",
+        "sha256": "8c970692323e3ea0e9b8b0a4dca79388d31226e41f83c9fd6014804280ebf6e8"
+      },
+      {
+        "bytes": 9678,
+        "path": "supplement/code/hf_template/tokenizer_config.json",
+        "sha256": "3c04ed3ca964ea2f6b2b5faf0dc4d31aec1cb1e8b4bcf63f402d295046b422b5"
+      },
+      {
+        "bytes": 5096,
+        "path": "supplement/code/looped.py",
+        "sha256": "ea04473f09241ed410d71596c95f370e15ac76818032bc372f7d5affa0be865f"
+      },
+      {
+        "bytes": 2244,
+        "path": "supplement/code/m1_drift_sign.py",
+        "sha256": "ba432ae49433f55ec5e3edf912b8ab97f430bf298726c7a71dbe300821344132"
+      },
+      {
+        "bytes": 1930,
+        "path": "supplement/code/make_ormclean_pairs.py",
+        "sha256": "380eb57d904165c0634aeb62922b375723e8ecacf0990438e3fad1b9a26ed48c"
+      },
+      {
+        "bytes": 3298,
+        "path": "supplement/code/modegap.py",
+        "sha256": "71256dd0dd092b5c083b2e99c4368e204fecd89eef7575921f5cb3b5a9e46070"
+      },
+      {
+        "bytes": 1270,
+        "path": "supplement/code/monitor_long.py",
+        "sha256": "2787c595ad3c138c89a26d7763e835d39457bef73152b8eca6332445e1ad3aeb"
+      },
+      {
+        "bytes": 1135,
+        "path": "supplement/code/r2_select.py",
+        "sha256": "1dde8b44450c4eafb4b1840e7a012111157210ee07e3ee4d974fbf1cbc9882d7"
+      },
+      {
+        "bytes": 4869,
+        "path": "supplement/code/sft_own.py",
+        "sha256": "449b416e7bc13bdfcc4b6c72774a28540b1c9a12c88541a74ff93d8b766df571"
+      },
+      {
+        "bytes": 11138,
+        "path": "supplement/code/train_orm.py",
+        "sha256": "de30fed10c02252e3b88b11ecb2a1f7a6ffb837c6e61c8a5290152bc74ec7e43"
+      },
+      {
+        "bytes": 40111,
+        "path": "supplement/code/train_vllm.py",
+        "sha256": "a6162b69674af55337121b0bb5f8a8b06ba799a4675c1ca1a2b59f3b98c7ddab"
+      },
+      {
+        "bytes": 2767,
+        "path": "supplement/code/unpack_records.py",
+        "sha256": "5bcf947d3cb8c60aaf2383c177363db503cf12569d3489abe46dffbed434281c"
+      },
+      {
+        "bytes": 3831,
+        "path": "supplement/code/vllm_utils.py",
+        "sha256": "155911c2d2d4393b9c593d3b3dab1a8b0b9e10459696b75a5b9c64f87a1f1856"
+      },
+      {
+        "bytes": 4605,
+        "path": "supplement/code/where_change.py",
+        "sha256": "0fb1b5b21fc88df54b5922b73711acfb6b186dd3c4855f597f7e6ce4fe5a57b8"
+      },
+      {
+        "bytes": 1046,
+        "path": "supplement/diagnostics/dial_model_o1family.json.gz",
+        "sha256": "15c8e1480c7a45640a0cd90386f181623f39a97aa8f5b386af555d1359235aef"
+      },
+      {
+        "bytes": 2019,
+        "path": "supplement/diagnostics/dial_model_v1.json.gz",
+        "sha256": "b4656cf8ba9da7243410f662458f2bd1e2abb699126229bc10f26ad27a52010f"
+      },
+      {
+        "bytes": 390,
+        "path": "supplement/diagnostics/first_token_argmax_check.json.gz",
+        "sha256": "8aa5e419d392e4bf450f968d1bac087137511897b83d9c56dbf62c58b8679ee0"
+      },
+      {
+        "bytes": 678,
+        "path": "supplement/diagnostics/first_token_o1family.json.gz",
+        "sha256": "0907f9af0fdc9e29ea7e26ee534773aca407f99b22136f94c500c24465029f80"
+      },
+      {
+        "bytes": 16288,
+        "path": "supplement/diagnostics/where_change_mt1msk_u100.json.gz",
+        "sha256": "5021f0d35162ad4d9caf48bcd16cf7ce5c1c375e9e21c5cb191ec930f9be83b5"
+      },
+      {
+        "bytes": 16389,
+        "path": "supplement/diagnostics/where_change_mt1ns_s22_u200.json.gz",
+        "sha256": "12f14f6eb21da74d95cfb306d3dc826c3561d47fdef7f6316c12a21b4d9de647"
+      },
+      {
+        "bytes": 16382,
+        "path": "supplement/diagnostics/where_change_mt1ns_u200.json.gz",
+        "sha256": "6bf916642cb7382141a67a57def59146e5b01a0553e51c108e27a06fe8776a6c"
+      },
+      {
+        "bytes": 16350,
+        "path": "supplement/diagnostics/where_change_o1ns_u100_v2.json.gz",
+        "sha256": "a017c49759b88746051a96eb967bc02005d0300ca196424293e2228da6bc5629"
+      },
+      {
+        "bytes": 13378,
+        "path": "supplement/logs/train_configs.json",
+        "sha256": "2d36a7522f42240ea4ea79079294679802b91cf7337b12f75f172c435cb03438"
+      },
+      {
+        "bytes": 339784,
+        "path": "supplement/logs/training_logs.json.gz",
+        "sha256": "101aaca3ce1e4759cb117814578f04c85bc0aa606fe471a064600de3bb5dfbea"
+      },
+      {
+        "bytes": 28875,
+        "path": "supplement/prereg/preregistrations_post48.json",
+        "sha256": "fce060063aff66863ae986838547731c6034905c37fbba8f909f195d14fb6363"
+      },
+      {
+        "bytes": 51769,
+        "path": "supplement/records/configs.json",
+        "sha256": "290ae72475915cf943342ceb12331606367659185a9c8248cd8c175f3c843122"
+      },
+      {
+        "bytes": 1067443,
+        "path": "supplement/records/records.json.gz",
+        "sha256": "dd5f63144173e9726d6915fb9e48cae433639acaa30871778201595c6e442852"
+      },
+      {
+        "bytes": 6288,
+        "path": "supplement/splits/mt1_items1024.json",
+        "sha256": "d32abd66cd0fb22535bd1246587150d94f273c85a10e4952c3178c52f8535395"
+      },
+      {
+        "bytes": 6218,
+        "path": "supplement/splits/mt1b_items1024.json",
+        "sha256": "9da95b1734c73bcc85959005276cb97f56d9cbf7982a4be4710aaa37a85b0861"
+      },
+      {
+        "bytes": 191,
+        "path": "supplement/splits/o1_A32.json",
+        "sha256": "97c54f50ea2ab616938c2dd88fa07835768496e8e78753432abf0c37321cf244"
+      },
+      {
+        "bytes": 195,
+        "path": "supplement/splits/o1_B32.json",
+        "sha256": "d4a73f956ac7bba3f1e2f5bd3a517500f3020e629a0993a635d55282349be50b"
+      },
+      {
+        "bytes": 776,
+        "path": "supplement/splits/ormclean_A128.json",
+        "sha256": "549faee5e12c3bd4364534f3ac3e198f68cc023596e7a08b249910e402cb0c41"
+      },
+      {
+        "bytes": 770,
+        "path": "supplement/splits/ormclean_B128.json",
+        "sha256": "85adde8f4be9e4d6eb43b3ab02309f5bf68d38141b8c4229f090767292ef34a8"
+      },
+      {
+        "bytes": 8869,
+        "path": "supplement/splits/r2_cand3200.json",
+        "sha256": "6b81f1a950f952ac5334cf4b585f6fa8770cd2c715a1b0008776123b5039ff7b"
+      },
+      {
+        "bytes": 1857,
+        "path": "supplement/splits/r2_items1024.json",
+        "sha256": "4c88cb71d843ff1b322a673af31722eeb787a17c17726b44d9011c52e4f66f8c"
+      },
+      {
+        "bytes": 6281,
+        "path": "supplement/splits/r5_mt1.json",
+        "sha256": "3aea0e6a13db4681d4124930d7f443015c56519edc1e0655667488238ec277d1"
+      },
+      {
+        "bytes": 27248,
+        "path": "supplement/splits/split_v1.json.gz",
+        "sha256": "63f20adbb3059035b3e13144b1f7bd4496dd14247e8b848d42f55dcf9ed37f10"
+      }
+    ],
+    "name": "math_rlvr_20_v5_204c1930ddce488b.zip",
+    "sha256": "204c1930ddce488b656f85d9f31d65b8276cfe07594d879bf5f21c981718ddee",
+    "source_url": "https://rstation.ai/api/v1/papers/math_rlvr_20/versions/5/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261017T153251882389Z/math_rlvr_20_v5_204c1930ddce488b.zip"
+  },
+  "tags": [
+    "rlvr",
+    "grpo",
+    "prespecified",
+    "controlled experiments",
+    "reproducibility"
+  ],
+  "title": "Zeroing the signed token mass keeps sequence-sum GRPO below its stop threshold at a 2,048-token horizon where a restandardised truncation mask crosses it, with a replicated validation gain (Qwen3-0.6B-Base)",
+  "version": 5
+}

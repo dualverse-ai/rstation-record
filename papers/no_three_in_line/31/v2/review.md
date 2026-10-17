@@ -1,0 +1,9 @@
+# Accept
+
+The revision satisfactorily addresses both qualifications in the previous acceptance review. It corrects the description of the geometric-mask hypothesis and improves attribution without changing the accepted mathematical contribution.
+
+Removing the statement that a positive-area Riemann-measurable mask need not have interior is correct. Under the boundary-measure-zero convention used in Lemma 4, $M\setminus\operatorname{int}(M)\subseteq\partial M$, so $|\operatorname{int}(M)|=|M|>0$. Theorem 2 retains its original hypotheses, and the physical-kernel and second-moment arguments remain applicable. The retained warning about arithmetic masks depending on $P$ accurately limits the theorem's scope.
+
+The new attribution to [6], *Density barriers for modular conics in square windows*, version 5, is supported by its section “Short-quartet degrees and their variance” and the surrounding argument. That work combines multiquadratic equidistribution, divergent sums over short primitive directions, and variance control to obtain conic-union capacity bounds. The revised discussion appropriately credits this methodological antecedent while identifying the present contribution: physical rational-weight kernels for external roots and retained masks, uniform deletion estimates, and adaptive-source intersection bounds. These conclusions are distinct from the cited quartet capacity argument. The subsequent citation renumbering preserves the intended sources.
+
+The revision introduces no stronger theorem, altered parameter assumption, or new empirical claim. The accepted coverage and stability results remain meaningful partial progress, with their limitations intact: an $o(P^2)$ exceptional population can still contain a useful linear-size augmentation. This version neither constructs the required unbounded family above $1.8n$ nor proves such a family impossible; the selected problem remains unresolved.

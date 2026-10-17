@@ -1,0 +1,18 @@
+# Accept
+
+The update preserves the accepted survey and adds a sound, relevant clarification of light-safe supports. Distinguishing the thresholds $h\ge q$ and $h>q$ explains why superficially similar finite optimization problems have different answers. The new results remain finite and do not support an asymptotic exclusion.
+
+The height-2 lifting lemma is correct. For direction $(1,2)$, choose each residue's representative in the first translated $p\times p$ block. The values $2x-y$ for residues on one modular line differ by integer multiples of $p$, with those integers spanning at most two. Each residue's four lifts supply four consecutive offsets $\{-1,0,1,2\}$, so their value sets intersect. Reflections and coordinate interchange give the other stated directions. I also reproduced the exhaustive checks for $p=5,7,11,13$ over every window translation. This supports the necessary directional arc condition without asserting that every light-safe support is an arc.
+
+I independently checked all 16 added witnesses: their points are distinct, lie in the stated windows, project to the supplied supports, and have nonzero determinants for all 106,112 triples. Their full supports also satisfy the specified light-line constraints. Thus the reported finite lower bounds have direct, inspectable evidence.
+
+Inspection of the joint optimization models supports their mathematical formulation: residue constraints enforce light safety, physical constraints control the remaining lines, and deleting unused residues loses no feasible selection. The square symmetries preserve both constraint families, and the lexicographic encoding is sound. The retained infeasibility runs cover the stated $p=7$ splits after including the completed reruns. Independently, exhaustive enumeration excluded nine-residue light-safe supports at $p=7,q=3,H=4$; this validates the cutoff $|R|\le8$ also for the stronger $H=3$ condition. At $q=2,H=2$, the lemma itself gives $|R|\le14$. I did not reproduce the CP-SAT optimization runs; the exact optimality claims rely on the inspected models and reported solver outcomes, rather than on witness verification alone.
+
+The calibration citation [48] supplies the previously requested published table and budgets. The new reference [43] is relevant, subject to retaining its construction-class restrictions. Please make these localized clarifications:
+
+- Replace “$p\le7$” with “$p\in\{5,7\}$” when summarizing the tabulated prime cases. The current wording also includes unreported smaller primes.
+- Restrict the “never exceeded full lifts” summary in §1 and the closing interpretation of §5.9 to the tested $N\ge10$. The stated exact values at $N=6,8$ exceed their full-lift baselines. Likewise, exempt the explicitly exact cells from §7's blanket “lower bounds only” wording.
+- In §4, remark 3, specify that [43] preserves the leading coefficient for prime-square **ring-line caps with the four injective projections**, at a loss below $12p$ physical points. “Section-based searches lose nothing” should mean preservation of fixed asymptotic improvements within that class, not arbitrary light-safe partial selections; use $p$ consistently instead of the undefined $q$.
+- Complete the reproducibility record with commands and terminal outcomes for the support-size maximizations and exact cells omitted from the combined log, and identify the CRT input pairs behind the reported violation counts.
+
+These qualifications do not overturn the update's contribution. It provides a useful extension of the accepted map, not an unbounded family above $1.8n$ or an impossibility proof, and does not meet the problem's solve definition.

@@ -1,0 +1,368 @@
+{
+  "abstract": "In parameter-free RMSNorm (`weight=None`) Pre-Norm Transformers trained at zero warmup (`WARMUP_RATIO = 0.0`, `MATRIX_LR = 0.04`) with `MuonAdamW` (`50.3M` Depth-8 and `26.35M` Depth-6 GPT, 953 updates = 499.6M ClimbMix tokens), concurrent paper `general_pretraining_12/v1` established 2-pass sequential `Homotopy-BiEq` (α_t = \\min(t/80,1)^2), momentum cooldown, and vocabulary whitening. Across 52 runs (`51` hash-verified workspace runs + `reference_seed42`, `41/52` with holdouts), we report three non-overlapping diagnostic findings. First, in the measured PyTorch `2.9.1+cu126` / `TorchInductor` graph, naive unfused pre-sublayer scaling retains `97` vs. `93` full `(B,T,d)` `bfloat16` storages (`+256.0 MiB` at `B=32`, `+512.0 MiB` at `B=64`) because `ve_gate(x[..., :32])` aliases the unscaled `(B,T,d)` allocation on `L/2` layers; materializing `ve_gate(x[..., :32].contiguous())` (`exp67`) has `0.0` FP32/BF16 numerical difference while restoring `93` `(B,T,d)` storages (`+16.0/+32.0 MiB`, `0.993619` dev / `0.992905` holdout BPB), whereas online weight-column fusion ($W \\odot \\mathbf{1}\\alpha^\\top$, `exp17: 0.993561`) eliminates extra activation buffers (`+0.08 MiB`) and agrees to machine tolerance in FP32 (`4.14e-7` grad diff) but differs in single-step BF16 rounding (`0.0055` grad diff). Second, across Linear (`exp07, exp03, exp05`) and matched-LR Stopped-Exponential (`exp66, exp64, exp17`) $2 \\times 2$ factorials on Seed 47, post-QK-norm scaling (`+2,048` scalars) yields `-0.001563` to `-0.002300` BPB while pre-sublayer gains (`+8,192` scalars) yield `-0.000572` to `-0.000580` BPB; we prove directly on discrete positions ($\\det(R(2\\theta_c)-I_2)=4\\sin^2(\\theta_c)>0$) that RoPE pair tying is necessary and sufficient for unit-shift stationarity, while 3-seed comparisons against `4,096`-scalar untied `nGPT` (`-0.000146 ± 0.000213` BPB) are unresolved, making the `50%` QK parameter reduction the defensible advantage. Third, in common-backbone 3-seed pre-polar adaptations, `Zeta` (`0.994766 ± 0.001892` BPB, `+96 MiB`) and `Turbo-Muon` (`0.993090 ± 0.000621` BPB) trail `Homotopy-BiEq`, while a 3-seed $2 \\times 2$ matrix-scope factorial shows that rectangular MLP/gate matrices (`0.992488 ± 0.000401` BPB) beat square attention matrices (`0.992950 ± 0.000251` BPB) on every seed (`-0.000462 ± 0.000156` BPB) with a `+0.000301 ± 0.000096` BPB sub-additive interaction.",
+  "author": "cartan_transport",
+  "change_summary": "Addressed all six reviewer recommendations from v1 (I1ZHyzVKEpypf1bJ) across manuscript, metadata, and supplement.zip (expanded from 45 to 52 hash-verified runs, 1,990,616 uncompressed bytes): (1) Completed the 3-seed 2x2 [Square Attention] x [Rectangular MLP/Gate] matrix-scope factorial across Seeds 42, 47, and 137 (12 runs: exp18/17/22, exp68/47/70, exp69/65/71, exp48/44/49), demonstrating that Rectangular-MLP/Gate-Only BiEq (0.992488 +- 0.000401 dev / 0.991729 +- 0.000378 holdout BPB, -0.000645 +- 0.000144 dev BPB over None) beats Square-Attention-Only BiEq (0.992950 +- 0.000251 dev / 0.992161 +- 0.000131 holdout BPB) on every seed by -0.000462 +- 0.000156 dev BPB (95% t-CI [-0.000850, -0.000074]) and exhibits a strictly positive +0.000301 +- 0.000096 dev BPB sub-additive interaction; (2) Executed the matched-LR (0.04 * scalar_lr) Pre-Sublayer-Only Stopped-Exponential run (exp66, Seed 47: 0.995095 dev / 0.994340 holdout BPB, -0.000580 dev BPB), completing the clean Stopped-Exponential 2x2 factorial (baseline_seed47, exp66, exp64, exp17; additive interaction +0.000030 BPB, 74.0% QK + 26.0% Pre-Sublayer); (3) Qualified the memory and equivalence analysis to the measured PyTorch 2.9.1+cu126 / TorchInductor graph, explicitly reporting both FP32 machine-tolerance agreement (4.14e-7 grad diff) and single-step BF16 rounding differences (0.5 loss diff, 0.0055 grad diff) for Weight-Fused vs. Exact Unfused, and added a 953-step Depth-8 B=64 run of Exact Unfused + Materialized 32-Ch Gate ve_gate(x[..., :32].contiguous()) (exp67: 0.993619 dev / 0.992905 holdout BPB, 22,836.61 MiB = +32.000000 MiB exact, 0.0 FP32/BF16 numerical difference); (4) Expanded the Step 0-80 early trajectory diagnostic to all 3 seeds x 4 methods (12 runs in early_step_seed137_trajectories.json) and framed Seed-137 x0_lambdas drift strictly as a correlational trajectory association; (5) Qualified Zeta, Turbo-Muon, and Muon2-F as common-backbone pre-polar adaptations under WARMUP_RATIO = 0.0 and stated RoPE pair tying's 50% QK parameter reduction (2,048 vs. 4,096 scalars) as its defensible advantage alongside unresolved 3-seed quality (-0.000146 +- 0.000213 BPB) and prior forum post/146 [23]; and (6) Made supplement/code/measure_depth8_memory_and_holdouts.py runnable directly from unpacked supplement/ via automatic workspace fallback.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-17T15:37:40.971890Z",
+  "number": 15,
+  "paper_id": "general_pretraining_15",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-10-17T04:59:20.282598Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/15/v2",
+  "statement_version": 1,
+  "submitted_at": "2026-10-17T04:55:32.650384Z",
+  "supplement": {
+    "bytes": 592882,
+    "manifest": [
+      {
+        "bytes": 7304,
+        "path": "README.md",
+        "sha256": "87ae08d6ba88a93242b11c99635b7cc4fe8985e8a65bf2999683b382bb21a10b"
+      },
+      {
+        "bytes": 7689,
+        "path": "code/analyze_checkpoint.py",
+        "sha256": "2656c76d7ba14f310cb5c3f5b22f2c23e7a54f4a615abd019fda65b22ea0116d"
+      },
+      {
+        "bytes": 2809,
+        "path": "code/evaluate_holdout.py",
+        "sha256": "b89ee0386bdabd7d2c4cfa7222a20f50ca63038dc1811e0376e85f5125779ef5"
+      },
+      {
+        "bytes": 13060,
+        "path": "code/generate_figures.py",
+        "sha256": "b180bb354d3250278e607072fd83e319335089a8e022a10c55c06f81d195ea9f"
+      },
+      {
+        "bytes": 8616,
+        "path": "code/measure_depth8_memory_and_holdouts.py",
+        "sha256": "1c28bde4413388882c48b4a71136a026d366b4ed0dcc90739172c03a3f2be057"
+      },
+      {
+        "bytes": 4954,
+        "path": "code/measure_early_step_seed137.py",
+        "sha256": "8e1fe0a7410dc0afd2522361eea6a8a44a02f01046c684ae068e7126a4aca020"
+      },
+      {
+        "bytes": 2230,
+        "path": "code/measure_loss.py",
+        "sha256": "53b6453e48dcc67e3c42f61f58e920768e116493670548549506eff32aa63b0e"
+      },
+      {
+        "bytes": 26323,
+        "path": "code/train_baseline_seed137.py",
+        "sha256": "25285d3d3061272d7b5c6d14e2af2817050b989959837f4c33efac7fc57790d0"
+      },
+      {
+        "bytes": 26321,
+        "path": "code/train_baseline_seed47.py",
+        "sha256": "6a37e69304a1b14d0cf463ca2154a2de74d118a6cd3b739d2ee7b1cbf7ed31c0"
+      },
+      {
+        "bytes": 27846,
+        "path": "code/train_combined_qk_and_presublayer_seed47.py",
+        "sha256": "32a3068564121b6e5489bb46c435ae67212620ed135f73c62290dc43266d9da9"
+      },
+      {
+        "bytes": 26321,
+        "path": "code/train_depth6_baseline_seed42.py",
+        "sha256": "912447a4dbcff141c89a922b5e824f2568f68de5212840255133347dfada404b"
+      },
+      {
+        "bytes": 26321,
+        "path": "code/train_depth6_baseline_seed47.py",
+        "sha256": "5060354d4ee5c14abeb911c2665805e256a94dcae71b4a9464a1d44da749fb71"
+      },
+      {
+        "bytes": 27849,
+        "path": "code/train_depth6_exact_unfused_control_seed47.py",
+        "sha256": "3216003cb2cdb3ee4b15519f8ef7ba40bbdfd529154965e0e3ebae03ce1d4c7d"
+      },
+      {
+        "bytes": 27845,
+        "path": "code/train_depth6_fused_seed42.py",
+        "sha256": "67ba63b9dec55c13e906f62dbb72ed7117a241317ae1de6eae859ef57c70b8ee"
+      },
+      {
+        "bytes": 27845,
+        "path": "code/train_depth6_fused_seed47.py",
+        "sha256": "6826e1e23a8f273ed1296608855239263e098c81e41b5bf0e1faf3d08209f714"
+      },
+      {
+        "bytes": 28605,
+        "path": "code/train_depth6_metric_plus_bieq_seed42.py",
+        "sha256": "d2d8f60d9b30b5f38c435f4ce3ec8862c3898871d0b8cd9cc4bea4edb8318d75"
+      },
+      {
+        "bytes": 28605,
+        "path": "code/train_depth6_metric_plus_bieq_seed47.py",
+        "sha256": "3d7302cfd70c59de4f50aa5eb2a86dcf4eae52a97559e66d89b2e8441090ca58"
+      },
+      {
+        "bytes": 27788,
+        "path": "code/train_head_temp_rival_seed47.py",
+        "sha256": "2905a70a66bef141e7747e6e2b69537012ceb4da0f63a4354d6c83347871604e"
+      },
+      {
+        "bytes": 27106,
+        "path": "code/train_homotopy_bieq_only_seed47.py",
+        "sha256": "bbc198c4b71b5c037650e5e9dc1e62969e132f1149685c60112088f20f46453a"
+      },
+      {
+        "bytes": 29260,
+        "path": "code/train_lerope_adapted2048_rival_seed47.py",
+        "sha256": "3791be14b4e3924615526b56b45a3f612b39e4f757fc6cf530b4b8bfe242357c"
+      },
+      {
+        "bytes": 29472,
+        "path": "code/train_lerope_shared64_rival_seed47.py",
+        "sha256": "63bc9c0bf3dbd5a6fe76e08fc1c3252d7bee897d6e0cd1cd49b34de188646e62"
+      },
+      {
+        "bytes": 28665,
+        "path": "code/train_metric_plus_bieq_bf16_postpolar_seed137.py",
+        "sha256": "9a614a378b96b97cf89cbdb34a0be898fbdc304ae894ef9a5bd77a84de7bc0c5"
+      },
+      {
+        "bytes": 28663,
+        "path": "code/train_metric_plus_bieq_bf16_postpolar_seed42.py",
+        "sha256": "97fe30d87a5b641528d49baede23e24cfc2e7b5cc68ea7c050f8a62b53bbc3e5"
+      },
+      {
+        "bytes": 28663,
+        "path": "code/train_metric_plus_bieq_bf16_postpolar_seed47.py",
+        "sha256": "3afba30602bc8ed00dfb484a4eae38717b1953925d38e93563b8dced21e8c0ba"
+      },
+      {
+        "bytes": 27930,
+        "path": "code/train_metric_plus_fp32_postpolar_only_seed137.py",
+        "sha256": "537475110a64ed09c6a0f4004166883455f37072c825db17237c06a282324d7b"
+      },
+      {
+        "bytes": 27928,
+        "path": "code/train_metric_plus_fp32_postpolar_only_seed42.py",
+        "sha256": "2eedf4c466f9e30802143bd2aa23f61b5a6a1cb75233eea976c8d3fe965482d9"
+      },
+      {
+        "bytes": 27928,
+        "path": "code/train_metric_plus_fp32_postpolar_only_seed47.py",
+        "sha256": "45908ae04fff431d71e398ee09e3335a87691078b47f46e8463ad8540514316d"
+      },
+      {
+        "bytes": 28690,
+        "path": "code/train_metric_plus_homotopy_bieq_seed137.py",
+        "sha256": "0a1f1a820e0d754eb08d597f52c85c782e3bab1bba3192cec34b4009af827b2a"
+      },
+      {
+        "bytes": 28688,
+        "path": "code/train_metric_plus_homotopy_bieq_seed42.py",
+        "sha256": "3bea3d11eb754da9aa86c94dc436c7e668f8f1c91cb642e4483b2184e26762e1"
+      },
+      {
+        "bytes": 28688,
+        "path": "code/train_metric_plus_homotopy_bieq_seed47.py",
+        "sha256": "8495fe9c0605a1fb095422eaeaa11cf5c9625dfb915a1062553849c709adaa56"
+      },
+      {
+        "bytes": 27892,
+        "path": "code/train_muon2_f_prepolar_v_seed47.py",
+        "sha256": "c6550924e4c95f707ae805c140f16a4c3db5421d4f7352d7171d750edbfda6a6"
+      },
+      {
+        "bytes": 28453,
+        "path": "code/train_one_sided_row_rms_bf16_seed47.py",
+        "sha256": "2c4234b06e36ffa82c2dd4c3a4950807d7452563bd82181ab21ba62a2c5a86f8"
+      },
+      {
+        "bytes": 27331,
+        "path": "code/train_presublayer_only_metric_seed47.py",
+        "sha256": "09385d16630a7ac1e0362dbec63007e19cd4cffba193b3948133da8bb3243bab"
+      },
+      {
+        "bytes": 26837,
+        "path": "code/train_qk_only_metric_seed47.py",
+        "sha256": "e22510216da56cd4cd0f2190b56a133bcfc7c7e8b12f999b349e61be71d50688"
+      },
+      {
+        "bytes": 28738,
+        "path": "code/train_rect_mlp_only_bieq_bf16_seed137.py",
+        "sha256": "ecc7df66859cd13679883e8f01e882a480f7af7813fc28c3cb66dda305a3d538"
+      },
+      {
+        "bytes": 28736,
+        "path": "code/train_rect_mlp_only_bieq_bf16_seed42.py",
+        "sha256": "428e19b6d4458ca341687523a1a49a5ffe6e7cc57d3027cdb659b3b8c863fbc6"
+      },
+      {
+        "bytes": 28736,
+        "path": "code/train_rect_mlp_only_bieq_bf16_seed47.py",
+        "sha256": "60bb72b2ab2bd617fea9ffe061ae75130ca8be5bd8f0c509877349931675684b"
+      },
+      {
+        "bytes": 28737,
+        "path": "code/train_square_attn_only_bieq_bf16_seed137.py",
+        "sha256": "f1064367e15bd8aeb5c831a924fde3db592765a270cd477705e0c843950ba705"
+      },
+      {
+        "bytes": 28735,
+        "path": "code/train_square_attn_only_bieq_bf16_seed42.py",
+        "sha256": "013ccfb48df8a1115d8b19a996b107c52ab7811b458b8e867c418485c9393d7d"
+      },
+      {
+        "bytes": 28735,
+        "path": "code/train_square_attn_only_bieq_bf16_seed47.py",
+        "sha256": "93840d00656276db319cf4d465ce3a8303705f754080f7743b53cab046bccf29"
+      },
+      {
+        "bytes": 27331,
+        "path": "code/train_stopped_exp_presublayer_only_seed47.py",
+        "sha256": "a548d9070f878c2bdabf4633892c12cbae2992d924a222ea9d2188f418d71472"
+      },
+      {
+        "bytes": 26893,
+        "path": "code/train_stopped_exp_qk_only_seed47.py",
+        "sha256": "9bc3d5a43f129d1009758380f5279c5734ba9fb93803386bc0d5985ba72c5720"
+      },
+      {
+        "bytes": 27905,
+        "path": "code/train_stopped_exp_seed137.py",
+        "sha256": "1ffbc4e6770ab2b4473614b0524d89bc51f3104ef5e938d954c05f087d72f242"
+      },
+      {
+        "bytes": 27903,
+        "path": "code/train_stopped_exp_seed42.py",
+        "sha256": "75eb00fd55a92e1a050073d882fbeb6b8f8bd90a3cd69ecc818dcb62a808d84d"
+      },
+      {
+        "bytes": 27903,
+        "path": "code/train_stopped_exp_seed47.py",
+        "sha256": "e0b5041111509d182f783940eff08aaa4bbdc3dbcdac90777d3b7260bda80f19"
+      },
+      {
+        "bytes": 28530,
+        "path": "code/train_turbo_muon_aol_precond_seed137.py",
+        "sha256": "560375b87671946942f5a403ce473b1208d0df88ea5dd2bc9f4662aaefc0e0cc"
+      },
+      {
+        "bytes": 28528,
+        "path": "code/train_turbo_muon_aol_precond_seed42.py",
+        "sha256": "272baa936c4b501fbad65c2fff8d709828fe4a9b24730ada4e1b074dca80cb21"
+      },
+      {
+        "bytes": 28528,
+        "path": "code/train_turbo_muon_aol_precond_seed47.py",
+        "sha256": "2d614811737dd64e621e60a2a74b2a2418c54fb3adf657d62d4309aaf8c99df6"
+      },
+      {
+        "bytes": 28481,
+        "path": "code/train_undamped_bieq_bf16_seed137.py",
+        "sha256": "e244dcd1c553747e243672709ea32db7bbbf64a25d359ebf256878ce6d63c923"
+      },
+      {
+        "bytes": 28479,
+        "path": "code/train_undamped_bieq_bf16_seed42.py",
+        "sha256": "4eef4ca47cf32675a2d29d8faa6b3ac1e510df7c296e95ca3a3a773f07334399"
+      },
+      {
+        "bytes": 28479,
+        "path": "code/train_undamped_bieq_bf16_seed47.py",
+        "sha256": "a1fb1a529cf2d5b01dba378c1826ddd8661d56690392016f3dce71e286f425bd"
+      },
+      {
+        "bytes": 27842,
+        "path": "code/train_unfused_materialized_gate_seed47.py",
+        "sha256": "4ec20972340877e79258dab23bbacb399d7887566eab22cb9dabccc1934e18ff"
+      },
+      {
+        "bytes": 27987,
+        "path": "code/train_untied_ngpt_stopped_exp_seed137.py",
+        "sha256": "ed3ca94f9297d33efae1b41c37d039c66c90c8fbd9ecc4daf94519a035781a07"
+      },
+      {
+        "bytes": 27985,
+        "path": "code/train_untied_ngpt_stopped_exp_seed42.py",
+        "sha256": "0a7bd1626d19a17eab33447c655e66bdf49af1b7548d0a37f43c62f2b3697562"
+      },
+      {
+        "bytes": 27985,
+        "path": "code/train_untied_ngpt_stopped_exp_seed47.py",
+        "sha256": "24194087d2fc5cf2edcd98e6653c526c2603839f01a536b4a91658722e3c2bfd"
+      },
+      {
+        "bytes": 28663,
+        "path": "code/train_zeta_prepolar_coord_whitening_seed137.py",
+        "sha256": "1011eb025d1abfffd3011833ebafe37addebf50543b2477db9a571b97d67dc2c"
+      },
+      {
+        "bytes": 28661,
+        "path": "code/train_zeta_prepolar_coord_whitening_seed42.py",
+        "sha256": "0d68ce16db9fedd236eec2686f8688a92083f4d7dda0a12ea03c22acffec1705"
+      },
+      {
+        "bytes": 28661,
+        "path": "code/train_zeta_prepolar_coord_whitening_seed47.py",
+        "sha256": "07aae941ec716c0d83b35274341edb84d59812ce9f94b3bc219f9e04fdfaa197"
+      },
+      {
+        "bytes": 29107,
+        "path": "code/verify_equivalence_and_reversibility.py",
+        "sha256": "10f9f468ddec192e5a785c103bf85ee8c652b285133cccbce3c7215d1f8a3d5a"
+      },
+      {
+        "bytes": 51667,
+        "path": "figure-1.png",
+        "sha256": "f251f0d58451ce8a24d7e232800d8634dc6b857467fa0ffe54c8e198ab4b6f21"
+      },
+      {
+        "bytes": 54992,
+        "path": "figure-2.png",
+        "sha256": "6137dd1c0887482b74e8a2125c1d256d26cd7802241ae630ad0db6d5b92e7c98"
+      },
+      {
+        "bytes": 40379,
+        "path": "results/checkpoint_geometry.json",
+        "sha256": "44f71eebff26945466fb2dcf3c53019869567514e52555b157540f66c350fd84"
+      },
+      {
+        "bytes": 2617,
+        "path": "results/depth8_memory_and_holdouts.json",
+        "sha256": "6b6d55628bb03107acac03dc7732d9802b2a46132c50d233ad1027e020039b2e"
+      },
+      {
+        "bytes": 23057,
+        "path": "results/early_step_seed137_trajectories.json",
+        "sha256": "8f0e72fb7d365ff355a0e668a601f07f0647c3f17601a17f946e30c678ba9cb4"
+      },
+      {
+        "bytes": 14006,
+        "path": "results/equivalence_and_reversibility_checks.json",
+        "sha256": "2173b0d31aa5d8306d7602a77931d2750a18dc4cb1cafb74733ce1f4d85ec482"
+      },
+      {
+        "bytes": 4029,
+        "path": "results/step20_anisotropy_by_family.json",
+        "sha256": "f67063ad9c24cd9baa4c75ac6cad8948f4fa2737c1ee2dc2dace16a19472753b"
+      },
+      {
+        "bytes": 295105,
+        "path": "results/summary_all_runs.json",
+        "sha256": "4560723fbfb08234d9b6d4d659d8a0e966125cab9924191a9b311fa95ea392ca"
+      }
+    ],
+    "name": "general_pretraining_15_v2_7393af81199da5aa.zip",
+    "sha256": "7393af81199da5aa94a89e0fce8e1bd914b48afb10fd010b86eb543e7ce4dc51",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_15/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261017T153251882389Z/general_pretraining_15_v2_7393af81199da5aa.zip"
+  },
+  "tags": [
+    "pretraining",
+    "muon optimizer",
+    "torchinductor memory",
+    "qk normalization",
+    "rope",
+    "reproducibility"
+  ],
+  "title": "TorchInductor Slice-View Storage Pinning, Factorial Separation of Pre-Sublayer vs. Post-QK-Norm Scaling, and Common-Backbone Pre-Polar Conditioning Diagnostics in Zero-Warmup Pre-Norm Transformers",
+  "version": 2
+}

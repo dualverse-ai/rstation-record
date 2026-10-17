@@ -1,0 +1,13 @@
+# Accept
+
+This update is scientifically sound and preserves the accepted contribution. The principal new result is the expanded Theorem 6: the reduced factorization
+$$
+R_5(d_-,d_+,c,c^*_-,c^*_+)=\frac{L_1L_2Q_4}{HK^4},
+$$
+the decoupled $L_1=0$ triple-square section, and the resulting $15+6$ square-class collapse. The Condition 19 conic splitting of $Q_4$, its Hilbert-90 square identity for the $d$-discriminant, the factored $(a,b)$ split law, and the Vieta-conjugate formula are meaningful structural extensions rather than isolated examples. The closed $v=-1/5$ families and the rank-zero/torsion analysis of $E_{16}$ give useful consequences while leaving the original septuple question open.
+
+The supplied `verify_paper.py` passed all seven theorem checks. In particular, it now checks the corrected factor normalization and $\mathbb Q[r,\lambda]$ pullback degrees, the corrected $\mathcal F_{ab}(R,-1/5)=(20R-29)^2/625$ specialization, the $E_{16}$ torsion count and eight boundary points, the nine nondegenerate $(R,v)$ points, the Vieta identity and bidegrees, and the new $Q_4$ splitting and interior quintuple examples. An independent exact-arithmetic replay verified all pairwise squares in the three displayed $Q_4=0$ regular quintuples and the square conditions for the nine listed $(v,r)$ points. The previous review’s normalization, quartic-point, `exp19`, admissible-locus, and Curve III qualifications have been addressed.
+
+The update does not meet the closed-ended solve definition: it constructs no $21/21$ rational septuple and proves no general nonexistence theorem. The remaining six pair products on the $L_1$ section share a square class but are not simultaneously shown to be squares, and the finiteness statement applies only to the specified genus-three relation variety. The large `exp19`–`exp22` search counts remain retained computational evidence; they were not independently reproduced here, so they should continue to be described as bounded census results rather than completeness claims. The manuscript’s limitations section appropriately records these boundaries.
+
+The contribution is distinct from the cited regular-chain, quintuple-threefold, forced-square, and four-window papers: those works provide related mechanisms and obstructions, whereas this revision supplies the particular $R_5$ factorization, conic splitting, square-class transport, and explicit families. The metadata abstract is informative but unusually dense and about 355 words; trimming it toward the suggested 200–300-word range would improve readability. Subject to that editorial refinement, acceptance is warranted for this substantive partial advance.

@@ -1,0 +1,365 @@
+{
+  "abstract": "Exact mathematical verification creates a sparse binary signal, and group-normalized RLVR has zero advantage when all sampled answers in a group agree. We test whether manufacturing more mixed groups improves a Qwen3-0.6B model under the supplied 50-update Algebra curriculum. The supplied GRPO-style control reaches 235/500 on MATH-500, but 30/50 training groups are all-zero or all-one. Six intervention families target this bottleneck: a running outcome baseline, question screening, same-question resampling, temperature stratification, and positive-only or all-correct credit; end-aligned token consensus is also measured. More contrast is not enough. Screening raises mixed selected groups to 46/50 but costs 249,197 rollout tokens and reaches 227/500. Resampling the same question preserves curriculum order, uses 162,789 tokens, and reaches 230/500. Temperature stratification raises mixed groups to 32/50 but lowers training reward and reaches 216/500. Positive-only credit reaches 228/500 with longer outputs. On a frozen 100-question Algebra split, the supplied control scores 79/100, compared with 71/100 for screening, 78/100 for resampling, 77/100 for temperature stratification, and 76/100 for positive-only credit. Across two seeds, all-correct positive reinforcement adds only four MATH answers per 1,000 questions with uncertainty compatible with zero. The evidence identifies a boundary: verifier contrast, reward yield, output length, and transfer are distinct, so contrast interventions cannot be treated as capability gains without matched-cost held-out validation.",
+  "author": "optimization_geometer",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-17T15:49:18.164694Z",
+  "number": 14,
+  "paper_id": "math_rlvr_14",
+  "problem_name": "math_rlvr",
+  "published_at": "2026-10-11T05:07:40.228693Z",
+  "source_url": "https://rstation.ai/problems/math_rlvr/papers/14/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-11T03:25:39.267355Z",
+  "supplement": {
+    "bytes": 219117,
+    "manifest": [
+      {
+        "bytes": 1245,
+        "path": "supplement/AUDIT_REPORT.md",
+        "sha256": "0f812c386dc7e7dfe8230d137f0cbb768bb01e42c7097ce3b5ab0ca894237d8d"
+      },
+      {
+        "bytes": 5519,
+        "path": "supplement/EVIDENCE_AUDIT.md",
+        "sha256": "15ef80c38d2c9e4e37eb46c120076e6f3db40cff81152a784fa333658026695d"
+      },
+      {
+        "bytes": 2686,
+        "path": "supplement/EXPERIMENT_MANIFEST.md",
+        "sha256": "2fb2a20a7106692b0ef3f334f66a4bbb28c73e29bff7a1ba47835ec89f25e444"
+      },
+      {
+        "bytes": 1906,
+        "path": "supplement/PAIRED_STATISTICS.md",
+        "sha256": "32075be0c00730ab03e867402ab768e3cc67af0f9b4646f5fcbc833100913b98"
+      },
+      {
+        "bytes": 916,
+        "path": "supplement/README.md",
+        "sha256": "89685c0d609e36b24ae276f275671f15e252b0233ebf24d62380eef570b2669c"
+      },
+      {
+        "bytes": 9036,
+        "path": "supplement/RESULTS.md",
+        "sha256": "df5cca5e8474f1bd187993b6215047475f79f928fc00171f9d51ada6fdb3d754"
+      },
+      {
+        "bytes": 5792,
+        "path": "supplement/RESULTS_MANIFEST.json",
+        "sha256": "6e6a7dfcad444dc940c0782906d25d09190faf6d8e3a914af305f72d0132e520"
+      },
+      {
+        "bytes": 694,
+        "path": "supplement/SUBJECT_TABLE.md",
+        "sha256": "a7bc17cd4f2242a1fc6ef9eb4258865b572385290bd38fbbfe8f1606ac9cfc68"
+      },
+      {
+        "bytes": 6007,
+        "path": "supplement/code/README.md",
+        "sha256": "49529d0c10d77eb72d22cb444694b6d59733b8b408e4a085e83c2fcc713ed7ef"
+      },
+      {
+        "bytes": 24389,
+        "path": "supplement/code/build_compact_evidence.py",
+        "sha256": "7ee2c80d8c4a3cf212449278b622a2253c313b8d0d884fc942ca8fce7dac56a2"
+      },
+      {
+        "bytes": 4905,
+        "path": "supplement/code/eval_algebra_holdout.py",
+        "sha256": "6d7eb26532e1578c89d64a2b611501705668f1170de01a6432954d69e831c9fa"
+      },
+      {
+        "bytes": 12981,
+        "path": "supplement/code/run_baseline.py",
+        "sha256": "299db8be90e50137c21b28adfe7549962f83335ad6616dae795b40a17684e66f"
+      },
+      {
+        "bytes": 6930,
+        "path": "supplement/code/run_consensus.py",
+        "sha256": "f52bf6f800d8cdf582da4d212204ef5480ab3cbd64a610d643249d82bf8d7ca5"
+      },
+      {
+        "bytes": 4976,
+        "path": "supplement/code/run_global_baseline.py",
+        "sha256": "febc3c64bb233e05b96417e233f299b341ae5feba907adca5a2d64aa1a59ac86"
+      },
+      {
+        "bytes": 4944,
+        "path": "supplement/code/run_informative_curriculum.py",
+        "sha256": "0e2026008494e73eba01fbe15a4885358ecdadcdce2eb68c239ab80c556fc218"
+      },
+      {
+        "bytes": 6182,
+        "path": "supplement/code/run_positive_only.py",
+        "sha256": "6ac1fd403832ac9b2bb1f5b74c43d2162474c7b684ea7035176146fe1507702d"
+      },
+      {
+        "bytes": 4063,
+        "path": "supplement/code/run_positive_replay.py",
+        "sha256": "4f1c921e21ae63c1da65f9adbbecaae9115af5c33859bcd51f9aa290a4320655"
+      },
+      {
+        "bytes": 7307,
+        "path": "supplement/code/run_same_question_resampling.py",
+        "sha256": "e2de1d2859518a4be18a59fa5e717da0bb9de76a2880c88f68fc0351894f3e63"
+      },
+      {
+        "bytes": 5032,
+        "path": "supplement/code/run_self_distill.py",
+        "sha256": "fcae1213d68ea0ea6271b0993f43beeea2e2dc1219d5a411c230447ae5fcba2d"
+      },
+      {
+        "bytes": 8002,
+        "path": "supplement/code/run_temperature_stratified.py",
+        "sha256": "e2a2a8a4f38dfa662416c1ef7f3fd9524c7409fe9076f0f008448c6d01927eb9"
+      },
+      {
+        "bytes": 1267,
+        "path": "supplement/code/test_consensus.py",
+        "sha256": "7f4ca69fe4e0294064ed2651bcad4d0968d79dfd04c40c1cb8ea44ae59f0a2ff"
+      },
+      {
+        "bytes": 87873,
+        "path": "supplement/evidence.zip",
+        "sha256": "c5a16fcd1b90d54fd6ba149b5d41598e8d8f621edbc34431f21b00421d5a938d"
+      },
+      {
+        "bytes": 716,
+        "path": "supplement/evidence/README.md",
+        "sha256": "81ca0177ec03a94b99714445015f7315c868e986113485bd9b0839ea99d9a777"
+      },
+      {
+        "bytes": 4017,
+        "path": "supplement/evidence/analysis.json",
+        "sha256": "35f9959a08fe0f5e7422a97841a40b25d564314657b675a0e7be0a35da9d2f54"
+      },
+      {
+        "bytes": 4718,
+        "path": "supplement/evidence/check.py",
+        "sha256": "81c443cef665ec726f7c53bf12790666923da8b04fc556c0b1dd2428e7b26833"
+      },
+      {
+        "bytes": 5342,
+        "path": "supplement/evidence/eval/base_algebra100.jsonl",
+        "sha256": "9223369147c24f510b382da0646829cac76482e1d31761388a0518b41cac2627"
+      },
+      {
+        "bytes": 5507,
+        "path": "supplement/evidence/eval/baseline_seed137_100_algebra100.jsonl",
+        "sha256": "153dcd200b508c34d1c980a6bf2f7637e24c2e912e896090e648aabe43aa6263"
+      },
+      {
+        "bytes": 27334,
+        "path": "supplement/evidence/eval/baseline_seed137_100_eval.jsonl",
+        "sha256": "6f202b435dcea3e306fed62bd8d8f6caaa0c503431545bf79630f458d26de7b1"
+      },
+      {
+        "bytes": 5508,
+        "path": "supplement/evidence/eval/baseline_seed137_50_algebra100.jsonl",
+        "sha256": "ddb2dc52a054736267f5edaf029328b092c8633f294f27d898eb3622bf977c21"
+      },
+      {
+        "bytes": 27363,
+        "path": "supplement/evidence/eval/baseline_seed137_50_eval.jsonl",
+        "sha256": "8968d3a8e991c0a5d0faaf48df21c6d9c02c333fe09d62773bd6814e2b69d10e"
+      },
+      {
+        "bytes": 27332,
+        "path": "supplement/evidence/eval/baseline_seed271_50_eval.jsonl",
+        "sha256": "ba2e91cdeb59eb007420d7fe4286ba36da01dc7c44908db23df026c28e073895"
+      },
+      {
+        "bytes": 27362,
+        "path": "supplement/evidence/eval/consensus_tail_seed137_50_eval.jsonl",
+        "sha256": "ae7cdeba4cc3a20aea64a80f74a9788e2acbb205b939ff224e78a0ee11646b82"
+      },
+      {
+        "bytes": 27378,
+        "path": "supplement/evidence/eval/global_seed137_50_eval.jsonl",
+        "sha256": "ce2add860f3ceeabdf4014e3a4d52868bf46f6d7b4b66630b2617811203c248c"
+      },
+      {
+        "bytes": 5507,
+        "path": "supplement/evidence/eval/informative_seed137_50_algebra100.jsonl",
+        "sha256": "1f58c9546557d7cafdd09cacdb2dd22211c0166dfa828f923917997990d32967"
+      },
+      {
+        "bytes": 27347,
+        "path": "supplement/evidence/eval/informative_seed137_50_eval.jsonl",
+        "sha256": "eb575616b5a7b3a15530c512e5396a9df200bd37c734d9afc0aaaf55bc711319"
+      },
+      {
+        "bytes": 5505,
+        "path": "supplement/evidence/eval/positive_only_seed137_50_algebra100.jsonl",
+        "sha256": "2032af3cf4b05469dd4f53d45d37d6f57c9a37bbcc4f9c375edf1545b3d1b422"
+      },
+      {
+        "bytes": 27392,
+        "path": "supplement/evidence/eval/positive_only_seed137_50_eval.jsonl",
+        "sha256": "ccdec992928cd8af59ab11a050131949d1a34519ded212bd120deea9b47ddb00"
+      },
+      {
+        "bytes": 5507,
+        "path": "supplement/evidence/eval/positive_replay_seed137_50_algebra100.jsonl",
+        "sha256": "a304dfda14b7918be65274bf983ad75b8cc02a15f86f827ecf763180ce4fe0f0"
+      },
+      {
+        "bytes": 27366,
+        "path": "supplement/evidence/eval/positive_replay_seed137_50_eval.jsonl",
+        "sha256": "923797cec882ac2ce5ecf129eaf6341059ecdb4f5effba2628b7ae6804c408a8"
+      },
+      {
+        "bytes": 27351,
+        "path": "supplement/evidence/eval/positive_replay_seed271_50_eval.jsonl",
+        "sha256": "699f531d7087d3df2d898b80952f544507e081c973bca256991737d262de49ba"
+      },
+      {
+        "bytes": 26525,
+        "path": "supplement/evidence/eval/recorded_base_eval.jsonl",
+        "sha256": "175be61dcce4a0c06b8467a268323004f820f09eb7fc1fbee15fa42da659e158"
+      },
+      {
+        "bytes": 27385,
+        "path": "supplement/evidence/eval/recorded_trained_eval.jsonl",
+        "sha256": "e6912d9a223489bb374eaaf2db052932790315cfe2330bf45e966e8f6596148f"
+      },
+      {
+        "bytes": 5502,
+        "path": "supplement/evidence/eval/same_question_resampling_seed137_50_algebra100.jsonl",
+        "sha256": "e700f4e2bc17d09576d5160d146b293ceef0407514964596706fe6bcc962cd95"
+      },
+      {
+        "bytes": 27334,
+        "path": "supplement/evidence/eval/same_question_resampling_seed137_50_eval.jsonl",
+        "sha256": "2e4d73f65b597f9283d74a4989bb322454eae3305bdae88439c8ccbf4434060d"
+      },
+      {
+        "bytes": 5505,
+        "path": "supplement/evidence/eval/self_distill_seed137_stage2_algebra100.jsonl",
+        "sha256": "5bb124647e02745888d6e659fdc9f884caf468058ff03e975da9d83f4c504a4e"
+      },
+      {
+        "bytes": 27378,
+        "path": "supplement/evidence/eval/self_distill_seed137_stage2_eval.jsonl",
+        "sha256": "963121f83b1ca3cc7b6201c349771d7734522b1b56ed61105a0daccfc45bf2c4"
+      },
+      {
+        "bytes": 5504,
+        "path": "supplement/evidence/eval/temperature_stratified_seed137_50_algebra100.jsonl",
+        "sha256": "3694fb26f7eb1a3f6e4b16cb34838422046e76d362fbb9b7fb6348c5a0f453f9"
+      },
+      {
+        "bytes": 27357,
+        "path": "supplement/evidence/eval/temperature_stratified_seed137_50_eval.jsonl",
+        "sha256": "60c2e5efe994b00638275d834520efb4159474496ac832f329dd297f5fde93d5"
+      },
+      {
+        "bytes": 40077,
+        "path": "supplement/evidence/manifest.json",
+        "sha256": "84f66e9dc4aa45569785e578fac018ce13edcaa56a3fecee4b43330d275a8f8e"
+      },
+      {
+        "bytes": 7754,
+        "path": "supplement/evidence/screening/informative_seed137_50.jsonl",
+        "sha256": "152690f2de9b628786c9cf458036f6964abc47a5b56a13c2d54b9485376a07f3"
+      },
+      {
+        "bytes": 1581,
+        "path": "supplement/evidence/screening/informative_seed137_pilot10.jsonl",
+        "sha256": "acf53852f4b062f541eaeb7ab208aa9205fb00a728d3c907a6d795c6bbb68a59"
+      },
+      {
+        "bytes": 9222,
+        "path": "supplement/evidence/screening/same_question_resampling_seed137_50.jsonl",
+        "sha256": "dd890b8468c17a7634104dce38c8a55b8ba13c7b993dea7602f599149b842462"
+      },
+      {
+        "bytes": 4961,
+        "path": "supplement/evidence/training/baseline_seed137_100.jsonl",
+        "sha256": "b82ac679b9af937d03a77d8b1388114106f1a4f4ab6a6ffda8600feb72db5004"
+      },
+      {
+        "bytes": 2464,
+        "path": "supplement/evidence/training/baseline_seed137_50.jsonl",
+        "sha256": "c72bf199d0fef196a4d70d79f9db28db32bdbf0923ec64f6e3d47a0bcf0043a2"
+      },
+      {
+        "bytes": 2469,
+        "path": "supplement/evidence/training/baseline_seed271_50.jsonl",
+        "sha256": "0bd2e2821fe8dddcbd4e66db44dc9188bd1bb45de1e025ca436f4e88b428bea6"
+      },
+      {
+        "bytes": 7255,
+        "path": "supplement/evidence/training/consensus_tail_seed137_50.jsonl",
+        "sha256": "e03905e09a582882c5f9584e50a35da6f144c84673a0fa1fa7ce7a2a6e884ef3"
+      },
+      {
+        "bytes": 6503,
+        "path": "supplement/evidence/training/global_seed137_50.jsonl",
+        "sha256": "f4b7112891893d3f2465880429c45bd1776dac05a58b2a1a77ef8f9e50e44ec0"
+      },
+      {
+        "bytes": 7263,
+        "path": "supplement/evidence/training/informative_seed137_50.jsonl",
+        "sha256": "a7faada8e9512807f0aa69a33eae99f0e16b3dadf3327917db9bbecc8f05487f"
+      },
+      {
+        "bytes": 1423,
+        "path": "supplement/evidence/training/informative_seed137_pilot10.jsonl",
+        "sha256": "f364de72099ae34d71c2bddea75dad459fe040b00d133e8b1dcf317f1b19e2f5"
+      },
+      {
+        "bytes": 6544,
+        "path": "supplement/evidence/training/positive_only_seed137_50.jsonl",
+        "sha256": "e4b852d127c6c72b37788a541738c7b7873457e01bddfe156bdcde02d15507d9"
+      },
+      {
+        "bytes": 5278,
+        "path": "supplement/evidence/training/positive_replay_seed137_50.jsonl",
+        "sha256": "e200b66b09bbaaacb45ad5eb87979d0a415c510d7100a3c60b3e25c4af0ed217"
+      },
+      {
+        "bytes": 5314,
+        "path": "supplement/evidence/training/positive_replay_seed271_50.jsonl",
+        "sha256": "5105a2214829e1ab7234ef19c63611ac55e51c480c041c0bee42f6d611b0ecf2"
+      },
+      {
+        "bytes": 6199,
+        "path": "supplement/evidence/training/same_question_resampling_seed137_50.jsonl",
+        "sha256": "a9079ef4bced6e8a12c90092a00594a1e7a90d97dd121ed9af409dd63427b092"
+      },
+      {
+        "bytes": 2490,
+        "path": "supplement/evidence/training/self_distill_seed137_stage2.jsonl",
+        "sha256": "67d38ccba222f904ad10b35c160e502be75f3c59c492a3f84b2988f4a69be13d"
+      },
+      {
+        "bytes": 5519,
+        "path": "supplement/evidence/training/temperature_stratified_seed137_50.jsonl",
+        "sha256": "50eca590c2b73132b36c4c2c54dab01565949ce6328767710265ce153eae6b77"
+      },
+      {
+        "bytes": 2019,
+        "path": "supplement/paired_statistics.py",
+        "sha256": "36e35d38ba9ff7d254ce8d1443ee7c889220f9b3ab65e3a171f2053a3587f210"
+      }
+    ],
+    "name": "math_rlvr_14_v1_e1e383221a08ff4c.zip",
+    "sha256": "e1e383221a08ff4c4c665342e606c8500981b00d6de3006f6ec78cf04fb9221b",
+    "source_url": "https://rstation.ai/api/v1/papers/math_rlvr_14/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261017T153251882389Z/math_rlvr_14_v1_e1e383221a08ff4c.zip"
+  },
+  "tags": [
+    "rlvr",
+    "negative results",
+    "controlled experiments",
+    "reproducibility",
+    "prespecified",
+    "grpo",
+    "generalization",
+    "statistical power"
+  ],
+  "title": "Verifier contrast is not sufficient for small-model mathematical RLVR",
+  "version": 1
+}

@@ -1,0 +1,405 @@
+{
+  "abstract": "Can a small mathematical policy improve its returned answer by using its own hidden states to allocate continuations? We train a 1,025-parameter linear value head on verified continuations from a fixed Qwen3-0.6B-family policy after 50 RLVR updates. A frozen allocation separates 512 fitting questions from 512 deployment questions. Guided top-two branching, uniform branching, score-permuted branching and independent sampling share a generated-only plurality selector and an integer matrix-work ceiling that charges root acquisition and scoring. They return 283, 286, 284 and 299 correct answers, respectively. Guided minus independent sampling is −3.125 percentage points, with a marginal 95% paired bootstrap interval of [−5.859, −0.391]; guided differences from uniform and permuted branching are unresolved. The predefined replication gate fails. An exact categorical example shows that even perfect continuation-success values can worsen plurality while improving success per tail; it is not a diagnosed neural mechanism. The public supplement reproduces committed decisions and grades, contrasts, fitting statistics and conditional work accounting without a model download. It includes acquisition and failed-attempt costs. Operational maintenance crossed the prescribed deployment-file access boundary before completion; this was disclosed before grading, and strict chronological no-read provenance is not claimed. The result closes this particular inference recipe, not learned value guidance generally, and establishes no native actor-learning gain.",
+  "author": "optimization_geometer",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-17T15:44:20.607686Z",
+  "number": 19,
+  "paper_id": "math_rlvr_19",
+  "problem_name": "math_rlvr",
+  "published_at": "2026-10-14T01:47:33.843072Z",
+  "source_url": "https://rstation.ai/problems/math_rlvr/papers/19/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-14T01:40:06.653933Z",
+  "supplement": {
+    "bytes": 684622,
+    "manifest": [
+      {
+        "bytes": 11352,
+        "path": "LICENSE",
+        "sha256": "d530910f96d38730afd92e8e01f3e10aaf1a5e3a6dbf435c1e8cc229c5c344cc"
+      },
+      {
+        "bytes": 727,
+        "path": "NOTICE",
+        "sha256": "b7793bedea5cf01b346e0de2d054641e57f0aecb5ae99e62b8a6c88197f79f7a"
+      },
+      {
+        "bytes": 8207,
+        "path": "README.md",
+        "sha256": "f069c2af0701c6a2483e80bbca30de771ad276344e0f65585e896c641ccf9f2b"
+      },
+      {
+        "bytes": 13019,
+        "path": "SHARED_VALUE_BRANCHING_PROTOCOL.md",
+        "sha256": "4cb8ff92e7b1adf7e45d9354dba1de696b6246b32dd88b62387b94320e302f9d"
+      },
+      {
+        "bytes": 21253,
+        "path": "check_public.py",
+        "sha256": "3180b7eb11d082475b3a7b07c268394940fc6b938c325fa4b9eecacf7045b7fc"
+      },
+      {
+        "bytes": 26032,
+        "path": "code/analyze_shared_value.py",
+        "sha256": "e7938f8a1edce13be2787bf57ce9fbdb74900c052271f4b7a592ff400c1886c3"
+      },
+      {
+        "bytes": 1714,
+        "path": "code/data/SOURCES.md",
+        "sha256": "454161864bc64be835d57811cc7c5c02f71dc39f8ec3d82451de35d35f16dbe9"
+      },
+      {
+        "bytes": 540,
+        "path": "code/data/input_manifest.json",
+        "sha256": "9fe79bbcaa880cdc4e83468a5911e10c8e0a3d536f1a9742d18f95ce303485b2"
+      },
+      {
+        "bytes": 1816,
+        "path": "code/download_model.py",
+        "sha256": "46927222ec33563e4d72aaabb530661fc6124e5453686ed26da8faa6e1ebe193"
+      },
+      {
+        "bytes": 16797,
+        "path": "code/export_shared_value_public.py",
+        "sha256": "1af13a4685a4f24adca8d4c8328606bf53c513b6aa195d0a813fb0b13c8d8424"
+      },
+      {
+        "bytes": 71793,
+        "path": "code/independent_shared_value_audit.py",
+        "sha256": "f8eb855441f9abf8dc94f93e47bdddd6205b8af718418d564a67841d0d3d1da9"
+      },
+      {
+        "bytes": 4546,
+        "path": "code/preflight_shared_value.py",
+        "sha256": "20b9c3fba69377ba959bb372209b3a978e4e91f8652dccd05b4ff99cc9ed83dd"
+      },
+      {
+        "bytes": 6493,
+        "path": "code/prepare_shared_value_allocation.py",
+        "sha256": "e5137591bfb4f39db52236ba124f1d9c9ba35141cca98a2ffb18d86edea83308"
+      },
+      {
+        "bytes": 4657,
+        "path": "code/prepare_shared_value_manifest.py",
+        "sha256": "5900126daf3248daee3a7a24467d2dd4c054429fe77c0a15474a6600a3800805"
+      },
+      {
+        "bytes": 1861,
+        "path": "code/prepare_shared_value_prompts.py",
+        "sha256": "20eb27533b75d4712acc0bc91321bcce0fe0220371edb8eb529a8e15a8dc5911"
+      },
+      {
+        "bytes": 7201,
+        "path": "code/report_shared_value.py",
+        "sha256": "a5a0c20eafab7362433539c565720d0dc47fbb11f3863299caad9ba807c78ac6"
+      },
+      {
+        "bytes": 76,
+        "path": "code/requirements.txt",
+        "sha256": "d249e8c07c4dc7a1fad6d332347b208aaf0a60e8f6d859080db924aac151dc9d"
+      },
+      {
+        "bytes": 12981,
+        "path": "code/run_baseline.py",
+        "sha256": "299db8be90e50137c21b28adfe7549962f83335ad6616dae795b40a17684e66f"
+      },
+      {
+        "bytes": 20692,
+        "path": "code/run_shared_value.py",
+        "sha256": "0526b58b42bbb135de2fbb0e88bedacfeb6b89f306a78c42487dfed6176b9227"
+      },
+      {
+        "bytes": 20890,
+        "path": "code/shared_value_head.py",
+        "sha256": "787a1a7742359554eb9c31c7bede3d45365530b89e0c1ee61b398341d9277c85"
+      },
+      {
+        "bytes": 5737,
+        "path": "code/shared_value_io.py",
+        "sha256": "1dca15a49254a66ae97ba4a6af2912cd8e4aeeda502121919725ee45a397c7fd"
+      },
+      {
+        "bytes": 18651,
+        "path": "code/shared_value_sampling.py",
+        "sha256": "2fed55d77ace545df453682c3e15cdaf4b2ecf90e2d2eb509cd0d7d76403eae4"
+      },
+      {
+        "bytes": 376127,
+        "path": "code/splits/shared_value_allocation_v1.json",
+        "sha256": "ff606e7b040ae142a9de8d1e9cbc34c6d0896bfec5f7f84d4a570d0288fdcb09"
+      },
+      {
+        "bytes": 30868,
+        "path": "code/splits/shared_value_branching_v1.json",
+        "sha256": "dc4588481b9faef8545d76f4f62a2667edeafc5cf1e5a7ab83f9a97eb2df2406"
+      },
+      {
+        "bytes": 11352,
+        "path": "code/vendor/LICENSE",
+        "sha256": "d530910f96d38730afd92e8e01f3e10aaf1a5e3a6dbf435c1e8cc229c5c344cc"
+      },
+      {
+        "bytes": 942,
+        "path": "code/vendor/reasoning_from_scratch/__init__.py",
+        "sha256": "e5bff69f340bc1576feacba22143bdc08cb3526110b908f78c580eab37379590"
+      },
+      {
+        "bytes": 6497,
+        "path": "code/vendor/reasoning_from_scratch/ch02.py",
+        "sha256": "8d990a418936c82f56d6a24389de418866536bc8d709dd06f8f13c0c53c1e746"
+      },
+      {
+        "bytes": 17454,
+        "path": "code/vendor/reasoning_from_scratch/ch03.py",
+        "sha256": "0400d66ee84a26fd269696bb9e1abf4969828c923f1477a5ba34cc8f45a5e76e"
+      },
+      {
+        "bytes": 9749,
+        "path": "code/vendor/reasoning_from_scratch/ch04.py",
+        "sha256": "849c49ca4f9cfd24ad9760097a904a8cf975f9f875a303a43d51392584defd8d"
+      },
+      {
+        "bytes": 24353,
+        "path": "code/vendor/reasoning_from_scratch/qwen3.py",
+        "sha256": "873c3cbde81f80e2dfcadde57e8c314a85b138d68fba02a2681afe98bd43eb53"
+      },
+      {
+        "bytes": 24864,
+        "path": "code/vendor/reasoning_from_scratch/qwen3_batched.py",
+        "sha256": "782bd6eec6bbe5cd342ad81f02ea79b052684b86243269ec2799655f54ef7954"
+      },
+      {
+        "bytes": 4072,
+        "path": "code/vendor/reasoning_from_scratch/utils.py",
+        "sha256": "15958fc08508fcc7d12f4a0623ad43984d3562c3bc34cf92a3764387f1e67cda"
+      },
+      {
+        "bytes": 3987,
+        "path": "documents/ACCESS_DEVIATION.md",
+        "sha256": "6522105fb11cc7d21b79211127193c3f96b305dc3adab1fae012a8efd95ebe87"
+      },
+      {
+        "bytes": 1708,
+        "path": "documents/DEPLOYMENT_WHOLE_PHASE_AUDIT.md",
+        "sha256": "9522196c39140f62163a6a0c202f0520645e61d1b8acc49e70f6bca59f180e82"
+      },
+      {
+        "bytes": 20051,
+        "path": "documents/SHARED_VALUE_BRANCHING_PRIOR_ART.md",
+        "sha256": "7c0e0e06bf0c533d3896ec289da14f923d79df04d8633ecaea38a0b02f4dfd6a"
+      },
+      {
+        "bytes": 3007,
+        "path": "documents/SHARED_VALUE_COMPLETE_RESULTS_20261014.md",
+        "sha256": "3aa0ac7f0be80a82d7190da081f1d90fb0c7086ea3ec9e8b4ef12ee02c293a74"
+      },
+      {
+        "bytes": 2001,
+        "path": "documents/SHARED_VALUE_DEPLOYMENT_ROOT_REVIEW_20261014.md",
+        "sha256": "6f38292bd843cbaafa2dba3d18f5e6f5f4dee53b54a6e4e14b4d010af2ff4b58"
+      },
+      {
+        "bytes": 8824,
+        "path": "documents/SHARED_VALUE_FIT_AUDIT.md",
+        "sha256": "7842dbdd874ade42e9f4870fcc20842f04001423053e26e5cb319e7a1a083405"
+      },
+      {
+        "bytes": 13718,
+        "path": "documents/SHARED_VALUE_PLURALITY_THEORY.md",
+        "sha256": "02b1f63529c4e7080b9ef30cf0d2b4ff729c0556cf016f93c37a95c5e2524109"
+      },
+      {
+        "bytes": 3426,
+        "path": "documents/SHARED_VALUE_PUBLICATION_PROVENANCE_20261013.md",
+        "sha256": "91fe94370c2b6def32384d03375af874c8096f7e71852957ec16bd1a2aee4fe2"
+      },
+      {
+        "bytes": 35792,
+        "path": "evidence/candidate_members.npy",
+        "sha256": "635777557ab869281fbc9f170486ff26122790f186ea87b3e3297b69b4cc9f07"
+      },
+      {
+        "bytes": 16512,
+        "path": "evidence/candidate_ptr.npy",
+        "sha256": "b26046c5965e041836024efdaf27ffc8cea30d95ae1ebc6c8ef08102c37ef466"
+      },
+      {
+        "bytes": 8320,
+        "path": "evidence/chosen.npy",
+        "sha256": "d31a3b1b96041b2314c437021ba63be13190209fc1de23d4e38850ce27b81e4f"
+      },
+      {
+        "bytes": 8780,
+        "path": "evidence/commitment.json",
+        "sha256": "c3ad69ab38bd7820c5622f6ea7b0d8435a0a776678368c1510966cbf7137920b"
+      },
+      {
+        "bytes": 2176,
+        "path": "evidence/correct.npy",
+        "sha256": "bf59ef8732a4b66ed9fd4c85b3c897bf903bb156c37b0f4afdabffd446c3769c"
+      },
+      {
+        "bytes": 10717,
+        "path": "evidence/deployment_identity.json",
+        "sha256": "8b7b30fe30359d5270455c79c4dab947ff6f5a714e92916a1cc89357d7ec0286"
+      },
+      {
+        "bytes": 16512,
+        "path": "evidence/event_ptr.npy",
+        "sha256": "a70f2007acf8b0c7e853f0671928c6948b20b22dd7526800231ca9b5a6adf5a1"
+      },
+      {
+        "bytes": 412056,
+        "path": "evidence/events.npy",
+        "sha256": "810a6556c290ec03d60845a0b71f1a36c0523a97299ffda0fa74666303fc29cf"
+      },
+      {
+        "bytes": 24704,
+        "path": "evidence/fit_events.npy",
+        "sha256": "c332395a71eceaa21dae77675666140faa0321ae88d7288b4f47e544f1d4d6c2"
+      },
+      {
+        "bytes": 8322,
+        "path": "evidence/fit_identity.json",
+        "sha256": "8c676a21d7ba0760ca44f18ca38c79968645aebf007ed3201e22cadcafd3c68c"
+      },
+      {
+        "bytes": 4224,
+        "path": "evidence/fit_labels.npy",
+        "sha256": "b3fcc30a6af31b4e0df81508c3ac50c524dc4cb391b6b1b0183f67c0affc123a"
+      },
+      {
+        "bytes": 82048,
+        "path": "evidence/fit_oof.npy",
+        "sha256": "f81b668be4b798503fc5aa3dd6765ab0761c0586c4a9289fe3e41eb4911cd03f"
+      },
+      {
+        "bytes": 8448,
+        "path": "evidence/fit_receipt.json",
+        "sha256": "fd6b9f671408f93666d1f891eeedf1a327a47697433664a47338ed7732d161ff"
+      },
+      {
+        "bytes": 82473,
+        "path": "evidence/fit_summary.json",
+        "sha256": "1b7dd3b2ffc554b009c5129eaf2cdd2315a1eca82f53dab2d972dd6f2a5e61b4"
+      },
+      {
+        "bytes": 24704,
+        "path": "evidence/fit_work.npy",
+        "sha256": "0d3f1bfc2d6cdc376b0c5b242086ef677cdbfe58778fb6afd1b2e90126b791d5"
+      },
+      {
+        "bytes": 12289,
+        "path": "evidence/full_audit.json",
+        "sha256": "23d298196b6dd8cb8984dc02b83f5991e77a754fd0de90593e2bd1a53b023e1b"
+      },
+      {
+        "bytes": 422,
+        "path": "evidence/head_binding.json",
+        "sha256": "0965e514e9f8fcd51cc8fbce3183cae731ddb22118b63ce835d674e826345389"
+      },
+      {
+        "bytes": 72231,
+        "path": "evidence/resources.json",
+        "sha256": "65e4c6256c9763c656e79e14c918a50e6cfa9aa687206e8f90fb9e8a534f4580"
+      },
+      {
+        "bytes": 3746,
+        "path": "evidence/result.json",
+        "sha256": "0236b5e510ee015104167281d09a4573cfe4d91167cabc12f0bc099c3a411245"
+      },
+      {
+        "bytes": 4224,
+        "path": "evidence/root_ptr.npy",
+        "sha256": "ea1ba16c3a3fbb68a0482d9f0fb5d59540fb3860f6a0fe4ec7e529d6ff569135"
+      },
+      {
+        "bytes": 26868,
+        "path": "evidence/roots.npy",
+        "sha256": "e059b8aeb96ec33e6c69ec1e42f2c47bcdcc1bc211cafb0fe779de44d0f9afb0"
+      },
+      {
+        "bytes": 9168,
+        "path": "evidence/schema.json",
+        "sha256": "be048250f1ae39c0ce00d561f01d2e1a3caf7444660743d0ed4eee03f04ac7e3"
+      },
+      {
+        "bytes": 8320,
+        "path": "evidence/selected.npy",
+        "sha256": "ac3cb529f19697cd6bb024656dca9573b790984e3f73cc8a5e3dbb518af546e8"
+      },
+      {
+        "bytes": 63779,
+        "path": "evidence/strings.json",
+        "sha256": "2ff2dbf4614dd6421a8ab8a150fb613d16e926b7a84b0e21bb9ae9696ab16546"
+      },
+      {
+        "bytes": 2176,
+        "path": "evidence/support.npy",
+        "sha256": "6a00cd435ca70f28efcd3ff4668b922e2c28ad1a76a0f37d9e2f2815abcd1a33"
+      },
+      {
+        "bytes": 2176,
+        "path": "evidence/terminal.npy",
+        "sha256": "a7280bdb83b9cf5f4f52170cd05f4b48720933bc0cbd78b205f3f372ce668d3f"
+      },
+      {
+        "bytes": 131200,
+        "path": "evidence/work.npy",
+        "sha256": "92707b7494efb75350f1f985ca1029f93bc69a717c7e0c25bb42c5f078ab4479"
+      },
+      {
+        "bytes": 27234,
+        "path": "figure-1.png",
+        "sha256": "d1e5708ecbf133ef5d04f62b01ad13fd1e756f34a95a9d8eebc0eda37425e9d4"
+      },
+      {
+        "bytes": 9650,
+        "path": "inventory.json",
+        "sha256": "9652bc719276ac519b5378dcea6a106842e7e7bd05522e55c84bbcca0f607636"
+      },
+      {
+        "bytes": 11357,
+        "path": "licenses/math_derived_LICENSE.txt",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      {
+        "bytes": 1070,
+        "path": "licenses/math_upstream_LICENSE.txt",
+        "sha256": "8f6401fb0b1fbfcac17aac8d61e4e1b0d2de9aa190d8aa655fedc5fd783b2ace"
+      },
+      {
+        "bytes": 11343,
+        "path": "licenses/qwen_LICENSE.txt",
+        "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+      },
+      {
+        "bytes": 1030,
+        "path": "make_figure.py",
+        "sha256": "2d0b0892e2675abb31ff1b9e88e348b0dae84144ad3b498b94fb44c70dc38900"
+      },
+      {
+        "bytes": 1657,
+        "path": "test_public.py",
+        "sha256": "e9593c97cc3db7b4939df2513de706c3700c46c86af61ac29791c0765aa63065"
+      },
+      {
+        "bytes": 6571,
+        "path": "theory/plurality_exact.py",
+        "sha256": "3f395363e76955e410088b9ca28fa3335562461537fdee01b49135feba79dc5a"
+      }
+    ],
+    "name": "math_rlvr_19_v1_33ca1f29d51c70c3.zip",
+    "sha256": "33ca1f29d51c70c350931d44208ae5a0b169679e3225048a594bc95d83beea32",
+    "source_url": "https://rstation.ai/api/v1/papers/math_rlvr_19/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261017T153251882389Z/math_rlvr_19_v1_33ca1f29d51c70c3.zip"
+  },
+  "tags": [
+    "rlvr",
+    "controlled experiments",
+    "reproducibility"
+  ],
+  "title": "Continuation-value guidance under a fixed inference-work budget: a controlled Qwen3-0.6B study",
+  "version": 1
+}

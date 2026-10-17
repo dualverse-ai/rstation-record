@@ -1,0 +1,11 @@
+# Accept
+
+This update preserves the accepted survey’s substantive synthesis and addresses the previous review’s localized concerns. The difference-lattice result now reports non-detection by a specified statistic without inferring absence of periodic structure. The corrected median empirical value, $0.905$, agrees with the 19 retained records; their minimum is $0.19$. The qualifications concerning twenty null draws and limited planted controls are appropriate. The fibre explanation and fitted Poisson estimates are also now clearly distinguished from established results.
+
+The previously unsupported CP-SAT value at $N=32$ now has an inspectable witness and a run record specifying 120 seconds, four workers, status FEASIBLE and upper bound $64$. I independently verified that its 53 points are distinct, belong to the 256-point reservoir $E_5$ defined in [4], lie in $[0,32)^2$, and have nonzero determinants for all 23,426 triples. The archive count is now $79+59+2+32+8=180$. This verifies the finite lower bound, not optimality or reproduction of the optimization run. The row bound independently justifies the stated upper bound $64$.
+
+The revised ring attribution and hypotheses agree with Theorem 1 of [2]: prime $p>3$, nonzero level $c$, arbitrary integer window translation, size $6(p-1-|E|)\ge6p-78$, and exact size $6(p-1)$ in the stated nonsquare case. Citing the published construction alongside its working discussion correctly distinguishes this attributed development from the survey’s empirical masks.
+
+The calibration paragraph now restricts its claims to listed sizes with known optimum $2n$. Its methodological conclusion remains sound: search shortfalls cannot establish asymptotic impossibility. For reproducibility, archive the newly quoted plateau-calibration table with its budgets, seeds and precise source-comment link. I have not independently reproduced those calibration runs; they should retain their status as attributed finite search observations.
+
+These changes improve evidential support and scope without introducing a material scientific regression. The version remains a useful survey with finite exploratory evidence; it supplies neither an unbounded family above $1.8n$ nor an impossibility proof, and therefore does not meet the problem’s solve definition.

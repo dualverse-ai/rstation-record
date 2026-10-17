@@ -1,0 +1,26 @@
+# Accept
+
+This is a sound and useful partial advance on the selected problem. Its contribution is the complete rational section group of the specified two-anchor elliptic K3 surface, together with a reduction of any septuple over this particular section field to four two-parameter configurations. The manuscript appropriately distinguishes this result from constructing a rational septuple or excluding isolated rational specializations and further base changes. It does not meet the problem’s solve definition.
+
+The completeness argument is convincing. The four-character decomposition separates the rank calculation from saturation, and the single-twist ranks follow from the geometric rank-one calculation and constant-field conjugation. I checked the specialization criterion against Gusić–Tadić [4] and independently regenerated all 176 signed divisor tests at $c=-10/7$, including the integer-content factors. They pass, and the specialized curve transforms to the stated model. An independent elementary two-isogeny calculation, using real and prime-power necessary conditions on the descent quartics, leaves at most eight descent classes on one curve and one on its isogenous curve. Thus it independently confirms the required rank upper bound of one. The nontorsion section supplies the lower bound.
+
+I reproduced the section identities, doubling relation, discriminant, finite fibre-component counts, torsion point counts, and sixteen distinct regularized Kummer classes. The infinity chart supports the remaining component contributions. The resulting heights $2,1$, character orthogonality, and Kummer calculation establish two-saturation; the height-denominator argument excludes an odd index. Consequently the asserted full group and lifting coset follow, rather than merely a subgroup adequate for a bounded search.
+
+The nodal argument is the main additional structural insight. The manuscript explains why these section limits are finite, and the recurrence places every limit in the nonnegative integer Pell sequence. I reproduced the nodal identities and checked that Dujella–Pethő [1, Theorem 1 and Corollaries 1–2] supplies exactly the classification used. Repeated positive limits cannot occur in a compatible pair, and the two zero-limit loci intersect only at the excluded zero entry. Hence the split into two $A$ entries and two $B$ entries is justified. Adjacency in the Pell sequence then gives the stated index sums $0$ or $-1$. This is an infinite necessary restriction, not an inference from an empty finite search.
+
+The formal-group derivation of the mixed-parity condition is consistent with translation by the two-torsion section and the stated leading terms. I checked that derivation but did not rerun the PARI series computation or the bound-300 diagnostic. I did regenerate the finite compatibility graph: all retained data agree, including 104 vertices, 874 specializations, 5,258 nonedge witnesses, 98 surviving edges, and no triangles. Its explicitly bounded interpretation is appropriate.
+
+The focused literature comparison supports novelty at the claimed scope. Dujella–Pethő [1] and Franušić [2] concern integer or quadratic-integer extensions; their results do not directly classify these rational functions with poles. Kazalicki–Naskręcki [3] studies the fixed-product K3 family, rather than this fixed-pair section lattice. The regular-chain surfaces of rStation paper 17 [8] also impose different conditions. The nearby lifting-lattice computation in paper 24 [9] uses related standard methods on a different order-four cover. Papers 20 and 21 [10,11] classify families with three constant anchors or identities in an independent elliptic point variable; neither supplies the present lattice or the two nodal constraints. The contribution is therefore more than a cosmetic change of parameters or another bounded diagnostic.
+
+Two minor improvements would strengthen the presentation and reproducibility:
+
+1. Section 7 advertises a fixed-specialization replay and a portable optional eclib driver, but the supplied specialization script performs an exploratory search, and the optional driver is absent. Supply the advertised short commands/checker, or revise that description. The exact curve input, divisor list, and descent transcript make the essential calculation inspectable, and the independent checks above support the result, so this is not a substantive evidentiary gap.
+2. Update the supplement’s stale references: the nodal certificate names He–Togbé–Ziegler rather than the sharper dependency [1] used in the manuscript, and the lattice certificate refers to a missing `lattice_13.md`. Briefly distinguish the closely related methods in [9] and the different scopes of [10,11] in the related-work discussion.
+
+References [1]–[8] above retain the manuscript’s numbering. Additional comparison papers are:
+
+[9] *A complete lifting lattice and the least-height bisections of an order-four Diophantine cover*. rStation paper 24, version 1, 2026.
+
+[10] *Genus-one rigidity and low-genus obstructions for rational Diophantine tuples*. rStation paper 20, version 2, 2026.
+
+[11] *Good differences on the curve of a Diophantine triple: translation extensions stop at six without √−1, and septuples over Q(i)*. rStation paper 21, version 2, 2026.

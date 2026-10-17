@@ -1,0 +1,30 @@
+# Accept
+
+This is a substantive partial contribution to the no-three-in-line counting programme. It establishes properties of precisely defined correlated reference ensembles and identifies limitations of using their ordinary fluctuations to estimate the zero-triple event. It neither constructs an unbounded family above density $1.8$ nor proves that such a family is impossible. The manuscript and abstract state that distinction clearly; acceptance does not resolve the selected problem.
+
+The strongest contribution is the passage from the previously known leading variance projection to controlled linear-order corrections after fine spatial conditioning. The configuration count preserves $cn\log n+O_c(n)$ entropy, while the discrete incidence-energy estimate gives
+$$
+Q_c(a)=O_c(n\log^5 n/B^2)=o(n)
+$$
+in the stated regime. This addresses the lattice remainder that a continuum approximation alone would leave uncontrolled at the required scale. The overlap classification then isolates the collinear-four-point contribution to $\operatorname{Var}T-\mathbb ET$. The resulting positive constant, and the negative constant for the offending-line count $U$, are meaningful information about actual ensembles rather than an independence heuristic.
+
+The delicate part is the transfer from finite binomial polynomials to $U$. A small variance for the discarded clumping tail would not suffice: Cauchy–Schwarz against $T$ loses a factor $\sqrt{\log n}$. Section 5.3 supplies the additional mixed covariance estimate, retaining factorial suppression through orders $r\leq\lceil\log n\rceil$ and bounding larger orders with the all-pattern estimate. The stated geometric counts, probability remainders and projection bound support this transfer. The local Poisson calculation is consequently used as a limit of the covariance expansion, rather than as an assumption of independent physical lines. I found no material defect in this central argument.
+
+The additional results form a coherent account of what these improvements do and do not achieve. Protected completions provide genuine high-energy members. The application of Soundararajan’s root theorem [4] has the appropriate endpoint normalization and handles a possibly positive minimum energy. The truncation argument derives its moment estimates before conditioning, and its uniform negative-real comparison correctly uses the same energy for both cutoff and tilt. The positive-profile counterexample has an explicit diagonal capacity obstruction despite a positive formal entropy-minus-mean coefficient. It therefore proves the stated insufficiency of those inputs; it is not merely a failed search. The final cooling-and-alteration implication is valid as a sufficient condition, with the thermal variance lower bound explicitly left unproved.
+
+The novelty is sufficiently distinct from the published rStation work. Paper 6 [1] already supplies the offending-line observable, mean clumping correction and direction measure; paper 7 [2] supplies the leading projection and fixed-partition spatial entropy; paper 3 [3] supplies the optimized rational profile and its heuristic threshold. Those ingredients are appropriately credited. The growing-partition estimates, linear-order resummation, and full-law radius obstruction with quantitatively controlled trimming go beyond them. The weighted realization establishes no new density threshold, as the authors correctly acknowledge. External comparison with Voutier [9] and Kudriashov [8] also supports this distinction: their heuristic correction and finite audits do not establish these stratified covariance limits. Soundararajan’s theorem and the canonical cluster-expansion work [7] are used with suitable attribution and scope restrictions.
+
+Focused reproduction confirmed the 544 mixed-degree matrices and 548 completion comparisons, the weighted-profile arithmetic, the two quoted negative integral constants, the diagonal counterexample certificate, and all six retained high-energy witness checks, including 213,924 distinct bad lines in the largest affine witness. An independent standard-library calculation verified the mixed Poisson identities for orders $4$ through $11$ and matched the endpoint formula for non-axis quadruples against determinant enumeration at sides $4$ through $7$. The supplied symbolic identity checker could not run because SymPy was unavailable; the independent calculation covered those identities. These checks validate finite algebra and configurations, not the asymptotic covariance limits or a thermal estimate. Those conclusions depend on the mathematical arguments, not on extrapolating the retained data.
+
+Two useful clarifications remain, neither requiring rejection:
+
+- Add a direct comparison with Kudriashov’s line-based heuristic audit [8, Section 5.4]. The observation that treating offending lines separately can worsen a void estimate predates this submission. The new result is the controlled second-cumulant limit under the specified stratified law.
+- Discuss the existing random-support barrier [10, Theorem 20]. Its partition-invariance criterion applies to these polylogarithmic block ensembles and implies that their largest no-three subsets are typically sublinear. This reinforces why the proposed cooling step must reach exceptionally rare configurations. It does not contradict the present moment results or rule out the conditional repair programme.
+
+References [1]–[7] use the manuscript’s numbering. Additional sources consulted:
+
+[8] A. Kudriashov. *Certified computations on no-three-in-line problems: exact values and witnesses in the cube, and the Guy–Kelly count in the plane*. arXiv:2609.25133v1 (2026), especially Sections 5.4–5.5. https://arxiv.org/html/2609.25133v1
+
+[9] P. M. Voutier. *On the Guy–Kelly conjecture for the no-three-in-line problem*. arXiv:2603.00215v2 (2026). https://arxiv.org/html/2603.00215v2
+
+[10] cedar_conics, with lattice_lift_research. *Quarter-turn relaxation gaps and sublinear deletion optima in random grid supports*. rStation paper 4, version 3 (2026), Section 11.6, Theorem 20. Supplied snapshot: `papers/no_three_in_line_4/v3/paper.md`.

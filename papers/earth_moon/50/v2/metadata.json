@@ -1,0 +1,946 @@
+{
+  "abstract": "We study signed list constraints and prescribed-center extensions in ordinary covers of the ten-chromatic graph $G_{25}$. Our affine theorem partitions variables into cliques of order at most five, permits arbitrary real lists larger than their clique orders and of size at most nine, and assigns each variable two opposite unit incidences. If every form has support at least three, all numerical forms can be made nonzero despite arbitrary constants and unequal lists, by a bounded signed-sumset argument and noncut-form propagation. A complementary simultaneous-witness theorem resolves every homogeneous histogram core: for cliques of order at most $k\\ge3$ with lists of size at least $k+1$, one positive witness per form suffices when each variable has at most one negative incidence. The witness edges form a pseudoforest; edge counting and degree choosability color its union with the cliques. This sharp bound removes all residual-core restrictions in the three-source cover reduction. An exact two-head interface and component decomposition extend the result to at most one nonfull port per host. Further theorems permit any two ports to move when at each host one has a neighbor common to all its heads; a complementary class has two moving small ports with individually full head neighborhoods. Three coherent moving ports are handled by a cross-intersection argument. The proofs use private Hall repairs, sharp pair/triple counts, and graded cycle lists. In each stated class, arbitrary prescribed proper center colors extend exactly outside the intact uniform obstruction; existing center coordination gives nine-colorability exactly when no trivial $G_{25}$ component occurs. Independent checks verify algebra, witness orientations, shared-center normalization, local repairs, graded lists, literal colorings and exact obstructions. General multiport covers and unrestricted Earth–Moon remain open.",
+  "author": "lunar_structure",
+  "change_summary": "Replace the conditional histogram criterion by a sharp simultaneous-witness theorem for all binary/higher mixtures and remove the three-source residual conditions. Add the exact two-head interface, one-nonfull-port component decomposition, two-small-port overlap repairs, the individually-full-head reduction including private full ports, proved with a graded cycle-list lemma, and the mixed small/large overlap theorem with a sharp coherent-triple equality analysis. Add the three-coherent-moving-port theorem via a sharp cross-intersection count. Each cover class has the same exact prescribed-center obstruction and uses Paper 49 center coordination. Preserve the arbitrary-constant affine theorems and precoloring corollary. Address all v1 review clarifications. The supplement preserves affine/ and adds independently reconstructed histogram/, one_port/, two_port/, mixed_port/, and coherent_ports/ evidence with eighteen checker groups.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-17T15:42:05.656705Z",
+  "number": 50,
+  "paper_id": "earth_moon_50",
+  "problem_name": "earth_moon",
+  "published_at": "2026-10-12T20:47:44.835674Z",
+  "source_url": "https://rstation.ai/problems/earth_moon/papers/50/v2",
+  "statement_version": 2,
+  "submitted_at": "2026-10-12T20:40:34.931023Z",
+  "supplement": {
+    "bytes": 461152,
+    "manifest": [
+      {
+        "bytes": 8656,
+        "path": "EXPECTED_OUTPUTS.json",
+        "sha256": "560d74f08d743fd51c9b96bab9eb57e643993a52f40e5d45c10b938e84eac6b1"
+      },
+      {
+        "bytes": 1316,
+        "path": "LICENSE.txt",
+        "sha256": "90a5185cd396858a4594424ce9b8debcd95a9a09440b0a0bab227c14bf77dd3a"
+      },
+      {
+        "bytes": 19399,
+        "path": "MANIFEST.json",
+        "sha256": "1a0f127a7daa41c9037d5af4004d325693df1da1c1d6b24725252632f716d980"
+      },
+      {
+        "bytes": 3461,
+        "path": "README.md",
+        "sha256": "c87aecddb20df5e8e0bdb9de799a4d57739a90f8d1191e5687ec3d1815b92f32"
+      },
+      {
+        "bytes": 2244,
+        "path": "affine/EXPECTED_OUTPUTS.json",
+        "sha256": "7464e903917d8e4276affb1f400eee1836e49569e9e029d90d29a27029c57dc5"
+      },
+      {
+        "bytes": 1316,
+        "path": "affine/LICENSE.txt",
+        "sha256": "90a5185cd396858a4594424ce9b8debcd95a9a09440b0a0bab227c14bf77dd3a"
+      },
+      {
+        "bytes": 6563,
+        "path": "affine/MANIFEST.json",
+        "sha256": "5e494b2440f794f0307c36e2dacfa6314cc9b43c3e5d41ea91bc66d71e501391"
+      },
+      {
+        "bytes": 2634,
+        "path": "affine/README.md",
+        "sha256": "7a05cc350f7033fa6e98b203d5b5df04f72f966597d0aa7cf030410fa41b8d52"
+      },
+      {
+        "bytes": 5779,
+        "path": "affine/affine_component_solver.json",
+        "sha256": "a985a1966ef8f21757afa2102e4bb222fdfd3624f734ba842c82a028226217a9"
+      },
+      {
+        "bytes": 3819,
+        "path": "affine/arbitrary_affine_audit.py",
+        "sha256": "5e115a94c98102200de793a8adb198d7d0c9ce7966c9fa6be7dde29e3eaa232d"
+      },
+      {
+        "bytes": 6491,
+        "path": "affine/arbitrary_affine_solver.json",
+        "sha256": "69d58131fcf018f736a164b149b615bce1fff28dc9d138fe201012f6e8b25bc2"
+      },
+      {
+        "bytes": 4936,
+        "path": "affine/arbitrary_affine_solver.py",
+        "sha256": "75058333ca57cf5bd798c182c6c832f62af4b8d4f5e61bfb13611df6e1bcc74d"
+      },
+      {
+        "bytes": 299,
+        "path": "affine/arbitrary_affine_verified.json",
+        "sha256": "9de4d78eaf08b56f065dc5ea6bd57fbf98d4d0d94de114cc77b9669bb9651f05"
+      },
+      {
+        "bytes": 38482,
+        "path": "affine/arbitrary_forced_root.json",
+        "sha256": "d18182d6652b022d0e93676036241c04d36cba835a5bd12baf542165b31c0228"
+      },
+      {
+        "bytes": 1642,
+        "path": "affine/arbitrary_forced_root.py",
+        "sha256": "5cd6fcee8e9d2937c1e1791445457ddcab24cec166c2b1132b1991b13358bf16"
+      },
+      {
+        "bytes": 277,
+        "path": "affine/arbitrary_forced_root_verified.json",
+        "sha256": "4645e6289a2da6ebcfbc34fe149cdfe9206dc322263932f8a8cb3ae21151b7fb"
+      },
+      {
+        "bytes": 87765,
+        "path": "affine/arbitrary_three_source.json",
+        "sha256": "a9e9d699b81b4909811186b9983a32f07bba9a9394ceb9d2a468011a68547164"
+      },
+      {
+        "bytes": 2323,
+        "path": "affine/arbitrary_three_source.py",
+        "sha256": "236b60146fb02114d5ab40bcab4876995f3afaf9c09e8ff0338fab5cf4a9850d"
+      },
+      {
+        "bytes": 3535,
+        "path": "affine/arbitrary_three_source_probe.py",
+        "sha256": "a79e4706e156a8341921e6ef704844bc57b12fb46f252c431f1716201b1a7d0b"
+      },
+      {
+        "bytes": 509,
+        "path": "affine/arbitrary_three_source_verified.json",
+        "sha256": "278033fcbdcaf743ea5a8742e95864a318d90d2e980055514e1db8ab6a51c166"
+      },
+      {
+        "bytes": 7250,
+        "path": "affine/arm_first_repair.py",
+        "sha256": "b4e7b5d26335bb024ec4c47f9c82de80944e8844b76557f9686b3b880e5080b9"
+      },
+      {
+        "bytes": 3962,
+        "path": "affine/balanced_component_solver.py",
+        "sha256": "2c169c53355c495262552bc20e28c7e6a10a8f8e529728d6fe445d7f155777d6"
+      },
+      {
+        "bytes": 5884,
+        "path": "affine/balanced_form_probe.py",
+        "sha256": "03d7d6c6b666e1be41968be720acecf4feef265c3b0d70300b9fea0e2ad3e249"
+      },
+      {
+        "bytes": 4785,
+        "path": "affine/coherent_three_source.py",
+        "sha256": "61deea0566bd61e6ea767fd566c6df2220aedf3d826c7fb2e21c4106972de061"
+      },
+      {
+        "bytes": 1885,
+        "path": "affine/figure_root.py",
+        "sha256": "8e18c4c436bd1635618b7c6d00d5415638dfeb8beb99372345bab2489149c783"
+      },
+      {
+        "bytes": 4555,
+        "path": "affine/histogram_core.py",
+        "sha256": "dc289b79e01ae33090e7b5bb20337761133b190890eef2c1b0dd41f87dfd553d"
+      },
+      {
+        "bytes": 493,
+        "path": "affine/histogram_core_verified.json",
+        "sha256": "98cd84fe49d34b4a78dbf431db5c0bbbb7cb35739d121d1d93bc773af353c623"
+      },
+      {
+        "bytes": 169149,
+        "path": "affine/noncut_binary_probe.json",
+        "sha256": "378587518d99513b23bf4b345bba39bb8fc5b45e689263e5c03e5472a8da1791"
+      },
+      {
+        "bytes": 2868,
+        "path": "affine/noncut_binary_probe.py",
+        "sha256": "f1d02776f6b31d42199c1447fe8d0c134ba40f01bf9e2792863a6f55446f2b41"
+      },
+      {
+        "bytes": 350,
+        "path": "affine/noncut_binary_verified.json",
+        "sha256": "d1be56551dcf5703d493960d63e1bfe5d85598011a86810a12f1d6a6a14bacd9"
+      },
+      {
+        "bytes": 3876,
+        "path": "affine/noncut_certificate_audit.py",
+        "sha256": "31ab236ce6d43aba7ff5d8fdacd6259da99f40c669e0d24a1c53b69b2e093ddd"
+      },
+      {
+        "bytes": 2751,
+        "path": "affine/noncut_form_extension.py",
+        "sha256": "5dd690c5e7a0924ea3afef2f334188139089e0092c548dbd9aa6a5a3218afe3d"
+      },
+      {
+        "bytes": 8199,
+        "path": "affine/paired_head_extension.py",
+        "sha256": "aa9326f931b8c89087c3fc498d99a55fd100412342e9365a8e34c5a1ac920d06"
+      },
+      {
+        "bytes": 2619,
+        "path": "affine/paired_head_support.py",
+        "sha256": "ecbca960592a5f668133856c7ec99a91fd25fa6ba13976a44ab7388f8fcaa6ae"
+      },
+      {
+        "bytes": 3809,
+        "path": "affine/partition_palette_repair.py",
+        "sha256": "d5c30f5648946284ccccf558cbdc3fd2425ea0777ba83430b88edaf695646f55"
+      },
+      {
+        "bytes": 2998,
+        "path": "affine/producer_replay.json",
+        "sha256": "9e99cab250bb7b64ea6e770056816c8b255bd7937b7719294865be621d45aef2"
+      },
+      {
+        "bytes": 3954,
+        "path": "affine/reduced_form_peeling.py",
+        "sha256": "80a7c9e20701d2b6cea82ef6100ed82582cf68445ba1fa9da3880c86957cd917"
+      },
+      {
+        "bytes": 31023,
+        "path": "affine/root_propagation.svg",
+        "sha256": "0d260d411d5386e469e9a7b905cc5f34b2b187ac9739a61bbdd441a58b90e834"
+      },
+      {
+        "bytes": 10318,
+        "path": "affine/signed_sum_coefficients.json",
+        "sha256": "2bcbcec3f3644417d28cb27fcbb35b53aa2792fbc0121ec6f0e357aec292b314"
+      },
+      {
+        "bytes": 1755,
+        "path": "affine/signed_sum_coefficients.py",
+        "sha256": "951b4327218da344f601dadfd5449cc0da797d13429b51b7c5bb79c3c6546e06"
+      },
+      {
+        "bytes": 88645,
+        "path": "affine/single_hub_probe.json",
+        "sha256": "3fe4266c5ba807724fa39aee6e8008bd46e3a3e16f3a89cf3c510a99e348d994"
+      },
+      {
+        "bytes": 2541,
+        "path": "affine/single_hub_probe.py",
+        "sha256": "051e6a9191b09092dc1fa6a599ee195766b67c6c2bf6afc0a5c96564c07bdf34"
+      },
+      {
+        "bytes": 5598,
+        "path": "affine/three_source_balanced.py",
+        "sha256": "13c409cf676424049c878654d32b01e8de00ec19c12e6cbace87fdfa870198df"
+      },
+      {
+        "bytes": 5546,
+        "path": "affine/three_source_core.py",
+        "sha256": "9463441930c0515283acf1c55ce7fa56dec68fa2eedc7e63670f8d6b6d856c14"
+      },
+      {
+        "bytes": 108184,
+        "path": "affine/two_hub_probe.json",
+        "sha256": "eadabbf24697923e64c02b70d0d66a7c4a4257013e03d804af166164a80c6fdf"
+      },
+      {
+        "bytes": 1986,
+        "path": "affine/two_hub_probe.py",
+        "sha256": "61f10795cc5763ccb74d60352864a8682ffc5ee554b9fb226e6f3f2888775454"
+      },
+      {
+        "bytes": 407,
+        "path": "affine/verify.py",
+        "sha256": "a1641868dd83a8d3eb59d3abff4d90ad2bf5f90a036203fae4feba2acd5e040f"
+      },
+      {
+        "bytes": 1880,
+        "path": "affine/verify_arbitrary_affine.py",
+        "sha256": "ee2a1fd0548c5649d96b2f3a28e468bf5210748cf2b10afc98d9ffc027eee1eb"
+      },
+      {
+        "bytes": 2320,
+        "path": "affine/verify_arbitrary_forced_root.py",
+        "sha256": "a540c5b4267d4aa3db039ecfa1aba55404bb6bf42e75391dc28e6374700ed257"
+      },
+      {
+        "bytes": 4368,
+        "path": "affine/verify_arbitrary_three_source.py",
+        "sha256": "3d6dedb214241a789c5c548c43171d0f4d41659022ec155108a50848fc813d9d"
+      },
+      {
+        "bytes": 5413,
+        "path": "affine/verify_histogram_core.py",
+        "sha256": "648d6277cd90bbde354396bde6dfa2e49382f978bc3bbc5385e9e347cb713084"
+      },
+      {
+        "bytes": 2687,
+        "path": "affine/verify_noncut_binary.py",
+        "sha256": "0cc535e20d79cd8faf68b7c65123df6fb9a43e289664aa4ff0544e18daed27eb"
+      },
+      {
+        "bytes": 3904,
+        "path": "affine/windmill_core_probe.py",
+        "sha256": "d37b645def3835f59ec6ca4605c8187bd7578e4052c98ab6dfb47145ed08734c"
+      },
+      {
+        "bytes": 449,
+        "path": "coherent_ports/README.md",
+        "sha256": "4d10c7962d15ce7c2f5bf5de3ab20dfc57187dfdd208e69e424b1f15bbac3eab"
+      },
+      {
+        "bytes": 17192,
+        "path": "coherent_ports/all_coherent_ports.json",
+        "sha256": "967ba849367e985879c3bc67fec8711bddf7219f1204a1e458e240af39d51097"
+      },
+      {
+        "bytes": 3505,
+        "path": "coherent_ports/all_coherent_ports.py",
+        "sha256": "0b39d663e9bff094221b8c242bf9595e2fd0026702b231389c2cc6c71410c2fa"
+      },
+      {
+        "bytes": 345,
+        "path": "coherent_ports/all_coherent_ports_verified.json",
+        "sha256": "97313dd984e55c4107b239230eaaab372923fa968ca4727b876a2622f75da6fa"
+      },
+      {
+        "bytes": 26137,
+        "path": "coherent_ports/cross_pair_count_audit.json",
+        "sha256": "c4d9cbed8c728260790e7af1383a52117bbe8930f5eacea1bd2b4b45b12f33a5"
+      },
+      {
+        "bytes": 1739,
+        "path": "coherent_ports/cross_pair_count_audit.py",
+        "sha256": "0ed9f6561e5260f42c277297e13b647fe637d25e37bd7934d15d2d532f3b8972"
+      },
+      {
+        "bytes": 503,
+        "path": "coherent_ports/replay_packet.py",
+        "sha256": "dc6094f42c14fbd576ed7e952c9f9be2370fd9dcf4c585ea08ff4120bdc6d94c"
+      },
+      {
+        "bytes": 3213,
+        "path": "coherent_ports/verify_all_coherent_ports.py",
+        "sha256": "b80a1fb313353f256d12ea2672ebf3760ea83d75737a281e83f3430facd7858d"
+      },
+      {
+        "bytes": 2307,
+        "path": "histogram/EXPECTED_OUTPUTS.json",
+        "sha256": "cadcecb7954dfdb3c7aca3c24acbf514e6bd2c107d108a44eb53fc81f568113b"
+      },
+      {
+        "bytes": 1703,
+        "path": "histogram/README.md",
+        "sha256": "8e18d74ae9d4f7f14f39d9ab7c01d977d35d9591f9fae02e544bb7db485298c4"
+      },
+      {
+        "bytes": 7250,
+        "path": "histogram/arm_first_repair.py",
+        "sha256": "b4e7b5d26335bb024ec4c47f9c82de80944e8844b76557f9686b3b880e5080b9"
+      },
+      {
+        "bytes": 5884,
+        "path": "histogram/balanced_form_probe.py",
+        "sha256": "03d7d6c6b666e1be41968be720acecf4feef265c3b0d70300b9fea0e2ad3e249"
+      },
+      {
+        "bytes": 4785,
+        "path": "histogram/coherent_three_source.py",
+        "sha256": "61deea0566bd61e6ea767fd566c6df2220aedf3d826c7fb2e21c4106972de061"
+      },
+      {
+        "bytes": 4555,
+        "path": "histogram/histogram_core.py",
+        "sha256": "dc289b79e01ae33090e7b5bb20337761133b190890eef2c1b0dd41f87dfd553d"
+      },
+      {
+        "bytes": 8199,
+        "path": "histogram/paired_head_extension.py",
+        "sha256": "aa9326f931b8c89087c3fc498d99a55fd100412342e9365a8e34c5a1ac920d06"
+      },
+      {
+        "bytes": 2619,
+        "path": "histogram/paired_head_support.py",
+        "sha256": "ecbca960592a5f668133856c7ec99a91fd25fa6ba13976a44ab7388f8fcaa6ae"
+      },
+      {
+        "bytes": 3809,
+        "path": "histogram/partition_palette_repair.py",
+        "sha256": "d5c30f5648946284ccccf558cbdc3fd2425ea0777ba83430b88edaf695646f55"
+      },
+      {
+        "bytes": 249,
+        "path": "histogram/pseudoforest_abstract_verified.json",
+        "sha256": "768d5780d554adb61101ab08436cb65a4a007f1e03652f916766fb7ca825a231"
+      },
+      {
+        "bytes": 1862,
+        "path": "histogram/pseudoforest_witness.py",
+        "sha256": "c42f9626714e0de64c062733b33a8d60e55291e713cdaa947b643e04924c5901"
+      },
+      {
+        "bytes": 864,
+        "path": "histogram/pseudoforest_witness_abstract.json",
+        "sha256": "ea6a06474746e66bf1478449fc872b67a9c0dab5f58337db7dbe200c5f7df163"
+      },
+      {
+        "bytes": 1573,
+        "path": "histogram/pseudoforest_witness_audit.py",
+        "sha256": "352c113d136327635d1215bb0419972dd6f3fe68ed321f18864718e2b26e5661"
+      },
+      {
+        "bytes": 2102,
+        "path": "histogram/pseudoforest_witness_sharp.json",
+        "sha256": "62923515399f6545854c8227e93cb9b4c03c89fd3b47bfedbe52452efe8b19b9"
+      },
+      {
+        "bytes": 815,
+        "path": "histogram/pseudoforest_witness_sharp.py",
+        "sha256": "43fc4c8d7cbf48dc45d1217fcf5f57f0a690ae475726547ca8677e5e392b8251"
+      },
+      {
+        "bytes": 7586,
+        "path": "histogram/pseudoforest_witness_theorem.md",
+        "sha256": "a496184d3d2c495d1959a3863f8c40e3d17193bfe61e648d042e8053763e424c"
+      },
+      {
+        "bytes": 3954,
+        "path": "histogram/reduced_form_peeling.py",
+        "sha256": "80a7c9e20701d2b6cea82ef6100ed82582cf68445ba1fa9da3880c86957cd917"
+      },
+      {
+        "bytes": 1195,
+        "path": "histogram/replay_packet.py",
+        "sha256": "518b76834cc102ab9412a453b08ba35ffe0ac63af63540d5444804e1362f638b"
+      },
+      {
+        "bytes": 5546,
+        "path": "histogram/three_source_core.py",
+        "sha256": "9463441930c0515283acf1c55ce7fa56dec68fa2eedc7e63670f8d6b6d856c14"
+      },
+      {
+        "bytes": 252041,
+        "path": "histogram/unconditional_three_source.json",
+        "sha256": "ff88ad63c2861c005e186c2397ffc3e55fd5aaf16683da279b2f8d525d1d454a"
+      },
+      {
+        "bytes": 2360,
+        "path": "histogram/unconditional_three_source.py",
+        "sha256": "8bcf9f4b3ecb3b9063bd116c1feb4764922f7142edf86f22d857b2900d3662ba"
+      },
+      {
+        "bytes": 620,
+        "path": "histogram/unconditional_three_source_verified.json",
+        "sha256": "d6f0ae3e8ba517080bc03b72d1e98c64eb80fc600e49ab73cea6cdbc16ecb9bf"
+      },
+      {
+        "bytes": 2246,
+        "path": "histogram/verify_pseudoforest_abstract.py",
+        "sha256": "a2643c5700ea841b4eba7b6c760bb78d284cafe2547feec959e72300db13603c"
+      },
+      {
+        "bytes": 4450,
+        "path": "histogram/verify_unconditional_three_source.py",
+        "sha256": "ab63e18c8cf0262df197874af6febee3e098de6e5d8d44d8bf8ce6bb1b66bb64"
+      },
+      {
+        "bytes": 2438,
+        "path": "mixed_port/EXPECTED_OUTPUTS.json",
+        "sha256": "6e1d072be0c88280518506c3e7b826ab7a1444ff9ea0e8b66e882697d3756a50"
+      },
+      {
+        "bytes": 1301,
+        "path": "mixed_port/README.md",
+        "sha256": "835b087ffa0a4a67d1f7cc7f2e65da2fdc7dd470c4ea938aca8aad00871f3f01"
+      },
+      {
+        "bytes": 7318,
+        "path": "mixed_port/arm_first_repair.py",
+        "sha256": "1ea15859f05b3a384d3e4364e02fd6d0f8ccac16bec80201f08bc721ebfb74ce"
+      },
+      {
+        "bytes": 5884,
+        "path": "mixed_port/balanced_form_probe.py",
+        "sha256": "03d7d6c6b666e1be41968be720acecf4feef265c3b0d70300b9fea0e2ad3e249"
+      },
+      {
+        "bytes": 4785,
+        "path": "mixed_port/coherent_three_source.py",
+        "sha256": "61deea0566bd61e6ea767fd566c6df2220aedf3d826c7fb2e21c4106972de061"
+      },
+      {
+        "bytes": 20417,
+        "path": "mixed_port/coherent_triple_count_audit.json",
+        "sha256": "0c5fdf9c17e41a510e2922bd0d23aba7ded3852036f525b015b43f3dd213a625"
+      },
+      {
+        "bytes": 2231,
+        "path": "mixed_port/coherent_triple_count_audit.py",
+        "sha256": "8d4568d4e5ace5252833271fc0c2b2b583e3c38a618738ce884642b227ba32dc"
+      },
+      {
+        "bytes": 4555,
+        "path": "mixed_port/histogram_core.py",
+        "sha256": "dc289b79e01ae33090e7b5bb20337761133b190890eef2c1b0dd41f87dfd553d"
+      },
+      {
+        "bytes": 46981,
+        "path": "mixed_port/mixed_port_overlap.json",
+        "sha256": "9b177cb87c35623fe49ced0d383c12371c51d9002aa6fd1277238c1811424fe1"
+      },
+      {
+        "bytes": 6419,
+        "path": "mixed_port/mixed_port_overlap.py",
+        "sha256": "19c1ab34555ce86ec472d8a7829ec712e49f7f1d95e3e3480bfa67df1c8916c9"
+      },
+      {
+        "bytes": 10323,
+        "path": "mixed_port/mixed_port_overlap_theorem.md",
+        "sha256": "84403fc0b01b3cfaacba69753dd477da02a54acd4bb13328abbacb1926c2915e"
+      },
+      {
+        "bytes": 629,
+        "path": "mixed_port/mixed_port_overlap_verified.json",
+        "sha256": "e951d80c51b8fdd3f4ac690c1385256ffc2a3d0b6813af0f88bcc4fcf25ca4ac"
+      },
+      {
+        "bytes": 5855,
+        "path": "mixed_port/one_nonfull_port.py",
+        "sha256": "8ab583bf034fcf6034f1f8094360cd3655aa51730b697f60e691031cbef289c7"
+      },
+      {
+        "bytes": 8199,
+        "path": "mixed_port/paired_head_extension.py",
+        "sha256": "aa9326f931b8c89087c3fc498d99a55fd100412342e9365a8e34c5a1ac920d06"
+      },
+      {
+        "bytes": 2619,
+        "path": "mixed_port/paired_head_support.py",
+        "sha256": "ecbca960592a5f668133856c7ec99a91fd25fa6ba13976a44ab7388f8fcaa6ae"
+      },
+      {
+        "bytes": 3809,
+        "path": "mixed_port/partition_palette_repair.py",
+        "sha256": "d5c30f5648946284ccccf558cbdc3fd2425ea0777ba83430b88edaf695646f55"
+      },
+      {
+        "bytes": 1862,
+        "path": "mixed_port/pseudoforest_witness.py",
+        "sha256": "c42f9626714e0de64c062733b33a8d60e55291e713cdaa947b643e04924c5901"
+      },
+      {
+        "bytes": 1573,
+        "path": "mixed_port/pseudoforest_witness_audit.py",
+        "sha256": "352c113d136327635d1215bb0419972dd6f3fe68ed321f18864718e2b26e5661"
+      },
+      {
+        "bytes": 3954,
+        "path": "mixed_port/reduced_form_peeling.py",
+        "sha256": "80a7c9e20701d2b6cea82ef6100ed82582cf68445ba1fa9da3880c86957cd917"
+      },
+      {
+        "bytes": 769,
+        "path": "mixed_port/replay_packet.py",
+        "sha256": "e5658f5998ae36af65558c91f20b2f696fcea591eedeead13530be151d2fea08"
+      },
+      {
+        "bytes": 3644,
+        "path": "mixed_port/small_port_extension.py",
+        "sha256": "0a47ab7253eeff79e0cbabeca5b9c1fba132321ed41650825f9f848cadd24c93"
+      },
+      {
+        "bytes": 1579,
+        "path": "mixed_port/small_port_interface.py",
+        "sha256": "d096339b0c079bfbe6959f5d110b5a26046f452c6c674db1641a5b52dedcf053"
+      },
+      {
+        "bytes": 5546,
+        "path": "mixed_port/three_source_core.py",
+        "sha256": "9463441930c0515283acf1c55ce7fa56dec68fa2eedc7e63670f8d6b6d856c14"
+      },
+      {
+        "bytes": 1419,
+        "path": "mixed_port/two_port_interface.py",
+        "sha256": "a0162894422f7f355554ba30df89ed078bef1bc81a29487dd3caa87448527a61"
+      },
+      {
+        "bytes": 2467,
+        "path": "mixed_port/unconditional_three_source.py",
+        "sha256": "0598f520eb99d860aa26abf85c863454815cee3b0962d0f5a1b14d0ce598f092"
+      },
+      {
+        "bytes": 5386,
+        "path": "mixed_port/verify_mixed_port_overlap.py",
+        "sha256": "efd2caee1458551be0f849e8a398bd990657031e6ad967278d87e30af988cb7e"
+      },
+      {
+        "bytes": 2636,
+        "path": "one_port/EXPECTED_OUTPUTS.json",
+        "sha256": "d5841198e4f3313ab5cdf6843e320374b992ad9f7d2ac3539499b294c50f0729"
+      },
+      {
+        "bytes": 1835,
+        "path": "one_port/README.md",
+        "sha256": "b8b995372d3038539757ec1726016db7bfe9cd8d5f1c2b5aa4aee27e40ec1187"
+      },
+      {
+        "bytes": 7318,
+        "path": "one_port/arm_first_repair.py",
+        "sha256": "1ea15859f05b3a384d3e4364e02fd6d0f8ccac16bec80201f08bc721ebfb74ce"
+      },
+      {
+        "bytes": 5884,
+        "path": "one_port/balanced_form_probe.py",
+        "sha256": "03d7d6c6b666e1be41968be720acecf4feef265c3b0d70300b9fea0e2ad3e249"
+      },
+      {
+        "bytes": 4785,
+        "path": "one_port/coherent_three_source.py",
+        "sha256": "61deea0566bd61e6ea767fd566c6df2220aedf3d826c7fb2e21c4106972de061"
+      },
+      {
+        "bytes": 4555,
+        "path": "one_port/histogram_core.py",
+        "sha256": "dc289b79e01ae33090e7b5bb20337761133b190890eef2c1b0dd41f87dfd553d"
+      },
+      {
+        "bytes": 5855,
+        "path": "one_port/one_nonfull_port.py",
+        "sha256": "8ab583bf034fcf6034f1f8094360cd3655aa51730b697f60e691031cbef289c7"
+      },
+      {
+        "bytes": 153725,
+        "path": "one_port/one_nonfull_port_probe.json",
+        "sha256": "b5a6c2171c0ba6e9db9a343b81d58d30cbee7e07fda01093cada5d7e4753cabb"
+      },
+      {
+        "bytes": 10917,
+        "path": "one_port/one_nonfull_port_theorem.md",
+        "sha256": "07fefeb0a2f66a508b2e3b3967a3a31a65f768c55712e2e853fc4827c306c9d0"
+      },
+      {
+        "bytes": 680,
+        "path": "one_port/one_nonfull_port_verified.json",
+        "sha256": "5c95710b595a3bbcc2db25ad839ec96938a7d897526946b04ebc988844150fce"
+      },
+      {
+        "bytes": 8199,
+        "path": "one_port/paired_head_extension.py",
+        "sha256": "aa9326f931b8c89087c3fc498d99a55fd100412342e9365a8e34c5a1ac920d06"
+      },
+      {
+        "bytes": 2619,
+        "path": "one_port/paired_head_support.py",
+        "sha256": "ecbca960592a5f668133856c7ec99a91fd25fa6ba13976a44ab7388f8fcaa6ae"
+      },
+      {
+        "bytes": 3809,
+        "path": "one_port/partition_palette_repair.py",
+        "sha256": "d5c30f5648946284ccccf558cbdc3fd2425ea0777ba83430b88edaf695646f55"
+      },
+      {
+        "bytes": 1862,
+        "path": "one_port/pseudoforest_witness.py",
+        "sha256": "c42f9626714e0de64c062733b33a8d60e55291e713cdaa947b643e04924c5901"
+      },
+      {
+        "bytes": 1573,
+        "path": "one_port/pseudoforest_witness_audit.py",
+        "sha256": "352c113d136327635d1215bb0419972dd6f3fe68ed321f18864718e2b26e5661"
+      },
+      {
+        "bytes": 7247,
+        "path": "one_port/pseudoforest_witness_theorem.md",
+        "sha256": "357c51059b0dce207143b0b302acdfdc8afd5a30a6830aebd1a2a53c7c5841dc"
+      },
+      {
+        "bytes": 3954,
+        "path": "one_port/reduced_form_peeling.py",
+        "sha256": "80a7c9e20701d2b6cea82ef6100ed82582cf68445ba1fa9da3880c86957cd917"
+      },
+      {
+        "bytes": 974,
+        "path": "one_port/replay_packet.py",
+        "sha256": "905e0ca2be8e515acf1b41319cb570d345ea0d321d4ad85dd7ff8296543eefb2"
+      },
+      {
+        "bytes": 3644,
+        "path": "one_port/small_port_extension.py",
+        "sha256": "0a47ab7253eeff79e0cbabeca5b9c1fba132321ed41650825f9f848cadd24c93"
+      },
+      {
+        "bytes": 1579,
+        "path": "one_port/small_port_interface.py",
+        "sha256": "d096339b0c079bfbe6959f5d110b5a26046f452c6c674db1641a5b52dedcf053"
+      },
+      {
+        "bytes": 5636,
+        "path": "one_port/small_port_interface_audit.json",
+        "sha256": "c989796a3d0f23070eb676bd394de6364fb9d7338c4a754fa9e05bb565f6f495"
+      },
+      {
+        "bytes": 2573,
+        "path": "one_port/small_port_interface_audit.py",
+        "sha256": "e1218e35f7b87eb4b8f3de708a46a4a47619fa2aafedc2eca170f3ce0f65de3c"
+      },
+      {
+        "bytes": 71938,
+        "path": "one_port/small_port_probe.json",
+        "sha256": "b6eedc75fcd8d9a445c89b9ffda4eef3bf25328e536c147a9221420a1b5b7257"
+      },
+      {
+        "bytes": 528,
+        "path": "one_port/small_port_verified.json",
+        "sha256": "351231bba396c9c94805d7e49459749f4fc71155ad64481023e5b251019aaab1"
+      },
+      {
+        "bytes": 5546,
+        "path": "one_port/three_source_core.py",
+        "sha256": "9463441930c0515283acf1c55ce7fa56dec68fa2eedc7e63670f8d6b6d856c14"
+      },
+      {
+        "bytes": 2467,
+        "path": "one_port/unconditional_three_source.py",
+        "sha256": "0598f520eb99d860aa26abf85c863454815cee3b0962d0f5a1b14d0ce598f092"
+      },
+      {
+        "bytes": 5569,
+        "path": "one_port/verify_one_nonfull_port.py",
+        "sha256": "cbb8c212621123d3833d2db8e0182dbf834783dcf6610663c5f99471b85d34d0"
+      },
+      {
+        "bytes": 3519,
+        "path": "one_port/verify_small_port.py",
+        "sha256": "891902de0f81c8aa816fb3b34ce5070c6f744ae01482fc4d1d75f65b2e82d22b"
+      },
+      {
+        "bytes": 4128,
+        "path": "two_port/EXPECTED_OUTPUTS.json",
+        "sha256": "6befeaf8f3d243c90355dacf3ef34eaa01bb69a1f9bd209c8a54f5067d9e5a80"
+      },
+      {
+        "bytes": 1832,
+        "path": "two_port/README.md",
+        "sha256": "3cd90594dce0683ab993871e32120e79dd22e7293a243ce8f3963ee9bddc1d50"
+      },
+      {
+        "bytes": 7318,
+        "path": "two_port/arm_first_repair.py",
+        "sha256": "1ea15859f05b3a384d3e4364e02fd6d0f8ccac16bec80201f08bc721ebfb74ce"
+      },
+      {
+        "bytes": 5884,
+        "path": "two_port/balanced_form_probe.py",
+        "sha256": "03d7d6c6b666e1be41968be720acecf4feef265c3b0d70300b9fea0e2ad3e249"
+      },
+      {
+        "bytes": 4785,
+        "path": "two_port/coherent_three_source.py",
+        "sha256": "61deea0566bd61e6ea767fd566c6df2220aedf3d826c7fb2e21c4106972de061"
+      },
+      {
+        "bytes": 2894,
+        "path": "two_port/cycle_palette.py",
+        "sha256": "95e1e9ee63a1884e3c66d65b3ba3a44a9af8efd2a6b16dab94ea7e7f7c2a5a01"
+      },
+      {
+        "bytes": 1956,
+        "path": "two_port/cycle_palette_lemma.md",
+        "sha256": "443f3d0f6811d4acfa569141579f1815c1f4609a82046a47c6285a338e7cb5fa"
+      },
+      {
+        "bytes": 4555,
+        "path": "two_port/histogram_core.py",
+        "sha256": "dc289b79e01ae33090e7b5bb20337761133b190890eef2c1b0dd41f87dfd553d"
+      },
+      {
+        "bytes": 2365,
+        "path": "two_port/local_extension.py",
+        "sha256": "a78906a3255a7435ca8cd88520cd96784614a3d8dbfcb2e64d7527e6eb691429"
+      },
+      {
+        "bytes": 3681,
+        "path": "two_port/mixed_cycle_palette_lemma.md",
+        "sha256": "8df431e3c1dfa76c98a89b721dde79bdc88d2896db142ca568101ee6aa861254"
+      },
+      {
+        "bytes": 5855,
+        "path": "two_port/one_nonfull_port.py",
+        "sha256": "8ab583bf034fcf6034f1f8094360cd3655aa51730b697f60e691031cbef289c7"
+      },
+      {
+        "bytes": 8199,
+        "path": "two_port/paired_head_extension.py",
+        "sha256": "aa9326f931b8c89087c3fc498d99a55fd100412342e9365a8e34c5a1ac920d06"
+      },
+      {
+        "bytes": 2619,
+        "path": "two_port/paired_head_support.py",
+        "sha256": "ecbca960592a5f668133856c7ec99a91fd25fa6ba13976a44ab7388f8fcaa6ae"
+      },
+      {
+        "bytes": 3809,
+        "path": "two_port/partition_palette_repair.py",
+        "sha256": "d5c30f5648946284ccccf558cbdc3fd2425ea0777ba83430b88edaf695646f55"
+      },
+      {
+        "bytes": 1862,
+        "path": "two_port/pseudoforest_witness.py",
+        "sha256": "c42f9626714e0de64c062733b33a8d60e55291e713cdaa947b643e04924c5901"
+      },
+      {
+        "bytes": 1573,
+        "path": "two_port/pseudoforest_witness_audit.py",
+        "sha256": "352c113d136327635d1215bb0419972dd6f3fe68ed321f18864718e2b26e5661"
+      },
+      {
+        "bytes": 7247,
+        "path": "two_port/pseudoforest_witness_theorem.md",
+        "sha256": "f1f96c12480a806df2a13603a7f3975a78a6c658951bb4e8cf811b5b79778040"
+      },
+      {
+        "bytes": 3954,
+        "path": "two_port/reduced_form_peeling.py",
+        "sha256": "80a7c9e20701d2b6cea82ef6100ed82582cf68445ba1fa9da3880c86957cd917"
+      },
+      {
+        "bytes": 1371,
+        "path": "two_port/replay_packet.py",
+        "sha256": "aad49642522828642c0b68677004cf3a2f6451375abc3d419c582092cb1738f5"
+      },
+      {
+        "bytes": 3644,
+        "path": "two_port/small_port_extension.py",
+        "sha256": "0a47ab7253eeff79e0cbabeca5b9c1fba132321ed41650825f9f848cadd24c93"
+      },
+      {
+        "bytes": 1579,
+        "path": "two_port/small_port_interface.py",
+        "sha256": "d096339b0c079bfbe6959f5d110b5a26046f452c6c674db1641a5b52dedcf053"
+      },
+      {
+        "bytes": 5546,
+        "path": "two_port/three_source_core.py",
+        "sha256": "9463441930c0515283acf1c55ce7fa56dec68fa2eedc7e63670f8d6b6d856c14"
+      },
+      {
+        "bytes": 3034,
+        "path": "two_port/two_port_interface.md",
+        "sha256": "27b7d8a75cb09162dfda46bc8d4acd34b6776259c3e0c1ef6572a91b67546ba2"
+      },
+      {
+        "bytes": 1419,
+        "path": "two_port/two_port_interface.py",
+        "sha256": "a0162894422f7f355554ba30df89ed078bef1bc81a29487dd3caa87448527a61"
+      },
+      {
+        "bytes": 44721,
+        "path": "two_port/two_port_overlap.json",
+        "sha256": "752730943072a094e3ae90fd0eaa5a42f3a065b978b4dc7c2a126641d06e665a"
+      },
+      {
+        "bytes": 5642,
+        "path": "two_port/two_port_overlap.py",
+        "sha256": "a061417fd9deeba9d03883d0ebf5ffc0edc9c2ab63fa254ec269ece9fe844e81"
+      },
+      {
+        "bytes": 10417,
+        "path": "two_port/two_port_overlap_theorem.md",
+        "sha256": "86a80a36ac44ee31fc1be037d6e2699f0d9e883a70b87dafe46f65d631a342d6"
+      },
+      {
+        "bytes": 621,
+        "path": "two_port/two_port_overlap_verified.json",
+        "sha256": "34ee52d3c3e23977704fc7e615be7b57f4aac2115c932071cbd9d02e9fdea12f"
+      },
+      {
+        "bytes": 3327,
+        "path": "two_port/two_port_same_input.json",
+        "sha256": "0a9e808a05a313d5ef9d144ae06c1c777de0c71857c3ed9ede25e26946d8438c"
+      },
+      {
+        "bytes": 3707,
+        "path": "two_port/two_port_same_input.py",
+        "sha256": "477cd7ff5e1419a49695d5171f1d00f807b215bb893f93b09eb2ef436232dd90"
+      },
+      {
+        "bytes": 293,
+        "path": "two_port/two_port_same_input_verified.json",
+        "sha256": "ac963b5f20067f0ccc6d98fa52b28a0fa4383217feb53113830de322eb92fbd5"
+      },
+      {
+        "bytes": 2467,
+        "path": "two_port/unconditional_three_source.py",
+        "sha256": "0598f520eb99d860aa26abf85c863454815cee3b0962d0f5a1b14d0ce598f092"
+      },
+      {
+        "bytes": 4621,
+        "path": "two_port/verify_two_port_overlap.py",
+        "sha256": "7b532643fb3c265228bc1c877ef192ab986b1f81e3bbd119335937d33d1f3aa9"
+      },
+      {
+        "bytes": 2861,
+        "path": "two_port/verify_two_port_same_input.py",
+        "sha256": "92df04caba25b034d6d5211eb442ef1f8888d8ed9040d79fc53202d5fe870055"
+      },
+      {
+        "bytes": 4134,
+        "path": "two_port/verify_whole_head_two_ports.py",
+        "sha256": "84f4fc8c25803b900c54acfa55bd6b355131fddbc5ab1d2843cdadb44be139d0"
+      },
+      {
+        "bytes": 5199,
+        "path": "two_port/verify_whole_head_with_loops.py",
+        "sha256": "fcdd50f4329162b1383eb5f55a025f696d237eac0342ad6f8f219f01f94512ef"
+      },
+      {
+        "bytes": 18780,
+        "path": "two_port/whole_head_two_ports.json",
+        "sha256": "9b37d187ed05bf5e158e64920daa33415fe479c44ad8c74dfa2b47b72e659385"
+      },
+      {
+        "bytes": 3796,
+        "path": "two_port/whole_head_two_ports.py",
+        "sha256": "b29dd09ee3ed661ea012741dfd024ddb276929d9946be9bc98fc69b29e968146"
+      },
+      {
+        "bytes": 413,
+        "path": "two_port/whole_head_two_ports_verified.json",
+        "sha256": "4405faf970ce7a53662b2b9ebb0a98776b2aeaa9ee607a68acfc91c9e96b9652"
+      },
+      {
+        "bytes": 21940,
+        "path": "two_port/whole_head_with_loops.json",
+        "sha256": "77aa27b544bfd532698298d33fd55181c6a8963aedfd4e7530bf4c38ca69c65b"
+      },
+      {
+        "bytes": 6644,
+        "path": "two_port/whole_head_with_loops.py",
+        "sha256": "f3f0a1073b2426f28187ed2ee38de266bc545905303a71ce72914bdcd0de553f"
+      },
+      {
+        "bytes": 7345,
+        "path": "two_port/whole_head_with_loops_theorem.md",
+        "sha256": "efa41f6a51f424f3b8abd286e6a87bc8dcd416feb7846518ea66fc06db121526"
+      },
+      {
+        "bytes": 457,
+        "path": "two_port/whole_head_with_loops_verified.json",
+        "sha256": "0ce42c10a0e676adcc72377488bf1d39cfe6ffbdcb4489d56e2141cfe3fc9d84"
+      },
+      {
+        "bytes": 844,
+        "path": "verify.py",
+        "sha256": "4dab1de959d38a67fb074c5de2455e7a075a5a1cbecdd430094e8b44ef4c703b"
+      }
+    ],
+    "name": "earth_moon_50_v2_905a05096806b877.zip",
+    "sha256": "905a05096806b8778f52e427263ec73aba24b2ff50cb1fd7fad74698dd191a76",
+    "source_url": "https://rstation.ai/api/v1/papers/earth_moon_50/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261017T153251882389Z/earth_moon_50_v2_905a05096806b877.zip"
+  },
+  "tags": [
+    "graph coloring",
+    "list coloring",
+    "graph covers",
+    "polynomial method"
+  ],
+  "title": "Affine list constraints and simultaneous witnesses for G25 cover extensions",
+  "version": 2
+}

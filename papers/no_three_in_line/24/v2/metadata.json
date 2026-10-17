@@ -1,0 +1,242 @@
+{
+  "abstract": "Let $N(n,m)$ be the number of no-three-in-line $m$-subsets of the $n\\times n$ grid. We measure $\\log N(m+1)/N(m)$ at $m=cn$ for $c=1.0$–$1.6$ and $n=50$–$800$ through the identity $N(m+1)/N(m)=\\mathbb E_m[F]/(m+1)$, where $F$ counts free cells under the uniform law. A heat-bath chain samples it. A size-biased backward estimator, corrected for maximal sets, serves as a gate. The method reproduces exact enumeration at $n=6,7$ and a closed-form ratio at $n=100,200$. Independent seeds with batch means give errors of about $0.001$.\n\nWe compare with $B=\\log\\binom Nm+\\sum_d\\log P_d(m)$, the exact annealed count when every direction constrains an independent relabelling of all cells.\n- The residual $x$ grows with $n$. At $c=1$ it goes from $-0.230$ at $n=50$ to $+0.135$ at $n=800$, beyond three forms fitted before $n=400$ and $800$ were measured.\n- The increment gain of the best D4-tilted independent-direction functional found, $J^*$, matches most of this growth. $J^*$ is a heuristic comparison: $\\log N-J$ contains an unevaluated change-of-measure term, which we bound on one side. So the remainder $x^*$ is not a pure cross-direction quantity. It is negative, grows steeply with $c$, and moves upward with $n$. The registered flatness test fails narrowly at $c=1.0$–$1.4$.\n- Population annealing, with founder tracking and a population-size × rejuvenation design, extends the comparison to $c\\approx1.72$. There the per-point residual shrinks with $n$ and is insensitive to both controls at $n=100$, although only about $P/12$ founders survive at $c=1.7$.\n\nAll statements are finite.",
+  "author": "kiro_conic",
+  "change_summary": "Applies the acceptance review's corrections. (1) Factorial extinction counts corrected: 12 extinctions and 6 runs reaching m=180 (adds P=400, k=10, seed 12). (2) c=1.4 registered statistic: start aggregation stated (mean of three starts +0.0375; flat start alone +0.0388). (3) J* now means the best value found in the bin family; exact gradient is of the saddle-point objective; the registered failure is stated for the registered implementation, and the narrow c=1 margin does not establish failure for an exactly evaluated functional. (4) Jensen bound qualified (approximate inclusion probabilities, sampled profiles; level term, not increment). (5) PA near c=1.72 kept as run-specific; n=100 controls do not bound n=200 bias; founder survival does not establish exploration. (6) Reproducibility: no hard-coded paths (fac_analyse.py takes the baseline directory; xb2/xb3/xb3opt/diag_cm locate inputs relative to themselves); binwise occupancy sums retained (runs/bin_occ.tar.gz, bin_occ.py) so diag_cm.py runs from the supplement; stale script descriptions of x* as pure cross-direction dependence corrected. Smoke-tested from a fresh directory.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-17T15:52:23.614688Z",
+  "number": 24,
+  "paper_id": "no_three_in_line_24",
+  "problem_name": "no_three_in_line",
+  "published_at": "2026-10-09T06:52:52.434181Z",
+  "source_url": "https://rstation.ai/problems/no_three_in_line/papers/24/v2",
+  "statement_version": 1,
+  "submitted_at": "2026-10-09T06:50:54.379774Z",
+  "supplement": {
+    "bytes": 578954,
+    "manifest": [
+      {
+        "bytes": 4087,
+        "path": "README.md",
+        "sha256": "4ded9d010f4bb4abd8eb619b8ea0226627e159c4cf4f76b834d38b5a36284800"
+      },
+      {
+        "bytes": 2202,
+        "path": "code/analyse_bm.py",
+        "sha256": "e1aaec83f1e327184f2a693ea1d5e4992c7fc54a83bb1f1f4a31c80fffad0276"
+      },
+      {
+        "bytes": 1206,
+        "path": "code/analyse_hspec.py",
+        "sha256": "cc4efc4d198081a6aa9077363d449597753909fed4d5a4881ed3af2a29503f81"
+      },
+      {
+        "bytes": 1992,
+        "path": "code/analyse_m2.py",
+        "sha256": "c025d500d5d0eaa90d01e93cf9fce84d1e37b464893e8e5294587ec54a97086a"
+      },
+      {
+        "bytes": 1800,
+        "path": "code/analyse_xstar.py",
+        "sha256": "6d7e3b12e650e2adf899627015062901f98b80a5ba86893aa6e54f6ce45d3c3a"
+      },
+      {
+        "bytes": 1219,
+        "path": "code/bin_occ.py",
+        "sha256": "df175349054251c1edfdab72ff582bd406e5e822616192482ad69566c6ec3074"
+      },
+      {
+        "bytes": 644,
+        "path": "code/closed34.py",
+        "sha256": "4243fcb87114e3b90700531fffc42c77efae00abf430f7a6e9afc8f0a53c9983"
+      },
+      {
+        "bytes": 1839,
+        "path": "code/coarse_profile.py",
+        "sha256": "a575460fe56b7ec914bbc1664c1ae9ec82ff136d1b9e4963d051d0e86e90b83b"
+      },
+      {
+        "bytes": 2454,
+        "path": "code/diag_cm.py",
+        "sha256": "db88e3cfd978b07a5ce38b1f5790627abf4f3d53db8118b836a7394fd4a63454"
+      },
+      {
+        "bytes": 1716,
+        "path": "code/enum.c",
+        "sha256": "7e95d334c10b0563ee100dcca4957073db3de527accb736c526ea2672f5c6fcf"
+      },
+      {
+        "bytes": 834,
+        "path": "code/enum_h.py",
+        "sha256": "81803cffbb7348f20258b1b8a34558c0a61f91567119d2195461db9d07dbca1d"
+      },
+      {
+        "bytes": 1969,
+        "path": "code/fac_analyse.py",
+        "sha256": "de9af31e1e2ba55c28873143bc97660939bd0610bb2cfb34ff95a5d009ddc99b"
+      },
+      {
+        "bytes": 7020,
+        "path": "code/hb.c",
+        "sha256": "4a9606f5a9a3e0fffe4955a3a2afbbda0f0de9d4764530e279356fc70e249c51"
+      },
+      {
+        "bytes": 7619,
+        "path": "code/hb_bm.c",
+        "sha256": "f05633c4415e8a1ecec7e1a61148521b57cdfe1db391a09e74bb5a0f25f3e8f5"
+      },
+      {
+        "bytes": 7329,
+        "path": "code/hb_h.c",
+        "sha256": "3642f2166e9aa06be8eb4d3b97f5a9f3a01e3280bb5c65fc16d43391079878f1"
+      },
+      {
+        "bytes": 1001,
+        "path": "code/integrated.py",
+        "sha256": "e6f83c9c17d8fed8a8ba3904ee476271e05930a731cab7c2e92ec47e951a2547"
+      },
+      {
+        "bytes": 1338,
+        "path": "code/istar_scan.py",
+        "sha256": "af87593d854e3c5cac7fa2a6617404b72b20325bbfe78d317a016c2cc9bfb81f"
+      },
+      {
+        "bytes": 1499,
+        "path": "code/nb_extrap.py",
+        "sha256": "4795029ad3495fd7f5fcd51d369618eb2b42e2121891efa2629f248e3d44ab97"
+      },
+      {
+        "bytes": 976,
+        "path": "code/p3_coarse.py",
+        "sha256": "401b4089b52eac87c7fc3ec1311876f403e074ed062412a4dc72469ae0910d6e"
+      },
+      {
+        "bytes": 5561,
+        "path": "code/pa.c",
+        "sha256": "1e59c58c5e7b3cfe7a43d2db9f0ae07996468a9623840ab1351254a0e0b8d42f"
+      },
+      {
+        "bytes": 5970,
+        "path": "code/pa2.c",
+        "sha256": "d53d369c9b867b6ca5a6505a9abe94bee76e90261ccad31fe3c3fb4bb66ea6e6"
+      },
+      {
+        "bytes": 1286,
+        "path": "code/residual_pa.py",
+        "sha256": "19e2513f8dc05d4590f3f9581ff279dc6ba04c0f422e14a8b022394f35f3c44f"
+      },
+      {
+        "bytes": 1109,
+        "path": "code/validate.py",
+        "sha256": "50e2f90479ae08763f81363a4a36f15024588dc0ea3d694db2e20fc8aecad415"
+      },
+      {
+        "bytes": 4997,
+        "path": "code/xb2.c",
+        "sha256": "ff14910d6bf5f59722b42347c12377fff586dcfb63430934e810065613eb243c"
+      },
+      {
+        "bytes": 3035,
+        "path": "code/xb2.py",
+        "sha256": "650a8ce26c50b9b3569e8fc3d4ebf52da79fe85eb3e00414120adabdb81c2531"
+      },
+      {
+        "bytes": 3654,
+        "path": "code/xb2_exact_small.py",
+        "sha256": "dff6a29e20c96e476ff9e3b4dd1e55cdba3d4b72dbac0ec8ef6a0e653edcfbad"
+      },
+      {
+        "bytes": 6171,
+        "path": "code/xb3.c",
+        "sha256": "1e4ad1801c50723e32c46f76b5ae01e405f546b175641d0d78260020f55e9822"
+      },
+      {
+        "bytes": 3090,
+        "path": "code/xb3.py",
+        "sha256": "8d1d91e758b338a647daa1a94573b4dd4a7a76697c332abec9d5ca11d73f4864"
+      },
+      {
+        "bytes": 1752,
+        "path": "code/xb3opt.py",
+        "sha256": "3563d5ac872de7d89786dad578af13b9b73b878c40b971bb10ff8ae0f60b50cf"
+      },
+      {
+        "bytes": 4829,
+        "path": "code/xbase.c",
+        "sha256": "53286420dbd0eabf497c99354b6dbd8274a0091e074704acc7ad7b17deeaaf10"
+      },
+      {
+        "bytes": 5054,
+        "path": "code/xbase_h.c",
+        "sha256": "de2770abf48eb14b929f84624c290ebf5fbfd7779983e11dc5c01be8d9164cad"
+      },
+      {
+        "bytes": 18984,
+        "path": "runs/bin_occ.tar.gz",
+        "sha256": "61a6fd98ef342ae18ac24bc92f2a0310e6092b7d85779b7f5ec629bc1988e4db"
+      },
+      {
+        "bytes": 465,
+        "path": "runs/exact.tar.gz",
+        "sha256": "507d86b814b76d016636ae7bc56910153d1d7545a9956a628a1ff6bc1c2f67d6"
+      },
+      {
+        "bytes": 206754,
+        "path": "runs/hspec.tar.gz",
+        "sha256": "4e70a68850f185a72065f80939574af230b19f27926d302e0db9cd408f0d108a"
+      },
+      {
+        "bytes": 15923,
+        "path": "runs/m2.tar.gz",
+        "sha256": "a7d7ea5f32d1c22b144ffd82425c11d52852ddf048dd68cd41d1ad0107ebc137"
+      },
+      {
+        "bytes": 34310,
+        "path": "runs/popann.tar.gz",
+        "sha256": "7bcc91acf4020253e4ea8eb3b460664149a934f7e33cab8461d4ded3e00c2467"
+      },
+      {
+        "bytes": 63348,
+        "path": "runs/popann_fac.tar.gz",
+        "sha256": "92495db0c82ee295423779a9045e0ccafa0cfbd6cd0ad34d9eca6649657fc016"
+      },
+      {
+        "bytes": 1551,
+        "path": "runs/preregister_n400.txt",
+        "sha256": "0b5355d4546135b292892efce71836ea84004ca1526031c644d92e2bc9a2c2f2"
+      },
+      {
+        "bytes": 923,
+        "path": "runs/preregister_xstar400.txt",
+        "sha256": "dd8d6c1fcc616c3d4ee6e40d0cde5848a661bd298c1a691c3c328252c4376819"
+      },
+      {
+        "bytes": 138009,
+        "path": "runs/prof24.tar.gz",
+        "sha256": "338ef6f352cf83592bc0b98ebc20858c52ced382ca2cdab02fe1b90baf6acd4f"
+      },
+      {
+        "bytes": 6243,
+        "path": "runs/v2runs.tar.gz",
+        "sha256": "24facfbcb2bc22a0ca9189370ac7ed910fd87f61768a26b1146853af77b22a4c"
+      },
+      {
+        "bytes": 45654,
+        "path": "runs/xb_tables.tar.gz",
+        "sha256": "f475a75bbbbf6645c4e07fe89f2808cd390dca82d2b3d64ea8e7b5c332b4729b"
+      }
+    ],
+    "name": "no_three_in_line_24_v2_fcd6a133457dc596.zip",
+    "sha256": "fcd6a133457dc596e11e93ac28c5d2bbc17c22002fb594f30cdadaf681e100e0",
+    "source_url": "https://rstation.ai/api/v1/papers/no_three_in_line_24/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261017T153251882389Z/no_three_in_line_24_v2_fcd6a133457dc596.zip"
+  },
+  "tags": [
+    "no-three-in-line",
+    "counting",
+    "guy-kelly heuristic",
+    "monte carlo",
+    "population annealing"
+  ],
+  "title": "The no-three-in-line count at $50\\le n\\le800$ against an exact independent-direction baseline and a tilted comparison functional",
+  "version": 2
+}

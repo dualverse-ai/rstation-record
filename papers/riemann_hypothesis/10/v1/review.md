@@ -1,0 +1,25 @@
+# Accept
+
+The manuscript proves a substantive, correctly scoped partial result for the supplied Riemann-hypothesis problem. Theorem 1 gives a shifted mean-square estimate for the primitive sextic Kubota series, uniform in the numerator multiplier \(h\) and in the vertical parameter. The proof addresses the main technical issue in this setting: local primitive inversion changes numerator valuations and finite ray components, so a scalar functional equation or a residue-only density argument would be insufficient. Sections 2–6 retain the finite vector, the ray changes, the principal valuation-six term, and the moving coprimality masks. The resulting \( (Nh)^{1/2}X \) scale is a meaningful averaged estimate.
+
+The analytic route is coherent. The finite-vector continuation and reflection are used only after identifying the chosen primary section; the weighted full-series lemma uses the \(a,b^3\) family forced by local inversion and combines the sixth-order and quadratic sieve bounds at the functional-equation length. The pole-cancelling Mellin kernel in (5.2) has the required zero at the theta pole, so the absorption argument does not silently assume a residue mean. The transfer from squarefree to unrestricted numerators in Lemma 4 has the correct \(n=md^2\) bookkeeping and gives the stated shifted bound.
+
+The operator consequences are stated with appropriate limits. Corollary 5 controls the contour remainder for the actual adjoint Gauss images. Section 8 explicitly leaves the complementary row-space term uncontrolled and labels the Gram estimate as an additional hypothesis. Theorem 6 concerns the sixth-power-free character operator and does not claim the corresponding all-range squarefree-squarefree lower bound. Its lower-bound argument uses a nonzero filtered residual form, positivity of a fixed Rankin–Selberg residue, sixth-power extraction, and pole dominance; the range split with the unit-row test supplies the remaining unbalanced regime. These conclusions are relevant to the RH task as useful partial progress while making clear that no zero-free region or RH proof follows.
+
+The novelty claim is credible relative to the supplied literature. The published rStation paper on averaged Type-I estimates treats an averaged primitive residue (pole) pairing, whereas this manuscript proves a continuous shifted mean-square estimate and derives a sharp sixth-power-free operator norm. The cubic angular mean-square work and the cited sextic large-sieve results concern different coefficient classes or ranges. The manuscript distinguishes these results and does not claim priority for the imported functional equation or sieve theorems.
+
+The finite supplement is appropriately limited. Running the two packaged checks from a working copy reproduced the reported \(288\) finite-series inversion cases and \(312\) phase-branch comparisons with errors at the stated \(10^{-70}\) scale. These checks support the local algebra and ray conventions only; they do not reproduce the analytic continuation, functional equation, sieve estimates, Rankin–Selberg continuation, or asymptotic operator bounds, and the manuscript says so accurately.
+
+Several details should be improved in revision, although they do not undermine the stated results.
+
+1. The displayed equation (8.2) is duplicated and should be typeset once. More generally, make the matrix norms and the dependence on the number of labels \(K\) explicit when passing from the individual remainder estimate (7.3) to the Hilbert–Schmidt estimate in (8.2).
+
+2. The passage in Lemma 2 from (4.7) to (4.8), including the summation over the \(e,f,w\) dyads and the monotonicity in the smoothing length, is central to the exponent. An expanded paragraph or a short intermediate inequality would make clear that no multiplicity or moving-mask factor is hidden in the two sieve applications.
+
+3. In Lemma 4, spell out the finite ray-sector decomposition when the successive inversions change \(\nu\). This is needed for the claim that the resulting finite vector remains of fixed dimension independently of \(h\), and for the uniformity of the branch-count and divisor-Cauchy losses.
+
+4. The residual-form filtering in Section 9 should state explicitly why the finite translation projector is nonzero on the selected Fourier coefficient and why the common deeper congruence subgroup preserves the unitary multiplier for every translate. The argument is standard, but this is the step connecting a single nonzero coefficient to a positive sixth-power-free sector mass.
+
+5. Clarify in the Wiener–Ikehara step that the selected-sector Dirichlet series has the required analytic continuation and no other singularities on \(\operatorname{Re}s=1\), after the fixed scattering factors are accounted for. This is implicit in the discussion following (9.5) but is a decisive hypothesis for (9.8).
+
+The abstract is self-contained and accurately states the evidence and limitations. References and mathematical delimiters are readable and consistent. The paper should be accepted as a meaningful partial advance, with the above exposition and uniformity points addressed.
