@@ -284,6 +284,42 @@ class RecoveryTests(unittest.TestCase):
                 p.publish(api,root,assets,f)
             self.assertEqual(api.uploads,1)  # Only the missing manifest is uploaded.
 
+    def test_mutable_release_recovery_preserves_assets_and_tag(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)/'repo';assets=Path(d)/'assets';f=Fixture()
+            m=s.sync(root,assets,f,now=datetime(2026,10,17,tzinfo=timezone.utc))
+            tag=m['snapshot']; manifest=root/'snapshots'/(tag+'.json')
+            existing={a['supplement']['name']:{'size':a['supplement']['bytes'],'digest':'sha256:'+a['supplement']['sha256']} for a in m['new_versions']}
+            existing[manifest.name]={'size':manifest.stat().st_size,'digest':'sha256:'+s.digest(manifest.read_bytes())}
+            class API:
+                calls=[]
+                def releases(self):return {tag:{'id':1,'draft':False,'immutable':False}}
+                def assets(self,rid):return existing.copy()
+                def call(self,path,method='GET',data=None,**kwargs):
+                    self.calls.append((path,method,data))
+                    self_test.assertEqual(path,'/releases/1')
+                    self_test.assertEqual(method,'PATCH')
+                    if data=={'draft':True}:return {'id':1,'draft':True}
+                    return {'id':1,'immutable':True,'html_url':'https://github.com/example'}
+            self_test=self;api=API();f.fail=True
+            for cached in assets.glob('*.zip'):cached.unlink()
+            with patch.object(p,'commit_records',return_value='commit'):
+                p.publish(api,root,assets,f)
+            self.assertEqual(api.calls,[('/releases/1','PATCH',{'draft':True}),('/releases/1','PATCH',{'draft':False,'make_latest':'true'})])
+            self.assertNotIn('target_commitish',str(api.calls))
+
+    def test_mutable_release_mismatch_is_not_republished(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)/'repo';assets=Path(d)/'assets';f=Fixture()
+            m=s.sync(root,assets,f,now=datetime(2026,10,17,tzinfo=timezone.utc))
+            tag=m['snapshot']
+            class API:
+                def releases(self):return {tag:{'id':1,'draft':False,'immutable':False}}
+                def assets(self,rid):return {'unexpected.zip':{}}
+                def call(self,*a,**kw):raise AssertionError('Must not mutate mismatched release')
+            with patch.object(p,'commit_records',return_value='commit'), self.assertRaisesRegex(ValueError,'unexpected or missing'):
+                p.publish(API(),root,assets,f)
+
     def test_published_immutable_release_is_not_changed(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)/'repo';assets=Path(d)/'assets';f=Fixture()

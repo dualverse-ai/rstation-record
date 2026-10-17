@@ -133,13 +133,19 @@ def commit_records(api, root):
     return commit['sha']
 
 
+def existing_asset_matches(existing, name, expected):
+    if name not in existing:
+        return False
+    item = existing[name]
+    if item.get('size') != expected['bytes'] or item.get('digest') != 'sha256:' + expected['sha256']:
+        raise ValueError('Existing attachment does not match snapshot; operator review required')
+    return True
+
+
 def ensure_asset(api, release, existing, name, body, expected):
     if digest(body) != expected['sha256'] or len(body) != expected['bytes']:
         raise ValueError('Local attachment hash mismatch')
-    if name in existing:
-        item = existing[name]
-        if item.get('size') != len(body) or item.get('digest') != 'sha256:' + digest(body):
-            raise ValueError('Existing attachment does not match snapshot; operator review required')
+    if existing_asset_matches(existing, name, expected):
         return
     item = api.call(f'/releases/{release["id"]}/assets?name={urllib.parse.quote(name)}', 'POST', body, raw=True)
     if item.get('state') != 'uploaded' or item.get('size') != len(body) or item.get('digest') != 'sha256:' + digest(body):
@@ -159,9 +165,7 @@ def publish(api, root, asset_dir, client):
         if not re.fullmatch(r'snapshot-\d{8}T\d{12}Z(?:-\d{3,})?', tag):
             raise ValueError('Invalid snapshot tag')
         release = releases.get(tag)
-        if release and not release['draft']:
-            if not release.get('immutable'):
-                raise ValueError('Existing snapshot release is not immutable')
+        if release and not release['draft'] and release.get('immutable'):
             continue
         assets = [v['supplement'] for v in manifest['new_versions'] if v.get('supplement')]
         if len(assets) >= 1000:
@@ -171,11 +175,25 @@ def publish(api, root, asset_dir, client):
                 'body': f'Public papers mirrored from https://rstation.ai.\n\n{len(manifest["new_versions"])} newly recorded accepted versions; {manifest["papers_recorded_total"]} papers and {manifest["versions_recorded_total"]} versions preserved in total.\n\nPublication dates are reported by rStation. This release records the time of this independent snapshot, including any historical backfill.\n\n[Snapshot manifest](https://github.com/{REPOSITORY}/blob/{sha}/snapshots/{tag}.json) · [Browse papers](https://github.com/{REPOSITORY}/tree/{sha}/papers)\n\nSupplements are preserved as received and have not been executed by this archive.',
                 'draft': True, 'prerelease': False})
         existing = api.assets(release['id'])
+        if not release['draft']:
+            # Recover a publication made before the owner enabled immutability.
+            # Verify the complete existing release before changing its draft state;
+            # its tag and all attachment bytes stay unchanged.
+            records = {item['name']: item for item in assets}
+            records[path.name] = file_record(root, path)
+            if set(existing) != set(records):
+                raise ValueError('Published mutable snapshot has unexpected or missing attachments')
+            for name, expected_record in records.items():
+                existing_asset_matches(existing, name, expected_record)
+            print('Republishing the identical verified snapshot to enable immutability: ' + tag, flush=True)
+            release = api.call(f'/releases/{release["id"]}', 'PATCH', {'draft': True})
         for index, item in enumerate(assets, 1):
             if not re.fullmatch(r'[a-z0-9_]+_v[1-9][0-9]*_[a-f0-9]{16}\.zip', item['name']):
                 raise ValueError('Unsafe supplement attachment name')
             if not re.fullmatch(r'[a-f0-9]{64}', item['sha256']):
                 raise ValueError('Invalid supplement fingerprint')
+            if existing_asset_matches(existing, item['name'], item):
+                continue
             file = asset_dir / item['name']
             if file.is_symlink() or not file.resolve().is_relative_to(asset_dir.resolve()):
                 raise ValueError('Supplement escaped the asset directory')
