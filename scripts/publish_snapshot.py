@@ -37,7 +37,7 @@ class GitHub:
         if data is not None:
             headers['Content-Type'] = ('application/json' if path.endswith('.json') else 'application/zip') if raw else 'application/json'
         payload = data if raw else (json_bytes(data) if data is not None else None)
-        for attempt in range(5):
+        for attempt in range(8):
             if method != 'GET':
                 time.sleep(max(0, 1.05 - (time.monotonic() - self.last_mutation)))
                 self.last_mutation = time.monotonic()
@@ -48,8 +48,24 @@ class GitHub:
             except urllib.error.HTTPError as exc:
                 if exc.code == 404 and missing:
                     return None
-                # Never replay a mutation blindly; a rerun reconciles committed state and existing assets.
-                if method != 'GET' or exc.code not in (429, 500, 502, 503, 504) or attempt == 4:
+                # A rate-limit rejection is safe to retry; ambiguous mutation failures
+                # are reconciled from existing records/assets on the next workflow run.
+                message = exc.read(8192).decode('utf-8', errors='replace').lower()
+                limited = exc.code == 429 or (exc.code == 403 and (
+                    exc.headers.get('x-ratelimit-remaining') == '0' or
+                    'rate limit' in message or 'abuse detection' in message))
+                if limited and attempt < 7:
+                    delay = min(3600, 60 * 2 ** attempt)
+                    retry = exc.headers.get('Retry-After', '')
+                    reset = exc.headers.get('x-ratelimit-reset', '')
+                    if retry.isdigit():
+                        delay = max(delay, int(retry))
+                    if exc.headers.get('x-ratelimit-remaining') == '0' and reset.isdigit():
+                        delay = max(delay, float(reset) - time.time() + 1)
+                    print(f'GitHub rate limit: waiting {delay:.0f} seconds before retrying.', flush=True)
+                    time.sleep(delay)
+                    continue
+                if method != 'GET' or exc.code not in (500, 502, 503, 504) or attempt == 7:
                     raise RuntimeError(f'GitHub {method} failed: HTTP {exc.code} (response withheld)') from None
                 time.sleep(2 ** (attempt + 1))
         raise RuntimeError('GitHub retry exhausted')
@@ -155,7 +171,7 @@ def publish(api, root, asset_dir, client):
                 'body': f'Public papers mirrored from https://rstation.ai.\n\n{len(manifest["new_versions"])} newly recorded accepted versions; {manifest["papers_recorded_total"]} papers and {manifest["versions_recorded_total"]} versions preserved in total.\n\nPublication dates are reported by rStation. This release records the time of this independent snapshot, including any historical backfill.\n\n[Snapshot manifest](https://github.com/{REPOSITORY}/blob/{sha}/snapshots/{tag}.json) · [Browse papers](https://github.com/{REPOSITORY}/tree/{sha}/papers)\n\nSupplements are preserved as received and have not been executed by this archive.',
                 'draft': True, 'prerelease': False})
         existing = api.assets(release['id'])
-        for item in assets:
+        for index, item in enumerate(assets, 1):
             if not re.fullmatch(r'[a-z0-9_]+_v[1-9][0-9]*_[a-f0-9]{16}\.zip', item['name']):
                 raise ValueError('Unsafe supplement attachment name')
             if not re.fullmatch(r'[a-f0-9]{64}', item['sha256']):
@@ -170,6 +186,8 @@ def publish(api, root, asset_dir, client):
             body = file.read_bytes()
             validate_supplement(body, item['manifest'], item['name'])
             ensure_asset(api, release, existing, item['name'], body, item)
+            if index % 25 == 0 or index == len(assets):
+                print(f'{tag}: verified {index}/{len(assets)} supplement uploads.', flush=True)
         body = path.read_bytes()
         ensure_asset(api, release, existing, path.name, body, file_record(root, path))
         expected = {a['name'] for a in assets} | {path.name}

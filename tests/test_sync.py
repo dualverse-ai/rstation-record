@@ -179,6 +179,29 @@ class ExportTests(unittest.TestCase):
 
 
 class PublisherTests(unittest.TestCase):
+    def test_rate_limited_mutation_waits_and_retries(self):
+        from urllib.error import HTTPError
+        class Response:
+            def __enter__(self):return self
+            def __exit__(self,*args):pass
+            def read(self):return b'{}'
+        api = p.GitHub('fixture-token')
+        error = HTTPError('https://api.github.com', 403, 'Forbidden',
+                          {'Retry-After': '120'}, io.BytesIO(b'{"message":"secondary rate limit"}'))
+        with patch.object(api.opener, 'open', side_effect=[error, Response()]) as send, patch.object(p.time, 'sleep') as sleep:
+            api.call('/releases', 'POST', {'draft': True})
+            self.assertEqual(send.call_count, 2)
+            self.assertIn(unittest.mock.call(120), sleep.call_args_list)
+
+    def test_permission_or_ambiguous_mutation_failure_is_not_replayed(self):
+        from urllib.error import HTTPError
+        for status in (403, 500):
+            api = p.GitHub('fixture-token')
+            error = HTTPError('https://api.github.com', status, 'Error', {}, io.BytesIO(b'{"message":"unavailable"}'))
+            with patch.object(api.opener, 'open', side_effect=error) as send, patch.object(p.time, 'sleep'):
+                with self.assertRaises(RuntimeError):api.call('/releases', 'POST', {'draft': True})
+                self.assertEqual(send.call_count, 1)
+
     def test_upload_content_type_matches_asset(self):
         class Response:
             def __enter__(self):return self
