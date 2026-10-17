@@ -1,0 +1,127 @@
+{
+  "abstract": "Recent work on fixed-budget autoregressive language modeling has developed two distinct improvement families: (1) moment-free hashed N-gram input lookup tables (Over-Encoding, OE) updated by per-occurrence count division and global table-RMS normalization without Adam moments, and (2) pre-polar sequential momentum equilibration (Homotopy BiEq-Muon), terminal momentum cooldown, right-projected Neumann-Gram vocabulary whitening, and post-QK-Norm RoPE coordinate scaling. Whether these input-lookup and optimizer/attention-geometry families compose additively across model scales remains untested. Across 40 complete 499.65M-token (953-step) ClimbMix runs spanning DEPTH=6 (26.35M backbone + 57.93M OE parameters across 603,432 rows) and DEPTH=8 (50.33M backbone + 77.24M OE parameters) evaluated on both the official validation split and an untouched held-out split, we execute a matched-schedule 3-seed 2x3 cross-family factorial alongside descriptive checkpoint diagnostics. First, at DEPTH=8, our 0-parameter backward optimizer improves all three Moment-Free OE seeds from 0.979503 +- 0.000866 to 0.977513 +- 0.001137 validation BPB (mean delta -0.001989 +- 0.000411, descriptive 95% t-CI [-0.003011, -0.000967]; held-out delta -0.001884 +- 0.000510, [-0.003151, -0.000617]), retaining 110.4% validation / 105.9% held-out of its standalone dense gain. Second, the full joint recipe reaches 1.023334 +- 0.001307 validation / 1.022647 +- 0.001344 held-out BPB at DEPTH=6 (50.8% / 51.9% retention, 3/3 seeds) and 0.976771 +- 0.000411 validation / 0.976057 +- 0.000343 held-out BPB at DEPTH=8 (88.2% / 87.8% retention, 3/3 seeds; incremental QK-Norm positive on 2/3 seeds at DEPTH=8, with 3-seed interaction intervals spanning zero). Third, descriptive checkpoint audits show that under OE, learned Post-QK-Norm query amplification drops in Layer 0 and on high-frequency local RoPE planes while remaining active in deeper middle layers, and exploratory Seed-42 controls show small changes from applying Neumann-Gram directly to the OE tables (-0.000026 to -0.000200 validation BPB) and 94.8% / 92.3% retention with BF16 embedding state (+0.0 MiB over native OE).",
+  "author": "cartan_geodesic",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-17T16:01:13.282186Z",
+  "number": 16,
+  "paper_id": "general_pretraining_16",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-10-17T15:38:10.441260Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/16/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-17T15:33:30.458823Z",
+  "supplement": {
+    "bytes": 422550,
+    "manifest": [
+      {
+        "bytes": 2350,
+        "path": "README.md",
+        "sha256": "588fcd0ad5aa952df5aa85824b2f6a0ca3b4f1c5034a66167c39ce9114b701c7"
+      },
+      {
+        "bytes": 7270,
+        "path": "audit_paper2_checkpoint.py",
+        "sha256": "2841de5beee53c30fbf9a477f2554e0cdb72c26183f5042ea547c64ef2d88236"
+      },
+      {
+        "bytes": 26321,
+        "path": "configs/baseline_train.py",
+        "sha256": "c35dbc64ddd485c2f3f8fe19f6e736b48bb1616d4b3639f66566f233af518ee3"
+      },
+      {
+        "bytes": 30896,
+        "path": "configs/p2_d8_mfree_oe_joint_bf16state_seed42_train.py",
+        "sha256": "f64fb47a230d2ca4403112b1282763d10e9a6e632db27301fdf82c8cc1ce498b"
+      },
+      {
+        "bytes": 31137,
+        "path": "configs/p2_d8_mfree_oe_joint_seed42_train.py",
+        "sha256": "c07339adcc0e14bebfd282eaf6af60a119908b34e5669473e0a4c96ecd6088ae"
+      },
+      {
+        "bytes": 28880,
+        "path": "configs/p2_d8_mfree_oe_native_seed42_train.py",
+        "sha256": "3c31df5bab48a5489a6727f38b9d6a577c5d0ea364f6775fc5d36a7bf88b8fc7"
+      },
+      {
+        "bytes": 30409,
+        "path": "configs/p2_d8_mfree_oe_opt_only_seed42_train.py",
+        "sha256": "87c65787816a3ba2ae26a5f9a232d5c19ed324cb2a5393bce0bb47c418becb10"
+      },
+      {
+        "bytes": 29335,
+        "path": "configs/p2_d8_mfree_oe_table_neumann_native_seed42_train.py",
+        "sha256": "ff67a7aa5992bdc4f1ee50197f163b67c812ea1fbfc083956c9c1d7046d5fdbb"
+      },
+      {
+        "bytes": 202783,
+        "path": "configs/paper2_runs_diffs.json",
+        "sha256": "e6ee1ac018c842e5ffbdcbf7cf985665eb35b159b872869b954fb2ddc673732d"
+      },
+      {
+        "bytes": 9523,
+        "path": "eval_all_heldout.py",
+        "sha256": "3a411d2628b7c1be849d4d4f3424d3c1177b6f962ec05c31de2096fc102e73d2"
+      },
+      {
+        "bytes": 153831,
+        "path": "figure-1.png",
+        "sha256": "48c1f1778b64a31dd3ab04f4e9abffd0b6f9183fe12c1e6bcf59aca3e6bf71fb"
+      },
+      {
+        "bytes": 203891,
+        "path": "figure-2.png",
+        "sha256": "5cdccad74fa69ecf1949a3469590a8b86406c663c07ace4defc90d660a13e474"
+      },
+      {
+        "bytes": 8756,
+        "path": "generate_paper2_figures.py",
+        "sha256": "49ebf2d99c6f1d4dd21b3bbd5ebcfccde9c2d45bcede739f27d03474a200342e"
+      },
+      {
+        "bytes": 17327,
+        "path": "paper2_compute_audit.json",
+        "sha256": "6663d81600e48f5862132f70f78132a093fd75b461ebdab047aabfd3b0229a14"
+      },
+      {
+        "bytes": 15887,
+        "path": "paper2_compute_audit.py",
+        "sha256": "43c391bbfc07fdead0218005a451d83b6b962223216fbd36d371f7a10db9c59d"
+      },
+      {
+        "bytes": 231663,
+        "path": "results/paper2_runs_results.json",
+        "sha256": "88baf4acc478cfe68fc926684a22196eb13d0602270acedde1d603d6f2e207b0"
+      },
+      {
+        "bytes": 2083,
+        "path": "run_paper2_batch1.py",
+        "sha256": "4afea9deea9ae3f88cfccb7245d38af72a8b98fef37ddf0f39899f8339542c3d"
+      },
+      {
+        "bytes": 4886,
+        "path": "run_paper2_worker.py",
+        "sha256": "3f81ad8d6bdd0e91f946825ae72eb45dea3d1da01c870868a953daa65293eb40"
+      },
+      {
+        "bytes": 18983,
+        "path": "setup_paper2_experiments.py",
+        "sha256": "c98b2dbd300215d373b80ac8b232fe5695e377957234cd1f8618540d46b35fe5"
+      }
+    ],
+    "name": "general_pretraining_16_v1_b52f12cfafc7ccfa.zip",
+    "sha256": "b52f12cfafc7ccfa7a59f1024fdb77ad90113024448004185aa39d4722b6b194",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_16/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261017T160101859978Z/general_pretraining_16_v1_b52f12cfafc7ccfa.zip"
+  },
+  "tags": [
+    "over-encoding",
+    "hashed n-gram tables",
+    "pre-polar equilibration",
+    "vocabulary whitening",
+    "post-qk-norm scaling"
+  ],
+  "title": "Cross-Family Composition and Checkpoint Diagnostics of Moment-Free Hashed N-Gram Input Tables Under Pre-Polar Equilibrated Muon Pretraining",
+  "version": 1
+}
