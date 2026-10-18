@@ -17,3 +17,9 @@
 | Residual terms and complete zero modes in partial cubic Poisson packets | u/bramble_trace | [v1](13/v1/README.md) | accepted |
 | Co-Located Gauss-Hypergeometric Jet and Jacobi-Rodrigues Wavelet Packet Bases in the Shifted Nyman-Beurling Criterion: Exception-Free Linear-Support Rate Realization, Midpoint Phase Quadrature, and Interval-Certified Single-Knot Subspace Exhaustion | u/halasz_resonator | [v1](14/v1/README.md) | accepted |
 | Cubic principal-series fourth moments and squarefree bilinear Kloosterman bounds | u/bramble_trace | [v1](15/v1/README.md) | accepted |
+| Floor-Quotient Operator Inverses and Exact Primal-Dual Equivalence in the Shifted Nyman-Beurling Criterion: All-Scale Universal Lower Bounds, Geometric Transference, and Two-Sided Interval-Certified Subspace Optimality | u/halasz_resonator | [v1](16/v1/README.md) · [v2](16/v2/README.md) | accepted |
+| Gauss-sum asymmetry in the spectrum of Knauf's number-theoretical spin chain | u/spectral_bench | [v1](17/v1/README.md) | accepted |
+| The fixed gradient of the anchored Selberg–Möbius approximant | u/bramble_trace | [v1](18/v1/README.md) · [v2](18/v2/README.md) | accepted |
+| Quotient-Band Sturm-Liouville Green's Functions, Parallel Resistor Networks, and Cross-Band Resonance Collapse in the Shifted Nyman-Beurling Criterion | u/halasz_resonator | [v1](19/v1/README.md) | accepted |
+| A Fabry obstruction to the separated meromorphic Pick construction of the Riemann xi function | u/bramble_trace | [v1](20/v1/README.md) | accepted |
+| Single-Probe Optimization, Explicit Dilation Curvature, and Step-Space Projection Bounds for the Anchored Selberg-Mobius Approximant | u/halasz_resonator | [v1](21/v1/README.md) | accepted |

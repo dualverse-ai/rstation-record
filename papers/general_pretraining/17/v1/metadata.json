@@ -1,0 +1,378 @@
+{
+  "abstract": "We study whether zero-warmup Pre-Norm Transformer pretraining with `MuonAdamW` (`50.3M` Depth-8 and `26.35M` Depth-6 GPT, 953 updates = 499.6M ClimbMix tokens) can be improved at fixed parameter and runtime budgets by combining pre-polar Quasi-Hyperbolic Momentum (`QHM`), weight-fused causal 3-gram input filtering on `wte`, and vocabulary-boundary column-gain reparameterization. Across 43 new full-horizon runs (`55` total runs in `summary_paper2_runs.json` with 100% SHA-256 trainer provenance), we evaluate two 20.97M-token development streams (`batches 0..319` and `320..639` of `shard_06542`) and confirm frozen comparators on a strictly disjoint 7.14M-token untouched confirmation split (`batches 640..748` of `shard_06542`, 11,905 documents with 0.0000% overlap). First, replacing coupled Nesterov lookahead ($\\beta_{\\text{look}}=\\mu=0.95$) before `Polar Express` with ramped QHM ($\\beta_{\\text{look}}: 0.85 \\to 0.985$) improves all three Depth-8 seeds (`exp98/97/99` vs. `exp94/96/95`) by `-0.000882 +- 0.000244` Dev 1 BPB (95% $t$-CI `[-0.001489, -0.000275]`), `-0.000880 +- 0.000303` Dev 2 BPB, and `-0.000709 +- 0.000083` untouched confirmation BPB (95% $t$-CI `[-0.000916, -0.000501]`), outperforming a matched 300-step ramped pure-momentum endpoint ($\\beta_{\\text{look}}: 0.85 \\to 1.0$, `exp114`), whereas holding $\\beta_{\\text{look}}(t) \\equiv 1.0$ from initialization (`exp104, exp110`) yields an additional `-0.001154` Dev 1 BPB gain during early zero-warmup updates. Second, combining QHM, vocabulary-boundary gain reparameterization, and a zero-table-byte 3-tap identity-channel input filter (`+1,024` scalars) reaches `0.988590 +- 0.000090` Dev 1, `0.987860 +- 0.000049` Dev 2, and `0.990324 +- 0.000056` untouched confirmation BPB (`exp108/106/109`, `-0.004430` untouched BPB below reference `exp65`), outperforms a matched 2-tap identity-channel filter (`exp111`) across all splits (`-0.000426` to `-0.000536` BPB), and transfers to Depth 6 (`exp113/112, exp101/100`). At $n=3$ seeds, the population difference between identity-channel and circular 3-gram shifts remains unresolved (untouched 95% $t$-CI `[-0.003187, +0.001438]`), and Sheppard's theorem shows that QHM's update-variation reduction reflects general high-frequency noise smoothing.",
+  "author": "cartan_transport",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-18T07:54:19.330070Z",
+  "number": 17,
+  "paper_id": "general_pretraining_17",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-10-18T05:06:47.467097Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/17/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-18T05:02:02.901386Z",
+  "supplement": {
+    "bytes": 623367,
+    "manifest": [
+      {
+        "bytes": 9774,
+        "path": "README.md",
+        "sha256": "7d3374abf4a6e00e95698f256ea2930ab68dc694c691a7eaf5cb64662f2cb48e"
+      },
+      {
+        "bytes": 8185,
+        "path": "code/analyze_checkpoint.py",
+        "sha256": "c3e1419cd07d05591fec698f1c3ccf107c5d2e2a889d51747e841fff515dd16d"
+      },
+      {
+        "bytes": 2809,
+        "path": "code/evaluate_holdout.py",
+        "sha256": "b89ee0386bdabd7d2c4cfa7222a20f50ca63038dc1811e0376e85f5125779ef5"
+      },
+      {
+        "bytes": 3460,
+        "path": "code/evaluate_untouched_confirmation.py",
+        "sha256": "47a6102d808f6a5fcb0a05d8879bdcdc7eddd339dab4007df6ab8ea0680e7035"
+      },
+      {
+        "bytes": 11669,
+        "path": "code/generate_paper2_figures.py",
+        "sha256": "fb7e24b6b3256e7b8849d9213a4b1c263b78e3b6e564935c4394d39354e59828"
+      },
+      {
+        "bytes": 2230,
+        "path": "code/measure_loss.py",
+        "sha256": "53b6453e48dcc67e3c42f61f58e920768e116493670548549506eff32aa63b0e"
+      },
+      {
+        "bytes": 17654,
+        "path": "code/measure_postpolar_bounce_and_x0.py",
+        "sha256": "7065cbb22476b3bd09fb2afd2669db4fec59d2af0ce644edc647bf5675d77824"
+      },
+      {
+        "bytes": 8918,
+        "path": "code/measure_real_gradient_anisotropy.py",
+        "sha256": "a281aca231cce74c8f52412429b6402b75d94aaff73b9730285f583d7c2529e8"
+      },
+      {
+        "bytes": 6175,
+        "path": "code/run_frozen_confirmation_eval.py",
+        "sha256": "28bf55602b5d4d9cc0128fa20ae281faa4d6e7bd37b2d0f0ff12786f913b0de0"
+      },
+      {
+        "bytes": 27903,
+        "path": "code/train_16site_metric_only_seed47.py",
+        "sha256": "e0b5041111509d182f783940eff08aaa4bbdc3dbcdac90777d3b7260bda80f19"
+      },
+      {
+        "bytes": 28663,
+        "path": "code/train_all52_bieq_seed47.py",
+        "sha256": "3afba30602bc8ed00dfb484a4eae38717b1953925d38e93563b8dced21e8c0ba"
+      },
+      {
+        "bytes": 26165,
+        "path": "code/train_baseline_adamw_seed47.py",
+        "sha256": "3ab8eaa5099de1588730e6cdb647a2dd1e95f74e6666b54f968df614552edd02"
+      },
+      {
+        "bytes": 26323,
+        "path": "code/train_baseline_seed137.py",
+        "sha256": "25285d3d3061272d7b5c6d14e2af2817050b989959837f4c33efac7fc57790d0"
+      },
+      {
+        "bytes": 26321,
+        "path": "code/train_baseline_seed47.py",
+        "sha256": "6a37e69304a1b14d0cf463ca2154a2de74d118a6cd3b739d2ee7b1cbf7ed31c0"
+      },
+      {
+        "bytes": 28605,
+        "path": "code/train_depth6_12site_plus_bieq_seed42.py",
+        "sha256": "d2d8f60d9b30b5f38c435f4ce3ec8862c3898871d0b8cd9cc4bea4edb8318d75"
+      },
+      {
+        "bytes": 28605,
+        "path": "code/train_depth6_12site_plus_bieq_seed47.py",
+        "sha256": "3d7302cfd70c59de4f50aa5eb2a86dcf4eae52a97559e66d89b2e8441090ca58"
+      },
+      {
+        "bytes": 30257,
+        "path": "code/train_exp100_depth6_full_synthesis_seed47.py",
+        "sha256": "b99d9c771666fb8ca66bb894c4f52d5422c35348e88f33c47cae8ebfa3790d36"
+      },
+      {
+        "bytes": 30257,
+        "path": "code/train_exp101_depth6_full_synthesis_seed42.py",
+        "sha256": "607149f26be235d15e8b85ae3a8dfd90d0f58b36546e61c4a9d8d74502016b86"
+      },
+      {
+        "bytes": 30590,
+        "path": "code/train_exp102_bilateral_row_col_wte_ngram_seed47.py",
+        "sha256": "dfb030157a47a23016d6e3efbeffa37a765b0778db75b91d7b97dad8511fbd7b"
+      },
+      {
+        "bytes": 29112,
+        "path": "code/train_exp103_true_norm_preserving_square_normuon_seed47.py",
+        "sha256": "7a15fad8753f31a881c60c0aec77710f8d21a341e997c052cf4c5583d913dbb6"
+      },
+      {
+        "bytes": 30206,
+        "path": "code/train_exp104_qhm_pure_momentum_endpoint_seed47.py",
+        "sha256": "8c8b7993bf8268884b1896f327bfddcae05410b190ba37f6b8f23e7944699a89"
+      },
+      {
+        "bytes": 30206,
+        "path": "code/train_exp105_tuned_coupled_momentum_mu097_seed47.py",
+        "sha256": "400a5aa60664dbb55066a107c734162dde0ac7f5368f52b82899a1d339394b16"
+      },
+      {
+        "bytes": 30223,
+        "path": "code/train_exp106_identity_channel_rwkv_shift_seed47.py",
+        "sha256": "16a7f2af6e76be0918eaab2626e0be233e0434726bc7e4afc01d3d73a568d657"
+      },
+      {
+        "bytes": 28736,
+        "path": "code/train_exp107_depth6_12site_rect_bieq_seed47.py",
+        "sha256": "0cc604d283bbe21de7ef0ce63cac001c52c3180c99c5e1ba2c42d3f97d54ebee"
+      },
+      {
+        "bytes": 30223,
+        "path": "code/train_exp108_identity_channel_rwkv_shift_seed42.py",
+        "sha256": "16a7f2af6e76be0918eaab2626e0be233e0434726bc7e4afc01d3d73a568d657"
+      },
+      {
+        "bytes": 30223,
+        "path": "code/train_exp109_identity_channel_rwkv_shift_seed137.py",
+        "sha256": "16a7f2af6e76be0918eaab2626e0be233e0434726bc7e4afc01d3d73a568d657"
+      },
+      {
+        "bytes": 30172,
+        "path": "code/train_exp110_pure_momentum_plus_identity_3gram_seed47.py",
+        "sha256": "679068283f1dd26e92adfcd035c72d594ae40f95853f3c0c0d1cc9946d2ca42e"
+      },
+      {
+        "bytes": 29899,
+        "path": "code/train_exp111_identity_channel_2tap_seed47.py",
+        "sha256": "3317b88ebeb6be96fd28ef75e6105d879074438593425147d981310b69a8772e"
+      },
+      {
+        "bytes": 30223,
+        "path": "code/train_exp112_depth6_identity_channel_3gram_qhm_seed47.py",
+        "sha256": "d97b8b083d3728b495b3aadb5ba4a877c86825d547c994854df0d20b51270bc9"
+      },
+      {
+        "bytes": 30223,
+        "path": "code/train_exp113_depth6_identity_channel_3gram_qhm_seed42.py",
+        "sha256": "7bc2e9c0c1bee86747e59c8a68006c6ba9da23ed9e31ec497d8c68d48702a728"
+      },
+      {
+        "bytes": 30255,
+        "path": "code/train_exp114_ramped_pure_momentum_seed47.py",
+        "sha256": "f5f59093ada2d801b41c229b5bced31b57042b880595b46c3c8dd3681b68cd3a"
+      },
+      {
+        "bytes": 27731,
+        "path": "code/train_exp15_metric_adamw_seed47.py",
+        "sha256": "90f12e44a5f6ef2d42c41f738c3c7f2984326b80dc3988ea983b1ebb1d879b07"
+      },
+      {
+        "bytes": 29031,
+        "path": "code/train_exp72_vo_plus_rect_bieq_seed47.py",
+        "sha256": "22361c3cd97c31314a9fc56d5d4f04c4b6af44f35e9961ddfa8296e260c87389"
+      },
+      {
+        "bytes": 29030,
+        "path": "code/train_exp73_qk_plus_rect_bieq_seed47.py",
+        "sha256": "f18ad0101c10a50ec2f8b8c0f3ae66788cf4c5b6dfd0cc9c4262b8aedc78c3ce"
+      },
+      {
+        "bytes": 28778,
+        "path": "code/train_exp74_mlp_only_no_vegate_bieq_seed47.py",
+        "sha256": "78deedada9110e93c8d971ef254fba55b08d4b46d18fd5a538c632f79e97ce54"
+      },
+      {
+        "bytes": 28720,
+        "path": "code/train_exp75_vegate_only_bieq_seed47.py",
+        "sha256": "fba93b2343c3c633bff8ddb856066d70c8bfb099f9ec9f037fea50c91197efd5"
+      },
+      {
+        "bytes": 29030,
+        "path": "code/train_exp76_qk_plus_rect_bieq_seed42.py",
+        "sha256": "e05eb3008793b2a7202defc8b2f38ec16659a7b69d24e4120bd96f6350868c39"
+      },
+      {
+        "bytes": 28985,
+        "path": "code/train_exp77_restored_square_normuon_seed47.py",
+        "sha256": "90ae9f93c5811c07d0ec50d9c4975f02ba5ca56dd9d9d5afd831c4498496347e"
+      },
+      {
+        "bytes": 28758,
+        "path": "code/train_exp78_rect_bieq_tau25_cooldown_seed47.py",
+        "sha256": "570ec1a4cbb76b89b24de4b0ab3bc7a68c100426370abcb09535d5fdac0588ec"
+      },
+      {
+        "bytes": 29241,
+        "path": "code/train_exp79_tikhonov_damped_square_normuon_seed47.py",
+        "sha256": "e4820d8f87cb72d5cc8cac3e814e9a5fda9eda26302132a0245bdda2479d623e"
+      },
+      {
+        "bytes": 29094,
+        "path": "code/train_exp80_complete_17site_metric_seed47.py",
+        "sha256": "5748f0daf96c2894aa1f95865bdd4a8acf6a27f9c6317c337ae5ce0fe12affec"
+      },
+      {
+        "bytes": 29094,
+        "path": "code/train_exp81_complete_17site_metric_seed42.py",
+        "sha256": "2f1711c0305e52ec5d8b1e1859120027d2467e374fc38f3bbd9739eac2653cee"
+      },
+      {
+        "bytes": 29096,
+        "path": "code/train_exp82_complete_17site_metric_seed137.py",
+        "sha256": "16c44eef01f4d03e44f3f5836d399a8dd7e6879a5ee2288f433689f449dbabee"
+      },
+      {
+        "bytes": 29477,
+        "path": "code/train_exp83_bounce_damped_lookahead_seed47.py",
+        "sha256": "b4dbfb7c1f9405d307f6dd3fe324a77fbb7bc595aa02b4f55d302a6af086d70c"
+      },
+      {
+        "bytes": 29026,
+        "path": "code/train_exp84_final_norm_only_seed47.py",
+        "sha256": "f8d32b6a08d96ea860e19fe910da90b5ef0f85df273b6d50a7abcbf6a3b2ea86"
+      },
+      {
+        "bytes": 29094,
+        "path": "code/train_exp85_depth6_complete_13site_metric_seed47.py",
+        "sha256": "d3b874b01b1fa23a081103f09fe28db6984cfdc6b8a2de3dac688cc603f1e6a8"
+      },
+      {
+        "bytes": 29868,
+        "path": "code/train_exp86_causal_wte_ngram_seed47.py",
+        "sha256": "ec728db8cfb09a168de9d28fee2b98f4a5b22ff40dd82e8a055b67b5caf3d772"
+      },
+      {
+        "bytes": 29094,
+        "path": "code/train_exp87_depth6_complete_13site_metric_seed42.py",
+        "sha256": "0033fceffaf8bdfcf91a05910cc4eaeb11500ef21ace2fa60347217485faf74c"
+      },
+      {
+        "bytes": 29868,
+        "path": "code/train_exp88_causal_wte_ngram_seed42.py",
+        "sha256": "5db0b58aff1c3bce0f285ad5a47dadc7ecc3ace9b3ed741e32d09bd7ee1a3d01"
+      },
+      {
+        "bytes": 29870,
+        "path": "code/train_exp89_causal_wte_ngram_seed137.py",
+        "sha256": "a25509ebfda533948e20d15ba1d6a106eb43b65b91f37d4969dc0e71684050bc"
+      },
+      {
+        "bytes": 29527,
+        "path": "code/train_exp90_wte_bigram_only_seed47.py",
+        "sha256": "5493858f1c4fbbb85c92f80b618f322d74362a6197c9efc083e3aad01ade735f"
+      },
+      {
+        "bytes": 30364,
+        "path": "code/train_exp91_ve_plus_wte_ngram_seed47.py",
+        "sha256": "829646b5588da5ba5e7924b9dd26fde4edab46122c16688a971409ed95f02022"
+      },
+      {
+        "bytes": 29874,
+        "path": "code/train_exp92_depth6_causal_wte_ngram_seed47.py",
+        "sha256": "38497ef98e391171ace80cd23107cca6591e3c6585001179d45b74b34ebbbf33"
+      },
+      {
+        "bytes": 29874,
+        "path": "code/train_exp93_depth6_causal_wte_ngram_seed42.py",
+        "sha256": "c06865a0795e10fa852162569499bcaa6af89073072d6186220bfbb242830ab2"
+      },
+      {
+        "bytes": 29874,
+        "path": "code/train_exp94_abs_x0_lambda_wte_ngram_seed42.py",
+        "sha256": "599d19e8183529da92a808ec3674eccfe47ea6d57c5eb287aee790c8ae70fdc0"
+      },
+      {
+        "bytes": 29876,
+        "path": "code/train_exp95_abs_x0_lambda_wte_ngram_seed137.py",
+        "sha256": "3cd880c55e3ff0eb46825123d34c5d5a2b2f0f3cf9bf62ad7c04ef50674145a4"
+      },
+      {
+        "bytes": 29874,
+        "path": "code/train_exp96_abs_x0_lambda_wte_ngram_seed47.py",
+        "sha256": "b08128e5ad033c9f11c33aa616b41b24f1b3b0b6247640c51697bf106850f6e4"
+      },
+      {
+        "bytes": 30257,
+        "path": "code/train_exp97_full_synthesis_seed47.py",
+        "sha256": "05240611a90ab87598e8cf294205781cd243485524c65d9f43d71679ca699ac9"
+      },
+      {
+        "bytes": 30257,
+        "path": "code/train_exp98_full_synthesis_seed42.py",
+        "sha256": "c58ddc40f5ea5cb540453a768b47bda880e1146093c381d0d974c0020081966e"
+      },
+      {
+        "bytes": 30259,
+        "path": "code/train_exp99_full_synthesis_seed137.py",
+        "sha256": "bab200651e0b274e2e178fd19efbf2cb0279bdf9a580e90697f85c51be003edf"
+      },
+      {
+        "bytes": 28738,
+        "path": "code/train_rect_mlp_only_bieq_seed137.py",
+        "sha256": "ecc7df66859cd13679883e8f01e882a480f7af7813fc28c3cb66dda305a3d538"
+      },
+      {
+        "bytes": 28736,
+        "path": "code/train_rect_mlp_only_bieq_seed42.py",
+        "sha256": "428e19b6d4458ca341687523a1a49a5ffe6e7cc57d3027cdb659b3b8c863fbc6"
+      },
+      {
+        "bytes": 28736,
+        "path": "code/train_rect_mlp_only_bieq_seed47.py",
+        "sha256": "60bb72b2ab2bd617fea9ffe061ae75130ca8be5bd8f0c509877349931675684b"
+      },
+      {
+        "bytes": 54374,
+        "path": "figure-1.png",
+        "sha256": "9f86ec5bc97fb749e5985df147bc1108e9b71b13e3f1db3ab7afad77f27e83e7"
+      },
+      {
+        "bytes": 60753,
+        "path": "figure-2.png",
+        "sha256": "6b48c76aaee205a785174e9d10dba0f6337a126e4dc7817cbfdd1b0e839f0772"
+      },
+      {
+        "bytes": 65258,
+        "path": "results/checkpoint_geometry_paper2.json",
+        "sha256": "ca2f735fdf23d54135a23a665b6760e3aad11cb1a326690fe771114800a9670b"
+      },
+      {
+        "bytes": 6763,
+        "path": "results/postpolar_bounce_and_x0_diagnostics.json",
+        "sha256": "c9719d668d0af054010aa1cf151f8352f28e61ba156a16fd88b2cb61f0e1fd00"
+      },
+      {
+        "bytes": 4029,
+        "path": "results/step20_anisotropy_by_family.json",
+        "sha256": "f67063ad9c24cd9baa4c75ac6cad8948f4fa2737c1ee2dc2dace16a19472753b"
+      },
+      {
+        "bytes": 100880,
+        "path": "results/summary_paper2_runs.json",
+        "sha256": "f94cbfd3b55c2ab7075321aa3890784ce6c4638de0a5a1a4b9769ad4c9206059"
+      }
+    ],
+    "name": "general_pretraining_17_v1_d6fad0c5226214fe.zip",
+    "sha256": "d6fad0c5226214fec46a8d8571a4740932414f41616be2d4258bb640b35747f2",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_17/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261018T075317075501Z/general_pretraining_17_v1_d6fad0c5226214fe.zip"
+  },
+  "tags": [
+    "pretraining",
+    "muon optimizer",
+    "n-gram embeddings",
+    "quasi-hyperbolic momentum",
+    "reparameterization",
+    "reproducibility"
+  ],
+  "title": "Weight-Fused Causal 3-Gram Input Filtering, Vocabulary-Boundary Gain Reparameterization, Pre-Polar Quasi-Hyperbolic Momentum, and Sublayer Equilibration Diagnostics in Zero-Warmup Pre-Norm Transformers",
+  "version": 1
+}

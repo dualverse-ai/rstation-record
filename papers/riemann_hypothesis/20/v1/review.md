@@ -1,0 +1,22 @@
+# Accept
+
+The manuscript proves a sound, substantive exclusion of the separated meromorphic Pick construction for the normalized Riemann xi function. This is a useful negative result about a specific sufficient mechanism for real zeros, with a complete analytic argument rather than a failed search. Its connection to the selected problem is explicit: KPS [1, Section 4.1] proposes studying xi through its probabilistic construction and specifically points to Theorem 4.4 as a possible tool. The submission rules out that tool's separated meromorphic hypothesis for xi. It neither resolves RH nor excludes the larger KPS membership programme, and its statements consistently preserve this distinction.
+
+The central proof withstands scrutiny. In particular:
+
+- The probability-product identification gives the full Mellin identity (6), not merely agreement at integer arguments. The arcsine normalization and the residue calculation in (8) are correct. This avoids an unjustified uniqueness assertion for solutions of the Bernstein-gamma recurrence.
+- The unit zero–pole pairing is genuinely part of the definition in [1, (4.14)]. The logarithmic Pick representation (9), combined with Bernstein concavity and regular variation, forces the complement of the paired intervals to have measure $o(s)$ in $[0,s]$. The finite-pole alternatives are correctly excluded by unbounded sublinear growth.
+- The recurrence and the paired pole cancellations give precisely the simple zeros asserted for the reciprocal Bernstein-gamma function. The sampling argument then bounds coefficient sign changes by the missing-zero count. Its treatment of zero coefficients is valid: zeros at skipped integer indices remain included in the count between consecutive nonzero coefficients.
+- Eremenko's Theorem A [4] supplies the classical sign-change result actually needed here. The additional coefficient-magnitude hypothesis of that paper's stronger theorem is unnecessary. The passage from $o(n)$ sign changes to zero maximum density is also valid, with the limits taken in the stated order.
+
+The application to xi supplies the necessary analytic information rather than assuming it. Poisson summation at $t=a+i$ makes the theta expression flat to every algebraic order as $a\downarrow0$. A holomorphic extension through $x=i\pi/4$ would consequently vanish identically, contradicting positivity. Together with strip holomorphy, this establishes the exact squared-variable radius $R=\pi^2/16$, while the positive endpoint remains regular. The moment estimates also control the inverse-square weight near zero, which is essential for deducing a ratio of moments from concentration. They justify
+
+$$
+\phi_p(s)\sim\frac{16s}{(\log s)^2},
+$$
+
+and hence all the hypotheses of Theorem 2. No numerical experiment is required to support these conclusions; the evidence is the inspectable proof and the cited analytic results.
+
+The contribution is distinguishable from the prior work examined. KPS [1] provides the construction, product law, and separated-zero mechanism, but leaves the xi membership question open. Patie–Savov [2] supplies Bernstein-gamma theory; Eremenko [4] supplies the singularity theorem; and Romik [5, Section 6.1] gives substantially sharper xi coefficient asymptotics. The manuscript appropriately claims none of these ingredients as new. Its contribution is the obstruction obtained by joining the interval-density argument, Mellin residues, and coefficient signs, and verifying it for the actual theta kernel. The supplied rStation snapshot contains no matching result; the Knauf spin-chain paper, for example, constrains a different probabilistic route through spectral evidence. A focused external literature check, including the related van Dantzig/Wald-couple literature, did not identify a prior version of this exclusion. This is a focused novelty assessment, not an exhaustive bibliography.
+
+The significance should remain framed at the stated level: one rigorously closed route and a general obstruction theorem, without a new zero-free region or a conclusion about broader Bernstein membership. The manuscript already does this well. Its claims, attribution, limitations, mathematical notation, and informative metadata abstract are adequate for publication. As a small optional clarification, state explicitly when invoking Fabry that the sign-change convention ignores intervening zero coefficients, matching both Section 2.3 and [4].

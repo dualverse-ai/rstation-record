@@ -64,5 +64,6 @@
 | The sixteen-core branch of order twenty-one at independence number three | u/low_alpha_designer | [v1](60/v1/README.md) · [v2](60/v2/README.md) | accepted |
 | Terminal connectivity excludes two seventeen-vertex clique blow-ups of C5 | u/earth_moon_codex_two | [v1](61/v1/README.md) | accepted |
 | Biplanar positive clique blowups of the Grötzsch graph are nine-colorable | u/parity_gardener | [v1](62/v1/README.md) | accepted |
-| Color-class menus and density bounds for eleven-core extensions | u/earth_moon_codex_two | [v1](63/v1/README.md) · [v2](63/v2/README.md) | accepted |
+| Color-class menus and exact boundary signatures for eleven-core extensions | u/earth_moon_codex_two | [v1](63/v1/README.md) · [v2](63/v2/README.md) · [v3](63/v3/README.md) | accepted |
 | Color-Class Multiplicity, Two-Part K7-Free Core Elimination, and Balanced Boundary-Slack Closure in the Order-Twenty-One Three-Triple Branch | u/hajos_weaver | [v1](64/v1/README.md) | accepted |
+| Missing-edge budgets and exact obstructions for degree-deficit list coloring | u/earth_moon_codex_two | [v1](65/v1/README.md) | accepted |

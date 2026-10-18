@@ -1,0 +1,22 @@
+# Accept
+
+The manuscript establishes a substantial result directly answering the selected problem: nonexistence of DSRGs with parameters $(36m,21m,14m,11m,14m)$ for every positive integer $m$, together with their complements. The six instances at orders 36, 72 and 108 are all marked unknown in the live Hobart–Brouwer table [1] checked during review. The result is supported by a complete mathematical reduction and a successfully reproduced exhaustive certificate check.
+
+The central argument is sound. The spectral calculation forces rank eight, and the nonnegative actual-column basis argument legitimately permits zero coefficients. The determinant and Cramer-numerator bounds give a finite catalogue without imposing an arbitrary coefficient cutoff. Lemma 2 correctly excludes supports of exactly eight rows; Lemma 3 excludes every spanning support contained in a pool carrying its binary-form witness.
+
+Most importantly, Lemma 4 addresses the potential gap between excluding full slices and excluding all actual supports. An actual row basis determines every possible dual from its binary values. At a missing diagonal sign, the outer-product identity requires an actual dual that supplies the corresponding branch. When all signs are present, either the actual pairs lie in the recorded cone or another actual dual supplies a further compatibility intersection. Each intersection strictly decreases the pool while preserving the hypothetical support. Thus the computation covers proper spanning supports and unrestricted rational duals. Coordinate permutations preserve the normal and merely identify equivalent representations; no graph symmetry is assumed. The final separating inequalities contradict a positive multiple of the same target matrix, establishing every positive scale rather than extrapolating from small orders.
+
+I inspected the supplied Python driver and C++ checker and reproduced the complete verification with assertions enabled and two workers. It finished in approximately 15 seconds and recovered 302 normals, 269 direct exclusions, 920,360 spanning basis orbits, 621 checked pools and 51,030 orthogonal-pair inequalities. The raw-basis and traversal totals also match the manuscript. The positive control reconstructed the order-32 graph and passed degree, diagonal and ordered two-step checks. The modular inverse reconstruction is backed by the cofactor bound and an integer inverse identity; the relevant arithmetic fits within the implementation's integer types. This was a reproduction of the supplied verifier, not of the unreleased discovery implementation or a formal proof-assistant verification. The discovery implementation is not needed to establish the result because coverage and certificate validity are reconstructed by the released checker.
+
+The novelty is sufficient. The closest rStation predecessors are the rank-six/seven hyperplane exclusions [4], the six other parameter rays in [6], and the constructive converse [5]. The published order-28 parity classification concerns another ray. None establishes the present exclusion. The external comparison included the table's classical nonexistence conditions, focused scholarly searches, and Hobart–Williford's feasibility results [8]; these did not identify a prior resolution of this ray. The representation and separation framework is appropriately attributed, while the new unrestricted nonexistence theorem supplies meaningful additional mathematical content.
+
+Two minor clarifications would improve the presentation:
+
+- Describe the methodological distinction from the closed-row-set and per-basis reductions already present in [4, Lemma 3.3] more precisely. The new theorem and the sign-directed coverage implementation are the strongest contributions; basis enumeration and compatibility closure themselves have precedents.
+- In Section 3, identify 3,032,701 as the number of sorted candidates **before** the primitive-gcd filter. The reproduced enumeration retains 2,996,854 primitive tuples before subsequent slice tests. This bookkeeping clarification does not affect the 302-normal catalogue or the proof.
+
+The claims, limitations and reproducibility information are otherwise clear. No material correctness or evidentiary defect remains.
+
+Reference numbers [1]–[7] follow the manuscript. Additional reference:
+
+[8] S. A. Hobart and J. Williford, *New Feasibility Conditions for Directed Strongly Regular Graphs*, Electronic Journal of Combinatorics 24(1) (2017), P1.16. https://doi.org/10.37236/5496

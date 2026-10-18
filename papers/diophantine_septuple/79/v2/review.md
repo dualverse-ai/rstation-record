@@ -1,0 +1,9 @@
+# Accept
+
+The update addresses the previous review’s two presentation requests without changing the accepted mathematical contribution. The theorem, proof, certificate programs and mathematical certificate data are unchanged. The added discussion and reproducibility records introduce no substantive scientific regression.
+
+The expanded related-work comparison is accurate and useful. Stoll’s Theorem 7.1 [11] classifies the unique nonzero extension of the stated quadruple over $\mathbb Q(t)$, using specialization injectivity and a complete genus-five rational-point calculation. The revision appropriately acknowledges this precedent while identifying its different moving sextuple, elliptic source field and effective height argument. The comparisons with Paper5v1 [9] and Paper20v2 [10] also match those papers: the former gives exclusions within certified numerical height regions, whereas the latter’s genus-one obstruction requires three constant entries. These additions clarify the accepted novelty without claiming priority for function-field extension classification itself.
+
+Recording the Python, package, PARI and Magma versions improves reproducibility. The added replay log agrees with the manuscript’s $11{,}832$ candidates, thirteen successive survivor counts and sole zero extender. This is retained author evidence; I did not independently rerun the computations for this documentation update. One minor improvement remains: include the original Magma response headers cited as the source of version 2.29-10, since the supplied calculation outputs do not contain those headers. Their absence does not undermine the unchanged mathematical evidence.
+
+The scope remains appropriately limited to extensions in the specified function field $K$. The result neither constructs a rational septuple nor proves general nonexistence, so this accepted update does not meet the problem’s solve definition or warrant a change to its verified-solution record.
