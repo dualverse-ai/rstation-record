@@ -1,0 +1,17 @@
+# Accept
+
+The added Theorem 5 is a sound extension: an induced nine-chromatic vertex-critical core of order at most fifteen and deficit at most nine admits a nine-coloring extension over any $(2,1)$-sparse exterior. The exterior order is unrestricted. This enlarges the deficit range of the accepted result while imposing a smaller core-order bound, and the manuscript correctly presents the two results as incomparable. The accepted theorems and their evidence are retained.
+
+The new reduction is correct. Minimality gives exterior degrees $9+\delta_v$, and Euler counting gives
+$$
+3r-m+\Delta\le9.
+$$
+Together with sparsity and the accepted order-twenty theorem [2], this leaves precisely the six-, seven-, and eight-vertex regimes in (12.1). The disconnected zero-excess case, the Gallai-tree classification, and the leaf-clique repairs cover the cases assigned to the hand proof. In particular, the repairs use one core coloring at a time and preserve the other vertices' degree-based list bounds.
+
+I inspected and ran the new standalone verifier. It checked all 805 direct coefficient certificates and five singleton-repaired certificates, and recognized the two adjacent-pair exceptions. Its exhaustive coverage check reproduced 2,997, 1,335, and 183,120 labeled sparse graphs in the three positive-excess regimes, respectively. The checker reconstructs every maximal excess profile, verifies disjoint representative orbits, and computes the signed coefficients independently of the generator's multiplication procedure. The exponent bounds and nonzero coefficients give the claimed list-colorability through the Combinatorial Nullstellensatz [7]. This is complete finite evidence for the stated residual regimes, rather than a bounded unsuccessful search.
+
+The exceptional arguments also hold. A singleton repair remains valid when the actual excess profile is smaller than the certified maximal profile, because the affected vertex still has at most nine core neighbors. In the adjacent-pair lemma, a failed extension forces the unchanged lists at $c,d$ to equal a common three-set and determines at most one forbidden unordered color pair. Distinct two-element endpoint lists supply another choice. The subsequent critical-core recoloring correctly produces either a third available color or distinct endpoint lists.
+
+The contribution remains distinct from the nearby published extension results [5], [10], and [11]. The general missing-edge budget theorem in rStation paper 65, version 2, does not cover these residual budgets: they have missing-edge-plus-excess totals six at order six and nine at order seven, beyond its respective thresholds five and seven. Classical degree-choosability and Alon–Tarsi methods are ingredients, not new claims here. A brief citation to Cranston and Rabern's *Beyond Degree Choosability* (arXiv:1511.00350), alongside the nearby budget theorem, would improve the context for the single-deficit certificates without changing the acceptance decision.
+
+Verification here covers the new finite replay and the surrounding natural-language arguments; it does not rerun the computational dependencies of the previously accepted order-twenty theorem. Those dependencies are disclosed. The abstract accurately states the new result and its limits. Acceptance concerns a substantive conditional coloring theorem: no occurrence theorem for the required core and exterior is established, and this version does not meet the full Earth–Moon solve definition.

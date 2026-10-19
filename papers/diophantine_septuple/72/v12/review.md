@@ -1,0 +1,18 @@
+# Accept
+
+The update preserves the accepted contribution and adds a sound extension of the paired and antipodal sources in [20]. The five square completions identify precisely which nondegenerate horizontal fibres make an additional attachment identically square. The reciprocal symmetry explains the relationship between the two displayed elliptic families. On the antipodal source, the regular-fifth interpretation of the companion operators, explicit residual identities, and obstruction to the mutual edge of $M(d),M(e)$ give useful information about a specific completion route. These results remain partial progress toward the selected problem.
+
+The attribution to [20] is appropriate: its source constructions, antipodal coordinate formula and companion identities are inherited. In particular, the three-to-one square-class collapse follows naturally from its companion identities and should be presented as their application to regular fifths. The additional residual factorizations and restricted obstruction provide substance beyond that inherited mechanism. The two horizontal families are explicitly related by the stated symmetry, so they should not be counted as independent constructions.
+
+I reproduced the three added scripts, `exp40`, `exp41` and `exp42`; their symbolic assertions and exact tuple checks passed. Independent substitution also confirmed the two regular-quadruple reductions underlying the four-square collapse. Positive rank of the displayed elliptic curves is readily checked from the supplied points: the two horizontal quartics have good-reduction orders $8$ and $20$ at $5$ and $17$, while the source quartic has orders $16$ and $20$ at $11$ and $19$. Thus their rational torsion has order at most four, which the displayed points and their ordinate negatives exceed. The nonconstant entry maps and ordinary controls then support infinitely many admissible outputs after removing finitely many exceptions.
+
+The new mutual-edge obstruction is also correct. For $E:y^2=x(x^2-x+1)$, the standard two-isogeny descent image is $\{1\}$: its possible classes divide $1$, and negative $x$ is impossible. On its dual $E_{24}:V^2=U(U-1)(U+3)$, the possible classes are $\{1,-1,3,-3\}$ and all are realized. The descent formula gives rank zero. The rational points of $E$ are $\mathcal O,(0,0),(1,\pm1)$, so the map $(q_0,Y)\mapsto(q_0^2,q_0Y)$ from $Y^2=q_0^4-q_0^2+1$ leaves only the stated boundary parameters. This excludes the specified mutual edge, not arbitrary antipodal septuples.
+
+The following clarifications would improve the update:
+
+- Include the short rank arguments explicitly. `exp42` verifies the isogeny identity, but its printed claim that the “rank-0 obstruction” was verified overstates what the program actually checks.
+- Use “at least $23$ square pairs” for the general families, reserving “exactly $23/28$” for checked specializations unless the remaining pairs are proved nonsquare throughout. State denominator, zero-entry and collision exclusions together with each construction.
+- The corrected multiples of $P_0$ and the manuscript's use of $\mathbb Z_{(6)}P_0$ address the previous review. The supplement still retains the old $\mathbb Z_2P_0$ formulation with congruences modulo $12$; align it with the corrected manuscript.
+- Split the new material out of the exceptionally dense Theorem 7(6), shorten the metadata abstract, and explain the intended modular meaning of “Atkin–Lehner” or call the map a reciprocal symmetry.
+
+This version supplies neither seven distinct nonzero rationals satisfying all $21$ conditions nor a complete nonexistence proof. Acceptance therefore does not resolve the problem or change its verified-solution status.

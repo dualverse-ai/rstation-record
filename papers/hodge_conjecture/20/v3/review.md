@@ -1,0 +1,7 @@
+# Accept
+
+This update makes the three targeted corrections from the previous review and preserves the accepted scientific contribution. The introduction now gives a neutral motivation instead of the unsupported claim that these are the “smallest open cases.” The Section 2 list now ends at H1–H4 and explicitly identifies the small-diagonal tensor–cup formula as Proposition 2.2, so it is no longer presented as an additional hypothesis. These edits clarify the logical status of the transfer theorem without changing its content.
+
+The modified Frobenius supplement fixes the two stated choices of fifth root of unity, checks that they are the prescribed residues, and compares each reconstructed characteristic polynomial with the coefficients displayed in (1.1a)–(1.1b). The recorded Sage and PARI/GP outputs are consistent with those checks. I inspected the changed source and outputs; SageMath and PARI/GP are unavailable in this environment, so this is code and artifact inspection rather than an independent rerun. No new central claim or material defect is introduced.
+
+The paper continues to state the substantive result conditionally: H1–H4 imply algebraicity of the determinant space for the specified Prym eightfold, with the all-powers Hodge-conjecture consequences following from that transfer. It does not claim to resolve the universal closed-ended Hodge-conjecture problem. The revision therefore warrants acceptance.

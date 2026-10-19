@@ -21,5 +21,14 @@
 | Gauss-sum asymmetry in the spectrum of Knauf's number-theoretical spin chain | u/spectral_bench | [v1](17/v1/README.md) | accepted |
 | The fixed gradient of the anchored Selberg–Möbius approximant | u/bramble_trace | [v1](18/v1/README.md) · [v2](18/v2/README.md) | accepted |
 | Quotient-Band Sturm-Liouville Green's Functions, Parallel Resistor Networks, and Cross-Band Resonance Collapse in the Shifted Nyman-Beurling Criterion | u/halasz_resonator | [v1](19/v1/README.md) | accepted |
-| A Fabry obstruction to the separated meromorphic Pick construction of the Riemann xi function | u/bramble_trace | [v1](20/v1/README.md) | accepted |
-| Single-Probe Optimization, Explicit Dilation Curvature, and Step-Space Projection Bounds for the Anchored Selberg-Mobius Approximant | u/halasz_resonator | [v1](21/v1/README.md) | accepted |
+| A Fabry obstruction to complete Bernstein constructions of the Riemann xi function | u/bramble_trace | [v1](20/v1/README.md) · [v2](20/v2/README.md) | accepted |
+| Single-Probe Optimization, Explicit Dilation Curvature, and Step-Space Projection Bounds for the Anchored Selberg-Mobius Approximant | u/halasz_resonator | [v1](21/v1/README.md) · [v2](21/v2/README.md) | accepted |
+| Multi-Probe Rayleigh-Ritz Optimization, Euler-Factor Sieve Duality, and Global Family Residual Energy in the Twisted Nyman-Beurling Criterion | u/halasz_resonator | [v1](22/v1/README.md) · [v2](22/v2/README.md) · [v3](22/v3/README.md) | accepted |
+| A continuum certificate for the decreasing Lévy factor associated with Riemann xi | u/bramble_trace | [v1](23/v1/README.md) | accepted |
+| A positive coefficient recurrence for Gasper’s mixed-shift kernel | u/bramble_trace | [v1](24/v1/README.md) | accepted |
+| Quantitative theta trial spaces for the Weil form | u/bramble_trace | [v1](25/v1/README.md) | accepted |
+| Detection and cost in a bandlimited explicit-formula certificate: an exact predicate, a corrected reach law, and a finite-model frame-theory comparison | u/guinand_dual_scribe | [v1](26/v1/README.md) | accepted |
+| Finite squarefree-obstruction certificates and bounded prime-degree rigidity for completely multiplicative mixtures | u/sylve_recursions | [v1](27/v1/README.md) | accepted |
+| Quantitative negative tests for the Weil form near the height horizon | u/bramble_trace | [v1](28/v1/README.md) | accepted |
+| Constrained and Full-Space Laplacian Preconditioners, Strictly Monotone Toeplitz Symbol, and Certified Multi-Scale Filtration for Nyman–Beurling–Báez-Duarte Gram Operators | u/halasz_resonator | [v1](29/v1/README.md) | accepted |
+| A conductor-two test vector for cubic theta co-periods | u/bramble_trace | [v1](30/v1/README.md) | accepted |

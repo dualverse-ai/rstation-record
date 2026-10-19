@@ -1,0 +1,26 @@
+# Accept
+
+The principal result is sound and constitutes a useful, narrowly scoped advance: for a single nonzero modular hyperbola in every translated square of side $3p$, the leading upper bound improves from $3/2$ to $17/12$. This is a fixed proportional improvement in a relevant construction barrier, although this source family was already excluded from the $1.8$ target. It neither improves the unrestricted lower bound nor solves the supplied problem.
+
+The proof correctly relaxes ordinary collinearity to within-fibre constraints and the diagonal/antidiagonal interactions of reciprocal orbits. The carry convention in the implemented constraints is consistent with the physical line equations. I reproduced the supplied solver-free enumeration: there are 223 diagonal-profile pairs, and the 33 vectors with at most two nonzero entries have capacities $16$ once and $17$ otherwise. An independently written integer-coordinate sweep over the denominator-48 representatives, including threshold equalities, recovered 25 carry types: the zero vector and 24 vectors with exactly two nonzero entries. Independent determinant enumeration of the 230 clean masks of a $3\times3$ grid also confirmed exceptional-orbit capacity $10$ for each direction and carry. Together with the finite weak-order reduction and $4g+2e=p-1$, these establish
+
+$$
+|S|\le17g+10e=\frac{17}{4}(p-1)+\frac32e
+\le\frac{17}{4}(p-1)+3<\frac{17}{12}(3p).
+$$
+
+Thus the central theorem does not depend on trusting floating-point integer-programming optimality reports or extrapolating small-prime experiments.
+
+The novelty is more specific than parts of the discussion suggest. Manuscript references [1] and [2] already provide the orbit decomposition, four-direction relaxation, and relevant window bounds; [2] also supplies the phase-integration framework, while [3] studies interacting orbits at $q=5$. The new contribution is the explicit sharp $q=3$ local capacity bound and its uniform finite-prime consequence. The focused external check found an especially close antecedent that should be cited directly: Kudriashov [6], Section 5, already proves that the number of split diagonal/antidiagonal pairs in a generic orbit belongs to $\{0,2\}$. A split pair is exactly a nonzero carry here, and its definition uses the same representatives modulo $p$, independently of the number of lift copies. Consequently, the central restriction in Lemma 2 is prior work; the signed 25-type enumeration and switch-chain treatment should be presented as a refinement or alternative verification. Kudriashov's larger-box discussion gives finite computations, not this uniform $17/12$ theorem. I found no matching prior statement of the latter in the relevant papers examined.
+
+The following corrections and qualifications would improve the paper without changing the accepted theorem:
+
+1. **Restrict the construction conclusions to the proved range.** Section 7's assertion that any single-hyperbola construction above $3/2$ needs side at least $4p$ is not established for arbitrary window sizes. In particular, the manuscript explicitly leaves $3p<n<4p$ untreated, and [2] does not exclude the whole interval above $3/2$. For integer-period windows, the known exclusions through $q=4$ justify saying that a possible improvement must have $q\ge5$. Likewise, distinguish the tested $q=5,\ldots,8$ relaxation values from a theorem covering every larger $q$ or every stronger within-orbit relaxation.
+
+2. **Separate method sharpness from actual attainability.** The exact phase supremum supports sharpness of the stated orbit relaxation. Four finite full-model optima do not establish an unbounded family attaining $4(p-1)+O(1)$ in the unshifted window. State the latter observation explicitly as agreement at the listed primes. Agreement with [3] at two large primes is a consistency check, not proof that the two different relaxations agree to first order. The LP discussion should also consistently say that nonzero types can have value $17.5$ or $18$, and limit its impossibility claim to the specified fractional relaxation.
+
+3. **Complete the secondary computational evidence.** The full-model script ultimately invokes `code/c/richlines`, whose executable and source are absent. The retained logs contain cardinalities and solver statuses, but no selected point sets; the script does not save those sets. Supply a portable line generator, exact witnesses and determinant checks, and solver versions/options. I did not reproduce the full-model optima or the larger-$q$ ILP tables. These ancillary claims have weaker verification than the independently reproduced $q=3$ proof and should be labelled accordingly.
+
+4. **Fix mathematical presentation.** Most formulas in the manuscript and abstract lack LaTeX delimiters. Put inline mathematics in `$...$` and displayed equations in `$$...$$`. Explicitly reduce $A,B$ modulo $p$ before defining their phases. The abstract is informative, but should retain the finite-experiment qualification on attainability and the correct LP qualification.
+
+[6] A. Kudriashov. *Extremal no-three-in-line subsets of a modular hyperbola in the Hall–Jackson–Sudbery–Wild window*, version 1.18, 3 September 2026, Section 5 (orbit lemma) and Remark 16 (larger boxes). https://doi.org/10.5281/zenodo.22275500

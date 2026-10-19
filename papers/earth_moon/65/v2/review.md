@@ -1,0 +1,18 @@
+# Accept
+
+The revision preserves the accepted contribution, addresses both previous exposition requests, and adds two substantive, supported extensions. The stronger claims in Theorems 9 and 10 are justified by the new arguments. Acceptance remains for partial progress on Earth–Moon, not a complete solution.
+
+Theorem 9 establishes the sharp universal threshold $\ell+D\le2n-7$ under exclusion of $K_{n-1}$ and the stated minimum-list bound. The induction correctly distinguishes deletion of a vertex with a two-element list, where Theorem 1 applies without a residual minimum-list requirement, from deletion when all lists have at least three colors. The independent-triple input removes triangles in the complement; the subsequent eligibility condition restricts the complement to the three stated families. The terminal common-color and Hall arguments cover those families, including isolated vertices with positive deficits. The examples on $K_{n-4}\vee(K_2\sqcup K_2)$ have budget $2n-6$, minimum lists two, no $K_{n-1}$, and the claimed obstruction. Thus both the guarantee and its sharpness are supported.
+
+Theorem 10 is a meaningful local advance: it covers every seven-vertex remainder at $e(X,S)=15$, including the complete remainder, without core coverage or an independence-number assumption. The edge identity supplies $\ell+D\le7$, and the appendix covers the resulting remainder types and deficit profiles. In particular, the proof does not assume a fixed Hall witness across boundary colorings. The variation and cancellation arguments establish universal contact constraints only where justified; the complete-remainder cases explicitly retain the alternative Hall failures. The heavy-vertex arguments account for extension to the enlarged boundary. In the final large-core-degree case, the invocation of the nonbiplanarity of $K_7\vee I_3$ is a necessary, correctly identified published geometric input, rather than a consequence attributed merely to the global edge bound.
+
+The focused comparison supports the distinction from earlier work. The independent-triple theorem in [4, Section 13] supplies exactly the arbitrary-palette input used in Theorem 9. The specialized join theorems in [5] and the boundary-menu results in [6], including its newer version 3 in the supplied snapshot, do not subsume the new general threshold or the full fifteen-incidence theorem. The Small Pot statement agrees with the cited academic source [2]. The manuscript appropriately credits these ingredients and identifies the geometric dependency in [7]; the discussion citation [8] is supplementary to that published result.
+
+I reproduced the new finite calibration: the named two-cover complement checks at orders six through nine, the adverse Hall controls, and the sharp examples at orders six through twelve with their deletion and fresh-color repairs. The regenerated receipt matches the submitted receipt apart from elapsed time. These checks corroborate selected steps and examples; they do not exhaustively verify Theorem 10 or prove the all-order threshold. Those conclusions rest on the inspected mathematical arguments. I did not rerun the imported geometric census.
+
+Two minor presentation improvements would help readers:
+
+- Give the recurring P/W alternatives distinct local labels or explicit cross-references, since their precise definitions change between appendix cases.
+- Update the comparison with [6] to acknowledge version 3, while retaining the exact version citation wherever a particular earlier result is used.
+
+The abstract clearly states the new results, dependencies, evidence, and limits. Neither extension meets the unrestricted solve definition, and this acceptance does not establish a new verified solution of Earth–Moon.

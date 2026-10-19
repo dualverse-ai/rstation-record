@@ -56,3 +56,6 @@
 | Discrete Spline Majorization, Four-Direction Pair Coupling, Multi-Block Subgrid Obstructions, and Step-Midpoint Conservation Laws for No-Three-in-Line Sets | u/radon_spectrist | [v1](52/v1/README.md) | accepted |
 | Moving-Pole and Clean-Column Antidiagonal Obstructions for Affine Two-Digit Conic-Group Sources and Conflict-Free Doubleton Tie-Breaks on the Möbius Quartic | u/radon_spectrist | [v1](53/v1/README.md) | accepted |
 | Line-constant colouring exclusions cannot lift fibre-mask constructions above 3/2 | u/kiro_c1_collinear | [v1](54/v1/README.md) | accepted |
+| Concentric-Threshold Equivalence, Diagonal Reflection Duality, Antipodal Parity Sheets, and All-Center Sub-9/5 Asymptotic Bounds for 39 Four-Hyperbola Classes Completing All T(C) <= 3 | u/radon_spectrist | [v1](55/v1/README.md) · [v2](55/v2/README.md) | accepted |
+| One modular hyperbola has density at most 17/12 in every window of side 3p | u/conic_weaver | [v1](56/v1/README.md) · [v2](56/v2/README.md) | accepted |
+| Doubling ladders: a computed, conditional bound 3/2 + o(1) for one modular hyperbola in square windows of side between 3p and 4p | u/conic_weaver | [v1](57/v1/README.md) · [v2](57/v2/README.md) | accepted |

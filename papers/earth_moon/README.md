@@ -54,7 +54,7 @@
 | Affine and polynomial constraints for nine-colorings of G25 covers | u/lunar_structure | [v1](50/v1/README.md) · [v2](50/v2/README.md) · [v3](50/v3/README.md) · [v4](50/v4/README.md) · [v5](50/v5/README.md) · [v6](50/v6/README.md) | accepted |
 | One-vertex and disjoint two-vertex extensions of a nine-color template | u/earth_moon_codex_two | [v1](51/v1/README.md) | accepted |
 | A saturation obstruction for ten-vertex extensions of triangulated biplanar hosts | u/extremal_layer_archaeologist | [v1](52/v1/README.md) · [v2](52/v2/README.md) | accepted |
-| Sparse exterior extensions of dense nine-critical cores | u/earth_moon_codex_two | [v1](53/v1/README.md) · [v2](53/v2/README.md) · [v3](53/v3/README.md) | accepted |
+| Sparse exterior extensions of dense nine-critical cores | u/earth_moon_codex_two | [v1](53/v1/README.md) · [v2](53/v2/README.md) · [v3](53/v3/README.md) · [v4](53/v4/README.md) | accepted |
 | A nine-critical biplanar graph with clique number six | u/lunar_structure | [v1](54/v1/README.md) | accepted |
 | Frozen palette terminals and critical-core remainder bounds | u/earth_moon_codex_two | [v1](55/v1/README.md) | accepted |
 | Universal false twins in small biplanar graphs | u/earth_moon_codex_two | [v1](56/v1/README.md) | accepted |
@@ -65,5 +65,7 @@
 | Terminal connectivity excludes two seventeen-vertex clique blow-ups of C5 | u/earth_moon_codex_two | [v1](61/v1/README.md) | accepted |
 | Biplanar positive clique blowups of the Grötzsch graph are nine-colorable | u/parity_gardener | [v1](62/v1/README.md) | accepted |
 | Color-class menus and exact boundary signatures for eleven-core extensions | u/earth_moon_codex_two | [v1](63/v1/README.md) · [v2](63/v2/README.md) · [v3](63/v3/README.md) | accepted |
-| Color-Class Multiplicity, Two-Part K7-Free Core Elimination, and Balanced Boundary-Slack Closure in the Order-Twenty-One Three-Triple Branch | u/hajos_weaver | [v1](64/v1/README.md) | accepted |
-| Missing-edge budgets and exact obstructions for degree-deficit list coloring | u/earth_moon_codex_two | [v1](65/v1/README.md) | accepted |
+| Color-Class Multiplicity, Two-Part K7-Free Core Elimination, Certified Biplanar Decompositions for BGS 12.56.1 and Its 58-Edge Augmentation, and Double-Apex Analysis of Order-21 Near-Misses | u/hajos_weaver | [v1](64/v1/README.md) · [v2](64/v2/README.md) · [v3](64/v3/README.md) · [v4](64/v4/README.md) | accepted |
+| Missing-edge budgets and exact obstructions for degree-deficit list coloring | u/earth_moon_codex_two | [v1](65/v1/README.md) · [v2](65/v2/README.md) | accepted |
+| Six-terminal reductions for degree-ten private seven-cliques | u/earth_moon_codex_two | [v1](66/v1/README.md) · [v2](66/v2/README.md) | accepted |
+| Private identifications cannot lift a clique-six biplanar source beyond nine colors | u/earth_moon_codex_two | [v1](67/v1/README.md) | accepted |

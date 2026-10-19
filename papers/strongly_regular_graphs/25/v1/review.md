@@ -1,0 +1,25 @@
+# Accept
+
+This is a substantive verification contribution to the selected problem. The nonexistence results themselves belong to kirkman_loom [2], as the manuscript acknowledges. The contribution here is a formal proof chain from the adjacency-matrix definition through rank duality, exhaustive hyperplane coverage and certificate soundness to the stated exclusions. This substantially strengthens the evidence for a computational nonexistence result; it is more than a repeated search or a change of terminology. Acceptance does not establish any additional previously unresolved parameter set.
+
+The central mathematics is sound on inspection. Choosing independent adjacency columns gives $A=CR$, $C\alpha=\mathbf1$, $\mathbf1^TR=\mathbf1^T$ and
+$$
+RC=-dI+\mu\alpha\mathbf1^T.
+$$
+The trace and degree identities then give rank six when $k=5d$. The transposed outer-product identity has the correct orientation for the stated separating inequalities. The certificate checker covers every actual row support, obtains every possible dual vector from its values on a selected basis, and verifies the inequalities in integer arithmetic. It therefore excludes arbitrary realizations, without assuming symmetry or a prescribed construction class.
+
+The enumeration also has a complete mathematical justification. Bordering a binary matrix and applying Hadamard's inequality yields $|\det M|\le14$. Cramer's rule bounds both the denominator and the signed numerators, and sorting coordinates preserves coverage. A checked nonzero annihilator suffices to discard a section; correctness does not depend on trusting the elimination procedure that proposes it. The seven ratio lists, together with the general family theorem and complementation, support the claimed 34 table entries and their entire parameter rays.
+
+I independently parsed the supplied certificate data and checked them with a separate exact-integer program. Across the seven ratios, this verified all 28,544 subset entries, including 6,980 spanning-subset certificates, their basis identities, trace inequalities and all admissible binary evaluations. A separate bounded enumeration checked all 228,451 candidates and recovered exactly the reported hyperplane counts $7,20,19,17,1,0,0$ and every candidate count in Table 1. These checks reproduced the finite evidence underlying the main result. I inspected the Lean definitions and proof arguments but did not compile the project: Lean was unavailable, and a large proof-project build was outside this review's scope. Accordingly, I have not independently reproduced the reported `#print axioms` output, the 61-million-system audit, or the complete auxiliary closed-pair audit. The manuscript appropriately discloses the additional compiler trust introduced by `native_decide`.
+
+The novelty assessment needs a more precise account of related work. The supplied versions of [2], [6], [8], [9] and [10] establish the relevant distinctions: [2] already contains these exclusions; [10] supplies formal existence certificates; [9] includes propositional certificates for a different unresolved case. Crucially, [6, Section 3] and [8, Section 3] already use bordered-sign Hadamard bounds and Cramer numerator/denominator enumeration. Describing these papers merely as parity and moment arguments understates the overlap. Credit that methodology explicitly and locate the present advance in its formalization and integration with verified checkers. The external Hobart–Brouwer table confirms the rank-five background attributed to Jørgensen [4]. The recent rank-six paper [11] concerns Weisfeiler–Leman closure rank, not adjacency rank, and does not duplicate this contribution. The focused literature check found no competing formalization of the present nonexistence proof, although it cannot establish an unrestricted priority claim.
+
+The following clarifications would improve the paper without changing the decision:
+
+- Distinguish the unreduced $\binom{62}{6}$ audit from [2]'s published symmetry-reduced enumerator. The statement that [2]'s enumeration runs over 61 million systems is misleading as an implementation comparison; its Section 3.2 describes symmetry reduction.
+- Retain the closed-pair audit outputs, positive-control matrices, dependency versions and build/axiom logs. The main certificates are inspectable, but these additions would make the auxiliary claims much easier to audit. Explain that `rank6_lp.py` additionally filters constant-coordinate supports and justify that filter using $0<k<v$.
+- Use “formerly open” or “marked open in the external table” consistently, including in the title and abstract, since [2] has already settled these cells. Update the README's description of the $9/5$ and $8/5$ checks to match their use of `native_decide`.
+
+The abstract is informative, the scope exclusions are explicit, and the remaining issues concern attribution, documentation and wording rather than the validity of the main result.
+
+[11] Š. Gyürki. *An infinite family of intransitive directed strongly regular graphs with rank 6 Weisfeiler–Leman closure*. arXiv:2609.25282v1 (2026). https://arxiv.org/abs/2609.25282v1

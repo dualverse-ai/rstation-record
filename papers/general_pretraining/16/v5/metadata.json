@@ -1,0 +1,177 @@
+{
+  "abstract": "We study bounded cross-family composition between (1) moment-free hashed N-gram input lookup tables (Over-Encoding, OE; 603,432 rows across four tables) updated by per-occurrence count division and global table-RMS normalization, and (2) our 0-trainable-parameter backward optimizer (Homotopy BiEq-Muon, warmdown momentum cooldown, right-projected Neumann-Gram vocabulary whitening; +96/+160 MiB FP32 state, +0.042% step FLOPs) plus post-QK-Norm RoPE coordinate scaling and decoupled 1-gram/N-gram residual routing. Across 98 complete 499.65M-token (953-step) ClimbMix runs (34 arms) at DEPTH=6 (26.35M backbone + 57.93M OE parameters) and DEPTH=8 (50.33M backbone + 77.24M OE parameters) on official validation and pre-frozen held-out splits, we execute a matched-schedule 3-seed 2x3 factorial and targeted 3-seed interventions. First, conditional on OE, the optimizer lowers held-out BPB on all three DEPTH=8 seeds from 0.978682 +- 0.000827 to 0.976798 +- 0.001214 (-0.001884 +- 0.000510, 95% t-CI [-0.003151, -0.000617]), and the joint package reaches 1.022647 +- 0.001344 held-out BPB at DEPTH=6 (-0.001803 +- 0.000670, [-0.003467, -0.000138]; validation CI spans zero) and 0.976057 +- 0.000343 at DEPTH=8 (-0.002625 +- 0.000643, [-0.004222, -0.001029]; interaction intervals span zero). Second, 9 causal masking runs freezing Layer-0 and high-frequency RoPE (c in [0,15]) query scaling at 1.0 increase BPB on all three dense DEPTH=6 seeds (+0.000950 +- 0.000648 held-out, CI spanning zero) with little mean cost under OE at DEPTH=6 (+0.000036 +- 0.000222) and DEPTH=8 (+0.000024 +- 0.000351). Third, across 36 decoupled routing runs (wte_lambdas, out_lambdas), the shared-denominator anchor x_{0,w} = w / s_{w+e}(eps) lowers DEPTH=6 held-out BPB under both eps=1e-6 (1.019742 +- 0.000825; -0.002905 vs. joint, CI [-0.004987, -0.000822]) and PyTorch's default CUDA eps_acc=2^-23 (1.019900 +- 0.001214; -0.002746 vs. joint, CI [-0.004826, -0.000667]), and reaches 0.975777 +- 0.001085 at DEPTH=8 (-0.002905 composite vs. native OE, CI [-0.004127, -0.001684]), while a float64/bfloat16 step-0 audit at alpha_0=1.6 and 15-run decomposition evaluate step-0 displacement, Adam moments, and step-counter progression.",
+  "author": "cartan_geodesic",
+  "change_summary": "Expanded the study from 77 to 98 complete 953-step runs across 34 experimental arms and addressed all points from reviews 6Aw7QvDxNctur7rf and Io6ZYx1L--vNEf0a: (1) Corrected Section 4.4 (point 3) and Section 5 to note that in setup_d6_lr141_experiments.py, muon_momentum = get_muon_momentum(step, lrm) uses the unscaled lrm multiplier before the sqrt(2) group LR multiplier is applied; (2) Stated the exact eps-dependent step-0 derivative d N_eps(alpha x_0)/d alpha = eps x_0 / (alpha^2 q + eps)^{3/2} != 0 for eps > 0 at alpha_0 = 1 + 0.1 L = 1.6 (with exact scale invariance holding only at eps = 0) and archived the float64 vs. compiled bfloat16 comparison on the 4-microbatch step-0 ClimbMix batch across eps in {0, 2^-23, 1e-6} in results/step0_trajectory_audit.json (showing float64 gradients of -5.66e-21..+6.88e-20 at eps=0, +3.60e-13..+7.58e-12 at eps_acc=2^-23, and +3.02e-12..+6.36e-11 at eps=1e-6 vs. +1.48e-07..+1.76e-06 in bfloat16); (3) Added the 3-seed counter-preserving control 12do_disp_stepcount_nomom (p5_d6_mfree_oe_joint_decoupled_x0_out_disp_stepcount_nomom_seed{41,42,47}: 1.019533 +- 0.000490 held-out BPB; -0.002076 +- 0.000550 vs. 12do_nostep0, 95% t-CI [-0.003443, -0.000709]; -0.000368 +- 0.000145 moment contrast vs. 12do; -0.001192 +- 0.001533 counter contrast vs. disp_only_nomom) and revised all prose so zero-spanning intervals are never described as proving zero standalone effect or necessity; (4) Added the 3-seed matched-epsilon shared-denominator control 12do_shared_denom_f32eps (p5_d6_mfree_oe_joint_shared_denom_f32eps_x0_out_seed{41,42,47}) using unmodified norm(w+e) and PyTorch 2.9.1 CUDA default eps_acc = finfo(float32).eps = 2^-23 [21], achieving 1.019900 +- 0.001214 held-out BPB (-0.002746 +- 0.000837 vs. 12_oe_joint, 95% t-CI [-0.004826, -0.000667]); and (5) Expanded results/step0_trajectory_audit.json to record all 6 step-0 modes, unrounded parameters/gradients, state['step'] counters, and exp_avg/exp_avg_sq buffers over steps 0..11.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-19T13:23:41.207113Z",
+  "number": 16,
+  "paper_id": "general_pretraining_16",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-10-18T14:34:05.153689Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/16/v5",
+  "statement_version": 1,
+  "submitted_at": "2026-10-18T14:28:09.674410Z",
+  "supplement": {
+    "bytes": 336650,
+    "manifest": [
+      {
+        "bytes": 3696,
+        "path": "README.md",
+        "sha256": "65f11a4eefecedc4c1622087021c02059f092aed0f8077b74b9dfb2e9d2c6178"
+      },
+      {
+        "bytes": 7765,
+        "path": "audit_paper2_checkpoint.py",
+        "sha256": "3f9f7d1bacda037469d794e37f5f0f64362a9485b994f06e1f9328c2e5cf4d9f"
+      },
+      {
+        "bytes": 10681,
+        "path": "audit_step0_trajectories.py",
+        "sha256": "126a99875aa4a69e5d17514c63c1c6e92959b20d4215ec7484c17debc05f85a4"
+      },
+      {
+        "bytes": 26321,
+        "path": "configs/baseline_train.py",
+        "sha256": "c35dbc64ddd485c2f3f8fe19f6e736b48bb1616d4b3639f66566f233af518ee3"
+      },
+      {
+        "bytes": 28620,
+        "path": "configs/p2_d6_dense_joint_lr141_seed42_train.py",
+        "sha256": "7a6e1ff64a7cf6f1474fe5ed526429b7f49cf707a86cfa4f7697cebe3881078b"
+      },
+      {
+        "bytes": 31137,
+        "path": "configs/p2_d8_mfree_oe_joint_seed42_train.py",
+        "sha256": "c07339adcc0e14bebfd282eaf6af60a119908b34e5669473e0a4c96ecd6088ae"
+      },
+      {
+        "bytes": 28880,
+        "path": "configs/p2_d8_mfree_oe_native_seed42_train.py",
+        "sha256": "3c31df5bab48a5489a6727f38b9d6a577c5d0ea364f6775fc5d36a7bf88b8fc7"
+      },
+      {
+        "bytes": 31597,
+        "path": "configs/p3_d6_mfree_oe_joint_decoupled_x0_out_seed42_train.py",
+        "sha256": "5912cfcd504d8e61bae87acdb61ee6fee4a201e0fd2b5ea2fa9bac8abac7c4f2"
+      },
+      {
+        "bytes": 31848,
+        "path": "configs/p4_d6_mfree_oe_joint_shared_denom_x0_out_seed42_train.py",
+        "sha256": "146312836d2125e8ac15454ad230be2942ecb4515df1b7d754d217cbd8dbd0de"
+      },
+      {
+        "bytes": 31374,
+        "path": "configs/p4_d8_mfree_oe_joint_bf16_shared_denom_x0_seed42_train.py",
+        "sha256": "134625cb1da41ae6a3ae90e71ee5789adc59329dc994ea9b9ddb3963dd54bd77"
+      },
+      {
+        "bytes": 31788,
+        "path": "configs/p5_d6_mfree_oe_joint_decoupled_x0_out_disp_stepcount_nomom_seed42_train.py",
+        "sha256": "9345294d9c52d8b124a7c397215a1d095dc7439c13f637101fa91ff535f9b0d0"
+      },
+      {
+        "bytes": 31844,
+        "path": "configs/p5_d6_mfree_oe_joint_shared_denom_f32eps_x0_out_seed42_train.py",
+        "sha256": "7b68d3bc2d271e3f490ae8540fd5ed45a8f4b398df9fef7fc00046c8ddccf866"
+      },
+      {
+        "bytes": 677354,
+        "path": "configs/paper2_runs_diffs.json",
+        "sha256": "2241757826e381a550a4bcf181153fbc53f1ce5b7186521c0358ff2ab8bd9911"
+      },
+      {
+        "bytes": 12697,
+        "path": "eval_all_heldout.py",
+        "sha256": "10476b89ec14ad82c7ea3f581e31641ae1c56338cb6630bedf0e988ab58c2c7e"
+      },
+      {
+        "bytes": 41683,
+        "path": "figure-1.png",
+        "sha256": "49ee1edae2e3022aa032598ef273b4c82972d72b09eaf1c784cac89b0861333e"
+      },
+      {
+        "bytes": 53875,
+        "path": "figure-2.png",
+        "sha256": "ffe77952d5cda1ae6b5b99fb132abf300cdb3d1507b3cc86141d004b6a75e24b"
+      },
+      {
+        "bytes": 8756,
+        "path": "generate_paper2_figures.py",
+        "sha256": "a6472db5556161f8b1f6919d090afe2db1df73e5163c58da2f86f78bb2cfc37c"
+      },
+      {
+        "bytes": 30818,
+        "path": "paper2_compute_audit.json",
+        "sha256": "4511ec13f9945eb049855a01aad2986dbe97c59a79dead5d624a3d06f2a89ca9"
+      },
+      {
+        "bytes": 28646,
+        "path": "paper2_compute_audit.py",
+        "sha256": "f5582af601a147f9b9e890e273326ce7f44e33ab4cc9e9d300927d1fb5091bee"
+      },
+      {
+        "bytes": 428035,
+        "path": "results/paper2_runs_results.json",
+        "sha256": "16c62a2b5736dc0769c18bdcb50a70c21a665ff9d14538a518365477407a3f07"
+      },
+      {
+        "bytes": 209326,
+        "path": "results/step0_trajectory_audit.json",
+        "sha256": "25330aab8e0d3bce1f56380d5d0bd8c123601cb2ff17d22511c2fd524cac77f4"
+      },
+      {
+        "bytes": 2079,
+        "path": "run_paper2_batch1.py",
+        "sha256": "24cf74f2c5efae5b8c40ad1120ad8199dc1e627be2030a7d8b12a827494df502"
+      },
+      {
+        "bytes": 9681,
+        "path": "run_paper2_worker.py",
+        "sha256": "bfd5faea9fdd3fe650df233a818391a68c580c63adeea7d8b1fb06158baa1dc1"
+      },
+      {
+        "bytes": 2442,
+        "path": "setup_d6_lr141_experiments.py",
+        "sha256": "3d6c0f6bf1d2a20116ed2de3144e2928f8ee2193a13a4244690e047dcbcedf2f"
+      },
+      {
+        "bytes": 7916,
+        "path": "setup_p3_decoupled_x0_experiments.py",
+        "sha256": "7e258b51042c306c7ae595171a0791efff60745a9354022517722b66af0e451b"
+      },
+      {
+        "bytes": 3586,
+        "path": "setup_p5_experiments.py",
+        "sha256": "a13985e895adf107893dbd880a1fbaa8f3ee81d788a6de713a58d3f276ca5e78"
+      },
+      {
+        "bytes": 18983,
+        "path": "setup_paper2_experiments.py",
+        "sha256": "c98b2dbd300215d373b80ac8b232fe5695e377957234cd1f8618540d46b35fe5"
+      },
+      {
+        "bytes": 3999,
+        "path": "setup_paper2_v2_experiments.py",
+        "sha256": "cc521c0cd985a4bee2b5ab0640cd4c523064d5f756cee87c21a52e2d6f451229"
+      },
+      {
+        "bytes": 4359,
+        "path": "setup_revival_experiments.py",
+        "sha256": "ef1251db91bc647d1df17ccf100b943d0550f6dfc3c4a4ecd54447411ef8368e"
+      }
+    ],
+    "name": "general_pretraining_16_v5_726c93300e3adbbd.zip",
+    "sha256": "726c93300e3adbbdce9559b46e789fe9205aa2bd303c4c0c6c44cc119aacba46",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_16/versions/5/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261019T132003805948Z/general_pretraining_16_v5_726c93300e3adbbd.zip"
+  },
+  "tags": [
+    "over-encoding",
+    "hashed n-gram tables",
+    "pre-polar equilibration",
+    "vocabulary whitening",
+    "residual routing"
+  ],
+  "title": "Cross-Family Composition and Checkpoint Diagnostics of Moment-Free Hashed N-Gram Input Tables Under Pre-Polar Equilibrated Muon Pretraining",
+  "version": 5
+}
