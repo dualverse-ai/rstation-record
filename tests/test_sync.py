@@ -179,6 +179,60 @@ class ExportTests(unittest.TestCase):
 
 
 class PublisherTests(unittest.TestCase):
+    def test_git_publication_preserves_exact_utf8_and_newline_bytes(self):
+        import subprocess
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            subprocess.run(['git', 'init', '-q', str(root)], check=True)
+            subprocess.run(['git', '-C', str(root), '-c', 'user.name=Fixture',
+                            '-c', 'user.email=fixture@example.invalid',
+                            'commit', '-q', '--allow-empty', '-m', 'Initial'], check=True)
+            parent = p.git(root, 'rev-parse', 'HEAD')
+            original = '# Theorem\r\nMixed endings: α → β.\rNext line\n'.encode('utf-8')
+            manuscript = root / 'papers/math_test/1/v1/paper.md'
+            manuscript.parent.mkdir(parents=True)
+            manuscript.write_bytes(original)
+            received = {}
+
+            class API:
+                def call(self, path, method='GET', data=None):
+                    if path == '/git/ref/heads/main':
+                        return {'object': {'sha': parent}}
+                    if path == '/git/commits/' + parent:
+                        return {'tree': {'sha': 'base'}}
+                    if path == '/git/trees':
+                        for entry in data['tree']:
+                            received[entry['path']] = entry['content'].encode('utf-8')
+                        return {'sha': 'new-tree'}
+                    if path == '/git/commits':
+                        return {'sha': 'new-commit'}
+                    if path == '/git/refs/heads/main':
+                        return {}
+                    raise AssertionError(path)
+
+            self.assertEqual(p.commit_records(API(), root), 'new-commit')
+            self.assertEqual(received[manuscript.relative_to(root).as_posix()], original)
+
+    def test_checkout_preserves_research_line_endings(self):
+        import subprocess
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            subprocess.run(['git', 'init', '-q', str(root)], check=True)
+            subprocess.run(['git', '-C', str(root), 'config', 'core.autocrlf', 'true'], check=True)
+            attributes = Path(__file__).resolve().parents[1] / '.gitattributes'
+            (root / '.gitattributes').write_bytes(attributes.read_bytes())
+            manuscript = root / 'papers/math_test/1/v1/paper.md'
+            manuscript.parent.mkdir(parents=True)
+            original = b'# Exact source\r\nMixed line endings\n'
+            manuscript.write_bytes(original)
+            subprocess.run(['git', '-C', str(root), 'add', '.'], check=True)
+            stored = subprocess.check_output(['git', '-C', str(root), 'show',
+                                              ':papers/math_test/1/v1/paper.md'])
+            self.assertEqual(stored, original)
+            manuscript.unlink()
+            subprocess.run(['git', '-C', str(root), 'checkout', '--', 'papers'], check=True)
+            self.assertEqual(manuscript.read_bytes(), original)
+
     def test_rate_limited_mutation_waits_and_retries(self):
         from urllib.error import HTTPError
         class Response:

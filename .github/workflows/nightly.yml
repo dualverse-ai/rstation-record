@@ -28,3 +28,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/publish_snapshot.py --assets "$RUNNER_TEMP/supplements"
+      - name: Audit the committed publication bytes
+        run: |
+          git fetch --depth=1 origin main
+          git checkout --detach --force FETCH_HEAD
+          python3 scripts/sync_papers.py --audit-only

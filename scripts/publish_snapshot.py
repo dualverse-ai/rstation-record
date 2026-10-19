@@ -118,7 +118,9 @@ def commit_records(api, root):
     tree_sha = api.call('/git/commits/' + parent)['tree']['sha']
     batch, size = [], 0
     for name in paths:
-        content = (root / name).read_text()
+        # read_text() performs universal-newline conversion, corrupting exact
+        # manuscript bytes when a published source uses CRLF or bare CR.
+        content = (root / name).read_bytes().decode('utf-8')
         entry = {'path': name, 'mode': '100644', 'type': 'blob', 'content': content}
         size += len(json_bytes(entry))
         batch.append(entry)

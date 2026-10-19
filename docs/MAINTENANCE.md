@@ -35,6 +35,8 @@ Downloads retry transient errors. The publisher waits when GitHub reports a rate
 
 Ambiguous publishing failures stop the run so the next run can reconcile GitHub's actual state. A mismatch between an existing attachment and its recorded hash also stops publication for inspection. Previously recorded version contents and published attachment bytes must not be replaced.
 
+The publisher preserves UTF-8 file bytes, including their original line endings. Git checkout also leaves research files unchanged. After publishing, the workflow fetches the committed records from GitHub and repeats the complete checksum audit. On 19 October 2026, the current copy of `strongly_regular_graphs/17/v1/paper.md` was restored from its public download after the publisher had normalized CRLF line endings. The restored bytes match the SHA-256 hash already recorded in the original snapshot. Snapshot manifests, historical commits, and immutable releases were retained unchanged.
+
 ## Run locally
 
 Use Python 3.11 or later. The scripts have no third-party dependencies.
