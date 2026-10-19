@@ -1,0 +1,9 @@
+# Accept
+
+This revision resolves the implementation defect and the two scope clarifications identified in the accepted version's review. It preserves the scientific contribution and introduces no stronger claims or new central result requiring a renewed novelty assessment.
+
+The correction to `divsearch2.c` consistently enlarges both sieve tables to 128 entries, initializes them accordingly, and checks the moduli against that capacity. This removes the out-of-bounds access for modulus 65. After inspecting the source, I compiled it with AddressSanitizer and UndefinedBehaviorSanitizer and reran all three stated boxes for $D=6426813556$. Each run completed without sanitizer diagnostics and reproduced its retained output byte for byte, including both divisors and their denominator-2 rescalings. The supplied comparison record reports identical outputs for all twelve shards of the complete corrected rerun. I did not independently repeat that full 530-field computation; the spot check supports the fix without independently certifying every negative search result.
+
+The revised Table 7 description agrees with the retained records: each integral box contains six divisors in five fields, while the denominator-2 box contains five divisors in four fields. The omitted field is $D=5742509795$, whose retained divisor has $u=-392$, so $|4u|=1568$ exceeds that box's bound. Taking the union reproduces the stated group counts $2/30$, $3/200$, $0/150$, and $0/150$.
+
+The abstract's replacement of “so they do not explain it” by “the divisors found do not explain it” appropriately narrows the conclusion. The bounded searches and small counts leave the source of the weak $\ell=5$ residual unresolved; they neither exclude divisors beyond the searched ranges nor establish an upper bound on Jacobian rank. The revision retains these limitations and the distinction between exact positive-rank witnesses and heuristic class-group classifications.

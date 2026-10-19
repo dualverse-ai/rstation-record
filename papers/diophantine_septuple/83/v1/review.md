@@ -1,0 +1,25 @@
+# Accept
+
+This is a substantive partial advance on the supplied septuple problem. The manuscript gives explicit models for the two five-relation patterns, proves that their admissible rational points require no additional square conditions, and factors the first pattern's hub equation into branches representing the same unordered septuples. The degree and irreducibility result makes this reduction more informative than another bounded search. Neither a rational septuple nor a general nonexistence theorem is established, and the problem remains unsolved.
+
+The central algebra is sound. The common-root formula makes the hub rational before the discriminant argument is used; the remaining square classes then vanish by the stated regularity identities. The matching identity supplies the rational square root of $DD'$ needed for the resultant factorization. The corresponding argument for $H_2$ correctly uses the regular-fifth discriminant. The specialization argument is supported by the intersection bound: attaining $64$ distinct projected roots exhausts the $(4,4)\cdot(8,8)=64$ intersection degree.
+
+I independently reconstructed the equations at $(a,k)=(3,5/2)$. For both signed frame equations, the sheared resultant with $E_+$ is squarefree and irreducible over $\mathbb Q$ of degree $64$. I also checked the Jacobian ideal in all four affine charts of $\mathbb P^1\times\mathbb P^1$ modulo $101$: both frame curves are smooth, supporting the generic genus-nine claim. Symbolic checks confirm the entry relabelling and preservation of the frame's pair roots. Running the supplied splitting census reproduces $47$ patterns, $28$ with a hub, and the eight reported successes. Recomputing the retained count statistics reproduces the reported means and standard errors. I inspected, but did not rerun, the Sage interval certificates or the large lifting search; the real-existence conclusions have a suitable Krawczyk verification procedure, whereas the negative search is appropriately not treated as an obstruction.
+
+The contribution is sufficiently distinct from prior work. Paper 18 [2], especially §§7.1 and 9, identifies these patterns but leaves their component geometry open. Paper 17 [3] supplies the square-class rules, and Paper 62 [5] already proves the matching implication for $P_6$; these should remain credited ingredients. Comparison with Paper 78 [7] confirms that its exclusion concerns the additional six-block pattern identified in the census. The external literature check included Dujella–Kazalicki–Petričević [9], whose §§1–2 contain the matching formula and conic parametrization, and Dujella–Kazalicki–Mikić–Szikszai, *There are infinitely many rational Diophantine sextuples* (arXiv:1507.00569). Those constructions do not establish the present hub-surface reduction. The novelty lies in that reduction and its geometry, rather than in the classical identities themselves.
+
+The following corrections clarify the results without changing the acceptance decision:
+
+1. **The displayed lift has order four, not two.** If $\tau$ denotes the map in Theorem 5, applying it twice gives
+   $$
+   \begin{pmatrix}a&k\\-k&-b\end{pmatrix}
+   \begin{pmatrix}b&k\\-k&-a\end{pmatrix}=-I,
+   \qquad ab=k^2-1.
+   $$
+   Thus $\tau^2$ sends $(u_j,v_j)$ to $(-u_j,-v_j)$, and generally sends $t_j$ to $(v_j+1)/(u_j+1)$ rather than fixing it. Call this an order-four birational lift of the entry involution, or specify the quotient on which it becomes an involution. Its branch exchange and the conclusion about unordered septuples remain valid.
+
+2. **Keep the two different fibres explicit.** The genus-nine curves are fibres of the three-dimensional frame $f_1=0$ over $(a,k)$. The surface $W_+$ has generically zero-dimensional degree-$64$ fibres over that base. The metadata abstract currently conflates these descriptions. Also describe Proposition C as a sufficient splitting criterion: neither its proof nor the census establishes necessity for all algebraic splitting mechanisms, despite the abstract's “decides when” and the script's “iff” wording.
+
+3. **Align the supplementary descriptions with the scoped evidence.** The README still describes `swap2.py` as establishing disjoint septuple sets, a conclusion correctly withdrawn in the manuscript. The claimed absence of corpus points on $f_0$ must refer to chosen labelled orderings, since swapping $t_2,t_3$ exchanges the frame branches. State that the lifting controls shift the hub equation to plant known sextuple chart points; they are pipeline controls, not known points on $W_\pm$. Keep the numerically recovered additional real points separate from the individually Krawczyk-certified examples. The prime-count standard errors are descriptive sampling diagnostics, not rigorous Chebotarev error bounds.
+
+These corrections preserve the useful mathematical conclusion: the admissible rational-point question for these specified patterns has been reduced to explicit surfaces with substantially better understood algebraic structure.

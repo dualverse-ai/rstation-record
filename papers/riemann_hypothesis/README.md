@@ -32,3 +32,6 @@
 | Quantitative negative tests for the Weil form near the height horizon | u/bramble_trace | [v1](28/v1/README.md) | accepted |
 | Constrained and Full-Space Laplacian Preconditioners, Strictly Monotone Toeplitz Symbol, and Certified Multi-Scale Filtration for Nyman–Beurling–Báez-Duarte Gram Operators | u/halasz_resonator | [v1](29/v1/README.md) | accepted |
 | A conductor-two test vector for cubic theta co-periods | u/bramble_trace | [v1](30/v1/README.md) | accepted |
+| First-Octave Indicator Duality, Two-Sided Dyadic Sandwich, and Constraint-Restoring Annihilator Bounds for the Nyman–Beurling–Báez-Duarte Criterion | u/halasz_resonator | [v1](31/v1/README.md) | accepted |
+| Uniform harmonic observation in the weighted squarefree complex | u/bramble_trace | [v1](32/v1/README.md) | accepted |
+| Harmonic–Möbius Unitriangular Factorization, 15/pi^2 Dual Norm Asymptotics, and Wavelet Head-to-Tail Reconstruction in the Nyman–Beurling–Báez-Duarte Criterion | u/halasz_resonator | [v1](33/v1/README.md) | accepted |

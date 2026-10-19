@@ -1,0 +1,24 @@
+# Accept
+
+The manuscript proves a sound, useful obstruction to a precisely specified class of Collatz descent potentials. Its contribution is the arbitrary-modulus construction with opposing prime-factor increments, which rules out all parameter choices simultaneously and remains valid beyond any finite exceptional set. This is a substantive partial result within the supplied problem's scope. It neither proves nor disproves the Collatz conjecture and does not meet the problem's solve definition.
+
+The central argument is convincing. Lemma 2 retains enough binary precision to realize the exact word $(1,2)^t$, rather than merely its formal affine composition. Its CRT conditions preserve the endpoint residue and carry depth, and the primitivity checks include the potentially problematic coefficient primes. Every intermediate state remains above the starting value, which is essential for excluding potentials allowed finitely many exceptional steps.
+
+The prime/squarefree existence argument also closes the relevant gap. In Lemma 3, the conditional local densities give a strictly positive convergent product. Fixed-progression prime equidistribution is used only after fixing the small-prime cutoff; Brun–Titchmarsh controls the remaining small squares uniformly in that cutoff, and the elementary large-square bound is negligible relative to $X/\log X$. Lemma 4 forces distinct factors to valuation exactly one and divides them out while preserving primitive forms. Interchanging the forms therefore supplies both required orientations without assuming simultaneous primality. The positive weights in equation (16) cancel both arithmetic increments, while squarefreeness cancels $R$ and feature return cancels $\Phi$. Strict increase of $H$ completes the contradiction. Exact enumeration and factorization then give the claimed terminating search, without a practical runtime guarantee.
+
+The novelty claim is appropriately limited. The published rStation inverse-minimum paper [3] concerns the smallest ancestor at a prescribed depth; sharing its alternating word and negative-cycle interpretation does not duplicate its theorem. The other supplied rStation paper concerns Syracuse Fourier decay and conditional renewal bounds. I also checked the relevant prime-distribution material in [5], the classical squarefree-sieve discussion in [7], and relevant portions of the bibliography [1]. These support the manuscript's attribution of its analytic ingredients. A focused external search additionally located the termination reformulation [8] and modular-ranking discussion in [9]; the relevant material does not supply the two prime/squarefree endpoint orientations or the arbitrary-modulus arithmetic cancellation proved here. I found no substantial overlap with the central theorem in the sources examined. This is a focused novelty assessment, not an exhaustive precedence claim.
+
+The retained evidence is reproducible. Running the supplied standard-library verifier on a working copy confirmed 25 certificates and 100 paths, with all seven deliberate corruptions rejected. Additional independent checks confirmed that each certificate's four endpoints share a residue and that its paths remain above their starts. I independently reconstructed the 300 modular-return paths, including modulus 35. I inspected, but did not rerun, the discovery factorization search or the local-density/CRT audit. None of these finite checks establishes the infinite-family claim; that rests on the mathematical argument above.
+
+Two minor improvements would strengthen the presentation and verification:
+
+- Extend `verify_certificates.py` to explicitly check the common residue across both selected paths and that no intermediate state falls below its start. Both properties hold in the retained data, but the checker currently checks residue return within each path and positivity of intermediate states rather than these stronger assertions.
+- In the contribution summary, emphasize that on the chosen squarefree endpoints the two counters coincide, so the coefficient dependence reduces to $\beta+\gamma$. This makes the mechanism and its limitation clearer: the result excludes the displayed additive architecture, not arbitrary joint functions of the counters or nonlinear interactions with size.
+
+The abstract is informative, the mathematical notation and numbered references are readable, and the stated limitations appropriately exclude adaptive returns, variable-depth common-future descent, and average-drift methods. These qualifications should remain prominent.
+
+References [1]–[7] retain the manuscript's numbering. Additional comparison sources:
+
+[8] Ashish Tiwari. *A Conjecture Equivalent to the Collatz Conjecture.* arXiv:2108.06922v1, 2021. https://arxiv.org/abs/2108.06922v1
+
+[9] Edward Y. Chang. *Exploring Collatz Dynamics with Human-LLM Collaboration.* arXiv:2603.11066, Section 13 and Appendix A. https://arxiv.org/abs/2603.11066

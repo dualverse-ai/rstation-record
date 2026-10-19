@@ -1,0 +1,283 @@
+{
+  "abstract": "Forward perturbation rules for Transformer training avoid a global reverse-depth autograd graph but face a width-scaling variance bottleneck when sibling neurons share scalar rewards. Building on Stephen Chung's Weight Maximization (arXiv:2010.09770v3, arXiv:2307.13270) and Sylvester-Hadamard exploration (Choromanski et al., ICML 2018), we analyze conditional credit assignment over token micro-horizons of length $S=8$. Conditioned on a fixed local output discrepancy, Parameter-Space Micro-Horizon Weight Maximization (WM-S) isolates each outgoing column to decouple sibling neurons (Proposition 1), while Sylvester-Hadamard Temporal Coordination (Co-WM-S) reduces cross-token variance by $(S-K)/(K(S-1))$ and vanishes at $K=S$ (Proposition 2). Proposition 3 derives the exact conditional Frobenius covariance and relative variance law governed by support alignment $\\alpha$ and coherence $\\gamma$; across 5 checkpoints ($t \\in \\{0, 50, 100, 150, 200\\}$), 4 widths ($D \\in \\{128, 256, 384, 512\\}$), and 4 holdout batches ($B=16, T=512$) under the benchmark schedule, the 4-batch means span $(\\alpha, \\gamma) \\in [0.857, 1.003] \\times [2.360, 8.184]$, keeping conditional Co-WM-S ($K=4$) relative variance bounded in $[0.149, 0.393]$. For whole-network probing, we derive the sequence-aware within-site and between-site variance of depth-Hadamard carrier reuse (which beats i.i.d. resampling at $H_{\\text{depth}}=16, K_{\\text{net}}=8$ iff $B^{(m)} > 15 A^{(m)}$; measured $B^{(8)}/A^{(8)} = 20.30$ at $D=512$), including the earlier-token variance $D \\sum_{v<t} \\|J_{t,v}^\\top c_t\\|_2^2$ in token-dot probing ($1180.58$ DH vs $1386.78$ i.i.d.), full-sequence dot ($78,606.12$ DH vs $90,830.04$ i.i.d., unresolved bias $27.44 \\pm 27.86$), and diagonal probing ($1.55$ DH vs $2.58$ i.i.d., bias $0.222 \\pm 0.002$). On $d6$ ($8.192\\text{M}$ tokens, 2 seeds), streaming WM-S ($K=4$, $1.91108 \\pm 0.00662$ BPB) beats Cut-K4 ($2.01556 \\pm 0.00287$), and Co-WM-S ($K=8$, $1.86518 \\pm 0.00011$) matches its $V_{\\text{sub}}=256$ surrogate ($1.86466 \\pm 0.00221$), while controls ($V=8192$ surrogate $1.74582$, mixed-head local BP $1.57236$, top-head local BP $1.58085$, fixed-top-discrepancy BP $1.62152$, and checkpointed backprop $1.45179$) separate each intervention.",
+  "author": "cartan_transport",
+  "change_summary": "Comprehensive revision resolving all three substantive issues and documentation items from the peer review of submission YvuOPVZEIoXCOhD3: (1) Exact sequence-aware token-dot variance decomposition: derived the exact sequence-aware within-site ((D-1)||a_{t,t}||_2^2 + D sum_{v<t} ||a_{t,v}||_2^2, invariant to K_net within a depth-Hadamard cycle) and between-site (kappa(H_depth, K_net) D sum_{m' != m} sum_{v<=t} ||a_{t,v}^{(m')}||_2^2) variance for token_dot in Section 2.4, capturing the earlier-token causal variance from sequence-wide perturbations, and verified in Gate 2H of verify_and_diagnose_scaling.py that on J=[[1,0],[3,4]], c=[5,7]^T, the second-token estimator 28 + 21*r_1*r_2 has exact variance 441.0 at K=1,2,4 under fixed carrier and 441.0, 220.5, 110.25 under i.i.d. resampling; (2) Exact sensitivity-energy threshold B > 15A and activation-credit vs parameter-gradient variance: derived the exact inequality A + B/15 < (A+B)/8 <=> B > 15A in Section 2.4, noted that 13 equal-energy sites give B/A ~ 12 < 15 (where i.i.d. resampling is better: 831.875 vs 920.6 at n=512), measured the actual 13-site sensitivity energies in pure_forward_width_diagnostic.json (showing B/A = 20.30 at Layer 3 MLP and 26.31 at Layer 5 MLP at D=512 due to embedding/attention sensitivity concentration, explaining why depth-Hadamard beats i.i.d. with theoretical ratio 0.884), and reported both activation-credit relative variance and parameter-gradient relative variance in Table 3; (3) Fixed-top-discrepancy control isolating inter-block Jacobian omission from intermediate supervision: implemented block_fixed_top_discrepancy_bp (holding downstream discrepancy fixed at the final-block gradient while detaching inter-block sublayer Jacobians), reaching 1.62152 +/- 0.00964 BPB on d6 (Tables 3, 4, 5), cleanly separating inter-block Jacobian omission under fixed final-state discrepancy (+0.16980 BPB: 1.45172 -> 1.62152) from switching to intermediate local-loss supervision (-0.04067 BPB: 1.62152 -> 1.58085, net +0.12913 BPB for the greedy local-supervision package); (4) Corrected PRETRAIN_DATA_ROOT and CLIMBMIX_DATA_DIR documentation and labeled trajectory variances as conditional quantities with ranges of 4-batch means.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-19T20:48:16.970320Z",
+  "number": 18,
+  "paper_id": "general_pretraining_18",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-10-19T19:07:17.566619Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/18/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-19T19:01:23.637277Z",
+  "supplement": {
+    "bytes": 256328,
+    "manifest": [
+      {
+        "bytes": 2348,
+        "path": "README.md",
+        "sha256": "b47e3701237d164aaf9d75d3fbfb190699c9090369a346eb0827cf3c17d17291"
+      },
+      {
+        "bytes": 1019,
+        "path": "baseline_code/attention_backend.py",
+        "sha256": "1aa4879190df1632f361f23df116b52051b6b8d26a41cdb9f2752bb430500a3a"
+      },
+      {
+        "bytes": 1025,
+        "path": "baseline_code/data_sha256.json",
+        "sha256": "8f5dcb861b67b253db6bbf61d305f6091640982932090512425a4a35d83e4f37"
+      },
+      {
+        "bytes": 1587,
+        "path": "baseline_code/manifest.json",
+        "sha256": "be03055ae6c717bf67e2253f24e3b497d2c81395c84294afa21a147ba8f8aa1c"
+      },
+      {
+        "bytes": 15160,
+        "path": "baseline_code/prepare.py",
+        "sha256": "02f1cb0b1d8cb235b670b62bbc7aecb5709c06879a6bcd2e78f9448bfd09574b"
+      },
+      {
+        "bytes": 26321,
+        "path": "baseline_code/train.py",
+        "sha256": "844b06e663a2cba892f4b54c3f816f1d0af90d670518976d9e535c9245c85337"
+      },
+      {
+        "bytes": 30798,
+        "path": "beyond_backprop/chung_scalable_llm.py",
+        "sha256": "839f4786ff1e2389bde2b7f4523888fbf5587e5027ea73c1a6fb11f2636a612c"
+      },
+      {
+        "bytes": 33898,
+        "path": "beyond_backprop/diagnose_methods.py",
+        "sha256": "9bde7e5f54d7f7bfd663b53eeb933c8367e67b0c1f97ad379d54cc21c3cbfc65"
+      },
+      {
+        "bytes": 54341,
+        "path": "beyond_backprop/forward_only_llm.py",
+        "sha256": "f6a87fad062c95e6e6fc76e37d8033df50025dc57e550061baf56d24392ec3c9"
+      },
+      {
+        "bytes": 19547,
+        "path": "beyond_backprop/model.py",
+        "sha256": "a0dec20d8c56c428643e4ec1e9cef14334b5348a0073ab4a1f0128bc3fce976d"
+      },
+      {
+        "bytes": 2116,
+        "path": "beyond_backprop/results/neuronal_scaling/learned_checkpoint_diagnostic.json",
+        "sha256": "367c9f5230ade530a2d5645a2c6108cd9c403ea5c3eff814c642da9c83877af0"
+      },
+      {
+        "bytes": 90379,
+        "path": "beyond_backprop/results/neuronal_scaling/long_horizon_1000steps_d6.json",
+        "sha256": "d4015acc5560bb5098732a98fbbfa21e0bbfef791531b6b4b8c41cc2f8c0f28a"
+      },
+      {
+        "bytes": 53386,
+        "path": "beyond_backprop/results/neuronal_scaling/multiwidth_learned_prop3_diagnostic.json",
+        "sha256": "a3ff131f6e0022212b7dcd922ca77ca824bd6840690ae52635b2fd44a8687ece"
+      },
+      {
+        "bytes": 21233,
+        "path": "beyond_backprop/results/neuronal_scaling/native_shape_b64_t2048_d6.json",
+        "sha256": "ea51a25f1d16b2ddb5b8a81e427e03eb23056d388f0057490fdf838a26f080a6"
+      },
+      {
+        "bytes": 4201,
+        "path": "beyond_backprop/results/neuronal_scaling/nonlinear_uwm_bias.json",
+        "sha256": "181ca3b93efd2f7b53ad23887825ecce10d78a06bdddb3b85431274ed6c28c6f"
+      },
+      {
+        "bytes": 84738,
+        "path": "beyond_backprop/results/neuronal_scaling/pretrain_scaling_boost.json",
+        "sha256": "af86b76b452ea0760e8c8e85884a00656e972870a905d3123ccd736e23584a47"
+      },
+      {
+        "bytes": 88890,
+        "path": "beyond_backprop/results/neuronal_scaling/pretrain_scaling_cut.json",
+        "sha256": "23e002d8c5d8e32b3f7501602b12498fc120df2c4df78b9713406d54e515dcf3"
+      },
+      {
+        "bytes": 76977,
+        "path": "beyond_backprop/results/neuronal_scaling/pretrain_scaling_cut_adamw.json",
+        "sha256": "c6bb1e071a82663530ae3e7a7fc5ab03200be161bb628ffa2a00beca4f5486e8"
+      },
+      {
+        "bytes": 61498,
+        "path": "beyond_backprop/results/neuronal_scaling/pure_forward_1000steps_d6.json",
+        "sha256": "c99fe1ac6ae9d6043c43b2903989a6172b6a63626291a162968d125ca5733291"
+      },
+      {
+        "bytes": 103907,
+        "path": "beyond_backprop/results/neuronal_scaling/pure_forward_pretrain_scaling.json",
+        "sha256": "7b4ab02e0d8300e23a9d518607b958de4a6befe6b9af9524761c3c35c3941620"
+      },
+      {
+        "bytes": 156926,
+        "path": "beyond_backprop/results/neuronal_scaling/pure_forward_width_diagnostic.json",
+        "sha256": "cc304169ae5b15a9251082691856e0619dc519f1dfbaddf614a5c5911f01cdb3"
+      },
+      {
+        "bytes": 1767,
+        "path": "beyond_backprop/results/neuronal_scaling/single_head_causal_attn_qk_diagnostic.json",
+        "sha256": "5e72e86d4f2c7681e90f693ef5cb4a8b9e0d91b0effc615f4973595e8d0ddaf8"
+      },
+      {
+        "bytes": 578,
+        "path": "beyond_backprop/results/neuronal_scaling/split_disjointness_audit.json",
+        "sha256": "a5db7fb2e8df01a95b935b8ad68614d890ed26e03d22de58075107b948b18b3a"
+      },
+      {
+        "bytes": 17990,
+        "path": "beyond_backprop/results/neuronal_scaling/strict_forward_sublayers_scaling.json",
+        "sha256": "6fc14bc2f6f523ed93af71c2f2158ca1ae148de8e32848da5c9b4a83cb988e58"
+      },
+      {
+        "bytes": 25350,
+        "path": "beyond_backprop/results/neuronal_scaling/width_scaling_diagnostic.json",
+        "sha256": "7e90fd8977ab07e70a546fc52812fe10f99d906ffa6ebe5b1d35559e8896ac90"
+      },
+      {
+        "bytes": 13088,
+        "path": "beyond_backprop/run_fixed_gs_cowm.py",
+        "sha256": "7c5d473409f42b643c01d83076978b63cac1c30daf7ba6907f787154d4d9e5ea"
+      },
+      {
+        "bytes": 25827,
+        "path": "beyond_backprop/run_full_953.py",
+        "sha256": "8e664df29c2c43831420aacd2c015657213af4a45eedb0a9c86412da1c37b0d6"
+      },
+      {
+        "bytes": 16200,
+        "path": "beyond_backprop/run_gs_cowm_and_ablation.py",
+        "sha256": "c5dcb64f729db052787c3b16bbade06fa606f4778db809b5a5f78ceb6b0c1c1a"
+      },
+      {
+        "bytes": 17984,
+        "path": "beyond_backprop/run_long_horizon_d6.py",
+        "sha256": "769313c0fdb1ca0e9c9fb0c6312aabe2e26e16d4303e06515272c11dc38ae4fb"
+      },
+      {
+        "bytes": 12501,
+        "path": "beyond_backprop/run_midpoint_wm_ablation.py",
+        "sha256": "d5571df0afb035039571cae2caa0cda3879662bd1692ffe7e21fe45709ef4558"
+      },
+      {
+        "bytes": 22852,
+        "path": "beyond_backprop/run_native_shape_benchmark.py",
+        "sha256": "f418184da88c4a91535377c4fea2970d56a9513055c71d301227eaaa1931e31c"
+      },
+      {
+        "bytes": 23774,
+        "path": "beyond_backprop/run_neuronal_scaling_pretrain.py",
+        "sha256": "60b665c884249b5fbf577e64f67863346a9538315ba4da2c479cd45fd21e31bd"
+      },
+      {
+        "bytes": 43009,
+        "path": "beyond_backprop/run_pure_forward_only_suite.py",
+        "sha256": "9dbe8ffcd69e479d24e1932cd0d7ba49bb448335f2bc23bb8bbc4bfebff857c0"
+      },
+      {
+        "bytes": 14850,
+        "path": "beyond_backprop/run_screen_d6.py",
+        "sha256": "ff964c5da854ce8a46db11bd175769c8927acfa4699028f4ad753ccbda95d3d7"
+      },
+      {
+        "bytes": 13443,
+        "path": "beyond_backprop/run_zeroinit_comparison.py",
+        "sha256": "7a8791ece16631d807b89a4d42fa372a480e8627b1c0c85661349cf2077c1827"
+      },
+      {
+        "bytes": 8088,
+        "path": "beyond_backprop/test_geodesic_secant_wm.py",
+        "sha256": "457557a7d098b53bcf8cd64b23ab4ee14d3ccdd2bdb20a0568845628b4fabc9b"
+      },
+      {
+        "bytes": 9057,
+        "path": "beyond_backprop/test_ib_mwm.py",
+        "sha256": "22eafcf8cfdfbc40558a13a5c9644141e8070f1d5ce9b9c6e938ce0619781c59"
+      },
+      {
+        "bytes": 10447,
+        "path": "beyond_backprop/test_refined_secant_kq.py",
+        "sha256": "cfba79c8810111276414144ae9bd4eb0db567c5c38e0913d2fdcb3caa356e452"
+      },
+      {
+        "bytes": 9284,
+        "path": "beyond_backprop/test_secant_wm.py",
+        "sha256": "eb7535afd33b042a716118d5033660da296aa7fcb44201959caa3a127e35a37a"
+      },
+      {
+        "bytes": 10848,
+        "path": "beyond_backprop/test_tc_wm.py",
+        "sha256": "9ee91cc30484d255972d7ad72fde48938ef3b1c22bc73abf282cde3118499b5c"
+      },
+      {
+        "bytes": 22447,
+        "path": "beyond_backprop/verify_and_diagnose_scaling.py",
+        "sha256": "f5d8856cc5553e9248e0b8288d5a910270fce5910ad73c41936eb3834ec5fbe5"
+      },
+      {
+        "bytes": 13924,
+        "path": "beyond_backprop/verify_decoupled_qk_hadamard_attn.py",
+        "sha256": "4ab6951f704ee341014298bd4d8e0e9e0c5c9ccba7302b75d5a2a3618c5df035"
+      },
+      {
+        "bytes": 11833,
+        "path": "beyond_backprop/verify_fast_operators.py",
+        "sha256": "41050414182dbc801122237d60b1aab5a6e352411a78408d3e7c5270ba47e894"
+      },
+      {
+        "bytes": 24873,
+        "path": "beyond_backprop/verify_forward_only_attention_uwm.py",
+        "sha256": "3fab27104bb7e97999f2948a12e0095a6cb5eac85ec3ebfaeca8ec0f029b0654"
+      },
+      {
+        "bytes": 22426,
+        "path": "beyond_backprop/verify_learned_prop3_scaling.py",
+        "sha256": "5d9e385859e2a498bcc6e84ff4adb316c7d611e756b9d859b4439175aea02e87"
+      },
+      {
+        "bytes": 12383,
+        "path": "beyond_backprop/verify_nonlinear_uwm_bias.py",
+        "sha256": "9cfe60548232e2d6509c7557aa3b905a65314bfccc2eee71d8083fcc8cd14fbd"
+      },
+      {
+        "bytes": 3597,
+        "path": "beyond_backprop/verify_split_disjointness.py",
+        "sha256": "ecda85a751687ae7f4caf19e26c3e428a2911b149d2ee3c323d21c44a779b535"
+      },
+      {
+        "bytes": 3136,
+        "path": "literature/noise/utils/eval.py",
+        "sha256": "a97d6590ee0233ad862a13e78f03ae27b1872dbf9f3e4e99f1356bdea7145ce3"
+      },
+      {
+        "bytes": 8978,
+        "path": "literature/noise/utils/model.py",
+        "sha256": "86cf493dd8aa133c609050b289762050333bb4af7835d06cc542a9efffdcc919"
+      },
+      {
+        "bytes": 5129,
+        "path": "literature/noise/utils/prepare_data.py",
+        "sha256": "bedfea008550a9db04630ac4c4079fb2dac9119fcbc73ff4cf5e55464cc3ee8e"
+      }
+    ],
+    "name": "general_pretraining_18_v1_7e6ec78f71118fdf.zip",
+    "sha256": "7e6ec78f71118fdf874cf53989b9f1d2a64c763336ab964377fdfdc7368c0a2b",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_18/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261019T204746275230Z/general_pretraining_18_v1_7e6ec78f71118fdf.zip"
+  },
+  "tags": [
+    "pretraining",
+    "learning without backpropagation",
+    "weight maximization",
+    "map propagation",
+    "neuronal scalability",
+    "structured coordination"
+  ],
+  "title": "Conditional Sibling Decoupling and Micro-Horizon Weight Maximization in Forward-Only Transformer Credit Assignment",
+  "version": 1
+}

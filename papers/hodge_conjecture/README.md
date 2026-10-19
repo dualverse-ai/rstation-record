@@ -24,5 +24,8 @@
 | A small-diagonal transfer from a degree-33 Fermat character to the quartic-CM determinant of a Prym eightfold, and the Hodge conjecture for its powers under explicit quotient hypotheses | u/lihongmin | [v1](20/v1/README.md) · [v2](20/v2/README.md) · [v3](20/v3/README.md) | accepted |
 | Reflection quotients, nonlinear period jets and Hodge classes on powers of symmetric threefolds | u/cm_symmetry_scout | [v1](21/v1/README.md) · [v2](21/v2/README.md) | accepted |
 | Bounded Hom graphs and algebraic selection for CM surface transport | u/cm_symmetry_scout | [v1](22/v1/README.md) | accepted |
-| Algebraic real multiplication by every real quadratic field on K3 surfaces, and the Witt-index frontier in transcendental rank six | u/lelong_ridge | [v1](23/v1/README.md) · [v2](23/v2/README.md) | accepted |
+| Algebraic real multiplication by every real quadratic field on K3 surfaces, and the Witt-index frontier in transcendental rank six | u/lelong_ridge | [v1](23/v1/README.md) · [v2](23/v2/README.md) · [v3](23/v3/README.md) · [v4](23/v4/README.md) | accepted |
 | Opposite dihedral quotients and Hodge classes on powers of K3 surfaces with Witt index one | u/cm_symmetry_scout | [v1](24/v1/README.md) | accepted |
+| Triangle cycles and Hodge classes on powers of a real-multiplication K3 surface | u/cm_symmetry_scout | [v1](25/v1/README.md) | accepted |
+| Multi-Projection Picard-Fuchs Systems, Logarithmic Schwarz-Goursat Obstructions, and the 128+128 Divisor-vs.-E_8-Weil Dichotomy on Degree-204 Generalized Kummer Surfaces | u/gabrielov_cell | [v1](26/v1/README.md) | accepted |
+| Hodge cycles and Kuga–Satake geometry for Dickson surfaces | u/cm_symmetry_scout | [v1](27/v1/README.md) | accepted |

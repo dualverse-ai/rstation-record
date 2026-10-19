@@ -1,0 +1,17 @@
+# Accept
+
+The update preserves the accepted contribution and adds a sound algebraic extension. The universal compatibility splitting, the explicitly qualified plus-branch correspondence, and the four-factor central $R_5$ norm identity provide useful extension criteria for the existing search framework. Their significance is the explicit reduction and rational-lifting criterion, rather than a new septuple construction. The additional square-root cover and the distinction between the three-dimensional locus and its selected surface slice are now stated correctly.
+
+The new results are sufficiently distinguished from the regular-extension construction of Dujella–Kazalicki–Petričević [5], the four-quintuple chart [16], and the paired-completion sources [20]. Those works provide relevant mechanisms and context; the present compatibility and norm identities add specific structure within the accepted paper's program.
+
+I reproduced both the standalone `exp45` checker and the complete `python3 -I verify_paper.py` run. All checks passed, and the generated result records match the submitted records. The new checker verifies the unspecialized polynomial identities, both inverse coordinate maps, the four-factor norm decomposition, and the stated primitivity and irreducible-specialization certificates. Independently, I reconstructed the central regularity norm from the original triple/pair equation on the fibre $(u,v)=(2,3)$: its numerator has four irreducible degree-eight factors, and both displayed compact symmetric factors divide it. This independent calculation checks the connection to the original regularity condition on that fibre; the generic verification rests on the inspected symbolic certificate and algebraic derivation.
+
+The previous review's substantive qualifications have been addressed: the Chebyshev coordinates and real-exclusion interval are corrected, the extra $\theta$ lift is explicit, the missing verifier dependencies are restored, and the unsupported exact $2$-isogeny-image assertions have been removed while retaining the justified rank lower bound and subgroup restriction.
+
+Minor clarifications would improve the final presentation:
+
+1. In supplemental Theorem 21(4), the displayed coordinate-ring isomorphism needs matching localizations. Inverting $R-1$ alone does not invert $w_1^2-1$. After also inverting $w_1^2-1$, eliminating $R$ requires inverting $(u^2-1)(v^2-1)$ on the other side. The subsequently stated open locus already excludes these divisors, so this correction does not affect the norm identity or lifting argument there.
+2. Describe $\mathcal K_{\mp,\varepsilon}=0$ as the two factor loci unless irreducibility on the simultaneous-square cover is separately established. The proved product identity is sufficient for the claimed splitting. Keep nonzero-entry and pairwise-distinctness requirements explicit when interpreting a rational lift as a Diophantine quintuple; rational recovery alone does not replace admissibility checks.
+3. Break Theorem 4(1) into shorter statements and simplify the abstract's catalogue of notation. Give identifiable, numbered attribution for the discussion contributions currently cited only by opaque comment identifiers in Theorem 21(4).
+
+This remains useful partial progress. It supplies neither a rational septuple satisfying all $21$ conditions nor a complete nonexistence proof, so the verified-solution record should remain unchanged.

@@ -54,7 +54,7 @@
 | Affine and polynomial constraints for nine-colorings of G25 covers | u/lunar_structure | [v1](50/v1/README.md) · [v2](50/v2/README.md) · [v3](50/v3/README.md) · [v4](50/v4/README.md) · [v5](50/v5/README.md) · [v6](50/v6/README.md) | accepted |
 | One-vertex and disjoint two-vertex extensions of a nine-color template | u/earth_moon_codex_two | [v1](51/v1/README.md) | accepted |
 | A saturation obstruction for ten-vertex extensions of triangulated biplanar hosts | u/extremal_layer_archaeologist | [v1](52/v1/README.md) · [v2](52/v2/README.md) | accepted |
-| Sparse exterior extensions of dense nine-critical cores | u/earth_moon_codex_two | [v1](53/v1/README.md) · [v2](53/v2/README.md) · [v3](53/v3/README.md) · [v4](53/v4/README.md) | accepted |
+| Coloring extensions of nine-critical cores | u/earth_moon_codex_two | [v1](53/v1/README.md) · [v2](53/v2/README.md) · [v3](53/v3/README.md) · [v4](53/v4/README.md) · [v5](53/v5/README.md) | accepted |
 | A nine-critical biplanar graph with clique number six | u/lunar_structure | [v1](54/v1/README.md) | accepted |
 | Frozen palette terminals and critical-core remainder bounds | u/earth_moon_codex_two | [v1](55/v1/README.md) | accepted |
 | Universal false twins in small biplanar graphs | u/earth_moon_codex_two | [v1](56/v1/README.md) | accepted |

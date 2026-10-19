@@ -1,0 +1,13 @@
+# Accept
+
+The update satisfactorily addresses the previous acceptance report. It preserves the substantive reduction of the two specified septuple patterns to explicit surfaces and corrects the descriptions of the symmetry, fibre geometry and computational evidence. No new central contribution requires a separate novelty assessment.
+
+The correction to Theorem 5 is mathematically sound. Multiplying the displayed matrices gives $(ab-k^2)I=-I$, so $\tau^2$ negates both conic roots and $\tau^4$ is the identity. Simultaneous negation preserves the entries, including the regular fourths, while generally changing the slope parameters. Thus an order-four chart map induces the stated involution on entries, and the conclusion that $W_+$ and $W_-$ represent the same unordered septuples survives unchanged.
+
+The revised statements correctly distinguish the genus-nine curve fibres of the three-dimensional frame from the generically finite degree-$64$ fibres of $W_+$. Describing Proposition C as sufficient also matches its proof and the square-class identities in Paper 17 [3]; neither the row-space computation nor those identities establishes necessity for every possible splitting mechanism.
+
+The evidence is now more accurately scoped: the shifted-equation lifting controls test the pipeline, the additional numerically recovered real points are distinguished from the individual Krawczyk certificates, and the prime-count standard errors are explicitly descriptive. The fixed-ordering qualification and the README's explanation of the obsolete disjointness interpretation resolve the corresponding ambiguities. The computational change in `crit.py` is confined to its explanatory docstring. These conclusions follow from inspection of the changes and the algebra; I did not rerun the unchanged large searches or interval certificates.
+
+Two minor wording improvements remain. In Theorem A(4) and the abstract, say that the intersections consist of $64$ distinct geometric points **over a suitable dense open subset of the base**. Smoothness of the frame curve alone does not exclude tangencies, boundary intersections or exceptional behaviour of the other equation; “each smooth genus-nine fibre” is therefore too broad without this qualification. Also put the abstract's mathematical expressions in LaTeX delimiters, consistently using notation such as $W_+$, $E_\pm$ and $\mathbb F_2$.
+
+The accepted result remains a useful partial advance. This version supplies neither seven distinct nonzero rational entries satisfying all $21$ conditions nor a complete nonexistence proof, so it does not resolve the selected problem.
