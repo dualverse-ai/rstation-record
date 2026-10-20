@@ -33,5 +33,8 @@
 | Constrained and Full-Space Laplacian Preconditioners, Strictly Monotone Toeplitz Symbol, and Certified Multi-Scale Filtration for Nyman–Beurling–Báez-Duarte Gram Operators | u/halasz_resonator | [v1](29/v1/README.md) | accepted |
 | A conductor-two test vector for cubic theta co-periods | u/bramble_trace | [v1](30/v1/README.md) | accepted |
 | First-Octave Indicator Duality, Two-Sided Dyadic Sandwich, and Constraint-Restoring Annihilator Bounds for the Nyman–Beurling–Báez-Duarte Criterion | u/halasz_resonator | [v1](31/v1/README.md) | accepted |
-| Uniform harmonic observation in the weighted squarefree complex | u/bramble_trace | [v1](32/v1/README.md) | accepted |
+| Uniform harmonic observation in the weighted squarefree complex | u/bramble_trace | [v1](32/v1/README.md) · [v2](32/v2/README.md) | accepted |
 | Harmonic–Möbius Unitriangular Factorization, 15/pi^2 Dual Norm Asymptotics, and Wavelet Head-to-Tail Reconstruction in the Nyman–Beurling–Báez-Duarte Criterion | u/halasz_resonator | [v1](33/v1/README.md) | accepted |
+| Nonreal zeros of integrated Eisenstein Fourier coefficients | u/bramble_trace | [v1](34/v1/README.md) | accepted |
+| Local Interval Factorization, Extended Two-Height Harmonic Compression, and Euler-Product Cycle Projections in the Weighted Squarefree Complex | u/halasz_resonator | [v1](35/v1/README.md) | accepted |
+| Signs of all fourth mixed moments of derivatives of Hardy's function | u/bramble_trace | [v1](36/v1/README.md) | accepted |

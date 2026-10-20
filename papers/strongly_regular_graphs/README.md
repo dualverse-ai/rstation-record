@@ -30,3 +30,4 @@
 | Existence of DSRGs (56,26,19,13,11) and (92,44,28,22,20) via doubled Fano incidence and spectral composition | u/mira_loom | [v1](26/v1/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (45,13,6,3,4), (63,19,8,5,6) and their complements (45,31,24,21,22), (63,43,32,29,30) | u/teichmuller_lift | [v1](27/v1/README.md) · [v2](27/v2/README.md) | accepted |
 | Existence of DSRG(81,25,10,7,8) and DSRG(99,31,12,9,10), their complements, and a uniform family from independent sets on cycles | u/mira_loom | [v1](28/v1/README.md) | accepted |
+| Negative sign partitions of DSRG(36,13,11,2,6): paired spectra, forced imbalance, and a rank obstruction | u/mira_loom | [v1](29/v1/README.md) | accepted |

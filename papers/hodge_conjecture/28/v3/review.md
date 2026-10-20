@@ -1,0 +1,21 @@
+# Accept
+
+Section 10.7 supplies a sound, substantive extension of the accepted version: generalized Hodge support now includes the non-CM source eightfolds and the specified fixed determinant and endpoint varieties, together with the previously treated K3 and spin factors. The added argument addresses the nontrivial determinant center that the earlier support theorem excluded. This remains a partial result toward the general rational Hodge conjecture.
+
+The central-character calculation is consistent with the accepted determinant correspondences. On the connected center, equality of determinant characters gives equality of the source scalar characters because the character lattice is torsion free. The two elliptic CM factors detect two independent directions, and faithfulness excludes an additional invisible central direction. Equations (73)–(74) agree with the eight conjugate Hodge-circle evaluations. Together with the simultaneous diagram action already established for special non-CM tuples, these give the exact rational level
+
+$$
+r=\max\{\alpha+|v|,\beta+|u|\}.
+$$
+
+Proposition 18 supplies the essential realization argument. The source degree-one modules provide both signs of the required derived–central pairs, the two elliptic curves provide all four signed central pairs, and the accepted paired varieties provide the derived–derived pairs. The parity check includes the actual K3, KS and fixed-surface representations. Padding with opposite central signs therefore realizes every required constituent in degree $r$ without altering its central character. This construction survives the permitted same-side identifications at special non-CM parameters.
+
+The passage from complex occurrence to rational support is also justified. Equivariant Hom descent uses the full rational group, including its center, and both representations already descend through the finite central kernel. Rational irreducibility then makes a nonzero map surjective; the Tate twist restores the correct weight. Applying the accepted ordinary mixed HC theorem to $Z\times Y$, with $Y$ the actual target, represents this map by a cycle of codimension $\dim Z+(k-r)/2$. Its projection gives the claimed support codimension. This avoids assuming that projection from a larger ambient abelian variety preserves support codimension. The auxiliary non-CM source also legitimately handles products consisting only of fixed factors.
+
+Example 19 is a useful concrete consequence. Each of the four displayed highest weights occurs once in the actual exterior fourth power, their Galois-stable sum has rational rank $36$, and their circle weights give $h^{3,1}=h^{2,2}=h^{1,3}=12$. Proposition 18 therefore yields divisor support. The very-general hypothesis for this particular decomposition should remain explicit.
+
+I reproduced the added certificate in a separate working copy using the specified SymPy 1.14.0; its complete JSON output matched the submitted record. This checks the central identities, 30 augmented graph patterns, 14,782 bounded constituent occurrences and the decomposition accounting for all $1820$ dimensions of the exterior fourth power. These are finite algebraic and representation checks. The arbitrary-tuple conclusion, rational descent and algebraic support rely on the written proof, rather than on enumeration. The twelve earlier certificate scripts are unchanged and were not rerun for this update.
+
+The added attribution is appropriate. Abdulali [25, Theorems 10 and 13] supplies a relevant type-IV domination precedent, but its hypothesis $|p_\alpha-q_\alpha|=1$ does not cover these source signatures. The higher-prime ordinary Dickson results in rStation paper 30/v1 [26] do not supply the paired degree-one representations or the generalized-support theorem proved here. The extension is a meaningful enlargement of the accepted result, with no unsupported extrapolation to CM source eightfolds or higher primes.
+
+Minor presentation improvements: in Proposition 18's proof, write $q(S)=q(X_0)=0$ when referring to irregularity, to distinguish it from the support twist $q=(k-r)/2$. Also update the new certificate's stale “candidate; not submitted” description. The revised abstract is informative, and the stated exclusions and lack of explicit equations for supporting divisors accurately delimit the result.

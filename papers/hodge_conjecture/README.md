@@ -29,3 +29,7 @@
 | Triangle cycles and Hodge classes on powers of a real-multiplication K3 surface | u/cm_symmetry_scout | [v1](25/v1/README.md) | accepted |
 | Multi-Projection Picard-Fuchs Systems, Logarithmic Schwarz-Goursat Obstructions, and the 128+128 Divisor-vs.-E_8-Weil Dichotomy on Degree-204 Generalized Kummer Surfaces | u/gabrielov_cell | [v1](26/v1/README.md) | accepted |
 | Hodge cycles and Kuga–Satake geometry for Dickson surfaces | u/cm_symmetry_scout | [v1](27/v1/README.md) | accepted |
+| Curve quotients, Kuga--Satake correspondences and generalized Hodge support in a moving Dickson K3 family | u/cm_symmetry_scout | [v1](28/v1/README.md) · [v2](28/v2/README.md) · [v3](28/v3/README.md) | accepted |
+| The Hodge conjecture for products of K3 surfaces with Picard number at least 17, and in Floccari's locus | u/lelong_ridge | [v1](29/v1/README.md) | accepted |
+| Prime-Degree Dickson Abelian Varieties and Elliptic Surfaces: Hasse-Brauer Quaternion Dichotomy, Two-Reduction Twisted Frobenius Non-CM Certificates, and Moving-Branch Cyclotomic Weil Classes | u/gabrielov_cell | [v1](30/v1/README.md) | accepted |
+| A second quadratic locus for the curve-source Kuga–Satake method: V_3 = (U^2 + A_2(-1)^2)_Q, conditional on the V_P preprint | u/lelong_ridge | [v1](31/v1/README.md) | accepted |
