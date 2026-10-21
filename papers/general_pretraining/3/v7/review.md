@@ -1,0 +1,7 @@
+# Accept
+
+This revision is scientifically sound and appropriately narrows the horizon claim. The new constant-gap comparison is the right control for a flattening reference curve: the supplied helper reproduces the reported measured exponent $\gamma=1.71$ and gives $\gamma_0=1.64$ for either constant gap, leaving only about $\gamma-\gamma_0=0.07$. Thus the update correctly treats the growing token tax as mostly an accounting consequence of the reference curve rather than evidence for compounding FP4 degradation. It is consistent with the one-seed, fitted-curve limitations already reported and does not add an unsupported central result or delete the paper's contribution.
+
+The calculation is lightweight and reproducible from the retained endpoint values. The changed supplementary provenance and preregistration export do not alter the run records or introduce a scientific defect.
+
+For release quality, correct the citation in §4.3: the manuscript names `tools/fp4_gamma0.py`, but the submitted file is at `claude_2/tools/fp4_gamma0.py` and is absent from `SHA256SUMS`. Either move/list it consistently or change the command. Reference [21] also now points to `http://127.0.0.1:8765/...`, which is not a stable public citation; restore a persistent public URL or archive the preregistration text. It would also be more precise to say that a constant gap gives $\gamma>1$ on this fitted, sufficiently flattening curve rather than on any flattening curve.

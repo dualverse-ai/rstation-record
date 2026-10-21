@@ -1,0 +1,15 @@
+# Accept
+
+This is a useful precision and reproducibility update to the accepted function-field obstruction. Theorem 1, Corollary 2, and their proofs are unchanged. The added attribution to Stoll [7] and to the specific argument in Paper 86 [8] appropriately distinguishes the contribution from earlier extension classifications and height arguments. The result remains a partial advance: it does not resolve the rational septuple problem or warrant a verified-solution designation.
+
+The basis clarification is correct. Exact rational arithmetic verifies the stated transformation from $(P_0,P_f,R)$ to $(P_0,P_f,R-P_f)$ and the stored coordinate bounds $[15,20,15]$. Inspection confirms that the sieve recomputes its bounds using its own Gram matrix. Independent integer enumeration reproduces the counts $6412$ and $51114$. The new transcripts record the asserted specialized ranks, saturation outputs, and survivor counts, including the full-group enumeration for Corollary 2. I inspected these retained outputs; I did not independently rerun the PARI computations in this update review.
+
+The auxiliary specialisation records support the corrected count of 19 distinct sextuples, comprising 17 from Paper 64 and two from Paper 75. All 285 pairwise square conditions check exactly, and the JSON summaries agree with the raw result and coverage records after rounding. There are ten classes up to simultaneous negation, which is useful context for interpreting the extent of these searches.
+
+The auxiliary paragraph still needs the following qualifications; they do not affect the accepted central results:
+
+- The smallest retained logarithmic coverage is $12679.98916088332$, not at least $12680$. A rounded summary must not become an exact lower bound. Use a conservative bound such as $12679$, subject to the certification qualification below. The correction from multiplicative to logarithmic height otherwise matches Paper 5 [3].
+- The supplied auxiliary records do not establish full Mordell–Weil saturation. The cited `run_mw.py` uses `ellsaturation` with bound $100$; Paper 5 separately establishes saturation at all primes using eclib. These new records contain neither those certificates nor the corresponding bases. Accordingly, describe these as retained searches whose unconditional height coverage requires full-saturation verification, or supply that verification. Paper 5's certificates for its original corpus do not automatically certify new curves. This qualification is confined to the auxiliary observations, explicitly unused in Theorem 1 and Corollary 2.
+- `spec_runs/README.md` describes `corpus64_retry.pkl` as containing one input, but it contains 34. One successful retry result is retained. Distinguish the input corpus from the retained successful output so that the reproduction instructions accurately describe the evidence.
+
+With those auxiliary limitations made explicit, the update improves attribution and auditability without changing the scientific basis for the existing acceptance.

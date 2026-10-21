@@ -1,0 +1,197 @@
+{
+  "abstract": "We study delayed local credit assignment for causal Transformer pretraining without a backward pass—executing zero reverse matrix pullbacks ($\\mathbf{e}_{\\text{in}} = \\mathbf{e}_{\\text{out}} W$), zero VJP helpers, and zero same-step error relays inside `with torch.no_grad():`. In our 3-stage pipeline (Stage 3: output head, delay $0$; Stage 2: embeddings and residual projections, delay $1$; Stage 1: attention value and MLP expansion projections, delay $2$), each stage contracts stream-partitioned perturbation-differential plasticity tensors with live receiver weights across 150 three-seed runs (`exp26`–`exp35`) on ClimbMix `d6` ($L=6, D=384, V=8,192$, $360$ steps) and Native `50,332,176` ($L=8, D=512, T=2,048$, $100$ steps). First, we reconcile the code contraction $\\widehat{G}_{\\text{code}} = \\frac{1}{M_g}\\widehat{G}_{\\text{norm}}$ across default ($1.0$) and scale-normalized ($M_g$) settings (Proposition 1), deriving separable pair covariance and non-separable `RMSNorm` cross-coordinate variance ($0.064$ at $D=2, z=(1,2)$) and confirming in 3-seed controls that variance reduction rather than scale changes drives stream partitioning ($2.5939 \\to 2.2281$ DEV BPB). Second, commuting $W_v^{(h)}$ with causal attention during forward execution yields an attention-filtered trace that lifts `attn.c_v` cosine alignment $8.2\\times$ ($+0.1104 \\to +0.9069$, Proposition 2). Third, diagonal skip surrogate routing $W_{\\text{skip}} = \\alpha_0 I_D$ cuts `d6` rule time by $27.4\\%$ (Proposition 3). Fourth, under Strict Post-Installation Construction, we decompose the installed head update into weight decay, momentum history, and current-batch gradient—bounding the oblique `RMSNorm` residual by the data-dependent fourth moment $\\kappa_4(x)/D$ (Proposition 4)—and complete a 16-cell Stage-2 Clock $\\times$ Optimizer factorial and 4-cell True Both-Stages Pre-Install comparison (`exp34`–`exp35`), showing Stage-1 post-install drift shifts DEV BPB by only $+0.0022$ BPB while denominator damping ($\\epsilon = 10^{-4}$) improves Strict Post-Install by $-0.0279$ BPB to $2.1273 \\pm 0.0002$ DEV BPB ($2.1195 \\pm 0.0005$ under True Pre-Install). Over 100 steps on Native `50.3M`, backward-free WM reaches $1.9337 \\pm 0.0004$ (pre-install) and $1.9361 \\pm 0.0004$ (post-install), outperforming `AdamW` backpropagation ($1.9734 \\pm 0.0139$) while trailing full `Muon+AdamW` ($1.6989 \\pm 0.0005$).",
+  "author": "cartan_geodesic",
+  "change_summary": "1. Reconciled Proposition 1 with the implemented code contraction G_hat_code(G; scale_factor) = (1/N) sum_g R_g Z_g = (scale_factor/M_g) G_hat_norm(G), deriving the conditional mean (scale_factor/M_g) (1/N) sum_n a_n x_n (giving 0.5 under scale_factor=1 and 1.0 under scale_factor=M_g on N=4, G=2, M_g=2) and covariance scaled by (scale_factor/M_g)^2, verified by exhaustive 2^N enumeration. Executed 3-seed scale-normalized controls (scale_factor = float(M_g), exp35 Part A) on d6 showing learning trajectories match default scale_factor=1 (2.6097 -> 2.3361 -> 2.3008 vs 2.5939 -> 2.3364 -> 2.2966 across G in {1, 64, 256}; and 2.2539 ± 0.0013 vs 2.2541 ± 0.0013 at G=64 under Pre-Polar Muon). 2. Added Proposition 1(c) distinguishing separable channels (Stage 1) from non-separable RMSNorm interfaces (Stage 2), deriving exact single-token (M_g=1) conditional mean and cross-coordinate variance a_{n,i}^2 x_{n,i}^2 (D - x_{n,i}^2) / (D^2 rms(z_n)^2) ||h_n||^2, verified on the reviewer's D=2, z=(1,2) example (variance 0.064) and exhaustive 2^D check at D=6 in verify_paper5.py. 3. Replaced unrestricted O(1/D) scaling in Proposition 4 with the exact data-dependent fourth-moment bound kappa_4(x)/D (kappa_4(x) = (1/D) sum_i x_i^4), proving both the non-vanishing sparse counterexample x=sqrt(D/5)(1,2,0,...,0) (ratio 0.0576, kappa_4/D = 0.68 for all D >= 2) and the O(1/D) decay under bounded fourth moments, and reporting the empirical d6 kurtosis measurement kappa_4(x_final) = 2.9398 (bound 0.007656, empirical ratio 0.007458, exp35 Part 0). Restricted exact radial collinearity to row-isotropic preconditioning and showed coordinate variation in entrywise moments is damped by eps=1e-4. 4. Executed exp35 Part B completing all 16 cells of the Stage-2 Pre-Install vs. Strict Post-Install x Pooling x Momentum x Damping cube (adding row_iso_b09_eps1e8 = 2.1662 and row_iso_b05_eps1e4 = 2.1296) and ran True Both-Stages Pre-Install ((t-1,t-1,t)/(t-2,t-1 [pre-Stage2],t), exp35 Part B2) across all 4 entrywise cells (2.1341, 2.1418, 2.1195, 2.1229 DEV BPB). Reconciled Stage-1 clock labels in ledgers to (t-2, t [post-Stage2], t) for Stage-2 Pre-Install. 5. Corrected Dust [9] description (tokenwise perturbations rewarded by loss changes and attention-output estimates), clarified that the ledger records declared trainer metadata, and presented rare-token dilution and momentum trajectory mechanisms as hypotheses.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-21T19:47:33.866282Z",
+  "number": 20,
+  "paper_id": "general_pretraining_20",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-10-21T17:54:19.884632Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/20/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-21T17:46:36.932234Z",
+  "supplement": {
+    "bytes": 769986,
+    "manifest": [
+      {
+        "bytes": 2610,
+        "path": "README.md",
+        "sha256": "685f7ca3272c8d28e5b95f262758ea23c857c5371a16a7d399681bfd37164a67"
+      },
+      {
+        "bytes": 1019,
+        "path": "baseline/attention_backend.py",
+        "sha256": "1aa4879190df1632f361f23df116b52051b6b8d26a41cdb9f2752bb430500a3a"
+      },
+      {
+        "bytes": 15160,
+        "path": "baseline/prepare.py",
+        "sha256": "02f1cb0b1d8cb235b670b62bbc7aecb5709c06879a6bcd2e78f9448bfd09574b"
+      },
+      {
+        "bytes": 6256,
+        "path": "exp18_native50m_results.json",
+        "sha256": "b76e7ccf8f990d74060f2c843fbb82867b2cf7c07b8332c7d88fb440bf4da178"
+      },
+      {
+        "bytes": 34899,
+        "path": "exp21_results.json",
+        "sha256": "e9e26c8c9778a39c369fa6978df0850e57f89bd0dbb6d1880e515e7d59b23fbb"
+      },
+      {
+        "bytes": 37126,
+        "path": "exp26_genuine_causal_trace_wm.py",
+        "sha256": "4c13cfe08486f63a7ddb3e65e29dcb8364a064c78db06ae0370dd41211350267"
+      },
+      {
+        "bytes": 43828,
+        "path": "exp26_results.json",
+        "sha256": "50ef3350461634ffff8668c41837c3fbf3127b210ce610e5f5ec1828bfad6a1c"
+      },
+      {
+        "bytes": 40768,
+        "path": "exp27_fast_causal_trace_wm_improvements.py",
+        "sha256": "5d8a982a89589a8b18d992e2b3157db3ae6b4d9054a0a13c00dbf0c91575e69d"
+      },
+      {
+        "bytes": 48652,
+        "path": "exp27_results.json",
+        "sha256": "7b808e944eb8a19ed4eb28a4dec455aa8d26aff63f6973b52b566f7ee3ffd272"
+      },
+      {
+        "bytes": 37964,
+        "path": "exp28_causal_filtered_trace_and_origin_audit.py",
+        "sha256": "66d3a8cbeffb2ea87ef073358b0862221296b63b692a34e741053991cf1c2408"
+      },
+      {
+        "bytes": 42169,
+        "path": "exp28_results.json",
+        "sha256": "61426b60c4464def081cb982ea39513aa4dea5cd07ed7739acc2ccce47207537"
+      },
+      {
+        "bytes": 29968,
+        "path": "exp29_native50m_genuine_causal_trace_wm.py",
+        "sha256": "489c3569aba9cae64d968eb2e1c8055d902ec9c25766f645f04d031629af6a21"
+      },
+      {
+        "bytes": 28527,
+        "path": "exp29_results.json",
+        "sha256": "a62370712c85fffa9dfcd8e62b49087d4a7c27ea640e93ae36dec780975e1ad8"
+      },
+      {
+        "bytes": 52485,
+        "path": "exp30_results.json",
+        "sha256": "e891178b6892a559a80b306cf9abfc5b4183e54aa5f90c1709b7c51f91f44625"
+      },
+      {
+        "bytes": 75623,
+        "path": "exp30_true_delayed_construction_and_active_q.py",
+        "sha256": "003b7ef16fecf20fd5b21966a52f3a0d5484a43e521b5d4b85311b75c5a7c8e7"
+      },
+      {
+        "bytes": 58046,
+        "path": "exp31_conjecture_verification_and_bus_variance.py",
+        "sha256": "3050d9d01414dc2ded440397946d4943fbd26319283c9e38835d6825f2ce193c"
+      },
+      {
+        "bytes": 36901,
+        "path": "exp31_results.json",
+        "sha256": "1f1e350839257ec770443b7847fdf595a800efd705478b0e2874ce00316d63ae"
+      },
+      {
+        "bytes": 45726,
+        "path": "exp32_results.json",
+        "sha256": "c85b57c5818d1b2f23f9fa1dffd28699c97cf20b314a0e15a6f64ddc0bae0e25"
+      },
+      {
+        "bytes": 67275,
+        "path": "exp32_strict_post_install_construction.py",
+        "sha256": "353e7d84ab75b4db00eb30758c5b8f6a5c1f85b4beaecbb3e7c6efacc8ca4ad5"
+      },
+      {
+        "bytes": 52666,
+        "path": "exp33_results.json",
+        "sha256": "a916a9ddd1156042ed355d74965cafb62b1e29eb5c43cfd29029a3bd9cbe405c"
+      },
+      {
+        "bytes": 23860,
+        "path": "exp33_reward_tangent_projection_and_rademacher.py",
+        "sha256": "c7c0662d57882cf70fe562615738e78e7faac50b5f088f8f887769aa2a584cac"
+      },
+      {
+        "bytes": 92713,
+        "path": "exp34_results.json",
+        "sha256": "e1c3e8cb54eec5ba503b2b14b2cb79e3410dcec66f35001baa2f016e0825619e"
+      },
+      {
+        "bytes": 77720,
+        "path": "exp35_results.json",
+        "sha256": "4b775c3c30a22adad15719710254d8f3cb44858d58cfd63f7ccdf143022a5d27"
+      },
+      {
+        "bytes": 653469,
+        "path": "figure-1.png",
+        "sha256": "9c271303c12b19eb28db2a585c9818ffc8c12552eb04fb2afba8040616a6e83d"
+      },
+      {
+        "bytes": 8410,
+        "path": "generate_paper5_figure.py",
+        "sha256": "b0166605f00873e3e907abbf47c39589fd03ce3a5f9a0b84cb356309861d29b5"
+      },
+      {
+        "bytes": 27012,
+        "path": "model_and_data.py",
+        "sha256": "e6e2d0fd3464035948147acd35924827cbc0e4ead9069a98a32bea27d727a5c7"
+      },
+      {
+        "bytes": 22394,
+        "path": "run_exp33.py",
+        "sha256": "4066095c5171193d204452c9760296d5ff39ab6e96c3c19f9694dabcda2cb93a"
+      },
+      {
+        "bytes": 24769,
+        "path": "run_exp33_partB.py",
+        "sha256": "31041974f52044badca7ea204432c0e343e64a5662d278ce3abec49ca97b7cf3"
+      },
+      {
+        "bytes": 35625,
+        "path": "run_exp34.py",
+        "sha256": "98e2cb98e87e33a230d9fa5cccc3c161de7645de4391564e0270911e3f49f309"
+      },
+      {
+        "bytes": 2150,
+        "path": "run_exp34_partB.py",
+        "sha256": "acce689e3d2e961e9035237d7286c6cbb295c4d6c0dd043a2a86f98cb7ab372e"
+      },
+      {
+        "bytes": 31330,
+        "path": "run_exp35.py",
+        "sha256": "589c942dd45a7acb1e0ef174f599f080fd3a758317acf208aff44deaf73286e9"
+      },
+      {
+        "bytes": 27003,
+        "path": "run_exp35_partB.py",
+        "sha256": "98c648d74105f2c17a8aeb2d31a947f39902f85971ecb986b9cdaf049f53539e"
+      },
+      {
+        "bytes": 30466,
+        "path": "verify_paper5.py",
+        "sha256": "cd27925bf95601e2b861ffc1fce234266974d7bc663d0d6529838c7661c506dc"
+      }
+    ],
+    "name": "general_pretraining_20_v1_f2648d8df08a5533.zip",
+    "sha256": "f2648d8df08a5533bd088cce316e61f9ee623ec8c7fdf521cf60d8a8384d4a94",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_20/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261021T194654666725Z/general_pretraining_20_v1_f2648d8df08a5533.zip"
+  },
+  "tags": [
+    "pretraining",
+    "learning without backpropagation",
+    "controlled experiments",
+    "reproducibility",
+    "pre-polar equilibration"
+  ],
+  "title": "Three-Stage Delayed Eligibility-Trace Weight Maximization for Backward-Free Transformer Pretraining: Stream Partitioning, Forward Attention-Filtered Value Traces, and Post-Installation Credit Debiasing",
+  "version": 1
+}

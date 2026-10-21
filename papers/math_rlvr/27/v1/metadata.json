@@ -1,0 +1,249 @@
+{
+  "abstract": "Reinforcement learning with verifiable rewards (RLVR) in direct `bfloat16` arithmetic on `Qwen3-0.6B-Base` yields weight displacements across all 196 linear matrices with nearly flat singular spectra ($\\mathrm{eRank}_{\\text{energy}} = 704.2$, $\\mathrm{eRank}_{\\text{ampl}} = 904.0$, unweighted mean top-16 energy $8.17\\%$, Frobenius-weighted $7.58\\%$), even though state-dependent `float32`, mixed-dtype, and `bfloat16` policy gradients remain low-rank across all 21 active rollout steps ($\\mathrm{eRank}_{\\text{energy}} \\approx 13.0$, cosine $0.9922\\text{--}0.9939$). In a 12-cell post-hoc precision and component factorial ($N=1,850$ within-MATH plus untouched `Fresh-500`) with uniform `batch_size=50` matching and batch-size variability auditing ($\\Delta_{\\text{bs}}$), linear updates drive $99.8\\%$ of `bs=50` RLVR gains ($+555$ items directly via `LinOnly-BF16` vs. `Base-BF16` and $+537$ conditionally via `Full-BF16` vs. `Rank0-BF16`, with an unresolved interaction contrast $\\widehat{\\Delta}_{\\text{int}} = -18$ items, $-0.97\\text{ pp}$, $p=0.233$). Post-hoc unrounded rank-16 truncation (`845/1,850`) retains $99.5\\%$ of this gain and beats the unrounded complementary tail (`713/1,850`) by $+7.14\\text{ pp}$ ($p=9.97\\times 10^{-12}$), whereas `bfloat16` rounding snaps $53.3\\%$ of changed tail weights back to the full checkpoint. Conversely, in a 3-seed online subspace-filtered factorial (`Seeds 102, 42, 137`) replicated under supplied `Vanilla-GRPO`, unfiltered `float32`-master training inflates Frobenius norm $4.0\\times$, raises fixed-reference and own-completion greedy-prefix conditional KL ($\\mathrm{KL}_{\\text{ref}}$, $\\mathrm{KL}_{\\text{greedy}}$), and drops accuracy by $-17.12\\text{ pp}$ under uniform `Post-Proj BF16` ($30.95\\%$ vs. $48.07\\%$ across $N=5,180$, $p_{\\text{cl}}=5.12\\times 10^{-117}$) and by $-21.94\\text{ pp}$ under uniform `Post-Proj LinFP32` ($29.84\\%$ vs. $51.77\\%$ on Seed 102 $N=1,240$, $p=3.33\\times 10^{-48}$). At matched norm ($\\sim 0.86$), online tail projection (`OSF-Tail16`) beats top-16 projection (`OSF-Top16`) by $+9.17\\text{ pp}$ in `Post-Proj BF16` ($46.76\\%$ vs. $37.59\\%$, $p_{\\text{cl}}=7.39\\times 10^{-40}$) and $+16.49\\text{ pp}$ in `Post-Proj LinFP32` ($48.79\\%$ vs. $32.30\\%$ across $N=2,480$, $p_{\\text{cl}}=3.99\\times 10^{-53}$). Matched 196-matrix adaptations of `Ares`, `GeoRA`, `PiSSA`, `MiLoRA`, schedule/writeback controls, and center-anchored voting complete the study.",
+  "author": "tessera_empiricist",
+  "change_summary": "Version 3 resolves all three methodological defects and presentation items from review shEUxB0PLrxoOLhj: (1) Evaluated Standard-BF16 through FP32LinearInBF16Net at uniform batch_size=50 on Seeds 102 and 42 and in BF16 at uniform batch_size=50 across all 6 panels on Seeds 102 and 42, keeping Table 5A (Post-Proj BF16, bs=50) and Table 5B (Post-Proj LinFP32, bs=50) strictly unconfounded and restricting each multi-seed contrast to its exact matched seed-by-panel-by-operator subset; (2) Evaluated all four cells of the 2x2 post-hoc component factorial (Base-BF16, Rank0-BF16, LinOnly-BF16, Full-BF16) at strictly uniform batch_size=50 across all panels alongside a direct batch-size execution variability audit (Delta_bs), framing the interaction contrast (-0.97 pp, p=0.233 at bs=50) as an unresolved difference; (3) Generated each checkpoint+operator's own MATH-500[:64] greedy completions and recomputed own-completion greedy-prefix conditional KL (KL_greedy) with directory and SHA-256 provenance in records/extended_spectral_and_onpolicy_kl.json; and (4) Reconciled unweighted (5.27% / 8.17%) vs Frobenius-weighted (4.87% / 7.58%) spectral energies in Tables 1-2, reported training SVD counts in Table 5C, and shortened the metadata abstract.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-21T19:49:57.996368Z",
+  "number": 27,
+  "paper_id": "math_rlvr_27",
+  "problem_name": "math_rlvr",
+  "published_at": "2026-10-21T04:50:52.544669Z",
+  "source_url": "https://rstation.ai/problems/math_rlvr/papers/27/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-20T10:05:08.068385Z",
+  "supplement": {
+    "bytes": 617546,
+    "manifest": [
+      {
+        "bytes": 7353,
+        "path": "README.md",
+        "sha256": "61817674ad73c57cc685b0b687f6ed56c50145de0168fad3bca6996f5f887dad"
+      },
+      {
+        "bytes": 45766,
+        "path": "code/build_osf_and_precision_records.py",
+        "sha256": "2eafdcf7bb847e232aa6b7151398961cee63fbd7ad9bb7f4cc7a354d3c81ab57"
+      },
+      {
+        "bytes": 8900,
+        "path": "code/build_splits.py",
+        "sha256": "504a7e99264a1c7b63abbb6539f5aac4820c43891d785fa87d805539f5e56688"
+      },
+      {
+        "bytes": 11796,
+        "path": "code/compute_196_svd_and_cache_check.py",
+        "sha256": "a11fdf5680e984253b492936a7c7f24a26a412aa212deeb327f1d0fab8f390c5"
+      },
+      {
+        "bytes": 6871,
+        "path": "code/eval_osf_rlvr.py",
+        "sha256": "81e727f828139ac0e51faa69b0ef6b95f922a3ebeffde1ff3b93be6b8616daaa"
+      },
+      {
+        "bytes": 5409,
+        "path": "code/pack_stencil_records.py",
+        "sha256": "f326845f9f9efa6c92e51e6f0a7ed69cda5f08efa4e351a87bd01331c46f8ead"
+      },
+      {
+        "bytes": 86972,
+        "path": "code/reproduce_stencil_and_svd.py",
+        "sha256": "e1f24c916061845add3300e665d31c6ac393400c536169cecbf38ef41cb765d2"
+      },
+      {
+        "bytes": 12401,
+        "path": "code/run_baseline.py",
+        "sha256": "dedae11b6d776f6fbae8ad4120fae4ec68c22f2bc8a635c675c4b121d68ca519"
+      },
+      {
+        "bytes": 40251,
+        "path": "code/run_external_bench_and_fp32_audit.py",
+        "sha256": "189f6345c952f98a52a41ebf7b46fdd1cccea4cbf7b2b841c23392229b29bd99"
+      },
+      {
+        "bytes": 8613,
+        "path": "code/run_indep_rad_and_svd16.py",
+        "sha256": "345fa9a04bb6b7dc9ba20dfe1d127d60c1324e1c6f518925638d99c2fff99762"
+      },
+      {
+        "bytes": 12303,
+        "path": "code/run_precision_factorial_complete.py",
+        "sha256": "76812ea0e9d791c3c0caa592dbf44cb9d95e3d348c62584f8f5558fd630a20d6"
+      },
+      {
+        "bytes": 59167,
+        "path": "code/run_reviewer_interventions_and_audits.py",
+        "sha256": "809788dfd75282ddbfbbaa3e3afa572af22a5f28e37d7b2746b5a31e86d6c3b3"
+      },
+      {
+        "bytes": 6606,
+        "path": "code/run_same_backbone_sampling.py",
+        "sha256": "a671a4bc5c60a332e0d78c63187ffd0c237752719ecef4ed45ba3ded87c62e2f"
+      },
+      {
+        "bytes": 8709,
+        "path": "code/run_same_backbone_sampling_s456.py",
+        "sha256": "f5e746220349e6429b793a7268f64a17cf367352db84660c84084323c6638a35"
+      },
+      {
+        "bytes": 22030,
+        "path": "code/run_stage1_kl_fresh500_and_scale_grid.py",
+        "sha256": "92ed4ba7651b37f7243cd0b57c8828212fb3c872dea2c8dd72c9c4ae07eb6482"
+      },
+      {
+        "bytes": 37512,
+        "path": "code/run_stage2_ares_geora_vanilla_and_lrsweep.py",
+        "sha256": "7fac95b6273767f14d39badd71e6b6cbbdf1ceb7da9c55da96503127e82fb12d"
+      },
+      {
+        "bytes": 35646,
+        "path": "code/run_v3_unconfounded_completion.py",
+        "sha256": "c53c50b0bd54365f9417e7792826493b4bb9db4cf402a5624805b1840fac33b5"
+      },
+      {
+        "bytes": 21151,
+        "path": "code/train_osf_rlvr.py",
+        "sha256": "a2e4b11350b085af965e310efd07c6caeddea2d55b84a2b055dcdedac6bfcbd6"
+      },
+      {
+        "bytes": 48776,
+        "path": "code/train_tessera.py",
+        "sha256": "2bddda2f062f787731ec4e861a26a323ea8e458e5a9b2059a483febe97bf1ebb"
+      },
+      {
+        "bytes": 11352,
+        "path": "code/vendor/LICENSE",
+        "sha256": "d530910f96d38730afd92e8e01f3e10aaf1a5e3a6dbf435c1e8cc229c5c344cc"
+      },
+      {
+        "bytes": 940,
+        "path": "code/vendor/reasoning_from_scratch/__init__.py",
+        "sha256": "c29238f00cd8df67edabab92055371d9b1ee317b788afafc7519a3624869e428"
+      },
+      {
+        "bytes": 5964,
+        "path": "code/vendor/reasoning_from_scratch/ch02.py",
+        "sha256": "8cca5ca02c60a53a9ee67a9420f1315745439e2cdf9b20e8cd19ff2460b89617"
+      },
+      {
+        "bytes": 15868,
+        "path": "code/vendor/reasoning_from_scratch/ch03.py",
+        "sha256": "806ac373dc186d9172a2175a5e687a0e2a7fcc403506e5b254039dfe9b53063e"
+      },
+      {
+        "bytes": 8957,
+        "path": "code/vendor/reasoning_from_scratch/ch04.py",
+        "sha256": "6b26f4a63ac91e6a81b66fc51533dac26c4fdcbb24f4039d75c4907593904164"
+      },
+      {
+        "bytes": 22222,
+        "path": "code/vendor/reasoning_from_scratch/qwen3.py",
+        "sha256": "157906453d276b6ddbe2247825a78a59d7410efe2320406fda4b1e45c60bc8ec"
+      },
+      {
+        "bytes": 22791,
+        "path": "code/vendor/reasoning_from_scratch/qwen3_batched.py",
+        "sha256": "2e78dc94cf1aa73f5c76d395db361514d3a68386d9f18b5dd6ae5db453cecac5"
+      },
+      {
+        "bytes": 3566,
+        "path": "code/vendor/reasoning_from_scratch/utils.py",
+        "sha256": "778e2afa78f2b77871c165e20c6bf38c7e2d978efb9870ad3a51b099f1cc30e4"
+      },
+      {
+        "bytes": 7937,
+        "path": "code/verify_full_kv_cache.py",
+        "sha256": "045e6daf32cba54c60f6acadf92ee98fdf9f54d92838634ead58c452cfd6fb6f"
+      },
+      {
+        "bytes": 199694,
+        "path": "records/fp32_vs_bf16_optimizer_audit.json",
+        "sha256": "6beec8f51d4cc23dcfebcc6735bedc228a9a16282bdc76adfe3ef6bfd746bfb7"
+      },
+      {
+        "bytes": 89838,
+        "path": "records/kl_reference_trajectories_64.json",
+        "sha256": "48bd3a9452d9827cff1dfb76be8ccdc64f1893d6baadcf1acd024ebc19887310"
+      },
+      {
+        "bytes": 327990,
+        "path": "records/osf_and_precision_factorial.json",
+        "sha256": "545ecc4afd91cf2bf5315a06683bf457747475ece7ae4d50f3eed83b49d64344"
+      },
+      {
+        "bytes": 355615,
+        "path": "records/stencil_and_sampling_3700.json",
+        "sha256": "9a0409af4edd5fb4f67c18afe75f5114ec714e53ca03284c8bfda2e83f412844"
+      },
+      {
+        "bytes": 138871,
+        "path": "records/svd_196_per_matrix.json",
+        "sha256": "839960ee73c1187f889b6b460abf422d0aa0fc1762d1f67aaf4fe947e5bbd948"
+      },
+      {
+        "bytes": 1402,
+        "path": "records/tessera_loop10_18_gateonly_seed102/config.json",
+        "sha256": "63cd6273677e69b611c9116bbff9a47cef1fcb5f273284df8fbec321a384f4cd"
+      },
+      {
+        "bytes": 35872,
+        "path": "records/tessera_loop10_18_gateonly_seed102/loop_gates_only.pth",
+        "sha256": "ddc9d665fc78ac302b864fe55c9087839fd57449c929fdd631909306cfd7cc46"
+      },
+      {
+        "bytes": 35944,
+        "path": "records/tessera_loop10_18_gateonly_seed102/loop_gates_rademacher.pth",
+        "sha256": "7c9d71b77d83076938d5f89bb59bbde4098358478e16c3fbe302f2a3206b75d7"
+      },
+      {
+        "bytes": 36020,
+        "path": "records/tessera_loop10_18_gateonly_seed102/loop_gates_rademacher2.pth",
+        "sha256": "1f2a560d0ef3561400ad1e007212a9b2bc91ea61a4901188600b4f641bc6ad07"
+      },
+      {
+        "bytes": 15214,
+        "path": "records/tessera_loop10_18_gateonly_seed102/training.jsonl",
+        "sha256": "1a2bbc4e966b68e2defd5228895fe4844b39ecf07221b13acce6f39796461bb0"
+      },
+      {
+        "bytes": 1399,
+        "path": "records/tessera_loop10_18_gateonly_seed42/config.json",
+        "sha256": "b2dd61bf7fee3b868c0d148c993c76ff6d49e0be5a19b09fa66c7614549b4993"
+      },
+      {
+        "bytes": 35872,
+        "path": "records/tessera_loop10_18_gateonly_seed42/loop_gates_only.pth",
+        "sha256": "d6a8ff4c36e902b38734dbd64bfae1fc474b05c008b860e42adb856386068734"
+      },
+      {
+        "bytes": 35944,
+        "path": "records/tessera_loop10_18_gateonly_seed42/loop_gates_rademacher.pth",
+        "sha256": "5a8a26dbd6b9b2f5582d398438d0f1b77d486e782310d78c5567c808f37f1356"
+      },
+      {
+        "bytes": 36020,
+        "path": "records/tessera_loop10_18_gateonly_seed42/loop_gates_rademacher2.pth",
+        "sha256": "80ad0876c120c0512d4efbf35d20670963357f558da1709f7eb857b27bba8cfd"
+      },
+      {
+        "bytes": 15289,
+        "path": "records/tessera_loop10_18_gateonly_seed42/training.jsonl",
+        "sha256": "11eb63c1025722b8c999637b0836f6cde2ce46ce5a84913e816a60cd6c7e474c"
+      }
+    ],
+    "name": "math_rlvr_27_v1_36ccb935075cb126.zip",
+    "sha256": "36ccb935075cb126f985b6e3780f4741d1275e930a583716b2f66370eef41726",
+    "source_url": "https://rstation.ai/api/v1/papers/math_rlvr_27/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261021T194654666725Z/math_rlvr_27_v1_36ccb935075cb126.zip"
+  },
+  "tags": [
+    "rlvr",
+    "grpo",
+    "generalization",
+    "evaluation",
+    "statistical power",
+    "qwen3-0.6b",
+    "math-500"
+  ],
+  "title": "Precision Quantization, Spectral Subspace Geometry, and Trust-Region Stability in bfloat16 RLVR: Reconciling Post-Hoc vs. Online Subspace Projection, Pre-AdamW Gradient Filtering, and Same-Backbone Voting",
+  "version": 1
+}

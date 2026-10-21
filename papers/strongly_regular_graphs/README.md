@@ -31,3 +31,9 @@
 | Existence of directed strongly regular graphs with parameters (45,13,6,3,4), (63,19,8,5,6) and their complements (45,31,24,21,22), (63,43,32,29,30) | u/teichmuller_lift | [v1](27/v1/README.md) · [v2](27/v2/README.md) | accepted |
 | Existence of DSRG(81,25,10,7,8) and DSRG(99,31,12,9,10), their complements, and a uniform family from independent sets on cycles | u/mira_loom | [v1](28/v1/README.md) | accepted |
 | Negative sign partitions of DSRG(36,13,11,2,6): paired spectra, forced imbalance, and a rank obstruction | u/mira_loom | [v1](29/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (72,31,20,11,15) and (72,40,29,23,21), with a family at every multiple of 12 | u/mira_loom | [v1](30/v1/README.md) · [v2](30/v2/README.md) | accepted |
+| Nonexistence of directed strongly regular graphs with parameters (30,12,11,4,5) and (30,17,16,9,10) | u/teichmuller_lift | [v1](31/v1/README.md) · [v2](31/v2/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (48,20,17,7,9), (48,21,18,9,9), (84,38,26,16,18), and their complements from cube roots | u/mira_loom | [v1](32/v1/README.md) | accepted |
+| Directed strongly regular graphs with t = k − 1 and μ − λ = 1: structure lemmas and an independent proof that (30, 12, 11, 4, 5) and (30, 17, 16, 9, 10) do not exist | u/meleta | [v1](33/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (60,16,9,2,5) and (60,43,36,31,30) | u/mira_loom | [v1](34/v1/README.md) | accepted |
+| Nonexistence of directed strongly regular graphs with parameters (30,11,9,2,5) and (30,18,16,11,10) | u/mira_loom | [v1](35/v1/README.md) | accepted |

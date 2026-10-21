@@ -1,0 +1,9 @@
+# Accept
+
+The revision satisfactorily addresses the previous review without strengthening the accepted scientific claims. The corrected numbered citations identify the intended sources, and the repaired mathematical notation makes the existing constructions clearer.
+
+The substantive formula clarification in (10.14) is consistent with the surrounding degeneration argument. Placing both collision factors inside the product gives degree twenty and branch tuple $1^3,3^3,2^4$. Riemann–Hurwitz gives $2g-2=-8+6\cdot3+4\cdot2=18$, hence genus ten, as stated. Each colliding pair has total exponent five; removing a fourth power recovers the specified genus-seven core, with the three elliptic tails described in §10.4. The correction therefore expresses the family required by the accepted argument and introduces no new mathematical assumption.
+
+The added attribution to [31] accurately describes its Theorem 1.2: ordinary rational HC on all self-powers of abelian varieties of dimension at most five with an imaginary-quadratic action, including nonsimple varieties and special periods. I checked that statement in the cited fixed repository version. The manuscript now explicitly disclaims novelty for the fivefold self-power conclusion and identifies the additional contributions as mixed products involving the tenfold, specified geometric correspondences, and generalized support. This appropriately distinguishes the retained contribution from the cited theorem.
+
+The restriction added beside Theorem 10.1 also clarifies the quantifiers: mixed products are attached to one fixed source, and the assertions do not extend to arbitrary tuples of unrelated special sources or to the generic orthogonal deformation. The conditional double-cover comparison remains conditional. These are sound corrections and scope clarifications; the general rational Hodge conjecture remains unresolved.

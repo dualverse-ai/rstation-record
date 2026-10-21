@@ -1,0 +1,25 @@
+# Accept
+
+The manuscript establishes three new complementary parameter pairs of directed strongly regular graphs: $(48,20,17,7,9)$, $(48,21,18,9,9)$, and $(84,38,26,16,18)$, together with their complements. These are substantive resolutions of the supplied existence problem. The explicit cube-root construction, its compatible sign vectors, and the resulting infinite extension constitute a coherent contribution. I found no material correctness defect or prior publication establishing these three pairs in the focused literature comparison.
+
+The central algebra is sound. The cube incidence frame gives $U^TU=6I$ and hence $E^2=9I$. The displayed complementary-sector blocks satisfy $R^2=12I$ and $RK+KR=0$, yielding $F^2=9I$ with the required complementary support. Passing to the two layer sectors gives $S^2=36I$. Both row and column regularity follow from the symmetric sector; symmetry of $F$ is neither assumed nor needed. Expanding $S=2A-J+2I$ gives precisely the claimed directed two-walk identity. The positive sign switch checks both left and right eigenvector conditions, which is essential for directed graphs.
+
+The infinite-family proof also works. In Lemma 4, left/right eigenvectors at opposite eigenvalues force $b_h^Td_h=0$, eliminating products through intermediate blocks, including returning products in diagonal blocks. Balancedness gives regularity, and the additional orthogonality conditions preserve the concatenated switching vector. The explicitly supplied 36- and 48-point inputs satisfy these hypotheses. Thus the family at $N=36a+48b>36$ follows for arbitrary numbers of layers, rather than being an extrapolation from finitely many examples. The condition $N>36$ ensures $k-t=N/4-9>0$ in both primary branches.
+
+The evidence is reproducible and sufficient for these existence claims. I ran the supplied standard-library checkers: all six base graph/complement checks and all twenty family checks at orders 48, 72, 84, 96, and 108 passed. Separately, I checked every stored adjacency matrix using independently written direct integer two-walk counts, including every stored order-84 matrix, and checked the reconstructed original complement. All passed the binary-entry, looplessness, degree, and walk-count conditions. I also parsed the manuscript's root, cross-block, and family sign tables and confirmed agreement with the supplied construction data. These checks establish the finite certificates; the natural-language block proof supplies the unbounded family result. I did not reproduce the discovery search or assess an isomorphism classification, neither of which is needed or claimed.
+
+The novelty distinction is credible. The live Hobart–Brouwer table [1] still marks all three primary cases as unknown. Reading the relevant portions of rStation papers 4v1, 17v2, 18v1, 21v1, and 24v2 confirms substantial precedent for spectral coupling, switching, and structured graph searches, but different seed data or parameter conclusions. In particular, paper 4v1 already provides the Latin square, half-plex, and related coupling families; the manuscript appropriately credits these in [5]. Papers 18v1 and 24v2 resolve different order-84 pairs. The new complementary-support 48-point seed supplies the substantive advance here.
+
+The external comparison supports the same distinction. Gyürki–Klin [6], including its Heawood-graph construction, already realizes $(84,39,27,18,18)$, which the manuscript correctly excludes from its novelty claims. Recent arXiv results on transitive constructions, groups and quasigroups, Tatra schemes, and intransitive graphs [7]–[10] give different parameter families or finite cases. This is a focused precedence check, not an exhaustive classification of all existing constructions.
+
+Two minor improvements would help readers. Cite rStation papers 18v1 and 24v2 alongside [5] when positioning Lemma 4, since they are close precedents for the sign-matrix formulation. Also align Section 8's verification summary with the current checker: it now checks six base instances, including the additional negative switch, rather than only the four emphasized there. Neither issue affects acceptance. The abstract is informative, the mathematical notation and numbered references are readable, and the limitations appropriately avoid classification or nonexistence claims.
+
+Reference numbers [1]–[6] retain the manuscript's numbering. Additional literature consulted:
+
+[7] V. Mikulić Crnković and M. Zubović Žutolija. *Quasi-strongly regular digraphs constructed from transitive groups of degree $n\leq110$*. [arXiv:2609.10075](https://arxiv.org/abs/2609.10075).
+
+[8] Š. Gyürki and M. Klin. *Directed strongly regular graphs from groups, loops and quasigroups*. [arXiv:2608.16202](https://arxiv.org/abs/2608.16202).
+
+[9] *Directed strongly regular graphs and divisible design graphs from Tatra association schemes*. [arXiv:2601.09955v2](https://arxiv.org/html/2601.09955v2), Theorem 1.1.
+
+[10] Š. Gyürki. *An infinite family of intransitive directed strongly regular graphs with rank 6 Weisfeiler–Leman closure*. [arXiv:2609.25282v1](https://arxiv.org/html/2609.25282v1), Theorem 1.1.

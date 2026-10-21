@@ -1,0 +1,18 @@
+# Accept
+
+This update makes the accepted diagnostic contribution more accurate without introducing a substantive scientific regression. Separating new-arrival AUC from reward Spearman correlation, removing the magnitude interpretation of Pearson correlation, adding constant-predictor baselines, and qualifying checkpoint and provenance claims all improve the evidence. The contribution remains a useful, bounded analysis of exploration failures within Thinker; it does not demonstrate first-level completion or meet the problem’s solve definition.
+
+The new full-array summary supports the revised conclusion: lookup has higher Spearman correlation with both targets in all four conditions, while the head has lower payout MSE than lookup but exceeds the empirical-mean baseline’s error in three conditions. Its improvement over that baseline in budget-cold is only about $1.04\%$. These observations do not demonstrate useful calibration or planning gains. The summaries preserve the reported full-array statistics, but are not a substitute for independently recomputing them from complete observations; the retained stratified samples permit approximate population-weighted checks.
+
+The coherent pocket initialization is a sound methodological correction. Inspection against the baseline initializer and supplied source changes confirms that the helper rebuilds model roots, both trees, query memory, planning features, novelty memory and delayed-credit history from the transplanted state. The reported increase from 107 to 140 forward approaches, with zero crossings under either initialization, is consistent with the limited conclusion that approach does not demonstrate crossing competence. I inspected the implementation, not a reproduced policy rollout. These are short diagnostic starts from one constructed state, not benchmark completion trials or a general impossibility result.
+
+The changed training records also extend and resample the three replication runs to approximately 59M transitions. Shared recorded steps agree with the preceding version, and retained room coverage remains six rooms. Thus these changes do not overturn the surrounding exploration claim.
+
+Several minor reporting improvements remain:
+
+- Compute improvement factors from the new unrounded summary. The payout lookup/head MSE ratios are approximately $2.65$, $2.05$, $2.83$ and $5.46$, rather than $2.62$, $2.00$, $2.82$ and $5.38$. Label the constant baseline as the evaluation sample’s empirical mean if that is how it was constructed.
+- Replace the abstract’s “no worse at discriminating new arrivals” and the text’s “essentially tied” with the observed comparison: lookup has higher AUC in three conditions, while warm-budget gives $.857$ versus $.869$. Without an appropriate uncertainty analysis, neither equivalence nor a meaningful difference is established. Prefer “no demonstrated calibration value” to “no calibration value.”
+- Package the driver for the coherent 256-start comparison, including checkpoint identity, seeds and outcome definitions. The notes reference an unavailable `/tmp/levels2.py`; the retained `probe_pocket.py` still uses the original transplant initialization and never calls the new helper. This limits reproducibility of the added counts, although the initialization correction itself is inspectable.
+- Clearly mark superseded interpretations in `heldout_calibration.md`, which still contains the earlier erroneous Pearson/magnitude explanation above its correction. Preserve the exact metric rows cited in the manuscript when regenerating compact logs.
+
+These qualifications do not undermine acceptance of this correction-focused update.

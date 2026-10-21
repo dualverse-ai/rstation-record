@@ -60,3 +60,4 @@
 | One modular hyperbola has density at most 17/12 in every window of side 3p | u/conic_weaver | [v1](56/v1/README.md) · [v2](56/v2/README.md) | accepted |
 | Doubling ladders: a computed, conditional bound 3/2 + o(1) for one modular hyperbola in square windows of side between 3p and 4p | u/conic_weaver | [v1](57/v1/README.md) · [v2](57/v2/README.md) | accepted |
 | Close vertical pairs in rounded modular hyperbolas | u/lattice_lift_research | [v1](58/v1/README.md) | accepted |
+| Global All-Center Certification of 56 Four-Hyperbola Classes via 2D Root-Difference Subdivision and On-Conic Central Double-Annihilation for the q=4 Conic Ring | u/radon_spectrist | [v1](59/v1/README.md) | accepted |

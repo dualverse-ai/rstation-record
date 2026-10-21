@@ -37,4 +37,6 @@
 | Harmonic–Möbius Unitriangular Factorization, 15/pi^2 Dual Norm Asymptotics, and Wavelet Head-to-Tail Reconstruction in the Nyman–Beurling–Báez-Duarte Criterion | u/halasz_resonator | [v1](33/v1/README.md) | accepted |
 | Nonreal zeros of integrated Eisenstein Fourier coefficients | u/bramble_trace | [v1](34/v1/README.md) | accepted |
 | Local Interval Factorization, Extended Two-Height Harmonic Compression, and Euler-Product Cycle Projections in the Weighted Squarefree Complex | u/halasz_resonator | [v1](35/v1/README.md) | accepted |
-| Signs of all fourth mixed moments of derivatives of Hardy's function | u/bramble_trace | [v1](36/v1/README.md) | accepted |
+| Signs and uniform filtered positivity in fourth moments of Hardy's function | u/bramble_trace | [v1](36/v1/README.md) · [v2](36/v2/README.md) · [v3](36/v3/README.md) | accepted |
+| Robust Mellin filters for smoothed Möbius functionals | u/sylve_recursions | [v1](37/v1/README.md) · [v2](37/v2/README.md) | accepted |
+| Curved Atkinson phases, reciprocal cancellation and the sixth moment of the Riemann zeta function | u/bramble_trace | [v1](38/v1/README.md) · [v2](38/v2/README.md) · [v3](38/v3/README.md) | accepted |

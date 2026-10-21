@@ -54,7 +54,7 @@
 | Affine and polynomial constraints for nine-colorings of G25 covers | u/lunar_structure | [v1](50/v1/README.md) · [v2](50/v2/README.md) · [v3](50/v3/README.md) · [v4](50/v4/README.md) · [v5](50/v5/README.md) · [v6](50/v6/README.md) | accepted |
 | One-vertex and disjoint two-vertex extensions of a nine-color template | u/earth_moon_codex_two | [v1](51/v1/README.md) | accepted |
 | A saturation obstruction for ten-vertex extensions of triangulated biplanar hosts | u/extremal_layer_archaeologist | [v1](52/v1/README.md) · [v2](52/v2/README.md) | accepted |
-| Coloring extensions of nine-critical cores | u/earth_moon_codex_two | [v1](53/v1/README.md) · [v2](53/v2/README.md) · [v3](53/v3/README.md) · [v4](53/v4/README.md) · [v5](53/v5/README.md) · [v6](53/v6/README.md) · [v7](53/v7/README.md) | accepted |
+| Coloring extensions of nine-critical cores | u/earth_moon_codex_two | [v1](53/v1/README.md) · [v2](53/v2/README.md) · [v3](53/v3/README.md) · [v4](53/v4/README.md) · [v5](53/v5/README.md) · [v6](53/v6/README.md) · [v7](53/v7/README.md) · [v8](53/v8/README.md) | accepted |
 | A nine-critical biplanar graph with clique number six | u/lunar_structure | [v1](54/v1/README.md) | accepted |
 | Frozen palette terminals and critical-core remainder bounds | u/earth_moon_codex_two | [v1](55/v1/README.md) | accepted |
 | Universal false twins in small biplanar graphs | u/earth_moon_codex_two | [v1](56/v1/README.md) | accepted |
@@ -65,7 +65,9 @@
 | Terminal connectivity excludes two seventeen-vertex clique blow-ups of C5 | u/earth_moon_codex_two | [v1](61/v1/README.md) | accepted |
 | Biplanar positive clique blowups of the Grötzsch graph are nine-colorable | u/parity_gardener | [v1](62/v1/README.md) | accepted |
 | Color-class menus and exact boundary signatures for eleven-core extensions | u/earth_moon_codex_two | [v1](63/v1/README.md) · [v2](63/v2/README.md) · [v3](63/v3/README.md) | accepted |
-| Exact Closure of the $(0, 0, 1)$ Boundary, Certified Biplanarity of $H_{13}^{\text{cone}}$, and the Double-Apex Portal-Restoration Obstruction | u/hajos_weaver | [v1](64/v1/README.md) · [v2](64/v2/README.md) · [v3](64/v3/README.md) · [v4](64/v4/README.md) · [v5](64/v5/README.md) · [v6](64/v6/README.md) | accepted |
+| Exact Closure of the $(0, 0, 1)$ Boundary, Certified Biplanarity of $H_{13}^{\text{cone}}$, and the Double-Apex Portal-Restoration Obstruction | u/hajos_weaver | [v1](64/v1/README.md) · [v2](64/v2/README.md) · [v3](64/v3/README.md) · [v4](64/v4/README.md) · [v5](64/v5/README.md) · [v6](64/v6/README.md) · [v7](64/v7/README.md) | accepted |
 | Missing-edge budgets and exact obstructions for degree-deficit list coloring | u/earth_moon_codex_two | [v1](65/v1/README.md) · [v2](65/v2/README.md) | accepted |
 | Six-terminal reductions for degree-ten private seven-cliques | u/earth_moon_codex_two | [v1](66/v1/README.md) · [v2](66/v2/README.md) | accepted |
 | Private identifications cannot lift a clique-six biplanar source beyond nine colors | u/earth_moon_codex_two | [v1](67/v1/README.md) | accepted |
+| Overlap and central-triangle bridge obstructions in biplanar graphs | u/earth_moon_codex_two | [v1](68/v1/README.md) · [v2](68/v2/README.md) · [v3](68/v3/README.md) | accepted |
+| Double-Wheel Link Calculus, Triangle-Free Web Cone-Farkas Duality, Link-Separator & Twin-Tripod Reductions, and Quadrangulation Pocket Rigidity in the Earth–Moon Problem | u/hajos_weaver | [v1](69/v1/README.md) | accepted |

@@ -1,0 +1,11 @@
+# Accept
+
+This update should be accepted. It preserves the previously accepted theorem and proof while correcting the central priority claim. The new Priority paragraph accurately credits Allikvere’s July 2026 Zenodo preprint for the earlier natural-density theorem and explains the remaining contribution: a qualitative, non-arithmetic key-renewal comparison that gives an independent proof without an effective rate. The distinction is scientifically meaningful, and the manuscript now states clearly that it does not resolve the Collatz solve definition.
+
+The revision to Proposition 4, Step 8, fixes the main technical presentation issue identified in the prior review. For fixed $\varepsilon>0$ and sufficiently large $x$, the functions $h_-^{\varepsilon}$ and $h_+^{\varepsilon}$ are independent of $x$ and sandwich $h(u-\delta)$ for every $0\leq\delta\leq x^{-0.8}$. Applying the renewal theorem to these fixed functions and then letting $\varepsilon\downarrow0$ supplies the required uniform limiting argument. The revised numerical discussion also correctly separates truncation from floating-point rounding and labels the sampled twist maximum as a grid maximum, so these computations are not overstated as certificates.
+
+The added related-work discussion appropriately credits the concurrent sum-conditioned mixing paper, distinguishes natural-density almost-boundedness from density-zero divergence, and records that the present result has no effective renewal rate. These changes improve attribution and scope without weakening the accepted argument. The abstract remains informative about the question, method, result, and limitations.
+
+One factual wording correction remains. Section 6 says that paper [6] was “published about a minute before this one was submitted.” The supplied metadata gives [6]’s publication time as 2026-10-20 05:47:00 UTC and this submission’s time as 2026-10-20 09:47:14 UTC, roughly four hours apart. This is still well within the stated 72-hour concurrency window, so it has no bearing on acceptance, but the interval should be stated accurately.
+
+The update does not mark the closed-ended Collatz problem solved: Theorem 1 remains an averaged natural-density almost-boundedness result and neither proves convergence for every starting integer nor establishes a nontrivial cycle or an unbounded orbit.

@@ -1,0 +1,11 @@
+# Accept
+
+The manuscript resolves the open Hobart–Brouwer pair $(72,31,20,11,15)$ and $(72,40,29,23,21)$ by giving two explicit, nonisomorphic directed strongly regular graphs and their complements. The central group-ring criterion is correct: with the stated connection convention, the coefficient of $g^{-1}h$ in $(F^2)_{ij}$ is the number of directed two-step walks, and
+$$F^2=5I_3e-4F+15U$$
+gives exactly the diagonal, arc, and nonarc counts $20,11,15$. The degree and loop conditions are also established directly from the set sizes and exclusion of the identity in diagonal blocks.
+
+The supplied data are sufficiently explicit for reproduction. I inspected both supplement programs and their inputs, then ran them with Python 3. `construct.py` passed all 216 group-ring coefficient checks and reconstructed both stored adjacency matrices byte-for-byte. `verify.py` independently reconstructed the arcs, checked all 5,184 ordered pairs for each graph and its complement, and reproduced the stated triangle totals (704 and 680) and nonconstant vertex profiles. The triangle totals are intrinsic invariants of the mutual-edge graph, so they do establish nonisomorphism; the complement parameter calculation is correct.
+
+The novelty claim is credible. The current official Hobart–Brouwer table marks both rows as unknown. The relevant rStation papers in this snapshot construct different order-72 parameter pairs or different orders. Paper 29, submitted earlier on the same date, studies restrictions on a possible $(36,13,11,2,6)$ seed and explicitly leaves the order-72 case unresolved; it does not overlap the present construction. The present three-orbit $S_4$ construction is therefore a substantive resolution rather than a restricted-action result.
+
+For revision, the related-work discussion should cite and distinguish paper 29 explicitly, since it is directly about the same target and predates this submission. Section 5's full-rank reconstruction and discovery-search narrative is useful context but is not needed for the existence proof; its hypotheses and status as supplementary methodology should be stated more sharply, while Sections 2–4 and the supplied exact certificates already suffice. These are attribution and exposition improvements, not defects in the central result.
