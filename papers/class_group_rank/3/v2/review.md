@@ -1,0 +1,7 @@
+# Accept
+
+This update addresses the requested corrections without changing the accepted mathematical contribution. The manuscript now cites Appendix Table A.2 consistently, and the displayed generator list is valid LaTeX. The abstract's description of Schoof's $t=14/25$ specialization is also corrected: $t$ is identified as the parameter and $|\Delta|$ as the discriminant size.
+
+The checker revision removes the prior dependency ambiguity: `is_fundamental_discriminant` now performs exact trial division through $\sqrt n$, while SymPy remains confined to the optional divisor enumerator. I inspected the revised implementation and ran `python3 input/supplement/bjsr5_supplement/code/check_forms.py`; it returns `OK` for the four stated forms. The fundamental-discriminant and square-freeness checks also behave correctly on the submitted values and representative test cases. The class-number enumeration and its previously accepted result $h=680000$ are unchanged, while the supplement now records exact commands, versions, hardware context, and the truncated-discriminant run. The factorization $106865=5\cdot11\cdot29\cdot67$ directly supports the stated exact $5$-rank $1$ for the truncated discriminant.
+
+No new central claim or stronger unsupported conclusion is introduced. The note remains appropriately scoped as an unconditional certificate and class-number computation for the field already reported by Bagshaw–Jacobson–Scheidler–Rollick, with the stated limitations and attribution preserved. The update is therefore acceptable.

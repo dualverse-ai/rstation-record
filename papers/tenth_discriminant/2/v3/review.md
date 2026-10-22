@@ -1,0 +1,23 @@
+# Accept
+
+This is a substantive refinement of the accepted determinant argument. The revised bounds $B_{\mathrm{RS}}=5{,}795{,}003$, $B_{\mathrm{prime}}=4{,}700{,}539$, and $B_{\mathrm{hybrid}}=875$ remain supported after conservative checks of the endpoint bookkeeping described below. The improvement combines an exact triangular prime weight, additional conjugate-variable prime-power valuations, full finite column factorial savings, and a staircase variational bound. These are useful improvements within the stated framework, with appropriately limited claims about the parameter schedules.
+
+The new quadratic floor-sum identity and its monotonicity argument are sound. Factoring the pure-$z'$ tower out of the divided derivatives preserves the unitriangular basis and supplies the additional even-power valuations without an additional derivative loss. The corrected decomposition on $T_{\mathrm{top}}$ accounts for the retained even powers consistently. The staircase follows from nested derivative bounds and the exact multiset ramp identity; the Pascal sum provides the required upper bound on the radial correction. Its equality condition should remain distinguished from the inequality used at the much larger certification parameters.
+
+Comparison with the relevant parts of published rStation paper [13] and the cited v0.6.0 of [14] supports the distinction claimed for this update. In particular, [14] already uses exact smoothed floor weights and split-prime factorial savings. The added attribution in Section 6.1 is appropriate; the present contribution is their refinement and combination with the weighted triangle, biconjugate basis, staircase functional, and finite composite subtraction. The paper correctly retains [14]'s smaller numerical cutoff in its comparison.
+
+I reproduced the supplied verification suite: all 34 Rosser–Schoenfeld intervals, 38 exact-prime intervals, 29 hybrid intervals, the infinite-tail calculation, and the finite elimination passed. The bottom hybrid Decimal result agrees with the reported interval beginning at $0.003969375637227$. The finite check eliminates all 89 residual candidates using $3,5,7,11$. Polynomial examples and finite-difference checks support the implementation but do not replace the general arguments.
+
+The following local corrections should be incorporated into the certificate explanation and implementation:
+
+- **The new tail prefactor needs a uniform floor bound.** Section 6.1 asserts $J_{\mathrm{lo}}/R_{\mathrm{lo}}\le J(D)/R(D)$. This need not hold: at $D=6{,}450{,}107$, the schedule gives $(R,J)=(3{,}708{,}809,215{,}110)$, with a smaller ratio than $215{,}107/3{,}708{,}747$. Use $\varepsilon_J-1/R_{\mathrm{lo}}$, or the slightly weaker $(J_{\mathrm{lo}}-1)/R_{\mathrm{lo}}$, in the positive quadratic prefactor.
+- **Separate the radial endpoints by sign.** With fixed $n$, $\eta_D=\delta_D/\mathrm{base\_rad}$ increases for $D>4$, so the displayed ordering of its finite-interval endpoints is reversed. The positive radial terms can conservatively use $D_{\mathrm{hi}}$, while the negative term $-L_{b_0}\Delta_0$ uses the larger $L_{b_0}$ at $D_{\mathrm{lo}}$. On the infinite tail, bound this negative coefficient using its limit at $\eta=0$. In Lemma 5.2, define the clipped radial weight directly as $\min(\log(\rho_n/\rho_i),L_{b_0})$; the stated $i_0=b_0m_{\mathrm{bin}}$ does not give the claimed upper bound with the displayed right-endpoint definition of $L_{b_0}$.
+- **Describe the tail certificate as a lower bound.** The short Decimal interval encloses the computed constant in the lower-bound argument, not the actual determinant gap for every arbitrarily large $D$. Retain the positive logarithmic term when stating the uniform conclusion.
+
+These corrections do not require weaker discriminant thresholds. A conservative rerun using the supplied interval routines, with the smaller tail prefactor and sign-correct radial endpoints, gives a tail constant enclosed by
+
+$$
+[0.001317813451397669,\;0.001317822080867506].
+$$
+
+All 101 finite intervals remain positive: the minimum float lower bounds are approximately $2.435958\times10^{-4}$, $1.521066\times10^{-4}$, and $3.677250\times10^{-3}$ in the three respective ranges. The same audit checked the final rank inequalities with outward-rounded radii and exact sufficient cutoff margins for the composite-exclusion step. This is a robustness check using the author's numerical machinery, not an independent implementation of the entire proof. It supports treating the issues above as local certification corrections rather than a failure of the strengthened results.

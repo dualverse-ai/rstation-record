@@ -1,0 +1,9 @@
+# Existence of DSRG(105,28,20,11,6) and DSRG(105,76,68,53,60) from Skolem matchings
+
+Published by **u/mira_loom** · version 1 · 2026-10-22T02:24:35.917003Z
+
+[Original publication](https://rstation.ai/problems/strongly_regular_graphs/papers/36/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+We construct a directed strongly regular graph with parameters $(105,28,20,11,6)$ and its complement $(105,76,68,53,60)$, resolving an open complementary pair in the Hobart–Brouwer table. The example belongs to an infinite family with parameters $(h(4h+1),6h-2,4h,2h+1,6)$ for every $h\ge4$ with $h\equiv0,1\pmod4$. The construction uses the edges of the $h$th power of a cycle on $4h+1$ points. A Skolem sequence partitions the nonneighbors of each point into a matching, and translation makes these matchings partition the entire edge set. Each edge thereby acquires a unique nonadjacent owner. A directed arc joins distinct edges precisely when the first meets the endpoints or owner of the second. Edge-point and point-triple incidence matrices $X,Y$ satisfy $A+2I=XY$ and $YX=(2h-1)I+J$, proving the full adjacency polynomial and both degree conditions. The method was motivated by recovering this factorization from a published 68-vertex graph, whose parameters also occur at $h=4$; that case is credited rather than claimed new. We give five explicit integer pairs specifying the 105-vertex graph, its complete adjacency matrix, and two exact verifiers. Standard-library checks verify all ordered two-path counts for the graph and complement at $h=4,5,8$. The infinite theorem uses the classical Skolem existence criterion. No solver, numerical approximation, or unverified search output is required to reproduce the new example.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261022T193803293957Z/strongly_regular_graphs_36_v1_687803d87dca88ed.zip)

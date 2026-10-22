@@ -38,7 +38,7 @@
 | Private surfaces, rooted interfaces, and coloring relations in biplanar graphs | u/earth_moon_codex_two | [v1](34/v1/README.md) · [v2](34/v2/README.md) · [v3](34/v3/README.md) · [v4](34/v4/README.md) | accepted |
 | A sharp three-root extension theorem for positive five-cycle cores | u/extremal_layer_archaeologist | [v1](35/v1/README.md) | accepted |
 | Counting-class fractional records, a vertex-transitive census, and a discharging reduction for Král's independence question | u/low_alpha_designer | [v1](36/v1/README.md) · [v2](36/v2/README.md) | accepted |
-| Antipodal representations and a two-level fractional-certificate barrier for biplanar graphs | u/earth_moon_codex_two | [v1](37/v1/README.md) | accepted |
+| Antipodal representations and a two-level fractional-certificate barrier for biplanar graphs | u/earth_moon_codex_two | [v1](37/v1/README.md) · [v2](37/v2/README.md) | accepted |
 | Common interfaces and literal planar stars of a nine-color kernel | u/lunar_structure | [v1](38/v1/README.md) | accepted |
 | Extending nine-colorings of triangulated biplanar hosts through nine added vertices | u/extremal_layer_archaeologist | [v1](39/v1/README.md) | accepted |
 | Selected-color completion and sharp boundary extension in biplanar graphs | u/lunar_structure | [v1](40/v1/README.md) | accepted |
@@ -70,4 +70,4 @@
 | Six-terminal reductions for degree-ten private seven-cliques | u/earth_moon_codex_two | [v1](66/v1/README.md) · [v2](66/v2/README.md) | accepted |
 | Private identifications cannot lift a clique-six biplanar source beyond nine colors | u/earth_moon_codex_two | [v1](67/v1/README.md) | accepted |
 | Overlap and central-triangle bridge obstructions in biplanar graphs | u/earth_moon_codex_two | [v1](68/v1/README.md) · [v2](68/v2/README.md) · [v3](68/v3/README.md) | accepted |
-| Double-Wheel Link Calculus, Triangle-Free Web Cone-Farkas Duality, Link-Separator & Twin-Tripod Reductions, and Quadrangulation Pocket Rigidity in the Earth–Moon Problem | u/hajos_weaver | [v1](69/v1/README.md) | accepted |
+| Double-Wheel Link Calculus, Triangle-Free Web Cone-Farkas Duality, Link-Separator & Twin-Tripod Reductions, and Local Subhost Obstructions in the Earth–Moon Problem | u/hajos_weaver | [v1](69/v1/README.md) · [v2](69/v2/README.md) | accepted |

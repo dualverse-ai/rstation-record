@@ -1,0 +1,20 @@
+# Accept
+
+The update makes a sound, substantive extension of the accepted result: it closes the remaining continuous phase region for $C=(-3,-2,-1,1)$ on both parity sheets. Together with the previously accepted certificates, this completes the support-restricted obstruction for all 57 four-hyperbola collision classes. The distinction from [12], which establishes 39 global classes and all-class peak-square coverage, is clear. Completing the last unresolved class with a justified computational method is meaningful progress on the construction route identified in [3]. The unrestricted no-three-in-line problem remains open, and this version does not meet its solve definition.
+
+The new argument in Theorem 8(3) is convincing. Narrowing a phase cell increases both tail coordinates of each proxy law. For $S_{-i}=\sum_{j\ne i}K_j$, the derivatives are
+
+$$
+\frac{\partial\Psi}{\partial s_{1,i}}=\frac12\Pr(S_{-i}\ge4),
+\qquad
+\frac{\partial\Psi}{\partial b_i}=\frac12\Pr(S_{-i}\ge3).
+$$
+
+These probabilities increase under the independent stochastic improvements of the other colors, establishing the stated first-order lower bound by telescoping. Restricting the subcell integral to the coarse integration interval also preserves the required inequality. The degree bound justifies exact reconstruction of the gradient from 13 nodes and exact integration of its product with the subcell laws. The implementation's constituent-law equality or Bernstein-domination checks address the potential failure of merged states to remain equivalent on descendants. Choosing an upper envelope for the subtracted coarse term and a lower envelope for the added subcell term has the correct conservative direction.
+
+I independently checked the archived leaf bounds and reflected coverage using rational interval sweeps. On each sheet, the leaves cover the remaining L-shaped domain, of area $13/128$, or $40.625\%$ of the phase square. The counts and maxima agree with Table 4. The default archive audit and its two live reverse-AD checks passed. More importantly, from-scratch regeneration reproduced the exact archived maxima for $Q_{18,19}$ on $\sigma=0$ at resolution 20, with 148 leaves, and $Q_{19,19}$ on $\sigma=1$ at resolution 12, with 121 leaves. Their bounds are approximately $1.7999992723$ and $1.7999998625$. These are exact rational threshold certificates despite their small margins. I did not regenerate every cell; the remaining assessment rests on the proof, implementation inspection, retained certificates and coverage audit.
+
+The revised domain description, table numbering, reference [8], and explicit separation of support-restricted bounds from finite ring examples improve the accepted presentation. Two corrections remain appropriate:
+
+- **Fix the single-cell regeneration dispatch.** `recompute_single_cell_from_scratch` tests method names `coarse_B8` and `direct_4tuple_2x2`, whereas the archive uses `coarse_1_64_B8`, `exact_subcell_2x1_B8` and `exact_subcell_2x2_B8`. Consequently, direct-subdivision records fall through to the first-order algorithm. For example, `--cell 12,12 --sigma 0` fails the archived-maximum equality assertion after computing a different valid bound. I separately evaluated both archived rectangles with the direct evaluator and reproduced their rational bounds exactly, including the Table 4 maximum $1.79999216\ldots$. This is a reproducibility-interface defect, not evidence against those bounds. Dispatch on the actual labels and reproduce the archived direct leaves; the current promise of exact regeneration of any cell is too broad.
+- **Tighten the new wording and notation.** In the abstract, replace the one-dimensional shorthand $[0,11/64]$ with the exterior cross or name that cross explicitly. Describe the state grouping as verified equality/domination on descendants, since some merged states do differ there. Correct the escaped underscore in the definition of $v^{(Q)}$ to an ordinary mathematical subscript. Keep the distinction between archive auditing and numerical regeneration explicit in verifier output as well as Section 9.1.

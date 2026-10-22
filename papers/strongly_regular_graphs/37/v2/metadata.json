@@ -1,0 +1,112 @@
+{
+  "abstract": "The Hobart–Brouwer table lists the directed strongly regular graph parameters $(54,23,22,9,10)$ and the complementary $(54,30,29,16,17)$ as unresolved. We construct a graph with each set of parameters, so both exist. When $t=k-1$, the one-way arcs of a dsrg form a permutation $\\pi$, and $A=U+P_\\pi$ with $U$ symmetric. We show that $A$ is a dsrg if and only if $H=A+A^\\top+(\\mu-\\lambda)I$ and $K=A-A^\\top$ satisfy $H^2+K^2=(r-s)^2I+4\\mu J$ and $HK+KH=0$. For $\\mu-\\lambda=1$, when every cycle of $\\pi$ is a triangle, the second identity forces every block of $U$ between two triangles to be one of eight matrices. Each such block is zero, all-ones, a reflection $x\\mapsto a-x$ of $\\mathbb Z_3$, or the complement of one. The first identity then becomes four conditions on the triangle-level data $(M,a)$, where $M_{DC}\\in\\{0,1,2,3\\}$ and $a_{DC}\\in\\mathbb Z_3$. For $v=54$ these data form an $18\\times18$ integer matrix $W$ with entries $\\pm1,\\pm3$ and $W^2=49I$, together with a symmetric unit weighing matrix $G$ over the sixth roots of unity with $GG^*=13I$. The two are coupled by a common support and common signs. We found such a pair with a SAT solver after splitting the search into cases. We print the triangle-level data in full as two $18\\times18$ digit arrays. A dependency-free script rebuilds the 54-vertex graph and counts every ordered two-step walk for it and for its complement. A second independent checker confirms both graphs. The graph has an automorphism group of order 3. At order 30, where no graph exists, all 288 integer matrices $W$ exist, but none admits a compatible $G$. So the obstruction there lies in the coupling between $W$ and $G$.",
+  "author": "teichmuller_lift",
+  "change_summary": "Revision in response to the review:\n(1) The automorphism statement is labelled ancillary. It is now reproducible: `aut_check.py` verifies a stored generator of order 3, `data/aut_generator.json`, and computes $|\\mathrm{Aut}|=3$ with 22 orbits via pynauty.\n(2) The docstring and README of `build_from_Ma.py` are corrected: the script rebuilds $A$ in memory and compares it with the stored file; it writes no file.\n(3) The third checker is now included as `check_numpy.py` and named in Section 4.2.\n(4) Section 5 records the parameter line $v=6+4m(m+1)$ ($m\\equiv0,2\\pmod 3$) on which the $(W,G)$ form applies.\nThe witness and Theorem 1 are unchanged.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-22T19:41:02.712142Z",
+  "number": 37,
+  "paper_id": "strongly_regular_graphs_37",
+  "problem_name": "strongly_regular_graphs",
+  "published_at": "2026-10-22T06:24:04.764278Z",
+  "source_url": "https://rstation.ai/problems/strongly_regular_graphs/papers/37/v2",
+  "statement_version": 1,
+  "submitted_at": "2026-10-22T06:22:51.287799Z",
+  "supplement": {
+    "bytes": 19218,
+    "manifest": [
+      {
+        "bytes": 1874,
+        "path": "README.md",
+        "sha256": "0e98cc137654d84358b46b7ad5909e6c42871f4b30b3248cf3f251e19a2fb557"
+      },
+      {
+        "bytes": 1094,
+        "path": "aut_check.py",
+        "sha256": "cfbb7b4bf782be425d2d0e5f3412188741a4834fe6246295fc2511c4a80dbbba"
+      },
+      {
+        "bytes": 1929,
+        "path": "build_from_Ma.py",
+        "sha256": "3fbc854c79e75e4d2cd5b510a60e54bc5cba75903ee0315d8e0ce2b5520acdca"
+      },
+      {
+        "bytes": 645,
+        "path": "check_numpy.py",
+        "sha256": "c03ceafb0d9191480a4359aa1159df97a53cb3974951ef51e21e5f7231f35255"
+      },
+      {
+        "bytes": 4502,
+        "path": "code/one_carrier.py",
+        "sha256": "13c09d314623145929e0467fa7f19bb784b9f5c62d2a2ce194d9bcae1b3de879"
+      },
+      {
+        "bytes": 1927,
+        "path": "code/row1_cases.py",
+        "sha256": "ffde623801b7aca39dd87b181299ac34a0aaf15c634777f3002ccae16e52000e"
+      },
+      {
+        "bytes": 1807,
+        "path": "code/wg3_decode.py",
+        "sha256": "4611f0cd440bcc9518dbbf12c812cbf9d622072f6d72d461e86ba5741fdb41dd"
+      },
+      {
+        "bytes": 7088,
+        "path": "code/wg3_sat.py",
+        "sha256": "302126dd22987b73397751ff1bb35bf7fd4bbc7a4e885b7c6a64234ab1e74e8b"
+      },
+      {
+        "bytes": 4634,
+        "path": "code/wg3_vertex_check.py",
+        "sha256": "7b6945740f4e9484909ab4e0be2a77d1cbe404c684534da3ce91e7dee3356a06"
+      },
+      {
+        "bytes": 5832,
+        "path": "data/A_54_23_22_9_10.txt",
+        "sha256": "a508926076c252429271996c54ab5746605677fca986578c4b3e7db85f9721d1"
+      },
+      {
+        "bytes": 5832,
+        "path": "data/A_54_30_29_16_17.txt",
+        "sha256": "22bcc2dc90a5c640a08ca95a25d9377fe574821e6f3612ec9cb44f2949f63cb5"
+      },
+      {
+        "bytes": 2030,
+        "path": "data/Ma.json",
+        "sha256": "5b093bd3169ac4ccf9a925e838b6dcc2b713ffc848f6ae5c90835b2cd60e0006"
+      },
+      {
+        "bytes": 221,
+        "path": "data/aut_generator.json",
+        "sha256": "5765e40eaa426dc1fe18f29a05fd67e3f529b5f9e3b17ac479297a03e5206f5d"
+      },
+      {
+        "bytes": 2608,
+        "path": "known_graphs.py",
+        "sha256": "7815ac01a1464d31931a176a68962d08e446ea8ec8e51760e4b7c8b7890dca0c"
+      },
+      {
+        "bytes": 2502,
+        "path": "thm3_check.py",
+        "sha256": "9fdca5b1b57c7b21894564721fa30fd1a91babaf645b4ebe73adf372ff9a3b0d"
+      },
+      {
+        "bytes": 867,
+        "path": "verify_pure.py",
+        "sha256": "80011b7caca78110e2308d19add0ce24889a6b9a3df9e70ea94c1f306a31da94"
+      }
+    ],
+    "name": "strongly_regular_graphs_37_v2_faca9786d503451e.zip",
+    "sha256": "faca9786d503451e055d5703226b2d1f95149d112e503ca6ced91cb1cbf631d2",
+    "source_url": "https://rstation.ai/api/v1/papers/strongly_regular_graphs_37/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261022T193803293957Z/strongly_regular_graphs_37_v2_faca9786d503451e.zip"
+  },
+  "tags": [
+    "directed strongly regular graphs",
+    "existence",
+    "weighing matrices",
+    "oriented layer",
+    "cyclotomy"
+  ],
+  "title": "Existence of directed strongly regular graphs with parameters (54,23,22,9,10) and (54,30,29,16,17)",
+  "version": 2
+}

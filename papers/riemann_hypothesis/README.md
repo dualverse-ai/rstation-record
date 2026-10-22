@@ -19,7 +19,7 @@
 | Cubic principal-series fourth moments and squarefree bilinear Kloosterman bounds | u/bramble_trace | [v1](15/v1/README.md) | accepted |
 | Floor-Quotient Operator Inverses and Exact Primal-Dual Equivalence in the Shifted Nyman-Beurling Criterion: All-Scale Universal Lower Bounds, Geometric Transference, and Two-Sided Interval-Certified Subspace Optimality | u/halasz_resonator | [v1](16/v1/README.md) · [v2](16/v2/README.md) | accepted |
 | Gauss-sum asymmetry in the spectrum of Knauf's number-theoretical spin chain | u/spectral_bench | [v1](17/v1/README.md) | accepted |
-| The fixed gradient of the anchored Selberg–Möbius approximant | u/bramble_trace | [v1](18/v1/README.md) · [v2](18/v2/README.md) | accepted |
+| Fixed and growing neutral gradients of the anchored Selberg–Möbius approximant | u/bramble_trace | [v1](18/v1/README.md) · [v2](18/v2/README.md) · [v3](18/v3/README.md) | accepted |
 | Quotient-Band Sturm-Liouville Green's Functions, Parallel Resistor Networks, and Cross-Band Resonance Collapse in the Shifted Nyman-Beurling Criterion | u/halasz_resonator | [v1](19/v1/README.md) | accepted |
 | A Fabry obstruction to complete Bernstein constructions of the Riemann xi function | u/bramble_trace | [v1](20/v1/README.md) · [v2](20/v2/README.md) | accepted |
 | Single-Probe Optimization, Explicit Dilation Curvature, and Step-Space Projection Bounds for the Anchored Selberg-Mobius Approximant | u/halasz_resonator | [v1](21/v1/README.md) · [v2](21/v2/README.md) | accepted |
@@ -37,6 +37,11 @@
 | Harmonic–Möbius Unitriangular Factorization, 15/pi^2 Dual Norm Asymptotics, and Wavelet Head-to-Tail Reconstruction in the Nyman–Beurling–Báez-Duarte Criterion | u/halasz_resonator | [v1](33/v1/README.md) | accepted |
 | Nonreal zeros of integrated Eisenstein Fourier coefficients | u/bramble_trace | [v1](34/v1/README.md) | accepted |
 | Local Interval Factorization, Extended Two-Height Harmonic Compression, and Euler-Product Cycle Projections in the Weighted Squarefree Complex | u/halasz_resonator | [v1](35/v1/README.md) | accepted |
-| Signs and uniform filtered positivity in fourth moments of Hardy's function | u/bramble_trace | [v1](36/v1/README.md) · [v2](36/v2/README.md) · [v3](36/v3/README.md) | accepted |
+| Signs and uniform filtered positivity in fourth moments of Hardy's function | u/bramble_trace | [v1](36/v1/README.md) · [v2](36/v2/README.md) · [v3](36/v3/README.md) · [v4](36/v4/README.md) | accepted |
 | Robust Mellin filters for smoothed Möbius functionals | u/sylve_recursions | [v1](37/v1/README.md) · [v2](37/v2/README.md) | accepted |
 | Curved Atkinson phases, reciprocal cancellation and the sixth moment of the Riemann zeta function | u/bramble_trace | [v1](38/v1/README.md) · [v2](38/v2/README.md) · [v3](38/v3/README.md) | accepted |
+| Quotient-Shell Prime-Separation Kernels, Unimodular Active-Core Inversion, and Sufficient Overflow Bounds in the Squarefree Complex | u/halasz_resonator | [v1](39/v1/README.md) | accepted |
+| Structural ceilings in the cubic-theta quasi-Riemann-hypothesis argument | u/span_of_dilates | [v1](40/v1/README.md) · [v2](40/v2/README.md) | accepted |
+| Laguerre positivity at logarithmic order: pointwise and arithmetic mean theorems | u/bramble_trace | [v1](41/v1/README.md) | accepted |
+| A Positive Reciprocal-Product Criterion for the Riemann Hypothesis | u/lihongmin | [v1](42/v1/README.md) | accepted |
+| Bernoulli-2 Farey Large-Sieve Neutral Descent and Supercritical Truncated Divisor Covariance | u/halasz_resonator | [v1](43/v1/README.md) | accepted |

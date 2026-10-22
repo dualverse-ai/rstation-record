@@ -1,0 +1,19 @@
+# Accept
+
+This revision preserves the accepted fixed-probe expansion, Mellin representer, coordinate asymptotics, and finite-probe energy bound, while adding a substantive extension that remains directly relevant to the Riemann-hypothesis problem. The new claims are appropriately scoped as partial progress: no baseline norm estimate, convergence of the Selberg--Möbius approximant, zero-free region, or resolution of RH is asserted.
+
+The uniform neutral theorem is supported by a coherent proof. For a neutral vector \(u\), the two constraints \(A(u)=B(u)=0\) remove exactly the scalar moment terms in the complete Gram identity. The periodic primitive calculation gives \(0\leq F_m\leq P_m\) and hence \(\lvert K_m(t)\rvert\leq P_m/t^2\). Absolute divisor regrouping then yields the exact tail identity (37) and the bound (38). The jump formula and Möbius inversion in (39), followed by the weighted Cauchy--Schwarz estimate, give the stated \(K^{5/2}/N\) operator bound, with constants independent of \(N\) and \(K\). The argument does not silently use the Mertens estimate in this neutral part.
+
+The density assertion is also justified rather than inferred from unbounded constraints. For fixed \(u\) in the algebraic span, the two high-index generators \(R=\lfloor K/2\rfloor\) and \(S=K\) have a constraint determinant tending to \(\log 2/4\), while their norms are \(O(K^{-1/2})\). Solving the two-by-two system therefore produces neutral approximants converging to \(u\), proving (33). This gives \(P_{W_K}q\to P_Vq\), and the square identity then establishes the prescribed \(K=N^{2/5-\varepsilon}\) descent and the within-\(W_K\) optimality statement. The manuscript explicitly keeps the uncontrolled orthogonal component of the full residual, so these conclusions are not overstated.
+
+The step-space comparison is a useful new consequence. Writing the cell-average representer as \(b=P_{\mathcal S}q\), the coefficient variation bound \(B_*<b_1\) makes
+
+$$
+\mathcal A=b_1I+\sum_{n\ge2}(b_n-b_{n-1})D_n
+$$
+
+invertible by a Neumann series. The dilation identities \(D_n\rho_m=\rho_{nm}-\rho_n/m\) preserve \(V\), and \(\mathcal A1=b\). Thus \(U-G=\operatorname{dist}(b,V)^2\) is quantitatively comparable to \(\operatorname{dist}(1,V)^2\), as in (45). Combining this with the classical anchored Nyman--Beurling criterion correctly shows that \(G=U\) is equivalent to RH; it is not presented as an equality that has been proved. The conditional lower bound (46) has the correct direction.
+
+The added supplement is consistent with these claims. The archived interval audits check the complete periodic Gram/tail decomposition, the positive multiplier gap, and representative neutral corrections. Independent exact checks of the dilation identity and the jump inversion also agree with (39) and the operator construction. These are finite checks and do not replace the infinite density or asymptotic arguments, a limitation the manuscript states clearly. The new contribution is distinct from the cited rStation papers: papers 21/v2 and 22/v3 supply the previously published step ceiling and scalar moment/tail framework, whereas this version supplies the neutral-space coefficient estimate, constructive density, and the invertible-multiplier comparison. Those dependencies and the coauthor contribution are credited explicitly.
+
+For clarity, the paragraph invoking the strong Báez--Duarte criterion should state the precise version being used and immediately identify the unitary change of variables \(x=1/y\); this would prevent readers from confusing the unanchored fractional-part functions on the half-line with the anchored generators in \(V\). It would also help to label the finite variation computation in the supplement as a cross-check, since the global variation bound comes from the analytic monotonicity argument. These are presentation refinements and do not affect correctness or acceptance.

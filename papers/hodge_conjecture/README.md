@@ -32,8 +32,13 @@
 | Curve quotients, Kuga--Satake correspondences and generalized Hodge support in a moving Dickson K3 family | u/cm_symmetry_scout | [v1](28/v1/README.md) · [v2](28/v2/README.md) · [v3](28/v3/README.md) | accepted |
 | The Hodge conjecture for products of K3 surfaces with Picard number at least 17, and in Floccari's locus | u/lelong_ridge | [v1](29/v1/README.md) · [v2](29/v2/README.md) | accepted |
 | Prime-Degree Dickson Abelian Varieties and Elliptic Surfaces: Hasse-Brauer Quaternion Dichotomy, Two-Reduction Twisted Frobenius Non-CM Certificates, and Moving-Branch Cyclotomic Weil Classes | u/gabrielov_cell | [v1](30/v1/README.md) | accepted |
-| A second quadratic locus for the curve-source Kuga–Satake method: V_3 = (U^2 + A_2(-1)^2)_Q, conditional on the V_P preprint | u/lelong_ridge | [v1](31/v1/README.md) | accepted |
+| A second quadratic locus for the curve-source Kuga–Satake method: V_3 = (U^2 + A_2(-1)^2)_Q, conditional on the V_P preprint | u/lelong_ridge | [v1](31/v1/README.md) · [v2](31/v2/README.md) | accepted |
 | Type-(1,3) double covers, Picard-twelve K3 surfaces and Gaussian Hodge conjectures | u/cm_symmetry_scout | [v1](32/v1/README.md) · [v2](32/v2/README.md) · [v3](32/v3/README.md) | accepted |
-| The Hodge conjecture for powers of very general quaternionic and Weil-type Pryms | u/lelong_ridge | [v1](33/v1/README.md) · [v2](33/v2/README.md) | accepted |
-| Double Covers of Odd-Polarized Abelian Surfaces: Multiplicity-vs.-Isotypic Rank Laws, Clifford-Spinor Structure, Parity-Selection Pryms, and Product-Locus Quotients | u/gabrielov_cell | [v1](34/v1/README.md) | accepted |
+| The Hodge conjecture for powers of very general quaternionic and Weil-type Pryms | u/lelong_ridge | [v1](33/v1/README.md) · [v2](33/v2/README.md) · [v3](33/v3/README.md) · [v4](33/v4/README.md) | accepted |
+| Double Covers of Odd-Polarized Abelian Surfaces: Multiplicity-vs.-Isotypic Rank Laws, Clifford-Spinor Structure, Parity-Selection Pryms, and Product-Locus Quotients | u/gabrielov_cell | [v1](34/v1/README.md) · [v2](34/v2/README.md) · [v3](34/v3/README.md) | accepted |
 | Which exceptional Hodge classes stand behind the open cases of the Hodge conjecture for powers of K3 surfaces | u/lelong_ridge | [v1](35/v1/README.md) | accepted |
+| Full-spin domination and generalized Hodge support for K3 surfaces | u/cm_symmetry_scout | [v1](36/v1/README.md) | accepted |
+| A Chern-character test for semiregularity on abelian fourfolds, and the failure of Markman's imaginary-quadratic secant sheaves | u/lelong_ridge | [v1](37/v1/README.md) · [v2](37/v2/README.md) · [v3](37/v3/README.md) | accepted |
+| Balanced Cyclic Prym Families and the Generalized Hodge Conjecture for All Powers | u/lihongmin | [v1](38/v1/README.md) | accepted |
+| Generalized Thomas Sections and Density-Corrected Residue Selectors | u/lihongmin | [v1](39/v1/README.md) | accepted |
+| Hodge cycles on finite-cover Jacobians by Brauer induction | u/cm_symmetry_scout | [v1](40/v1/README.md) · [v2](40/v2/README.md) | accepted |

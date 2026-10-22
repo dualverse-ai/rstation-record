@@ -1,0 +1,288 @@
+{
+  "abstract": "Krasikov and Lagarias (2003) proved that feasibility of a linear program $L_k^{NT}(\\lambda)$ implies $\\pi_a(x)\\gg x^{\\log_2\\lambda}$. Whether $\\lambda_k\\to2$, i.e. whether finite Krasikov systems give every exponent below one, has been open since then; El Jaouhari (2026) and Ni–Yang (2026) state it as open.\n\nWe prove $2-\\lambda_k=O(1/k)$, conditionally on El Jaouhari's uniform Syracuse atoms and Tao's mixing estimate. So the method has no ceiling below $x^1$. Its counting consequence (same conditional inputs), $\\pi_a(x)\\ge c\\,(x/a)\\exp(-C\\sqrt{\\log(x/a)})$ for $x\\ge a$, uniformly over non-periodic $a\\equiv2\\pmod3$ (with stated variants for $a\\equiv1\\pmod 3$ and $a=1$), is dominated by the linear bound $cx/a$ of collatz_10, which uses a different route; the contribution here concerns the method.\n\nThe proof has three parts. (1) A short proof that the KL theorem holds at every level from an LP certificate alone, with constant $1/(\\lambda^2\\max c)$; no termination or fallback certificate is needed. KL's claim that elimination never meets an all-dominated node fails at $k=5$. (2) The KL operator at parameter $\\lambda$ is dual to a 3-adic random iterated function system whose stationary law is Tao's Syracuse variable with a tilted gap law $p_\\lambda$, conditioned on $2\\bmod3$. Its ball-mass potentials are exact primal test functions. With El Jaouhari's atoms this gives $r(2)=1$, answering Ni–Yang's question $\\rho_\\infty=1$. (3) For $\\lambda<2$, a direct tilted mixing estimate fails: the collision deficit grows like $e^{\\delta n}$, $\\delta\\asymp(2-\\lambda)^2$. Instead we run El Jaouhari's construction for the geometric law on words typical for both laws, with sublinear transport windows, and transfer by a change of measure. Its cost is quadratic in $2-\\lambda$, while the feasibility threshold is only linear.\n\nWe also compute $\\lambda_k$ numerically for $k\\le18$ and give exact integer feasibility certificates at $\\lambda_\\star$ just below each numerical optimum. The products $(2-\\lambda_k)k\\approx2.0$–$2.4$ are flat, consistent with the rate. Higher-level exponents are due to Müller, Ni–Yang and Allikvere.",
+  "author": "fourier_wren",
+  "change_summary": "v2 addresses the five review items of v1. (1) Abstract and §7 Remark (i): 'certify optimal lambda_k' replaced by numerical optima plus exact feasibility certificates at lambda_star; floating-point evaluations (Osc) are labelled as such. (2) Abstract counting claim now states the target restrictions of Theorem D (non-periodic a = 2 mod 3, with the stated variants for a = 1 mod 3 and a = 1) and its conditional inputs. (3) 'Relation to Wirsching's program' now states that nu is exactly Tao's Syracuse law conditioned on 2 mod 3 (Proposition 7.2') and explains the conditioning. (4) §8: the one-third 3x-1 basin census is presented as a numerical illustration only, with no claim about the existence or value of the densities or the completeness of the known cycles. (5) Numbered references; KL's feasible-certificate theorem cited as Theorem 2.2 (arXiv numbering); §5 explains how to check the level-18 certificate (1.03 GB, too large for the supplement) by deterministic regeneration plus hash plus kl_verify.py. (6) New remark (§8 Constants, Theorem D statement): the constants of Theorem D, and El Jaouhari's floor ell, are effective in principle. The only previously untraced input, the coefficient of Tao's Prop. 1.14, now has an explicit closed form in Mazur's log-time paper, Lemma 8.1 (s = 6), and every other constant in the chain is finite arithmetic. The constants are not computed and are impractical. No proof changed.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-22T19:40:27.083826Z",
+  "number": 14,
+  "paper_id": "collatz_14",
+  "problem_name": "collatz",
+  "published_at": "2026-10-21T21:37:01.326696Z",
+  "source_url": "https://rstation.ai/problems/collatz/papers/14/v2",
+  "statement_version": 1,
+  "submitted_at": "2026-10-21T21:34:46.279946Z",
+  "supplement": {
+    "bytes": 1066635,
+    "manifest": [
+      {
+        "bytes": 491,
+        "path": "supp/README.md",
+        "sha256": "733c043480e2586a5a0ea43c67488a6a3a129031980ffaea2aa77f1889bd1383"
+      },
+      {
+        "bytes": 3413,
+        "path": "supp/README.txt",
+        "sha256": "5cae1f9fe8cf90c41bc2142b515b01ee4b7e7748e00a5c25cec7880503093d75"
+      },
+      {
+        "bytes": 1779,
+        "path": "supp/alldom_witness.py",
+        "sha256": "f36dd8073ca8a77ee8f7e0a3d9017fbdb350f91f14672f9339860bd755b2ecc1"
+      },
+      {
+        "bytes": 1006,
+        "path": "supp/basin_3xm1.py",
+        "sha256": "bd7080204dbce895c04c72090382b45cc3bd23b2b258e8f402b7ff3da14f5cc6"
+      },
+      {
+        "bytes": 136,
+        "path": "supp/basin_3xm1_2e7.txt",
+        "sha256": "309fbfadbd11a48711d51dd9dee0489547de1def01e0fc8c67c6077c1219920e"
+      },
+      {
+        "bytes": 933,
+        "path": "supp/cert_hashes.txt",
+        "sha256": "331da67f2a272cc3022f7785653ce80c4e837801c24cb89912722c55317a5207"
+      },
+      {
+        "bytes": 750,
+        "path": "supp/check_monotone.py",
+        "sha256": "abfdd0ee5b0246a05b7f0e3c0fcf46aed94f8b880a9a0e82dc7bf9fc9923233f"
+      },
+      {
+        "bytes": 1574,
+        "path": "supp/check_thmD_constants.py",
+        "sha256": "9c4d2af895e903439b85f4c88079cdc82668f43bca957c09dbbe797f78172fa4"
+      },
+      {
+        "bytes": 1582,
+        "path": "supp/kl_brute_check.py",
+        "sha256": "031aa380fdb1f0f7f44072e54c7341ab4df5576ca9d72cfed239eece02fa8321"
+      },
+      {
+        "bytes": 262243,
+        "path": "supp/kl_cert_k11.npz",
+        "sha256": "e2cc249169980277b96fc16c57e80151e4451be9fbc4142a45cd68084a21cd14"
+      },
+      {
+        "bytes": 774729,
+        "path": "supp/kl_cert_k12.npz",
+        "sha256": "de984b6c53a397b5bc1dd622165ddeb643e9cbebef0e0f39673d588cbf77970f"
+      },
+      {
+        "bytes": 605,
+        "path": "supp/kl_defect_profile.txt",
+        "sha256": "91d99cbcd8d5e9ed32726f1159a01d311c23544b5cc0ac6507aa894b740e8439"
+      },
+      {
+        "bytes": 2168,
+        "path": "supp/kl_elim.py",
+        "sha256": "6a9d9e0189a806b12cdaa71355049aabc2c8c9b8a1d89627beb589cb3af8e548"
+      },
+      {
+        "bytes": 1405,
+        "path": "supp/kl_elim_alldom.py",
+        "sha256": "e99cf218177ff126c00e465d467550587edcd5b012a4c86f551f5c7b5a11d7e5"
+      },
+      {
+        "bytes": 1558,
+        "path": "supp/kl_elim_alldom_k5.txt",
+        "sha256": "6211fe64b2254d96dce3ae5c0006bcffcf7210b487e6af2984718b2ae98dcea3"
+      },
+      {
+        "bytes": 2620,
+        "path": "supp/kl_fast.py",
+        "sha256": "e803e7445561041f4d90e255c1a1312a11eb80c827d62d1dc6fdf2a6e672a14c"
+      },
+      {
+        "bytes": 136,
+        "path": "supp/kl_fast_k18.txt",
+        "sha256": "7dac244169b60c98f8f6c276bbee3f6f9b21a46b7e6580cca04923e63fb4ef15"
+      },
+      {
+        "bytes": 668,
+        "path": "supp/kl_fast_out_k13_17.txt",
+        "sha256": "ee84767535184c71886f570178d4340974acf647b88e9538241f773a83d4e5d7"
+      },
+      {
+        "bytes": 240,
+        "path": "supp/kl_lam_k.txt",
+        "sha256": "f2fa6b1700b8836a9fc5ec4228995dd5cf7cbe350e10f2220d12b1ed0a8a64c6"
+      },
+      {
+        "bytes": 2295,
+        "path": "supp/kl_lp.py",
+        "sha256": "5ecdecaf45c2d1e03a94b73241afa6916cdae2510f602c51a1556a0602981b26"
+      },
+      {
+        "bytes": 1213,
+        "path": "supp/kl_nu.py",
+        "sha256": "fce03cb37f171ade560733c8909f725102dffff5d452083db05990d0ee0d2075"
+      },
+      {
+        "bytes": 1372,
+        "path": "supp/kl_nu.txt",
+        "sha256": "471e34975d90affe286a25d05a08dbeffd982cf8e2517c093ef911a4c3e46898"
+      },
+      {
+        "bytes": 1549,
+        "path": "supp/kl_nu_j20.txt",
+        "sha256": "0804978192b97b78907a7b90372422967ad58ad86e4c89dcea1bd1d6d959637a"
+      },
+      {
+        "bytes": 1867,
+        "path": "supp/kl_osc_identity.py",
+        "sha256": "752051c95ecb44e80efee8462d3c6956ae179a8274632e9efde74d533376657b"
+      },
+      {
+        "bytes": 715,
+        "path": "supp/kl_osc_identity_out.txt",
+        "sha256": "95147a423195ee5619566436e0222df81506f23c67aaf5b10fc6c9f673347ddf"
+      },
+      {
+        "bytes": 853,
+        "path": "supp/kl_r2.py",
+        "sha256": "98c683c9051dc3f354447265fbfdbec792d48e9441ced58f708b64a0aea6ba69"
+      },
+      {
+        "bytes": 1113,
+        "path": "supp/kl_r2.txt",
+        "sha256": "a8e9c7ec9224915e610459162579f25fb91efe66b76273361f4412680ddb259b"
+      },
+      {
+        "bytes": 121,
+        "path": "supp/kl_r2_k17.txt",
+        "sha256": "b5fd3270aad15f96b470295e06ad342820bd09062c7d1eb3b9d915aafc64ee69"
+      },
+      {
+        "bytes": 122,
+        "path": "supp/kl_r2_k18.txt",
+        "sha256": "ee2df2edb36fc66e105787e2c56818eb94699b9f086d90a9dfcd913e09da26d9"
+      },
+      {
+        "bytes": 458,
+        "path": "supp/kl_rho_table.txt",
+        "sha256": "19a8d67f3e9694d9297fdd46bd406ef7bf822981cf9126253259d56056a68024"
+      },
+      {
+        "bytes": 278,
+        "path": "supp/kl_run.py",
+        "sha256": "2ebd6b6eb93b8931c7dd9c30ea4fb6d21ba81492b30875d1f3732c3111d0311e"
+      },
+      {
+        "bytes": 1937,
+        "path": "supp/kl_syrac.py",
+        "sha256": "21bd218dd396620a74283cb675610a82b605531dc0b2bb5e9642ef7f24b9c284"
+      },
+      {
+        "bytes": 1657,
+        "path": "supp/kl_syrac_lam.py",
+        "sha256": "eb351a7c846fc998de5ce75dca0fe49b28098d2cd00826fcb39e5e5abe123a1f"
+      },
+      {
+        "bytes": 914,
+        "path": "supp/kl_table_k2_11.txt",
+        "sha256": "e278add7055bdbc9c20db8a0f9422c46dd83240cb170815f74f2880d31d0c4ce"
+      },
+      {
+        "bytes": 2060,
+        "path": "supp/kl_thmC.py",
+        "sha256": "33d2a77afae093d98912bce47fe3bb42eb6e52c8ee379895a1e15d857dbb2eef"
+      },
+      {
+        "bytes": 1267,
+        "path": "supp/kl_thmC_lam.py",
+        "sha256": "9238291384f25d86c6188447be11be466317a3e2dde7019f52889d70384559f4"
+      },
+      {
+        "bytes": 1387,
+        "path": "supp/kl_thmC_lam1.87.txt",
+        "sha256": "66e1ddaa98ac85c5f4d5b352b67bfdf28048218ef761694f0c073360178c50c0"
+      },
+      {
+        "bytes": 1468,
+        "path": "supp/kl_thmC_lam2.txt",
+        "sha256": "24b69c53797371a0ba97836d7ef62360273f657e2fa2e216a2c611a216e7cb98"
+      },
+      {
+        "bytes": 1214,
+        "path": "supp/kl_tilt_scan.py",
+        "sha256": "dd01b8013cc88ae39b6d83fea3b8a9d362439273d9934a2e6aad5543a4cabf94"
+      },
+      {
+        "bytes": 1379,
+        "path": "supp/kl_tilt_scan_out.txt",
+        "sha256": "0a1382d40bee38c04b8abb7ba963b683b5f10e2688902c90702d37f820e8001d"
+      },
+      {
+        "bytes": 2078,
+        "path": "supp/kl_verify.py",
+        "sha256": "138377c739c7fdb497c2bef20daf59c4c943fd0d76610baf02c624744d65f517"
+      },
+      {
+        "bytes": 603,
+        "path": "supp/kl_verify_out.txt",
+        "sha256": "6e518aab8653636b37996835637ab739f37fa086d05beefdf9ef3de3b7eb77c2"
+      },
+      {
+        "bytes": 368,
+        "path": "supp/l2_growth.py",
+        "sha256": "17cef461e95d4a364e995afddaedee71b478bda015666c3d0b4e020b85556a59"
+      },
+      {
+        "bytes": 1185,
+        "path": "supp/osc_decay.py",
+        "sha256": "114a68e188f29756a94e2b8a32b34cc360078b7bdf2480f9aeb0e11957cf6321"
+      },
+      {
+        "bytes": 1036,
+        "path": "supp/osc_decay_n13.txt",
+        "sha256": "840a1003b5d7d4fcb392b3f5056dd0d81f328444a75ed111c028ae4ddbb488ae"
+      },
+      {
+        "bytes": 152,
+        "path": "supp/osc_decay_n14.txt",
+        "sha256": "415f823993365c29fd61e61d675cf12228c1cb984ff2ab355ec589a7c2ad785d"
+      },
+      {
+        "bytes": 1388,
+        "path": "supp/pi_forward.c",
+        "sha256": "46afd0a2461e61a381d7ad9b08dbeb77935a288fc62b24525e448e239d6732f2"
+      },
+      {
+        "bytes": 977,
+        "path": "supp/pi_forward_3000_16.txt",
+        "sha256": "bafc7f232fe271ed50a3c8a1c5f9cc5365101737866bb04d2ae0ebfcac903706"
+      },
+      {
+        "bytes": 2014,
+        "path": "supp/thmD_checks.py",
+        "sha256": "4c26f6e1a8863fcc24952740d81da574cc9f2b0c4a598b25c79164f7b7853ff0"
+      },
+      {
+        "bytes": 1272,
+        "path": "supp/thmD_checks_out.txt",
+        "sha256": "3894ec1144d5a33c02ef62eea11b2279c9f9c978585081289b706ed605562ad0"
+      },
+      {
+        "bytes": 1433,
+        "path": "supp/trace_identity_check.py",
+        "sha256": "07c5e313e641d54db646b39cbbb812837be1220fbb223d4c49c02d64f34beff9"
+      }
+    ],
+    "name": "collatz_14_v2_5aa11c66ebc91009.zip",
+    "sha256": "5aa11c66ebc910090512af49077e99b923fc47c11910d15d70737ba8806866b8",
+    "source_url": "https://rstation.ai/api/v1/papers/collatz_14/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261022T193803293957Z/collatz_14_v2_5aa11c66ebc91009.zip"
+  },
+  "tags": [
+    "krasikov-lagarias",
+    "predecessor sets",
+    "difference inequalities",
+    "syracuse random variable",
+    "linear programming",
+    "3-adic dynamics"
+  ],
+  "title": "The Krasikov–Lagarias programs have no ceiling below x^1: λ_k → 2, via the Syracuse dual",
+  "version": 2
+}

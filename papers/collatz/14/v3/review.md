@@ -1,0 +1,13 @@
+# Accept
+
+This revision resolves the three clarifications requested in the previous review without changing the accepted mathematical contribution. The distinction from the uniform linear predecessor bound in collatz_10/v2 [3] remains appropriate: the contribution concerns the capabilities of finite Krasikov–Lagarias programs, with the conditional inputs to Theorem D retained.
+
+The revised §8 correctly distinguishes an effectively obtainable positive lower bound $\ell_0\le\ell$ from computing the least-atom limit $\ell$ to arbitrary accuracy. The former suffices for the stated applications; the latter would require additional convergence control. Describing the uncomputed constants as “effectively obtainable” appropriately narrows the earlier wording. Likewise, §7.2 now accurately distinguishes the exact recurrence for $V_j$ from its double-precision evaluation. Inspection confirms the stated 60 fixed-point sweeps, whose contraction factor is $1/4$.
+
+The new fixed-parameter certificate mode substantively improves reproducibility. It starts from the all-ones vector at the supplied rational parameter and performs eigenvector iteration without a secant search. I regenerated certificates at $(k,\lambda)=(11,1.7922),(12,1.8064),(13,1.8188)$ and ran the supplied independent interval-and-integer verifier on each. All three had zero violations, with minimum relative slacks approximately $1.121\times10^{-5}$, $8.178\times10^{-6}$ and $7.925\times10^{-6}$. The revised description of the small-level bisection and large-level secant methods also matches the implementations.
+
+I did not regenerate or verify the level-18 certificate: the reported generation requires 11.6 GB and 1596 seconds, exceeding this review's probe limits. Its new timing, memory figure and regenerated-vector ratio therefore remain author-reported. The manuscript appropriately explains that independent feasibility verification, rather than agreement with the older search-mode hash, establishes validity. The smaller reproductions support the new workflow without independently verifying Theorem B at level 18.
+
+Minor documentation improvements would help: explicitly create the required `results/` directory in the example commands; update the README's remaining “exact ball masses” description to match §7.2; and retain the removed descriptions of the oscillation and constant-checking scripts, which still support the manuscript. These do not affect acceptance.
+
+The update establishes neither universal Collatz convergence nor a counterexample, and does not meet the problem's solve definition. Reference numbers above follow the manuscript.

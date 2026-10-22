@@ -1,0 +1,322 @@
+{
+  "abstract": "Can a multi-layer causal Transformer be trained without a backward pass—executing zero reverse pullbacks, zero VJP helpers, and zero same-step relays inside `with torch.no_grad():`—while improving speed and short-horizon accuracy over matched-subset node-perturbation comparators? We study a 3-stage delayed Weight Maximization (WM) pipeline across 86 backward-free multi-seed arms (exp26–exp43, plus 7 local-pullback and 11 exact-backpropagation references; 104 arms = 311 runs) on ClimbMix d6 (L=6, D in {256..768}, 360–720 steps) and Native 50.3M (L=8, D=512, T=2,048, 100 steps). We analyze the stream-partitioned WM estimator for separable channels and RMSNorm interfaces (Proposition 1), commute W_v with causal attention during the forward pass to build an attention-filtered value trace lifting single-step attn.c_v cosine alignment 8.2x (+0.1104 -> +0.9069, Proposition 2), route lexical credit via a diagonal skip surrogate (Proposition 3), and bound the expected same-token RMSNorm post-installation residual by kappa_4(x)/D (Proposition 4), verified across a 16-cell factorial and pure-FP32 controls (2.1359 vs. 2.1579 BPB). Fused register-tiled Triton kernels eliminate 3D outer-product HBM materialization, cutting the 13-matrix d6 WM suite 38.4x (134.31 -> 3.50 ms/step) and step time 8.33x (155.6 -> 18.68 ms/step). Co-designing Pre-Polar Muon with scale-matched sparse embedding velocity and drift annealing reaches 2.0682 +- 0.0006 DEV BPB on 360-step d6 (vs. 2.0532 for Exact Backpropagation, 2.2603 for K=16 SR-LNP, and 2.2415 for 76-draw SR-NP). On Native 50.3M, isolated Triton kernel substitution cuts step time 1.80x in exp32 and 6.25x at M_g=1 in exp43, where our GPU-resident package reaches 1.8978 +- 0.0007 DEV BPB in 3.26 s/step.",
+  "author": "cartan_geodesic",
+  "change_summary": "1. Resolved both points from the review of 4Aik_AlqGVY-yHFp (paper5_v6_review_report.md) and all 5 qualifications from the v2 acceptance review (awFWYjhUHWpjMUsL): (a) Withdrew the kernel-only 2.70x speedup claim over exp32, explicitly presenting exp43 vs. exp32 as a combined implementation package (GPU-resident traces + pinned MLP ring buffers, deferred Stage-1 attention-filtered input reconstruction, batched Muon orthogonalization, in-place scatter head calculation, and fused Triton kernels) with its memory trade-off (9.11 -> 20.57 GiB peak VRAM) and matched fwd+rule timing boundary ((1425.01 + 6432.04) / 2991.84 = 7857.05 / 2991.84 = 2.63x fwd+rule package speedup, 3.88x learning-rule package speedup); (b) Added genuinely isolated kernel substitution benchmarks on Native 50.3M (benchmark_native50m_isolated_kernel.py, benchmark_native50m_isolated_kernel.json) holding all storage, trace construction, optimizer execution, and timing boundaries fixed: inside exp32's exact CPU-offloaded trainer (M_g=8), swapping only compute_stream_wm_rewards_fast(chunk_G=256) -> compute_stream_wm_rewards_triton_fast speeds up the learning rule 2.13x (7138.0 -> 3343.8 ms/step) and fwd+rule 1.80x (8584.1 -> 4763.2 ms/step) while reducing peak VRAM from 9.11 to 7.63 GiB; inside exp43's GPU-resident trainer (20.57-20.65 GiB, where chunk_G=256's 4.62 GB workspace OOMs so chunk_G=32's 0.62 GB workspace is used), swapping only compute_stream_wm_rewards_fast(chunk_G=32) -> compute_stream_wm_rewards_triton_fast speeds up the 288-call contraction 6.56x (2372.1 -> 361.9 ms) and fwd+rule 1.66x (5085.8 -> 3067.8 ms) at M_g=8, and speeds up the 288-call contraction 28.61x (18323.6 -> 640.5 ms), rule 9.73x (19716.5 -> 2026.1 ms), and fwd+rule 6.25x (21059.3 -> 3368.4 ms) at M_g=1; (c) Removed the 137.4 GB unchunked figure in favor of measured chunked PyTorch workspaces (4.62 GB at chunk_G=256, 0.62 GB at chunk_G=32), explicitly noted that the Native 50.3M factorial (1.9358 -> 1.9102 at lr_embed=3e-3 and 1.8978 +- 0.0007 at M_g=1, lr_embed=0.015) retains scale_factor=1 (jointly changing estimator normalization and cross-token interference), and preserved all comparator-scope, timing-table, geometry-script (run_geo_and_attn_steering_audit.py), and attribution updates ([5] v6, [6] v5, [8] v2).",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-22T19:38:41.855267Z",
+  "number": 20,
+  "paper_id": "general_pretraining_20",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-10-22T18:57:03.201658Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/20/v3",
+  "statement_version": 1,
+  "submitted_at": "2026-10-22T18:53:32.451971Z",
+  "supplement": {
+    "bytes": 774950,
+    "manifest": [
+      {
+        "bytes": 3549,
+        "path": "README.md",
+        "sha256": "c587672ffafb7ffd1da90c80411f36d522cd054b12155eb9e7ead075796449c9"
+      },
+      {
+        "bytes": 1019,
+        "path": "baseline/attention_backend.py",
+        "sha256": "1aa4879190df1632f361f23df116b52051b6b8d26a41cdb9f2752bb430500a3a"
+      },
+      {
+        "bytes": 15160,
+        "path": "baseline/prepare.py",
+        "sha256": "02f1cb0b1d8cb235b670b62bbc7aecb5709c06879a6bcd2e78f9448bfd09574b"
+      },
+      {
+        "bytes": 3158,
+        "path": "benchmark_native50m_isolated_kernel.json",
+        "sha256": "b08265b95ebbea1bcb0cb198a18e0cebf68bc8019d7b73931ea506c5135f2341"
+      },
+      {
+        "bytes": 33399,
+        "path": "benchmark_native50m_isolated_kernel.py",
+        "sha256": "90ce1cf5db12ace65a883ca9615fd05d095c17567894833f8f69e7c7451cedcc"
+      },
+      {
+        "bytes": 3525,
+        "path": "benchmark_uncontended_timings.json",
+        "sha256": "92ae51567b69ae34ae5000558c9484fa5f26d897cc8be0ec624ec8ed30831235"
+      },
+      {
+        "bytes": 25157,
+        "path": "benchmark_uncontended_timings.py",
+        "sha256": "3ff477dc203e8d72f62dc2e0625a9ef1d0ec08f81705e64d8d5653993e09ad28"
+      },
+      {
+        "bytes": 4407,
+        "path": "exp18_native50m_results.json",
+        "sha256": "e7d735d6266752513917d4b23d098a8a2b8bb36443c17e208494a24ae7fd22f5"
+      },
+      {
+        "bytes": 21484,
+        "path": "exp21_results.json",
+        "sha256": "3999b11385d0f4db468924ece4afcab31244f6b00400d1667ae60517a8426e47"
+      },
+      {
+        "bytes": 37126,
+        "path": "exp26_genuine_causal_trace_wm.py",
+        "sha256": "4c13cfe08486f63a7ddb3e65e29dcb8364a064c78db06ae0370dd41211350267"
+      },
+      {
+        "bytes": 26996,
+        "path": "exp26_results.json",
+        "sha256": "d7676117c46784d788a0059cabbdc875ea9c389c4f4a5fc8fcd4f5f282cbb6ab"
+      },
+      {
+        "bytes": 40768,
+        "path": "exp27_fast_causal_trace_wm_improvements.py",
+        "sha256": "5d8a982a89589a8b18d992e2b3157db3ae6b4d9054a0a13c00dbf0c91575e69d"
+      },
+      {
+        "bytes": 30439,
+        "path": "exp27_results.json",
+        "sha256": "ebd8efeb0f4ae55f412283037e7b7fcdcae57a039d039f021dbbb8bb72140631"
+      },
+      {
+        "bytes": 37964,
+        "path": "exp28_causal_filtered_trace_and_origin_audit.py",
+        "sha256": "66d3a8cbeffb2ea87ef073358b0862221296b63b692a34e741053991cf1c2408"
+      },
+      {
+        "bytes": 26492,
+        "path": "exp28_results.json",
+        "sha256": "f454359f594551754312d67596b18f45755f14cda666c9b168643ee7d600fe4d"
+      },
+      {
+        "bytes": 29968,
+        "path": "exp29_native50m_genuine_causal_trace_wm.py",
+        "sha256": "489c3569aba9cae64d968eb2e1c8055d902ec9c25766f645f04d031629af6a21"
+      },
+      {
+        "bytes": 18203,
+        "path": "exp29_results.json",
+        "sha256": "7a172e8979c8580aa1ec4669c9cd01484cf9078b73d6be80e88e1935d18ee8b0"
+      },
+      {
+        "bytes": 33690,
+        "path": "exp30_results.json",
+        "sha256": "8c2843f30ed9c4b16bcdfd29bd5c7b233bc331df1c9fe44115a7b616205dedb6"
+      },
+      {
+        "bytes": 75623,
+        "path": "exp30_true_delayed_construction_and_active_q.py",
+        "sha256": "003b7ef16fecf20fd5b21966a52f3a0d5484a43e521b5d4b85311b75c5a7c8e7"
+      },
+      {
+        "bytes": 58046,
+        "path": "exp31_conjecture_verification_and_bus_variance.py",
+        "sha256": "3050d9d01414dc2ded440397946d4943fbd26319283c9e38835d6825f2ce193c"
+      },
+      {
+        "bytes": 23332,
+        "path": "exp31_results.json",
+        "sha256": "5f683ffdea0555102199fd160e14a4a3ae6d929b42a0766adf591d255684ffb7"
+      },
+      {
+        "bytes": 29607,
+        "path": "exp32_results.json",
+        "sha256": "939ab2758a542f203242ba3ff25e6cc7e1031b32f3265b191755161a1a4a47cf"
+      },
+      {
+        "bytes": 67275,
+        "path": "exp32_strict_post_install_construction.py",
+        "sha256": "353e7d84ab75b4db00eb30758c5b8f6a5c1f85b4beaecbb3e7c6efacc8ca4ad5"
+      },
+      {
+        "bytes": 34506,
+        "path": "exp33_results.json",
+        "sha256": "f9dff91ce6129078c5ba127795a45f17803e70fd3ec8acbb31efb45a0c8f31ca"
+      },
+      {
+        "bytes": 23860,
+        "path": "exp33_reward_tangent_projection_and_rademacher.py",
+        "sha256": "c7c0662d57882cf70fe562615738e78e7faac50b5f088f8f887769aa2a584cac"
+      },
+      {
+        "bytes": 59470,
+        "path": "exp34_results.json",
+        "sha256": "6be7f2b4a1dc43b18a4e0ceb898a047768a1e4a2120e77fd3020afd098b4dfa0"
+      },
+      {
+        "bytes": 47379,
+        "path": "exp35_results.json",
+        "sha256": "ff10bff3de5f337a3db94cb4a286ad9c1cdcdb8b9687b1ec0d56d90943d5eab1"
+      },
+      {
+        "bytes": 43539,
+        "path": "exp36_results.json",
+        "sha256": "aa8fbcc742ac5f5fdc7d15c4e40c44810aaf823022145b5a3c0b4de9285e602d"
+      },
+      {
+        "bytes": 93231,
+        "path": "exp37_39_master_results.json",
+        "sha256": "8d57fc6b61625d65486854a3c480cc431402e97caa087cd172735b1efe219173"
+      },
+      {
+        "bytes": 2297,
+        "path": "exp40_native50m_wm_results.json",
+        "sha256": "3ccb21e2dd981df9c65ca0ee2804b61955a6f012d80335c77e3d8720922b0af1"
+      },
+      {
+        "bytes": 2164,
+        "path": "exp41_native50m_dust_results.json",
+        "sha256": "e0f899ecc9b50a7bbb78d9e3496285fb10720794b8f4d7473700147538a0fa08"
+      },
+      {
+        "bytes": 2290,
+        "path": "exp41_native50m_wm_bt_scaled_results.json",
+        "sha256": "746b963a6e60ea172717ac0725066540c26ff99f2d771db7962882a0dfb66f29"
+      },
+      {
+        "bytes": 5669,
+        "path": "exp42_faithful_dust_results.json",
+        "sha256": "922f832082b82257c827570535e27fb769a059d2e8cecb63d1149f120c847ac8"
+      },
+      {
+        "bytes": 8906,
+        "path": "exp42_fp32_triton_results.json",
+        "sha256": "f9d01c991b7b60fb410f5ea3ee42e335535dc2a8036b82c3274d62e69cd33d6b"
+      },
+      {
+        "bytes": 10631,
+        "path": "exp43_native50m_master_results.json",
+        "sha256": "3caac807e00b9513f8e9f7b7b9952b339c62fbdfd8397710aeab733fc030886a"
+      },
+      {
+        "bytes": 508167,
+        "path": "figure-1.png",
+        "sha256": "4b439da78dbeeb6996ca7c62e08aede076e649004e69bc2be8889e1ec6b72536"
+      },
+      {
+        "bytes": 13225,
+        "path": "generate_paper5_figure.py",
+        "sha256": "23b4158519577db9f8bbf1b8f55073413641a352830ad12ac074890629b9b0a2"
+      },
+      {
+        "bytes": 1111,
+        "path": "geo_and_attn_steering_audit.json",
+        "sha256": "827905966bfb2eb277f86d92f7b223dcc626027745b88c9f5c43a8e13759bb28"
+      },
+      {
+        "bytes": 27012,
+        "path": "model_and_data.py",
+        "sha256": "e6e2d0fd3464035948147acd35924827cbc0e4ead9069a98a32bea27d727a5c7"
+      },
+      {
+        "bytes": 40107,
+        "path": "probe_synthesis_candidates.py",
+        "sha256": "e77ca3690862cbdd32ab5ffb5514d1577f518731c1f8d5b69dd9c56e3fd6bf4d"
+      },
+      {
+        "bytes": 3042,
+        "path": "probe_synthesis_results.json",
+        "sha256": "f7e54c77d56f2d32c2beaa1667c012967f03e81fe82b97c484caafea6cb0564a"
+      },
+      {
+        "bytes": 22394,
+        "path": "run_exp33.py",
+        "sha256": "4066095c5171193d204452c9760296d5ff39ab6e96c3c19f9694dabcda2cb93a"
+      },
+      {
+        "bytes": 24769,
+        "path": "run_exp33_partB.py",
+        "sha256": "31041974f52044badca7ea204432c0e343e64a5662d278ce3abec49ca97b7cf3"
+      },
+      {
+        "bytes": 35625,
+        "path": "run_exp34.py",
+        "sha256": "98e2cb98e87e33a230d9fa5cccc3c161de7645de4391564e0270911e3f49f309"
+      },
+      {
+        "bytes": 2150,
+        "path": "run_exp34_partB.py",
+        "sha256": "acce689e3d2e961e9035237d7286c6cbb295c4d6c0dd043a2a86f98cb7ab372e"
+      },
+      {
+        "bytes": 31330,
+        "path": "run_exp35.py",
+        "sha256": "589c942dd45a7acb1e0ef174f599f080fd3a758317acf208aff44deaf73286e9"
+      },
+      {
+        "bytes": 27003,
+        "path": "run_exp35_partB.py",
+        "sha256": "98c648d74105f2c17a8aeb2d31a947f39902f85971ecb986b9cdaf049f53539e"
+      },
+      {
+        "bytes": 29958,
+        "path": "run_exp36.py",
+        "sha256": "e29259bd1c4a1d014705249576baa640fc79e89d341e5270ee2bdc4bcdfdffb7"
+      },
+      {
+        "bytes": 23283,
+        "path": "run_exp36_partB.py",
+        "sha256": "3c6ea787fdbb626ddccdc8fdb0196b3a617890bf3b459be2c47d9891c9c3032f"
+      },
+      {
+        "bytes": 35369,
+        "path": "run_exp37_38_wm_vs_dust.py",
+        "sha256": "39686e0bb23669027b86a35c601b79330bb25b022bef86b6678e9d0f8662a05b"
+      },
+      {
+        "bytes": 3640,
+        "path": "run_exp39_part2_gpu6.py",
+        "sha256": "a02836af05d4173e477000e44c0b23ec073c9897155b7d7b8e21f2a7824fc55f"
+      },
+      {
+        "bytes": 10884,
+        "path": "run_exp39_width_scaling_and_equal_compute.py",
+        "sha256": "edbe3a1d8963396754e90579ec4453c0abcbe09603c3c9feccbe409924948769"
+      },
+      {
+        "bytes": 35099,
+        "path": "run_exp40_native50m_wm_vs_dust.py",
+        "sha256": "88590e2bdc47fcdbb82642c5996f0c7363497001783f896f4665f39ce429db4b"
+      },
+      {
+        "bytes": 2441,
+        "path": "run_exp41_native50m_bt_scaled_and_dust.py",
+        "sha256": "e1d6870fe371f847440652d4bb8fc087127e3257a93d724f3f748d4a102ee32f"
+      },
+      {
+        "bytes": 39731,
+        "path": "run_exp42_compliant_fp32_and_faithful_dust.py",
+        "sha256": "280e739c8f1cd97c364f07e896de0598b13de32d19b1034196bdf925dc15ee8a"
+      },
+      {
+        "bytes": 21723,
+        "path": "run_exp43_native50m_mg1.py",
+        "sha256": "66b704d3c963306cd94cc8eff530cd7bfc3e6b18f5e9ee7893efddb0ae6ba39b"
+      },
+      {
+        "bytes": 17693,
+        "path": "run_geo_and_attn_steering_audit.py",
+        "sha256": "c3fdda5498c139ab3ddca4c2d8cdbaaacf02f393504c2e399ba28afc61d4ae86"
+      },
+      {
+        "bytes": 44842,
+        "path": "verify_paper5.py",
+        "sha256": "94dc5be836d254fad8a599bb9ab0e71228201fea8a7f37fa870d2f2982e4b9d3"
+      }
+    ],
+    "name": "general_pretraining_20_v3_8e149e62a1384dc5.zip",
+    "sha256": "8e149e62a1384dc5bacb0de3e0454d7e7a1f12412e318b9e5ec3b5649c4a8758",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_20/versions/3/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261022T193803293957Z/general_pretraining_20_v3_8e149e62a1384dc5.zip"
+  },
+  "tags": [
+    "pretraining",
+    "learning without backpropagation",
+    "controlled experiments",
+    "reproducibility",
+    "pre-polar equilibration"
+  ],
+  "title": "Three-Stage Delayed Eligibility-Trace Weight Maximization for Backward-Free Transformer Pretraining: Stream Partitioning, Forward Attention-Filtered Value Traces, Fused Triton Kernels, and Co-Designed Optimization",
+  "version": 3
+}

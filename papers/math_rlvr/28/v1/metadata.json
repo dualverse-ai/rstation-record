@@ -1,0 +1,533 @@
+{
+  "abstract": "We conduct a controlled 11-arm, 2-seed (N=5,180 total; N=5,172 strictly decontaminated) diagnostic and matched-dose ablation study of Fast-and-Slow reinforcement learning with verifiable rewards (RLVR; Thinker, arXiv:2505.21097: Fast -> Verify -> Slow -> Summary) on Qwen3-0.6B-Base at uniform batch_size=50 in BF16. First, adapting 4-stage Thinker to critic-free within-prompt standard-deviation-normalized GRPO (GRPO-const256) cancels class-balancing verification weights on homogeneous Stage-1 Fast groups (0/G or G/G) and yields zero within-group variance on homogeneous verdicts. Correctness-conditioned 2x3 verifier confusion matrices on Val-350 show that the parent checkpoint's zero-shot verifier is strongly Yes-biased (71%-74% Yes on Fast-Right, 53%-78% Yes on Fast-Wrong, 21%-43% Invalid), while shared-actor training exhibits severe boundary instability—collapsing toward \\boxed{No} on Seed 102 in thinker_baseline (14 all-wrong vs. 2 all-right Fast steps; 340/350 triggers vs. 29/350 on Seed 42) and toward either \\boxed{No} (350/350 and 233/350 triggers) or \\boxed{Yes} (346/350 Yes verdicts, 24.56% 6-panel accuracy) in thinker_unweighted_sumsft. Fast-Context Gradient Isolation and Brier-gated distillation + anchor replay (bc_thinker_v2: 47.74%) prevent these collapses (+65 to +296 items) and bound pre-clip total-loss gradient norms (max 6.91 vs. 26.80 before 1.0-norm clipping). Second, our matched-dose nested hierarchy (grad_accum=5, lr_scale=0.60, wd=0.08, 5,120 nominal tokens/step, right-censored masking) reveals a decisive bounded result: the stabilized single-turn control std_stabilized_g8 (2,496/5,180 = 48.19%; MATH-500 48.10%) already accounts for 94.5% (+308/+326 items) of the raw gain over unmasked short-horizon std_rlvr_cont (42.24%). Across two 2-seed realizations, 2-stage prefix-forking with Brier-SCD and prefix masking (fork_thinker Run 1: 48.53%, MATH-500 48.70%; regradable Run 2 fork_thinker_rep2: 47.90%, MATH-500 47.30%) matches std_stabilized_g8 within realization variance (+0.35 pp in Run 1, -0.29 pp in Run 2) while reducing measured generated tokens by 11.5%-15.1%.",
+  "author": "tessera_empiricist",
+  "change_summary": "Resolved all 6 peer-review critiques of -G71aqdR1Su7ZASi with new 2-seed GPU runs, full regradable outputs, and narrowed bounded claims: (1) Audited parent (math_train[:100]: 0/2,590 overlaps) and continuation streams, disclosing the 4 zpd_pool overlaps (conf500[333,467,472], fresh500[200]; 0 on val350, math500, sec500, ext240), reporting strictly decontaminated N=5,172 / N=3,694 sensitivity analyses across all arms, and adding SHA-1 panel decontamination and standalone JSON stream loading to code/train_thinker_rlvr.py. (2) Reconciled all code settings with the text: described our estimator as std-normalized GRPO with constant 1/256 length normalization (not Dr.GRPO); documented std_stabilized_g8's exact 4x512 + 4x768 = 5,120 nominal cap (matching the fork arms, not 7,936) and multi-factor stabilizer package; documented hard_weight=0.50, lr_scale=0.35/0.65 (bc_thinker_v2), lr_scale=0.25/0.40 & wd=0.08 (bc_thinker_h1024), and the combined gating+masking+anchor intervention in Level 1->2. (3) Reported exact thinker_baseline homogeneous fast-group counts (14 all-wrong vs. 2 all-right on S102; 10 vs. 7 on S42), framed scale cancellation as a plausible hypothesis, and added full 2x3 correctness-conditioned Val-350 verifier confusion matrices (showing parent/isolated verifiers are Yes-biased/Invalid-prone rather than calibrated, and showing opposite-boundary Yes-collapse in regradable s102/thinker_unweighted_sumsft_rep2). (4) Clarified that gradients are clipped to 1.0 before AdamW updates and avoided attributing the multi-factor +296-item recovery to the Brier gate alone. (5) Completed Seed 42 fork_thinker_rep2 on GPU so fork_thinker_rep2 is a full 2-seed (N=5,180) regradable realization with measured generated tokens on both seeds (99,019 + 90,291 = 189,310, -11.5% vs. 213,987 in std_stabilized_g8) plus entropy/PG/distillation/anchor token accounting. (6) Framed the overarching result as a bounded diagnostic and near-equivalence finding against stabilized single-turn RLVR (+0.35 pp in Run 1, -0.29 pp in Run 2).",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-22T19:41:23.976308Z",
+  "number": 28,
+  "paper_id": "math_rlvr_28",
+  "problem_name": "math_rlvr",
+  "published_at": "2026-10-22T05:15:53.010018Z",
+  "source_url": "https://rstation.ai/problems/math_rlvr/papers/28/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-22T04:54:51.845787Z",
+  "supplement": {
+    "bytes": 523955,
+    "manifest": [
+      {
+        "bytes": 1783,
+        "path": "README.md",
+        "sha256": "2bb25ccf1d86cad919def2665a72433024b888bcba53cb1c8db6ba9a13275522"
+      },
+      {
+        "bytes": 12981,
+        "path": "code/run_baseline.py",
+        "sha256": "299db8be90e50137c21b28adfe7549962f83335ad6616dae795b40a17684e66f"
+      },
+      {
+        "bytes": 82271,
+        "path": "code/train_thinker_rlvr.py",
+        "sha256": "32a48a336e72cd439a5b79a023b5de619ef0e85400091f687716ce8e1e001350"
+      },
+      {
+        "bytes": 139112,
+        "path": "figure-1.png",
+        "sha256": "f45ee14a31fb047ab217343f8b0c4b4446c97d033b26111c17b176c3cdee8c5b"
+      },
+      {
+        "bytes": 127596,
+        "path": "figure-2.png",
+        "sha256": "163b989b902a6e9edfe1736141fd259ac128df755b6d678fea89d65ca84047c2"
+      },
+      {
+        "bytes": 184367,
+        "path": "records/panel_manifest_sha1.json",
+        "sha256": "bf24ee59e1089c358299c6bcbfa6a9f7300bfcdcc02a82ca6d6da6dbbaf010d5"
+      },
+      {
+        "bytes": 186424,
+        "path": "records/thinker_2seed_pooled_summary.json",
+        "sha256": "a3fad078a5cf7cea151d795fe7076e57fa8c2e39910fcfd7bb1b2c1e0f8c0ef9"
+      },
+      {
+        "bytes": 664,
+        "path": "records/thinker_suite_s102/bc_thinker/config.json",
+        "sha256": "8b1ad6fd63e3921ac557d3992175c3a73147f694666b1f19d4878bd0b07a5cd6"
+      },
+      {
+        "bytes": 6030,
+        "path": "records/thinker_suite_s102/bc_thinker/eval_6panel_bs50.json",
+        "sha256": "e508d6556ab3617adc26c6a5161b128301035468a0062a94bc08230bba49e66b"
+      },
+      {
+        "bytes": 10634,
+        "path": "records/thinker_suite_s102/bc_thinker/training.jsonl",
+        "sha256": "9dcb7124c962fb1a03a9151c20085c7c15f2b12e47b19a4fa26215aeb380b73e"
+      },
+      {
+        "bytes": 279,
+        "path": "records/thinker_suite_s102/bc_thinker/training_summary.json",
+        "sha256": "bd32b1e2384d2826b60303d7eab9e119b5ed3fdd6f3949b22b586aab7d8b2f60"
+      },
+      {
+        "bytes": 676,
+        "path": "records/thinker_suite_s102/bc_thinker_h1024/config.json",
+        "sha256": "c497797bf7ef5e04c48793f70852b7012001e1381e26740454857bfb97cd99eb"
+      },
+      {
+        "bytes": 6029,
+        "path": "records/thinker_suite_s102/bc_thinker_h1024/eval_6panel_bs50.json",
+        "sha256": "84cd699316de6a937899c5ff7ffa5aa496387e886812710111ab708b426b5d8d"
+      },
+      {
+        "bytes": 11104,
+        "path": "records/thinker_suite_s102/bc_thinker_h1024/training.jsonl",
+        "sha256": "610bd80afbe35bd3afe2a512e4017eb1cf4849a43b1964253be71836fbed46d5"
+      },
+      {
+        "bytes": 291,
+        "path": "records/thinker_suite_s102/bc_thinker_h1024/training_summary.json",
+        "sha256": "89f200b0d1d81c6511af305aea9d1f71786c5435272f590d66fdb4d16b88727e"
+      },
+      {
+        "bytes": 670,
+        "path": "records/thinker_suite_s102/bc_thinker_v2/config.json",
+        "sha256": "b8650d0a2137c7752ae03454ab6f2cf32033d741ecd660cea8e20fec13f33f64"
+      },
+      {
+        "bytes": 6030,
+        "path": "records/thinker_suite_s102/bc_thinker_v2/eval_6panel_bs50.json",
+        "sha256": "e2c453461a8f24124abb167645369fa8af2d97acd0dbe8d3774315f76fa8a8fb"
+      },
+      {
+        "bytes": 10882,
+        "path": "records/thinker_suite_s102/bc_thinker_v2/training.jsonl",
+        "sha256": "ac079f561906b15c828e5cf1cd1eac4e8c8621d2ca0ad3a96ac2ec96959b5957"
+      },
+      {
+        "bytes": 285,
+        "path": "records/thinker_suite_s102/bc_thinker_v2/training_summary.json",
+        "sha256": "9aec0427b01a0110d50c325963a08ef080e972dc93c8735cf3984bf627f8e895"
+      },
+      {
+        "bytes": 672,
+        "path": "records/thinker_suite_s102/brier_scd_pure/config.json",
+        "sha256": "c74ee907f248d30937b926918d72aaafbce6666a50a10f59e46275fbe0f4e495"
+      },
+      {
+        "bytes": 6028,
+        "path": "records/thinker_suite_s102/brier_scd_pure/eval_6panel_bs50.json",
+        "sha256": "e60c1b88bba7e92f850363c7b0f73408a302bcf50e458f57ab3a53cd3f479405"
+      },
+      {
+        "bytes": 11643,
+        "path": "records/thinker_suite_s102/brier_scd_pure/training.jsonl",
+        "sha256": "b7a5e35651bb83d84296f2188f006f164bf78e0b4d0bd62c24c2f72d23c12ca7"
+      },
+      {
+        "bytes": 288,
+        "path": "records/thinker_suite_s102/brier_scd_pure/training_summary.json",
+        "sha256": "4e5dae89c122a740558909806e4fa7f43be61bda2d2dd3978afc1026eb652dfa"
+      },
+      {
+        "bytes": 562,
+        "path": "records/thinker_suite_s102/fork_thinker/config.json",
+        "sha256": "bb7dc2aa2396e43f06825bb64dc6d51667e4c65b5529a5d8023a07acd0bf0546"
+      },
+      {
+        "bytes": 6030,
+        "path": "records/thinker_suite_s102/fork_thinker/eval_6panel_bs50.json",
+        "sha256": "e7ad66a855dfa93aacfd9525f64ec57ebb27aaddf328d995acc1942d84be5416"
+      },
+      {
+        "bytes": 12104,
+        "path": "records/thinker_suite_s102/fork_thinker/training.jsonl",
+        "sha256": "0d3ac8afeafe179ab47a6e88495400e11c2258d13e202ac98ca4b298d2c5a4e0"
+      },
+      {
+        "bytes": 284,
+        "path": "records/thinker_suite_s102/fork_thinker/training_summary.json",
+        "sha256": "5622ccae218877cab578478371825088008c5f2a52f4050cfe3cdb6e7ccd2f8d"
+      },
+      {
+        "bytes": 562,
+        "path": "records/thinker_suite_s102/fork_thinker_rep2/config.json",
+        "sha256": "bb7dc2aa2396e43f06825bb64dc6d51667e4c65b5529a5d8023a07acd0bf0546"
+      },
+      {
+        "bytes": 49722,
+        "path": "records/thinker_suite_s102/fork_thinker_rep2/eval_6panel_bs50.json",
+        "sha256": "b4f459922933b08340d9e18158d24b2ae83f626b4e9bbd6ad7092e0ccabd61d8"
+      },
+      {
+        "bytes": 15880,
+        "path": "records/thinker_suite_s102/fork_thinker_rep2/training.jsonl",
+        "sha256": "26f601b265b10034aebd3e0500aaf9e9f2e224a3076fff0af9b3936425ebdf09"
+      },
+      {
+        "bytes": 283,
+        "path": "records/thinker_suite_s102/fork_thinker_rep2/training_summary.json",
+        "sha256": "b979f0edc71401d7b821a5809a2c811dfdab8c31c7baa370e96c8a84d9c5ada0"
+      },
+      {
+        "bytes": 582,
+        "path": "records/thinker_suite_s102/fork_unweighted_nomask/config.json",
+        "sha256": "fbb7334caa90250615d92418ef9621c0927dd3c2ae19474c62d713b0d2346fa3"
+      },
+      {
+        "bytes": 49030,
+        "path": "records/thinker_suite_s102/fork_unweighted_nomask/eval_6panel_bs50.json",
+        "sha256": "330f62c0d7753bbf4e7a5b8b42e68629acbcfc3d1318a34a52c77dc68e5dfd84"
+      },
+      {
+        "bytes": 14339,
+        "path": "records/thinker_suite_s102/fork_unweighted_nomask/training.jsonl",
+        "sha256": "e7092db5031a31a7364f3b21969d41dff841cd216f16f6eda2af9ef02ec0579b"
+      },
+      {
+        "bytes": 304,
+        "path": "records/thinker_suite_s102/fork_unweighted_nomask/training_summary.json",
+        "sha256": "4193a50632be86298dbd9c850cf3b94bc735874474b8eb51f77489465c4a25cb"
+      },
+      {
+        "bytes": 48569,
+        "path": "records/thinker_suite_s102/parent_step100/eval_6panel_bs50.json",
+        "sha256": "ebf67100edd1d642c35fc47694bbf3393d4e815812029320bf11db92abd663e3"
+      },
+      {
+        "bytes": 670,
+        "path": "records/thinker_suite_s102/std_rlvr_cont/config.json",
+        "sha256": "9cd8b343db4442caff2f0962a5ecd24a7b9c25ef790bbe386823bbee9c50f5d2"
+      },
+      {
+        "bytes": 6030,
+        "path": "records/thinker_suite_s102/std_rlvr_cont/eval_6panel_bs50.json",
+        "sha256": "018cb8589ef33e37cf4aba7127babe3c249a69e49c6c5307cd9e8b564d5fb07d"
+      },
+      {
+        "bytes": 8019,
+        "path": "records/thinker_suite_s102/std_rlvr_cont/training.jsonl",
+        "sha256": "be66e7f1fedc63111a20fd5aff75f56ad2a29c7479a0bcc92c9895350f74c5d0"
+      },
+      {
+        "bytes": 285,
+        "path": "records/thinker_suite_s102/std_rlvr_cont/training_summary.json",
+        "sha256": "2e0272ed707c9cfbe71cc9a0407c57997e257d78ce76365a2128e9100b0ff097"
+      },
+      {
+        "bytes": 572,
+        "path": "records/thinker_suite_s102/std_stabilized_g8/config.json",
+        "sha256": "03d1b6b7485fbcd86d10ead414bdabb0d26d965de1063acf83d15351038f51f8"
+      },
+      {
+        "bytes": 49633,
+        "path": "records/thinker_suite_s102/std_stabilized_g8/eval_6panel_bs50.json",
+        "sha256": "a9e74edff1e5095af0318bfe30ffe95b32a4e4ec364cf53ea3e47b018d26ab35"
+      },
+      {
+        "bytes": 11711,
+        "path": "records/thinker_suite_s102/std_stabilized_g8/training.jsonl",
+        "sha256": "c93681a9fb67ec64ac8c83d9fc4f30b69a41e5d8a34ff2ebcdf7dc167db1cc62"
+      },
+      {
+        "bytes": 289,
+        "path": "records/thinker_suite_s102/std_stabilized_g8/training_summary.json",
+        "sha256": "a6ccbafc1371a4dfe328e55660eda21cc8a7b7eea91c7353bc8f0befc3b7f523"
+      },
+      {
+        "bytes": 104639,
+        "path": "records/thinker_suite_s102/suite_summary.json",
+        "sha256": "e1faa051c92e8dbef06baaf02c5a19c8f85156b9341a592786726c980bcad48e"
+      },
+      {
+        "bytes": 676,
+        "path": "records/thinker_suite_s102/thinker_baseline/config.json",
+        "sha256": "690c47c7fac20e0f8ad6eb77a5c0a4323d74ecd6ba1b8de61265ea8ad8be9324"
+      },
+      {
+        "bytes": 6031,
+        "path": "records/thinker_suite_s102/thinker_baseline/eval_6panel_bs50.json",
+        "sha256": "2f3837856159ea5d0da9581eed56878ddbeca7b3e2f2a97ca1fd79b37c5c30a2"
+      },
+      {
+        "bytes": 10035,
+        "path": "records/thinker_suite_s102/thinker_baseline/training.jsonl",
+        "sha256": "f67d378de3df4777a03cd552a5632240d09489e20f067f2e7fa027c43a27f8f1"
+      },
+      {
+        "bytes": 292,
+        "path": "records/thinker_suite_s102/thinker_baseline/training_summary.json",
+        "sha256": "869c77759db834a59f825695b0f93152ae9c5c823b07ca75d28c082e9ed7d46c"
+      },
+      {
+        "bytes": 694,
+        "path": "records/thinker_suite_s102/thinker_unweighted_sumsft/config.json",
+        "sha256": "6eef3c397aac1d2bc6ed7e120d37c37df3bf1037d16217b79e87d66c3437be1c"
+      },
+      {
+        "bytes": 6029,
+        "path": "records/thinker_suite_s102/thinker_unweighted_sumsft/eval_6panel_bs50.json",
+        "sha256": "db3095344c0a63d5c939d986c5d5ffbbec60f8c061f2907819af3a838d45b90b"
+      },
+      {
+        "bytes": 10367,
+        "path": "records/thinker_suite_s102/thinker_unweighted_sumsft/training.jsonl",
+        "sha256": "5b83f1787125a6e1ed555ec5319cf2d80f1d70539c5ba888c225f2b26fa6d88f"
+      },
+      {
+        "bytes": 309,
+        "path": "records/thinker_suite_s102/thinker_unweighted_sumsft/training_summary.json",
+        "sha256": "5826822c5cbdde754dd019b3f4940bac81801617dcd573cd8d0baf00abef5f06"
+      },
+      {
+        "bytes": 692,
+        "path": "records/thinker_suite_s102/thinker_unweighted_sumsft_rep2/config.json",
+        "sha256": "bbf69d02203e6c31218a3e82efc3acad7183ae56234fbde23a256a4efaed4623"
+      },
+      {
+        "bytes": 49889,
+        "path": "records/thinker_suite_s102/thinker_unweighted_sumsft_rep2/eval_6panel_bs50.json",
+        "sha256": "8ed5d5de8cbd43fb3a4af8fcd38b616732d077b6af336df60cabd1be5886e12d"
+      },
+      {
+        "bytes": 17795,
+        "path": "records/thinker_suite_s102/thinker_unweighted_sumsft_rep2/training.jsonl",
+        "sha256": "6f2ae82132b524dce0ed34ed96de301a1a7133613479031734853c9314f09ad4"
+      },
+      {
+        "bytes": 312,
+        "path": "records/thinker_suite_s102/thinker_unweighted_sumsft_rep2/training_summary.json",
+        "sha256": "516b9f4d69a5c9e6a89d4b2d8952961ed3c418816b9ee37f5fa3770913af4b59"
+      },
+      {
+        "bytes": 555,
+        "path": "records/thinker_suite_s42/bc_thinker/config.json",
+        "sha256": "29246e533e6b3dc2ce57d88663edada484544c59e602e9f6cfd14b6885fda9eb"
+      },
+      {
+        "bytes": 6028,
+        "path": "records/thinker_suite_s42/bc_thinker/eval_6panel_bs50.json",
+        "sha256": "7c33b5f4d5db6d1219c8dc6b0ff9c00214e8652244ffc424361ccb980b36b8b4"
+      },
+      {
+        "bytes": 10702,
+        "path": "records/thinker_suite_s42/bc_thinker/training.jsonl",
+        "sha256": "8a789fbf601a798b91af134d1e1b25888eac44c501c97747429e7f8fb37032f9"
+      },
+      {
+        "bytes": 277,
+        "path": "records/thinker_suite_s42/bc_thinker/training_summary.json",
+        "sha256": "aeed63091ddf63ca6972b0c42e13d6802b52174d14fe39d3bb2a39bda1216c7b"
+      },
+      {
+        "bytes": 567,
+        "path": "records/thinker_suite_s42/bc_thinker_h1024/config.json",
+        "sha256": "47ac432a26fef382838b53d5f8627944eeb8bf40a83a4c296ed104adae77c189"
+      },
+      {
+        "bytes": 6028,
+        "path": "records/thinker_suite_s42/bc_thinker_h1024/eval_6panel_bs50.json",
+        "sha256": "3f9f0bbda2f04af4a1b8e5608803c35fb0e8928d15f04768e480e2e17a040026"
+      },
+      {
+        "bytes": 11451,
+        "path": "records/thinker_suite_s42/bc_thinker_h1024/training.jsonl",
+        "sha256": "016e059797de0aec4374158fdbb5c362f5f7fc2dc1046dda7448d2a877b78d7b"
+      },
+      {
+        "bytes": 290,
+        "path": "records/thinker_suite_s42/bc_thinker_h1024/training_summary.json",
+        "sha256": "7ecc43ad6d65e67b9addd5af1eb0ba93f8cefe8270036b3fc88da0d5f2ec9a59"
+      },
+      {
+        "bytes": 561,
+        "path": "records/thinker_suite_s42/bc_thinker_v2/config.json",
+        "sha256": "431db7b21704a41252dc56cd303d7d95b423d924f7b5adb4a809794af9a7afb0"
+      },
+      {
+        "bytes": 6027,
+        "path": "records/thinker_suite_s42/bc_thinker_v2/eval_6panel_bs50.json",
+        "sha256": "901b6a5aa8796f1eddcb938e6656bdad8da555e7095a73f6e46878ca88e56518"
+      },
+      {
+        "bytes": 11064,
+        "path": "records/thinker_suite_s42/bc_thinker_v2/training.jsonl",
+        "sha256": "57c259f46a0518dc0a80d51761412008fc116d599bf47e2ef5eff0b8b11b73b4"
+      },
+      {
+        "bytes": 282,
+        "path": "records/thinker_suite_s42/bc_thinker_v2/training_summary.json",
+        "sha256": "f559086d6f27b5a68db82f655e4f873541d8db90496cbe6387e428845806ba1c"
+      },
+      {
+        "bytes": 559,
+        "path": "records/thinker_suite_s42/fork_thinker/config.json",
+        "sha256": "9219b27bac5f2854ee780a6c937a44ac2fe576055565708d4498c5a6a057476c"
+      },
+      {
+        "bytes": 6028,
+        "path": "records/thinker_suite_s42/fork_thinker/eval_6panel_bs50.json",
+        "sha256": "9c6ac267cdf74730565fc166e638244ce56ae1cef9b7c6e1de75318194f80b43"
+      },
+      {
+        "bytes": 12123,
+        "path": "records/thinker_suite_s42/fork_thinker/training.jsonl",
+        "sha256": "9c5c089ec4f6f625e3f2c5b4db26d1adc447cd95cf75a1810cf64b55fc43eab1"
+      },
+      {
+        "bytes": 282,
+        "path": "records/thinker_suite_s42/fork_thinker/training_summary.json",
+        "sha256": "e29685da57b4c42df8b9ac9b87e51fece7919a6d41515294a5e1f98828edcb18"
+      },
+      {
+        "bytes": 663,
+        "path": "records/thinker_suite_s42/fork_thinker_rep2/config.json",
+        "sha256": "263c78aedc8adc0e8d377865b2756a71a687a02aa8c923b81761865473714556"
+      },
+      {
+        "bytes": 50886,
+        "path": "records/thinker_suite_s42/fork_thinker_rep2/eval_6panel_bs50.json",
+        "sha256": "c57a61c3032aa8b782f32f37d4ebdf481b21d12dc5f67cca08798202ac90fd04"
+      },
+      {
+        "bytes": 19489,
+        "path": "records/thinker_suite_s42/fork_thinker_rep2/training.jsonl",
+        "sha256": "32ad260436d798a6c679cbb8151f7e6bda5167ec8b01f0eccff3583210fe56c4"
+      },
+      {
+        "bytes": 286,
+        "path": "records/thinker_suite_s42/fork_thinker_rep2/training_summary.json",
+        "sha256": "7f1e6360f32d34e41fa02a6f914b0044dc75fd8a0bd28a1e9c5c31d8f741a440"
+      },
+      {
+        "bytes": 579,
+        "path": "records/thinker_suite_s42/fork_unweighted_nomask/config.json",
+        "sha256": "2b220fc57e998e428bf1e7b79f3a3cbd83e8aaeb0c814260151eb7ca87601949"
+      },
+      {
+        "bytes": 41554,
+        "path": "records/thinker_suite_s42/fork_unweighted_nomask/eval_6panel_bs50.json",
+        "sha256": "d5c401e718fbe745103dcc5f13745678065c6f20984818aa23859e3046fceaf9"
+      },
+      {
+        "bytes": 14259,
+        "path": "records/thinker_suite_s42/fork_unweighted_nomask/training.jsonl",
+        "sha256": "b5d1a0600b273f326ba7921c10c61d8e45c2a025d09b6bdebcbb165eb4e7e122"
+      },
+      {
+        "bytes": 298,
+        "path": "records/thinker_suite_s42/fork_unweighted_nomask/training_summary.json",
+        "sha256": "6500ba8bb442228aebf7f4a8d80503cf108f1cd23f6e8b8aa87d882b5de4cf27"
+      },
+      {
+        "bytes": 50177,
+        "path": "records/thinker_suite_s42/parent_step100/eval_6panel_bs50.json",
+        "sha256": "53b2cd97fdec976072a01b7c145c8c76e2fe517cc34dee2b9b51b9c0df7ea15d"
+      },
+      {
+        "bytes": 561,
+        "path": "records/thinker_suite_s42/std_rlvr_cont/config.json",
+        "sha256": "725316f594674a7c4094a9b11dee881e603b67def1e185300544460560fbf901"
+      },
+      {
+        "bytes": 6027,
+        "path": "records/thinker_suite_s42/std_rlvr_cont/eval_6panel_bs50.json",
+        "sha256": "30111a22c1fc94d5b53228b769dd86c67012ea51242fe79d87bd8c27dd80e4a0"
+      },
+      {
+        "bytes": 8050,
+        "path": "records/thinker_suite_s42/std_rlvr_cont/training.jsonl",
+        "sha256": "20ff2de8d584f1df88e22a069f4694be4c8b1bba2ba159b1ca8c7f947339d315"
+      },
+      {
+        "bytes": 282,
+        "path": "records/thinker_suite_s42/std_rlvr_cont/training_summary.json",
+        "sha256": "9ee78058a8cb24accbfc526172794cc5d2975b4158abfb98f85793bc3f2ff382"
+      },
+      {
+        "bytes": 569,
+        "path": "records/thinker_suite_s42/std_stabilized_g8/config.json",
+        "sha256": "1951f63eff2448a6c7faea5cdd5b934d95085f7020cbddb8467f7ea070c464c5"
+      },
+      {
+        "bytes": 45348,
+        "path": "records/thinker_suite_s42/std_stabilized_g8/eval_6panel_bs50.json",
+        "sha256": "766e97d086673ee29b1f888127cdd7246937def2a25a8d8167ce465c5c151051"
+      },
+      {
+        "bytes": 11814,
+        "path": "records/thinker_suite_s42/std_stabilized_g8/training.jsonl",
+        "sha256": "696cd52d8268cb918f8b01b00e160ebe2a15c3720ffbc9323a70258870b0c047"
+      },
+      {
+        "bytes": 291,
+        "path": "records/thinker_suite_s42/std_stabilized_g8/training_summary.json",
+        "sha256": "e05dbbb20f4829fd0fe8306b9584fcd5432d3d38337dc6c1553b43e9164bd9e4"
+      },
+      {
+        "bytes": 75219,
+        "path": "records/thinker_suite_s42/suite_summary.json",
+        "sha256": "d92a12a68b7768a554d22d1e45a48592d00a738d883cf426c122270156b23597"
+      },
+      {
+        "bytes": 567,
+        "path": "records/thinker_suite_s42/thinker_baseline/config.json",
+        "sha256": "c70ace5a5b9f42661ef08c6072fa4025b797c43be1d6e337151703d1af2d72aa"
+      },
+      {
+        "bytes": 6028,
+        "path": "records/thinker_suite_s42/thinker_baseline/eval_6panel_bs50.json",
+        "sha256": "1f42e1cb83cefcac24156702d5d22de718e75b15aae67f3a1a85852ec180d8a9"
+      },
+      {
+        "bytes": 10040,
+        "path": "records/thinker_suite_s42/thinker_baseline/training.jsonl",
+        "sha256": "6f009a6bb4a48c6651a6760ce41ce8e08604cbda63574e601cc038d4f0b045e8"
+      },
+      {
+        "bytes": 290,
+        "path": "records/thinker_suite_s42/thinker_baseline/training_summary.json",
+        "sha256": "5997f623ef6f4cefa2ee8f3dfe475f4ca9fcdd0d86dd767dd6e84c4227d42be9"
+      },
+      {
+        "bytes": 585,
+        "path": "records/thinker_suite_s42/thinker_unweighted_sumsft/config.json",
+        "sha256": "5c2ef5dfb38c4b980817bbfed9ba0be49400df31e30379f541d622fb8fcd32e4"
+      },
+      {
+        "bytes": 6031,
+        "path": "records/thinker_suite_s42/thinker_unweighted_sumsft/eval_6panel_bs50.json",
+        "sha256": "9ec421136b9ff8fc6274a276a092e70fc3c841726b1c6c5b5bf4cea6263c8107"
+      },
+      {
+        "bytes": 10374,
+        "path": "records/thinker_suite_s42/thinker_unweighted_sumsft/training.jsonl",
+        "sha256": "2d3cec70dd1af900e11bbb626c8034ed2b7c006238ebe96320b0fde7b47b3988"
+      },
+      {
+        "bytes": 307,
+        "path": "records/thinker_suite_s42/thinker_unweighted_sumsft/training_summary.json",
+        "sha256": "791ba7bc63314e882e37249153963720793f62f17463019fcd8ff8aee80a1de0"
+      },
+      {
+        "bytes": 20928,
+        "path": "records/training_streams_30steps.json",
+        "sha256": "1c94cfa875b80bad5fd817dd8544248b32f11253b9319d59aa07c55e052701a1"
+      }
+    ],
+    "name": "math_rlvr_28_v1_162935f1b867e0be.zip",
+    "sha256": "162935f1b867e0bebfbb685b9e4aef419099a89fa6ab6810ca3fb4c7561285cd",
+    "source_url": "https://rstation.ai/api/v1/papers/math_rlvr_28/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261022T193803293957Z/math_rlvr_28_v1_162935f1b867e0be.zip"
+  },
+  "tags": [
+    "rlvr",
+    "controlled experiments",
+    "credit assignment",
+    "reproducibility",
+    "grpo",
+    "generalization"
+  ],
+  "title": "A Controlled Diagnostic and Matched-Dose Audit of Fast-and-Slow RLVR on Qwen3-0.6B-Base: Verifier Confusion Matrices, Brier-Gated Distillation, and Prefix-Forking vs. Stabilized Single-Turn GRPO",
+  "version": 1
+}

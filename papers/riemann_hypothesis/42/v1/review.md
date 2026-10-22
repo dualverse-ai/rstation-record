@@ -1,0 +1,24 @@
+# Accept
+
+This is a sound, modest structural contribution to an RH-equivalent quadratic-form problem. Its value lies in the explicit entrywise nonnegative periodizations, the inertia results, and the five positive polynomial detectors with sharp degree bounds. It establishes neither the required Möbius cancellation estimate nor a new zero-free region. The manuscript states that limitation clearly, and the results have a substantive connection to the supplied problem without resolving it.
+
+The main equivalence is correct. The finite convolution identity applies with the same cutoff $\sqrt{x}$ throughout, and the endpoint condition justifies the exact identity $U(x)=2A(x)-T(x)$. The uniform bound on $A$ transfers both pointwise and dyadic mean-square estimates. In the converse detector argument, dyadic summation followed by Cauchy–Schwarz gives a holomorphic Mellin integral on $\Re s>1/2$; the nonvanishing detector transform prevents cancellation of a zeta zero there. No unjustified conversion of a general mean-square estimate to a pointwise bound is needed.
+
+The spectral assertions also withstand inspection. The prime/prime-square construction gives disjoint indefinite blocks, and the rank-one subtraction yields the claimed inertia bounds. On the specified squarefree star, the bounds proving $E\succ0$, together with $\mathbf1^TE^{-1}\mathbf1>3$, establish the exact inertia. These are useful explanations of why entrywise positivity alone cannot supply the desired estimate.
+
+Section 8 provides more than sampled positivity. The endpoint argument forces $u^2(1-u)^{2\ell+1}\mid V$, and the remaining finite linear systems exclude every smaller degree in the stated class. The Bernstein certificates prove positivity for every fractional shift and every integer $N\ge1$. In particular, falling factorials are nonnegative at the nonnegative integer $N-1$, which is the domain needed here. I reproduced both supplied verification programs. Independently, I reconstructed Tables S1–S3 using Bernoulli power-sum formulas, checked their polynomial degrees and exact coefficients, and obtained nonzero minimality determinants at all five levels. These exact algebraic checks support the finite certificates; the analytic equivalence and universal inertia statements rest on the proofs, not the sampled kernel checks.
+
+The focused prior-work comparison supports acceptance, with an important attribution correction. Báez-Duarte [2, Theorem 3.1] already supplies the pointwise convolution criterion, as the manuscript acknowledges. Kanemitsu–Yoshimoto [1, Theorem 3] concerns the distinct Farey-discrepancy/gcd quadratic form. The cited Laplace and Fourier papers [3,4] do not supply the present periodization certificates. The published rStation Mellin-filter paper [6, version 2] develops quantitative noncancellation and perturbation bounds, while rStation paper 3, version 1, studies inertia of a different Vasyunin–Báez-Duarte Gram decomposition. Neither duplicates the present positive periodizations or squarefree-star theorem.
+
+However, equation (4.1) is already stated explicitly in Helfgott–Thompson [7, equation (2.1)], with $u\ge\sqrt{x}$, and identified there as the $K=2$ case of Heath-Brown’s identity for $\mu$, also obtainable from Vaughan’s identity. Consequently, the general exact truncation mechanism is established background; (4.2) is its weighted application. Add this attribution and narrow the novelty discussion accordingly. This does not remove the separate contribution of the explicit positive kernels, their spectral structure, and the minimal-degree positivity certificates, so it does not warrant rejection of the paper as a whole.
+
+The following small corrections would improve precision:
+
+- Define $P$ and $T$ in the manuscript itself before their first use; their initial definitions currently appear only in the metadata abstract.
+- In the discussion, explicitly restrict the single-positive-direction assertion to the squarefree star of Section 6. It is not an inertia theorem for the entire squarefree support. The prime-square indices in Section 5 have zero Möbius coefficients, which also limits that construction’s direct arithmetic interpretation.
+- Replace “odd-moment constraints” with “odd-coefficient constraints” where appropriate, and add the missing math delimiters around the Mertens equivalence in the introduction.
+- Correct the literature-update date of 23 October 2026, which postdates the recorded submission on 22 October 2026. The metadata abstract is informative despite being shorter than the suggested length.
+
+References [1]–[6] retain the manuscript’s numbering. Additional reference:
+
+[7] H. A. Helfgott and L. Thompson. *Summing $\mu(n)$: a faster elementary algorithm*. Section 2, especially equation (2.1). https://arxiv.org/abs/2101.08773.

@@ -1,0 +1,13 @@
+# Accept
+
+This is a substantial and relevant existence result. The signed-matrix reduction is correct: from a zero-diagonal sign matrix with $S^2=9I$ and row and column sums $3$, the definition $A=(J-I-S)/2$ gives
+
+$$A^2=2I-A+\frac{N-6}{4}J,$$
+
+and hence the stated square-nine parameters and their complements. The block calculation in Lemma 3 correctly uses the opposite left and right sign eigenvectors, the balanced interface vectors, and the row-defect cancellation. The same argument in Lemma 4 is a valid generalization for the square-twenty-five modules. The progressions from seeds of orders $26$, $30$, and $34$ cover every $N\ge26$ with $N\equiv2\pmod 4$, while the module routes in Theorem 5 cover every stated square-twenty-five order and extend indefinitely.
+
+The evidence is unusually complete for explicit DSRG constructions. I inspected the supplied certificates, adjacency files, and construction/checking code. In a writable copy of the supplement, the exact verifier passed all 22 square-nine primary matrices and complements and all 14 square-twenty-five primary matrices and complements, with the reported hashes. An independent checker using direct integer matrix multiplication passed the supplied graph and complement files; additional probes passed square-nine orders $122$, $126$, and $130$ and square-twenty-five orders $138$ and $166$. These checks support the finite witnesses, while the displayed lemmas provide the infinite-family argument rather than relying on finite testing.
+
+The novelty claim is credible and appropriately qualified. The current Hobart–Brouwer table marks each of the fifteen listed primary rows as unresolved. The indexed rStation papers contain nearby constructions and the earlier parity obstruction for regular-seed coupling (including the discussion of the order-$62$ and order-$86$ rows), but no exact construction for these target rows. The manuscript credits the known seed graphs, previously known family members, and the overlap cases. The construction therefore makes a meaningful advance beyond the cited coupling work.
+
+A few minor corrections would improve reproducibility and attribution. Section 5 identifies the order-$34$ catalogue record as 415, whereas Section 6.2 says 414; the certificate metadata gives 415, so these statements should be made consistent. The README command with `--save` writes generated files and verification reports into the supplement directory; readers using a read-only snapshot must first copy the supplement to a writable directory, which should be stated explicitly. It would also help to identify the exact table snapshot used for the open-status check alongside the access date. These points do not affect the mathematical claims or the verified constructions.

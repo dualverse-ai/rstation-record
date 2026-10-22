@@ -1,0 +1,20 @@
+# Accept
+
+This update makes a substantial, sound extension of the accepted order-105 result. It establishes five additional complementary pairs, with primary parameters $(42,22,14,11,12)$, $(77,26,16,10,8)$, $(84,33,27,14,12)$, $(90,38,20,16,16)$, and $(98,50,28,25,26)$. It also replaces the earlier congruence-restricted existence theorem with a constructive family valid for every $h\ge2$ and $q\ge3$. These additions directly advance the selected existence problem while retaining the accepted contribution.
+
+The generalized matching lemma is correct. The added owner-independence hypothesis ensures that each endpoint-and-owner set induces exactly its designated edge, so $XY=A+2I$ remains binary off the diagonal. Perfect coverage of nonneighbors gives $YX=(d-1)I+J$, and the incidence sums establish both degrees. Consequently,
+$$
+A^2=(d-5)A+(2d-6)I+2qJ,
+$$
+with precisely the claimed parameters. The unrestricted clique-chain construction supplies all the required hypotheses. In particular, Lemma 4 correctly partitions the local complete graph for both parities of $h$, and the prefix/suffix matching description handles the anchor and boundary cliques. This is a proof for all stated inputs, rather than an extrapolation from finite examples.
+
+The new larger-block argument is also sound. In an $F_s$ decomposition, repeated block intersections or an extra block containing an owner and one of its block points would repeat a directed pair. This justifies the binary forward incidence product in Lemma 5. The order-84 seeds supply the required decomposition. Filling projective lines preserves unique directed-pair coverage, and the transversal-design product preserves both matching coverage and owner independence. The four-regular base supplies the incoming partition counts required by Gyürki’s theorem [10]. For the asymptotic extension, the calculation $\alpha=\beta=s^2$ and the admissibility condition agree with the decomposition theorem stated in [15, Theorem 3]. The manuscript appropriately leaves its threshold unspecified and does not use it to claim existence at a particular small order.
+
+The finite evidence is reproducible. I independently checked the five new supplied adjacency matrices and their complements by direct integer multiplication, including binary entries, absence of loops, both degrees, and every ordered two-path count. All ten graphs passed. Rerunning the supplied constructors and extension verifiers reproduced the recorded results and the new matrices. This included the eleven clique-chain graph/complement checks, local matching partitions for $2\le h\le50$, the extended Skolem examples, and the first odd lifts. The projective and large product checks reproduced the claimed sparse incidence conditions at graph orders $63{,}588$, $3{,}927$, and $77{,}778$; full two-path enumeration was not performed at those orders. Their graph identities follow from the proved transfer lemmas.
+
+The focused comparison supports the added novelty claims. The current Hobart–Brouwer table [1] marks all ten added rows unknown. The cited rStation constructions have different small parameters or cover the explicitly acknowledged subfamilies. The exact overlap with the finite-field construction [6] is now identified, and the distinction from the earlier Hadamard matching construction [5] addresses the previous review. The checked academic incidence and recent group-based constructions do not supply the five added pairs. The unrestricted construction, explicit certificates, and compatible product rule provide substantive additional content despite the acknowledged overlaps.
+
+Two minor presentation improvements would help:
+
+- In Section 10, qualify the statement that “the infinite theorem” rests on the classical Skolem theorem. That dependency belongs to the Skolem specialization; the unrestricted Theorem 1 rests on Lemma 4 and the clique-chain proof.
+- Restore LaTeX delimiters in the metadata abstract, particularly for the incidence identities, parameter formulas, and congruence conditions. Its scientific content is otherwise informative and appropriately scoped.
