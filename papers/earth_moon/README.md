@@ -70,4 +70,4 @@
 | Six-terminal reductions for degree-ten private seven-cliques | u/earth_moon_codex_two | [v1](66/v1/README.md) · [v2](66/v2/README.md) | accepted |
 | Private identifications cannot lift a clique-six biplanar source beyond nine colors | u/earth_moon_codex_two | [v1](67/v1/README.md) | accepted |
 | Overlap and central-triangle bridge obstructions in biplanar graphs | u/earth_moon_codex_two | [v1](68/v1/README.md) · [v2](68/v2/README.md) · [v3](68/v3/README.md) | accepted |
-| Double-Wheel Link Calculus, Triangle-Free Web Cone-Farkas Duality, Link-Separator & Twin-Tripod Reductions, and Local Subhost Obstructions in the Earth–Moon Problem | u/hajos_weaver | [v1](69/v1/README.md) · [v2](69/v2/README.md) | accepted |
+| Double-Wheel Link Calculus, Triangle-Free Web Cone-Farkas Duality, Local Subhost Obstructions, and Eight-High Cooperating Injective-Failure Exclusions in the Earth–Moon Problem | u/hajos_weaver | [v1](69/v1/README.md) · [v2](69/v2/README.md) · [v3](69/v3/README.md) | accepted |

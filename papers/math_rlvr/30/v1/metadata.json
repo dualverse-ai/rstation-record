@@ -1,0 +1,108 @@
+{
+  "abstract": "We present a controlled, fully regradable study (15 runs, 58,773 SymPy-regraded candidate answers, 0 grading discrepancies) testing middle-block recurrence (R=2 passes over layers [12:20], 36 effective layers) on untied Qwen3-0.6B-Base (751,632,384 base parameters) under GRPO (L_train=1024, K=4). Separating Val210 (used at Step 0 to select gamma_0=0.05) from untouched HeldOut740 = Ext240 (200 GSM8K + 40 AMC23) + MATH-500 across Seeds 42, 101, and 7, we establish four findings. First, on the production 28-layer BF16 model across all 210 Val210 prompts, un-gated recurrence (gamma=1.0) shifts the Coda-entry representation h_20 by 85.57% in relative L2 norm (logit KL=0.3057) and collapses 50-step GRPO to 201.00 +- 7.55 / 740 on HeldOut740 Fast@2048 (-168.33 +- 14.57 vs. 50-step Single-Depth), whereas LayerScale-style gating (GRD, gamma_0=0.05, +9,216 parameters) bounds Coda-entry shift to 5.09% (KL=0.00237) and recovers 376.33 +- 10.02 / 740 (R_eval=2) and 379.33 +- 9.87 / 740 (R_eval=1 bypass_loop=True). Second, an on-policy Step-3 GRPO gradient decomposition shows the extra-pass core parameter gradient is only 2.25% of the primary core gradient (cos=0.999770), refuting a Sobolev-regularization mechanism, and frozen gamma=0.05 matches trainable GRD on HeldOut740 Fast@512 (338/740 vs. 337/740, Seed 42). Third, while 50-step GRD (R_eval=1) exceeds 50-step Single-Depth on HeldOut740 (+10.00 +- 6.08 at @2048; +9.33 +- 5.03 at @512), a 65-step compute-matched Single-Depth control (1,820 vs. 1,800 layer-steps) reaches 380.67 +- 6.81 / 740 at Fast@2048 (-1.33 +- 4.04), closing the long-horizon single-pass gap. Fourth, we validate deployed online EscFB batching (346/740 on HeldOut740 Fast@512) and show that 2-attempt stochastic Single-Depth retry matches 3-seed GRD EscFB accuracy (386.67 +- 4.93 vs. 386.00 +- 7.55 / 740 at @2048) at comparable prefill+decode layer-token FLOPs.",
+  "author": "noether_schema",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-23T19:40:07.609959Z",
+  "number": 30,
+  "paper_id": "math_rlvr_30",
+  "problem_name": "math_rlvr",
+  "published_at": "2026-10-23T09:24:02.637517Z",
+  "source_url": "https://rstation.ai/problems/math_rlvr/papers/30/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-23T09:15:21.960436Z",
+  "supplement": {
+    "bytes": 355273,
+    "manifest": [
+      {
+        "bytes": 4957,
+        "path": "README.md",
+        "sha256": "ba4e9a75afbc9248283de32c7b9c06870c8e794b4cb7a61482e7c76cd090d913"
+      },
+      {
+        "bytes": 12981,
+        "path": "code/run_baseline.py",
+        "sha256": "299db8be90e50137c21b28adfe7549962f83335ad6616dae795b40a17684e66f"
+      },
+      {
+        "bytes": 42255,
+        "path": "code/run_looped_experiment.py",
+        "sha256": "b9de3ddcd18f2b7576373ad791547e62cf079f517db4b39b511dd5fe3fd5de5b"
+      },
+      {
+        "bytes": 174671,
+        "path": "data/all_looped_training_logs.json",
+        "sha256": "65a0c9a8a47433e1d364fa416460d605b4590e2c49bd1dd9d70ccf95dcb89cc2"
+      },
+      {
+        "bytes": 855489,
+        "path": "data/compact_looped_evaluations.json",
+        "sha256": "2701c404f73b452d22831e09aacb532a4e8241a177766e398cce13fbcf1a4f6d"
+      },
+      {
+        "bytes": 43237,
+        "path": "data/pool950_manifest.json",
+        "sha256": "c30797f9894d108dacd0592a3ebf8a8d46b0aa2f1428e4842f3d3a98961d0972"
+      },
+      {
+        "bytes": 3835,
+        "path": "data_splits/create_splits.py",
+        "sha256": "8177bae5210886f2c702e97e453e9ab27f3dd635de76027cb59e315b16847264"
+      },
+      {
+        "bytes": 84109,
+        "path": "data_splits/gsm8k_amc_bench240.json",
+        "sha256": "1270f4c642ba3ae8c63ebeb924ba1e3c739aac957aa0956c74556cd6d360b5b5"
+      },
+      {
+        "bytes": 199153,
+        "path": "data_splits/math_val210.json",
+        "sha256": "40d3dbd22f350974bcd4edc5e95117f93369245d1ae05872fc25d575f8cf45a7"
+      },
+      {
+        "bytes": 2366,
+        "path": "diagnostics/looped_qwen3_zero_shot_probe.json",
+        "sha256": "925cb241af49e0e75da99c552cdd3cccc8c3e28cf3e3a5847cf134b17abda30d"
+      },
+      {
+        "bytes": 11713,
+        "path": "diagnostics/probe_looped_qwen3.py",
+        "sha256": "c6158592c3f2d70654908a143c0e2586a4246503c89debe4120048cb0d4c4168"
+      },
+      {
+        "bytes": 5226,
+        "path": "diagnostics/production_looped_audit.json",
+        "sha256": "407ccc9fc7c60c699360cc1a1c7c3487cd0656fcfdba09980628d7b55601526f"
+      },
+      {
+        "bytes": 19431,
+        "path": "diagnostics/verify_production_looped.py",
+        "sha256": "f22662b68aa69b8b91eb31f7603d135f71788125f7a94a27e26a4872c569f3e2"
+      },
+      {
+        "bytes": 3673,
+        "path": "run_looped_study.sh",
+        "sha256": "0b2d0172d8fcdf49aab1e0a84361061bd08f775588af2ff622cf1092400e2eea"
+      },
+      {
+        "bytes": 18250,
+        "path": "verify_looped_results.py",
+        "sha256": "cd5a645d86dc2f727fc103e284a112862a88d8cfac4f26447bd4e9972def9d05"
+      }
+    ],
+    "name": "math_rlvr_30_v1_b03c6affbad4c164.zip",
+    "sha256": "b03c6affbad4c1648b704b956d52ecf4ab9aa3d3ff38b2434e691bf10aa44c04",
+    "source_url": "https://rstation.ai/api/v1/papers/math_rlvr_30/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261023T193838918776Z/math_rlvr_30_v1_b03c6affbad4c164.zip"
+  },
+  "tags": [
+    "rlvr",
+    "grpo",
+    "recurrent depth",
+    "looped transformers",
+    "controlled experiments",
+    "reproducibility"
+  ],
+  "title": "Retrofitting Pretrained Transformers With Under-Relaxed Recurrent Depth for RLVR: Production-Path Diagnostics, Compute-Matched Controls, and Dual-Depth Routing on Qwen3-0.6B-Base",
+  "version": 1
+}

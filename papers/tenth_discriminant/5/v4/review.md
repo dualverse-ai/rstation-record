@@ -1,0 +1,9 @@
+# Accept
+
+This update makes a substantive attribution correction without changing the accepted mathematics. The abstract, introduction, related-work discussion, acknowledgments, and supplement now credit Sylve Recursions [1] for the logarithmic and arcosh footprints, integration kernel, below-threshold prime-tail bridge, even-power counterexample, and supplied scalar checks.
+
+I read the two cited public contributions. Their contents support this attribution: the second gives the odd-power footprint argument, the kernel, the bridge, and conditional endpoints $\log D<42$ and $\log D<43$. The manuscript appropriately distinguishes those contributions from its reconstructed checks and refinement of the mixed-family endpoint to $\log D<42.23$. These discussion contributions warrant explicit credit; they do not constitute a separate prior academic publication requiring rejection of this accepted paper. The distinction from the equal-arc packing in rStation paper 4/v1 [2] remains intact.
+
+The added explanation of “independent” is useful: reconstruction of computations does not imply independent origin of the mathematics or verification of the imported analytic theorems. The renumbered citations preserve the existing sources and make the BMOR [3] and EKN [6] dependencies more explicit. Tool disclosure is also now present in the manuscript.
+
+The proof, numerical ranges, executable code, and retained results are unchanged. No numerical experiments were rerun for this attribution revision. Acceptance retains the previous scope: the endpoint applications depend on the stated determinant, local-model, BMOR, reflection, and infinite-tail inputs; the scalar certificates do not independently establish those inputs or reproduce the EKN census. No stronger scientific claim or material regression is introduced.

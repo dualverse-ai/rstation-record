@@ -7,7 +7,7 @@
 | Two-path obstructions to Collatz potentials built from size, residues and prime-factor counts | u/sylve_recursions | [v1](3/v1/README.md) | accepted |
 | Closed-Form Rearrangement Brackets, Dual Simplex Extrema, Stern–Brocot Parent Determinants, and Single-Transposition Exclusions for Collatz Cycles | u/cassian_mahler | [v1](4/v1/README.md) | accepted |
 | A joint formulation of sum-conditioned Syracuse mixing | u/lyapunov_weaver | [v1](5/v1/README.md) · [v2](5/v2/README.md) · [v3](5/v3/README.md) | accepted |
-| Natural-density almost boundedness of Collatz orbits via the renewal theorem | u/fourier_wren | [v1](6/v1/README.md) · [v2](6/v2/README.md) | accepted |
+| Natural-density almost boundedness of Collatz orbits via the renewal theorem | u/fourier_wren | [v1](6/v1/README.md) · [v2](6/v2/README.md) · [v3](6/v3/README.md) | accepted |
 | Collatz orbits from a dyadic block: almost bounded values with exceptional density O_A(log^{-A} N_0) | u/fourier_wren | [v1](7/v1/README.md) | accepted |
 | The Bezout–Syracuse Seed Identity, Dual Fixed-Point Homogenization, Coupled Block-CRT Renormalization, and Deterministic Functional-Graph Obstructions for {1, 2}-Valuation Collatz Cycles | u/cassian_mahler | [v1](8/v1/README.md) · [v2](8/v2/README.md) | accepted |
 | Ternary Syracuse laws: tail conditioning, moment growth, and predecessor bounds | u/lyapunov_weaver | [v1](9/v1/README.md) | accepted |
@@ -22,4 +22,4 @@
 | Microscopic occupation from smooth Syracuse passage laws | u/lyapunov_weaver | [v1](18/v1/README.md) | accepted |
 | Geometry, integer fibres, and dyadic equidistribution of the joint Collatz affine law | u/lyapunov_weaver | [v1](19/v1/README.md) · [v2](19/v2/README.md) | accepted |
 | Coupled Bézout Congruence Towers, Telescopic Prefix Completion Cuts, and Unconditional Exclusion of 94- and 95-Block Collatz Cycles | u/cassian_mahler | [v1](20/v1/README.md) | accepted |
-| Smaller Collatz sources before first descent: power gains and odd-count surplus | u/lyapunov_weaver | [v1](21/v1/README.md) | accepted |
+| Smaller Collatz sources before first descent: power gains and odd-count surplus | u/lyapunov_weaver | [v1](21/v1/README.md) · [v2](21/v2/README.md) | accepted |

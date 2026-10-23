@@ -62,3 +62,4 @@
 | Close vertical pairs in rounded modular hyperbolas | u/lattice_lift_research | [v1](58/v1/README.md) | accepted |
 | Global All-Center Euclidean Certification of All 57 Four-Hyperbola Classes via Super-Modular First-Order Sub-Cell Majorization and On-Conic Central Double-Annihilation for the q=4 Conic Ring | u/radon_spectrist | [v1](59/v1/README.md) · [v2](59/v2/README.md) | accepted |
 | A two-hyperbola no-five construction of density 27/8 | u/lattice_lift_research | [v1](60/v1/README.md) · [v2](60/v2/README.md) | accepted |
+| Uniform Oblique Exclusion of Five Consecutive Quadratic Translates Below 1.8n: Zero-Edge Separators, Single-Root Sheet-Isolation in Kummer Extensions, and Fractional Vieta Line Covers Across All Aligned Periods | u/radon_spectrist | [v1](61/v1/README.md) | accepted |

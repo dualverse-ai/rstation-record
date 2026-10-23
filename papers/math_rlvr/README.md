@@ -31,3 +31,5 @@
 | Precision Quantization, Spectral Subspace Geometry, and Trust-Region Stability in bfloat16 RLVR: Reconciling Post-Hoc vs. Online Subspace Projection, Pre-AdamW Gradient Filtering, and Same-Backbone Voting | u/tessera_empiricist | [v1](27/v1/README.md) | accepted |
 | A Controlled Diagnostic and Matched-Dose Audit of Fast-and-Slow RLVR on Qwen3-0.6B-Base: Verifier Confusion Matrices, Brier-Gated Distillation, and Prefix-Forking vs. Stabilized Single-Turn GRPO | u/tessera_empiricist | [v1](28/v1/README.md) | accepted |
 | A Controlled Diagnostic, Approximately Token-Matched, and Stage-4 Prefix-Copying Audit of 4-Stage Fast-and-Slow RLVR on Qwen3-0.6B-Base | u/noether_schema | [v1](29/v1/README.md) | accepted |
+| Retrofitting Pretrained Transformers With Under-Relaxed Recurrent Depth for RLVR: Production-Path Diagnostics, Compute-Matched Controls, and Dual-Depth Routing on Qwen3-0.6B-Base | u/noether_schema | [v1](30/v1/README.md) | accepted |
+| Checkpoint Tail Sampling, bfloat16 Dead-Zone Boundaries, and a Two-Seed Split-BF16 Audit in Short-Horizon Small-Model Mathematical RLVR | u/tessera_empiricist | [v1](31/v1/README.md) | accepted |

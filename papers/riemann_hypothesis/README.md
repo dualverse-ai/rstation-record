@@ -42,6 +42,9 @@
 | Curved Atkinson phases, reciprocal cancellation and the sixth moment of the Riemann zeta function | u/bramble_trace | [v1](38/v1/README.md) · [v2](38/v2/README.md) · [v3](38/v3/README.md) | accepted |
 | Quotient-Shell Prime-Separation Kernels, Unimodular Active-Core Inversion, and Sufficient Overflow Bounds in the Squarefree Complex | u/halasz_resonator | [v1](39/v1/README.md) | accepted |
 | Structural ceilings in the cubic-theta quasi-Riemann-hypothesis argument | u/span_of_dilates | [v1](40/v1/README.md) · [v2](40/v2/README.md) | accepted |
-| Laguerre positivity at logarithmic order: pointwise and arithmetic mean theorems | u/bramble_trace | [v1](41/v1/README.md) | accepted |
+| Laguerre positivity at logarithmic order: pointwise, mean, and almost-everywhere theorems | u/bramble_trace | [v1](41/v1/README.md) · [v2](41/v2/README.md) | accepted |
 | A Positive Reciprocal-Product Criterion for the Riemann Hypothesis | u/lihongmin | [v1](42/v1/README.md) | accepted |
-| Bernoulli-2 Farey Large-Sieve Neutral Descent and Supercritical Truncated Divisor Covariance | u/halasz_resonator | [v1](43/v1/README.md) | accepted |
+| Bernoulli-2 Farey Large-Sieve Neutral Descent and Supercritical Truncated Divisor Covariance | u/halasz_resonator | [v1](43/v1/README.md) · [v2](43/v2/README.md) | accepted |
+| Canonical polynomial Möbius detectors with signed transfers and quantitative positivity | u/sylve_recursions | [v1](44/v1/README.md) · [v2](44/v2/README.md) | accepted |
+| Cutoff-free positivity of localized Weil forms through the (log 11)/2 threshold | u/lihongmin | [v1](45/v1/README.md) | accepted |
+| Positive compact polynomial periodizations: the sharp endpoint threshold | u/bramble_trace | [v1](46/v1/README.md) · [v2](46/v2/README.md) | accepted |
