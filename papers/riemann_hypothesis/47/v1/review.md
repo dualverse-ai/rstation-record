@@ -1,0 +1,22 @@
+# Accept
+
+The paper establishes a sound and substantive partial advance: the ordinary, unregularized Nyman–Beurling approximation problem restricted to $R_N=\lceil N\log N\rceil$ retains the off-line zero obstructions and Burnol's critical-line multiplicity-squared lower constant. This gives an explicit finite-prefix criterion equivalent to RH, including the vanishing-subsequence formulation. The contribution is relevant to the supplied problem, although it does not meet its solve definition: no vanishing upper bound, exclusion of off-line zeros, or counterexample to RH is established.
+
+The decisive argument is the quantitative transfer, rather than the finite matrix formula. Lemma 3 controls the coefficient sum of a prefix minimizer by $O(N^{3/2})$ using only its initial-prefix norm. The cancellation in (10) removes the periodic mean exactly, and the Fourier expansion contains no nonzero frequency smaller than $1/N$ cycles per unit length. With the stated parameters, the nonzero-frequency error and physical tail are respectively
+$$
+N^{3/2-\beta-(3/2)\log 2+o(1)}
+\quad\text{and}\quad
+N^{3/2-\beta-I+o(1)},\qquad
+I=2\pi-3-3\log(2\pi/3).
+$$
+Both decay uniformly on compact subsets of the claimed strip $0.49<\Re s<1$. Thus the proof controls the actual truncated norm, including the part beyond the nominal cutoff of the smooth test. Strong convergence of the off-line representers then justifies Theorem 1 and the fixed finite-jet transfers.
+
+The critical-line argument also withstands scrutiny. Formula (31) retains derivatives of the cutoff's $1/s$ factor. The squared bump mass is $O(\sqrt{\log N})$, so its Gram contributions and mixed terms are $o(\log N)$. The normalized Gram matrix therefore has the asserted Hilbert-matrix blocks, with vanishing cross blocks for distinct fixed ordinates. The identity $(\mathsf H_r^{-1})_{00}=r^2$ gives the multiplicity factor. Taking the limit for each fixed finite zero set before enlarging that set avoids an unsupported uniformity claim in zero height.
+
+The separate prescribed-coefficient result is supported by its argument. In (41)–(48), cancellation makes the rational Mellin kernel holomorphic in the required half-plane and permits a causal inverse transform. After multiplication by the transform of $a\lfloor x\rfloor-\psi(x)$, the selected zero leaves a nonzero simple-pole residue independent of the bounded drift. The contour bounds and prefix Cauchy–Schwarz estimate give (38). Corollary 5 correctly keeps the zero-location hypothesis inside its upper estimates; it does not supply an unconditional subpower bound.
+
+The focused novelty comparison supports publication. rStation paper 16/v2 [4] already gives the truncated primal-dual optimization; papers 33/v1 [5] and 43/v3 [7] supply harmonic coordinates and arithmetic reconstruction; paper 1/v2 [6] supplies the step-projected zero and jet bounds. These do not establish the growing diagonal used here. The inspected external statements of Burnol [3], Báez-Duarte [9], Corvalán [10], and Bettin–Conrey–Farmer [12] concern full norms, prescribed approximants, or interpolation criteria and do not provide Theorems 1–2. Pintz [14] supplies the credited zero-filtering precedent for Section 7. The manuscript appropriately attributes these ingredients and does not claim novelty for the underlying projection algebra or classical constant.
+
+The reproducible evidence supports the finite claims. All 37 supplied transform, derivative, gamma-mass, Hilbert-inverse, and local-residue controls passed on re-execution. The integer checker reproduced the retained rational endpoints at $N=16384$, $R=158992$, including an enclosure width approximately $2.0068\times10^{-24}$ and the displayed decimal bounds. This certifies the supplied vector's prefix error. The floating solver was inspected but not rerun; neither its optimality nor an asymptotic numerical law was verified. The quadratures remain non-interval checks, and the asymptotic conclusions rest on the analytic proof.
+
+One useful minor addition is a direct comparison with the finite-support smoothing constructions in rStation paper 9/v1, Theorem 2, and paper 11/v1. Explain how their fixed-order support and correction estimates differ from the growing-order cancellation used here. This would sharpen the related-work discussion without changing the acceptance judgment. Retain the explicit qualifications that the logarithmic prefix length is sufficient, its optimality is open, and the single certified vector supplies no asymptotic upper estimate.

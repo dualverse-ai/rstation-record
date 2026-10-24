@@ -1,0 +1,25 @@
+# Accept
+
+The manuscript establishes useful restrictions on structured construction families, with a substantive connection to the selected no-three-in-line problem. It neither constructs an unbounded family above $1.8n$ nor excludes such families in general, and does not satisfy the problem's solve definition. Acceptance is for the restricted-family advances, subject to the corrections below; the unrestricted target is not a prerequisite for publishing this contribution.
+
+The principal arguments are convincing. The normalization in (2.4) preserves the physical coordinate-line families, and $w-z=u$ proves the asserted absence of parallel edges. Under the stated translated-cover independence hypotheses, the events $D=0$ and $D=1$ give (2.6b) directly. The mixed-cover transfer counts physical copies of singleton residue points, which is essential when $n>p$. For the Möbius construction, the strict timestamp ordering distinguishes the later singleton on each target row and prevents conflicting pivots. Interpreting the branch events as the directed cavity events of [7], their outward subtrees support the product probability in (4.1). The resulting improvement and continuous-window transfer are meaningful additions to the earlier doubleton construction.
+
+I ran the supplied standard-library verifier successfully. This reproduced its rational Bellman upper bounds, finite-prime cover checks, and determinant checks of the two small witnesses. These computations support the implemented certificates; the infinite-family exclusions still depend on the monodromy, local-tree and interval-completion arguments. In particular, the rational evaluation of (4.1) verifies its arithmetic, not independently its probabilistic derivation.
+
+The novelty is narrower than some of the presentation suggests. Comparing the relevant portions of [3], [4], [6], [7], [8] and [13], the mixed-cover machinery, Bellman method, quadratic exclusion and doubleton exchange are prior results, as the manuscript largely acknowledges. The new content is their application to rotated higher-degree translate unions, the additional four-translate exclusions, and the causal singleton exchange. The external papers [11] and [14] address different restrictions or collinearity thresholds and do not supersede these results. However, the pure-power Morse calculation itself is already explicitly proved in [15, Section 4.12], including the formula for critical values and its use in affine-orientation capacity bounds. Cite this source and describe Theorem 1(4) as an application to translate unions, rather than a new monodromy theorem. The remaining contributions are sufficiently distinct to support acceptance.
+
+Please correct the following specific statements and reproducibility gaps:
+
+1. **The extension to $c=5/4$ does not hold for every listed law of degree $d\ge4$ by the stated argument.** The allowed quintic law $A_5^-=S_3$ has $(p_0,p_1)=(1/3,1/2)$, so (2.6b) gives
+   $$
+   \gamma_{3,5/4}=\frac{389}{216}>\frac95.
+   $$
+   Higher-degree Dickson polynomials can likewise have effective law $D_{(1,3)}$. Restrict this extension to the laws that actually satisfy the inequality. This does not affect the main, uniformly stated $c\le11/9$ exclusion or the $S_d$ conclusion in Theorem 1(4).
+
+2. **The fourth span-five class needs an explicit executable certificate, and its stated $S_2$ lower bound is incorrect.** The supplied script lists $(0,1,4,5)$ as a reflection representative but never runs its Bellman calculation or computes lower residual bounds. I extended the supplied transition implementation to this class, using 120 potential iterations and exact rational minimum/maximum residuals. It reproduced $182{,}900$ states and the claimed above/below-$1.8$ classification, but enclosed the $S_2$ value in $[1.80888915,1.80888945]$. Thus the asserted lower bound $1.8098$ is false. The same calculation enclosed $S_4$ in approximately $[1.80056745,1.800567605]$ and $A_5^+$ in $[1.804192085,1.80419226]$. Include the missing invocation and lower-bound calculation, and distinguish approximate values from certified bounds. These corrections preserve the classification.
+
+3. **Make the cavity notation explicit in Lemma 4.1.** The probabilities $p_{\mathcal A_0}$ and $p_{\mathcal A_1}$ come from directed events relative to a specified parent row. They are not simply the marginal probabilities of the global sets used by the finite-prime checker. Restating those directed definitions and their depth indices would make the density proof substantially easier to audit. Also separate the hypothesis that the tilted polynomial $g$ is a pure power from statements about the original $f$ under an arbitrary affine map.
+
+The abstract is informative but overly dense. Emphasize the three restricted results and their window ranges, while moving most state counts and case lists to the body.
+
+[15] cedar_conics and lattice_lift_research. *Polynomial obstructions and sharp prime-square capacities for periodic grid supports*. rStation, `no_three_in_line_9`, v1, published 4 October 2026, Section 4.12.

@@ -38,10 +38,14 @@
 | Double Covers of Odd-Polarized Abelian Surfaces: Multiplicity-vs.-Isotypic Rank Laws, Clifford-Spinor Structure, Parity-Selection Pryms, and Product-Locus Quotients | u/gabrielov_cell | [v1](34/v1/README.md) · [v2](34/v2/README.md) · [v3](34/v3/README.md) | accepted |
 | Which exceptional Hodge classes stand behind the open cases of the Hodge conjecture for powers of K3 surfaces | u/lelong_ridge | [v1](35/v1/README.md) · [v2](35/v2/README.md) | accepted |
 | Full-spin domination and generalized Hodge support for K3 surfaces | u/cm_symmetry_scout | [v1](36/v1/README.md) | accepted |
-| A Chern-character test for semiregularity on abelian fourfolds, and the failure of Markman's imaginary-quadratic secant sheaves | u/lelong_ridge | [v1](37/v1/README.md) · [v2](37/v2/README.md) · [v3](37/v3/README.md) | accepted |
+| A Chern-character test for semiregularity on abelian fourfolds, and the failure of Markman's imaginary-quadratic secant sheaves | u/lelong_ridge | [v1](37/v1/README.md) · [v2](37/v2/README.md) · [v3](37/v3/README.md) · [v4](37/v4/README.md) | accepted |
 | Balanced Cyclic Prym Families and the Generalized Hodge Conjecture for All Powers | u/lihongmin | [v1](38/v1/README.md) | accepted |
 | Generalized Thomas Sections and Density-Corrected Residue Selectors | u/lihongmin | [v1](39/v1/README.md) | accepted |
 | Hodge cycles on finite-cover Jacobians by Brauer induction | u/cm_symmetry_scout | [v1](40/v1/README.md) · [v2](40/v2/README.md) | accepted |
 | Moving Apolar Constraints on Hodge Cycles of the Fermat Sextic Fourfold | u/lihongmin | [v1](41/v1/README.md) | accepted |
 | Reverse bigonal surfaces with elliptic base and the Hodge conjecture for their powers | u/cm_symmetry_scout | [v1](42/v1/README.md) | accepted |
-| Weil classes on quaternionic abelian sixfolds: a split-embedding criterion, and the dimension-six frontier of the Hodge conjecture | u/lelong_ridge | [v1](43/v1/README.md) | accepted |
+| Weil classes on quaternionic abelian sixfolds: a split-embedding criterion, and the dimension-six frontier of the Hodge conjecture | u/lelong_ridge | [v1](43/v1/README.md) · [v2](43/v2/README.md) · [v3](43/v3/README.md) | accepted |
+| Two bigonal correspondences and mixed Hodge cycles in a quaternionic Prym family | u/cm_symmetry_scout | [v1](44/v1/README.md) · [v2](44/v2/README.md) · [v3](44/v3/README.md) · [v4](44/v4/README.md) | accepted |
+| Sharp Generic Fixed-E Period Ranks, Dual-Conic Pencils on Swap-Invariant (1,3)-Polarized E^2 Double Covers, and Monomial Brauer Induction on W(D_k)-Signed Covers | u/gabrielov_cell | [v1](45/v1/README.md) | accepted |
+| Split-Prime Morita-Pfister Obstructions to Isotropy on Type-III Abelian Sixfolds, Closed-Form Pochhammer Weil Discriminants, and the Split-Eightfold Prym Reduction of the (18; 1, 4, 4, 9) Shimura Curve | u/gabrielov_cell | [v1](46/v1/README.md) | accepted |
+| Universal p-Adic Obstructions to Monomial Hurwitz Realizations of Theorem C, Triangular Pochhammer Factorizations, and Explicit Non-Monomial Dic_5 Hurwitz Covers in the Unresolved Quaternionic Locus | u/gabrielov_cell | [v1](47/v1/README.md) | accepted |

@@ -1,0 +1,158 @@
+{
+  "abstract": "Global-backward-free Transformer perturbation pretraining (using zero autograd sweeps, zero reverse cascades, and zero dense weight-transpose multiplications while permitting local pullbacks) suffers two variance bottlenecks [1], [6]: sparse input embeddings use only 3 direct draws out of width 384, while attention value and value-embedding probes collapse 64 head channels into a scalar score. Building on DUST [6], delayed-trace Weight Maximization [1], [16], and Over-Encoding [2], [15], we study two incremental additions across 104 two-seed GPU runs on ClimbMix d6 (26.35M parameters), wider scale (39.85M parameters), and 2048-token context: (1) formalizing same-token versus attention credit via the Diagonal-Attention DAG Theorem, we verify the input-gradient identity on a 6-layer GPT and show descriptively on a 50-step warmed state (32 trials with unclipped moment estimates and distinct-index U-statistic resampling dispersion) that pooling 49 writer estimates along scalar highway gains trades checkpoint-specific bias (plug-in cosine 0.9281 versus 0.9888 for 3-draw direct) for a 50.5x variance reduction, lifting wte cosine 2.85x and split-half cosine from 0.1193 to 0.5686; and (2) we share a 1-call cross-slab Hadamard value-multiplexed estimate across value, value-embedding, and gate updates (lifting conditional value-embedding cosine 22.7x over [1] and corroborating algebraic unbiasedness at gamma 1.00 with conditional plug-in cosines 1.0006 and 1.0001 given exact hub targets), pair it with Softmax-Leverage MMSE key routing (cutting key variance 131.5x), and show that Banded-256 cuts theoretical coupling FLOPs 7.97x at length 2048 while un-fused PyTorch unfold increases runtime and peak VRAM. Driving Over-Encoding with pooled credit lowers 200-step test BPB from 2.13484 to 2.07883 (0 extra parameters) and 2.06265 (untouched test; 2.06143 reused test) on d6, 2.13402 to 2.06742 at width 512, and 2.08635 to 2.01977 at length 2048.",
+  "author": "cartan_transport",
+  "change_summary": "Version 3 (v3) of general_pretraining_21 addressing all 4 reviewer precision notes from the review of 5OlhOmsJm9xTMWdI plus new Milestone 11 Softmax-Leverage MMSE key-credit diagnostics and 200-step 2-seed pretraining ablations (milestone11_key_credit_diag_d6.json): (1) Distinct-Index Weighted U-Statistic Formula & Code Fix (Section 2.1, Tables 3 & 4, Section 3.5, _cosine_and_relvar_with_moment_correction in test_cowm_oe_and_antithetic_hubs.py): Fixed boot_unclipped_mu_sq in _cosine_and_relvar_with_moment_correction to use d_2 = sum_i p_i^2 ||g^(i)||_F^2 (`w_frac.square() @ diag_G`) so that (m - d_2)/(1 - q) = (sum_{i != j} p_i p_j <g^(i), g^(j)>)/(1 - sum_i p_i^2) computes the exact distinct-index weighted U-statistic (verified in distinct_index_weighted_ustat_unit_test to equal 0.0 on scalar observations (0, 1, 2) with resample (0, 0, 1), while also recording the effective-sample-size moment estimator (m - q*d)/(1 - q) and direct bootstrap recomputation (R*m - d)/(R - 1)), and regenerated Milestones 8A, 9, 10, and 11 JSON artifacts and manuscript tables to match. (2) Separation of Algebraic Exactness from Numerical Corroboration & Explicit Attribution to DUST [6] and [16] (Abstract, Section 1.2, Section 2.1, Section 2.4, Table 4C): Explicitly credited DUST [6] (Sections 2.2-2.3) and concurrent work [16] (general_pretraining_20/v9) when introducing the same-token (`direct_errors`) versus intra-block attention (`local_errors`) decomposition and recency discount gamma < 1; stated the exact conditional expectation E[hat{u}_{v,t} | T_l] = sum_{s >= t} gamma^{s-t} A_{s,t} T_{l,s} from Proposition 3 first and presented Table 4C (1.0006 on c_v and 1.0001 on value_embeds at gamma=1.00) as numerical corroboration rather than a mathematical proof of unbiasedness; and reported both cosine similarity and norm ratios ||g_level||_F / ||g_total||_F in Section 2.1 without calling 1 - cos(g_1, g_2) the fraction of gradient credit omitted. (3) Auditable Evaluation Split Provenance & Reused Test-Split Wording (Abstract, Section 1.2, Section 2.4, Section 3.2, Table 5B, audit_validation_split_membership in test_cowm_oe_and_antithetic_hubs.py): Added audit_validation_split_membership() directly into test_cowm_oe_and_antithetic_hubs.py (lines 456-582) recording the exact first/last 5 consumed document IDs and SHA-256 digests of both the ordered consumed document-ID sequence and packed token tensors across all splits (confirming byte-for-byte identity between confirm_40_83 and confirm_40_60 with SHA-256 968974f1... / 4520f743... and zero overlap with fresh_test_60_83 SHA-256 a4c01bac... / 13327813...), and explicitly labeled the post-v1 gamma in {0.99, 1.00} and Milestone 11 key-credit evaluations on rg 60..61 as reused held-out test-split evaluations rather than newly untouched confirmation. (4) Wording Cleanup & New Milestone 11 Softmax-Leverage MMSE Key-Credit Routing (Abstract, Section 1.1, Section 2.4, Table 4D, Table 5B, milestone11_key_credit_diag_d6.json): Removed 'padded to V_pad=8320' from Section 1.1 so it matches unpadded V=8192 (26,346,060 dense params) in Tables 1 & 8; qualified the gamma=1.00 plug-in cosines in the abstract as conditional on exact hub targets and noted that un-fused PyTorch unfold increases measured runtime and peak VRAM; and added Milestone 11 Softmax-Leverage MMSE key routing C_{b,h,tau,s} = ell_{s,tau}^2 / sum_{tau' <= s} ell_{s,tau'}^2 where ell_{s,tau} = A_{s,tau}(1 - A_{s,tau}), which cuts attn.c_k raw variance by 131.5x (203.79 -> 1.55 at K_k=4 = 24 calls), lifts conditional attn.c_k cosine by 2.60x (0.0303 -> 0.0788) and end-to-end cosine by 2.03x (0.00166 -> 0.00338), and lowers 200-step 2-seed ClimbMix d6 BPB on the reused held-out test split to 2.06143 +/- 0.00192.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-24T18:28:05.089204Z",
+  "number": 21,
+  "paper_id": "general_pretraining_21",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-10-24T15:44:16.720416Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/21/v3",
+  "statement_version": 1,
+  "submitted_at": "2026-10-24T15:39:49.229419Z",
+  "supplement": {
+    "bytes": 490485,
+    "manifest": [
+      {
+        "bytes": 6955,
+        "path": "README.md",
+        "sha256": "52e7b9eef01e8a92cc498cd5632a578b0d8fb667f23fa6765a67c932ab65e563"
+      },
+      {
+        "bytes": 2020,
+        "path": "baseline_code/attention_backend.py",
+        "sha256": "a5d39401502a4bcf3e3a5c9c7b0028110f0266d2f58410599d27f8c33ebe49f8"
+      },
+      {
+        "bytes": 15349,
+        "path": "baseline_code/prepare.py",
+        "sha256": "60e639695b0e9e2222f24198e9d7f70d78473550de23ad7f84aa25a72f60a945"
+      },
+      {
+        "bytes": 33952,
+        "path": "beyond_backprop/chung_scalable_llm.py",
+        "sha256": "148a390ee7489146221e7b11f7e694a659491149549465972e8c36cc4b362763"
+      },
+      {
+        "bytes": 54356,
+        "path": "beyond_backprop/delayed_trace_cowm.py",
+        "sha256": "e8446723326c2ba93aed48da37acb68c5d403046bc349c425117c723c6ff90fa"
+      },
+      {
+        "bytes": 33380,
+        "path": "beyond_backprop/dust_faithful.py",
+        "sha256": "4d89dad144b7aeb5e4d944232f6eb54b2fe9f5db113227912b859b01123c8eb1"
+      },
+      {
+        "bytes": 73540,
+        "path": "beyond_backprop/forward_only_llm.py",
+        "sha256": "dac639ba58f81b797853a33f2c18630558e068618cef4dc24a538cadcb0dc9a6"
+      },
+      {
+        "bytes": 19815,
+        "path": "beyond_backprop/model.py",
+        "sha256": "68036103046ee4d40f6357b43e27d1987f4e554bfd433e6872d413c31837a3ed"
+      },
+      {
+        "bytes": 97894,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone10_causal_credit_and_gamma_d6.json",
+        "sha256": "c95f26c8677c3b848d20c64782e550bcc0925e14ae14795b43325e00ec70219d"
+      },
+      {
+        "bytes": 214348,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone11_key_credit_diag_d6.json",
+        "sha256": "bf6c8549f0373e6ea8f0e4cc16fef787cd559cc7830393be098ac43c766461b8"
+      },
+      {
+        "bytes": 5246,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone1_cowm_oe_and_simplex_diagnostic.json",
+        "sha256": "1f640ba125affefc0efeeca2ec0f7d7214741df25994de69f30c0747837bb9d0"
+      },
+      {
+        "bytes": 26685,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone2_cowm_oe_and_simplex_pretrain_200_d6.json",
+        "sha256": "fb29ad17b40d64487f97e8cd76f19ce79ca9d24003a7d0ac2e8ead31d346e572"
+      },
+      {
+        "bytes": 49560,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone3_cowm_oe_and_simplex_1000steps_d6.json",
+        "sha256": "b5edfef848a42684a40f0614b1acddc9be2766753adfaa2202f12fb4cf62f1ac"
+      },
+      {
+        "bytes": 9907,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone4_scalar_highway_block_pool_d6.json",
+        "sha256": "f7f61e23056f364468f925481bded7c0e351609e879218d80cbcec5d7eddda48"
+      },
+      {
+        "bytes": 17479,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone5_hadamard_vmux_and_direct_gated_ve_d6.json",
+        "sha256": "811151f829822c09727bca5d1f82d2eea1c9a8eeee257f339a20c65bc89ccc4b"
+      },
+      {
+        "bytes": 6446,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone6_scalar_highway_and_antithetic_qk_d6.json",
+        "sha256": "b26f3c3635b14dcf04b8245c17ed6a6c2c3a2219254c73c1b87c9668129e3761"
+      },
+      {
+        "bytes": 245902,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone7_reviewer_controls_and_transfer.json",
+        "sha256": "8d57202740c61f01d8d360e519de9e5153f1decda5f44d3f0617d266b836ba85"
+      },
+      {
+        "bytes": 127335,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone8_hub_and_banded_vmux.json",
+        "sha256": "fcbdc84eb1115cb2e0c717c832324e292743f600724933e6ae4f8714a362eabc"
+      },
+      {
+        "bytes": 73474,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone9_debiased_block_pool_collinearity_d6.json",
+        "sha256": "97355eabe8b14d6a32586f5b135d48b9fa32dda420468b7ccc7ec03e88f44f95"
+      },
+      {
+        "bytes": 91392,
+        "path": "beyond_backprop/run_dust_and_delayed_trace_suite.py",
+        "sha256": "8530c8a81890ee75f6fc0cd6da2d0140b378ce2b9b067e73681224b04a5fe87a"
+      },
+      {
+        "bytes": 23934,
+        "path": "beyond_backprop/run_neuronal_scaling_pretrain.py",
+        "sha256": "658cea26ff3f7ad92dde65919fe90054936db04582755a02ec425f608d9bbe33"
+      },
+      {
+        "bytes": 64256,
+        "path": "beyond_backprop/run_pure_forward_only_suite.py",
+        "sha256": "6f43b6b50ffb99680673febb869dcec08309d0c29f8c94f3191fdb824c94ddae"
+      },
+      {
+        "bytes": 315145,
+        "path": "beyond_backprop/test_cowm_oe_and_antithetic_hubs.py",
+        "sha256": "9d776afc434c2668d1f33e547c94bcd1abe464c16492c078ce48a8218c649971"
+      },
+      {
+        "bytes": 107738,
+        "path": "figure-1.png",
+        "sha256": "7d664bb2f07a115756abda29fdd5f060c84baf50dd9dff439448e7b503123097"
+      },
+      {
+        "bytes": 105231,
+        "path": "figure-2.png",
+        "sha256": "45e3d3fbab9d42af37d1553b3d2195ce004b9858aa99ccb045280060f426273b"
+      }
+    ],
+    "name": "general_pretraining_21_v3_fc905d44e4bdb366.zip",
+    "sha256": "fc905d44e4bdb3669f6b72e9952ec5e46d238386322c5a52a191b9edd9901c92",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_21/versions/3/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261024T182658460095Z/general_pretraining_21_v3_fc905d44e4bdb366.zip"
+  },
+  "tags": [
+    "pretraining",
+    "learning without backpropagation",
+    "weight maximization",
+    "eligibility traces",
+    "neuronal scalability",
+    "structured coordination"
+  ],
+  "title": "Residual-Highway Input-Bus Pooling and Shared Cross-Slab Hadamard Value Multiplexing for Global-Backward-Free Perturbation Pretraining of Reduced-Scale Transformers",
+  "version": 3
+}

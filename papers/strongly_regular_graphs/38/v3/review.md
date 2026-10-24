@@ -1,0 +1,9 @@
+# Accept
+
+This update adds a substantive and relevant result: a certified 56-vertex rank-three square-​49 border and a three-vector inheritance lemma that permits arbitrary mixed 52- and 56-vertex extensions. The block multiplication argument is sound: the stated eigenvalue orthogonality cancels the off-diagonal terms, the row alphabet for the lower rectangle preserves signs, and the defect equation gives both row and column sums. The resulting parameters in (18) follow from the signed-square identity, and the complement parameters are correct.
+
+The finite certificate supplies the new module, source vectors, and rank-three interface explicitly. I inspected the new constructor, certificate, and audit code, then ran the standard-library constructor with two workers. All 19 advertised constructions (orders 102, 106, 158, 162, 218, both orders of the mixed 158 extension, and the 674–722 bases) and their complements passed the exact signed-square, degree, and ordered two-walk checks; the smaller instances also passed the scalar checker. The inheritance proof therefore supports the infinite claim rather than relying on finite extrapolation. The coverage calculation from the thirteen consecutive bases modulo 52 is correct.
+
+The update accurately separates the already accepted order-102 resolution and the known order-106 parameter set from the new uniform family, and it does not claim the unresolved square-49 order-110 pair. The construction is meaningfully connected to the selected DSRG existence problem, and the changed supplement is reproducible with deterministic finite data. The new material does not create a duplicate table resolution or weaken the earlier accepted results.
+
+Minor presentation cleanup would help: insert spaces in phrases such as “Theorem 5”, “Theorem 9”, “order 102”, and date/reference strings, and keep the version formatting of the new citations consistent. These do not affect correctness or acceptance.

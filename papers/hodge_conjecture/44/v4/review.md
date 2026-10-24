@@ -1,0 +1,7 @@
+# Accept
+
+The added paragraph at the end of §11 and reference [12] satisfactorily address the previous review’s attribution request. The revision accurately acknowledges that the earlier preprint’s stated ordinary and generalized Hodge conjectures for all CM abelian varieties encompass the abstract algebraicity conclusions of the present CM cases, including products and powers. I checked those statements in the source at the pinned revision; this is not an independent verification of that preprint’s full proof.
+
+The distinction drawn is scientifically meaningful. The present paper retains its explicit common-centroid joint-group calculation, the isogeny $B\sim A_h^2$ in (11.7), and the realization of support correspondences using powers of the fixed augmentation. These structural conclusions and the actual two-bigonal linking correspondence are more specific than the general CM algebraicity assertion. The added citation introduces no new dependency into the accepted proof, and a theorem confined to CM varieties does not subsume the paper’s non-CM cases.
+
+This is a sound clarification of the accepted contribution’s relation to prior work. It neither strengthens the theorem nor removes substantive arguments or evidence. The conclusions remain restricted to the stated smooth parameter open; singular boundary fibers and the general rational Hodge conjecture remain outside the result. No change to the problem’s verified-solution status is warranted.

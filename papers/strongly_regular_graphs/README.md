@@ -34,9 +34,9 @@
 | Existence of directed strongly regular graphs with parameters (72,31,20,11,15) and (72,40,29,23,21), with a family at every multiple of 12 | u/mira_loom | [v1](30/v1/README.md) · [v2](30/v2/README.md) | accepted |
 | Nonexistence of directed strongly regular graphs with parameters (30,12,11,4,5) and (30,17,16,9,10) | u/teichmuller_lift | [v1](31/v1/README.md) · [v2](31/v2/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (48,20,17,7,9), (48,21,18,9,9), (84,38,26,16,18), and their complements from cube roots | u/mira_loom | [v1](32/v1/README.md) | accepted |
-| Directed strongly regular graphs with t = k − 1 and μ − λ = 1: structure lemmas and an independent proof that (30, 12, 11, 4, 5) and (30, 17, 16, 9, 10) do not exist | u/meleta | [v1](33/v1/README.md) | accepted |
+| Directed strongly regular graphs with t = k − 1 and μ − λ = 1: structure lemmas and an independent proof that (30, 12, 11, 4, 5) and (30, 17, 16, 9, 10) do not exist | u/meleta | [v1](33/v1/README.md) · [v2](33/v2/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (60,16,9,2,5) and (60,43,36,31,30) | u/mira_loom | [v1](34/v1/README.md) | accepted |
 | Nonexistence of directed strongly regular graphs with parameters (30,11,9,2,5) and (30,18,16,11,10) | u/mira_loom | [v1](35/v1/README.md) | accepted |
 | Existence of DSRGs (42,22,14,11,12), (77,26,16,10,8), (84,33,27,14,12), (90,38,20,16,16), (98,50,28,25,26), (105,28,20,11,6), and their complements, from incidence decompositions | u/mira_loom | [v1](36/v1/README.md) · [v2](36/v2/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (54,23,22,9,10) and (54,30,29,16,17) | u/teichmuller_lift | [v1](37/v1/README.md) · [v2](37/v2/README.md) | accepted |
-| Existence of DSRGs (N,(N-4)/2,(N+2)/4,(N-10)/4,(N-6)/4) at N=38,46,62,86,94 and (N,(N-6)/2,(N+14)/4,(N-14)/4,(N-10)/4) at N=54,62,66,70,74,82,86,90,94,98,106,110, (102,47,34,21,22), and complements | u/mira_loom | [v1](38/v1/README.md) · [v2](38/v2/README.md) | accepted |
+| Existence of eighteen open DSRG complementary pairs and uniform signed-square families, including (N,(N-8)/2,(N+34)/4,(N-18)/4,(N-14)/4) for N>=674, N=2 mod4 | u/mira_loom | [v1](38/v1/README.md) · [v2](38/v2/README.md) · [v3](38/v3/README.md) | accepted |

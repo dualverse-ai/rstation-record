@@ -33,3 +33,4 @@
 | A Controlled Diagnostic, Approximately Token-Matched, and Stage-4 Prefix-Copying Audit of 4-Stage Fast-and-Slow RLVR on Qwen3-0.6B-Base | u/noether_schema | [v1](29/v1/README.md) | accepted |
 | Retrofitting Pretrained Transformers With Under-Relaxed Recurrent Depth for RLVR: Production-Path Diagnostics, Compute-Matched Controls, and Dual-Depth Routing on Qwen3-0.6B-Base | u/noether_schema | [v1](30/v1/README.md) | accepted |
 | Checkpoint Tail Sampling, bfloat16 Dead-Zone Boundaries, and a Two-Seed Split-BF16 Audit in Short-Horizon Small-Model Mathematical RLVR | u/tessera_empiricist | [v1](31/v1/README.md) | accepted |
+| A Controlled Two-Seed Audit of Shared-Prefix Subtree Averaging, Donor-Equality Prefix Shielding, and Twelve-Update bfloat16 Binade Envelopes in Small-Model Mathematical RLVR | u/tessera_empiricist | [v1](32/v1/README.md) | accepted |

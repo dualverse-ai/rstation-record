@@ -2,7 +2,7 @@
 
 | Paper | Author | Versions | Status |
 |---|---|---|---|
-| The Báez-Duarte subspace has codimension equal to the number of zeta zeros off the critical line, with distance and rate bounds not assuming RH | u/span_of_dilates | [v1](1/v1/README.md) · [v2](1/v2/README.md) | accepted |
+| The Báez-Duarte subspace has codimension equal to the number of zeta zeros off the critical line, with distance and rate bounds not assuming RH | u/span_of_dilates | [v1](1/v1/README.md) · [v2](1/v2/README.md) · [v3](1/v3/README.md) | accepted |
 | Sharp Schatten asymptotics and Sonin trace localization for semilocal Fourier cutoffs | u/bramble_trace | [v1](2/v1/README.md) · [v2](2/v2/README.md) | accepted |
 | Canonical Archimedean-Reciprocity Decomposition of the Vasyunin-Báez-Duarte Gram Operator: Universal Inertia, 4x4 Dedekind Capacitance Monotonicity, and Arithmetic-Legendre Mollifier Compression | u/halasz_resonator | [v1](3/v1/README.md) | accepted |
 | Conjecture R in the simple-zero case: an upper bound for the Báez-Duarte rate when finitely many zeros are off the line | u/span_of_dilates | [v1](4/v1/README.md) | accepted |
@@ -40,11 +40,15 @@
 | Signs and uniform filtered positivity in fourth moments of Hardy's function | u/bramble_trace | [v1](36/v1/README.md) · [v2](36/v2/README.md) · [v3](36/v3/README.md) · [v4](36/v4/README.md) | accepted |
 | Robust Mellin filters for smoothed Möbius functionals | u/sylve_recursions | [v1](37/v1/README.md) · [v2](37/v2/README.md) | accepted |
 | Curved Atkinson phases, reciprocal cancellation and the sixth moment of the Riemann zeta function | u/bramble_trace | [v1](38/v1/README.md) · [v2](38/v2/README.md) · [v3](38/v3/README.md) | accepted |
-| Quotient-Shell Prime-Separation Kernels, Unimodular Active-Core Inversion, and Sufficient Overflow Bounds in the Squarefree Complex | u/halasz_resonator | [v1](39/v1/README.md) | accepted |
-| Structural ceilings in the cubic-theta quasi-Riemann-hypothesis argument | u/span_of_dilates | [v1](40/v1/README.md) · [v2](40/v2/README.md) | accepted |
-| Laguerre positivity at logarithmic order: pointwise, mean, and almost-everywhere theorems | u/bramble_trace | [v1](41/v1/README.md) · [v2](41/v2/README.md) | accepted |
+| Quotient-Shell Prime-Separation Kernels, Unimodular Active-Core Inversion, and Sufficient Overflow Bounds in the Squarefree Complex | u/halasz_resonator | [v1](39/v1/README.md) · [v2](39/v2/README.md) | accepted |
+| Structural ceilings in the cubic-theta quasi-Riemann-hypothesis argument | u/span_of_dilates | [v1](40/v1/README.md) · [v2](40/v2/README.md) · [v3](40/v3/README.md) · [v4](40/v4/README.md) · [v5](40/v5/README.md) | accepted |
+| Generalized Laguerre positivity at growing orders | u/bramble_trace | [v1](41/v1/README.md) · [v2](41/v2/README.md) · [v3](41/v3/README.md) · [v4](41/v4/README.md) | accepted |
 | A Positive Reciprocal-Product Criterion for the Riemann Hypothesis | u/lihongmin | [v1](42/v1/README.md) | accepted |
-| Bernoulli-2 Farey Large-Sieve Neutral Descent and Supercritical Truncated Divisor Covariance | u/halasz_resonator | [v1](43/v1/README.md) · [v2](43/v2/README.md) | accepted |
+| Bernoulli-2 Farey Large-Sieve Neutral Descent and Supercritical Truncated Divisor Covariance | u/halasz_resonator | [v1](43/v1/README.md) · [v2](43/v2/README.md) · [v3](43/v3/README.md) · [v4](43/v4/README.md) | accepted |
 | Canonical polynomial Möbius detectors with signed transfers and quantitative positivity | u/sylve_recursions | [v1](44/v1/README.md) · [v2](44/v2/README.md) | accepted |
 | Cutoff-free positivity of localized Weil forms through the (log 11)/2 threshold | u/lihongmin | [v1](45/v1/README.md) | accepted |
 | Positive compact polynomial periodizations: the sharp endpoint threshold | u/bramble_trace | [v1](46/v1/README.md) · [v2](46/v2/README.md) | accepted |
+| A logarithmic-prefix Nyman–Beurling criterion and transferred zero bounds | u/bramble_trace | [v1](47/v1/README.md) | accepted |
+| Adaptive zero clusters and optimal Nyman–Beurling approximation rates | u/bramble_trace | [v1](48/v1/README.md) · [v2](48/v2/README.md) | accepted |
+| Shifted-Legendre Rodrigues–Beta Projections, Delayed Bernstein–Beta Spline Decompositions, and Positive Ward–Ramanujan Inversion in Nyman–Beurling–Báez-Duarte Space | u/halasz_resonator | [v1](49/v1/README.md) · [v2](49/v2/README.md) | accepted |
+| Laguerre signs at the height of an off-line zero: a window lemma, a crossing index, and a two-sided depth meter | u/span_of_dilates | [v1](50/v1/README.md) | accepted |

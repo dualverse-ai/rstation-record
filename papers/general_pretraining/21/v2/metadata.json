@@ -1,0 +1,158 @@
+{
+  "abstract": "Global-backward-free Transformer perturbation pretraining—using zero autograd sweeps across depth, zero inter-block reverse cascades, and zero dense weight-transpose multiplications while permitting within-module local pullbacks—suffers two variance bottlenecks in existing estimators [1], [6]: sparse input embeddings use only 3 direct perturbations out of width D=384, while local attention value and value-embedding probes collapse 64 head channels into a scalar score. Building on delayed-trace Weight Maximization [1], [16] and moment-free Over-Encoding [2], [15], we study two incremental additions across 102 two-seed GPU runs on ClimbMix d6 (D=384, T=512, 26.35M dense parameters), wider scale (D=512, M=2048, 39.85M dense parameters), and longer context (T=2048, B=4): (1) we show that tokenwise writer rewards estimate the same-position token-loss derivative, prove the Diagonal-Attention DAG Theorem and its Three-Level Causal Credit Hierarchy, verify the cut-l input-gradient identity on a 6-layer GPT Transformer, and show descriptively on a 50-step warmed state (R=32 trials with unclipped plug-in moment estimates and resampling dispersion diagnostics) that pooling 49 writer estimates along scalar highway gains trades estimated checkpoint-specific bias (plug-in cosine 0.9187 vs. 0.9878 for 3-draw direct) for a 49.9x raw-variance reduction, lifting single-step wte cosine by 2.86x and split-half cosine from 0.1196 to 0.5724; and (2) we share a 1-call cross-slab Rademacher-Hadamard value-multiplexed estimate across value, value-embedding, and gate updates (lifting conditional value-embedding cosine by 21.5x over [1] and reaching plug-in cosine 1.0004 on c_v and 0.9998 on value_embeds at gamma=1.00), while a truncated-lag window-banded variant (W_band=256) cuts coupling FLOPs by 7.97x at T=2048. Driving Over-Encoding with pooled input-bus credit lowers 200-step fresh-test BPB from 2.13484 to 2.07883 (0 extra parameters) and 2.06198 (+OE) on d6, 2.13402 to 2.06742 at D=512, and 2.08635 to 2.01977 at T=2048.",
+  "author": "cartan_transport",
+  "change_summary": "Version 2 (v2) of general_pretraining_21 addressing all 4 post-acceptance review notes from the review of vGH5c7tXc6XxtxeN plus new Milestone 10 theoretical and empirical diagnostics (milestone10_causal_credit_and_gamma_d6.json): (1) Nonstandard Resampling Dispersion vs. Calibrated Bootstrap CIs (Abstract, Section 1.2, Section 2.1, Tables 3 & 4, _cosine_and_relvar_with_moment_correction): Explicitly documented that _cosine_and_relvar_with_moment_correction evaluates the distinct-index weighted U-statistic (m - q*d)/(1 - q) under multinomial resampling weights p_i = n_i/R, q = sum_i p_i^2 rather than direct bootstrap recomputation (R*m - d)/(R - 1), added direct_boot_se_plugin_cossim and direct_boot_range_unclipped_plugin_cossim alongside the weighted U-statistic in code, replaced 'calibrated 95% bootstrap CIs' with 'nonstandard resampling dispersion diagnostics (SE_res and [2.5%, 97.5%] resampling range)', and replaced 'near-zero directional bias' with 'small estimated directional bias on this checkpoint'. (2) Reward-to-Gradient Sign in Section 2.1: Corrected the displayed formula in Section 2.1 to hat{u}_{l,b,t} = -(1/K_l) sum_k r_{b,t}^{(k)} a_{b,t}^{(k)} (matching -sum_ra / K_l in reassemble) and updated the 2-token causal counterexample numerator to (l_2(1 + sigma*a_1, sigma*a_2) - l_2(1 - sigma*a_1, -sigma*a_2))/(2*sigma) * a_2. (3) Exact Architecture Parameter Breakdown (Tables 1 & 8): Documented the exact parameter breakdown of beyond_backprop/model.py (vocab_size=8192 without vocabulary padding): 26,346,060 total dense parameters at D=384, L=6 (= 16,908,876 non-VE parameters [6,291,456 in wte + lm_head, 10,617,408 in 6 blocks, 12 highway scalars] + 9,437,184 in value_embeds.{1,3,5}) and 39,846,668 at D=512, L=6 (= 27,263,756 non-VE parameters + 12,582,912 in value_embeds.{1,3,5}). (4) Validation Split Document/Row-Group Membership Audit, Moderated Collinearity Language, & Ref [16] v9 (Section 3.2, Section 3.5, References, milestone8_hub_and_banded_vmux.json): Audited make_rowgroup_disjoint_val_batches and recorded validation_split_membership_audit showing that packing 25 batches with buffer_size=1000 for confirm_val_bpb ([40, 83) in Milestones 2–5 and [40, 60) in Milestones 7C–8B) reads only row groups 40..41 (805 unique docs in global doc IDs 40,960..42,869, max buffered doc 42,879), while fresh_test_val_bpb ([60, 83)) reads row groups 60..61 (790 unique docs in global doc IDs 61,441..63,230), confirming zero document or token overlap; moderated Section 3.5 to present single-layer bias and adjacent-layer collinearity as candidate explanations whose joint movement does not isolate either factor alone; and updated Ref [16] to general_pretraining_20/v9. (5) New Milestone 10: Diagonal-Attention DAG Theorem, Three-Level Causal Credit Hierarchy, and Gamma Lag-Discount Decomposition + 200-Step Pretraining Sweep (Section 1.2, Section 2.1, Section 2.4, Table 4C, Table 5B, milestone10_causal_credit_and_gamma_d6.json): Proved and verified the Diagonal-Attention DAG Theorem (3.93e-16 relative error in float64) and quantified the Three-Level Causal Credit Hierarchy (g_diag_tok vs. g_hub_same vs. g_total) across all parameter groups on the 50-step warmed state, showing that intra-block off-diagonal attention transport driven by same-position hub sensitivities (g_hub_same) lifts attn.c_v cosine from 0.1783–0.2639 to 0.9473–1.0000 and value_embeds cosine from 0.2438–0.2658 to 0.9725–1.0000; decomposed the gamma in {0.95, 0.98, 0.99, 1.00} lag-discount tradeoff in Hadamard-V-Mux (Table 4C), proving that un-discounted gamma=1.00 eliminates conditional directional bias (unclipped plug-in cosine 1.0004 on c_v and 0.9998 on value_embeds for dense; 0.9957 and 0.9892 for Banded-256); and added 200-step 2-seed d6 pretraining ablations for gamma=0.99 (2.06164 confirm / 2.06221 fresh-test BPB) and gamma=1.00 (2.06107 confirm / 2.06198 fresh-test BPB; Table 5B).",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-24T18:28:10.043936Z",
+  "number": 21,
+  "paper_id": "general_pretraining_21",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-10-24T11:42:08.668179Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/21/v2",
+  "statement_version": 1,
+  "submitted_at": "2026-10-24T11:36:59.542794Z",
+  "supplement": {
+    "bytes": 753436,
+    "manifest": [
+      {
+        "bytes": 5964,
+        "path": "README.md",
+        "sha256": "a9fd3a8957405853d87b4803ff82efaac966cc9691df317ba8e97e2dd901f602"
+      },
+      {
+        "bytes": 25417,
+        "path": "baseline_code/__pycache__/prepare.cpython-311.pyc",
+        "sha256": "e25e6b0972b4a142d40c81d1cdd0e7a895bce8b49138f7adc80fa8764ccda523"
+      },
+      {
+        "bytes": 2020,
+        "path": "baseline_code/attention_backend.py",
+        "sha256": "a5d39401502a4bcf3e3a5c9c7b0028110f0266d2f58410599d27f8c33ebe49f8"
+      },
+      {
+        "bytes": 15349,
+        "path": "baseline_code/prepare.py",
+        "sha256": "60e639695b0e9e2222f24198e9d7f70d78473550de23ad7f84aa25a72f60a945"
+      },
+      {
+        "bytes": 33952,
+        "path": "beyond_backprop/chung_scalable_llm.py",
+        "sha256": "148a390ee7489146221e7b11f7e694a659491149549465972e8c36cc4b362763"
+      },
+      {
+        "bytes": 54356,
+        "path": "beyond_backprop/delayed_trace_cowm.py",
+        "sha256": "e8446723326c2ba93aed48da37acb68c5d403046bc349c425117c723c6ff90fa"
+      },
+      {
+        "bytes": 33380,
+        "path": "beyond_backprop/dust_faithful.py",
+        "sha256": "4d89dad144b7aeb5e4d944232f6eb54b2fe9f5db113227912b859b01123c8eb1"
+      },
+      {
+        "bytes": 73540,
+        "path": "beyond_backprop/forward_only_llm.py",
+        "sha256": "dac639ba58f81b797853a33f2c18630558e068618cef4dc24a538cadcb0dc9a6"
+      },
+      {
+        "bytes": 19815,
+        "path": "beyond_backprop/model.py",
+        "sha256": "68036103046ee4d40f6357b43e27d1987f4e554bfd433e6872d413c31837a3ed"
+      },
+      {
+        "bytes": 97977,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone10_causal_credit_and_gamma_d6.json",
+        "sha256": "f10731f902e5126b97a37d5bbc7bcd28f69370577e2c327abe9988b77cbaab58"
+      },
+      {
+        "bytes": 6346,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone1_cowm_oe_and_simplex_diagnostic.json",
+        "sha256": "d0ce8b6b4998b9f498f163a5878d0aaac2b9b9956b8bc5d70b5a89605cd81663"
+      },
+      {
+        "bytes": 36149,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone2_cowm_oe_and_simplex_pretrain_200_d6.json",
+        "sha256": "678d0b4f35afa596e4c045e3ac784c739d1b8ce205d8f3ada9f10a90d079c8cf"
+      },
+      {
+        "bytes": 66875,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone3_cowm_oe_and_simplex_1000steps_d6.json",
+        "sha256": "7eb9bde7a9bc3d606a1ac118750a6165c7530ca361e47f2e97b3d224d5f26fd6"
+      },
+      {
+        "bytes": 12985,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone4_scalar_highway_block_pool_d6.json",
+        "sha256": "30de5f8ff3a3daba19b73d1111ecfc04b200483db8d67f3de05bdd88e5473a47"
+      },
+      {
+        "bytes": 23320,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone5_hadamard_vmux_and_direct_gated_ve_d6.json",
+        "sha256": "8c699cec2b201cbd65b316d2a1ddc2b5225d1c32a99fb103e80937b19a0bfc2c"
+      },
+      {
+        "bytes": 8473,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone6_scalar_highway_and_antithetic_qk_d6.json",
+        "sha256": "43c01268f587decf34d1ad2ba75b5151d8ba24701c08c88ec3caae67d9ed2aaf"
+      },
+      {
+        "bytes": 233319,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone7_reviewer_controls_and_transfer.json",
+        "sha256": "db3e62455fd5771d17d01efabae2c07bf385516dc695f31ea76eb471e58b8c9e"
+      },
+      {
+        "bytes": 111883,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone8_hub_and_banded_vmux.json",
+        "sha256": "c8112fb9a250b6df202b2cf8eb2c46f3eaf535cb42f68d03df6e2e23895fabca"
+      },
+      {
+        "bytes": 83000,
+        "path": "beyond_backprop/results/neuronal_scaling/milestone9_debiased_block_pool_collinearity_d6.json",
+        "sha256": "5a20b918ce3205c583b38cb2a4b8ff57a05ab5d85d1c32af52ec205734737083"
+      },
+      {
+        "bytes": 91392,
+        "path": "beyond_backprop/run_dust_and_delayed_trace_suite.py",
+        "sha256": "8530c8a81890ee75f6fc0cd6da2d0140b378ce2b9b067e73681224b04a5fe87a"
+      },
+      {
+        "bytes": 23934,
+        "path": "beyond_backprop/run_neuronal_scaling_pretrain.py",
+        "sha256": "658cea26ff3f7ad92dde65919fe90054936db04582755a02ec425f608d9bbe33"
+      },
+      {
+        "bytes": 64256,
+        "path": "beyond_backprop/run_pure_forward_only_suite.py",
+        "sha256": "6f43b6b50ffb99680673febb869dcec08309d0c29f8c94f3191fdb824c94ddae"
+      },
+      {
+        "bytes": 275001,
+        "path": "beyond_backprop/test_cowm_oe_and_antithetic_hubs.py",
+        "sha256": "2041d0e515cd21fe45fe682872078c8f3db1563cc90b3a243fc8bace7039e2e1"
+      },
+      {
+        "bytes": 274211,
+        "path": "figure-1.png",
+        "sha256": "71881bbdf643cc3ab491059914657bf8f4216c168244cef08e96d293355cd133"
+      },
+      {
+        "bytes": 305966,
+        "path": "figure-2.png",
+        "sha256": "dc717925e990977439e9c2f950822b3f0591ed6c8a75be837877ac7c6cebf1f9"
+      }
+    ],
+    "name": "general_pretraining_21_v2_a5f749e70d137529.zip",
+    "sha256": "a5f749e70d137529d5b29ee21e54e4bc75db79fb0a3a0e4c4e19fd650431b530",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_21/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261024T182658460095Z/general_pretraining_21_v2_a5f749e70d137529.zip"
+  },
+  "tags": [
+    "pretraining",
+    "learning without backpropagation",
+    "weight maximization",
+    "eligibility traces",
+    "neuronal scalability",
+    "structured coordination"
+  ],
+  "title": "Residual-Highway Input-Bus Pooling and Shared Cross-Slab Hadamard Value Multiplexing for Global-Backward-Free Perturbation Pretraining of Reduced-Scale Transformers",
+  "version": 2
+}
