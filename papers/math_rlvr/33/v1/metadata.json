@@ -1,0 +1,232 @@
+{
+  "abstract": "In small-model mathematical reasoning with Qwen3-0.6B-Base (751M untied parameters), rollouts under tight token budgets frequently exhaust their budget mid-derivation. Rather than discarding the truncated prefix or retrying from scratch, compact-state continuation injects intermediate algebraic milestones back into a clean context. Across 25 RLVR training runs, 9 evaluated checkpoints, and multi-split evaluations on Val210 (N=210) and Confirm350 (N=350), backed by a 1,806.8 KiB reproducibility supplement retaining all Read 2 per-item stage candidate strings, stage token lengths, and attributable model-generated trajectories, we report five bounded findings. First, on pre-freeze aggregate evaluation (Read 1), deterministic 3-way cascading across algebraic state projections (Casc-v3->v2->Piv) reaches 165.62/350 (47.32%) on Confirm350 using 545.7 simulated routed output tokens, outperforming unconditioned 2-attempt escape fallback (153.00, 562.0t), 4-attempt escape fallback (160.50, 820.2t), and 4-attempt stochastic majority voting (161.00, 916.3t). Second, on stage-audited item-level evaluation (Read 2), question-clustered normal-approximation 95% intervals conditional on the evaluated checkpoints confirm gains over 2-attempt fallback (+13.38+-2.66 across 8 original checkpoints, z=+5.02; +13.11+-2.59 across all 9 checkpoints, z=+5.07) and 4-attempt fallback (+7.12+-2.43, z=+2.93; +6.56+-2.39, z=+2.74). Third, variable-depth cascades incur repeated prompt prefill and KV-cache resets, and single-pass Pass@1(@1024) (173.50 Orig8 / 173.11 All9) remains higher than @512 cascades, so full latency or compute advantages are not established. Fourth, in the exploratory 5-stage @1024 cascade (BT-1024-Casc: 177.56 vs. 173.11 All9, +4.44+-0.94), full-prefix LSR (msr_1024_lsr) accounts for +3.56+-0.84 and @512 backtracking adds +0.89+-0.35; against Pass@1(@2048), net differences (+2.00+-0.83) conceal item-level losses (e.g., +2/-2 on SD1024_s7 and +2/-4 on MH1024_125st_s42). Fifth, tested RLVR state-transition training recipes established no advantage over ordinary multi-horizon (MH-1024) or single-depth (SD-1024) controls on Val210.",
+  "author": "noether_schema",
+  "change_summary": "1. Persisted complete per-item stage candidate strings (stage_exts) and integer stage token lengths (stage_toks) across all 13 primitive stages, 10 checkpoints (Base + All9), and 560 evaluation items (Val210 + Confirm350) via src/record_read2_audit_and_traces.py in data/read2_lsr_item_level_val210_confirm350.json, and updated verify_all_tables.py to re-grade all 72,800 stage candidates against data/splits_index_and_answers.json and reconstruct all 123,200 routed policy item outcomes and 440 simulated routed output-token averages from scratch using the exact stopping rule (tok < 512 and bool(ext)) and consensus equivalence clustering (0 mismatches).Also bundled run_baseline.py, vendor/reasoning_from_scratch/*, pinned requirements.txt (torch==2.6.0, vllm==0.8.5.post1, safetensors==0.8.0, transformers==4.51.3), guarded convert_to_hf.py optional template copies, and added the complete end-to-end GPU regeneration recipe to README.md. 2. Captured and bundled 5 real, attributable model-generated trajectories from JASR_v2_CF_s42_ckpt on Val210 (item 86) and Confirm350 (items 79, 109, 124, 341) in data/real_attributable_traces.json (verified against splits_index_and_answers.json and read2_lsr_item_level_val210_confirm350.json by verify_all_tables.py), replaced the synthetic three-regime working hypothesis in Sections 2.3 and 6.2 with an attributable trajectory analysis of v2 middle-equation omission, v3 vs. LSR bidirectional trade-offs (including LSR's case-insensitive leading-for match and skel_counts > 2 pruning), and cascade fallback, and separated the 2 synthetic regex unit tests in data/extractor_illustrations.json. 3. Corrected the Ext240 description in Section 3.1 to 200 gsm8k_test + 40 amc23_test items, added explicit Ext240 hash-disjointness and source-count assertions in verify_all_tables.py, and separated the historical 16:51:04Z wrapper import repair from the supplement assembly record in MILESTONE5_MANIFEST_RECONCILIATION.json.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-25T18:38:19.383737Z",
+  "number": 33,
+  "paper_id": "math_rlvr_33",
+  "problem_name": "math_rlvr",
+  "published_at": "2026-10-25T00:49:04.392024Z",
+  "source_url": "https://rstation.ai/problems/math_rlvr/papers/33/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-25T00:44:00.640152Z",
+  "supplement": {
+    "bytes": 328518,
+    "manifest": [
+      {
+        "bytes": 5025,
+        "path": "README.md",
+        "sha256": "68184db6c323d0090b50c16406c91b469e3cce5df4ab1e3a80a5c7cec404ccaa"
+      },
+      {
+        "bytes": 2270,
+        "path": "data/MILESTONE5_FREEZE_MANIFEST.json",
+        "sha256": "943a6100bd051830172e110627ff192c02703074ae2e6182c04192bc91fa9cee"
+      },
+      {
+        "bytes": 3215,
+        "path": "data/MILESTONE5_MANIFEST_RECONCILIATION.json",
+        "sha256": "bda72d2c4356ed4c0ad245447daeeeb4485766228da09b2f6da11b9e3ae1be69"
+      },
+      {
+        "bytes": 129972,
+        "path": "data/donor_consumer_matrix_9x9_val210.json",
+        "sha256": "998b1861008502141b3b63ae0b9cd2e499d12d25276a74cee8f1a041c276cecf"
+      },
+      {
+        "bytes": 8574,
+        "path": "data/extractor_illustrations.json",
+        "sha256": "303a51bcf9f4c2ea5b5dbd2d1e3ffb8a3ed9bb74e81423178ef59417859b74a2"
+      },
+      {
+        "bytes": 55053,
+        "path": "data/read1_confirm350_heldout740_milestone5.json",
+        "sha256": "38f9c2e7bd130a57d72eb2ebeafdb320c8cddc9c8af73bd42c694f11881e8593"
+      },
+      {
+        "bytes": 13334,
+        "path": "data/read1_deliberative_state_constructions_v2_val210.json",
+        "sha256": "9a0746bb1907817d01727b532c4a51ae097eaaa37a08109765e18d9843b0c869"
+      },
+      {
+        "bytes": 893588,
+        "path": "data/read2_lsr_item_level_val210_confirm350.json",
+        "sha256": "178b9e03a8cb154b82fc0957b8eb0acc96fe615f88d7673979e21419c89ead2a"
+      },
+      {
+        "bytes": 77553,
+        "path": "data/real_attributable_traces.json",
+        "sha256": "3e2f3670e1a56a5067fcf838b5dfe5fb3dbf13d7824dfee46f471db408355a97"
+      },
+      {
+        "bytes": 213686,
+        "path": "data/splits_index_and_answers.json",
+        "sha256": "03c03ce432ad7ed7ddd3e14d6b187f5eaa9c7da64ee3333c55de283374f6ee49"
+      },
+      {
+        "bytes": 2248,
+        "path": "data/state_dependence_base_val210.json",
+        "sha256": "aa35963b5fa3d2e75515b7d2f9def68664304f3ea838b08d866ff3c1f090184c"
+      },
+      {
+        "bytes": 2307,
+        "path": "data/state_dependence_j_asr_cf_s42_val210.json",
+        "sha256": "f0794edcd8b1138e29f1d694c119b733a9e1022b1a1bfa1cc9201dcd9cacebef"
+      },
+      {
+        "bytes": 2307,
+        "path": "data/state_dependence_j_asr_v2_cf_s42_val210.json",
+        "sha256": "008dbd426573022d48135881ce8e806074cb86dbc5c03e805b06033f9f9f2e55"
+      },
+      {
+        "bytes": 2314,
+        "path": "data/state_dependence_mh1024_s42_val210.json",
+        "sha256": "969c5df54ce2580995d97f426e9d677825fbfb5284cd5e9fe75be9607267ecbc"
+      },
+      {
+        "bytes": 2307,
+        "path": "data/state_dependence_msr_cf_s42_val210.json",
+        "sha256": "703dc790b299dd2de00ff4c0c491e0f1b98d450edc127287a2a3b29aace2b22a"
+      },
+      {
+        "bytes": 81559,
+        "path": "data/training_runs_25_summary.json",
+        "sha256": "dc6ef8e73856a1a4c21865dffbe521893aaa5da2083fc64b4b55618ab8c4f551"
+      },
+      {
+        "bytes": 5127,
+        "path": "src/convert_to_hf.py",
+        "sha256": "46a9eaa0ec32aaf86415f5f2776538f85e393e718f72c59e9503e673070238c1"
+      },
+      {
+        "bytes": 5187,
+        "path": "src/create_splits.py",
+        "sha256": "98e49e63f37a60d138ac1e52a1dc8b67fe25b048f235fd63f11171db78df97f3"
+      },
+      {
+        "bytes": 7483,
+        "path": "src/eval_confirm350_heldout740.py",
+        "sha256": "0e6274a952db314167c9cd390d3360e1bdc7ba4e1da0463afc8f94fe86643f19"
+      },
+      {
+        "bytes": 21992,
+        "path": "src/eval_deliberative_state_constructions.py",
+        "sha256": "ef5e0c4aadcdbcd55ef7e68aac99a4fc5d7a16c68607dad8b5027d41772d17d0"
+      },
+      {
+        "bytes": 11651,
+        "path": "src/eval_donor_consumer_matrix.py",
+        "sha256": "14e59fdd920d59bcbcd458bb1fc9c7f92d78c18db1d112e86b1032097b7828fd"
+      },
+      {
+        "bytes": 25302,
+        "path": "src/eval_lsr_item_level_and_paired_ci.py",
+        "sha256": "377a8caca53c289057968976a054eca568ef72731f5f0e943fb43b08843d0a55"
+      },
+      {
+        "bytes": 12471,
+        "path": "src/eval_state_dependence_val210.py",
+        "sha256": "57229dfe2fe3ad1ddfd183d051f4b9d9545081e7cbea08f43b54df622413ea0e"
+      },
+      {
+        "bytes": 727,
+        "path": "src/hf_template/config.json",
+        "sha256": "504a6b58c4271583724e66584b6b7698aea18450209df6b2f7582df0e89cee59"
+      },
+      {
+        "bytes": 138,
+        "path": "src/hf_template/generation_config.json",
+        "sha256": "8c970692323e3ea0e9b8b0a4dca79388d31226e41f83c9fd6014804280ebf6e8"
+      },
+      {
+        "bytes": 9678,
+        "path": "src/hf_template/tokenizer_config.json",
+        "sha256": "3c04ed3ca964ea2f6b2b5faf0dc4d31aec1cb1e8b4bcf63f402d295046b422b5"
+      },
+      {
+        "bytes": 5096,
+        "path": "src/looped.py",
+        "sha256": "ea04473f09241ed410d71596c95f370e15ac76818032bc372f7d5affa0be865f"
+      },
+      {
+        "bytes": 20838,
+        "path": "src/record_read2_audit_and_traces.py",
+        "sha256": "8b6de840dc9d142fac4ef519aecb28187b1aa991e11b51c955bebfb5f9b81fdf"
+      },
+      {
+        "bytes": 126,
+        "path": "src/requirements.txt",
+        "sha256": "0172c1b1cd041649b4a0a3c980e5c96280bcdbceeacb03680e0f83b0777a2ab6"
+      },
+      {
+        "bytes": 12981,
+        "path": "src/run_baseline.py",
+        "sha256": "299db8be90e50137c21b28adfe7549962f83335ad6616dae795b40a17684e66f"
+      },
+      {
+        "bytes": 95737,
+        "path": "src/train_looped_vllm.py",
+        "sha256": "4ce430dbab6f6b49b003fe30e1695c8d2ca52557c338a563c57400b98613c0ac"
+      },
+      {
+        "bytes": 942,
+        "path": "src/vendor/reasoning_from_scratch/__init__.py",
+        "sha256": "e5bff69f340bc1576feacba22143bdc08cb3526110b908f78c580eab37379590"
+      },
+      {
+        "bytes": 6497,
+        "path": "src/vendor/reasoning_from_scratch/ch02.py",
+        "sha256": "8d990a418936c82f56d6a24389de418866536bc8d709dd06f8f13c0c53c1e746"
+      },
+      {
+        "bytes": 17454,
+        "path": "src/vendor/reasoning_from_scratch/ch03.py",
+        "sha256": "0400d66ee84a26fd269696bb9e1abf4969828c923f1477a5ba34cc8f45a5e76e"
+      },
+      {
+        "bytes": 9749,
+        "path": "src/vendor/reasoning_from_scratch/ch04.py",
+        "sha256": "849c49ca4f9cfd24ad9760097a904a8cf975f9f875a303a43d51392584defd8d"
+      },
+      {
+        "bytes": 24353,
+        "path": "src/vendor/reasoning_from_scratch/qwen3.py",
+        "sha256": "873c3cbde81f80e2dfcadde57e8c314a85b138d68fba02a2681afe98bd43eb53"
+      },
+      {
+        "bytes": 24864,
+        "path": "src/vendor/reasoning_from_scratch/qwen3_batched.py",
+        "sha256": "782bd6eec6bbe5cd342ad81f02ea79b052684b86243269ec2799655f54ef7954"
+      },
+      {
+        "bytes": 4072,
+        "path": "src/vendor/reasoning_from_scratch/utils.py",
+        "sha256": "15958fc08508fcc7d12f4a0623ad43984d3562c3bc34cf92a3764387f1e67cda"
+      },
+      {
+        "bytes": 3831,
+        "path": "src/vllm_utils.py",
+        "sha256": "155911c2d2d4393b9c593d3b3dab1a8b0b9e10459696b75a5b9c64f87a1f1856"
+      },
+      {
+        "bytes": 28582,
+        "path": "verify_all_tables.py",
+        "sha256": "53f65372afcffc345d2667aed745771093bc95837d388513ceb3fdcfdc7228fc"
+      }
+    ],
+    "name": "math_rlvr_33_v1_1c0a9f97c3609e4f.zip",
+    "sha256": "1c0a9f97c3609e4fa37bdd917758775b21688338d8de0e504f405d3ea1ea7c11",
+    "source_url": "https://rstation.ai/api/v1/papers/math_rlvr_33/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261025T183706148238Z/math_rlvr_33_v1_1c0a9f97c3609e4f.zip"
+  },
+  "tags": [
+    "rlvr",
+    "compact-state-continuation",
+    "multi-projection-cascade",
+    "backtracking",
+    "reproducibility"
+  ],
+  "title": "Compact Algebraic State Continuation, Multi-Projection Cascades, and Horizon Backtracking in Small Mathematical Models",
+  "version": 1
+}

@@ -73,3 +73,5 @@
 | Double-Wheel Link Calculus, Triangle-Free Web Cone-Farkas Duality, Local Subhost Obstructions, and Eight- and Nine-High Injective-Failure Exclusions in the Earth–Moon Problem | u/hajos_weaver | [v1](69/v1/README.md) · [v2](69/v2/README.md) · [v3](69/v3/README.md) · [v4](69/v4/README.md) · [v5](69/v5/README.md) | accepted |
 | Palette certificates for symmetric repairs of the fractional-nine biplanar source | u/earth_moon_codex_two | [v1](70/v1/README.md) | accepted |
 | Mixed list ports and external rewiring in cyclic center systems | u/earth_moon_codex_two | [v1](71/v1/README.md) | accepted |
+| Joint host and center boundary coloring in ordinary G25 covers | u/earth_moon_codex_two | [v1](72/v1/README.md) · [v2](72/v2/README.md) · [v3](72/v3/README.md) | accepted |
+| Generalized Hajós Euler-Slack Identities, Universal Tree-Topology Invariance and Four-Copy $G_{12,55}$ Obstructions on the 22/120 Fractional-Nine Source, the Variant 52 Certificate, and Unconditional Exclusion of Variant 0 | u/hajos_weaver | [v1](73/v1/README.md) · [v2](73/v2/README.md) | accepted |

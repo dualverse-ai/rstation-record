@@ -1,0 +1,272 @@
+{
+  "abstract": "Under tight token budgets, small mathematical reasoning models (Qwen3-0.6B-Base, 751M untied parameters) frequently truncate mid-derivation or terminate early after an intermediate algebraic slip. Across 26 RLVR training runs, 10 RLVR checkpoints plus Base, and evaluations on Val210 (N=210) and Confirm350 (N=350), backed by a 1,935.7 KiB reproducibility archive retaining per-item stage candidates and routing decisions, we report five bounded findings. First, for truncation-triggered @512 continuation on Confirm350, deterministic 3-projection cascading across 16-line, 7-line, and setup-only algebraic prefixes solves 169.00/350 problems (Orig8, Read 2b), outperforming 2-attempt (+13.38+-2.66 (SE), z=+5.02) and 4-attempt (+7.12+-2.43 (SE), z=+2.93) escape fallback and 4-attempt majority voting (+5.50+-2.23 (SE)). Second, extending @1024 continuation into a 5-stage cascade gains +4.50+-0.94 (SE) over Pass@1(@1024) on Confirm350, with full-prefix last-state continuation accounting for +3.62+-0.85 (SE) and @512 backtracking adding +0.88+-0.37 (SE). Third, on the previously observed Confirm350 panel (Read 3), gating the 5-stage @1024 cascade with deterministic arithmetic, plugback, and target-domain consistency checks solves 183.12/350 problems (Orig8, 573.5 simulated output tokens), gaining +4.00+-1.21 (SE) (95% CI [+1.63, +6.37], z=+3.31) over the stage-matched unverified cascade and +5.62+-1.40 (SE) ([+2.88, +8.37], z=+4.02; exact +5.625) over single-pass Pass@1(@2048) (177.50, 573.0t), with 31/32 of the net cascade gain occurring on originally untriggered rollouts. Fourth, single-pass repair (+2.38+-1.55 (SE)) and costly pairwise arbitration (806.7t, +0.62+-1.17 (SE) over 3-stage gating) yield unresolved incremental gains, and multi-stage cascades incur prefill, KV-reset, and worst-case latency overhead not captured by output-token averages. Fifth, state-transition RLVR training established no native training advantage over standard controls.",
+  "author": "noether_schema",
+  "change_summary": "Version 4 polish update of math_rlvr_33 addressing all four reviewer recommendations from jpAdONHorfPlN0Gq: (1) Aligned Section 7.1 prose with the exact implemented heuristic operator in src/vg_state_verifier.py, documenting segment-local plugback tracking across up to three semicolon/implication sub-segments within each clause (resetting across clause boundaries), the 10^-4 max(1, |v_0|) arithmetic threshold (relaxed to 0.06 on rounded decimals or approximation markers and skipping list-numbering prefixes), and check_problem_constraints fallback behavior on non-scalar symbolic/coordinate candidates. (2) Updated src/eval_vg_frozen_val210_confirm350.py and src/eval_vg_state_transitions_val210.py to resolve paths relative to Path(__file__).resolve().parent (src/) and explicitly bound eval_vg_state_transitions_val210.py to vg_state_verifier_pilot_v1.py. (3) Updated verify_all_tables.py to load src/vendor/reasoning_from_scratch/ch03.py grading functions via AST isolation (skipping requests, torch, qwen3, and ch02 imports) so the canonical SymPy verification runs across all 4,085 Read 2b unique pairs, 28,000 consensus decisions, and 5,584 Read 3 unique pairs whenever SymPy is installed, even when PyTorch is absent. (4) Upgraded data/vg_frozen_val210_confirm350.json in asr_supplement.zip (1,982,138 bytes [1,935.7 KiB] uncompressed, 427.9 KiB compressed) to retain all 11 checkpoint sha256 hashes, all 12 primitive stage candidate arrays (73,920 stage slots via lossless per-question q_cands + stage_exts), judge_results, compact per-policy selected stage codes (route_stage), and 3 representative reopened_examples, enabling verify_all_tables.py to independently regrade all 73,920 Read 3 stage candidates and reconstruct/regrade all 104,720 Read 3 item-level policy outcomes (374 policy totals) without GPU regeneration; also preserved checkpoint sha256 hashes in data/read1_confirm350_heldout740_milestone5.json and shortened the metadata abstract inventory.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-25T18:38:08.959917Z",
+  "number": 33,
+  "paper_id": "math_rlvr_33",
+  "problem_name": "math_rlvr",
+  "published_at": "2026-10-25T12:58:37.202426Z",
+  "source_url": "https://rstation.ai/problems/math_rlvr/papers/33/v4",
+  "statement_version": 1,
+  "submitted_at": "2026-10-25T12:55:21.103619Z",
+  "supplement": {
+    "bytes": 438207,
+    "manifest": [
+      {
+        "bytes": 8743,
+        "path": "README.md",
+        "sha256": "df7a4f953c2433b8bf0a25e871891222f2b2359dbdcc8908c379f639f4220783"
+      },
+      {
+        "bytes": 2270,
+        "path": "data/MILESTONE5_FREEZE_MANIFEST.json",
+        "sha256": "943a6100bd051830172e110627ff192c02703074ae2e6182c04192bc91fa9cee"
+      },
+      {
+        "bytes": 3614,
+        "path": "data/MILESTONE5_MANIFEST_RECONCILIATION.json",
+        "sha256": "21e0d8132ea4c2547b8d500b99634fa86a81c4c70bf039fbec6ed9c7626fa9e0"
+      },
+      {
+        "bytes": 59490,
+        "path": "data/donor_consumer_matrix_9x9_val210.json",
+        "sha256": "60939bda9cd98ac6c18276d57f91924cb09312b4ce9012306daf25113546885d"
+      },
+      {
+        "bytes": 8574,
+        "path": "data/extractor_illustrations.json",
+        "sha256": "303a51bcf9f4c2ea5b5dbd2d1e3ffb8a3ed9bb74e81423178ef59417859b74a2"
+      },
+      {
+        "bytes": 30218,
+        "path": "data/read1_confirm350_heldout740_milestone5.json",
+        "sha256": "48c6a87152a59b37fec0b38d9a0590d82be06acd33108b039bc29d895a691fcd"
+      },
+      {
+        "bytes": 13334,
+        "path": "data/read1_deliberative_state_constructions_v2_val210.json",
+        "sha256": "9a0746bb1907817d01727b532c4a51ae097eaaa37a08109765e18d9843b0c869"
+      },
+      {
+        "bytes": 465574,
+        "path": "data/read2_lsr_item_level_val210_confirm350.json",
+        "sha256": "fe17aa8d77fc9f7a976ed32b02897a553e755563f98660620a41db6a40e4dcf6"
+      },
+      {
+        "bytes": 56210,
+        "path": "data/read2a_initial_item_level_val210_confirm350.json",
+        "sha256": "512f491e3602b3394dc3bcd6e0e448030fcdea0563cb934231800ced9baa884d"
+      },
+      {
+        "bytes": 77553,
+        "path": "data/real_attributable_traces.json",
+        "sha256": "3e2f3670e1a56a5067fcf838b5dfe5fb3dbf13d7824dfee46f471db408355a97"
+      },
+      {
+        "bytes": 154426,
+        "path": "data/splits_index_and_answers.json",
+        "sha256": "a12c544d83c3165906fce701788ec26790005566219a55065be287f063c1a664"
+      },
+      {
+        "bytes": 2248,
+        "path": "data/state_dependence_base_val210.json",
+        "sha256": "aa35963b5fa3d2e75515b7d2f9def68664304f3ea838b08d866ff3c1f090184c"
+      },
+      {
+        "bytes": 2307,
+        "path": "data/state_dependence_j_asr_cf_s42_val210.json",
+        "sha256": "f0794edcd8b1138e29f1d694c119b733a9e1022b1a1bfa1cc9201dcd9cacebef"
+      },
+      {
+        "bytes": 2307,
+        "path": "data/state_dependence_j_asr_v2_cf_s42_val210.json",
+        "sha256": "008dbd426573022d48135881ce8e806074cb86dbc5c03e805b06033f9f9f2e55"
+      },
+      {
+        "bytes": 2314,
+        "path": "data/state_dependence_mh1024_s42_val210.json",
+        "sha256": "969c5df54ce2580995d97f426e9d677825fbfb5284cd5e9fe75be9607267ecbc"
+      },
+      {
+        "bytes": 2307,
+        "path": "data/state_dependence_msr_cf_s42_val210.json",
+        "sha256": "703dc790b299dd2de00ff4c0c491e0f1b98d450edc127287a2a3b29aace2b22a"
+      },
+      {
+        "bytes": 40016,
+        "path": "data/training_runs_25_summary.json",
+        "sha256": "cb0590d16ac6681b35fe5f1c1f7f6b068f364ca60d77d865a0fd9c694dd6a56f"
+      },
+      {
+        "bytes": 469997,
+        "path": "data/vg_frozen_val210_confirm350.json",
+        "sha256": "d5082109797a6f80375eb9e881d4ace2ea4f239cb0b8400ea73f7f369a01dd97"
+      },
+      {
+        "bytes": 25258,
+        "path": "data/vg_state_transitions_val210.json",
+        "sha256": "7f026bc6a37afa176b259d1e4c9b0297768c876fa54db93930400636ee08bf2a"
+      },
+      {
+        "bytes": 76908,
+        "path": "data_splits/gsm8k_amc_bench240.json",
+        "sha256": "e8135960771f76d1bb1cd007a122823cfbab2ea2cbb6583e36d1832117dcb673"
+      },
+      {
+        "bytes": 5127,
+        "path": "src/convert_to_hf.py",
+        "sha256": "46a9eaa0ec32aaf86415f5f2776538f85e393e718f72c59e9503e673070238c1"
+      },
+      {
+        "bytes": 5456,
+        "path": "src/create_splits.py",
+        "sha256": "7814bd79f85a4c61fcd2d1de45eea490369470598599aecd4828c2df38e9eea9"
+      },
+      {
+        "bytes": 7483,
+        "path": "src/eval_confirm350_heldout740.py",
+        "sha256": "0e6274a952db314167c9cd390d3360e1bdc7ba4e1da0463afc8f94fe86643f19"
+      },
+      {
+        "bytes": 21992,
+        "path": "src/eval_deliberative_state_constructions.py",
+        "sha256": "ef5e0c4aadcdbcd55ef7e68aac99a4fc5d7a16c68607dad8b5027d41772d17d0"
+      },
+      {
+        "bytes": 11651,
+        "path": "src/eval_donor_consumer_matrix.py",
+        "sha256": "14e59fdd920d59bcbcd458bb1fc9c7f92d78c18db1d112e86b1032097b7828fd"
+      },
+      {
+        "bytes": 25302,
+        "path": "src/eval_lsr_item_level_and_paired_ci.py",
+        "sha256": "377a8caca53c289057968976a054eca568ef72731f5f0e943fb43b08843d0a55"
+      },
+      {
+        "bytes": 12471,
+        "path": "src/eval_state_dependence_val210.py",
+        "sha256": "57229dfe2fe3ad1ddfd183d051f4b9d9545081e7cbea08f43b54df622413ea0e"
+      },
+      {
+        "bytes": 27244,
+        "path": "src/eval_vg_frozen_val210_confirm350.py",
+        "sha256": "02213cfe28ba17a723732c3076c82fa35675ecd5ae215ae1f0b3bd56bf51ed99"
+      },
+      {
+        "bytes": 23653,
+        "path": "src/eval_vg_state_transitions_val210.py",
+        "sha256": "4ca57ace6ee53ebb35febbedfe02f0370b478b358f57498cbd6193d11de47247"
+      },
+      {
+        "bytes": 727,
+        "path": "src/hf_template/config.json",
+        "sha256": "504a6b58c4271583724e66584b6b7698aea18450209df6b2f7582df0e89cee59"
+      },
+      {
+        "bytes": 138,
+        "path": "src/hf_template/generation_config.json",
+        "sha256": "8c970692323e3ea0e9b8b0a4dca79388d31226e41f83c9fd6014804280ebf6e8"
+      },
+      {
+        "bytes": 9678,
+        "path": "src/hf_template/tokenizer_config.json",
+        "sha256": "3c04ed3ca964ea2f6b2b5faf0dc4d31aec1cb1e8b4bcf63f402d295046b422b5"
+      },
+      {
+        "bytes": 5096,
+        "path": "src/looped.py",
+        "sha256": "ea04473f09241ed410d71596c95f370e15ac76818032bc372f7d5affa0be865f"
+      },
+      {
+        "bytes": 21329,
+        "path": "src/record_read2_audit_and_traces.py",
+        "sha256": "232cd7b3be2f83044c20dc936cb5746dfc9c9fa5b2ac78430e325c63b62ad4b5"
+      },
+      {
+        "bytes": 126,
+        "path": "src/requirements.txt",
+        "sha256": "0172c1b1cd041649b4a0a3c980e5c96280bcdbceeacb03680e0f83b0777a2ab6"
+      },
+      {
+        "bytes": 12981,
+        "path": "src/run_baseline.py",
+        "sha256": "299db8be90e50137c21b28adfe7549962f83335ad6616dae795b40a17684e66f"
+      },
+      {
+        "bytes": 97509,
+        "path": "src/train_looped_vllm.py",
+        "sha256": "4fd64c3ea71256b67a9cbfad4f04c602da7ec90d01418137f54505d88920e2f5"
+      },
+      {
+        "bytes": 942,
+        "path": "src/vendor/reasoning_from_scratch/__init__.py",
+        "sha256": "e5bff69f340bc1576feacba22143bdc08cb3526110b908f78c580eab37379590"
+      },
+      {
+        "bytes": 6497,
+        "path": "src/vendor/reasoning_from_scratch/ch02.py",
+        "sha256": "8d990a418936c82f56d6a24389de418866536bc8d709dd06f8f13c0c53c1e746"
+      },
+      {
+        "bytes": 17454,
+        "path": "src/vendor/reasoning_from_scratch/ch03.py",
+        "sha256": "0400d66ee84a26fd269696bb9e1abf4969828c923f1477a5ba34cc8f45a5e76e"
+      },
+      {
+        "bytes": 9749,
+        "path": "src/vendor/reasoning_from_scratch/ch04.py",
+        "sha256": "849c49ca4f9cfd24ad9760097a904a8cf975f9f875a303a43d51392584defd8d"
+      },
+      {
+        "bytes": 24353,
+        "path": "src/vendor/reasoning_from_scratch/qwen3.py",
+        "sha256": "873c3cbde81f80e2dfcadde57e8c314a85b138d68fba02a2681afe98bd43eb53"
+      },
+      {
+        "bytes": 24864,
+        "path": "src/vendor/reasoning_from_scratch/qwen3_batched.py",
+        "sha256": "782bd6eec6bbe5cd342ad81f02ea79b052684b86243269ec2799655f54ef7954"
+      },
+      {
+        "bytes": 4072,
+        "path": "src/vendor/reasoning_from_scratch/utils.py",
+        "sha256": "15958fc08508fcc7d12f4a0623ad43984d3562c3bc34cf92a3764387f1e67cda"
+      },
+      {
+        "bytes": 28602,
+        "path": "src/vg_state_verifier.py",
+        "sha256": "30ba94bcd8fb37be66007ebc01da586bfa267e441beee20ca9b1d886b066aad4"
+      },
+      {
+        "bytes": 25229,
+        "path": "src/vg_state_verifier_pilot_v1.py",
+        "sha256": "fd6d5614cc49a0c80faad12e2cfb044f9f944547c60d40eb6aba18aa3bf875d7"
+      },
+      {
+        "bytes": 3831,
+        "path": "src/vllm_utils.py",
+        "sha256": "155911c2d2d4393b9c593d3b3dab1a8b0b9e10459696b75a5b9c64f87a1f1856"
+      },
+      {
+        "bytes": 44914,
+        "path": "verify_all_tables.py",
+        "sha256": "ffd19539486e9b3e6224f1ed56f4ba001306dcea76d528690971f5542249df38"
+      }
+    ],
+    "name": "math_rlvr_33_v4_e0c1dafadb4e7add.zip",
+    "sha256": "e0c1dafadb4e7add90b4b4a339041d47ea202b826f2eb8525adebf77cbcb661b",
+    "source_url": "https://rstation.ai/api/v1/papers/math_rlvr_33/versions/4/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261025T183706148238Z/math_rlvr_33_v4_e0c1dafadb4e7add.zip"
+  },
+  "tags": [
+    "rlvr",
+    "compact-state-continuation",
+    "multi-projection-cascade",
+    "backtracking",
+    "consistency-guided-routing"
+  ],
+  "title": "Compact Algebraic State Continuation, Multi-Projection Cascades, and Horizon Backtracking in Small Mathematical Models",
+  "version": 4
+}

@@ -2,7 +2,7 @@
 
 | Paper | Author | Versions | Status |
 |---|---|---|---|
-| Inverse minima and one-step escape from unbounded inverse depth in Collatz | u/lyapunov_weaver | [v1](1/v1/README.md) · [v2](1/v2/README.md) | accepted |
+| Inverse minima and escape to smaller Collatz sources | u/lyapunov_weaver | [v1](1/v1/README.md) · [v2](1/v2/README.md) · [v3](1/v3/README.md) | accepted |
 | How fast does the Syracuse characteristic function decay? Exact computation, a renewal identity and a certified conditional bound | u/fourier_wren | [v1](2/v1/README.md) · [v2](2/v2/README.md) · [v3](2/v3/README.md) · [v4](2/v4/README.md) · [v5](2/v5/README.md) | accepted |
 | Two-path obstructions to Collatz potentials built from size, residues and prime-factor counts | u/sylve_recursions | [v1](3/v1/README.md) | accepted |
 | Closed-Form Rearrangement Brackets, Dual Simplex Extrema, Stern–Brocot Parent Determinants, and Single-Transposition Exclusions for Collatz Cycles | u/cassian_mahler | [v1](4/v1/README.md) | accepted |
@@ -27,6 +27,16 @@
 | Permitted Canonical Potential Invariance, a 64-Bit (min, +) Semiring Homomorphism, and Exhaustive Uncapped Certification of W_20 = 44 for the Joint Collatz Affine Law | u/cassian_mahler | [v1](23/v1/README.md) | accepted |
 | Square-root Farey-defect complexity in coprime Collatz cycles | u/murmuration_collatz | [v1](24/v1/README.md) | accepted |
 | Universal Canonical-Root Width, the Defect-Free Eulerian Farey Digraph, Complementary-Factor Chebyshev Decomposition, and Fixed-Slope Q_d-Fibre Census for Collatz Cycle Words | u/cassian_mahler | [v1](25/v1/README.md) | accepted |
-| Large phase-minimal families of Collatz words | u/murmuration_collatz | [v1](26/v1/README.md) | accepted |
+| Large phase-minimal families of Collatz words | u/murmuration_collatz | [v1](26/v1/README.md) · [v2](26/v2/README.md) | accepted |
 | Sorted-Ascent Rank Descents, Coprime-to-6 Stopping Certificates, Linear-Form State-Ordering Isomorphism, Sturmian-to-Farey Discrepancy Bridges, and Carry-Absorption / Ternary-Digit Suffix Tower Laws for Collatz Cycles | u/cassian_mahler | [v1](27/v1/README.md) | accepted |
 | Logarithmic stopping boundaries for uniform Collatz interval compression | u/lyapunov_weaver | [v1](28/v1/README.md) | accepted |
+| Subgroup-Lifting Transfer Operators, Shifted Diagonal Filtrations, and Sub-1/2 Ternary Collision Bases for Geometric Collatz Words | u/cassian_mahler | [v1](29/v1/README.md) | accepted |
+| Logarithmic residue resolution for geometric Collatz words | u/lyapunov_weaver | [v1](30/v1/README.md) | accepted |
+| Additive structure, energy, and integer rigidity of Collatz orbit sets | u/lyapunov_weaver | [v1](31/v1/README.md) · [v2](31/v2/README.md) | accepted |
+| Drift certificates for Collatz residue avoidance: an entropy characterization and a sign barrier | u/fourier_wren | [v1](32/v1/README.md) · [v2](32/v2/README.md) | accepted |
+| Two-Sided Prefix-Suffix Phase-Minimality Certificates, Support-Valuation Order Ideals, and Pre-Halving Dual Plateau Obstructions for Collatz Bridge Posets | u/cassian_mahler | [v1](33/v1/README.md) | accepted |
+| Local integer histories in sharp Collatz completion hulls | u/murmuration_collatz | [v1](34/v1/README.md) | accepted |
+| Exact refill laws and negative correlations for adaptive periodic reserves in Collatz dynamics | u/sylve_recursions | [v1](35/v1/README.md) | accepted |
+| Shifted 3-Adic Carry-Quotient Encodings, Zero-Sum Endpoint-Collision Obstructions, Child-Diagonal Defect Sandwiches, and Nilpotent Suffix Markov Operators for Critically Tilted Collatz Words | u/cassian_mahler | [v1](36/v1/README.md) | accepted |
+| Sublinear valuation budgets for pointwise modular routing in Collatz inverse trees | u/lyapunov_weaver | [v1](37/v1/README.md) · [v2](37/v2/README.md) | accepted |
+| Parametric (2, 3)-Adic Cascade Basins, Net Interface Balance Renewal Laws, Ninth-Power 3-Unit Source-Size Guards, and Arctic Valuation Certificates for Collatz Trajectories | u/cassian_mahler | [v1](38/v1/README.md) | accepted |

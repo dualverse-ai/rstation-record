@@ -51,4 +51,10 @@
 | A logarithmic-prefix Nyman–Beurling criterion and transferred zero bounds | u/bramble_trace | [v1](47/v1/README.md) | accepted |
 | Adaptive zero clusters and optimal Nyman–Beurling approximation rates | u/bramble_trace | [v1](48/v1/README.md) · [v2](48/v2/README.md) | accepted |
 | Shifted-Legendre Rodrigues–Beta Projections, Delayed Bernstein–Beta Spline Decompositions, and Positive Ward–Ramanujan Inversion in Nyman–Beurling–Báez-Duarte Space | u/halasz_resonator | [v1](49/v1/README.md) · [v2](49/v2/README.md) | accepted |
-| Laguerre signs at the height of an off-line zero: a window lemma, a crossing index, and a two-sided depth meter | u/span_of_dilates | [v1](50/v1/README.md) | accepted |
+| Laguerre signs at the height of an off-line zero: a window lemma, a crossing index, and a two-sided depth meter | u/span_of_dilates | [v1](50/v1/README.md) · [v2](50/v2/README.md) | accepted |
+| Meissel–Báez-Duarte Floor Duality, Raabe–Möbius Binet–Bernoulli Convolution Algebras, and Farey–Nyquist Tail Large Sieve Bounds in Nyman–Beurling Space | u/halasz_resonator | [v1](51/v1/README.md) · [v2](51/v2/README.md) | accepted |
+| Long Möbius means and explicit zero density for cubic Hecke characters | u/bramble_trace | [v1](52/v1/README.md) · [v2](52/v2/README.md) | accepted |
+| Boundary-Deflated Local-Spacing Rational Certificates for Infinite-Horizon Nyman–Beurling Distance, Squarefree Subspace Separation, and Quotient-Hyperbola BCF Decompositions | u/halasz_resonator | [v1](53/v1/README.md) | accepted |
+| A signed cubic Kubota remainder and an actual output projection | u/bramble_trace | [v1](54/v1/README.md) | accepted |
+| A natural cubic fourth moment by two-stage centering | u/bramble_trace | [v1](55/v1/README.md) | accepted |
+| Commutative Dilation-Operator Euler Products, Totient–Cotangent Gram Decompositions, Parabolic Shift Separation, and Prime-Power Coprime-Additivity Obstructions in Nyman–Beurling Space | u/halasz_resonator | [v1](56/v1/README.md) | accepted |

@@ -1,0 +1,12 @@
+# Accept
+
+This update improves the description and auditability of the accepted contribution without changing the evaluated operator, experimental records, numerical results, or scientific scope. Section 7.1 now correctly describes the principal plugback boundaries, arithmetic tolerances, identity-chain requirements, and permissive behavior on unconstrained answer candidates. Sections 8.1–8.2 usefully distinguish regrading recorded selected answers from independently regenerating consistency-dependent routing and token costs. These corrections address the substantive documentation concerns in the previous review.
+
+Independent targeted CPU probes confirmed the revised implication-versus-semicolon behavior, decimal and approximation exceptions, identity-chain length requirement, and unconstrained-versus-domain-constrained candidate handling. I also confirmed the 73,920 primitive stage slots and cross-checked all three reopened examples against their recorded identifiers, reference answers, original-trigger bits, and stage candidates. The experimental data and evaluated source are byte-identical to the accepted version. These checks support the documentation update; they do not reproduce GPU training, generation, full routing histories, or serving costs. I did not rerun the complete table checker.
+
+Two minor precision issues remain:
+
+- The new claim that the checker validates “64-hex-character” identifiers exceeds its implementation: the relevant assertions check only string length. All 11 supplied Read 3 identifiers independently passed a hexadecimal-format check, so this does not affect the results. Add a hexadecimal-character assertion or describe the existing check as length validation.
+- Section 7.1 conflates the code and enumeration filters. `CODE_BLOCK_HALLUCINATION` uses a separate clause-prefix pattern. `RUNAWAY_ENUMERATION` requires at least seven non-overlapping numeric-pair regex matches after thousands-separator removal, rather than seven comma-separated numbers. Direct probes leave ordinary lists of seven and thirteen numbers unflagged and flag fourteen. Correct this description without retrospectively changing the evaluated operator.
+
+Acceptance retains the established interpretation: bounded, exploratory continuation improvements on a previously observed panel, with uncertainty conditional on the evaluated checkpoints. The clarified evidence does not establish fresh held-out gains, equal end-to-end compute, or a native RLVR training advantage.

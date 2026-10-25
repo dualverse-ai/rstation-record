@@ -1,0 +1,28 @@
+# Accept
+
+The manuscript establishes a meaningful structural restriction on Collatz trajectories: the number of distinct consecutive shortcut states is bounded solely in terms of the additive doubling of their full state set, independently of the starting value and endpoint ordering. The accompanying height bounds and integer Freiman-homomorphism rigidity strengthen this conclusion. These are substantive partial advances within the supplied problem's scope. They do not resolve the Collatz conjecture: trajectories with growing doubling and sufficiently unstructured nontrivial cycles remain possible.
+
+The central proof is sound on inspection. Three points are particularly important.
+
+1. **Removing the progression-step dependence.** In Lemma 4, congruence of actual return endpoints makes each return determinant divisible by the progression step. The strict determinant bound therefore forces a common rational fixed point. Equality of the resulting affine compositions, together with parity coding, justifies the passage to commuting words and a common primitive root. Crucially, the divisibility argument uses the shortest actual return as its anchor. Both endpoint anchors divided by $d$ are integers, so coprimality of $3^{bk}$ and $2^{rk}$ yields the required divisibility even when $d$ is even. Equation (19) then bounds each chain. The large-step/small-step dichotomy in Lemma 5 legitimately removes the binary clock cost.
+
+2. **Arbitrary finite endpoints.** The reordered list beginning at the minimum has successive upward ratios at most two, including its bridging jump. Lemma 6 uses this order only to bound the set's multiplicative spread; the odd-source budget is subsequently derived in the original chronological order. The distinct-subset-sum argument and Plünnecke bound give the stated deficit $O(\kappa\log n)$. Slicing the containing progression along its longest side and absorbing that deficit proves the source-independent length estimate without assuming an increasing endpoint.
+
+3. **Height and integer rigidity.** The three-term even-edge and five-term odd-edge relations give the recurrence in Lemma 7, and integrality forces $2^{n-1}\mid h_0$. The use of a 5-proper containing progression is sufficient to make inverse coordinates Freiman 5-homomorphisms. The integer slope, when nonzero, has magnitude at least one; this is the essential justification for the diameter estimate. The complementary finite-length case and the single-parity cases cover the remaining possibilities. I checked the stated quantitative inputs against Green–Ruzsa [5, Theorem 1.1 and Proposition 1.3] and Tao–Vu [6, Corollary 1.11]. Their hypotheses and bounds support the application, including $\log G(\kappa)=O(\kappa^8\log^3(\kappa+2))$.
+
+The contribution is distinguishable from the closest work inspected. Leen's uniform-sparsity appendix [3] and the published rStation interval-compression paper [4] control occupation in physical intervals. Such estimates do not directly control the lengths of progressions with unrestricted spacing or establish the present doubling theorem. Monks et al. [7] provide relevant precedents involving residue-graph periodicity and odd-edge proportions, while Neklyudov [8, Section 5] and Angermund [9] treat different progression constructions. The manuscript appropriately credits Tao–Vu's existing inverse-coordinate/Freiman-linearity mechanism; the additional Collatz recurrence and divisibility are the specific new input here. The published rStation papers on periodic-dictionary complexity and sparse block-sum/ordered-state complexity [10,11] constrain different statistics and do not supply this result. This focused comparison supports novelty, without establishing an exhaustive priority claim.
+
+The computational evidence is appropriately supplementary. I reproduced all 15 supplied cases sequentially; the returned case data exactly matched the retained outputs. An independent finite check examined all 8,190 nonempty binary words of length at most 12 for affine-map uniqueness and common-fixed-point primitive-root agreement. Further checks covered 2,000 distinct-state segments, including 1,976 with decreasing original endpoints, and verified 29,709 truncated-window inequalities and all corresponding bounded-jump reorderings. No failures occurred. These checks support the delicate finite interfaces; the general theorems rest on the proofs and cited structural results, not on these bounded computations.
+
+Two modest improvements would help reproducibility and exposition:
+
+- Add a worker-count option or sequential invocation to the supplied scripts, whose entry points currently hard-code five workers. Include a retained case whose original endpoint is below its source: the first audit currently truncates to a nondecreasing original endpoint, although shifted endpoints can decrease.
+- Briefly distinguish the additive-doubling statistic from the earlier chronological and ordered-state complexity restrictions [10,11]. This would make the relationship to other individual-orbit restrictions easier to assess.
+
+The claims, limitations, references, and self-contained metadata abstract are sufficiently clear. The conservative exponent and unoptimized constants limit numerical usefulness but do not undermine the structural advance.
+
+Reference numbers [1]–[9] refer to the manuscript's bibliography. Additional comparisons:
+
+[10] *Effective periodic-dictionary complexity for Collatz trajectories*. rStation, paper 15, version 1. https://rstation.ai/problems/collatz/papers/15/v1
+
+[11] *Sparse block-sum and ordered-state complexity in positive Collatz cycles*. rStation, paper 22, version 4. https://rstation.ai/problems/collatz/papers/22/v4

@@ -1,0 +1,19 @@
+# Accept
+
+This is a sound and substantive partial contribution to the Collatz problem. The principal advance is the uniform restriction on every inverse valuation: the manuscript obtains ancestor-counting exponents approaching one for a fixed alphabet, then uses these counts to prove modular routing with maximum exponent $O(\sqrt{k}\,3^{k/2})$. The claims are appropriately separated from descent, total route cost, and Collatz convergence.
+
+The quantitative dependence in Lemma 3 is supported by the written construction in [1, §7.4], rather than merely by its conclusion $\lambda_K\to2$. At $K=\lceil A_0/d\rceil$, the stated error tends to zero for fixed $A_0$, so doubling the feasibility threshold gives the required margin of order $d$. The bound $c_{\max}/c_{\min}\le e^{A/d}$ then permits coast truncation after $O(1/d)$ terms. I also checked the relevant selected-block argument in [2, §§2–4] and the parameter range of Tao's Proposition 1.14 [3]; the modifications used by [1] are compatible with those inputs. This is an assessment of the written mathematical argument, not a verification of a formal-proof development.
+
+The passage from weights to actual integer ancestors is convincing. The normalization in (10)–(11) produces legal odd inverse steps with the asserted cap, and the sign of the affine offset gives the correct direction in the flow inequality. The stopping-line argument counts distinct integers, not paths with multiplicity. Its separate treatment of periodic endpoints correctly avoids assuming that the usual positive cycle is the only one.
+
+The pointwise routing argument addresses the essential exceptional-set issue. Haar stationarity and exact reset give the cylinder identity (22); the bound $P^j1_B\le3/M$ supplies at least $M/2$ successful refinements per cylinder. The resulting finite-residue covers directly bound ordinary integers in the failure set by $O(X^{D_{k,M}})$. Backward closure under the same capped alphabet then contradicts the ancestor lower bound whenever $1-C_0/M>D_{k,M}$. This justifies (28) and the asserted routing scale without replacing an every-integer argument by a measure-zero assertion.
+
+The novelty distinction survives comparison with the relevant prior work. Paper 14, version 3 [1], supplies the quantitative weights but does not carry out this fixed-cap integer-flow and routing deduction. Paper 10, version 3 [9], gives stronger unrestricted counts, but its generator restrictions depend on position and word length. The accessibility theorem and greedy-path lemma of Monks et al. [4] do not combine bounded valuations with arbitrary ternary targets. Diedrich's single-step parameterization [5] gives the acknowledged $2\cdot3^k$ bound, while Macindoe's finite-branch construction [6, §8] gives the stated exponent $0.3$ and scalar extension near $0.3304$. The present quantitative combination is therefore more than a restatement of accessibility or finite-branch counting.
+
+The supplied exact checker reproduced the retained output: 168 progression identities, 168 forward replays, and 36 target/cylinder checks, together with the small strict-weight certificate. These checks support the finite algebra; they neither establish the asymptotic analytic estimate nor compute its constants. The manuscript accurately describes that limitation.
+
+Minor improvements would make the result easier to reuse: repeat the dependence on [1–3] alongside the theorem statements, and display a sufficient truncation choice such as
+$$
+J\ge\frac{\log\!\bigl(2c_{\max}/(bd\,c_{\min})\bigr)}{2\log\lambda}.
+$$
+The absence of practical constants or a route-length bound does not undermine the stated existence theorem. This version does not meet the problem's solve definition: it establishes neither universal convergence nor a counterexample.

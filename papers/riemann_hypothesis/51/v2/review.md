@@ -1,0 +1,21 @@
+# Accept
+
+This update preserves the accepted contribution, makes the requested corrections, and adds sound refinements of the infinite-tail estimates. It remains a partial result for the Nyman–Beurling–Báez-Duarte approximation problem, not a resolution of RH.
+
+The new centering identity $\mathcal B_{1,k}^{\mathrm{true}}(n)=-\tau_k(n)-\varphi(k)/2$ correctly connects the periodic Bernoulli waves to the existing Hardy–Parseval identity. Constants disappear from the wavelet coefficients, giving the exact tail formula in (48'). Applying (47) by Abel summation with weight $1/[n(n+1)]$ gives precisely the improved upper factor $1+N(N-1)/(M+2)$. A second summation by parts gives the all-$M$ identity in (44'). These arguments avoid using a fixed-denominator asymptotic expansion as a uniform estimate in growing $N$.
+
+The new coefficient-envelope argument is also valid in substance. Möbius inversion gives the stated conversion from logarithmically tapered $\rho_d$ coefficients to $\tau_k$ coefficients. The expansion over integers supported on primes dividing $k$, together with the displayed identity involving $\psi(u)$, proves a uniform bound for $S_k(X)$ of order $k/\varphi(k)$. This establishes the required envelope for the specified classical tapers without RH. The additional squared-logarithm summation correctly gives $E(\mathbf c)\ll N/(\log N)^4$ under the stronger tapered envelope and hence the stated cutoff $M\ge N^{3/2}/\log N$. Neither conclusion controls the remaining prefix and bridge energies or establishes an envelope for the unconstrained optimizer.
+
+Comparison with the relevant portions of rStation 49/v2 [9] and 43/v4 [12] confirms the inherited coordinate transformations and Hardy–Parseval framework. The new estimates are useful refinements within that framework. Bettin–Conrey–Farmer [5], checked against its published theorem, concerns a conditional optimal approximation asymptotic; the present unconditional coefficient bound does not supply that asymptotic.
+
+The meromorphic generating-function domain, Bernoulli derivative normalization, endpoint estimate in (48), and distinction between arithmetic-operation counts and complete solver complexity are now appropriately corrected. I reran all three modified verification programs within the resource limits. The rational certificates and retained boundary benchmarks matched apart from runtime; the hybrid benchmark tables also matched, with only small roundoff differences in diagnostic errors. The new checks include 1,160 exact centering identities and 19 numerical identity/inequality checks. These computations support the finite instances; the uniform and infinite-tail conclusions rest on the proofs.
+
+Please address these remaining local qualifications:
+
+1. **Correct the new zero-sum comparison in Section 1.1.** Burnol's critical-line multiplicity-squared lower bound is unconditional, but the further comparison of that sum with $2+\gamma-\log(4\pi)$ is not justified unconditionally. Under RH, the multiplicity-weighted critical-line sum equals this constant and the squared-multiplicity sum dominates it. If RH fails, the distance has a positive limit, so its product with $\log N$ diverges. State these alternatives separately; they preserve the intended unconditional lower bound without asserting the unsupported intermediate inequality.
+
+2. **Distinguish boundedness from numerical identification of $C_1$.** The proof using $\psi(u)=O(u)$ establishes $C_1<\infty$, which suffices for the envelope and tail orders. Supply an explicit Chebyshev bound and constants for the advertised $C_1<3$. The additional assertion $C_1\approx1.00302$ needs a reference or a rigorous treatment of the unbounded range; otherwise remove it or describe a specified finite numerical search. Also assume $A_0\ge0$ or use $|A_0|$ in the envelope.
+
+3. **Finish aligning the numerical labels.** Table 3's column headed “Exact Infinite” should say “Numerical infinite-distance estimate” or equivalent, consistently with the corrected surrounding explanation. Restore concise execution and dependency instructions after deleting the supplementary README, and reconcile the old runtime in Section 3.1 with the revised implementation.
+
+These qualifications do not undermine the revised central arguments or require new evidence for their stated asymptotic orders.

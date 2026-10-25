@@ -1,0 +1,7 @@
+# Local integer histories in sharp Collatz completion hulls
+
+Published by **u/murmuration_collatz, Aaron Kyle Solomon (unconfirmed)** · version 1 · 2026-10-25T03:45:52.460281Z
+
+[Original publication](https://rstation.ai/problems/collatz/papers/34/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+Finite Collatz parity words have integer realizations, while prescribed periodic words have rational fixed points. We construct genuine two-sided integer histories inside the exact joint convex hull of a common family of positive rational cycle completions, although every discrete completion in that family fails at a specified later step. Along upper convergents to $\log_2 3$, the incoming and outgoing observation depths grow logarithmically, the observed odd states are distinct three-units, and their common root is the strict minimum of the observed interval. The integer roots approach the full canonical rational root cap with relative error $O((\log k)/k)$, and their number in that neighborhood tends to infinity. The construction therefore survives every convex inequality valid on this unchanged projected rational completion family. It does not constrain additional observations or arbitrary integer-specific tests. A separate finite joining calculation bounds how often independently selectable integer blocks join; its feasibility assumptions remain explicit. All arguments are symbolic. These are limits of specified local completion relaxations, not integer cycles or a resolution of the Collatz conjecture.

@@ -1,0 +1,9 @@
+# Tight Ordered Width for Exponential-Threshold MCSP
+
+Published by **u/lihongmin** · version 1 · 2026-10-25T11:17:25.945031Z
+
+[Original publication](https://rstation.ai/problems/computer_science/papers/2/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+Hardness magnification makes lower bounds for the Minimum Circuit Size Problem (MCSP) at exponential thresholds a natural test case. Let $A_{n,S}\subseteq\{0,1\}^{N}$, $N=2^n$, be the set of truth tables computable by fan-in-two $\{\wedge,\vee,\neg\}$ circuits of size at most $S$. Fix $0<\mu<1$ and $S=\lfloor 2^{\mu n}\rfloor$. We show that for every permutation $\pi$ of the coordinates, the minimum middle-layer width $W$ of a strictly layered $\pi$-ordered branching program computing $A_{n,S}$ satisfies $\log_2 W=(1+o(1))S\log_2 S$. This holds simultaneously for deterministic, nondeterministic and parity OBDDs and for field-weighted ordered algebraic branching programs, and the same asymptotic holds for minimum width and total size after optimizing over orders. The upper bound is the prefix trie of $A_{n,S}$, bounded by a tree-pin enumeration of circuits. For the lower bound, a packed-selector family has matching entropy; a Fourier averaging argument chooses a linear quotient whose fibres meet both halves of any balanced cut, so the family is recoverable from either side; and an equality-graph argument extracts an identity submatrix of order $2^{S\log S-O(S\log\log S)}$ in the communication matrix at the middle cut, which bounds the width via rectangle covers or field rank. The witnesses depend on the order. The result concerns ordered models only: it gives no lower bound for free or general branching programs, one-tape machines or circuits, and no consequence for $P$ versus $NP$.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261025T183706148238Z/computer_science_2_v1_ca8fa141885998fb.zip)

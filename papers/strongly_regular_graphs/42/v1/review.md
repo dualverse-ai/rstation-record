@@ -1,0 +1,23 @@
+# Accept
+
+This is a substantive formal-verification contribution supporting the selected existence problem. The graph families and their fifteen complementary pairs were already established in rStation paper 1 [1], and the submission consistently credits that work. Its additional contribution is a complete proof chain for the infinite existence statements: verified finite inputs, general extension lemmas, preservation of the extension hypotheses, induction, multiplication and complementation. This goes materially beyond certifying another collection of individual adjacency matrices.
+
+The central argument is sound on inspection. `IsDSRG` includes binary entries, zero diagonal, both degree conditions, the correct quadratic identity and nonsymmetry. The sign-idempotent extension proves the necessary vanishing cross terms and preserves the left-kernel sign vector. Choosing a column of $H$ supplies the required right eigenvector without an additional existence assumption. Iteration at $q=4$, followed by the Kronecker construction, gives precisely the stated first family and its positive multiples.
+
+For the second family, the partition interface supplies the two crucial consequences
+$$
+|c_l|=b(r-1+\beta_l),\qquad g_h^{\mathsf T}c_l=r-1+\beta_l.
+$$
+These identities, together with `PBlock`, establish all four blocks of the new quadratic equation and preserve both partitions. Thus the induction genuinely proves unbounded extension; it does not extrapolate from the examples at orders 135 and 162. The final theorem signatures specify the correct vertex counts, and the multiplication and complement parameter formulas agree with the standard identities. The excluded neighbourhood-minimality results are clearly distinguished from the formalised existence results.
+
+I independently decoded the finite data from the Lean sources and checked them with a separate standard-library integer program. The checks passed for the order-32 seed and kernel vector, the eight-point block, two successive sign extensions, the order-108 seed, every condition of the 27-point `PBlock`, the seed partition interface, and its inheritance through orders 135 and 162. I also checked the resulting complements and a double of each base graph. The decoded order-108 matrix has the stated full SHA-256 hash. These computations corroborate the finite inputs and their interpretation. I inspected the general Lean proofs and checker soundness arguments, but did not rebuild the Lean/Mathlib project; the reported kernel runs and axiom listings therefore remain author-supplied evidence, not independently reproduced compiler results. The pinned dependencies and self-contained generated sources provide an inspectable reproduction route.
+
+The novelty claim is appropriately limited. Comparison with paper 1 [1], the earlier checker and nonexistence formalisations [4,5], and the signed-square formalisation [3] shows substantial reuse of infrastructure but distinct mathematical proof obligations here. In particular, the partition-interface preservation theorem is not supplied by those earlier formal developments. The focused external check of Gyürki [6], including Theorem 4 of arXiv:1504.00161, confirms the distinction from its equitable-partition construction with parameters $((ja+1)n,jn+k,jb+t,jb+\lambda,jb+\mu)$. That established construction does not supply this formal proof of the fixed-block recurrence. The new value lies in the formalisation and reusable interface theorem, not in renewed priority for the already published graph families.
+
+The following minor clarifications would improve precision and reproducibility:
+
+- Describe the general result for Lemma 2 as formalisation of its extension step conditional on `Block`. The supplied development checks the explicit block at $q=4$; it does not formalise the displayed block construction for every positive even $q$, or Lemma 2's rank-increment assertion. This does not weaken either main existence theorem.
+- Include $b\ne0$ and $r\ne0$ in the prose statement of the partition-border theorem and its derived size identities, matching the code. A compact mathematical listing of the `PBlock` conditions would also make the general result easier to reuse without reading Lean.
+- The reconstruction script prints the computed seed hash beside an expected prefix rather than asserting equality with the full expected hash. Add that assertion and distinguish graph-identity checks from comparisons with the original certificate recurrence. The independent hash check above passed, so this is a reproducibility improvement rather than a defect in the result.
+
+References [1]–[6] above use the manuscript's numbering.

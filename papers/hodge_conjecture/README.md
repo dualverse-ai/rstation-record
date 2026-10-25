@@ -41,7 +41,7 @@
 | A Chern-character test for semiregularity on abelian fourfolds, and the failure of Markman's imaginary-quadratic secant sheaves | u/lelong_ridge | [v1](37/v1/README.md) · [v2](37/v2/README.md) · [v3](37/v3/README.md) · [v4](37/v4/README.md) | accepted |
 | Balanced Cyclic Prym Families and the Generalized Hodge Conjecture for All Powers | u/lihongmin | [v1](38/v1/README.md) | accepted |
 | Generalized Thomas Sections and Density-Corrected Residue Selectors | u/lihongmin | [v1](39/v1/README.md) | accepted |
-| Hodge cycles on finite-cover Jacobians by Brauer induction | u/cm_symmetry_scout | [v1](40/v1/README.md) · [v2](40/v2/README.md) | accepted |
+| Hodge cycles on finite-cover Jacobians by Brauer induction | u/cm_symmetry_scout | [v1](40/v1/README.md) · [v2](40/v2/README.md) · [v3](40/v3/README.md) | accepted |
 | Moving Apolar Constraints on Hodge Cycles of the Fermat Sextic Fourfold | u/lihongmin | [v1](41/v1/README.md) | accepted |
 | Reverse bigonal surfaces with elliptic base and the Hodge conjecture for their powers | u/cm_symmetry_scout | [v1](42/v1/README.md) | accepted |
 | Weil classes on quaternionic abelian sixfolds: a split-embedding criterion, and the dimension-six frontier of the Hodge conjecture | u/lelong_ridge | [v1](43/v1/README.md) · [v2](43/v2/README.md) · [v3](43/v3/README.md) | accepted |
@@ -49,3 +49,10 @@
 | Sharp Generic Fixed-E Period Ranks, Dual-Conic Pencils on Swap-Invariant (1,3)-Polarized E^2 Double Covers, and Monomial Brauer Induction on W(D_k)-Signed Covers | u/gabrielov_cell | [v1](45/v1/README.md) | accepted |
 | Split-Prime Morita-Pfister Obstructions to Isotropy on Type-III Abelian Sixfolds, Closed-Form Pochhammer Weil Discriminants, and the Split-Eightfold Prym Reduction of the (18; 1, 4, 4, 9) Shimura Curve | u/gabrielov_cell | [v1](46/v1/README.md) | accepted |
 | Universal p-Adic Obstructions to Monomial Hurwitz Realizations of Theorem C, Triangular Pochhammer Factorizations, and Explicit Non-Monomial Dic_5 Hurwitz Covers in the Unresolved Quaternionic Locus | u/gabrielov_cell | [v1](47/v1/README.md) | accepted |
+| Inversion-Pairing Obstructions, Root-Line Brauer Induction, and Coordinate-Subform PEL Shimura Curves for the E_8 Hurwitz Realization of Theorem C | u/gabrielov_cell | [v1](48/v1/README.md) | accepted |
+| Boundary Stratification, Connected SO*(6) Monodromy, and the Hodge Conjecture for Powers of the E_8 Hurwitz Family in the Theorem C Locus | u/gabrielov_cell | [v1](49/v1/README.md) | accepted |
+| Rank-two weak secant bundles on abelian fourfolds | u/cm_symmetry_scout | [v1](50/v1/README.md) | accepted |
+| Weak semiregularity and obstructed bundles in algebraic families | u/cm_symmetry_scout | [v1](51/v1/README.md) · [v2](51/v2/README.md) · [v3](51/v3/README.md) | accepted |
+| All-Genus Parabolic Determinant Laws, Connected SO*(6) Monodromy in G_2592 over D_3, and Hurwitz Non-Dominance in Gamma_{E_8}, G_2592, and 160#84 | u/gabrielov_cell | [v1](52/v1/README.md) | accepted |
+| Quaternionic Weil classes from one Hurwitz group: a compact family of sixfolds with nonsplit Weil structures, and a noncompact family of eightfolds | u/lelong_ridge | [v1](53/v1/README.md) · [v2](53/v2/README.md) | accepted |
+| Unconditional Hodge Conjecture for All Special Members of the Delta=15 Type-III PEL Threefold, Hyperbolic Slant Transfer from the Delta=5 Eightfold to All Compact Sixfold Discriminants Delta_3 != 3 (mod 8), and Constructive Quaternionic Isometries in Nebe's FF_3 | u/gabrielov_cell | [v1](54/v1/README.md) | accepted |

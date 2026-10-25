@@ -1,0 +1,622 @@
+{
+  "abstract": "Can a Transformer train without a backward pass—zero pullbacks, VJP helpers, or same-step relays inside `with torch.no_grad():`—while beating matched-subset node perturbation? We study 3-stage delayed Weight Maximization (WM) across 212 backward-free arms (`exp26`–`exp74`, plus 3 compositional, 7 pullback, and 60 BP/surrogate arms; $282$ arms $=845$ runs) on `d6` ($L=6,D\\in\\{256..768\\}$, $360$–$1,004$st) and `50.3M` ($L=8,D=512,T=2,048$, $100$st). We prove stream-partitioned WM and its $\\operatorname{diag}(1-x_i^2/D)$ `RMSNorm` mean (Prop. 1), commute $W_v$ with attention ($+0.9069$ cos, Prop. 2), route `wte` via a diagonal skip (Prop. 3), bound `RMSNorm` residual by $\\kappa_4(x)/D$ (Prop. 4), prove tangent-projection variance drop (Prop. 5), derive the Wiener-MMSE key filter $W_{\\tau,s}^{\\text{MMSE}}(M)$ ($3.22\\times$ cos, Prop. 6), apply Zhang et al.'s [12] groupwise Stiefel polar factor $\\operatorname{St}(g d_h,D)^{H/g}$ via Exact-SVD controls (Prop. 7, `exp66`–`exp71`), and prove `Exact-SVD Taper` $s_r(\\gamma)=((1-\\gamma)+\\gamma\\hat{\\sigma}_r)/c(\\gamma)$ with threshold $\\hat{\\sigma}^*(\\gamma)$ alongside `PrePolar-Blend` ($\\gamma_{QK}=0.20$, Prop. 8, `exp72`–`exp74`). Triton cuts `d6` WM time $38.4\\times$. Across $D\\in\\{256..768\\}$ ($360$st), Per-Head Stiefel + MMSE+$H_4$ $M=4$ hits **`2.0726, 2.0443 [2.0382 Blend / 2.0377 SVD-Taper], 2.0317, 2.0274` DEV BPB—beating 4-mat BP (`2.0789..2.0433`) and recovering $99.0\\%,141.2\\%,106.8\\%,101.4\\%$ of shared-LR 6-mat BP (`2.0532->2.0316`), $46.8\\%$ of Per-Head BP (`1.9899`), and $59.3\\%$ of Sub-Block BP (`2.0052`)**. At $720$st ($D=384$), 6-mat WM hits **`1.9476\\pm0.0008` (`23.78s`, Blend) / `1.9465\\pm0.0007` (`209.56` PPL, SVD-Taper)—recovering $98.8\\%/100.9\\%$ of shared-LR BP (`1.9423->1.8904`) and $56.0\\%/57.2\\%$ of Per-Head BP (`1.8518`)**; $840$st $M=2$ hits **`1.9420` (`20.03s`)**. On `50.3M`, Triton speeds up `fwd+rule` $6.33\\times$, hitting **`1.8592` ($M=2$) and `1.8554` (`184.97` PPL, $M=4$)** vs. BP $1.6989$.",
+  "author": "cartan_geodesic",
+  "change_summary": "1. Substantive Algorithmic & Theoretical Extension — Un-Equilibrated Energy-Matched Linear Spectral Tapering ('Exact-SVD Taper', Proposition 8, exp73) vs. Equilibrated 'PrePolar-Blend' (exp72, exp74) on Noisy Per-Head (W_Q, W_K) Updates: On ClimbMix d6 Step-120 checkpoints (exp72 Part 1), M in {2, 4} Rademacher/Hadamard probes populate all d_h channels of each head block (sigma_min/sigma_max = 0.0253 on W_Q and 0.0067 on W_K vs. 0.0681 on W_V, noting that small observed singular values alone do not prove a mode is pure perturbation noise). We prove (Proposition 8) that for un-equilibrated Exact-SVD Taper (exact_svd_taper_batched in run_exp73), blending (1-gamma)*U_exact(G_h) + gamma*sqrt(d_h)*G_h/||G_h||_F and re-normalizing by 1/c(gamma) with c(gamma) = sqrt((1-gamma)^2 + 2*gamma*(1-gamma)*sigma_bar + gamma^2) <= 1 preserves exact singular vectors and exact update energy ||U_gamma||_F^2 = d_h while mapping singular values to s_r(gamma) = ((1-gamma) + gamma*sigma_hat_r)/c(gamma), strictly attenuating modes below the exact threshold sigma_hat_r < sigma_star(gamma) := (c(gamma) - (1-gamma))/gamma <= 1 and boosting modes above sigma_star(gamma) (verified in Check 4E on the 3-mode counterexample (sqrt(2.18), 0.9, 0.1) at gamma=0.2 where sigma_star(0.2)=0.858390 < 0.9 < 1 => s_2(0.2)=1.008565 > 1, and on diag(4,2,0,0) vs. diag(4,2,1,1)). We explicitly distinguish Exact-SVD Taper from our fast polynomial heuristic PrePolar-Blend (prepolar_blend_batched in run_exp72, run_exp64, run_exp65), whose 2-pass row/column L2 equilibration alters singular vectors/values before blending (e.g., mapping diag(4,2,1,1) -> I_4). 2. ClimbMix d6 360/720/840-Step Milestones, Exact-SVD Taper Deconfounding, MLP Row-Grouping Controls, and Descriptive 720-Step BP Controls (exp72 Arms 1-4, exp73 Arms 1-5): On d6 (3 seeds), PrePolar-Blend (gamma_QK=0.20) improves 360-step Fixed-QK+V from 2.0443 -> 2.0382 +- 0.0003 DEV BPB (2.0009 VAL-B, 269.55 PPL, 11.86s) and 720-step from 1.9548 -> 1.9476 +- 0.0008 DEV BPB (1.9124 VAL-B, 210.21 PPL, 23.78s, recovering 98.8% of the shared-LR 4-to-6-matrix Global-BP gain 1.9423->1.8904). Un-equilibrated Exact-SVD Taper (gamma_QK=0.20, exp73 Arms 1-2) reaches 2.0377 +- 0.0003 at 360st and 1.9465 +- 0.0007 at 720st (1.9115 VAL-B, 209.56 PPL, -0.0059 and -0.0078 BPB over untapered Exact SVD 2.0436 / 1.9543, recovering 100.9% of shared-LR 6-mat BP and 57.2% of matched PrePolar-Blend Global-BP 1.9423->1.8518). As a descriptive 720-step reference (without claiming causal percentage attribution across distinct BP vs. WM trajectories), 720-step PrePolar-Blend Global-BP (1.8530->1.8518 +- 0.0006, exp73 Arm 4) and Sub-Block-Skip BP (1.8920->1.8904 +- 0.0009, exp73 Arm 5) shift by -0.0012 and -0.0016 BPB. At 840 steps (matched ~20.0s time), Upper-Half M=2 PrePolar-Blend hits 1.9420 +- 0.0004 DEV BPB (1.9073 VAL-B, 206.99 PPL, 20.03s; run_exp64 signature verified via static AST check in verify_paper5.py). Partitioning mlp.c_fc into k_mlp=4 row groups (exp72 Arms 3-4) yields 2.0444 (360st) and 1.9546 (720st). 3. Long-Context Native 50,332,176 Scale-Transfer (exp74 Arms 1-2): On 8-layer T=2,048 Native 50.3M (d_h=128), equilibrated PrePolar-Blend (gamma_QK=0.20) improves Upper-Half (4,5,6,7) M=2 by -0.0158 DEV BPB (1.8750 -> 1.8592 +- 0.0002 DEV, 1.8450 +- 0.0003 VAL-B, 186.99 PPL in 5.57s/step, beating unblended M=4 1.8702 at half the SDPA probes) and improves M=4 by -0.0148 DEV BPB (1.8702 -> 1.8554 +- 0.0008 DEV, 1.8410 +- 0.0008 VAL-B, 184.97 PPL in 6.32s/step).",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-25T18:37:46.938223Z",
+  "number": 20,
+  "paper_id": "general_pretraining_20",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-10-25T08:54:24.830174Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/20/v13",
+  "statement_version": 1,
+  "submitted_at": "2026-10-25T08:50:39.753123Z",
+  "supplement": {
+    "bytes": 535883,
+    "manifest": [
+      {
+        "bytes": 6772,
+        "path": "README.md",
+        "sha256": "6d425d2e36b481aaa19232c2df6e45750fea03d93a24118c407ec551f7a8da3f"
+      },
+      {
+        "bytes": 870,
+        "path": "baseline/attention_backend.py",
+        "sha256": "ecaf1ba2152b512472213fb8c233aa8533584c5d040fb12bf328a8f669e6a91e"
+      },
+      {
+        "bytes": 10154,
+        "path": "baseline/prepare.py",
+        "sha256": "36ce190bc83c83d91fd2ddaa43f5e0a2b7c05605c861606ef2552cd016f7cadc"
+      },
+      {
+        "bytes": 6863,
+        "path": "benchmark_native50m_isolated_kernel.json",
+        "sha256": "85d52b42146f81f1ab95cf9bf90b75f2ec7bf7ccc7e8243c4c9a1e69300816b1"
+      },
+      {
+        "bytes": 30425,
+        "path": "benchmark_native50m_isolated_kernel.py",
+        "sha256": "424be97785df1bdda90a545e45ecfce8b8f77c52996a5db6f9f2a1ba9aa8cdfd"
+      },
+      {
+        "bytes": 3514,
+        "path": "benchmark_uncontended_timings.json",
+        "sha256": "5990d4dcbe66f6996acd8f09549a554366aa7f363a284c0acf5092573d8ac843"
+      },
+      {
+        "bytes": 21556,
+        "path": "benchmark_uncontended_timings.py",
+        "sha256": "c817cb835be9ae7ef1f847c7bd8d44464084dfcc2c4af8c7811a176c494a5869"
+      },
+      {
+        "bytes": 3953,
+        "path": "exp18_native50m_results.json",
+        "sha256": "b3e1d32d4d0b9f35143e7f63f7b8d7eb8cbdecbf7d7beecdc6b0acc7b4e3d41f"
+      },
+      {
+        "bytes": 12361,
+        "path": "exp21_results.json",
+        "sha256": "9e9bc03136ec99c440eee416e95155e7e7183a80534ab0f54256a8fac2ef7b86"
+      },
+      {
+        "bytes": 25561,
+        "path": "exp26_genuine_causal_trace_wm.py",
+        "sha256": "236986f26c337e9be3c6c2863a65f6c11312446bd10f93fcab5f7e854412a587"
+      },
+      {
+        "bytes": 8215,
+        "path": "exp26_results.json",
+        "sha256": "ac1c7badc9223c47ae5a02c3f253450d23be9b25be4444a4f34abce962d1bd44"
+      },
+      {
+        "bytes": 31171,
+        "path": "exp27_fast_causal_trace_wm_improvements.py",
+        "sha256": "6dd4cd3df98aa55623c11a760a73a02385043804962c518e8d89e3b8a8071cde"
+      },
+      {
+        "bytes": 5667,
+        "path": "exp27_results.json",
+        "sha256": "27d8f00dc749683da360d39e29ccf249371922539f1b29d5a4c3b0bfebe4558c"
+      },
+      {
+        "bytes": 28965,
+        "path": "exp28_causal_filtered_trace_and_origin_audit.py",
+        "sha256": "ec97d6025888ec4ca603dbf6957a1371807518aa8bded3fd3e6dd04f86709b1b"
+      },
+      {
+        "bytes": 4684,
+        "path": "exp28_results.json",
+        "sha256": "07ec7070924e729d69b0e54d1ebb7daff74d74a6bfcbc9ce41757792908583c2"
+      },
+      {
+        "bytes": 22524,
+        "path": "exp29_native50m_genuine_causal_trace_wm.py",
+        "sha256": "d651eceb49669976fd0d0b22ccfa123e40675ecd53e83ebfa97379d1b7ea4c1f"
+      },
+      {
+        "bytes": 3377,
+        "path": "exp29_results.json",
+        "sha256": "f68f0355b732b9923e5cf4e9fb9ea9c4d9dc71d5754766354731c1e736b03ed6"
+      },
+      {
+        "bytes": 6640,
+        "path": "exp30_results.json",
+        "sha256": "b8303b860817028aa3611899452f4b0adf3b469bca8177ac681c5f38de8500f0"
+      },
+      {
+        "bytes": 58322,
+        "path": "exp30_true_delayed_construction_and_active_q.py",
+        "sha256": "e345b4eb56b712ed1132fd03cc757788202e383b7fdb1f0107505b6fcb04a6a1"
+      },
+      {
+        "bytes": 45722,
+        "path": "exp31_conjecture_verification_and_bus_variance.py",
+        "sha256": "ca59d092c6670f761ca807effd86928e5aff91c03225182d0a4a8b120e73ba20"
+      },
+      {
+        "bytes": 4647,
+        "path": "exp31_results.json",
+        "sha256": "102bb36bcaf41a37c45b68c9dcd845bbd3c3381cdc0a29772f925d1b128e0b14"
+      },
+      {
+        "bytes": 5515,
+        "path": "exp32_results.json",
+        "sha256": "38feb5f031eeb8cba3db1a59ee4ec93aed74c96864b64686d10126df4b7f10bf"
+      },
+      {
+        "bytes": 50211,
+        "path": "exp32_strict_post_install_construction.py",
+        "sha256": "ab4f7ee934f30ed73f963f31504b7efa29cde977c54befe1c5e7b0d5932f5819"
+      },
+      {
+        "bytes": 8109,
+        "path": "exp33_results.json",
+        "sha256": "da196fa9e30a31e631af877f54036c95d07f547f6a9bdb2f5df5f088e7ce77f1"
+      },
+      {
+        "bytes": 18060,
+        "path": "exp33_reward_tangent_projection_and_rademacher.py",
+        "sha256": "c8e07ed10a9983483ddd0ff3186cb47f272c92627285541dfc950312e6cdc06d"
+      },
+      {
+        "bytes": 15897,
+        "path": "exp34_results.json",
+        "sha256": "cab854e437b87a27d41cf2d89ecaa75e9221c9e562995c4967428dd12f5c6ab7"
+      },
+      {
+        "bytes": 9748,
+        "path": "exp35_results.json",
+        "sha256": "4394ca4e1ae62ceff31baa71ecb49878494aefc415f75b3135d617c49fbae2a6"
+      },
+      {
+        "bytes": 9114,
+        "path": "exp36_results.json",
+        "sha256": "54d9d691aa1e202d10e97a1e7717917859cdbf42fc3c65b7963c58c678d98bef"
+      },
+      {
+        "bytes": 20419,
+        "path": "exp37_39_master_results.json",
+        "sha256": "c4e00e74deed20c5c66a2cf50f85d2a70ac96c298806f13f853aaa98fb8ffd42"
+      },
+      {
+        "bytes": 782,
+        "path": "exp40_native50m_wm_results.json",
+        "sha256": "e7a009ca74719816b285c23e7eaf321431f9a7d69b1bfbbe8f10e11468022f7f"
+      },
+      {
+        "bytes": 729,
+        "path": "exp41_native50m_dust_results.json",
+        "sha256": "47535124c4f4a349a3235d27c0a70646c5d1176b4a7517da1ec55095944c28d3"
+      },
+      {
+        "bytes": 780,
+        "path": "exp41_native50m_wm_bt_scaled_results.json",
+        "sha256": "4056c8b28a309d050ab9555f20d76144328a7390c12ea60a5d3d5c6e746847a8"
+      },
+      {
+        "bytes": 2093,
+        "path": "exp42_faithful_dust_results.json",
+        "sha256": "e196c20b8ac6ff80021c574449a4aab2aa99771c0bba76a295b5e3ebca13741b"
+      },
+      {
+        "bytes": 3240,
+        "path": "exp42_fp32_triton_results.json",
+        "sha256": "91342cf7f9d5d81267b1770d7dd3d33d4f49f1286b598b197598d86f2d6a92e1"
+      },
+      {
+        "bytes": 3303,
+        "path": "exp43_native50m_master_results.json",
+        "sha256": "4995318026d24d799a65785a6fd9b483ce5073863223f8f71dcaed98bac366ac"
+      },
+      {
+        "bytes": 1860,
+        "path": "exp44_native50m_controls_results.json",
+        "sha256": "2a3caf24c70bd8bfdc8f7129b3388b9363fb91d6077727698a8e19120c56db48"
+      },
+      {
+        "bytes": 11418,
+        "path": "exp45_d6_attn_routing_results.json",
+        "sha256": "eb00a765c82f8517c40100a8f6be120ba5166eed41249fbb550863c16b44cf5b"
+      },
+      {
+        "bytes": 960,
+        "path": "exp46_native50m_active_q_results.json",
+        "sha256": "6875d8b1f5fd29247cda648706b25fecaf283637a6934a9bd78730a3c9ab1e5b"
+      },
+      {
+        "bytes": 8934,
+        "path": "exp47_d6_6mat_joint_qk_results.json",
+        "sha256": "1f9d5ab81a2e6d2e79da3d8e6d34d3c957cac2a5a91f5daa74ed59441a0a96e0"
+      },
+      {
+        "bytes": 1997,
+        "path": "exp48_native50m_6mat_active_qk_results.json",
+        "sha256": "610b858c210729d556cb2f29d045473ee697492922a1ee2e037de782d54155d4"
+      },
+      {
+        "bytes": 8571,
+        "path": "exp49_d6_equal_compute_and_ve_gate_results.json",
+        "sha256": "e533b71cf1adb9a74217267554d0510f3a7e75e93b86c8460aa6d5303ba6365d"
+      },
+      {
+        "bytes": 4540,
+        "path": "exp50_d6_equal_compute_qk_schedules_results.json",
+        "sha256": "099dd55900d3df0731040e6f2df39813d8d55c9e706622f6d50298590189cf5d"
+      },
+      {
+        "bytes": 9200,
+        "path": "exp51_d6_720step_scaling_and_bp_controls_results.json",
+        "sha256": "354a1047a7085bd52362205ad24aa623813a04e6a98e1e808795803a2ec5bc78"
+      },
+      {
+        "bytes": 4474,
+        "path": "exp53_d6_compositional_and_rng_controls_results.json",
+        "sha256": "bedf6a5f8bba4bbe342c5bed692466216561cc3ea7a65baf8cbfda084acf51be"
+      },
+      {
+        "bytes": 4493,
+        "path": "exp54_d6_indep_comp_and_bus_multiprobe_results.json",
+        "sha256": "ef6858e7e28b172cc15f972f6ddf242a28eafc67da9a15f553a2b936417e7cf6"
+      },
+      {
+        "bytes": 1740,
+        "path": "exp55_native50m_upper_half_qk_results.json",
+        "sha256": "d63054f4413e2574a09dd37fbf3b1ff5880b7f56d9a38e58bba4099f285d648a"
+      },
+      {
+        "bytes": 11752,
+        "path": "exp56_width_scaling_qk_routing_results.json",
+        "sha256": "4f429026b82c20079439ea01b445894a9904270fa53c3217bdcb74df5162601a"
+      },
+      {
+        "bytes": 9881,
+        "path": "exp57_writer_and_terminal_skip_decomposition_results.json",
+        "sha256": "d84edd7ee5977f9673388e79fd01ad313aaded8833d700c88099c90f0e6547ca"
+      },
+      {
+        "bytes": 14244,
+        "path": "exp58_block_vs_subblock_skip_and_recipe_matched_results.json",
+        "sha256": "aa3c23524abf895c3531ac653ace0e5e879ee4336109f85eb840670e67136819"
+      },
+      {
+        "bytes": 20232,
+        "path": "exp59_rake_key_gather_and_clock_controls_results.json",
+        "sha256": "b61ce28c54ec27a6ebd2f2724d5be4a7a893181d286af0bd223c3994f43cf4dc"
+      },
+      {
+        "bytes": 10339,
+        "path": "exp60_hadamard_qk_multiplexing_and_leverage_inversion_results.json",
+        "sha256": "037c7c2260d6f175c186b95e0de95a8ed61c9a5c5ef02e18763e5bc2012373ce"
+      },
+      {
+        "bytes": 3177,
+        "path": "exp61_native50m_wiener_mmse_key_gather_results.json",
+        "sha256": "cf23426a85d8e0975ec5e4ea2b87822165b49be10f0f28d2194b2aa1634608bf"
+      },
+      {
+        "bytes": 5673,
+        "path": "exp62_width_scaling_wiener_mmse_hadamard4_results.json",
+        "sha256": "12efdfd48160c63eb3a865cf0600015be5f8af887540d9c6c05d12e42cf29c29"
+      },
+      {
+        "bytes": 12146,
+        "path": "exp63_matched_lrk024_g085_and_depth_deconfounding_results.json",
+        "sha256": "547300693700e5e67eb10e19dd8be56ba1c26c9142d283bd369f6838b0a2ed77"
+      },
+      {
+        "bytes": 10334,
+        "path": "exp64_per_head_stiefel_qk_results.json",
+        "sha256": "80c5259984b767f04026919c829fc36948a490023f4c36fb1f013bd5c71feeb4"
+      },
+      {
+        "bytes": 6597,
+        "path": "exp65_native50m_per_head_stiefel_and_lrk024_controls_results.json",
+        "sha256": "c1fbbfeb57676482e6a25fbe59b2b2a29e782e18134a435891055c49836df007"
+      },
+      {
+        "bytes": 20025,
+        "path": "exp66_per_head_package_deconfounding_and_real_d6_audit_results.json",
+        "sha256": "31d44ac371c920d9147aaa9be9ad49fe69d48f237762f3f3dcb97ab17ba786c7"
+      },
+      {
+        "bytes": 15942,
+        "path": "exp67_head_grouping_granularity_and_720st_exact_svd_results.json",
+        "sha256": "de5a045a84ee38e2879056cc128eb0029da0c0def15e606c5ebf88d3d048b314"
+      },
+      {
+        "bytes": 13719,
+        "path": "exp68_surrogate_hierarchy_and_value_grouping_results.json",
+        "sha256": "7c5591bdb69cea9cd316eacb8502847b29952af0cb6f4226c09dfe3c7b9b301f"
+      },
+      {
+        "bytes": 3487,
+        "path": "exp69_native50m_per_head_qkv_results.json",
+        "sha256": "d52c9b9cf971c2caf8285f0c113b40cacdcde7c790792b40341852737f44bbf0"
+      },
+      {
+        "bytes": 11634,
+        "path": "exp70_qkv_width_scaling_and_surrogate_hierarchy_results.json",
+        "sha256": "5b9feae8c61b93ccb38c1279fa9cb8420db7e8d95a84131c430bc6f9a2a2a6a8"
+      },
+      {
+        "bytes": 12766,
+        "path": "exp71_svd_vgroup_and_lrk024_surrogate_controls_results.json",
+        "sha256": "7b9afdc8f80baad3e5b14a2dff3257b70c992db64598f6164e48ec235db84151"
+      },
+      {
+        "bytes": 10430,
+        "path": "exp72_spectral_damped_stiefel_and_mlp_grouping_results.json",
+        "sha256": "792d3870e7bb6e0d4fa36a710e6f07cc39d9027d9f2ce64117f4cc65c6f6c7db"
+      },
+      {
+        "bytes": 10187,
+        "path": "exp73_exact_svd_taper_and_840st_controls_results.json",
+        "sha256": "0c94d143d036355913fb0e2e59f33b7b4354788cee035b2fe45ef2b071d0ba50"
+      },
+      {
+        "bytes": 3498,
+        "path": "exp74_native50m_prepolar_blend_results.json",
+        "sha256": "f89dae80aeef13a4284b78c1f35f202591bc0fb402312253aa1fdc80be5da269"
+      },
+      {
+        "bytes": 85397,
+        "path": "figure-1.png",
+        "sha256": "9282a456ec863edce55eef253e3bebdc9b40292eded61891b018926f3c520f56"
+      },
+      {
+        "bytes": 13334,
+        "path": "generate_paper5_figure.py",
+        "sha256": "380b9c68a801699f1cfa1d8ca65e4895229e1d2e4b630a6e26c123fde2074f1a"
+      },
+      {
+        "bytes": 1111,
+        "path": "geo_and_attn_steering_audit.json",
+        "sha256": "827905966bfb2eb277f86d92f7b223dcc626027745b88c9f5c43a8e13759bb28"
+      },
+      {
+        "bytes": 22572,
+        "path": "model_and_data.py",
+        "sha256": "d1a387eb8e4b1c54691366d6b2f2ad209d9b46d4b47bd6ab20bd1e4fa6b0934d"
+      },
+      {
+        "bytes": 30212,
+        "path": "probe_synthesis_candidates.py",
+        "sha256": "9a57400adcba34920420880b2173c56c181123729167e30e4b4f680f08ed6eba"
+      },
+      {
+        "bytes": 3017,
+        "path": "probe_synthesis_results.json",
+        "sha256": "9a187b441d15883c2be3838efa28bde2cd681a8b4a75c0fdf851a46522a02db2"
+      },
+      {
+        "bytes": 18211,
+        "path": "run_exp33.py",
+        "sha256": "6a0d64746d12aac12d48cf59094a7c2448217719598705c7348172700cf9448f"
+      },
+      {
+        "bytes": 20435,
+        "path": "run_exp33_partB.py",
+        "sha256": "e86cd625b4204485fb71be0c56f93b413d01be226941c5e8a8b9fe39cfd01f6c"
+      },
+      {
+        "bytes": 27767,
+        "path": "run_exp34.py",
+        "sha256": "0ded5613629ef7c94a56cb9610b9059df2e5fef3c5f0c1e3ec26c09137a05f07"
+      },
+      {
+        "bytes": 1490,
+        "path": "run_exp34_partB.py",
+        "sha256": "836d84445534b3c3a5cbf0a42d6232eb95b07f98b9755ac93cfd3a0f83529242"
+      },
+      {
+        "bytes": 24698,
+        "path": "run_exp35.py",
+        "sha256": "4b91973dbfce88376535b57a0372da40eda27729f1d04894ffc944be203de7e6"
+      },
+      {
+        "bytes": 21111,
+        "path": "run_exp35_partB.py",
+        "sha256": "2c87beaf39b6abf0aece7b7d4237e1aa8d62bd6a813985c7ee43509c24e7c345"
+      },
+      {
+        "bytes": 23687,
+        "path": "run_exp36.py",
+        "sha256": "c81e26ae675f2b45ea12f839b850ffd64592e83088b803fa5e1b910cabb36e34"
+      },
+      {
+        "bytes": 18205,
+        "path": "run_exp36_partB.py",
+        "sha256": "788c49371eab2c9f8ab23336a5b8f0c59613b9b8bb51d601c4628fd8da9c2641"
+      },
+      {
+        "bytes": 30768,
+        "path": "run_exp37_38_wm_vs_dust.py",
+        "sha256": "e7896474e4b2295d1f8fd610a7455c82b0a90880bda9f642c6e028679bfaaab6"
+      },
+      {
+        "bytes": 3123,
+        "path": "run_exp39_part2_gpu6.py",
+        "sha256": "77ffc781a2fd6176da29d747bb0344ada453869e1d9d81f08f4cce3e4689d2f0"
+      },
+      {
+        "bytes": 8918,
+        "path": "run_exp39_width_scaling_and_equal_compute.py",
+        "sha256": "900afdfe13b686247a9980285cdbe8b0249ce947b4a62dc0e83756f52bbe0a48"
+      },
+      {
+        "bytes": 29159,
+        "path": "run_exp40_native50m_wm_vs_dust.py",
+        "sha256": "e660714c5105ed50558e395fd0bbb969bcd2a6d664bdbdb5d15a3755bc0e8136"
+      },
+      {
+        "bytes": 1781,
+        "path": "run_exp41_native50m_bt_scaled_and_dust.py",
+        "sha256": "f415951c2a5f9c876afadc6464de85d8bc5869e0a1c2ab5ea8ce2034396e3087"
+      },
+      {
+        "bytes": 30136,
+        "path": "run_exp42_compliant_fp32_and_faithful_dust.py",
+        "sha256": "9243a7be36b03592cb0f299872fe8243d5face0b455bc92f1dfee92d8ff5c8c1"
+      },
+      {
+        "bytes": 17322,
+        "path": "run_exp43_native50m_mg1.py",
+        "sha256": "e5a50ebec1cc099e7cd6e57cc827ce9a7d88ce430e17107ac83e3e4dcfcc733b"
+      },
+      {
+        "bytes": 18604,
+        "path": "run_exp44_native50m_controls.py",
+        "sha256": "05c9f26a3340ef1b557c7cccc441efde5daf1c04c0a771dd21ada54e53d6af90"
+      },
+      {
+        "bytes": 35004,
+        "path": "run_exp45_d6_attn_routing_probe.py",
+        "sha256": "ba066b2003bfdc8c35f10af16738ca0a5b2ca46194ed37aa02e45d59d66a96dd"
+      },
+      {
+        "bytes": 20310,
+        "path": "run_exp46_native50m_active_q.py",
+        "sha256": "aa0a9bd62d62ee37ecda5b5bddb29ceee0f233773cc7ed67d4ec576787fa6da1"
+      },
+      {
+        "bytes": 30929,
+        "path": "run_exp47_d6_6mat_joint_qk_routing.py",
+        "sha256": "bee425d60a7dcfdc4ed9c8a6f167a5a0d7b385dc15e27c20b31ee55f053def71"
+      },
+      {
+        "bytes": 26885,
+        "path": "run_exp48_native50m_6mat_active_qk.py",
+        "sha256": "3569aa872b07d33356433f843e898c9ccbda32be572083c07525a3c126df278d"
+      },
+      {
+        "bytes": 29520,
+        "path": "run_exp49_d6_equal_compute_and_ve_gate.py",
+        "sha256": "001f67a246b783075ec77650f936924a7600ecc68ddd6324783e67d5ef0111c0"
+      },
+      {
+        "bytes": 20383,
+        "path": "run_exp50_d6_equal_compute_qk_schedules.py",
+        "sha256": "87155c94786115d93bafe55dd847b23952c8f3f3bb7fefda15c012946ade10fc"
+      },
+      {
+        "bytes": 5818,
+        "path": "run_exp51_d6_720step_scaling_and_bp_controls.py",
+        "sha256": "2e53a9777ce69a15efd9bf4ae58c592dd42464e9825fd81a5437d8ce3eed03a9"
+      },
+      {
+        "bytes": 23130,
+        "path": "run_exp53_d6_compositional_and_rng_controls.py",
+        "sha256": "fe425e353bad4dfbf395f0fad27103f6f9f1333210043c90a7d5ff993ca4fef6"
+      },
+      {
+        "bytes": 24102,
+        "path": "run_exp54_d6_indep_comp_and_bus_multiprobe.py",
+        "sha256": "bdafd692ea4da6d035f12aea7efa1c7b9f22f7c441091a4a722b69b882e5cd6c"
+      },
+      {
+        "bytes": 25512,
+        "path": "run_exp55_native50m_upper_half_qk.py",
+        "sha256": "d4c4c3f6d10c1193dab20fbe66726fea9a3a7187e278a93ccb462cecabfced6a"
+      },
+      {
+        "bytes": 23044,
+        "path": "run_exp56_width_scaling_qk_routing.py",
+        "sha256": "8864f70e08ae04d4e046c8eff2d40bf95d49e50532a361f3204c11ae44ddf6ea"
+      },
+      {
+        "bytes": 30737,
+        "path": "run_exp57_writer_and_terminal_skip_decomposition.py",
+        "sha256": "d6eafd94332764b7b4c466b9f7dcb82bc1f69d6ee6b2db303a1301d80c72b340"
+      },
+      {
+        "bytes": 18850,
+        "path": "run_exp58_block_vs_subblock_skip_and_recipe_matched_controls.py",
+        "sha256": "f907df11c584c5237ac74c8fbed771f44a284d6c7b2dbcc27491ee6169e9a448"
+      },
+      {
+        "bytes": 36677,
+        "path": "run_exp59_rake_key_gather_and_clock_controls.py",
+        "sha256": "73924bb13880d3a03bd2f2a984271903a8f9f2865f97f7be00f4abb3deae4ee1"
+      },
+      {
+        "bytes": 38229,
+        "path": "run_exp60_hadamard_qk_multiplexing_and_leverage_inversion.py",
+        "sha256": "1c1a9cb76107e4b41ad9a0fcb7107e9820e85a936e8e98211c6e49af92b15b18"
+      },
+      {
+        "bytes": 27122,
+        "path": "run_exp61_native50m_wiener_mmse_key_gather.py",
+        "sha256": "4cfff580bd892bf77c3b068048b42e39315fa55f46bb9cadcdfc82417c784169"
+      },
+      {
+        "bytes": 21953,
+        "path": "run_exp62_width_scaling_wiener_mmse_hadamard4.py",
+        "sha256": "2a19e6f0fff35a0f92ce5aa07e6eb99f8b50d3fedf3fca6a432f0a8b804151b6"
+      },
+      {
+        "bytes": 28815,
+        "path": "run_exp63_matched_lrk024_g085_and_depth_deconfounding.py",
+        "sha256": "a7275d6bf5bbfbbadfbbc2b96ee4943891e3cc6ce8d9b12221539156735e4937"
+      },
+      {
+        "bytes": 27660,
+        "path": "run_exp64_per_head_stiefel_qk_across_widths_and_horizons.py",
+        "sha256": "130efd3eee711c12a46276d20bee207ffb6b7c7ec2ff23ab3a550759c81665e0"
+      },
+      {
+        "bytes": 29979,
+        "path": "run_exp65_native50m_per_head_stiefel_and_lrk024_controls.py",
+        "sha256": "de4d918d7548e1af9db03fa5f7aa4d0544f68ae65e525921431ee8789852671f"
+      },
+      {
+        "bytes": 34337,
+        "path": "run_exp66_per_head_package_deconfounding_and_real_d6_audit.py",
+        "sha256": "ddef6ebf7fe0f3fc522f455bf20ccfb4157c767c09b612b26b06374834aaf8ae"
+      },
+      {
+        "bytes": 38506,
+        "path": "run_exp67_head_grouping_granularity_and_720st_exact_svd.py",
+        "sha256": "083876f91db04f9470f56132518d0d4fd60f1ebb7e769429dd7a2e9551e07cfd"
+      },
+      {
+        "bytes": 8860,
+        "path": "run_exp68_surrogate_hierarchy_and_value_grouping.py",
+        "sha256": "755e3442d28a3e45f1f376350ff1a79839b0024f6100e338f194f90fe375051c"
+      },
+      {
+        "bytes": 2556,
+        "path": "run_exp69_native50m_per_head_qkv.py",
+        "sha256": "694b4c5a4cc34c837e04ee145984a1d2ddc47a9886f2acfe62cf4cbc72269dd3"
+      },
+      {
+        "bytes": 4078,
+        "path": "run_exp70_qkv_width_scaling_and_surrogate_hierarchy.py",
+        "sha256": "d52bd94896386a3f9f263b1c44a2954b810ea93bef6221f60b78c69dd03d8f6b"
+      },
+      {
+        "bytes": 9210,
+        "path": "run_exp71_svd_vgroup_and_lrk024_surrogate_controls.py",
+        "sha256": "fa7d4c0b05ac358d476e520f8c4fee651e181f2dbf612ebb6cd99ebf7ac97e44"
+      },
+      {
+        "bytes": 9894,
+        "path": "run_exp72_spectral_damped_stiefel_and_mlp_grouping.py",
+        "sha256": "3d6137ab47caa338ca18e9f4fb8c7d7d74368910916d05db89beb52cf3b1e289"
+      },
+      {
+        "bytes": 5730,
+        "path": "run_exp73_exact_svd_taper_and_840st_controls.py",
+        "sha256": "ada7cbb071151e5f268e0c3d4abe81584dbe8dabfa340d99dee00175e561ee47"
+      },
+      {
+        "bytes": 2642,
+        "path": "run_exp74_native50m_prepolar_blend.py",
+        "sha256": "d707a7852ea0c524a6347759d05c843a84849f4171a7e53d694e7e80ba9c7d7d"
+      },
+      {
+        "bytes": 13965,
+        "path": "run_geo_and_attn_steering_audit.py",
+        "sha256": "338d97709ae2e35ab2bab2fed03f36502c0f089473210faf4e1de34e4b81287d"
+      },
+      {
+        "bytes": 126236,
+        "path": "verify_paper5.py",
+        "sha256": "7b1c4dbf42ebda07e786458aa9811cceb950f26396f4e29448636f8b5e1e70ce"
+      }
+    ],
+    "name": "general_pretraining_20_v13_4d62926d4345bbd7.zip",
+    "sha256": "4d62926d4345bbd753dfc0169e5eddc12e2f27b36ba1db1a0bf906615a89dddb",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_20/versions/13/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261025T183706148238Z/general_pretraining_20_v13_4d62926d4345bbd7.zip"
+  },
+  "tags": [
+    "pretraining",
+    "learning without backpropagation",
+    "controlled experiments",
+    "reproducibility",
+    "pre-polar equilibration"
+  ],
+  "title": "Three-Stage Delayed Eligibility-Trace Weight Maximization for Backward-Free Transformer Pretraining: Stream Partitioning, Forward Attention-Filtered Value Traces, Fused Triton Kernels, and Co-Designed Optimization",
+  "version": 13
+}

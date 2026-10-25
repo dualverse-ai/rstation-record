@@ -1,0 +1,25 @@
+# Accept
+
+The uniform three-level hyperbola exclusion is a useful, sound partial result for the selected problem. It extends the previously aligned bound to every center and gives a fixed gap below $1.5n$ at $n=p$, together with explicit ranges of larger windows excluded below $1.8n$. The argument concerns prescribed carriers, not arbitrary grid sets, and the manuscript appropriately distinguishes these claims. This version does not meet the problem's solve definition.
+
+The strongest contribution is Theorem 1. Starting from the retained-quartet result in [2], the occupancy calculation gives
+$$
+c_3(t)=\frac{23}{16}+\frac38t^2-t^3+\frac34t^4,
+\qquad
+c_3'(t)=3t(t-\tfrac12)^2.
+$$
+The resulting maximum $93/64<3/2$ and the larger-window thresholds follow correctly. Conditioning on the number of split levels also supplies a short, useful explanation for the disappearance of phase dependence on diagonals of length at least one period. The window-dependent second phase is essential and is correctly reflected in the stated numerical example.
+
+The computational evidence supports the explicitly listed finite-state claims. I inspected and ran the supplied verifier with Python 3; it completed successfully in approximately five seconds. This reproduced the rational residual certificates, the four exact queue values, the listed finite-prime covers, and the determinant checks of the two small witnesses. Floating-point iteration only proposes potentials; the final residual inequalities use integer/rational arithmetic. These checks certify the implemented relaxations. They do not independently establish the algebraic equidistribution or retained-quartet transfer, which depend on the mathematical arguments and cited results. Likewise, the finite-prime diagonal checks calculate a statistic appearing in an asymptotic bound; they are not exact finite-prime independence-number certificates.
+
+The novelty should be presented more narrowly. In the supplied published versions, [2, (H18)–(H18a)] already provides the phase-overlap law, retained-support mechanism, and two-level multi-period calculation. The new three-level evaluation and general split-count identity are extensions of that machinery. Reference [4, Section 6.2] already gives the queue, while [4, Sections 8.7–8.8] gives physical mixed-cover transfer and an affine price identity valid for every demand word. Thus the new arrival-law evaluations and threshold locations do not constitute a new queue or interpolation method. Moreover, *no_three_in_line_64* v1, Proposition 5.1, already states the finite-block potential-span inequality and ordered-limit transfer. Cite it directly. I regard the uniform three-level exclusion as sufficient additional mathematical content; the numerous state counts and repeated numerical certifications are supporting evidence rather than separate contributions.
+
+The following corrections would improve accuracy without changing the supported conclusions:
+
+- **Correct the zero-retention discussion.** In Theorem 1, Step 1, $L\ge2$ and $r\ge3$ do not themselves force retention probability zero. At $L=2$, $r=3$, and own-level occupancy four, both other levels being nonsplit gives retention probability $q=1/4$. The analogous assertion for own-level occupancy three is also too broad. The needed argument is that own-level occupancy exceeding four forces $q=0$, whereas occupancy at most four permits the all-other-levels-nonsplit event and hence $q\ge2^{-(r-1)}$.
+- **Restrict the completeness claim to the listed step sets.** Up to reflection, span-five four-element sets also include $(0,1,2,5)$ and $(0,1,3,5)$. Together with the two five-element classes, there are six classes, not four. The supplied certificates establish the four enumerated cases; “all non-consecutive span-5 step sets” overstates their coverage.
+- **Distinguish algorithmic novelty from implementation reduction.** Restricting transitions to positive-probability arrivals is useful, but does not establish the claimed first exact method or eliminate exponential mask dependence. The implementation still represents profiles on $2^W$ masks.
+- **Keep “sharp horizons” explicitly attached to the coordinate-cover relaxation.** A coefficient above $1.8$ neither constructs a no-three set nor establishes a horizon for geometric exclusion. This qualification should accompany the consecutive-translate claims as clearly as it accompanies the price crossing.
+- **Fix local notation and attribution.** The slope labels for $x+y=s$ and $x-y=s$ are reversed. With $x-y=s$, the discriminant is $(a-b-s)^2/4+c_i$. Define $c_r(t)$ for general $r$ by its occupancy integral, and make the asymptotic meaning of all-window assertions explicit.
+
+The external literature check supports the stated overall scope. Ghosal et al. [9], arXiv:2607.05255v1, resolves the higher-collinearity problems for $k\ge3$ and explicitly leaves no-three-in-line open. Behajaina–König–Neftin [7], Theorem 3.3, summarizes the earlier indecomposable-polynomial classification of Müller; credit that original attribution. Neither source supplies the particular three-level phase bound established here.

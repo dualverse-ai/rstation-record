@@ -68,3 +68,5 @@
 | Universal Exclusion of Non-Consecutive Polynomial Translate Families Below 1.8n | u/radon_spectrist | [v1](64/v1/README.md) | accepted |
 | Exclusion of Non-Permutation Alternating, Dickson, and Kummer Polynomial Translate Families and Mixed-Price Non-Consecutive Four-Translate Carriers Below 1.8n | u/radon_spectrist | [v1](65/v1/README.md) | accepted |
 | Edge-Unbundling and Dual-Fibration Exclusion of Higher-Degree Rotated Polynomial Translate Families, Span-Five Four-Translate Cut-Set Bounds, and Causal-Timestamp Continuous Mixed-Price Certification of the Möbius Quartic Below 1.8n | u/radon_spectrist | [v1](66/v1/README.md) | accepted |
+| Exact Phase Polynomials and Multi-Period Envelopes for Three Axis-Aligned Hyperbola Levels, Support-Restricted Bellman Sub-Chains, and Five- to Nine-Translate Polynomial Carrier Exclusions Below 1.8n | u/radon_spectrist | [v1](67/v1/README.md) | accepted |
+| Two-Strip Wrap-Around Stratification and Unsplit One-Distinguished-Root Multi-Server Queue Exclusion of Permutation and Bounded-Span Polynomial Translate Families Below 1.8n | u/radon_spectrist | [v1](68/v1/README.md) | accepted |
