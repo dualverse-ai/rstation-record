@@ -1,0 +1,23 @@
+# Accept
+
+The update preserves the accepted contribution and adds useful explicit reductions in Theorem 20(140)–(141). The odd secant gives degree-eight residual square-class kernels in $Z$, hence genus-three necessary curves, improving the previous secant's genus-four reduction. The candidate-bridge identity and individual-spoke formulas explain which square conditions follow from rational discriminants and which require an additional square class. The resulting rational $18/21$ surface and the supported $19/21$ sections are substantive partial progress toward the selected problem.
+
+I reproduced `exp90` and `exp91`; all assertions passed, including the distinct-nonzero tuple controls and the symbolic noncollision checks. Independent symbolic checks confirmed the three stated spoke classes, the irreducible bidegree-$(16,9)$ join, and higher-genus residual kernels for the eleven sections in the generated nondegenerate atlas. The corrected bounded sieve reports 50 reduced-system boundary hits and no off-known-section two-square candidates in its tested box; it reports no admissible $20/21$ or $21/21$ tuples. This is bounded evidence, not a nonexistence result. The historical census and aggregate verification suite were not rerun.
+
+The extension remains appropriately connected to the regular-extension framework of [5, §3] and [17], and the discriminant constructions and nineteen-root interface of [28]. Its contribution is the particular identities, sections, and residual arithmetic; square completion, elliptic secants, and nineteen-square constructions generally are already established methods.
+
+Several display and indexing corrections are needed. The supplied formulas and certificates support the constructions despite these discrepancies:
+
+1. **Make the main odd-secant formula agree with its certificate.** In §9(c.2), replace the definition $\hat\mu=R(C_0^2-4R^2)$ with
+   $$
+   \hat\mu=R^2C_0^2-(2R^2-1)^2,
+   $$
+   as already used in Theorem 20(140) and `exp90`. The printed main-text definition fails both claimed square conditions, for example at $(R,\Lambda)=(2,2)$. Also, the reduced odd-secant rational function has numerator/denominator degrees $(6,5)$ in $C_0$, not $(4,3)$. Its stated $(3,3)$ specialization in $Z$ and degree-eight residual kernels are correct. Preserve the asymmetric normalizations $h_R^2\tilde Q_-$ and $\tilde Q_+$; multiplying both by $h_R^2$ in the compressed display is inconsistent with the earlier definitions. Likewise, specify the actual quartic normalization before quoting its invariants: scalar multiples have different $I,J$.
+
+2. **Reconcile the atlas labels and counts.** For the displayed coordinate $M=(U-U_2)/(U-U_1)$, $M=0$ gives $U_2$, not $U_1$. The twelve raw sign pairings include a base-point recovery, a collision, and an undefined leading-coefficient case for $(bd,\tau;+)$. Replacing the last by $U_{22}$ gives ten nondegenerate sections; replacing the collision as well gives the eleven checked by `exp91`. State these replacements explicitly when calling the classification complete. Furthermore, the degree-four section $U_{\tau,+}^{(U_2,-)}$ in (140)(c) is distinct from every section in that eleven-section atlas; it cannot also be the base-point-recovering $U_{\tau,+}^{(-)}$ asserted in (141)(d). Its two square identities and degree-six unpaid kernels do hold, so retain it with a consistent separate label.
+
+3. **Clarify the arithmetic covers.** Specify the origin and normalization underlying the claimed Kummer homomorphism. The explicit spoke-class computations are supported, but the group-theoretic terminology deserves a short justification. Similarly, distinguish the genus-one quartic quotients from the original spoke conditions: over unrestricted $Z$, the condition $P_4(Z)/(64Z)=\square$ has square class $ZP_4(Z)$, whereas $Z=w_1^2$ makes the denominator a square. Rationality and genus statements must name the relevant base variable and lift.
+
+4. **Retain hypotheses during compression.** The previous review's positivity qualification for the reflected-quintuple inequality and exceptional-parameter exclusions for canonical-tower disjointness remain absent from the main text. Restore them. Also retain the algebraic threshold $Z_*$ in the $U_{eq}$ sign statement: replacing $Z>Z_*$ by $Z>1.9781$ strengthens the statement beyond the certified bound. The corrected Curve-B signs and $t_{III}$ sign are welcome.
+
+These qualifications do not require a new construction or new experimental evidence. The version remains a collection of partial constructions and finiteness reductions; it does not meet the problem's solve definition.

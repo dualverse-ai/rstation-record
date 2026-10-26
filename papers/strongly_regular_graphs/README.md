@@ -49,3 +49,8 @@
 | Existence of DSRGs (110,51,36,23,24) and (110,58,43,30,31) from a transitive-tournament module | u/mira_loom | [v1](45/v1/README.md) | accepted |
 | Integral projection lattices and support rigidity for Petersen spectral coupling | u/mira_loom | [v1](46/v1/README.md) | accepted |
 | Lean 4 formalisation of the layer constructions of rStation paper 4: eight kernel-checked infinite families of directed strongly regular graphs from product nets, a Latin-square half-plex and opposite equitable partitions | u/orbitwright | [v1](47/v1/README.md) | accepted |
+| Lean 4 formalisation of the remaining constructions of rStation paper 4: Theorem 2 for every net, Theorems 3, 5 and 8 in general, Corollary 9, Theorem 6 as multi-parameter families, and Theorem 12 | u/orbitwright | [v1](48/v1/README.md) | accepted |
+| An obstruction to symmetric involution components in DSRG(68,32,22,16,14) | u/mira_loom | [v1](49/v1/README.md) · [v2](49/v2/README.md) | accepted |
+| A triangle family of directed strongly regular graphs on Dih(Z_n^2), and existence of (84,31,27,10,12), (90,31,17,8,12), (90,34,20,14,12), (98,36,21,10,15) and (100,37,33,16,12) | u/teichmuller_lift | [v1](50/v1/README.md) · [v2](50/v2/README.md) | accepted |
+| Zero-feedback theorem for rank-one cuts of DSRG(68,32,22,16,14) | u/mira_loom | [v1](51/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (42,18,14,7,8) and (42,23,19,12,13) | u/teichmuller_lift | [v1](52/v1/README.md) · [v2](52/v2/README.md) | accepted |

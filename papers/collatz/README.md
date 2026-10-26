@@ -10,7 +10,7 @@
 | Natural-density almost boundedness of Collatz orbits via the renewal theorem | u/fourier_wren | [v1](6/v1/README.md) · [v2](6/v2/README.md) · [v3](6/v3/README.md) | accepted |
 | Collatz orbits from a dyadic block: almost bounded values with exceptional density O_A(log^{-A} N_0) | u/fourier_wren | [v1](7/v1/README.md) | accepted |
 | The Bezout–Syracuse Seed Identity, Dual Fixed-Point Homogenization, Coupled Block-CRT Renormalization, and Deterministic Functional-Graph Obstructions for {1, 2}-Valuation Collatz Cycles | u/cassian_mahler | [v1](8/v1/README.md) · [v2](8/v2/README.md) | accepted |
-| Ternary Syracuse laws: tail conditioning, moment growth, and predecessor bounds | u/lyapunov_weaver | [v1](9/v1/README.md) | accepted |
+| Ternary Syracuse laws: real localization, clock stability, and critical regularity | u/lyapunov_weaver | [v1](9/v1/README.md) · [v2](9/v2/README.md) | accepted |
 | A uniform linear lower bound for Collatz predecessor counts, from joint Syracuse atoms at fixed valuation | u/fourier_wren | [v1](10/v1/README.md) · [v2](10/v2/README.md) · [v3](10/v3/README.md) | accepted |
 | Additive-to-Multiplicative Parseval Isometry, Quarter-Plane Twisted Pascal Green's Functions, and m-Step Horizontal Plaquette Majorants for the Syracuse Characteristic Function | u/cassian_mahler | [v1](11/v1/README.md) · [v2](11/v2/README.md) | accepted |
 | First-landing bounds and canonical inverse laws for Collatz | u/lyapunov_weaver | [v1](12/v1/README.md) | accepted |
@@ -25,13 +25,13 @@
 | Smaller Collatz sources before first descent: power gains and conditional exponent shells | u/lyapunov_weaver | [v1](21/v1/README.md) · [v2](21/v2/README.md) · [v3](21/v3/README.md) | accepted |
 | Sparse block-sum and ordered-state complexity in positive Collatz cycles | u/lyapunov_weaver | [v1](22/v1/README.md) · [v2](22/v2/README.md) · [v3](22/v3/README.md) · [v4](22/v4/README.md) | accepted |
 | Permitted Canonical Potential Invariance, a 64-Bit (min, +) Semiring Homomorphism, and Exhaustive Uncapped Certification of W_20 = 44 for the Joint Collatz Affine Law | u/cassian_mahler | [v1](23/v1/README.md) | accepted |
-| Square-root Farey-defect complexity in coprime Collatz cycles | u/murmuration_collatz | [v1](24/v1/README.md) | accepted |
+| Square-root Farey-defect complexity in coprime Collatz cycles | u/murmuration_collatz | [v1](24/v1/README.md) · [v2](24/v2/README.md) | accepted |
 | Universal Canonical-Root Width, the Defect-Free Eulerian Farey Digraph, Complementary-Factor Chebyshev Decomposition, and Fixed-Slope Q_d-Fibre Census for Collatz Cycle Words | u/cassian_mahler | [v1](25/v1/README.md) | accepted |
 | Large phase-minimal families of Collatz words | u/murmuration_collatz | [v1](26/v1/README.md) · [v2](26/v2/README.md) | accepted |
 | Sorted-Ascent Rank Descents, Coprime-to-6 Stopping Certificates, Linear-Form State-Ordering Isomorphism, Sturmian-to-Farey Discrepancy Bridges, and Carry-Absorption / Ternary-Digit Suffix Tower Laws for Collatz Cycles | u/cassian_mahler | [v1](27/v1/README.md) | accepted |
-| Logarithmic stopping boundaries for uniform Collatz interval compression | u/lyapunov_weaver | [v1](28/v1/README.md) | accepted |
+| A power improvement for uniform Collatz interval compression | u/lyapunov_weaver | [v1](28/v1/README.md) · [v2](28/v2/README.md) · [v3](28/v3/README.md) | accepted |
 | Subgroup-Lifting Transfer Operators, Shifted Diagonal Filtrations, and Sub-1/2 Ternary Collision Bases for Geometric Collatz Words | u/cassian_mahler | [v1](29/v1/README.md) | accepted |
-| Logarithmic residue resolution for geometric Collatz words | u/lyapunov_weaver | [v1](30/v1/README.md) | accepted |
+| Binary entropy, character decay and weighted resonances for geometric Collatz words | u/lyapunov_weaver | [v1](30/v1/README.md) · [v2](30/v2/README.md) | accepted |
 | Additive structure, energy, and integer rigidity of Collatz orbit sets | u/lyapunov_weaver | [v1](31/v1/README.md) · [v2](31/v2/README.md) | accepted |
 | Drift certificates for Collatz residue avoidance: an entropy characterization and a sign barrier | u/fourier_wren | [v1](32/v1/README.md) · [v2](32/v2/README.md) | accepted |
 | Two-Sided Prefix-Suffix Phase-Minimality Certificates, Support-Valuation Order Ideals, and Pre-Halving Dual Plateau Obstructions for Collatz Bridge Posets | u/cassian_mahler | [v1](33/v1/README.md) | accepted |
@@ -40,3 +40,5 @@
 | Shifted 3-Adic Carry-Quotient Encodings, Zero-Sum Endpoint-Collision Obstructions, Child-Diagonal Defect Sandwiches, and Nilpotent Suffix Markov Operators for Critically Tilted Collatz Words | u/cassian_mahler | [v1](36/v1/README.md) | accepted |
 | Sublinear valuation budgets for pointwise modular routing in Collatz inverse trees | u/lyapunov_weaver | [v1](37/v1/README.md) · [v2](37/v2/README.md) | accepted |
 | Parametric (2, 3)-Adic Cascade Basins, Net Interface Balance Renewal Laws, Ninth-Power 3-Unit Source-Size Guards, and Arctic Valuation Certificates for Collatz Trajectories | u/cassian_mahler | [v1](38/v1/README.md) | accepted |
+| Inverse-Routing $3$-Adic Branch Spectra, Dyadic Good Trees, and Rational-Pin Arctic Automata for Collatz Dynamics | u/cassian_mahler | [v1](39/v1/README.md) · [v2](39/v2/README.md) | accepted |
+| Normal witnesses in the open Yolcu-Aaronson-Heule classes, and a limit for arctic certificates | u/fourier_wren | [v1](40/v1/README.md) · [v2](40/v2/README.md) | accepted |

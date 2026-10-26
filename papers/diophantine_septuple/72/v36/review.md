@@ -1,0 +1,23 @@
+# Accept
+
+The update preserves the accepted contribution and adds a supported extension in Theorem 20(139). The two completions of the twin-fifth condition produce explicit additional $19/21$ loci on the previously accepted quintuple section. The secant construction simultaneously makes two residual conditions squares and, on $\Lambda=w_1$, reduces the three remaining square-class kernels to degree ten in $Z=w_1^2$. These are useful explicit reductions toward the septuple problem. Their significance is the particular constructions and residual curves, rather than a new general method of regular extension or square completion.
+
+The revision also addresses the previous review’s substantive qualifications: it specifies the substitution needed for the fully split quintuple, restricts uniqueness to the chosen root relation, describes the intersection as generically genus one, and retains the six residual-genus certificates. I reproduced `exp89`; all assertions passed, including the new identities, the three distinct-nonzero $19/21$ controls, the degree-$36$ irreducible kernels on Curve B, and the degree-$10$ kernels for the secant section. These establish the stated genera and support Faltings finiteness for the corresponding further rational lifts. They do not enumerate those lifts. The historical searches and aggregate verification suite were not rerun.
+
+The relationship to prior work remains appropriate. The discriminant specialization in DKP [5, §3], the regular-fifth framework in [17], and the rational construction with nineteen known roots in [28, §§3, 6] already supply the underlying methods and related constructions. The present extension should continue to be distinguished by its explicit sections and their residual arithmetic, without claiming novelty for nineteen-square families generally.
+
+The following corrections and qualifications do not undermine the supported extension:
+
+1. **Qualify the new sieve evidence.** I reproduced `exp90` and independently reconstructed all 57 candidates that its source emits under `off_section_21_21_hits`. Every candidate has a zero entry and a repeated entry; 56 have only fifteen square pairs among the seven indexed entries. For example, $(w_1,t)=(2,-8/5)$ reconstructs, up to ordering,
+   $$
+   \left(-\frac{19}{12},-\frac73,\frac34,\frac34,4,0,\frac{6240}{14641}\right).
+   $$
+   Thus the reduced discriminant tests do not certify all individual roots or admissibility. Rename these outputs as reduced-system candidates and explicitly check all entries and all 21 conditions before assigning tuple counts. The retained JSON removes the forty $t=1$ cases and adds a separate count, whereas the supplied source does neither; document that postprocessing. Moreover, the modular filter requires all three residual expressions to be quadratic residues, so its surviving two-square hits are not a complete bounded search for $20/21$ configurations. Passing the listed prime tests also means only that no obstruction was found by those tests, not that local solubility at every completion was proved. The reproduced test of 131 Curve-B parameter values found neither unpaid gate square; this remains bounded evidence only.
+
+2. **Correct two sign statements.** In Theorem 20(139)(a), the displayed parametrization gives $\Lambda_1(2)=-6$ and $\Lambda_2(2)=-5/2$, not $6$. The separately verified control $(R,\Lambda)=(4/7,6)$ lies on the opposite $C_0$ sign branch; distinguish it from the stated $m=2$ substitution. In §9, restore $t_{III}=t_{b,(-1,4r^2-1)}$ rather than the newly inserted negative sign. At $r=2$, both original expressions equal $-2833/7151$.
+
+3. **Retain the hypotheses removed during compression.** Restore “when radicands are positive” in the reflected-quintuple inequality. Without that qualification, $R_5(b,x,y,\varphi_b(x),\varphi_b(y))<0$ is false: $(b,x,y)=(3/4,1,3)$ gives $1056/169>0$. Likewise, retain the exceptional-parameter exclusions in the final canonical-tower disjointness statement. The accepted arguments remain available in the supplement; shortening their statements should not enlarge their domains.
+
+4. **Repair the remaining notation damage.** Several formerly valid arrows now appear as literal `rightarrow`, including `brightarrow` and `crightarrow`. Restore the intended LaTeX commands. The new subdivision of §9 helps, but its long formula paragraphs would benefit from separate displays for constructions, hypotheses, and residual conditions.
+
+The accepted conclusions remain partial constructions and finiteness reductions. This version does not meet the problem’s solve definition.

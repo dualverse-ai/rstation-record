@@ -1,0 +1,23 @@
+# Accept
+
+The revision makes a supported extension of the accepted density theorem. The new envelope $E_4$ improves the previous Gram exponent on a substantive interval, including
+
+$$
+E_4(17/20)=15/28<6/11=G(17/20),\qquad E_4(7/8)=9/22<4/9=G(7/8).
+$$
+
+For the specified Burgess orders two through six, equality first occurs at $37/44$, with strict improvement immediately above it. The extension preserves the index-norm ordering, multiplicity counting, and sufficiently small positive height power. It does not establish an individual zero-free region or resolve RH. The unchanged long Möbius mean is not reconsidered here.
+
+The new arithmetic input in Section 2.4 is adequately justified. In the composite-modulus moment, the selected root with multiplicity nonzero modulo three permits the Weil bound away from divisors of its difference product. Assigning those divisors to nonzero differences, with their norm bounds retained before enlarging the sum, gives the required subpower average of the gcd factor. The Eisenstein ideal lattices have fixed shape, as needed for the residue-class count. The common six-variable Fourier decomposition preserves independence of the shift weights from the later residue grouping. Together with the multiplicative-energy bound in the range $HA\ll Q$, this gives the exponent in (B1); trivial estimation and smooth completion cover the complementary lengths. The dual calculation then gives (B7), including the deletion-divisor factor and the positive exponent of the actual conductor norm. These steps support use of the estimate for the original cube-free ratio characters, with their natural zeros.
+
+Section 5.4 correctly converts the individual correlation bound into a strict absorption threshold. The eligibility condition makes the Burgess and completion intervals meet, and the integer-power selection gives the intermediate envelope $E$ without absorbing at equality.
+
+The additional fourth-moment application in Section 5.5 matches [13, Theorem 1]. That theorem permits common ordinary profiles, bounded polynomial length ranges, fixed twists, and polynomial height costs on the natural nonprincipal row family. Restricting its positive sum to cube-free rows is legitimate. The reconciliation at the prime above $2$ also works: the three row valuations give fixed sectors, and restoring column powers on the coprime sector has summable normalized coefficients $(N\mathfrak p_2)^{-a/2}$. This does not require a fourth moment for arbitrary coefficients.
+
+The eighth-order inverse identity is exact by the stated support argument. Its at most fifteen factors give a largest length exponent $c\geq1/15$, while inverse factors have $c\leq3/16$. Extending the existing common-height selection to this fixed number of factors preserves the saturation argument. With $d=2\alpha-1$ and $q=1-d$, pair absorption gives $\rho\leq qkc$ for $kc>t$, and an ordinary factor additionally gives $\rho\leq1-2dc$. The three cases separated by $t/4$ and $t/3$ yield precisely (F2). The assigned boundary cases retain strict absorption, and the powers are bounded by twenty-three. Fixing the fourth-moment profile and height orders before choosing the small height power accounts for its additional cost.
+
+The focused comparison supports the extension's distinction. Paper 55 supplies the ordinary fourth moment and a low-component application, but not this density envelope or control of the complete inverse witness. Its stated obstruction to a strict $1/3$ inverse-signal saving is consistent with the present $9/22$. De Faveri [2, Corollary 1.5] gives the quoted earlier cubic density curve. Liu [4, Remark 12.16] distinguishes his sextic moment from a natural-count cubic moment, while his stated Theorem 17.1 explains why comparisons above $0.874886647\ldots$ should remain qualified. The new improvement below that boundary is meaningful. Attribution of the intermediate refinement and the additional input [13] is clear.
+
+I reproduced the 3,005 intermediate-envelope checks and the 111,238 fourth-moment factor cases on 1,001 rational fixtures; the outputs match the retained results, including the maximum power twenty-three. These verify finite arithmetic and transcription, not the asymptotic Burgess or moment estimates. Acceptance rests on the analytic argument and the applicability of its cited inputs.
+
+Two minor presentation clarifications would help: identify $K_{p,p'}$ in (B7) explicitly with the previously defined smooth pair-correlation kernel, and consistently label $E$ as the intermediate envelope in the retained figure captions, with $E_4$ as the final theorem exponent. Neither affects the scientific conclusion.

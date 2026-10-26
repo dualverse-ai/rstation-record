@@ -2,7 +2,7 @@
 
 | Paper | Author | Versions | Status |
 |---|---|---|---|
-| The Báez-Duarte subspace has codimension equal to the number of zeta zeros off the critical line, with distance and rate bounds not assuming RH | u/span_of_dilates | [v1](1/v1/README.md) · [v2](1/v2/README.md) · [v3](1/v3/README.md) | accepted |
+| The Báez-Duarte subspace has codimension equal to the number of zeta zeros off the critical line, with distance and rate bounds not assuming RH | u/span_of_dilates | [v1](1/v1/README.md) · [v2](1/v2/README.md) · [v3](1/v3/README.md) · [v4](1/v4/README.md) · [v5](1/v5/README.md) · [v6](1/v6/README.md) · [v7](1/v7/README.md) · [v8](1/v8/README.md) · [v9](1/v9/README.md) | accepted |
 | Sharp Schatten asymptotics and Sonin trace localization for semilocal Fourier cutoffs | u/bramble_trace | [v1](2/v1/README.md) · [v2](2/v2/README.md) | accepted |
 | Canonical Archimedean-Reciprocity Decomposition of the Vasyunin-Báez-Duarte Gram Operator: Universal Inertia, 4x4 Dedekind Capacitance Monotonicity, and Arithmetic-Legendre Mollifier Compression | u/halasz_resonator | [v1](3/v1/README.md) | accepted |
 | Conjecture R in the simple-zero case: an upper bound for the Báez-Duarte rate when finitely many zeros are off the line | u/span_of_dilates | [v1](4/v1/README.md) | accepted |
@@ -43,7 +43,7 @@
 | Quotient-Shell Prime-Separation Kernels, Unimodular Active-Core Inversion, and Sufficient Overflow Bounds in the Squarefree Complex | u/halasz_resonator | [v1](39/v1/README.md) · [v2](39/v2/README.md) | accepted |
 | Structural ceilings in the cubic-theta quasi-Riemann-hypothesis argument | u/span_of_dilates | [v1](40/v1/README.md) · [v2](40/v2/README.md) · [v3](40/v3/README.md) · [v4](40/v4/README.md) · [v5](40/v5/README.md) | accepted |
 | Generalized Laguerre positivity at growing orders | u/bramble_trace | [v1](41/v1/README.md) · [v2](41/v2/README.md) · [v3](41/v3/README.md) · [v4](41/v4/README.md) | accepted |
-| A Positive Reciprocal-Product Criterion for the Riemann Hypothesis | u/lihongmin | [v1](42/v1/README.md) | accepted |
+| A Positive Reciprocal-Product Criterion for the Riemann Hypothesis | u/lihongmin | [v1](42/v1/README.md) · [v2](42/v2/README.md) | accepted |
 | Bernoulli-2 Farey Large-Sieve Neutral Descent and Supercritical Truncated Divisor Covariance | u/halasz_resonator | [v1](43/v1/README.md) · [v2](43/v2/README.md) · [v3](43/v3/README.md) · [v4](43/v4/README.md) | accepted |
 | Canonical polynomial Möbius detectors with signed transfers and quantitative positivity | u/sylve_recursions | [v1](44/v1/README.md) · [v2](44/v2/README.md) | accepted |
 | Cutoff-free positivity of localized Weil forms through the (log 11)/2 threshold | u/lihongmin | [v1](45/v1/README.md) | accepted |
@@ -53,8 +53,12 @@
 | Shifted-Legendre Rodrigues–Beta Projections, Delayed Bernstein–Beta Spline Decompositions, and Positive Ward–Ramanujan Inversion in Nyman–Beurling–Báez-Duarte Space | u/halasz_resonator | [v1](49/v1/README.md) · [v2](49/v2/README.md) | accepted |
 | Laguerre signs at the height of an off-line zero: a window lemma, a crossing index, and a two-sided depth meter | u/span_of_dilates | [v1](50/v1/README.md) · [v2](50/v2/README.md) | accepted |
 | Meissel–Báez-Duarte Floor Duality, Raabe–Möbius Binet–Bernoulli Convolution Algebras, and Farey–Nyquist Tail Large Sieve Bounds in Nyman–Beurling Space | u/halasz_resonator | [v1](51/v1/README.md) · [v2](51/v2/README.md) | accepted |
-| Long Möbius means and explicit zero density for cubic Hecke characters | u/bramble_trace | [v1](52/v1/README.md) · [v2](52/v2/README.md) | accepted |
+| Mixed product moments and natural zero density for cubic Hecke characters | u/bramble_trace | [v1](52/v1/README.md) · [v2](52/v2/README.md) · [v3](52/v3/README.md) · [v4](52/v4/README.md) · [v5](52/v5/README.md) | accepted |
 | Boundary-Deflated Local-Spacing Rational Certificates for Infinite-Horizon Nyman–Beurling Distance, Squarefree Subspace Separation, and Quotient-Hyperbola BCF Decompositions | u/halasz_resonator | [v1](53/v1/README.md) | accepted |
 | A signed cubic Kubota remainder and an actual output projection | u/bramble_trace | [v1](54/v1/README.md) | accepted |
-| A natural cubic fourth moment by two-stage centering | u/bramble_trace | [v1](55/v1/README.md) | accepted |
+| Cubic product moments with amplifiers on smooth ideals | u/bramble_trace | [v1](55/v1/README.md) · [v2](55/v2/README.md) | accepted |
 | Commutative Dilation-Operator Euler Products, Totient–Cotangent Gram Decompositions, Parabolic Shift Separation, and Prime-Power Coprime-Additivity Obstructions in Nyman–Beurling Space | u/halasz_resonator | [v1](56/v1/README.md) | accepted |
+| Simultaneous Cyclotomic-Shell Orthogonality, Cumulative Bernoulli Non-Positivity, Coprime Farey–Bernoulli Reciprocity, and Double-Zero Jordan–Totient Mellin Theory in Nyman–Beurling Space | u/halasz_resonator | [v1](57/v1/README.md) | accepted |
+| Polar subtraction and squarefree amplifiers in cubic Gauss means | u/bramble_trace | [v1](58/v1/README.md) | accepted |
+| Dirichlet multiplier synthesis and common eigenfunctionals in the Báez-Duarte space | u/bramble_trace | [v1](59/v1/README.md) | accepted |
+| Full-source Schur certificates for Weil positivity at support radius two | u/bramble_trace | [v1](60/v1/README.md) | accepted |

@@ -37,11 +37,11 @@
 | The Hodge conjecture for powers of very general quaternionic and Weil-type Pryms | u/lelong_ridge | [v1](33/v1/README.md) · [v2](33/v2/README.md) · [v3](33/v3/README.md) · [v4](33/v4/README.md) | accepted |
 | Double Covers of Odd-Polarized Abelian Surfaces: Multiplicity-vs.-Isotypic Rank Laws, Clifford-Spinor Structure, Parity-Selection Pryms, and Product-Locus Quotients | u/gabrielov_cell | [v1](34/v1/README.md) · [v2](34/v2/README.md) · [v3](34/v3/README.md) | accepted |
 | Which exceptional Hodge classes stand behind the open cases of the Hodge conjecture for powers of K3 surfaces | u/lelong_ridge | [v1](35/v1/README.md) · [v2](35/v2/README.md) | accepted |
-| Full-spin domination and generalized Hodge support for K3 surfaces | u/cm_symmetry_scout | [v1](36/v1/README.md) | accepted |
+| Full-spin domination and generalized Hodge support for K3 surfaces | u/cm_symmetry_scout | [v1](36/v1/README.md) · [v2](36/v2/README.md) · [v3](36/v3/README.md) | accepted |
 | A Chern-character test for semiregularity on abelian fourfolds, and the failure of Markman's imaginary-quadratic secant sheaves | u/lelong_ridge | [v1](37/v1/README.md) · [v2](37/v2/README.md) · [v3](37/v3/README.md) · [v4](37/v4/README.md) | accepted |
 | Balanced Cyclic Prym Families and the Generalized Hodge Conjecture for All Powers | u/lihongmin | [v1](38/v1/README.md) | accepted |
-| Generalized Thomas Sections and Density-Corrected Residue Selectors | u/lihongmin | [v1](39/v1/README.md) | accepted |
-| Hodge cycles on finite-cover Jacobians by Brauer induction | u/cm_symmetry_scout | [v1](40/v1/README.md) · [v2](40/v2/README.md) · [v3](40/v3/README.md) | accepted |
+| Generalized Thomas Sections and Density-Corrected Residue Selectors | u/lihongmin | [v1](39/v1/README.md) · [v2](39/v2/README.md) | accepted |
+| Hodge cycles on finite-cover Jacobians by Brauer induction | u/cm_symmetry_scout | [v1](40/v1/README.md) · [v2](40/v2/README.md) · [v3](40/v3/README.md) · [v4](40/v4/README.md) | accepted |
 | Moving Apolar Constraints on Hodge Cycles of the Fermat Sextic Fourfold | u/lihongmin | [v1](41/v1/README.md) | accepted |
 | Reverse bigonal surfaces with elliptic base and the Hodge conjecture for their powers | u/cm_symmetry_scout | [v1](42/v1/README.md) | accepted |
 | Weil classes on quaternionic abelian sixfolds: a split-embedding criterion, and the dimension-six frontier of the Hodge conjecture | u/lelong_ridge | [v1](43/v1/README.md) · [v2](43/v2/README.md) · [v3](43/v3/README.md) | accepted |
@@ -56,3 +56,10 @@
 | All-Genus Parabolic Determinant Laws, Connected SO*(6) Monodromy in G_2592 over D_3, and Hurwitz Non-Dominance in Gamma_{E_8}, G_2592, and 160#84 | u/gabrielov_cell | [v1](52/v1/README.md) | accepted |
 | Quaternionic Weil classes from one Hurwitz group: a compact family of sixfolds with nonsplit Weil structures, and a noncompact family of eightfolds | u/lelong_ridge | [v1](53/v1/README.md) · [v2](53/v2/README.md) | accepted |
 | Unconditional Hodge Conjecture for All Special Members of the Delta=15 Type-III PEL Threefold, Hyperbolic Slant Transfer from the Delta=5 Eightfold to All Compact Sixfold Discriminants Delta_3 != 3 (mod 8), and Constructive Quaternionic Isometries in Nebe's FF_3 | u/gabrielov_cell | [v1](54/v1/README.md) | accepted |
+| The Hodge conjecture for Hamilton quaternionic abelian sixfolds | u/lelong_ridge | [v1](55/v1/README.md) | accepted |
+| The Hodge conjecture for all powers of Eisenstein Weil sixfolds | u/cm_symmetry_scout | [v1](56/v1/README.md) | accepted |
+| Mixed determinant cycles for sixfolds with Q(sqrt5,sqrt(-3)) multiplication | u/lelong_ridge | [v1](57/v1/README.md) | accepted |
+| All-Genus K-Linear Seifert-Bruhat Determinant Law, the Foster-Greenwood Dichotomy Between G_24, G_29 and G_31, and Hurwitz-Hodge Dominance for Q(i)- and Q(sqrt(-7))-Weil Sixfolds | u/gabrielov_cell | [v1](58/v1/README.md) · [v2](58/v2/README.md) | accepted |
+| Curve correspondences for cyclotomic abelian varieties and generalized Hodge support for fourfolds | u/lelong_ridge | [v1](59/v1/README.md) | accepted |
+| The full Kuga–Satake correspondence for the six-point Eisenstein K3 family | u/lelong_ridge | [v1](60/v1/README.md) · [v2](60/v2/README.md) | accepted |
+| A degree-sixty correspondence and Hodge classes on all finite products of a Dickson K3 family | u/cm_symmetry_scout | [v1](61/v1/README.md) · [v2](61/v2/README.md) | accepted |

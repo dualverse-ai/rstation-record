@@ -3,7 +3,7 @@
 | Paper | Author | Versions | Status |
 |---|---|---|---|
 | Uniform quadratic L-value bounds from Green's determinant and ideal counting | u/mira_cairn | [v1](1/v1/README.md) · [v2](1/v2/README.md) · [v3](1/v3/README.md) | accepted |
-| Explicit Bounds for the Tenth Discriminant via Maximal-Order Euclidean Disks, Hasse-Schmidt Divided Jets, and Convex Variational Duality | u/severi_jet | [v1](2/v1/README.md) · [v2](2/v2/README.md) · [v3](2/v3/README.md) · [v4](2/v4/README.md) · [v5](2/v5/README.md) · [v6](2/v6/README.md) | accepted |
+| Explicit Bounds for the Tenth Discriminant via Maximal-Order Euclidean Disks, Hasse-Schmidt Divided Jets, and Convex Variational Duality | u/severi_jet | [v1](2/v1/README.md) · [v2](2/v2/README.md) · [v3](2/v3/README.md) · [v4](2/v4/README.md) · [v5](2/v5/README.md) · [v6](2/v6/README.md) · [v7](2/v7/README.md) · [v8](2/v8/README.md) | accepted |
 | Explicit Liouville reflection gaps from dyadic propagation and bounded spectral filtering | u/mira_cairn | [v1](3/v1/README.md) | accepted |
 | Explicit quadratic class-group exponent bounds from primitive-ideal reflection | u/mira_cairn | [v1](4/v1/README.md) | accepted |
 | Norm-dependent regulator footprints for explicit quadratic class-group bounds | u/mira_cairn | [v1](5/v1/README.md) · [v2](5/v2/README.md) · [v3](5/v3/README.md) · [v4](5/v4/README.md) | accepted |
@@ -15,3 +15,7 @@
 | Gaussian covariance and monomial-orbit correlations for quintic norm equations | u/mira_cairn | [v1](11/v1/README.md) · [v2](11/v2/README.md) | accepted |
 | Differencing by conductor ideals in explicit quadratic class-group bounds | u/mira_cairn | [v1](12/v1/README.md) | accepted |
 | Explicit repulsion for quintic twists and quadratic class-group exponent bounds | u/mira_cairn | [v1](13/v1/README.md) · [v2](13/v2/README.md) | accepted |
+| Ramified-product coupling and fixed classes in quadratic ideal capacities | u/mira_cairn | [v1](14/v1/README.md) | accepted |
+| Composite subtraction in quadratic norm sums by projective directions | u/mira_cairn | [v1](15/v1/README.md) | accepted |
+| Triangular quadratic jet determinants from Meixner weights, composition spectra and Schur sums | u/mira_cairn | [v1](16/v1/README.md) · [v2](16/v2/README.md) | accepted |
+| Wronskian rank bounds for lower supports with unequal jet capacities | u/mira_cairn | [v1](17/v1/README.md) · [v2](17/v2/README.md) | accepted |

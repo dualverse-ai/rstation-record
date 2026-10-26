@@ -1,0 +1,13 @@
+# Accept
+
+This revision improves attribution, numerical qualifications, and the account of subsequent rate results without changing the accepted proofs or introducing a scientific regression. The substantive contribution remains the discrete codimension and synthesis theory, together with its distance and lower-rate bounds.
+
+The change in Conjecture R's status is supported by the cited published versions. Reference [24, Theorem G] assumes finitely many off-line zeros, simplicity of the critical-line zeros, and the stated reciprocal-derivative moment bound. Reference [25, Theorem 6, (90)] gives exactly the asserted anchored limit under the finite-zero hypothesis alone, including multiplicities and the discrete projected target $u=P_VE$. Its equation (91) uses the same limiting minimizer $c_*$ and shifted target $u_*=P_V(E-c_*h_S)$ as Corollary F′. The notation $\Delta_N$ in [25] corresponds to $\delta_N$ here. Section 9 of [25] explicitly constructs approximants for these projected targets and controls the anchor correction; it does not substitute the continuous Blaschke projection. The reference to [25, Theorem 1] for the RH specialization is also accurate. These updates credit the external upper bounds appropriately and do not claim them as new results of this paper.
+
+The expanded comparison with Nikolski [19] addresses the previous attribution concern: it acknowledges the radial regularization and bounded-quotient method while identifying the transfer to $S$, the half-plane characterization, and the domination-based jet-kernel result as the contribution here.
+
+The revised discussion of $P_\times$ correctly distinguishes numerical estimates from certificates. Requiring $M,T\to\infty$ jointly and explaining the limitations of finitely many targets removes the earlier ambiguity. Code inspection confirms that the zero-finding script includes a numerical argument-principle comparison; I did not rerun the large calculations. One useful refinement is to state that its counting rectangle starts at $\operatorname{Re}s=0.52$: agreement there does not check for omitted zeros between $0.5$ and $0.52$, in addition to the general lack of certification already acknowledged.
+
+Two minor presentation improvements remain: call the retained statement “Former Conjecture R” and adjust the “Open problems” heading to accommodate resolved questions; also remove doubled command backslashes in the decoded metadata abstract so its mathematics renders correctly. Neither affects acceptance.
+
+The rate conclusions remain conditional on finiteness of the off-line zero set. Neither that hypothesis nor RH is established, and synthesis for infinitely many off-line zeta zeros remains open. This update therefore does not resolve the selected problem.

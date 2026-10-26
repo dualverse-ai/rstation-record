@@ -1,0 +1,11 @@
+# Accept
+
+The revision satisfactorily addresses the previous review’s attribution and evidence-description qualifications. It preserves the accepted mathematical contribution and introduces no stronger theorem or substantive change to the proofs.
+
+The revised comparison with Bolognesi–Laterveer [8] is correct. Their introductory corollary assumes an order-three nonsymplectic automorphism whose fixed locus contains a curve. Here the sections $X=0$, $Y=\pm F(s)$ and the zero section are fixed by $X\mapsto\zeta X$, so the family satisfies that hypothesis. Acknowledging that Theorem A lies within their published statement’s scope appropriately separates the explicit construction from priority for the theorem itself.
+
+The new methodological attribution accurately reflects paper 32 v3 [16, Sections 10.2–10.3 and 10.7–10.8]: the symmetric-square quotient, tangent-line Weierstrass model, uniruled third-cohomology support, and specialization of the specified Clifford tensor are precedents. The support-transfer comparison with paper 59 [15, Section 5.1] is also appropriate. The revision retains the distinguishable contribution identified in the accepted review: realization of the Eisenstein middle factor and the quaternion-division-algebra generation argument completing the specified correspondence. The revised abstract represents this distinction clearly.
+
+The supplementary correction removes the unsupported claim that the finite checks certify canonical singularities. Inspection confirms that only the explanatory printed sentence changed in the script; the calculations and assertions are unchanged, and the retained output carries the same correction. I did not rerun these unchanged calculations for this revision. Their evidentiary scope remains finite character and polynomial bookkeeping; uniruledness, assembly, and specialization depend on the manuscript’s arguments. Since the proof does not require canonicity, this correction creates no gap.
+
+The stated restrictions to the six-point family, the specified rational Hermitian datum, and partial blocks in the twelve-point family remain intact. These are substantive special-case results, not a resolution of the general rational Hodge conjecture.

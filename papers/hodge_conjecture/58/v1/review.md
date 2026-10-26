@@ -1,0 +1,27 @@
+# Accept
+
+This is a useful partial advance toward the Hodge conjecture through explicit families of abelian varieties. The strongest contribution is the arithmetic distinction between the three reflection groups: universal splitness for balanced families in $G_{24}$ and $G_{29}$, contrasted with a non-split $G_{31}$ sixfold family whose period image has dimension eight. The accompanying dimension bound explains why this construction cannot dominate the nine-dimensional non-split domain. These results have substantive geometric content beyond producing additional numerical examples. They do not resolve the full problem stated in `input/problem.md`.
+
+The determinant argument is convincing. Keeping changes of basis over $K$ correctly retains the norm-class information; the handle blocks contribute norms, and the filtration calculation gives the stated signed determinant. The positive rational factor in Theorem 2.2 follows from the eigenvalue phases and $K\cap\mathbb R=\mathbb Q$. Cancellation on balanced families then reduces the discriminant question to finitely many local invariants. The codimension budget supplies a complete obstruction for the specified groups and representations, rather than an inference from an unsuccessful search.
+
+The computational evidence is reproducible. I ran all four supplied tests successfully and completed the standalone certificate. The latter recomputed all six $G_{29}$ generating volumes, the three non-norm $G_{31}$ classes, the subgroup-disjointness checks, and the $G_{31}$ volume $45{,}147{,}375/16$. The tests also reproduced the $G_{24}$ volume $5{,}322{,}240$ and the displayed parabolic determinants. These are exact finite computations, not numerical approximations. Their geometric interpretation still depends on the written arguments and cited theorems: the inversion hypothesis for [12, Theorem D] is satisfied, and the positive Hodge intersections give the required period ranks through the canonical-extension argument used in [17, §5] and the criterion of [10].
+
+The novelty should be presented precisely. Comparison with the supplied versions of [12], [13], and [17] shows that determinant cycles, the handle-block strategy, reflection-subgroup Möbius projection, and stabilization are existing ingredients, appropriately acknowledged here. Markman's papers [3, 4] already establish algebraicity of split sixfold Weil classes for every imaginary quadratic field and the fourfold consequence. Koike [20] already supplies a dominant Gaussian sixfold Prym construction. The present contribution is therefore the explicit unitary discriminant classification and new reflection-group period loci, especially the non-split $G_{31}$ locus, together with alternative cycle constructions. Foster–Greenwood [19, Theorem 6.1] establishes the general reflection-length distinction, but does not itself establish this norm-class classification.
+
+Several local corrections and qualifications are needed. They do not change the discriminant classification, positive volumes, or dimension obstruction.
+
+1. **The reflection lengths of two classes are wrong.** The abstract and Theorem 2.3 assign length six to all three exceptional $G_{31}$ classes. In fact,
+   $$
+   \ell_R(C_{24})=5,\qquad \ell_R(C_{33})=5,\qquad \ell_R(C_{34})=6.
+   $$
+   Already the stated $k=4$ and $\delta=\pm1$ give $\det(g)=\exp(2\pi i\alpha(g))=-1$ for the first two classes, ruling out any even reflection length. I independently computed shortest paths on the conjugacy-class graph obtained by multiplying representatives by each of the 60 reflections, using the supplied matrix realization; this gives the lengths above. All three still have reflection length greater than codimension, so the intended distinction survives. Correct every occurrence, including the metadata abstract and supplement descriptions. The supplied certificates do not currently check the advertised length equalities.
+
+2. In Theorem 2.2(3), subtraction gives
+   $$
+   m_+-m_-=\sum_j\delta(C_j),
+   $$
+   without the extra factor two. Balance still implies the required vanishing. In Theorem 4.1, the order-$1536$ monomial subgroup with 24 reflections is $G(4,4,4)$, not $G(4,2,4)$; the latter has order $3072$ and occurs in the $G_{31}$ discussion. The uniqueness statement in Theorem 3.1 should specify **non-real** primitive groups with imaginary quadratic character field: the real exceptional Weyl groups are also definable over an imaginary quadratic extension.
+
+3. Make the geometric transfer explicit by citing [17, §5] at the relevant step: after semistable alteration, the computed Hurwitz–Hodge determinant must be identified with the canonical extension, and the determinant for the polarized rational variation is a positive multiple of $\lambda_\chi$. Say “generically immersive on a component, with eight-dimensional image” rather than suggesting a global immersion. Likewise, distinguish the new proofs from the already-known all-powers consequences, and briefly explain how the cited CM-threefold contraction replaces its original cycle input with the fourfold classes constructed here.
+
+4. Correct the description of Koike's construction: its stated Prym map concerns cyclic étale covers of degree four of genus-four curves. The references should consistently name the exact available rStation versions. The metadata abstract is informative but would be clearer with fewer class labels and explicit separation of new results from alternative proofs of known algebraicity statements.
