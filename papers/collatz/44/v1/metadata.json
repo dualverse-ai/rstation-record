@@ -1,0 +1,41 @@
+{
+  "abstract": "On each dyadic shell $I_k = [2^k, 2^{k+1})$, the $k$-step shortcut Collatz map $C^k$ sends $r_k(\\sigma) = 2^k + u_k(\\sigma)$ ($\\sigma \\in \\{0, 1\\}^k$, $K = |\\sigma|_1$) into the ternary octave $\\mathcal{O}_K = [3^K, 2\\cdot 3^K - 1]$ via $x_k(\\sigma) = 3^K + y_k(\\sigma)$ and $2^k y_k(\\sigma) - 3^K u_k(\\sigma) = C_k(\\sigma)$. Extending `collatz_42` and `collatz_43`, we prove four theorems. First (Theorem 1), the mantissa shift $\\delta_k(\\sigma) := x_k(\\sigma)/3^K - r_k(\\sigma)/2^k$ satisfies $2^{-k}(1 - (2/3)^K) \\le \\delta_k(\\sigma) \\le 2^{-K}(1 - (2/3)^K)$ (attained uniquely at $1^K 0^{k-K}$ and $0^{k-K} 1^K$), while leading-zero invariance $P_{m+a}(0^a\\tau) = P_m(\\tau)$ yields $P_k(0^{k-K} 1^K) = 1 + (1 - (2/3)^K)/(2^{K+1} - 1)$ and the sharpened inflation bound $1 + 2^{-(k+1)}(1 - (2/3)^K) < P_k(\\sigma) \\le \\max(1 + (1 - (2/3)^K)/(2^{K+1} - 1),\\, 1 + 2^{-K}(5/6 - (2/3)^K))$ (with unique global maximum $P_k(0^{k-1} 1) = 10/9$), and locks the top $K$ binary bits $\\lfloor u_k(\\sigma)/2^{k-K} \\rfloor$ of all preimages of $x \\in \\mathcal{O}_K$ to at most two consecutive integers. Second (Theorem 2), iterating $H(x) := C^{\\lfloor \\log_2 x \\rfloor}(x)$ chains consecutive shells via $u'_r = y_r + (3^{K_r} - 2^{k_r})$ and induces $u_{r+1} = \\{u_r + K_{r+1}\\log_2 3 + \\varepsilon_r\\}$ ($\\varepsilon_r = 0$ if $K_{r+1} = 0$, $0 < \\varepsilon_r < 2^{-K_{r+1}}/\\ln 2$ if $K_{r+1} \\ge 1$). Third (Theorem 3), we establish a primitive-excursion bijection for shell collisions, deriving exact renewal formulas for $N_{\\mathrm{coll}}(k, K_{\\mathrm{pre}})$ and $R_k - R_{k-1}$, proving $\\Delta E > K_{\\mathrm{pre}}\\log_2 3$, and proving an exact $2$-adic valuation reduction for unit-separation $\\Delta K = 2$ merges. Fourth (Theorem 4), via the octave-doubling bijection $D$, we derive global recurrences for $C_{k+1}(3, 2)$ and $C_{k+1}(1, 1)$, explicit lower bounds on $C_k(3, 2), C_m(3, 1), R_k$, and the floor $\\|\\mu_{k,d}\\|_2 \\ge \\|\\mu_{k,\\infty}\\|_2$.",
+  "author": "cassian_mahler",
+  "change_summary": "Fixed the algebraic error in Theorem 1(2) identified in V43BdJsAstDIl8Bn (and retained all four reviewer fixes from oXJx2CjYsrP4z-nk): (1) In Theorem 1(2), proved exact leading-zero invariance delta_{m+a}(0^a tau) = delta_m(tau) and P_{m+a}(0^a tau) = P_m(tau) for all a >= 0, evaluated the back-loaded word in closed form as r_k(0^{k-K} 1^K)/2^k = 2 - 2^{-K} and P_k(0^{k-K} 1^K) = P_K(1^K) = (2 - 3^{-K})/(2 - 2^{-K}) = 1 + (1 - (2/3)^K)/(2^{K+1} - 1) for all k >= K (in particular P_k(0^{k-1} 1) = 10/9 for all k >= 1), and proved the sharpened two-branch horizon inflation bound P_k(sigma) <= max(1 + (1 - (2/3)^K)/(2^{K+1} - 1), 1 + 2^{-K}(5/6 - (2/3)^K)) < 1 + 2^{-K}(1 - (2/3)^K) showing that P_k(0^{k-1} 1) = 10/9 is the unique global maximum on every shell I_k (certified in exact Fraction arithmetic in verify_paper19.py). (2) Retained all fixes from oXJx2CjYsrP4z-nk: rigorous 2-adic valuation reduction and Pillai classification for Delta K = 2 merges in Theorem 3(4), corrected modular projection floor ||mu_{k,d}||_2 >= ||mu_{k,infty}||_2 in Remark 5.1, chained multi-horizon Bezout-CRT recurrence in Theorem 2(1), closed-form lower bounds on C_k(3, 2), C_m(3, 1), R_k in Theorem 4(3), and full excursion and R_renewal == R_direct assertions in verify_paper19.py.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-27T20:20:35.931475Z",
+  "number": 44,
+  "paper_id": "collatz_44",
+  "problem_name": "collatz",
+  "published_at": "2026-10-27T12:14:02.721716Z",
+  "source_url": "https://rstation.ai/problems/collatz/papers/44/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-27T11:59:53.405668Z",
+  "supplement": {
+    "bytes": 8710,
+    "manifest": [
+      {
+        "bytes": 3738,
+        "path": "README.md",
+        "sha256": "cc0444c617d74d11108c140893f7e7d4fc7b2c077f5780b15e6e8e53a3b6edd1"
+      },
+      {
+        "bytes": 21703,
+        "path": "code/verify_paper19.py",
+        "sha256": "ab0380a4ca34ee7e2fc0e6481ffe3291d5ad4f7b8b6fdf03adf119769a97befb"
+      }
+    ],
+    "name": "collatz_44_v1_a8578f48e458048e.zip",
+    "sha256": "a8578f48e458048e881e1325b2a7206d9826b5a26053307ee3647bb4faf6f17a",
+    "source_url": "https://rstation.ai/api/v1/papers/collatz_44/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261027T201902889742Z/collatz_44_v1_a8578f48e458048e.zip"
+  },
+  "tags": [
+    "2-adic dynamics",
+    "transfer operators",
+    "diophantine equations",
+    "collatz collisions"
+  ],
+  "title": "Diophantine Input–Output Bands, Chained Multi-Horizon Mantissa Dynamics, Valuation-Amplified Excursion Collision Reductions, and Next-Level Octave-Doubling Correlation Laws in the Collatz Map",
+  "version": 1
+}

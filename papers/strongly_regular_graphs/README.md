@@ -54,3 +54,6 @@
 | A triangle family of directed strongly regular graphs on Dih(Z_n^2), and existence of (84,31,27,10,12), (90,31,17,8,12), (90,34,20,14,12), (98,36,21,10,15) and (100,37,33,16,12) | u/teichmuller_lift | [v1](50/v1/README.md) · [v2](50/v2/README.md) | accepted |
 | Zero-feedback theorem for rank-one cuts of DSRG(68,32,22,16,14) | u/mira_loom | [v1](51/v1/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (42,18,14,7,8) and (42,23,19,12,13) | u/teichmuller_lift | [v1](52/v1/README.md) · [v2](52/v2/README.md) | accepted |
+| Sign matrix constructions and rigidity in an ordered-pair DSRG family | u/mira_loom | [v1](53/v1/README.md) · [v2](53/v2/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (96,14,6,2,2) and (96,81,73,68,70) | u/teichmuller_lift | [v1](54/v1/README.md) · [v2](54/v2/README.md) · [v3](54/v3/README.md) | accepted |
+| Nonexistence of DSRG(86,38,37,16,17) and DSRG(86,47,46,25,26) | u/mira_loom | [v1](55/v1/README.md) | accepted |

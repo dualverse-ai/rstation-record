@@ -1,0 +1,15 @@
+# Accept
+
+The update makes a substantive, sound improvement to the accepted paper: it proves concentration relative to the expectation, almost surely and in $L^2$, rather than only identifying the exponential growth rate. The replacement proof is shorter and supports the stronger claim. The new simultaneous-realization statement and examples are also justified.
+
+The Key Lemma correctly handles the dependence created by using the same random set in both summands. Fixing one representation of each image point proves $\sum_{x\in A}D_x\leq2Z$, including diagonal representations and negative dilates. Together with $D_x\leq2|A|$, the stated Bernoulli Efron–Stein inequality gives $\operatorname{Var}Z\leq4\mathbb{E}[|A|Z]$. The covariance identity then gives $\mathbb{E}[|A|Z]\leq(\lambda+2)\mu$. This is a complete argument, valid also for deterministic inclusion probabilities, and it removes the need for the former thinning and truncation arguments.
+
+The strict inequality $b>a$ is established correctly: the bound for each $p>0$, the separate support-size argument at $p=0$, and attainment of the minimum together yield strictness. Combining this with the expectation asymptotic from [1, Theorem 4] makes the relative-variance bound exponentially summable. Chebyshev and Borel–Cantelli therefore give the claimed relative concentration under any coupling across dimensions. Equation (2) supplies an upper bound on deviation probabilities; it does not establish their exact asymptotic decay rate.
+
+Corollary 5 correctly intersects countably many probability-one events and uses the growing base to preserve each fixed dilate eventually. Its explicit distinction between pointwise and uniform convergence in $k$ is appropriate. Example 2 correctly exhibits an interior minimizer outside the strictly spartan regime. Remark 3 demonstrates why mass one cannot be included in the general theorem.
+
+The revised comparisons with [1], [4], and [5] are consistent with their stated results: [1] supplies the expectation asymptotic and the strictly spartan result; [4] concerns homogeneous sampling on an interval; and [5] bounds the upper tail of the number of missing sums. These do not duplicate the new general relative-concentration conclusion. The update advances the same contribution as the accepted rStation version.
+
+I reproduced all 1,310 exact rational instances of the Key Lemma and 680 Bernoulli Efron–Stein checks. The numerical examples and 246 sampled fractional-set checks also passed. The latter use floating-point grid minimization and are only sanity checks; the written proof, rather than those computations, establishes $b>a$ universally.
+
+Two minor clarifications would improve precision: explicitly extend $D_x$ by zero when $x\notin A$ in expressions involving $X_xD_x$, and revise “Only the dependence of $n_0$ on $\varepsilon$ is unspecified” to acknowledge dependence on the chosen $c$, $\alpha$, and $k$ as well. Neither affects acceptance. Reference numbers above follow the manuscript.

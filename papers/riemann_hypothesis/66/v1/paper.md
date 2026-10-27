@@ -1,0 +1,240 @@
+# Finite-window Weil forms on Davenport–Heilbronn functions: a certified onset bound, an exact joint detection identity, and finite-space measurements
+
+## 1. Question and results
+
+Weil's criterion says that RH holds for an L-function iff its explicit-formula quadratic form $W(g)$ is non-negative for all admissible $g$. Certificate programmes restrict to $g$ supported in $[-L,L]$. For a function with off-line zeros the restricted form $W_L$ eventually fails to be non-negative. De Jesús [1] certified this for the Davenport–Heilbronn function (DH, conductor 5) at $L=2.0$ and $L=1.8$ and observed positivity at $L=1.6$ on the spaces he searched. He listed as open a two-sided onset, whether the zero at height 166.5 is seen before or after the one at 85.7, and whether the remaining-zero form stays positive as the basis grows.
+
+We study which of the known off-line zeros of DH-type functions make $W_L$, or a controlled modification of it, indefinite, and at which $L$. Every computation is on a finite trial space $V_K$ of $K$ trigonometric modes. Since $V_K\subset V_{K+1}$, three kinds of statement occur, and we keep them apart:
+
+- **exact or certified**: an algebraic identity, and one interval-arithmetic certificate;
+- **finite-$K$ detections**: a negative vector in $V_K$ is a negative test function, so these statements hold for the unrestricted form;
+- **finite-$K$ non-detections, indices and profiles**: positivity, negative indices and extremal values on $V_K$. These describe $V_K$ only. We have no control of the complement of $V_K$, and our zero lists are search results, not certified censuses.
+
+Results:
+
+1. **A joint detection identity** [exact, §3.2]. Move every listed off-line quartet to a double zero on the line and call the resulting form $W_{rh}$. Restoring a set $S$ of quartets gives a form whose negative index is the number of eigenvalues above 1 of the $|S|\times|S|$ matrix $G_S=4N_S^{\mathsf T}A_S^{-1}N_S$, whenever the explicit base $A_S$ is positive definite. Hence restoring $S$ adds at most $|S|$ negative eigenvalues. The identity does not bound the index by the number of quartets that are visible one at a time; a two-quartet example shows this (§3.2). For $|S|=1$ it is the rank-one predicate of [2].
+2. **A certified onset bound** [Arb, §4.2]. An explicit rational test function with 200 sine modes has $W(g)=-1.9087\ldots\times10^{-26}\pm4.8\times10^{-56}$ at $L=1.725$. So $W_L\not\ge0$ for every $L\ge1.725$, below the certified $1.8$ of [1]. We have no certified lower bound.
+3. **Per-zero onsets** [finite $K$, §4]. Each of the five listed DH quartets below height 250 (odd sector) makes the form indefinite when restored alone to $W_{rh}$, at $L\le1.74$, $1.90$, $2.06$, $2.06$ and $2.07$ respectively. These upper bounds hold for $W_{rh}+P_k$ on the full window, not only on $V_K$. The lower ends of our brackets are non-detections at the stated $K$. The quartet at 166.5 is detected together with the one at 176.7, after the one at 114.2.
+4. **Non-additivity at fixed $K$** [§5]. At $L=2.06$ and $K=173$, four quartets are individually detected, but the full form has two negative eigenvalues on $V_K$; at $K=213$–$220$ both counts are unchanged. This is a lower bound of 2 for the unrestricted index, and an observation about these trial spaces, not a statement about the full window operator. In every subset we computed, the joint index was at most the number of individually detected members, and in 33 of 144 subsets it was smaller. By the identity, absorption needs a member near threshold and whitened directions that are nearly parallel. The measured cosines between the detected quartets are 0.76–0.998 among $O_1,\dots,O_4$ and 0.59–0.99997 at conductor 13.
+5. **Depth reorders detection** [finite $K$, §4.3]. For a conductor-13 analogue, the zero at height 141.7 ($\delta=0.30$) is detected at $L\le2.08$, before the zeros at 86.8 ($\delta=0.20$, $L\le2.12$) and 112.7 ($\delta=0.15$, $L\le2.24$).
+6. **A first-order visibility profile** [finite $K$, §6]. To first order in the displacement $\delta$, the per-zero predicate is $4\delta^2\mathcal K^{(K)}_L(\gamma)>1$, where $\mathcal K^{(K)}_L$ is a Christoffel-type function of $W_{rh}$ on $V_K$. It is non-decreasing in $K$, so measured values are lower bounds. We report its measured shape on eleven profiles, with convergence data in $K$ for one of them, separately for its high part, its slope and its first zero crossing. The crossing is where the first-order criterion fails for $\delta=\tfrac12$. It is an empirical diagnostic, not a detection threshold or an exclusion height.
+7. **A far-field limit** [GRH for the character, §6.3]. For a quartet planted among the zeros of $L(s,\chi)$, $\chi$ primitive and real, the exact detection quantity $r$ satisfies $r\log\frac{q\gamma}{2\pi}\to\frac{\sinh2\delta L}{\delta}-2L$ as $\gamma\to\infty$ at fixed $L$ (Proposition 6.1). To first order, $\mathcal K_L(\gamma)$ tends to $L^3/(3\log\frac{q\gamma}{2\pi})$. For $\chi_5$, the medians measured at $\gamma\le420$ are 1.07 ($L=1.0$) to 1.65 ($L=2.4$) times this limit, and they decrease as the ordinate density grows relative to the Nyquist density. The proven error term is $O(e^L/\log\gamma)$, which says nothing numerical at these heights. The same limit holds for $\zeta$ under RH, with $q=1$. The proposition does not apply to DH-type functions. At each ordinate, $\|h\|^4/W(h)$ with $h=u\cos(\gamma u)$ bounds $\mathcal K_L(\gamma)$ from below under GRH. $W(h)$ can be computed from the zero list, or from the explicit formula without zeros. For $\chi_5$, $\chi_{-7}$ and $\chi_{-43}$, wherever the ordinate density is at least twice the Nyquist density, the value measured on $V_K$ is 0.997–1.33 times this bound, with medians 1.04–1.07.
+
+None of this bears on whether RH holds for $\zeta$; the $\zeta$ case of Proposition 6.1 assumes RH. DH-type functions have off-line zeros, and the computations describe what finite-window Weil tests detect on them.
+
+## 2. Setting
+
+Let $q\in\{5,13\}$ and let $f$ be the Davenport–Heilbronn-type combination of the two complex characters of order 4 mod $q$, $a_n=\operatorname{Re}(e^{-i\varphi/2}\chi(n))/\cos(\varphi/2)$, normalised so that $\Lambda_f(s)=\Lambda_f(1-s)$. For $q=5$ this is the classical DH function, $\kappa=a_2=0.28407\ldots$. Write $-f'/f=\sum b_nn^{-s}$. For real $g$ with $\operatorname{supp}g\subset[-L,L]$ and $h=g\star g$, the Weil form in the normalisation of [1, eq. (3)] is
+$$
+W(g)=h(0)\log\tfrac{q}{\pi}+\tfrac1{2\pi}\int|G(it)|^2\operatorname{Re}\psi(\tfrac34+\tfrac{it}2)\,dt
+      -2\sum_{n<e^{2L}}\frac{b_n\,h(\log n)}{\sqrt n}.
+$$
+By the explicit formula, $W(g)$ is a sum over the zeros, and each zero on the line contributes a non-negative term. The trial space $V_K$ is spanned by $\sin(j\pi u/L)/\sqrt L$, $1\le j\le K$ (odd sector), or by the corresponding cosines (even sector). $W^{(K)}_L$ denotes the Gram matrix of $W$ on $V_K$. Its entries are closed forms: digamma and trigamma values at $\tfrac34+i\omega_j/2$ plus exponentially small tails for the archimedean part, and finite trigonometric sums for the prime part. The implementation reproduces the certified values of $W$ at $L=2.0$ in [1] to 21–30 digits.
+
+Because $V_K\subset V_{K+1}$ at fixed $L$: $\lambda_{\min}(W^{(K)}_L)$ is non-increasing in $K$; the number of negative eigenvalues of $W^{(K)}_L$ is non-decreasing in $K$ and is a lower bound for the negative index of $W_L$ (Cauchy interlacing). Because supports are nested in $L$, a negative vector at $(K,L)$ is a negative test function for $W_{L'}$ at every $L'\ge L$, though not necessarily an element of $V_K$ at $L'$. The basis depends on $L$, so at fixed $K$ we claim no monotonicity in $L$.
+
+## 3. Method
+
+### 3.1 Orbit matrices
+Each quartet $\{\tfrac12\pm\delta\pm i\gamma\}$ contributes a matrix $\mathrm{orb}(\gamma,\delta)$ to the zero side. In the odd sector $\mathrm{orb}(\gamma,\delta)=4(mm^{\mathsf T}-nn^{\mathsf T})$ with $n=\operatorname{Re}G(\delta+i\gamma)$ and $m=\operatorname{Im}G(\delta+i\gamma)$; in the even sector $n=\operatorname{Im}G$ and $m=\operatorname{Re}G$. We checked this identity numerically to $10^{-113}$. Moving the quartet to a double zero on the line replaces $\mathrm{orb}(\gamma,\delta)$ by $\mathrm{orb}(\gamma,0)=4m^0m^{0\mathsf T}$, $m^0=\operatorname{Im}G(i\gamma)$, which is positive semidefinite of rank 1.
+
+### 3.2 The joint identity
+Let $\mathcal Z$ be the list of off-line quartets found by our searches (§4), and let
+$$W_{rh}=W+\sum_{k\in\mathcal Z}\big[\mathrm{orb}(\gamma_k,0)-\mathrm{orb}(\gamma_k,\delta_k)\big]$$
+be the form with every listed quartet moved to the line. For $S\subseteq\mathcal Z$ put $P_k=\mathrm{orb}(\gamma_k,\delta_k)-\mathrm{orb}(\gamma_k,0)$. Then
+$$
+W_{rh}+\sum_{k\in S}P_k=A_S-4N_SN_S^{\mathsf T},\qquad A_S=W_{rh}+4\sum_{k\in S}\big(m_km_k^{\mathsf T}-m^0_km^{0\mathsf T}_k\big),
+\qquad N_S=[n_k]_{k\in S}.
+$$
+$A_S$ is the zero sum with the quartets of $S$ reduced to their $m$-parts. It is positive semidefinite if every zero outside $\mathcal Z$ lies on the line. DH-type functions also have zeros with $\beta>1$, which our lists do not contain, so on each $V_K$ we check positive definiteness of $A_S^{(K)}$ numerically. When $A_S\succ0$, Haynsworth's inertia additivity for $\begin{psmallmatrix}A_S&2N_S\\2N_S^{\mathsf T}&I\end{psmallmatrix}$ gives
+$$
+n(S):=\#\mathrm{neg}\Big(W_{rh}+\sum_{k\in S}P_k\Big)=\#\{\lambda\in\operatorname{spec}(G_S):\lambda>1\},\qquad
+G_S=4N_S^{\mathsf T}A_S^{-1}N_S. \tag{3.1}
+$$
+We use (3.1) on $V_K$, where $n^{(K)}(S)$ is a lower bound for the index in the full space. Since $G_S$ is $|S|\times|S|$, $n(S)\le|S|$. For one quartet, (3.1) is the rank-one predicate $4S>1$ of [2] with base $A_k$: quartet $k$ is visible on its own iff $r_k=4n_k^{\mathsf T}A_k^{-1}n_k>1$.
+
+**(3.1) does not bound $n(S)$ by the number of individually visible members.** Take $A_S=I$, $m_k=m^0_k$ and $n_1=n_2=\sqrt{0.15}\,u$ with $\|u\|=1$, so that $P_1=P_2=-0.6\,uu^{\mathsf T}$. Each $r_k=0.6<1$, so neither quartet is visible alone, but $G_S=0.6\begin{psmallmatrix}1&1\\1&1\end{psmallmatrix}$ has the eigenvalue $1.2$, and $I-1.2\,uu^{\mathsf T}$ has one negative eigenvalue. This example was pointed out by a referee. In the configurations of §5 the opposite inequality, $n(S)\le\#\{k\in S:r_k>1\}$, held in every subset, but that is an observation, not a consequence of (3.1).
+
+Two lower bounds do follow at once, because subtracting a positive semidefinite matrix cannot lower the negative index. For $T\subseteq S$, $n(S)\ge\#\mathrm{neg}(A_S-4N_TN_T^{\mathsf T})$. In particular $n(S)\ge1$ as soon as $4n_k^{\mathsf T}A_S^{-1}n_k>1$ for one $k\in S$. So absorption can lower the count, but it cannot hide a quartet that clears the threshold against the joint base $A_S$. That base differs from the single-quartet base $A_k$ by the terms $4(m_jm_j^{\mathsf T}-m^0_jm^{0\mathsf T}_j)$, $j\in S\setminus\{k\}$, which are $O(\delta_j^2)$ and have no sign.
+
+We evaluate (3.1) in the $W_{rh}$-whitened frame with the Woodbury formula, so a subset costs one eigenproblem of size $2|S|$. The onset scans of §4 used an equivalent $6\times6$ form. With $z_{1,2}=\pm\delta_k+i\gamma_k$, let $U$ hold the six real columns $\operatorname{Re}G(z_1),\operatorname{Re}G(z_2),\operatorname{Im}G(z_1),\operatorname{Im}G(z_2),\operatorname{Re}G(i\gamma_k),\operatorname{Im}G(i\gamma_k)$, and let $C=\operatorname{blockdiag}(2\sigma,2\sigma,-4I_2)$ with $\sigma=\begin{psmallmatrix}0&1\\1&0\end{psmallmatrix}$. Then $\#\mathrm{neg}(W_{rh}+P_k)=\#\{\lambda\in\operatorname{spec}(CU^{\mathsf T}W_{rh}^{-1}U):\lambda<-1\}$. Write $R_k=-\min\operatorname{spec}(CU^{\mathsf T}W_{rh}^{-1}U)$. $R_k$ and $r_k$ are different numbers with the same threshold: $R_k>1$ iff $r_k>1$. Numerically $r_k/R_k\in[0.999,1.025]$, except for the strongly detected $O_1$ (1.12, at $R\sim10^{23}$). The two forms give the same count on all 52 DH subsets at $L=2.06$ and $2.08$.
+
+### 3.3 Certification
+The float computations only locate onsets. For the claim $W_L\not\ge0$ we certify one vector. We take the mpmath lowest eigenvector, round it to 40-digit decimals, and treat these as exact rationals $c_j$. We then evaluate $W(\sum c_j\phi_j)$ in Arb balls (python-flint 0.6.0, 500–600 bits). In that evaluation $\kappa$ is an algebraic number, $b_n$ comes from the exact recursion, and the condition $n<e^{2L}$ is decided rigorously. Digamma and trigamma values come from Arb, and every truncated archimedean tail carries an explicit geometric radius. The certificate inherits the closed-form derivation of §2, which the comparison with [1] checks.
+
+## 4. Onsets
+
+An onset bracket $(a,b]$ below means: at $L=b$, restoring the quartet alone to $W_{rh}$ gives a negative eigenvalue on $V_K$, so $W_{rh}+P_k$ has a negative test function at every $L\ge b$; at $L=a$ it gives none on $V_K$. The upper end is a statement about the unrestricted form. The lower end is a statement about $V_K$, with the $K$ and precision recorded on each log line.
+
+### 4.1 Davenport–Heilbronn, $q=5$
+**Zero list.** Our list below height 250 is $O_1=85.699+0.309i$, $O_2=114.163+0.151i$, $O_3=166.479+0.074i$, $O_4=176.703+0.224i$ and $Z_5=240.405+0.370i$ (ordinate, then $\delta$; refined to 100 digits). Below 200 it is the census of [1], whose completeness is not certified [1, non-claim 8]. Our own grid search (minima of $|f|$ on the rows $\sigma=0.53,0.58,\dots,0.98$, step 0.1 in $t$, then Newton) recovered $O_1,O_2$ on $[80,120]$ and found only $Z_5$ on $[200,300]$. It is not designed to find zeros with $\delta<0.03$, and we did not search $[120,200]$ ourselves. $Z_5$ is the zero of largest abscissa, $0.8695$ at $\gamma=240.40$, among the 88 zeros with $\sigma>\tfrac12$ and $0<\gamma<2100$ plotted in [8, Fig. 10.1]; according to [8] none of them has $\sigma\ge1$.
+
+**$W_{rh}$.** $W^{(K)}_{rh}$ is positive definite at every $L$ we tested up to 2.12. This is a statement about $V_K$. An off-line zero missing from our list could make $W_{rh}$ indefinite on a larger space, and nothing here rules that out.
+
+| zero | odd onset | $q\gamma_k/e^{2L}$ on the odd bracket | even onset |
+|---|---|---|---|
+| $O_1$ | (1.70, 1.74] | 13.2–14.3 | (1.70, 1.74] |
+| $O_2$ | (1.86, 1.90] | 12.8–13.8 | (1.86, 2.00] |
+| $O_3$ | (2.04, 2.06] | 13.5–14.1 | not detected at 2.04 |
+| $O_4$ | (2.04, 2.06] | 14.4–14.9 | (2.00, 2.04] |
+| $Z_5$ | (2.06, 2.07] | 19.1–19.5 | not detected at 2.04 |
+
+On $V_K$ the full form $W^{(K)}_L$ has 2, 3, 4 and 5 negative eigenvalues at $L=2.06$, 2.08, 2.10 and 2.12. These are lower bounds for the negative index of $W_L$. At $L=2.12$ restoring any one quartet to $W^{(K)}_{rh}$ adds exactly one negative eigenvalue. At $L=2.06$, raising $K$ from 173 to 213–220 and the precision from 113 to 138 digits leaves every count unchanged.
+
+On the timing question of [1]: on our trial spaces $O_3$ is detected after $O_1$ and $O_2$, in the same bracket as $O_4$. The detection at $L\le2.06$ holds for the unrestricted form. The non-detection at $2.04$, and hence the order, is established only on $V_K$.
+
+### 4.2 Certified onset bound
+At $L=69/40=1.725$ the Arb evaluation of §3.3 gives $W(g)\in[-1.90868689017783753\ldots\times10^{-26}\pm4.8\times10^{-56}]$ for an explicit rational $g$ with 200 sine modes (Rayleigh quotient $-1.338\times10^{-26}$). So $W_L\not\ge0$ for $L\ge1.725$. The same procedure also certifies $L=173/100$ ($K=130$) and $L=174/100$ ($K=60$). The float data locate the sign change on $V_K$. At $L=1.72$, $\lambda_{\min}(W^{(K)}_L)=1.64\times10^{-26}$, $1.00\times10^{-26}$ and $9.0\times10^{-27}$ for $K=130$, 200 and 300; at $L=1.715$ and $K=300$ it is $+7.7\times10^{-26}$. So on $V_{300}$, $\lambda_{\min}$ is positive at $L=1.715$ and $1.72$ and negative at $1.725$. Since $\lambda_{\min}$ at $L=1.72$ is still decreasing at $K=300$, the onset of the unrestricted form may lie lower. We have no lower bound.
+
+### 4.3 A conductor-13 analogue
+For the analogous function mod 13 ($\kappa=0.742056$; functional equation checked to $10^{-30}$) a grid search on rows $\sigma=0.53,\dots,1.08$ found ten off-line zeros below height 150. This list is not cross-checked against any census. $W^{(K)}_{rh}$ is positive definite at every tested $L\le2.28$ and is not at $L=2.32$, 2.36 and 2.40. We read that as off-line zeros missing from our list, which we did not verify, and stop at $L=2.28$.
+
+| $\gamma$ | $\delta$ | onset | $q\gamma/e^{2L}$ on the bracket |
+|---|---|---|---|
+| 13.46 | 0.370 | (1.30, 1.34] | 12.0–13.0 |
+| 41.50 | 0.246 | (1.70, 1.80] | 14.7–18.0 |
+| 60.21 | 0.049 | (1.96, 2.00] | 14.3–15.5 |
+| 68.07 | 0.412 | (1.80, 1.84] | 22.3–24.2 |
+| 86.84 | 0.204 | (2.08, 2.12] | 16.3–17.6 |
+| 103.71 | 0.292 | (2.04, 2.08] | 21.0–22.8 |
+| 112.71 | 0.155 | (2.20, 2.24] | 16.6–18.0 |
+| 122.81 | 0.487 | (2.08, 2.12] | 23.0–24.9 |
+| 139.13 | 0.107 | (2.24, 2.28] | 18.9–20.5 |
+| 141.70 | 0.303 | (2.04, 2.08] | 28.8–31.1 |
+
+Onsets are not ordered by height. Above $\gamma=60$, the zeros with $\delta\ge0.29$ are detected at $q\gamma/e^{2L}$ between 21 and 31, and the others between 14 and 20.5. The lowest zero (13.46, $\delta=0.37$) is the exception at 12.0–13.0. We did not measure the profile of §6 at $L=1.3$ and leave it unexplained.
+
+### 4.4 Depth against height
+In our scans on $V_K$, $R_k$ grew with $L$ before each quartet's onset. At fixed $L$, $R_k/\delta_k^2$ varies with height without a trend. At $q=13$, $L=2.08$, $K=115$, the ratio $R_k/\delta_k^2$ for the six zeros above height 86 is 20.6, 12.5, 4.5, 4.2, 7.8 and 11.1 (at 86.8, 103.7, 112.7, 122.8, 139.1 and 141.7). These values are not monotone in height. To first order $R_k/\delta_k^2\approx4\mathcal K_L(\gamma_k)$ does not depend on $\delta_k$ (§6.1), so detection needs $\delta_k>(R_k/\delta_k^2)^{-1/2}$, a threshold between $0.22$ and $0.49$ across these six heights. A deep zero can therefore be detected before a shallower, lower one. The same happens in the even sector of DH, where $O_4$ ($\delta=0.224$) is detected before $O_3$ ($\delta=0.074$).
+
+## 5. Non-additivity
+
+We computed $n^{(K)}(S)$ from (3.1) for every subset of at least two DH quartets at $L=2.06$ ($K=173$) and $L=2.08$ ($K=175$), 26 subsets each, and for every such subset of the ten conductor-13 quartets at $L=2.24$ ($K=124$) and $L=2.28$ ($K=126$), 1013 subsets each. $A^{(K)}_S$ was positive definite in every case. The stacked $6|S|\times6|S|$ count agrees with (3.1) on all DH subsets and on the 45 conductor-13 pairs and the full conductor-13 set. All statements in this section are about these trial spaces.
+
+**Observation 1.** At $L=2.06$ four DH quartets are individually detected, and $n^{(K)}(\{1,\dots,5\})=2$. $O_3$ adds nothing to any subset that contains $O_4$, or any two of $O_1,O_2,O_4$. At $L=2.08$ five are detected and $n^{(K)}=3$. For conductor 13 at $L=2.28$ ten are detected and $n^{(K)}=8$. In every computed subset, $n^{(K)}(S)\le n^{(K)}(\mathcal Z)$. This is not exact. §3.2 gives $n(\mathcal Z)\ge\#\mathrm{neg}(A_{\mathcal Z}-4N_SN_S^{\mathsf T})$, and $A_{\mathcal Z}-4N_SN_S^{\mathsf T}$ differs from the form $A_S-4N_SN_S^{\mathsf T}$ that defines $n(S)$ by the unsigned $m$-parts of the quartets outside $S$.
+
+**Observation 2.** In the 144 subsets where we also recorded the individual detections (the 26+26 DH subsets, and the 45 pairs and the full set at each conductor-13 $L$), $n^{(K)}(S)$ never exceeded the number of individually detected members, and it was strictly smaller in 33. §3.2 shows that (3.1) does not force this.
+
+**Observation 3.** Height proximity does not decide which pairs absorb. The conductor-13 pairs at height distances 7.9, 9.0 and 10.1 are additive. The pair at distance 2.6 absorbs. So does the DH pair $(O_3,O_4)$ at distance 10.2, while $(O_1,O_2)$ at 28.5 does not.
+
+**Reading through the Gram matrix.** By (3.1), $n(S)$ counts the eigenvalues above 1 of the Gram matrix $G_S$ of the vectors $2A_S^{-1/2}n_k$. For a pair with $g_{ij}=\sqrt{g_{ii}g_{jj}}\,\rho_{ij}$, both quartets count iff $(g_{ii}-1)(g_{jj}-1)>\rho_{ij}^2g_{ii}g_{jj}$, approximately $1-\rho^2>g_{ii}^{-1}+g_{jj}^{-1}$ for large $g$. So strongly detected quartets stay additive, and absorption needs a member near threshold and nearly parallel directions. A cruder rule uses single-quartet data only. Let $v_k$ be the unit eigenvector of $W_{rh}^{-1/2}P_kW_{rh}^{-1/2}$ for its most negative eigenvalue $-R_k$. Then $\#\{\text{eigenvalues of }(\sqrt{R_iR_j}\langle v_i,v_j\rangle)_{i,j\in S}\text{ above }1\}$ reproduced $n^{(K)}(S)$ in all 144 subsets above [num]. The overlaps $|\langle v_i,v_j\rangle|$ are 0.76–0.998 among $O_1,\dots,O_4$ (at $L=2.06$ and 2.08), 0.19–0.23 between $Z_5$ and the others ($L=2.08$), and 0.59–0.99997 at conductor 13. [heur] We think the directions are nearly parallel because $W_{rh}^{-1}$ is dominated by the few smallest eigenvalues of $W_{rh}$, but we have not tested this.
+
+**Consequence.** With $S=\mathcal Z$, $W_{rh}+\sum_{k\in\mathcal Z}P_k=W$, so on $V_K$ (3.1) counts the negative eigenvalues of $W^{(K)}_L$ itself. That count is a lower bound for the negative index of $W_L$. It is not a count of the listed quartets that are detected one at a time, and in the configurations above it is smaller.
+
+## 6. A first-order visibility profile
+
+### 6.1 Reduction
+In the odd sector $n=\operatorname{Re}G(\delta+i\gamma)=\delta\,\partial_\delta G(i\gamma)+O(\delta^3)$ and $m-m^0=O(\delta^2)$. So $A_k=W_{rh}+O(\delta^2)$, and to first order the predicate $r_k>1$ of (3.1) becomes
+$$
+r_k\approx 4\,n^{\mathsf T}W_{rh}^{-1}n\approx 4\delta_k^2\,\mathcal K^{(K)}_L(\gamma_k),\qquad
+\mathcal K^{(K)}_L(t)=G'(it)^{\mathsf T}\big(W^{(K)}_{rh}\big)^{-1}G'(it)=\sup_{0\ne g\in V_K}\frac{|\partial_\delta G(\delta+it)|_{\delta=0}|^2}{W_{rh}(g)} .
+$$
+Because it is a supremum over $V_K$, $\mathcal K^{(K)}_L(t)$ is non-decreasing in $K$, and every measured value is a lower bound for the same supremum over all $g$ supported in $[-L,L]$. Numerically $4n^{\mathsf T}W_{rh}^{-1}n/R_k\in[0.986,1.039]$ for the five DH quartets at $L=2.06$ and 2.08. The second approximation is within 6% for $\delta\le0.31$ and 14% for $Z_5$ ($\delta=0.37$). The level $\ln\mathcal K=\ln(1/4\delta^2)$ is the first-order threshold for depth $\delta$: about 3.8 for $O_3$, 1.0 for $O_1$, and $0$ for $\delta=\tfrac12$, where the first-order approximation is no longer accurate.
+
+### 6.2 Measured shape
+We computed $\ln\mathcal K^{(K)}_L(t)$ for $t\in[2,320]$ on eleven profiles: DH odd at $L=1.7,\dots,2.2$ ($K=75$, 91, 112, 139, 172, 216), DH even at $L=2.0$ ($K=139$), conductor 13 at $L=2.0$ and 2.2 ($K=110$, 130), and the real characters $\chi_5$ and $\chi_{-7}$ at $L=2.0$ ($K=139$; there $W^{(K)}_L$ itself is positive definite and plays the role of $W_{rh}$). Beyond $t_K=K\pi/L$ the profile drops by 5–12 units. That drop is a truncation artefact, and we use only $t\le0.9\,t_K$. The fit is a least-squares line on $t\ge10$ up to the first $t$ with $\ln\mathcal K<3$, fixed before the fits were run. The first crossing $t_1$ is the first downward crossing of $\ln\mathcal K=0$, by linear interpolation on a grid of step 2.
+
+| profile | $L$ | slope | intercept $c$ | $qc/e^{2L}$ | max residual | $t_1$ | $qt_1/e^{2L}$ |
+|---|---|---|---|---|---|---|---|
+| DH odd | 1.7 | −0.947 | 54.5 | 9.09 | 4.5 | 63.7 | 10.6 |
+| DH odd | 1.8 | −0.933 | 70.1 | 9.58 | 5.4 | 89.9 | 12.3 |
+| DH odd | 1.9 | −0.891 | 89.1 | 9.97 | 7.3 | 119.3 | 13.4 |
+| DH odd | 2.0 | −0.919 | 115.2 | 10.55 | 8.3 | 151.0 | 13.8 |
+| DH odd | 2.1 | −0.908 | 146.2 | 10.96 | 16.2 | 206.9 | 15.5 |
+| DH odd | 2.2 | −0.961 | 187.4 | 11.50 | 12.1 | 253.4 | 15.6 |
+| DH even | 2.0 | −0.965 | 121.7 | 11.14 | 9.0 | 151.1 | 13.8 |
+| $q=13$ | 2.0 | −0.905 | 49.0 | 11.67 | 6.7 | 87.8 | 20.9 |
+| $q=13$ | 2.2 | −0.888 | 81.0 | 12.94 | 6.9 | 107.7 | 17.2 |
+| $\chi_5$ | 2.0 | −1.041 | 115.4 | 10.57 | 9.2 | 126.0 | 11.5 |
+| $\chi_{-7}$ | 2.0 | −1.006 | 76.5 | 9.81 | 6.9 | 91.2 | 11.7 |
+
+In all eleven profiles $\ln\mathcal K$ starts high and decreases roughly linearly in $t$, with fitted slopes between $-0.89$ and $-1.04$. The residuals (4–16 units) show that "linear" is a rough description. Above $t_1$ and below $0.9\,t_K$ it oscillates in $[-1.1,2.0]$. Across $L$ the measured intercept grows faster than $e^{2L}$: $qc/e^{2L}$ increases from 9.1 to 11.5 for DH odd between $L=1.7$ and 2.2.
+
+**Convergence in $K$** (DH odd, $L=2.0$; profiles at $K=139$, 170, 200, 260; the only case we tested):
+
+| $t$ | 2 | 52 | 102 | 122 | 132 | 152 | 192 |
+|---|---|---|---|---|---|---|---|
+| $\ln\mathcal K^{(139)}$ | 117.006 | 63.481 | 21.638 | 7.872 | 0.885 | −0.270 | 0.141 |
+| $\ln\mathcal K^{(260)}-\ln\mathcal K^{(139)}$ | +0.328 | +0.319 | +0.275 | +0.214 | +0.019 | +0.007 | +0.006 |
+
+- High part ($t\le110$): the successive increments are about $+0.125$, $+0.10$ and $+0.10$ for $K=139\to170\to200\to260$. This part is not converged, and the values are lower bounds.
+- Slope: $-0.9188$ ($K=139$) and $-0.9194$ ($K=200$) with the fit above. On the common step-10 grid of all four runs it is $-0.9306$, $-0.9308$, $-0.9311$, $-0.9314$. So the $K$-dependence is below $10^{-3}$. The dependence on the fit window is larger: a fit on $[2,150]$ gives $-0.857$ ($K=139$).
+- Intercept: 116.50, 116.63, 116.75, 116.86 on the common grid, following the high part.
+- First crossing: 151.04 ($K=139$) and 151.06 ($K=200$) on the step-2 grid; 147.43, 147.59, 147.66, 147.76 on the step-10 grid. The change with $K$ (at most 0.33) is smaller than the effect of the interpolation grid (about 3.5).
+- Per-zero thresholds: at the heights of $O_1,\dots,O_4$, $\partial\ln\mathcal K/\partial L$ is 33–250 per unit $L$. So the $K$-offsets there (0.009–0.21) move first-order onsets by at most $0.001$ in $L$, below our grid spacing of 0.02.
+
+An earlier, unpublished draft of this analysis stated that $K=139$ and $K=200$ agree to 0.02. That holds only for $t\ge130$. At $t=10$ the difference is 0.23.
+
+### 6.3 What the first crossing is
+$\ln\mathcal K=0$ is the first-order threshold for $\delta=\tfrac12$. So $t_1$ marks where the first-order criterion stops detecting even the deepest admissible zeros, on $V_K$. It is not a detection threshold for any given zero. A zero of depth $\delta$ needs $\ln\mathcal K>\ln(1/4\delta^2)$. For $\delta<0.18$ that is above 2, which on the step-2 grids of our profiles occurs only below $t_1$. Above $t_1$ the grid maxima lie between 0.3 and 2.0, depending on the profile, which at first order detect zeros with $\delta$ above 0.18–0.43 (§4.4). It is not an exclusion height either. $\mathcal K^{(K)}$ is a lower bound for the full-space quantity, the first-order criterion is not exact, and nothing here bounds what larger trial spaces would detect above $t_1$. With these qualifications, $qt_1/e^{2L}$ lies between 10.6 and 15.6 for DH, between 17 and 21 for conductor 13, and at 11.5–11.7 for the two characters. For comparison, $2\pi\approx6.3$ (the height $H$ of [12] and $T^*$ of [6], with $t$ replaced by $qt$) and $2\pi e\approx17.1$.
+
+One check at an onset. At $L=1.74$ ($K=120$, step 2) the first crossing is $t_1=75.9$, so $O_1$ (85.70) lies above it. It is detected through a local maximum at its own ordinate: $\ln\mathcal K^{(148)}_{1.74}(85.699)=1.398$, so $4\delta^2\mathcal K=1.54$, against $R_k=1.65$ from the direct computation. On the step-2 grid this maximum shows only as $1.04$ at $t=86$. The grid therefore under-resolves the profile near the listed ordinates, and grid-based quantities ($t_1$, plateau ranges) carry that error as well.
+
+Far above the crossing [num]. On the line, $W$ is the sum of $|G(i\gamma)|^2$ over all ordinates. If the ordinates were replaced by a constant density $\rho$, the form would be $2\pi\rho\|g\|^2$, because $\int|G(it)|^2dt=2\pi\|g\|^2$, and the supremum over odd $g$ would be $\int_{-L}^{L}u^2\cos^2(tu)\,du/(2\pi\rho)=L^3/(6\pi\rho)$ up to $O(L^2/(t\rho))$. Taking for $\rho$ the local density $\frac1{2\pi}\log\frac{qt}{2\pi}$ at height $t$ gives the reference value $L^3/(3\log\frac{qt}{2\pi})$. This is a reference value, not a bound in either direction. For $\chi_5$ we evaluated $\mathcal K^{(K)}_L$ at the ordinates $\gamma$ of $L(s,\chi_5)$ with $1.2\,t_1\le\gamma\le0.8\,t_K$:
+- $L=1.0$: 171 ordinates in $[9.8,251]$, $K=100$;
+- $L=1.6$: 140 ordinates up to 251, $K=160$;
+- $L=2.0$: 81 ordinates in $[151,251]$, $K=200$;
+- $L=2.4$: 37 ordinates in $[379,419]$, $K=400$.
+
+The median of $\mathcal K$ divided by the reference value is 1.07, 1.28, 1.6 and 1.65. Medians over blocks of consecutive ordinates range from 1.03 to 2.6. The ratio falls as $\log(q\gamma/2\pi)/2L$, the ratio of ordinate density to Nyquist density, rises. At $L=1.6$ it goes from 1.6 to 1.2 as that density ratio rises from 1.32 to 1.64. At $L=1.0$ the blocks of 20 ordinates give 1.33, 1.16, 1.08, 1.06, 1.06, 1.06, 1.04, 1.05 and 1.03 as it rises from 1.0 to 2.65. There, 37 of the 171 values lie below the reference. For $\chi_{-7}$ at $L=1.0$ ($K=100$, 185 ordinates in $[6.8,251]$) the median ratio is 1.09. Its block medians fall from 1.36 to 1.07 as the density ratio rises to 2.5, and then stay between 1.04 and 1.08. Raising $K$ from 120 to 160 at $L=1.6$ changes $\ln\mathcal K$ at these ordinates by at most 0.013, and raising it from 100 to 140 at $L=1.0$ changes it by at most 0.014 at all 171 ordinates. The run at $K=140$ reaches $\gamma\le351$. Its 87 further $\chi_5$ ordinates have median ratio 1.03, at density ratios up to 2.8. At the median ordinate, $4\delta^2\mathcal K>1$ needs $\delta>1.9$, $0.83$, $0.54$ and $0.44$ for $L=1.0$, $1.6$, $2.0$ and $2.4$. The smallest such depth over these ordinates is $0.26$ (at $\gamma=9.8$, next to the crossing), $0.49$, $0.31$ and $0.29$. These are measurements on $V_K$ for two characters, and first order is not accurate at such depths (§6.1). The reference value is nevertheless the limit at fixed $L$, for the exact predicate as well as to first order:
+
+**Proposition 6.1** [(a) unconditional; (b) assumes GRH for $L(s,\chi)$]. Let $\chi$ be a primitive real character mod $q\ge3$ and $W$ its Weil form on odd real $g\in C_c^\infty(-L,L)$. Plant one quartet $\tfrac12\pm\delta\pm i\gamma_0$, $0<\delta\le\tfrac12$: $Q=W+4(mm^{\mathsf T}-nn^{\mathsf T})$, with $n,m$ as in §3.1 at $(\gamma_0,\delta)$, and $r=\sup_g4n(g)^2/(W(g)+4m(g)^2)$, so that under GRH $Q\ge0$ iff $r\le1$. Put $\ell=\log\frac{q\gamma_0}{2\pi}$, $\Phi_L(\delta)=\frac{\sinh2\delta L}{\delta}-2L$ and $C_P(L)=\sum_{n\le e^{2L}}\Lambda(n)/\sqrt n$. Fix $L$ and $\varepsilon\in(0,L)$. As $\gamma_0\to\infty$, uniformly in $\delta$:
+- (a) there is an explicit $g_0$ with $4n(g_0)^2/(W(g_0)+4m(g_0)^2)\ge(1-o(1))\,\Phi_{L-\varepsilon}(\delta)/(\ell+2C_P(L))$, so $r$ is at least this large;
+- (b) $r\le(1+o(1))\,\Phi_{L+\varepsilon}(\delta)/(\ell-\log2-2C_P(L+\varepsilon))$. Here the $o(1)$ depends on $L$, $\varepsilon$, $\chi$ and on $\lambda(L,\chi)$, the bottom of $W$ on odd $L^2(-L,L)$.
+
+Hence $r\,\ell\to\Phi_L(\delta)$, where $\Phi_L(\delta)=\tfrac43\delta^2L^3(1+O(\delta^2L^2))$. The same argument, with $g_0=u\cos(\gamma_0u)\theta(u)$ in (a) and $H'(\gamma_0)$ in place of $H(\gamma_0-i\delta)$ in (b), gives $\mathcal K_L(\gamma_0)\,\ell/L^3\to\tfrac13$ for the full-space first-order quantity.
+
+*Proof sketch.* (a) Take $g_0=\sinh(\delta u)\cos(\gamma_0u)\theta(u)$, with $0\le\theta\le1$ a smooth cutoff equal to 1 on $[-L+\varepsilon,L-\varepsilon]$. Then $n(g_0)\ge\|g_0\|^2$, $4\|g_0\|^2\ge\Phi_{L-\varepsilon}(\delta)(1-o(1))$ and $m(g_0)=O(\delta/\gamma_0)$. The explicit formula gives $W(g_0)\le(\ell+2C_P(L)+o(1))\|g_0\|^2$: the function $|G_0(it)|^2$ is concentrated at $t=\pm\gamma_0$, where the archimedean weight is $\ell+o(1)$, and each prime term is at most $\|g_0\|^2$ in modulus.
+
+(b) Let $\psi(t)=(\sin(\varepsilon t/4)/(\varepsilon t/4))^4$ and $H(t)=G(it)\psi(t-\gamma_0)$. Then $H$ is of exponential type $L+\varepsilon$ and imaginary on $\mathbb R$, and $n(g)=\operatorname{Re}H(\gamma_0-i\delta)/\psi(-i\delta)$ with $\psi(-i\delta)\ge1$. Writing $H(t)=\int\kappa(u)e^{itu}du$, with $\overline{\kappa(-u)}=-\kappa(u)$, this gives $\operatorname{Re}H(\gamma_0-i\delta)=\int\kappa(u)e^{i\gamma_0u}\sinh(\delta u)\,du$, so $n(g)^2\le\Phi_{L+\varepsilon}(\delta)\|H\|^2/4\pi$. Under GRH every zero term is non-negative, so $W(g)\ge M^{-1}\sum_\gamma|G(i\gamma)|^2\Psi(\gamma)$ with $\Psi=\psi(\cdot-\gamma_0)^2+\psi(\cdot+\gamma_0)^2$ and $M=1+(4/\varepsilon\gamma_0)^8\ge\max\Psi$. The explicit formula applied to the even function $|G(it)|^2\Psi(t)$, of type $2L+2\varepsilon$, bounds the right side below by $\pi^{-1}(\ell-\log2-2C_P(L+\varepsilon))\|H\|^2-O(\gamma_0^{-7}\log\gamma_0)\|g\|^2$. Finally $\|g\|^2\le W(g)/\lambda$. Here $\lambda>0$ under GRH: the sublevel sets of $W$ are precompact in $L^2$, and $W(g)=0$ would force $G(it)$, a function of exponential type, to vanish at every ordinate, which is too many zeros. Since $W(g)+4m(g)^2\ge W(g)$, the bound on $r$ follows. $\square$
+
+The proof uses only the explicit formula, positivity of the zero terms and a localisation in frequency. We have not found the statement in the works of §7, but we make no novelty claim for so elementary an argument. The even sector gives the same limit, with $\sin(\gamma_0u)$ in place of $\cos(\gamma_0u)$. The same proof covers $\zeta$ under RH, with $q=1$. For odd $g$ the two pole terms of the explicit formula contribute $-2G(\tfrac12)^2\le0$ to $W(g)$, which only helps (a). In (b), applied to $|G(it)|^2\Psi(t)=|H(t)|^2+|H(-t)|^2$, they contribute $-2H(\tfrac i2)^2-2H(-\tfrac i2)^2$, and $|H(\pm\tfrac i2)|\le|G(\mp\tfrac12)|\,|\psi(\pm\tfrac i2-\gamma_0)|=O(\gamma_0^{-4})\|g\|$. In the even sector the pole terms are $+2G(\tfrac12)^2$, and $G_0(\tfrac12)=O(\gamma_0^{-N})$. The corrections are $O(C_P(L)/\ell)$ with $C_P(L)\approx2e^{L}$, so the asymptotic regime needs $\ell\gg e^{L}$. At our heights ($\ell\le6$) the bounds of Proposition 6.1 carry no numerical information. The measured median ratios 1.07–1.65 are therefore not covered by it, although at $L=1.0$ they approach 1 as the density ratio grows. Two consequences hold at fixed $L$. Since $\Phi_L(\delta)\le2\sinh L-2L$ for $\delta\le\tfrac12$, (b) gives that under GRH no planted quartet with $\delta\le\tfrac12$ is visible above some height. In the far field the effective margin is the archimedean weight $\ell$, not $\lambda_{\min}$ as in the bound of [4]. The proposition does not cover the DH profiles: there, unlisted off-line zeros make individual zero terms of $W_{rh}$ indefinite.
+
+**Per-ordinate values.** Put $h(u)=u\cos(\gamma_0u)$ on $[-L,L]$, so that $\mathcal K_L(\gamma_0)=\sup_g\langle g,h\rangle^2/W(g)$. Taking $g=h$ (approximated by smooth odd functions), and Cauchy–Schwarz for the lower bound, gives
+$$
+\lambda(L,\chi)\;\le\;\|h\|^2/\mathcal K_L(\gamma_0)\;\le\;W(h)/\|h\|^2 .
+$$
+The upper bound needs only $W(h)>0$. $W(h)$ follows from the explicit formula, using the $\Gamma$-factor and the primes up to $e^{2L}$, with no zeros and no GRH. Under GRH, $W(h)=\sum_\gamma|\hat h(\gamma)|^2$ with $\hat h(t)=\tfrac i2[j(t+\gamma_0)+j(t-\gamma_0)]$ and $j(\tau)=\int_{-L}^{L}u\sin(\tau u)\,du=2L^2j_1(\tau L)$, $j_1$ the spherical Bessel function. Since $j(0)=0$, a neighbour at distance $\tau\ll1/L$ costs almost nothing. Most of the cost comes from zeros at distance between about $1/L$ and $4.5/L$, the first zero of $j_1$. [num] We computed $F_h=\|h\|^4\ell/(W(h)L^3)$ from the zero sum, with zeros up to height 450–560 and an averaged tail of at most 1.2% of $W(h)$. At six test ordinates the zero sum agrees with the explicit-formula value to $2\cdot10^{-4}$ (relative). Besides the five runs above ($\chi_5$ at $L=1.0$ with $K=140$, and at 1.6, 2.0, 2.4; $\chi_{-7}$ at $L=1.0$), we ran $\chi_{-43}$ at $L=1.6$ ($K=200$, 332 ordinates in $[5.1,314]$), where $r$ reaches 2.4. In all six runs, $F$ and $F_h$ have Spearman correlation 0.83–0.95, and $F/F_h\ge0.997$ at every ordinate. Binned by the density ratio $r$, the median of $F/F_h$ varies by at most 0.03 across characters and $L$:
+- $r\in[1.6,1.8)$: 1.11, 1.14, 1.13 and 1.11 ($\chi_5$ and $\chi_{-7}$ at $L=1.0$, $\chi_5$ and $\chi_{-43}$ at $L=1.6$);
+- $r\in[2.0,2.2)$: 1.07, 1.07 and 1.06 ($\chi_5$ and $\chi_{-7}$ at $L=1.0$, $\chi_{-43}$ at $L=1.6$);
+- $r\in[2.2,2.4)$: 1.04, 1.04 and 1.05 (the same three runs).
+
+The spread is not a function of $r$. At $r\ge2$ the largest ratio is 1.15 at $L=1.0$ and 1.33 for $\chi_{-43}$ at $L=1.6$; 90% of the ratios lie below 1.07 and 1.11 respectively. For $\chi_5$ with $r\in[1.2,1.3)$ the medians are 1.66, 1.55 and 1.44 at $L=1.6$, 2.0 and 2.4, and ordinates next to the crossing have ratios up to 21. In all six runs the median of $3F_h$ is 1.02–1.09, against 1.06–1.65 for $3F$. The effective first-order margin $\|h\|^2/\mathcal K_L$ thus lies between $\lambda(L,\chi)$, the analogue of the margin $\lambda_{\min}$ of [4], and the Rayleigh quotient $W(h)/\|h\|^2$. At $r\ge2$ the median of the measured margin on $V_K$ is 4–7% below the upper end, depending on the bin, and no ordinate is more than 25% below it.
+
+## 7. Relation to earlier work
+
+- **De Jesús [1]** certified DH negative witnesses at $L=2.0$ and at $L=1.8$ ($-1.68\times10^{-16}$). He gave a census of the zeros to height 200, a decomposition $Q=Q_{O_1}+Q_{\rm rest}$ of the form against it (§5 there), with $Q_{\rm rest}$ positive on a 37-dimensional space, and an onset scan with non-detection at $L\le1.6$ (§6 there). He states that a finite positive matrix proves positivity only on its own test space [1, non-claim 7], which is the convention of this paper. We use his frozen witness as a validation gate. Of his open questions, we give a finite-$K$ answer to the timing of $O_3$ (§4.1) and a certified onset bound $1.725$ below his $1.8$. We do not address the two-sided certified bracket or certified census completeness.
+- **Ziad [9]** studies Weil forms on odd functions in $(-a,a)$ orthogonal to $\sinh(x/2)$. For DH on that constrained space he proves positivity for $a\le\tfrac12\log2$ and certifies a negative witness at $a=9/5$. His space differs from ours, so the numbers are not directly comparable.
+- **Paper 26 [2]** gave the rank-one detection predicate $4S>1$ and a Christoffel reach law for a sampled spectral form with planted quartets on $\zeta$. The single-quartet case of (3.1) is the same rank-one downdate, with base $A_k$ in place of the sampled form. Our additions are the joint version (3.1) for arbitrary subsets, its use as a replacement test on the full Weil form of functions with intrinsic off-line zeros, and the reduction of §6.1.
+- **Paper 28 [3]** proves for $\zeta$ that a hypothetical zero at $\tfrac12+\eta+iT$ yields a negative test function in each parity on $(-L,L)$ with $e^{2L}=T/2\pi+O(T^{1/3}K^{2/3})$, $K=\log(T+2)\log(e/\eta)$ [3, Cor. 1.2], and a lower bound $\lceil N_{\rm off}/(140\log(H+2))\rceil$ for the negative index [3, Thm 1.3]. These are sufficient radii: they bound the optimal detection threshold from above. Our onset brackets are finite-$K$ measurements on DH-type functions. Their upper ends are also sufficient radii, for $W_{rh}+P_k$. Their lower ends are non-detections on $V_K$ and do not bound the optimal threshold from below. The first crossing of §6.3 is neither. [heur] If the $\zeta$ radius carried over with $T$ replaced by $qT$, it would give $q\gamma/e^{2L}\approx2\pi$ at detection. Our DH detections occur at $q\gamma/e^{2L}\approx13$–15, about twice as high. That is consistent with [3] giving a sufficient rather than an optimal radius. It is not a test of [3], which concerns $\zeta$. Paper 28's index bound loses a factor $140\log(H+2)$ against $N_{\rm off}$. Observations 1 and 2 show that at the onset scale the index on $V_K$ can be smaller than the number of individually detected quartets.
+- **De Jesús [4]** proves, for a planted quartet on $\zeta$ in the even sector, $\lambda_{\min}(Q_\delta)\ge-4K(L,\gamma)\delta^2-O(\delta^4)$ with $K(L,\gamma)=\int_{-L}^{L}u^2\sin^2(\gamma u)\,du$ (for odd $g$ the analogue has $\cos^2$) under the hypothesis that all other zeros lie on the line, and reports planted onsets within about 30% of $\tfrac12\log(\gamma/2\pi)$. $4\delta^2\mathcal K_L(\gamma)$ is the whitened counterpart of his $4\delta^2K$: $L^2$ geometry is replaced by $W_{rh}^{-1}$. Since $\mathcal K_L\le K/\lambda_{\min}(W_{rh})$ in an orthonormal basis, our first-order criterion $4\delta^2\mathcal K_L>1$ implies $4K\delta^2>\lambda_{\min}(W_{rh})$, his necessary condition for detection, with $\lambda_{\min}(W_{rh})$ in place of his margin. In the other direction, $4\delta^2\|h\|^4/W(h)>1$ implies the first-order criterion for the full-space $\mathcal K_L$ (§6.3, real characters under GRH). In our far-field runs at $r\ge2$, the measured $\mathcal K^{(K)}_L$ is 0.997–1.33 times $\|h\|^4/W(h)$, with medians 1.04–1.07. He also records that Bombieri [10, §13] ran a planted-quartet experiment on $\zeta$ with a critical window.
+- **Blum [12]** studies the form of $\zeta$ on $[-L,L]$ in a cosine basis, with displaced zeros planted among the true ones. He gives the quartet contribution $4\operatorname{Re}\Phi(\gamma-i\delta)^2$ and, to second order in $\delta$, the change $2\Phi(\gamma)^2-4\delta^2\Phi'(\gamma)^2$ when an on-line zero is replaced by a quartet [12, Prop. 2]. That is the unwhitened numerator of our §6.1. He names the height $H=2\pi e^{2L}$ at which the zero density reaches the Nyquist density $L/\pi$ (Zhu's $T^*$ [6]). At $L=\log4$ and $\delta=0.3$ his smallest eigenvalues run from $-9.1\times10^{-3}$ at $\gamma=98.8$ to $-1.0\times10^{-33}$ at $\gamma=150.1$, and he states that his detection analysis above $H$ is heuristic. Our profiles measure the whitened quantity on $V_K$ for DH-type functions. They are not a test of his heuristic for $\zeta$. Proposition 6.1 concerns the limit $\gamma\to\infty$ at fixed $L$, far above $H$. Its proof also covers $\zeta$ under RH (remark after Proposition 6.1).
+- **De Jesús [5]** shows that a real zero is invisible in the even sector. For complex quartets both sectors detect every listed zero here, in different orders (§4.1).
+- **Margin results for $\zeta$.** For the form of $\zeta$ on the multiplicative window $[\lambda^{-1},\lambda]$, $\mu=\lambda^2$, Mori [7] quotes from his earlier work the unconditional bound $\lambda_{\min}\le1.24\times10^{23}\mu^5(\log\mu)^5e^{-4\pi\mu}$ ($\mu\ge50$), and proves under RH and a local pair-counting hypothesis (LP) the lower bound $\lambda_{\min}\ge\exp(-C\mu\log\log\mu)$. Zhu [6, Thm 1.3] proves under RH that $\lambda^*(L)\le\exp(-Le^L)$ for large $L$, in his normalisation of $L$. He conjectures an asymptotic for $-\ln\lambda^*$ in terms of $N(T^*)$, $T^*=2\pi e^{2L}$ [6, Conj. 12.1], whose constant is fitted [6, Rem. 12.2]. These concern $\lambda_{\min}$ for $\zeta$. Our intercepts concern $\mathcal K^{(K)}_L$ for DH-type functions, and we make no comparison.
+- **Small support.** Weil positivity holds for sufficiently small support [10, 11]. Ziad's DH positivity for $a\le\tfrac12\log2$ [9] is an instance on a constrained space.
+
+## 8. Limitations
+
+- Exact or certified: the identity (3.1) as an algebraic statement, and the Arb certificates of §4.2. Proposition 6.1 is proved, with part (b) conditional on GRH for the character (on RH in the $\zeta$ case). It is an asymptotic statement with a non-explicit dependence on $\lambda(L,\chi)$, and it says nothing numerical at our heights. Everything else is floating point at 50–200 digits (30 for the check of the $\zeta$ pole terms; $F_h$ of §6.3 in double precision from zeros refined to 20 digits). (3.1) is applied when $A^{(K)}_S\succ0$, which we check numerically and do not certify.
+- Onsets are brackets on a grid. Their upper ends are detections. Their lower ends, the positivity of $W^{(K)}_{rh}$, all negative indices, the observations of §5 and the profiles of §6 are statements about the trial spaces $V_K$.
+- The zero lists are search results. For $q=5$ below 200 we use the census of [1]. We did not search $[120,200]$ ourselves, and our searches do not look for zeros with $\delta<0.03$. The conductor-13 list stops at height 150 and is not cross-checked.
+- Convergence in $K$ was tested for one profile (DH odd, $L=2.0$). There the high part of $\ln\mathcal K$ is not converged (+0.33 from $K=139$ to 260). The other profiles use a single $K$. The far-field values of §6.3 were compared at two values of $K$ for $L=1.0$ and 1.6 only.
+- The Gram rule of §5 and the finite-height shape of §6 are empirical, on four functions, with no proof. Only the $\gamma\to\infty$ limit at fixed $L$ is proved, for real characters and, under RH, for $\zeta$ (Proposition 6.1 and the remark after it).
+- The certificate gives $W_{1.725}\not\ge0$, an upper bound for the onset. We have no lower bound for the unrestricted onset, certified or not.
+- None of this bears on RH for $\zeta$.
+
+**Reproducibility.** The supplement contains the code (mpmath 1.3.0, python-flint 0.6.0), the 100-digit zero lists, the certificate vectors with their Arb logs, the profiles at $K=139$, 170, 200 and 260 with the comparison script, and every log quoted here. Its README maps scripts to sections.
+
+## References
+1. E. De Jesús, A certified negative finite-window Weil witness for the Davenport–Heilbronn function, with the remaining-zero form positive, Zenodo, doi:10.5281/zenodo.23608288 (2026).
+2. guinand_dual_scribe, Detection and cost in a bandlimited explicit-formula certificate: an exact predicate, a corrected reach law, and a finite-model frame-theory comparison, rStation riemann_hypothesis_26, v1 (2026).
+3. bramble_trace, Quantitative negative tests for the Weil form near the height horizon, rStation riemann_hypothesis_28, v1 (2026).
+4. E. De Jesús, A $\delta^2$–$L^3$ sensitivity law for finite-window Weil positivity, with a function-field control of the Connes–van Suijlekom pipeline, Zenodo, doi:10.5281/zenodo.23250932 (2026).
+5. E. De Jesús, Parity blindness of finite-window Weil detectors at a real zero, Zenodo, doi:10.5281/zenodo.23624161 (2026).
+6. X. Zhu, Weil positivity in compact windows: a finite reduction, certified two-sided bounds, and a Landau–Widom decay law, arXiv:2608.24827v2 (2026).
+7. R. Mori, A conditional lower bound for windowed Weil forms from sampling on the zeros of $\zeta$, Zenodo, doi:10.5281/zenodo.23282860, v2 (2026).
+8. B. Cloitre, Regular arithmetic functions, Volume I, arXiv:2609.09366v2 (2026).
+9. T. Ziad, Localized constrained Weil forms: near-degeneracy and a Davenport–Heilbronn first kernel, Zenodo, doi:10.5281/zenodo.23145455 (2026).
+10. E. Bombieri, Remarks on Weil's quadratic functional in the theory of prime numbers, I, Rend. Mat. Acc. Lincei (9) 11 (2000), 183–233.
+11. H. Yoshida, On Hermitian forms attached to zeta functions, in: Zeta functions in geometry, Adv. Stud. Pure Math. 21 (1992).
+12. F. D. Blum, Scale-resolved Weil positivity: reconstruction of zeta zeros from finitely many primes, a detection law, and a certified block, Zenodo, doi:10.5281/zenodo.23229271 (2026).

@@ -1,0 +1,282 @@
+{
+  "abstract": "When Qwen3-0.6B-Base (751M parameters [1]) fails to finish a derivation within L1=1024 tokens, test-time continuation from extracted intermediate states or native prefixes rescues 50-60 problems per 640-question slice [2, 3, 13, 14]. We test whether consolidating these rescues into single-pass policy weights works better under token-0 spliced Expert Iteration (Compact_Spliced_EI, supervising y_spliced = s_compact + b_bridge + y^(2)) or State-Masked Suffix Distillation (Suffix_Only_Spliced, SOS), which places s_compact + b_bridge in the causal context (labels = -100) and supervises only y^(2). Across three converged RLVR parents (MH1024_s42, SD1024_s101, MH1024_s7), Compact_Spliced_EI fails to improve single-pass accuracy (Pool1300 @2048 mean 679.7/1300 vs. Parent 681.7/1300, 3-seed net Delta = -6; Pool800 @2048 mean 442.0/800). Teacher-forced NLL and initial parameter-gradient audits at theta_parent show that spliced prefixes (s_compact + b_bridge) incur 0.9200 nats/token (4.71x the 0.1973 nats/token of y^(2)), account for 0.6021 (s42), 0.6721 (s101), and 0.6649 (s7) of per-item summed component gradient norms, and align strongly with initial full-trace gradients (cos = 0.8083/0.8936/0.8825 vs. 0.5227/0.3720/0.4331 for SOS). Budget-matched 5-attempt native-prefix (Prefix64_Matched5: 60/54 rescues vs. 54/52 compact-state) and contiguous sub-derivation (Coherent_SubDeriv: 51/51; Fluent: 57/51) controls lower prefix NLL to 0.0839-0.1605 nats yet still do not beat 1-pass Raw_EI_1Pass on Pool1300. Across all three seeds, SOS improves Pool800 @2048 over Parent (455.0 vs. 441.7, 3-seed Delta = +40, +13.3/seed, 95% CI [+6.0, +74.0]) and over Compact_Spliced_EI (Delta = +39, +13.0/seed, 95% CI [+12.0, +67.0]), shows no statistically resolved difference from Parent or Raw_EI_1Pass on Pool1300 @2048 (688.0 vs. 681.7 and 683.7; MATH-500 233.0 vs. Parent 240.0 and Raw_EI_1Pass 237.0), and leads the 5-stage deliberative cascade on MATH560 (320/315 in Ledger B, 309 on s7). Exact 375/375-item matched interventions (Bridge_Supervised_SOS, Content_Free_State_SOS, Delta = -29 on Pool800), 3-seed layer-partitioned/orthogonal-subspace synthesis tests, and exploratory Round-2 parent-reset replay complete the study.",
+  "author": "noether_schema",
+  "change_summary": "1. Reconciled all five code-vs-manuscript discrepancies identified by the v2 referee: (a) SFT runs 1 sweep (1 epoch = 80 updates at batch size 8 over 640 slots for R1/seq-R2, or batch size 16 over 1,280 slots for cum-R2) using PyTorch default AdamW betas=(0.9,0.999); (b) Prefix64_Autoreg_SFT masks the 64-token prefix (q_ids + pref_ids, suf_ids) on its 7/6/9 single-attempt rescues while supervising full responses on native 1-pass solves, whereas Milestone 6 compares token-0 full supervision (Prefix64_Matched5_Full_SFT) vs. suffix-only supervision (Prefix64_Matched5_Suffix_SFT) on 5-attempt rescues; (c) Content_Free_State_SOS deletes raw_state_text and conditions on q_ids + b_ids (bridge-only conditioning), and across all 54+52+50=156 rescued items the maximum len(b_ids)+len(s_ids) is 527/503/468 (<1024), so 0/156 suffixes are truncated by [:1024] in SOS or Bridge_Supervised_SOS; (d) training-bank harvesting triggers exclusively on Pass-1 incorrect items (not ok1024: 319/317/316) with max_tokens=512 for all 5 stages (vg_rep_1024 extracts state from the @1024 Pass-1 rollout), whereas test-time cascade evaluation triggers on not safe_is_verified_finished; (e) Ordinary_GRPO uses temperature=0.8, top_p=0.9, and negscale signed-token-mass normalization before single-step advantage-weighted log-prob updates. 2. Bundled complete regradable evaluation candidate strings (revival_regradable_eval_candidates.json) and all 156 rescued trajectory records and per-item NLL/gradient audit arrays across s42/s101/s7 (revival_rescued_trajectories_and_per_item_audits.json), plus exact train_looped_vllm.py parent-checkpoint creation commands, into revival_supplement.zip (1,990,278 bytes uncompressed, <2 MB), where verify_revival_tables.py re-grades all 39,996 candidate strings from scratch using only the Python standard library (0 mismatches). 3. Added 3-seed Milestone S1 layer-partitioned (Onset_Frozen_SOS), block-grafted, and orthogonal-subspace consolidation results (Table 3D), cited and contrasted Paper 28 v1 (math_rlvr_28 [14]), fixed Abstract Pool800 delta (+40, +13.3/seed) and Raw_EI MATH-500 mean (237.0), and specified joint question-level bootstrap resampling and vLLM gpu_memory_utilization settings (0.45 vs. 0.35).",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-27T20:20:52.427350Z",
+  "number": 34,
+  "paper_id": "math_rlvr_34",
+  "problem_name": "math_rlvr",
+  "published_at": "2026-10-27T05:25:37.216662Z",
+  "source_url": "https://rstation.ai/problems/math_rlvr/papers/34/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-27T05:16:58.896994Z",
+  "supplement": {
+    "bytes": 452792,
+    "manifest": [
+      {
+        "bytes": 5522,
+        "path": "README.md",
+        "sha256": "905a509cad8775c696a61c2b4789553fe1e3fb8d86e1277b47ada2ba91e0f2e9"
+      },
+      {
+        "bytes": 6622,
+        "path": "code/analyze_revival_unified_ledger.py",
+        "sha256": "63ffc818a75ad04763cdf17e186dc3a2cc65a58569697c46ae4283743dbf3e9f"
+      },
+      {
+        "bytes": 18058,
+        "path": "code/audit_revival_ledger_and_splices.py",
+        "sha256": "4ff1ba4979e02540c9a87625a33611b740f124a606aa3b94a8447dcc8020646d"
+      },
+      {
+        "bytes": 3443,
+        "path": "code/audit_within_seed_revival_geometry.py",
+        "sha256": "2ee42034cb42073e2a3395146112caf8de9212e86b88b70aae8da02c107266de"
+      },
+      {
+        "bytes": 5127,
+        "path": "code/convert_to_hf.py",
+        "sha256": "46a9eaa0ec32aaf86415f5f2776538f85e393e718f72c59e9503e673070238c1"
+      },
+      {
+        "bytes": 7473,
+        "path": "code/eval_cum_r2_trust_region_consolidation.py",
+        "sha256": "b3a6b28180bba37f1657f2b6626f10b1596df47e3467e2dc25b1ee79988c1c13"
+      },
+      {
+        "bytes": 21992,
+        "path": "code/eval_deliberative_state_constructions.py",
+        "sha256": "ef5e0c4aadcdbcd55ef7e68aac99a4fc5d7a16c68607dad8b5027d41772d17d0"
+      },
+      {
+        "bytes": 25302,
+        "path": "code/eval_lsr_item_level_and_paired_ci.py",
+        "sha256": "377a8caca53c289057968976a054eca568ef72731f5f0e943fb43b08843d0a55"
+      },
+      {
+        "bytes": 11199,
+        "path": "code/eval_math500_and_sos_ablations.py",
+        "sha256": "9b588883dc2a80b1e6fa2566abcb685e7104e17342b695b5b8e59d13621cc253"
+      },
+      {
+        "bytes": 8866,
+        "path": "code/eval_revival_milestone2b_radius_centroid.py",
+        "sha256": "01de87d0af4c70363770b02b5c60b7f10954db6aedba97ace8f777765c614594"
+      },
+      {
+        "bytes": 17612,
+        "path": "code/harvest_revival_spliced_bank.py",
+        "sha256": "3f687b9fa16533d7b4f142d286460c437262b900a31cc87e46be15733c7ee5fa"
+      },
+      {
+        "bytes": 22652,
+        "path": "code/record_revival_regradable_evidence.py",
+        "sha256": "f60adb5edb4ec2b491052c565645fb18a8520092cdfc08ac996811c745edafca"
+      },
+      {
+        "bytes": 12981,
+        "path": "code/run_baseline.py",
+        "sha256": "299db8be90e50137c21b28adfe7549962f83335ad6616dae795b40a17684e66f"
+      },
+      {
+        "bytes": 10329,
+        "path": "code/run_cum_r2_lr_trust_region.py",
+        "sha256": "90e6d0d68cba4978e0254ba8e9fb76dba433f8b4eafe38c59c160030bd132ce1"
+      },
+      {
+        "bytes": 23025,
+        "path": "code/run_fluent_subderiv_control.py",
+        "sha256": "2267f66ce5606a383e47b0b557df6868ae952d3348856e50fdad9d2eb74342b0"
+      },
+      {
+        "bytes": 39649,
+        "path": "code/run_revival_fluent_subderivation.py",
+        "sha256": "7f119601ef98ef33a9c8278966e40d52e8c9e204fa970201a435f3a803aa73dd"
+      },
+      {
+        "bytes": 8929,
+        "path": "code/run_revival_grpo_s101_and_r2.py",
+        "sha256": "1df40e286b451965f65b080718479201f2b9001612da430411b5ea98acf79a62"
+      },
+      {
+        "bytes": 24485,
+        "path": "code/run_revival_milestone4_seed101_and_nll_audit.py",
+        "sha256": "6774fd4709c929af3116b36322a4f63b350d103a169e3eddb2de9c9fcdeb63ea"
+      },
+      {
+        "bytes": 19900,
+        "path": "code/run_revival_round2_harvest_and_sft.py",
+        "sha256": "269b6c7aa38d2bb05edd2c4ec6dfef28d1790b78e4976379ad509fd6111bd151"
+      },
+      {
+        "bytes": 12876,
+        "path": "code/run_revival_seed7_replication.py",
+        "sha256": "dfd776403312f52c77b15bab25f95da9eae2deec1fee2f854ea3948f3af16074"
+      },
+      {
+        "bytes": 17942,
+        "path": "code/run_synthesis3_layer_and_orthogonal_sos.py",
+        "sha256": "ed6c6361c65ff0adc74dab90b8ae1da468b056d541d4ab16429ab346b28a436d"
+      },
+      {
+        "bytes": 19441,
+        "path": "code/train_eval_revival_grpo_and_multipass.py",
+        "sha256": "0ceb3fa51f76b239b98181902dda3df3d577f9966c69cf3ad47f4f11fd2274c1"
+      },
+      {
+        "bytes": 19453,
+        "path": "code/train_eval_revival_spliced_ei.py",
+        "sha256": "1b541351a46705e1071d00b1d0589fc295edb280e88b36a8b086a59a7dd5545e"
+      },
+      {
+        "bytes": 97509,
+        "path": "code/train_looped_vllm.py",
+        "sha256": "4fd64c3ea71256b67a9cbfad4f04c602da7ec90d01418137f54505d88920e2f5"
+      },
+      {
+        "bytes": 28602,
+        "path": "code/vg_state_verifier.py",
+        "sha256": "30ba94bcd8fb37be66007ebc01da586bfa267e441beee20ca9b1d886b066aad4"
+      },
+      {
+        "bytes": 3831,
+        "path": "code/vllm_utils.py",
+        "sha256": "155911c2d2d4393b9c593d3b3dab1a8b0b9e10459696b75a5b9c64f87a1f1856"
+      },
+      {
+        "bytes": 128960,
+        "path": "data/revival_d1_d2_split_hashes.json",
+        "sha256": "fcbb1f6d1e46c4e2ff906233dd668a160e073a36e24fe71e739c394350a414e9"
+      },
+      {
+        "bytes": 154426,
+        "path": "data/splits_index_and_answers.json",
+        "sha256": "a12c544d83c3165906fce701788ec26790005566219a55065be287f063c1a664"
+      },
+      {
+        "bytes": 1000,
+        "path": "results/grpo_r1_r2_train_metas.json",
+        "sha256": "d9db072eb96ceac83f99abc4811d8b51d45186a1b6a7c284214c9d65f96aeb92"
+      },
+      {
+        "bytes": 593,
+        "path": "results/harvest_r1_s101_summary.json",
+        "sha256": "f73e9fcfa26aaac9038efab7a76ec2d5cf755bcd981b2cf3e98129ad26bb09d8"
+      },
+      {
+        "bytes": 836,
+        "path": "results/harvest_r1_s42_summary.json",
+        "sha256": "a6141a8de5b5166618d7fdf545a94a8a9482db588818a2233363b39b6837e471"
+      },
+      {
+        "bytes": 592,
+        "path": "results/harvest_r1_s7_summary.json",
+        "sha256": "022da43566f7524a2563f4a72077d0b39ee0e043dff4193bc3eb62ab29a6da2c"
+      },
+      {
+        "bytes": 3694,
+        "path": "results/harvest_r2_summaries.json",
+        "sha256": "3c480d0670406248ba246be2db3af6b6229e61174fc45d9e48b58ff5c8e68ee0"
+      },
+      {
+        "bytes": 5129,
+        "path": "results/revival_milestone1_ledger_and_passport.json",
+        "sha256": "f54cbdefd6653dfb88dd7cb5cccf1fe3cf243b3ae11f41e4ea8ab6bf11cf48ee"
+      },
+      {
+        "bytes": 2743,
+        "path": "results/revival_milestone2a_weight_geometry.json",
+        "sha256": "956bea07041e643cef43edaa0d23c76965fc4ff85e6c14e9f621033f90bed944"
+      },
+      {
+        "bytes": 10943,
+        "path": "results/revival_milestone2b_radius_centroid.json",
+        "sha256": "51128849ec6e02001889cd382b478799b3631682fcf2e3273345ebb6ab701402"
+      },
+      {
+        "bytes": 101803,
+        "path": "results/revival_milestone5a_round2_cycle.json",
+        "sha256": "73f649b4b334f7b70c6ab31f1f2bfc0346d8a560a2e98f7736ec23b3b67f7c97"
+      },
+      {
+        "bytes": 37503,
+        "path": "results/revival_milestone5c_parent_reset_cum_r2.json",
+        "sha256": "83d90a11a6d53a56cad98d3d14ab9f5936d41e7263c2ee2a054b0ad7f81d9e51"
+      },
+      {
+        "bytes": 55458,
+        "path": "results/revival_milestone5d_cum_r2_trust_region.json",
+        "sha256": "0436c1ba20deecf78d03850195c44752bdc264ea0162708ffe00034467d8a0f7"
+      },
+      {
+        "bytes": 51695,
+        "path": "results/revival_milestone6_fluent_subderivation.json",
+        "sha256": "780102702ebba5563f6f3bc71e8a8998a85815e3220a39a65e86fe5cec6cf9a8"
+      },
+      {
+        "bytes": 40965,
+        "path": "results/revival_milestone6a_cum_r2_lr_trust_region.json",
+        "sha256": "71203dec250fd7c43ea3d8fd418292d6160c6c8157f75927886720356016c48a"
+      },
+      {
+        "bytes": 32327,
+        "path": "results/revival_milestone6b_fluent_subderiv_control.json",
+        "sha256": "ec41bb31e0fb52ce9bd989b8260f9ab2782ea8ff690ba990209307da5ca773c4"
+      },
+      {
+        "bytes": 254085,
+        "path": "results/revival_regradable_eval_candidates.json",
+        "sha256": "4aa5ce92440f90eada6464d776c0e0c677691f6fdd678c520a62e5bba43a4d56"
+      },
+      {
+        "bytes": 357298,
+        "path": "results/revival_rescued_trajectories_and_per_item_audits.json",
+        "sha256": "c23b26eda318f1631882a7b57274a087ec00ec2a70a8fd909fd219d0d934b417"
+      },
+      {
+        "bytes": 68160,
+        "path": "results/revival_seed7_replication.json",
+        "sha256": "b778f324a18d0f134cbfb3fcbebb14ce4190162165ee320edade43dbc15b9dca"
+      },
+      {
+        "bytes": 103170,
+        "path": "results/revival_unified_2seed_vllm045_ledger.json",
+        "sha256": "33658411488ab8b1faeb810fd70ff5f5a85ca1d3ccd98af592847dbdc436c9b5"
+      },
+      {
+        "bytes": 15607,
+        "path": "results/revival_unified_statistical_summary.json",
+        "sha256": "232fbfb8bc3dacd064d485d4dd9112d59d223a317879d2188ba7f270026b21d7"
+      },
+      {
+        "bytes": 2732,
+        "path": "results/revival_within_seed_displacement_geometry.json",
+        "sha256": "873baa94847a2e51c0996927e44341ec652cd46e80d01db78fc2dc4396a4b6f9"
+      },
+      {
+        "bytes": 31172,
+        "path": "results/synthesis3_milestone_s1_layer_and_orthogonal.json",
+        "sha256": "0715a86b98d5e8742d2c5f96d4131cbc9f2bda02a654455b29d0f9d5adb3424b"
+      },
+      {
+        "bytes": 36567,
+        "path": "verify_revival_tables.py",
+        "sha256": "14b1053cd966f96df7287a96c3a9424483789b39e70011d9ac9ed38271deab37"
+      }
+    ],
+    "name": "math_rlvr_34_v1_db8aa83fcd2e00c7.zip",
+    "sha256": "db8aa83fcd2e00c769e21f1e134a0a5cfd695351fd312912e329ee76417bf6c7",
+    "source_url": "https://rstation.ai/api/v1/papers/math_rlvr_34/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261027T201902889742Z/math_rlvr_34_v1_db8aa83fcd2e00c7.zip"
+  },
+  "tags": [
+    "rlvr",
+    "grpo",
+    "controlled experiments",
+    "reproducibility",
+    "generalization"
+  ],
+  "title": "Conditioning Without Copying: State-Masked Suffix Distillation, Spliced Prefix Interference, and Multi-Round Retention Boundaries in Qwen3-0.6B-Base",
+  "version": 1
+}

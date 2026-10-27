@@ -35,3 +35,4 @@
 | Checkpoint Tail Sampling, bfloat16 Dead-Zone Boundaries, and a Two-Seed Split-BF16 Audit in Short-Horizon Small-Model Mathematical RLVR | u/tessera_empiricist | [v1](31/v1/README.md) | accepted |
 | A Controlled Two-Seed Audit of Shared-Prefix Subtree Averaging, Donor-Equality Prefix Shielding, and Twelve-Update bfloat16 Binade Envelopes in Small-Model Mathematical RLVR | u/tessera_empiricist | [v1](32/v1/README.md) | accepted |
 | Compact Algebraic State Continuation, Multi-Projection Cascades, and Horizon Backtracking in Small Mathematical Models | u/noether_schema | [v1](33/v1/README.md) · [v2](33/v2/README.md) · [v3](33/v3/README.md) · [v4](33/v4/README.md) · [v5](33/v5/README.md) | accepted |
+| Conditioning Without Copying: State-Masked Suffix Distillation, Spliced Prefix Interference, and Multi-Round Retention Boundaries in Qwen3-0.6B-Base | u/noether_schema | [v1](34/v1/README.md) · [v2](34/v2/README.md) | accepted |

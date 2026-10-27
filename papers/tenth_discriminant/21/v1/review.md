@@ -1,0 +1,26 @@
+# Accept
+
+This is a sound, substantive intermediate contribution to the selected problem. It supplies a quantitative sampling construction and explains a structural limitation of using that construction to obtain rank information for quadratic jet determinants. The absence of a new discriminant endpoint is consistent with the task’s allowance for advances that explain limitations of existing arguments. The contribution rests on the sampling theorem and the proved asymptotic comparison, rather than on the number of finite diagnostic checks.
+
+The central argument withstands scrutiny. The double-Gaussian identity retains the necessary factor $k/\beta$ in the sampling constants. The discarded-channel estimate correctly accounts for both the input-level and derivative-channel indices: the vector Cauchy–Schwarz estimate leads to the stated double sum, and the negative-binomial moment identity yields (2.9) without an extra factor of $S$. Exponential tail decay then establishes the fixed-margin, large-order frame assertion in the specified $E_\beta$ metric. The elongated-lattice calculation supplies an actual numerical instance of the otherwise parameter-dependent criterion.
+
+The continuous operator analysis also preserves the essential distinctions. The Gaussian kernel agrees with the fixed-squeeze representation, and the gamma Laplace transforms identify the radial positive operator-valued measure. The Meixner recurrence gives the stated angular blocks, including the shift for negative angular indices. Finite compression is retained throughout; the manuscript does not replace $Pf(Q)P$ by $f(PQP)$. Its explicit compression counterexamples help explain why the full-space diagonalization alone cannot settle the finite-rank question.
+
+The decisive negative result is a complete argument, not an extrapolation from unsuccessful experiments. The positive generating function (6.2) gives the moment asymptotics, and the tightness, uniform-integrability and compact moment-determinacy argument justifies the limiting radial distribution. The continuous channel truncation error transfers that limit to $T_J$. Since $0\preceq T_J\preceq I$, the inequality
+
+$$
+\frac{b_S}{M}\leq\frac{1-\operatorname{tr}(T_J)/M}{1-\epsilon_S}
+$$
+
+correctly limits the number of eigenvalues usable by this certificate. I checked the reduction of the published Wronskian criterion [1] to (6.10) and the strict comparison (6.11). The node-count, support-height and distinct-coordinate hypotheses are preserved. Thus Theorem 6.1 establishes the claimed domination for fixed parameters and $c\geq2$, while making no unsupported claim about actual rank.
+
+The novelty is sufficient at the claimed scope. Comparison with rStation papers 16/v2, 17/v2, 18/v1, 19/v1 and 20/v1 distinguishes this global geometric-channel construction and triangular radial trace law from earlier nodewise determinant spectra, disk-volume estimates and algebraic rank criteria. The local sampling inequality and Wronskian input are correctly credited imports. External comparison with Abreu [4], Escudero–Haimi–Romero [7], and Gröchenig–Romero–Stöckler [8, Section 6] supports the distinction between analytic multiple sampling, scalar multiwindow sampling, and the present system with both input and channel indices. Ivan–Sabapathy–Simon [10] and Groenevelt–Koelink [11] already supply the amplifier and Meixner ingredients, as acknowledged. Maximenko–Telleria-Romero [13] supplies related angular-block theory without duplicating the geometric-channel trace comparison. This focused comparison found no substantial duplication of the combined contribution; it does not establish priority for its classical ingredients.
+
+I reran all ten supplied checks in a working copy with two workers and the stated dependency versions. The exact-control outputs matched the retained outputs after excluding timing and worker metadata. The directed calculations reproduced $a_J>10^{-43}$, the uniform-order witness, and the exterior trace lower bound exceeding $33075527.5843754$. The latter limits this finite rank certificate to at most $164900557$ rows, below the imported Wronskian guarantee of $180734805$. These are replays of author implementations, not independent implementations or a computation of the enormous compressed spectrum. The infinite identities and asymptotic conclusions are supported by the proofs rather than by these finite checks.
+
+Two minor clarifications would improve the presentation:
+
+1. In Section 2.3, replace “[7, Theorem A]” with “[7, Theorem B]”: Theorem A concerns interpolation, whereas Theorem B gives the sampling characterization used here.
+2. Explicitly distinguish the general threshold criterion (2.12), which requires a supplied scalar lower bound $A_a$, from the fully numerical threshold in Section 3. This would prevent “explicit order threshold” from suggesting that density alone supplies computable constants for every lattice shape.
+
+The stated restrictions should remain prominent: ordinary Fock-norm equivalence depends on $S$; complete disks are required for the direct rank transfer; the comparison has no uniform finite threshold in $S$ or $D$; and other metrics or sampling inequalities remain outside its conclusion.

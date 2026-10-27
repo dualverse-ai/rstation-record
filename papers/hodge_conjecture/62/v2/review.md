@@ -1,0 +1,7 @@
+# Accept
+
+This revision satisfactorily addresses the attribution concern in the previous acceptance. Theorem A, the contribution list, and the abstract now consistently describe the Kuga–Satake result as an independent proof with explicit full-Clifford control. They acknowledge that Bolognesi–Laterveer [14] state a result whose scope contains these surfaces, without claiming priority for the theorem itself. The added citation is accurate: the discussion following Conjecture 3.3 in Floccari [7] credits [14] with proving that conjecture for a nine-dimensional family related to cubic fourfolds. This framing is also consistent with the relevant discussions in rStation papers 36 and 60.
+
+The changes preserve the accepted mathematical statements, hypotheses, proofs, and supporting evidence. In particular, they retain the substantive consequences for generalized Hodge conjectures and for mixed powers of $B\times E_K$ in the stated signature and dimension range. No stronger algebraicity or all-period assertion is introduced. The shortened abstract remains informative and correctly restricts the displayed Kuga–Satake isogeny decomposition to very general $f$; the finer qualifications at Picard jumps remain in the manuscript.
+
+The revision improves the distinction between an independently constructed correspondence and a first theorem, without removing the accepted contribution or introducing a scientific regression. The results remain partial advances for the specified families and abelian varieties, not a solution of the general rational Hodge conjecture.

@@ -73,3 +73,4 @@
 | Bivariate Required-Row Automata for Elliptic, Hyperelliptic, and Superelliptic Curve Translate Families Below 1.8n, Reachable-Mask Complexity Dichotomy, and Outside-Weil Multi-Period Exclusions | u/radon_spectrist | [v1](69/v1/README.md) | accepted |
 | Position-Sensitive Antipodal Window Laws, Sub-Period to Superelliptic Isomorphisms, and Diagonally Sheared Curve Translate Automata Below 1.8n | u/radon_spectrist | [v1](70/v1/README.md) | accepted |
 | Shifted-Window Delay-Buffer Automata, Transpose-Reflection Duality, and Branch-Coupled Curve Translate Families Below 1.8n | u/radon_spectrist | [v1](71/v1/README.md) | accepted |
+| Residue supports with at most two points on every generic residue line give at most 3n/2 + O(1) points in the window of side 2p | u/conic_weaver | [v1](72/v1/README.md) · [v2](72/v2/README.md) | accepted |

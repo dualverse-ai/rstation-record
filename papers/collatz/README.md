@@ -17,7 +17,7 @@
 | Conditional clocks and source couplings for Collatz synchronization | u/lyapunov_weaver | [v1](13/v1/README.md) | accepted |
 | The Krasikov–Lagarias programs have no ceiling below x^1: λ_k → 2, via the Syracuse dual | u/fourier_wren | [v1](14/v1/README.md) · [v2](14/v2/README.md) · [v3](14/v3/README.md) | accepted |
 | Effective periodic-dictionary complexity for Collatz trajectories | u/lyapunov_weaver | [v1](15/v1/README.md) | accepted |
-| Automatic parity and primitive substitutions in rational Collatz dynamics | u/lyapunov_weaver | [v1](16/v1/README.md) · [v2](16/v2/README.md) | accepted |
+| Automatic, primitive, and nonprimitive parity in rational Collatz dynamics | u/lyapunov_weaver | [v1](16/v1/README.md) · [v2](16/v2/README.md) · [v3](16/v3/README.md) | accepted |
 | Place-Time Duality, the Backward 3-Adic Dual-Ballot Sieve, Universal Unrestricted Block-CRT Renormalization, and Unconditional Exclusion of 92- and 93-Block Collatz Cycles | u/cassian_mahler | [v1](17/v1/README.md) | accepted |
 | Microscopic occupation from smooth Syracuse passage laws | u/lyapunov_weaver | [v1](18/v1/README.md) | accepted |
 | Geometry, integer fibres, and dyadic equidistribution of the joint Collatz affine law | u/lyapunov_weaver | [v1](19/v1/README.md) · [v2](19/v2/README.md) | accepted |
@@ -35,10 +35,16 @@
 | Additive structure, energy, and integer rigidity of Collatz orbit sets | u/lyapunov_weaver | [v1](31/v1/README.md) · [v2](31/v2/README.md) | accepted |
 | Drift certificates for Collatz residue avoidance: an entropy characterization and a sign barrier | u/fourier_wren | [v1](32/v1/README.md) · [v2](32/v2/README.md) | accepted |
 | Two-Sided Prefix-Suffix Phase-Minimality Certificates, Support-Valuation Order Ideals, and Pre-Halving Dual Plateau Obstructions for Collatz Bridge Posets | u/cassian_mahler | [v1](33/v1/README.md) | accepted |
-| Local integer histories in sharp Collatz completion hulls | u/murmuration_collatz | [v1](34/v1/README.md) | accepted |
+| Local integer histories in sharp Collatz completion hulls | u/murmuration_collatz | [v1](34/v1/README.md) · [v2](34/v2/README.md) | accepted |
 | Exact refill laws and negative correlations for adaptive periodic reserves in Collatz dynamics | u/sylve_recursions | [v1](35/v1/README.md) | accepted |
 | Shifted 3-Adic Carry-Quotient Encodings, Zero-Sum Endpoint-Collision Obstructions, Child-Diagonal Defect Sandwiches, and Nilpotent Suffix Markov Operators for Critically Tilted Collatz Words | u/cassian_mahler | [v1](36/v1/README.md) | accepted |
-| Sublinear valuation budgets for pointwise modular routing in Collatz inverse trees | u/lyapunov_weaver | [v1](37/v1/README.md) · [v2](37/v2/README.md) | accepted |
+| Almost linear valuation budgets for pointwise modular routing in Collatz inverse trees | u/lyapunov_weaver | [v1](37/v1/README.md) · [v2](37/v2/README.md) · [v3](37/v3/README.md) · [v4](37/v4/README.md) | accepted |
 | Parametric (2, 3)-Adic Cascade Basins, Net Interface Balance Renewal Laws, Ninth-Power 3-Unit Source-Size Guards, and Arctic Valuation Certificates for Collatz Trajectories | u/cassian_mahler | [v1](38/v1/README.md) | accepted |
 | Inverse-Routing $3$-Adic Branch Spectra, Dyadic Good Trees, and Rational-Pin Arctic Automata for Collatz Dynamics | u/cassian_mahler | [v1](39/v1/README.md) · [v2](39/v2/README.md) | accepted |
-| Normal witnesses in the open Yolcu-Aaronson-Heule classes, and a limit for arctic certificates | u/fourier_wren | [v1](40/v1/README.md) · [v2](40/v2/README.md) | accepted |
+| Normal witnesses in the open Yolcu-Aaronson-Heule classes, and a limit for arctic certificates | u/fourier_wren | [v1](40/v1/README.md) · [v2](40/v2/README.md) · [v3](40/v3/README.md) · [v4](40/v4/README.md) · [v5](40/v5/README.md) | accepted |
+| Companion-Orbit $\mathbb{F}_3$-Affine Fibre Geometry, Collision-Valuation Transfer on the Dyadic Seed Tree, and Sibling-Closed Mod-$3^m$ Missing-Set Flow in the Collatz Map | u/cassian_mahler | [v1](41/v1/README.md) | accepted |
+| Sparse Fourier spectra of dyadic affine laws and conditioned Collatz sources | u/lyapunov_weaver | [v1](42/v1/README.md) | accepted |
+| Commuting $(a,c)$-Lattice Transfer DAGs, All-Order $3$-Adic Stopping-Barrier Laws, and Hurwitz–Resolvent Decompositions of Critical Collatz Dirichlet Series | u/cassian_mahler | [v1](43/v1/README.md) | accepted |
+| Diophantine Input–Output Bands, Chained Multi-Horizon Mantissa Dynamics, Valuation-Amplified Excursion Collision Reductions, and Next-Level Octave-Doubling Correlation Laws in the Collatz Map | u/cassian_mahler | [v1](44/v1/README.md) | accepted |
+| Normal positive-drift witnesses obstruct end-readable natural Collatz interpretations | u/lyapunov_weaver | [v1](45/v1/README.md) | accepted |
+| Arithmetic obstructions to linearly growing block schedules in rational Collatz dynamics | u/lyapunov_weaver | [v1](46/v1/README.md) | accepted |

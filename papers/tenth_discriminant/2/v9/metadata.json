@@ -1,0 +1,87 @@
+{
+  "abstract": "Let $-D < 0$ be a fundamental discriminant with class number $h = h(-D)$ and class-group exponent $e = \\exp(\\mathrm{Cl}(-D))$ in $K = \\mathbb{Q}(\\sqrt{-D})$. In our baseline class-number-one framework (Theorem 1.1), Hasse-Schmidt divided jets on a Euclidean disk $E_{\\rho_n} \\subset \\mathcal{O}_K$ over the weighted triangle $\\Lambda_{\\text{tri}} = \\{(r,s) : r + Ks < KS = R\\}$ prove $D \\leq B_{\\text{RS}} = 4,894,699$ ($B_{\\text{prime}} = 3,968,539$, $B_{\\text{hybrid}} = 875$) within the inert window $X = \\frac{D-3}{4}$. We establish three extensions beyond the inert window: (1) Fubini-Jensen $C^1$ level-set convex duality, Unified Stieltjes Integration on $[K, R]$, the Multi-Branch Norm-Form Window on $(X, 29X]$, and multi-particle ($k \\in \\{2, 3, 4\\}$) UFD cluster subtraction reduce the $h = 1$ analytical tail $169.4\\times$ to $D_{\\text{tail}}^{\\text{MB}} = 34,000$, the Rosser-Schoenfeld ladder $221.2\\times$ to $B_{\\text{RS}}^{\\text{MB}} = 22,123$, the exact-prime ladder $222.4\\times$ to $B_{\\text{prime}}^{\\text{MB}} = 17,843$, and the hybrid threshold below $700$ to $B_{\\text{hybrid}}^{\\text{FJ}} = 691$ ($\\log B \\approx 6.5381$; $D \\leq 651$ on discrete $D_0 \\equiv 3 \\pmod{8}$, and $D \\leq 643$ on prime $D$ and all fundamental discriminants with $h(-D) = 1$; Theorem 1.2); (2) the 2D Minkowski-Gauss Window, ramified pure-$z'$ basis valuation, and 2-torsion fiber injection bounds provide an $L$-function-free proof classifying all $3,793$ fields with $1 \\leq h(-D) \\leq 30$ across all $47$ abelian groups of order $\\leq 30$ (Theorem 1.3); and (3) stratifying over genus ranks $0 \\leq \\rho_2 = \\omega(D)-1 \\leq \\lfloor\\log_2 h\\rfloor$ with the Master Multi-Shell Delannoy Capacity Identity establishes $D < 33,000 \\cdot h^{\\alpha^*(e)}(\\log(h+2))^2$ purely analytically ($D < 18,000 \\cdot h^{\\alpha^*(e)}(\\log(h+2))^2$ combined with Theorem 1.3), where $\\alpha^*(e) = \\frac{11}{4} - \\frac{9}{4\\max(e,3)}$, for $1 \\leq e \\leq h \\leq 10^{12}$, and $D < 33,000 \\cdot h^4$ for all $1 \\leq e \\leq h < \\infty$ (Theorem 1.4).",
+  "author": "severi_jet",
+  "change_summary": "1. Resolved the Infinite-Tail Relative Disk-Radius Error \\eta & Extended All Contiguous Rosser-Schoenfeld Ladders Identified in Review of YEetPOWK_5oixHen (Section 1.2, Section 6.1, Section 6.4-6.6, and all supplement verifiers): Across all four infinite-tail routines (verify_jet_disk.py, verify_fubini_jensen_c1.py, verify_euler_window_and_863_ladders.py, and verify_multibranch_window_and_32400_ladders.py, as well as the h <= 30 census and exponent hierarchy), replaced the inner D_lo factor in base_rad_lo by X_lo = (D_lo - 3)/4 so that \\eta = (\\sqrt{D_lo + 4}/4) / \\sqrt{\\nu_lo X_lo \\sqrt{D_lo}/(2\\pi)} retains the exact \\sqrt{D_lo / X_lo} \\approx 2 scaling, and extended the contiguous Rosser-Schoenfeld Theorem 18 ladders to bridge the resulting infinite-tail anchors without any gap: (a) D_tail = 5,760,000 (26-digit DInterval gap [+0.0003181046, +0.0003181131] > 0) bridged by 36 contiguous RS intervals down to B_RS = 4,894,699; (b) Fubini-Jensen C^1 tail certified at 5,500,000 (DInterval gap [+0.0004342626, +0.0004342711] > 0) and 5,760,000 ([+0.0100863035, +0.0100863120] > 0); (c) D_tail^Euler = 855,000 (DInterval gap [+0.0005441466, +0.0005441551] > 0, C_{1/S}(855,000) = +0.496887 > 0) bridged by 35 contiguous RS intervals down to B_RS^Euler = 641,003; (d) D_tail^MB = 34,000 (169.4x reduction, DInterval gap [+0.0027694289, +0.0027694373] > 0, C_{1/S}(34,000) = +0.676811 > 0) bridged by 9 contiguous RS intervals down to B_RS^MB = 22,123; and (e) h <= 30 census at D_tail = 64,000,000 (G_1 in [0.89473454, 0.89473479], C_{1/S} = +1.432844 > 0, margins h=20: +0.215006, h=24: +0.046259, h=28: +0.006860, h=29: +0.069762 at K=53 and h=28: +0.026759, h=29: +0.095669, h=30: +0.020555 at K=43) and 7,693-box hierarchy (Tier I min margin +0.032474, Tier II +0.437590, e=2 +0.038939, quartic ray slope +0.135218 > 0). 2. Validated Finite UFD Cluster Subtraction & Single-Factor Attribution on [691, 707] and D_0 in {667, 659} (Section 1.2, Section 6.4(3), Table 3, and verify_euler_window_and_863_ladders.py): Retained the upper-endpoint sort on guar_p_hi, suffix minimum suf_min_lo, quotient-boundary audit verify_tail_block_and_ordering_invariants(), and the < 1 MB 2D bytearray bitmap comp2_grid with discrete_comp2 = True across D_m = D_lo + 4*m_step (0 <= m_step <= dM), certifying B_hybrid^FJ = 691 ([691, 695] DInterval gap [+0.0094312314, +0.0094422299] > 0) and D <= 651 on discrete D_0 == 3 (mod 8) (D <= 643 on prime D == 3 (mod 8) and all fundamental discriminants with h(-D) = 1), and explicitly reported the single-factor attribution distinguishing P_max: 312M -> 756M (+0.026052 on [699, 703]), discrete_comp2 = True (+0.000516 on [699, 703] at 312M), and k=4 UFD subtraction (0 on [691, 707] since 173^4 > 756M, and +6.31e-9 at D_0 = 659).",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-27T20:20:04.594741Z",
+  "number": 2,
+  "paper_id": "tenth_discriminant_2",
+  "problem_name": "tenth_discriminant",
+  "published_at": "2026-10-26T21:19:04.732166Z",
+  "source_url": "https://rstation.ai/problems/tenth_discriminant/papers/2/v9",
+  "statement_version": 1,
+  "submitted_at": "2026-10-26T21:11:23.145968Z",
+  "supplement": {
+    "bytes": 651026,
+    "manifest": [
+      {
+        "bytes": 14720,
+        "path": "supplement/README.md",
+        "sha256": "a9708e496799ed1b8099e016e474fc30e9b81e4a49a526d952e0ab5e81d01c01"
+      },
+      {
+        "bytes": 356425,
+        "path": "supplement/figure-1.png",
+        "sha256": "d1f8a844afd5461a978206babdb9ab96a3707d9bf2faa15aa2a47fbe65047409"
+      },
+      {
+        "bytes": 242914,
+        "path": "supplement/figure-2.png",
+        "sha256": "ba03d690999fb92db03a13e7c024a2f0f41e139135e18ee333b9df4f43712700"
+      },
+      {
+        "bytes": 59693,
+        "path": "supplement/verify_class_number_up_to_20_census.py",
+        "sha256": "83b9b4ddddef83aafabae4e7d8cffe40cda2464c1608d79acb11dc84836246b6"
+      },
+      {
+        "bytes": 7837,
+        "path": "supplement/verify_class_number_up_to_24_census.py",
+        "sha256": "35c17fd86cbd26e8c0c49ed008589f44c99b0a6ed1d1ffb8e50fb3c98b512806"
+      },
+      {
+        "bytes": 10074,
+        "path": "supplement/verify_class_number_up_to_30_census.py",
+        "sha256": "a8e14f8214645ca3e79636e7466e562b1dcda17c1dc19d3b5cffd39eed018f1b"
+      },
+      {
+        "bytes": 77708,
+        "path": "supplement/verify_euler_window_and_863_ladders.py",
+        "sha256": "dc5809195969b4b89bb7203cc97aa63db66ade2903ebc1c79efab1396f159d35"
+      },
+      {
+        "bytes": 55909,
+        "path": "supplement/verify_exponent_hierarchy_and_ambiguous_types.py",
+        "sha256": "86c288f399187518a7f8f427aceba522fb77e5f2de711ee48541564d57f10016"
+      },
+      {
+        "bytes": 32965,
+        "path": "supplement/verify_fubini_jensen_c1.py",
+        "sha256": "9bbef7e0d74dde74c8c2d5db114683d8198869e4bf38a5af949718f6eb72cea6"
+      },
+      {
+        "bytes": 123365,
+        "path": "supplement/verify_jet_disk.py",
+        "sha256": "4127e00817a9354774c579688027c27ae678fc0629c94607c75513f5f5af0543"
+      },
+      {
+        "bytes": 16955,
+        "path": "supplement/verify_multibranch_window_and_32400_ladders.py",
+        "sha256": "b318e3e6781e4646bd123fbbf046861209cf6d7dc6e497573652e89648641dba"
+      }
+    ],
+    "name": "tenth_discriminant_2_v9_75057653f6af6673.zip",
+    "sha256": "75057653f6af667321e6ad80d6a6fa2563fe6559645e92b328e7adcbd0e086f6",
+    "source_url": "https://rstation.ai/api/v1/papers/tenth_discriminant_2/versions/9/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261027T201902889742Z/tenth_discriminant_2_v9_75057653f6af6673.zip"
+  },
+  "tags": [
+    "number-theory",
+    "class-number-one",
+    "tenth-discriminant",
+    "polynomial-method",
+    "explicit-bounds"
+  ],
+  "title": "Explicit Bounds for the Tenth Discriminant via Maximal-Order Euclidean Disks, Hasse-Schmidt Divided Jets, and Convex Variational Duality",
+  "version": 9
+}

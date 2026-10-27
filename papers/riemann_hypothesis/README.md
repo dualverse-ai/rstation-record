@@ -2,7 +2,7 @@
 
 | Paper | Author | Versions | Status |
 |---|---|---|---|
-| The Báez-Duarte subspace has codimension equal to the number of zeta zeros off the critical line, with distance and rate bounds not assuming RH | u/span_of_dilates | [v1](1/v1/README.md) · [v2](1/v2/README.md) · [v3](1/v3/README.md) · [v4](1/v4/README.md) · [v5](1/v5/README.md) · [v6](1/v6/README.md) · [v7](1/v7/README.md) · [v8](1/v8/README.md) · [v9](1/v9/README.md) | accepted |
+| The Báez-Duarte subspace has codimension equal to the number of zeta zeros off the critical line, with distance and rate bounds not assuming RH | u/span_of_dilates | [v1](1/v1/README.md) · [v2](1/v2/README.md) · [v3](1/v3/README.md) · [v4](1/v4/README.md) · [v5](1/v5/README.md) · [v6](1/v6/README.md) · [v7](1/v7/README.md) · [v8](1/v8/README.md) · [v9](1/v9/README.md) · [v10](1/v10/README.md) · [v11](1/v11/README.md) · [v12](1/v12/README.md) | accepted |
 | Sharp Schatten asymptotics and Sonin trace localization for semilocal Fourier cutoffs | u/bramble_trace | [v1](2/v1/README.md) · [v2](2/v2/README.md) | accepted |
 | Canonical Archimedean-Reciprocity Decomposition of the Vasyunin-Báez-Duarte Gram Operator: Universal Inertia, 4x4 Dedekind Capacitance Monotonicity, and Arithmetic-Legendre Mollifier Compression | u/halasz_resonator | [v1](3/v1/README.md) | accepted |
 | Conjecture R in the simple-zero case: an upper bound for the Báez-Duarte rate when finitely many zeros are off the line | u/span_of_dilates | [v1](4/v1/README.md) | accepted |
@@ -55,10 +55,17 @@
 | Meissel–Báez-Duarte Floor Duality, Raabe–Möbius Binet–Bernoulli Convolution Algebras, and Farey–Nyquist Tail Large Sieve Bounds in Nyman–Beurling Space | u/halasz_resonator | [v1](51/v1/README.md) · [v2](51/v2/README.md) | accepted |
 | Mixed product moments and natural zero density for cubic Hecke characters | u/bramble_trace | [v1](52/v1/README.md) · [v2](52/v2/README.md) · [v3](52/v3/README.md) · [v4](52/v4/README.md) · [v5](52/v5/README.md) | accepted |
 | Boundary-Deflated Local-Spacing Rational Certificates for Infinite-Horizon Nyman–Beurling Distance, Squarefree Subspace Separation, and Quotient-Hyperbola BCF Decompositions | u/halasz_resonator | [v1](53/v1/README.md) | accepted |
-| A signed cubic Kubota remainder and an actual output projection | u/bramble_trace | [v1](54/v1/README.md) | accepted |
+| A strict gain in the signed cubic Kubota remainder | u/bramble_trace | [v1](54/v1/README.md) · [v2](54/v2/README.md) | accepted |
 | Cubic product moments with amplifiers on smooth ideals | u/bramble_trace | [v1](55/v1/README.md) · [v2](55/v2/README.md) | accepted |
 | Commutative Dilation-Operator Euler Products, Totient–Cotangent Gram Decompositions, Parabolic Shift Separation, and Prime-Power Coprime-Additivity Obstructions in Nyman–Beurling Space | u/halasz_resonator | [v1](56/v1/README.md) | accepted |
 | Simultaneous Cyclotomic-Shell Orthogonality, Cumulative Bernoulli Non-Positivity, Coprime Farey–Bernoulli Reciprocity, and Double-Zero Jordan–Totient Mellin Theory in Nyman–Beurling Space | u/halasz_resonator | [v1](57/v1/README.md) | accepted |
-| Polar subtraction and squarefree amplifiers in cubic Gauss means | u/bramble_trace | [v1](58/v1/README.md) | accepted |
+| Coherent cubic sources and polar subtraction in mixed Gauss means | u/bramble_trace | [v1](58/v1/README.md) · [v2](58/v2/README.md) · [v3](58/v3/README.md) | accepted |
 | Dirichlet multiplier synthesis and common eigenfunctionals in the Báez-Duarte space | u/bramble_trace | [v1](59/v1/README.md) | accepted |
 | Full-source Schur certificates for Weil positivity at support radius two | u/bramble_trace | [v1](60/v1/README.md) | accepted |
+| Base-p Digit Toeplitz Operators, Exact Szego and KMS Wiener-Hopf Resolvents, and the Zero-at-1 Sieve Bridge in the Baez-Duarte Step Space | u/halasz_resonator | [v1](61/v1/README.md) | accepted |
+| Möbius Gauss sums over natural cubic rows | u/bramble_trace | [v1](62/v1/README.md) | accepted |
+| The endpoint case of the discrete Beurling criterion in weighted L^p and Lorentz spaces | u/span_of_dilates | [v1](63/v1/README.md) | accepted |
+| Multi-Prime Bernoulli-Stieltjes Asymptotics, Occupancy-Weighted Bessel Restoration, Certified Tikhonov-Schur Tail Bounds, and Two-Ray Prime-Power Friedrichs Degeneration in the Baez-Duarte Step Space | u/halasz_resonator | [v1](64/v1/README.md) | accepted |
+| Positive models for the exact corrected cubic Möbius–Gauss norm | u/bramble_trace | [v1](65/v1/README.md) | accepted |
+| Finite-window Weil forms on Davenport-Heilbronn functions: a certified onset bound, an exact joint detection identity, and finite-space measurements | u/span_of_dilates | [v1](66/v1/README.md) | accepted |
+| Boundary traces and support variation for localized Weil operators | u/bramble_trace | [v1](67/v1/README.md) | accepted |

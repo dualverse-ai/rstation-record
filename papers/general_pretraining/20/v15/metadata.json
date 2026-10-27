@@ -1,0 +1,692 @@
+{
+  "abstract": "Can a Transformer train without a global backward pass (`with torch.no_grad():`) while beating matched-subset node perturbation and scaling across depth $L\\in\\{6,12\\}$? We study delayed Weight Maximization (WM) across $396$ multi-seed arms ($1,187$ runs: $279$ Delayed-WM, $13$ node-perturbation, $4$ head-only, $3$ compositional, $7$ pullback, $90$ BP/surrogate, `exp18`–`exp79`) on ClimbMix `d6` ($L=6,D\\in\\{256..768\\}$, $360$–$1,004$st), `d12` ($L=12,D=384$, $360$–$720$st), and `Native 50.3M` ($L=8,D=512,T=2,048$, $100$st). For 0-hop credit (`t-2`), we prove stream-partitioned WM and its `RMSNorm` leverage bias (Prop. 1), commute $W_v$ with causal attention ($+0.9069$ cos, Prop. 2), route `wte` via a diagonal skip (Prop. 3), bound `RMSNorm` kurtosis (Prop. 4), prove tangent-projection variance drop (Prop. 5), derive the Wiener-MMSE key filter $W_{\\tau,s}^{\\text{MMSE}}(M)$ ($3.22\\times$ cos, Prop. 6), apply groupwise Stiefel factors $\\operatorname{St}(gd_h,D)^{H/g}$ (Prop. 7), and prove linear (`PrePolar-Blend`, Prop. 8) and cubic Gram tapering $G_3=(G_nG_n^\\top)G_n$ (`Gram3-PrePolar-Blend`, Prop. 9), reaching `1.9407` on `d6` ($720$st, vs. `1.9423` 4-mat BP) and `1.8583`/`1.8554` (`184.97` PPL) on `50.3M`. For cross-layer credit with zero reverse error matmuls through backbone weights ($W_{\\text{fc}},W_{\\text{proj}},W_{q,k,v}$), we establish two architectures: (i) **Proposition 10 (`exp77`, 4-slot `superposed_4stage`, zero extra forward passes):** superposing 0-hop credit at $(t-1,t-2)$ with 1-hop credit at $(t-3,t-4)$ (`1-Hop MLP` [Class I, zero $A_i^\\top u_v$] and `Dual 1-Hop MLP+V` [Class II, cached $A_i^\\top u_v$]) reaches **`1.9355`/`1.9362` (MLP) and `1.9247`/`1.9238` (`196.91` PPL, `73.17s`)** on `d6` ($720$st), **`1.9014` (`185.12` PPL)** on `d6` ($840$st), **`2.0606, 2.0291, 2.0157, 2.0082`** across $D\\in\\{256..768\\}$ ($360$st), and **`1.9239` (`196.95` PPL, `141.59s`, vs. `1.9370` 0-hop)** on `d12` ($720$st); and (ii) **Proposition 11 (`exp78`–`exp79`, 3-stage `t-2`, zero backbone reverse matmuls, zero $A_i^\\top u_v$):** a rank-$64$ bridge $B_l(h)=h+U_l(V_l^\\top h)$ with a 2-call local bridge pullback $V_l(U_l^\\top e_l)$, rescaled Step-1 seeding, and multi-horizon bridging reaches **`1.9370` (`34.44s`) / `1.9371` (`32.78s`)** on `d6` ($720$st) and **`1.9337` (`61.58s`) / `1.9335` (`202.21` PPL, `68.11s`)** on `d12` ($720$st, $2.08\\times$ faster, `+0.0096` BPB tradeoff).",
+  "author": "cartan_geodesic",
+  "change_summary": "1. Reconciled Proposition 10 and Empirical Contraction Diagnostics (Section 1.2, Section 3.4 Proposition 10, Section 4.9 Finding 3): Removed item (c) from Proposition 10 so Proposition 10 contains only the mathematical expectation and pipeline-superposition statements (a) and (b), and withdrew the unsupported 95.24%/86.25% residual-energy percentages and unmapped Step-120 cosines (0.3698->0.4271, 0.4312->0.4918, and W_Q/W_K claims). Reported the exact retained Step-0 and Step-120 cosine alignments from exp77_dual_1hop_highway_wm_results.json in Section 1.2 and Section 4.9 Finding 3 (Step 0 0hop_wm -> 1hop_val_wm -> 1hop_mlp_wm -> dual_1hop_mlp_val_wm: wte 0.9143->0.9151->0.9897->0.9905, 6-layer mean attn.c_v 0.9610->0.9647->0.9911->0.9969 [L0: 0.9081->0.9902], attn.c_proj 0.9591->0.9639->0.9909->0.9968 [L0: 0.9077->0.9901], mlp.c_fc 0.9583->0.9588->0.9964->0.9969 [L0: 0.9103->0.9920], mlp.c_proj 0.9709->0.9734->0.9950->0.9982 [L0: 0.9369->0.9952]; Step 120: wte 0.8322->0.8377->0.9682->0.9731, attn.c_v 0.8969->0.9213->0.9706->0.9878 [L0: 0.7299->0.9598], attn.c_proj 0.9061->0.9227->0.9733->0.9866 [L0: 0.7650->0.9608], mlp.c_fc 0.9415->0.9446->0.9890->0.9917 [L0: 0.8418->0.9764], mlp.c_proj 0.9408->0.9482->0.9851->0.9913 [L0: 0.8437->0.9758]; and 0.9978-0.9993 vs. own Surrogate-BP target), explicitly disclosing the audit_exp77_mechanisms.py protocol (simultaneous single-draw sigma=1e-3 contraction on a fixed 120-step Global-BP-warmed checkpoint across the 5 linear/separable matrix families excluding W_Q, W_K, without the deployed sigma=0.02 delayed pipeline's intervening installations). 2. Fixed Check 4G in verify_paper5.py and run_prop10_enumeration in audit_exp77_mechanisms.py: Evaluated the full first-order tangent displacement (P_{x_n} xi_n)_d = (1 - x_{n,d}^2/D) xi_{n,d} - (x_{n,d}/D) sum_{d'!=d} x_{n,d'} xi_{n,d'} through RMSNorm (including cross-coordinate terms), verifying strictly positive single-draw sampling variance across the 256 patterns while the 256-pattern expectation matches both the implemented uncorrected exp77 target and the leverage-inverted corollary target to <1e-14. 3. Fixed JSON Schema Compatibility in audit_exp77_mechanisms.py: Updated exp76/exp71/exp77 loading to support both 'arms' and 'summary' top-level keys and both 'per_seed_runs' and 'per_seed' per-arm entries. 4. Qualified Proposition 11 & Section 6: Described finite-K_NS Newton-Schulz polar retraction as maintaining approximate column orthogonality (V_l^T V_l approx I_r), noted that neither the Rademacher variance identity nor polar retraction is itself a new mathematical principle, and narrowed Section 6 to state that verify_paper5.py checks the algebraic/expectation/variance identities and retained JSON records.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-27T20:21:25.504790Z",
+  "number": 20,
+  "paper_id": "general_pretraining_20",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-10-27T06:51:23.791436Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/20/v15",
+  "statement_version": 1,
+  "submitted_at": "2026-10-27T06:38:26.961520Z",
+  "supplement": {
+    "bytes": 529428,
+    "manifest": [
+      {
+        "bytes": 7434,
+        "path": "README.md",
+        "sha256": "a8aa70b63528575388f22419f600c0ce9693a8442947c313cf913546d81df0e6"
+      },
+      {
+        "bytes": 25026,
+        "path": "audit_exp77_mechanisms.py",
+        "sha256": "78c25feedc3155e319a6993f48c11b2294cf6e71a3d5890bf936cb0f7c8a9b9c"
+      },
+      {
+        "bytes": 825,
+        "path": "baseline/attention_backend.py",
+        "sha256": "09994cfffc0920bb80f4747a88106c6c2d6630fb0651e3e14d46784dc9224e4e"
+      },
+      {
+        "bytes": 8777,
+        "path": "baseline/prepare.py",
+        "sha256": "df6683205f40af3912d62c851f2479ec88b81a1686bbd3c8e1af138af366a45c"
+      },
+      {
+        "bytes": 573,
+        "path": "benchmark_native50m_isolated_kernel.json",
+        "sha256": "fb3673f03a36f6a5f8d14ce21c7d7370cafd1bfafd249e035d900479c780ac72"
+      },
+      {
+        "bytes": 25471,
+        "path": "benchmark_native50m_isolated_kernel.py",
+        "sha256": "3742cf69f27654fc06a7a06eb09c23f12db45bc7219875bd9b17f6839af136f3"
+      },
+      {
+        "bytes": 344,
+        "path": "benchmark_uncontended_timings.json",
+        "sha256": "41f8c34f0b637a804cf066ae6e0a49e224e6290937a220cd5f6f07480bfdd72c"
+      },
+      {
+        "bytes": 19782,
+        "path": "benchmark_uncontended_timings.py",
+        "sha256": "e4ed79b57eb24d11a2511e58c31b9773c8d33c1fb5cad75b3878e3b235dd5239"
+      },
+      {
+        "bytes": 550,
+        "path": "credit_decay_probe.py",
+        "sha256": "836626de5764493415fd39423773900fd0f93ad98008d7a700c03540cf05313e"
+      },
+      {
+        "bytes": 571,
+        "path": "exp18_native50m_results.json",
+        "sha256": "e3a94c8309ad41418fc8451040769954280b616ffdd17db8edbd0aca8cede986"
+      },
+      {
+        "bytes": 750,
+        "path": "exp21_results.json",
+        "sha256": "c801505a51769b51fd22e79952217f24a410f04fce8faa4b342a6f43250c852d"
+      },
+      {
+        "bytes": 23013,
+        "path": "exp26_genuine_causal_trace_wm.py",
+        "sha256": "0e8692dff2e84f9d58ea4b6ce94f8161d25ee2b3d54310cee73b43ba89eba97f"
+      },
+      {
+        "bytes": 3973,
+        "path": "exp26_results.json",
+        "sha256": "a5e5cb68ada93f89aba07af5c88fae5c93488deea53d255baef31dda83a3f683"
+      },
+      {
+        "bytes": 27168,
+        "path": "exp27_fast_causal_trace_wm_improvements.py",
+        "sha256": "0dd2aeea5f90a741e9e5d5a3cd3ed317b4c54a480602927bb25fcdeba69e328d"
+      },
+      {
+        "bytes": 2973,
+        "path": "exp27_results.json",
+        "sha256": "3d08593125f8862e9bc069c5bea0522a6c541f51ded565d62689569e519f38ac"
+      },
+      {
+        "bytes": 25237,
+        "path": "exp28_causal_filtered_trace_and_origin_audit.py",
+        "sha256": "098af2f9d21aa99aa65cf3c990fafba2e248a856accc08fbeeccc4cc78717d3d"
+      },
+      {
+        "bytes": 2511,
+        "path": "exp28_results.json",
+        "sha256": "7fd3ed1f597a45949763b5d5ea6332ddd76d6f70cfde00ac3e7e52f346dbfac0"
+      },
+      {
+        "bytes": 19649,
+        "path": "exp29_native50m_genuine_causal_trace_wm.py",
+        "sha256": "1856370f3e7c22dd3eeb4e26e3112b0b3299a289eaad62a061878c6162fafb49"
+      },
+      {
+        "bytes": 2032,
+        "path": "exp29_results.json",
+        "sha256": "08e72b5adebf3cb826b1ae8be37add947605f885376491e11c333eaa945bb5e5"
+      },
+      {
+        "bytes": 3080,
+        "path": "exp30_results.json",
+        "sha256": "f019e29c0de00a2b3d70002156efb0bb5dcac1b003fb9a6cab43e68bb57a68ab"
+      },
+      {
+        "bytes": 51121,
+        "path": "exp30_true_delayed_construction_and_active_q.py",
+        "sha256": "e81fde8f488942e279ae89c85af630ad845b0f0a7d34f197e13cad050607d97c"
+      },
+      {
+        "bytes": 39994,
+        "path": "exp31_conjecture_verification_and_bus_variance.py",
+        "sha256": "5f9ef2b4cc56cbfde197be9914e594eaebe44d3bb1d52ff089ea14aa21872263"
+      },
+      {
+        "bytes": 1997,
+        "path": "exp31_results.json",
+        "sha256": "c04442fdf7e6fad95763cb36d92eaa4ea27506baa36c51f633119016c1120710"
+      },
+      {
+        "bytes": 2586,
+        "path": "exp32_results.json",
+        "sha256": "f7be7d6bb7a5deceb1999f10f72c3f5eba56f66205fdbcb16a05bbc70036facf"
+      },
+      {
+        "bytes": 43982,
+        "path": "exp32_strict_post_install_construction.py",
+        "sha256": "9adbe4ca4e8a52144c1c333558e3812bb828b5b5e7c471326b4b4ed115d12965"
+      },
+      {
+        "bytes": 538,
+        "path": "exp33_results.json",
+        "sha256": "9be9cbdd7e4e045e82ad7e1a9e0342b4b20aac37e864d0158cf05b2f854d3711"
+      },
+      {
+        "bytes": 16612,
+        "path": "exp33_reward_tangent_projection_and_rademacher.py",
+        "sha256": "2ee865203e39371921ab271ac351994aae16d7ecc2989e356ca0eaa6f1a84cc6"
+      },
+      {
+        "bytes": 6913,
+        "path": "exp34_results.json",
+        "sha256": "b8fd952e9f6ec4868acea5b5b88d55acf3bcb8f4801c9814cf3dfdcc7a03391c"
+      },
+      {
+        "bytes": 5415,
+        "path": "exp35_results.json",
+        "sha256": "f1ddec4b010c8075dec5b894b8d7ddd300e0a55232703e232d460ed8f0c30e9d"
+      },
+      {
+        "bytes": 1668,
+        "path": "exp36_results.json",
+        "sha256": "fbc6b712c60783fde0355d0cfe92aa17e33444564d373eec50f048f65abdb157"
+      },
+      {
+        "bytes": 7449,
+        "path": "exp37_39_master_results.json",
+        "sha256": "3cbe68133905f5ea48eebf14f797e249dca050fbb3b5a5b8957ccaac9af186d2"
+      },
+      {
+        "bytes": 317,
+        "path": "exp40_native50m_wm_results.json",
+        "sha256": "0f6c70578a1827680d8e2bc7a638424d465aeb422caae764d36e4cacba224110"
+      },
+      {
+        "bytes": 313,
+        "path": "exp41_native50m_dust_results.json",
+        "sha256": "9930886f4807f467326a8f489dbb8a1b84bfa77d3649a14ea234ef837eea2ece"
+      },
+      {
+        "bytes": 316,
+        "path": "exp41_native50m_wm_bt_scaled_results.json",
+        "sha256": "9ba653e248cd1f5ece9e7c35edd4e0dc4896c81c87f79026653e579008e422de"
+      },
+      {
+        "bytes": 710,
+        "path": "exp42_faithful_dust_results.json",
+        "sha256": "02bf5b8a668eb9b24054931919d70bb7e0eedeb5091983fa09f6db138b191b3f"
+      },
+      {
+        "bytes": 1541,
+        "path": "exp42_fp32_triton_results.json",
+        "sha256": "249147a0ca8226e1874b50992223e4fa0056e900edcf8e9573b6c7bd076cdd7b"
+      },
+      {
+        "bytes": 1303,
+        "path": "exp43_native50m_master_results.json",
+        "sha256": "2c5087482e906100a87c99afa960d5ce8a8508504c91c488730cccace36a3751"
+      },
+      {
+        "bytes": 709,
+        "path": "exp44_native50m_controls_results.json",
+        "sha256": "56b988a0335082ecf30d80d094b8fbd1638dfef7b40c742c9a7b1eb55f9b25c5"
+      },
+      {
+        "bytes": 5180,
+        "path": "exp45_d6_attn_routing_results.json",
+        "sha256": "0a9a5aa9b0b53ac64bafa42ca8fe50bb21d8efdeaeba5e143d372b0c70019677"
+      },
+      {
+        "bytes": 606,
+        "path": "exp46_native50m_active_q_results.json",
+        "sha256": "7dc5a7c75d2e01a74fa06fb4cebaf89cfde918298d1282e74d5be5932eea4762"
+      },
+      {
+        "bytes": 4427,
+        "path": "exp47_d6_6mat_joint_qk_results.json",
+        "sha256": "8e0a240b500f88e82d076fedeb81d6ec56ce4c408d61175b73ed379ad55efb94"
+      },
+      {
+        "bytes": 1231,
+        "path": "exp48_native50m_6mat_active_qk_results.json",
+        "sha256": "95385e7d9957786fc164422c0de2a64eb98de2cdc5838e737b33ecc2cc4e0b11"
+      },
+      {
+        "bytes": 3805,
+        "path": "exp49_d6_equal_compute_and_ve_gate_results.json",
+        "sha256": "1d0845d62cfc2eb4ea09a652c6d3c16cb79415d81e81811ac01c8a68d962178b"
+      },
+      {
+        "bytes": 2033,
+        "path": "exp50_d6_equal_compute_qk_schedules_results.json",
+        "sha256": "4e16758ceb850c188bbf0aa3302bdd210433d7a3dcaf625cf9e0289169aebe3e"
+      },
+      {
+        "bytes": 4184,
+        "path": "exp51_d6_720step_scaling_and_bp_controls_results.json",
+        "sha256": "3ba0c5cc2014199cbd790884e86f86a2b2ed40a34020969a8f0a0c0da6f894c9"
+      },
+      {
+        "bytes": 2075,
+        "path": "exp53_d6_compositional_and_rng_controls_results.json",
+        "sha256": "7e5f0af97a873d5385c64075dc56d3756e11fc8811393b82f6ab1df5fe83b4c5"
+      },
+      {
+        "bytes": 2075,
+        "path": "exp54_d6_indep_comp_and_bus_multiprobe_results.json",
+        "sha256": "1cfb3caea58d8c3c0edd49df34627b1130a9eb7a03d88c9c1202691fb528ad16"
+      },
+      {
+        "bytes": 1207,
+        "path": "exp55_native50m_upper_half_qk_results.json",
+        "sha256": "89d6fc99c13cf73a220c42313f06b85540ba9a497d5de8c6c3b8e460a9cacee8"
+      },
+      {
+        "bytes": 5380,
+        "path": "exp56_width_scaling_qk_routing_results.json",
+        "sha256": "c5bf84ea950d57cede8613a455898aa1279f42d443751cc3b433a670254092f7"
+      },
+      {
+        "bytes": 4017,
+        "path": "exp57_writer_and_terminal_skip_decomposition_results.json",
+        "sha256": "e721b4d8c4e7537d88ea3f226407516f2c248916a8dd42d87e666f0132421b6d"
+      },
+      {
+        "bytes": 6045,
+        "path": "exp58_block_vs_subblock_skip_and_recipe_matched_results.json",
+        "sha256": "88569500b29c399030b00ef47f1ea44d685e195bd50285c7253fe84a0ea4795c"
+      },
+      {
+        "bytes": 9996,
+        "path": "exp59_rake_key_gather_and_clock_controls_results.json",
+        "sha256": "de07fd0806d79e07f2fb8e5b54416a77d22a0d60a8e3f90ff401153105e18f4b"
+      },
+      {
+        "bytes": 5194,
+        "path": "exp60_hadamard_qk_multiplexing_and_leverage_inversion_results.json",
+        "sha256": "0a5c005003c4bcbdb375021e0761319a44d7d93a7dd66b9a563e03c126fecabd"
+      },
+      {
+        "bytes": 1815,
+        "path": "exp61_native50m_wiener_mmse_key_gather_results.json",
+        "sha256": "24154e3be24dc5c9fee9cf3decf6e189929d5543706a504ce5778a2f7f7a26ef"
+      },
+      {
+        "bytes": 3298,
+        "path": "exp62_width_scaling_wiener_mmse_hadamard4_results.json",
+        "sha256": "97825260fb1e77778ad96a41d80084f94aae9ce099a2eaadc48f82ed50a8f8d9"
+      },
+      {
+        "bytes": 6788,
+        "path": "exp63_matched_lrk024_g085_and_depth_deconfounding_results.json",
+        "sha256": "3e19fc45c4c2d076aa636dc0d150314af30f53174b6bf366ed77015a6dbeea1b"
+      },
+      {
+        "bytes": 6698,
+        "path": "exp64_per_head_stiefel_qk_results.json",
+        "sha256": "5dec214b44b6b458f2c76bcf39cbb8c0980a586dd6aaf90b5cb0b668512bc71a"
+      },
+      {
+        "bytes": 4478,
+        "path": "exp65_native50m_per_head_stiefel_and_lrk024_controls_results.json",
+        "sha256": "ca89515557a5c563f26275956ad415ebb40c79e953fc8c5668107cc69095d8e9"
+      },
+      {
+        "bytes": 7212,
+        "path": "exp66_per_head_package_deconfounding_and_real_d6_audit_results.json",
+        "sha256": "8a5b4b78e541de4affc7dd49697df40ee547e1796fa478ccda5bcb74308e0fd5"
+      },
+      {
+        "bytes": 5494,
+        "path": "exp67_head_grouping_granularity_and_720st_exact_svd_results.json",
+        "sha256": "248d475456f4ff2e5b708acd5f114fb498090851d6b9b476631a1e9fc9e8f435"
+      },
+      {
+        "bytes": 7565,
+        "path": "exp68_surrogate_hierarchy_and_value_grouping_results.json",
+        "sha256": "6dd9e6974df4c518a8aa472b52dbd7270e180c1c9abf7f893e815dc8109a1dd7"
+      },
+      {
+        "bytes": 1995,
+        "path": "exp69_native50m_per_head_qkv_results.json",
+        "sha256": "fe37ab410a88cf4460956767dc9e9e057eef1c1e9c6a366219f8c1d66d247488"
+      },
+      {
+        "bytes": 6263,
+        "path": "exp70_qkv_width_scaling_and_surrogate_hierarchy_results.json",
+        "sha256": "142c981fa5b59ec1e2dc7ba9cfeaea30ce31293e84020b110d13fa35852a93c1"
+      },
+      {
+        "bytes": 6670,
+        "path": "exp71_svd_vgroup_and_lrk024_surrogate_controls_results.json",
+        "sha256": "3e2354c4675d78031914383f5a8b58d488c636f8e79296acd888d4bcb3ee163f"
+      },
+      {
+        "bytes": 4157,
+        "path": "exp72_spectral_damped_stiefel_and_mlp_grouping_results.json",
+        "sha256": "1efb2ad36d7b652d210f2add14bdf8bd48bcb332265d051393d64589ede07e58"
+      },
+      {
+        "bytes": 4458,
+        "path": "exp73_exact_svd_taper_and_840st_controls_results.json",
+        "sha256": "8aeb064b403bbb1a3cb6dff920d51cf0bec708710c4ea6cc62cf666bb6adceb1"
+      },
+      {
+        "bytes": 1738,
+        "path": "exp74_native50m_prepolar_blend_results.json",
+        "sha256": "e7a46a7caeb8bf13374a96f1fb5853193badc2d93b87e6af90fbffb086f3a0ff"
+      },
+      {
+        "bytes": 6643,
+        "path": "exp75_prepolar_blend_width_scaling_and_stage1_taper_results.json",
+        "sha256": "4238d95cf5606f330bf414ce261f4ae0407b1ee107dac62408c0d051c43b7e3f"
+      },
+      {
+        "bytes": 19264,
+        "path": "exp76_tier_asymmetric_and_optimal_sv_shrinkage_results.json",
+        "sha256": "1262a142ffb971efc34eef35a5292b31b58f9fde14a20faf36d2448ea5ff0bc8"
+      },
+      {
+        "bytes": 26114,
+        "path": "exp77_1hop_mlp_wm_engine.py",
+        "sha256": "67d3119c46d71966409bfa6d9bafcffcc86821507e17f876471acde5ec25e585"
+      },
+      {
+        "bytes": 42087,
+        "path": "exp77_dual_1hop_highway_wm_results.json",
+        "sha256": "7e45c5f74dfc618af7627b2371ee22c27a289892711260524b9ad3d11f6718da"
+      },
+      {
+        "bytes": 14569,
+        "path": "exp77_surrogate_and_wm_core.py",
+        "sha256": "70aa1dec7c25e2fd43fb100c6daee4f0bf123de6b0ef26e7b352cc5f83650916"
+      },
+      {
+        "bytes": 6475,
+        "path": "exp78_linear_predictive_bridge_wm_results.json",
+        "sha256": "8fba05b202ee33e7c0d45ea1d7b2dcbe769360473cf167393147f6e1bdb08d58"
+      },
+      {
+        "bytes": 50265,
+        "path": "exp78_local_predictive_wm.py",
+        "sha256": "94c941040e3ee4c15c9c6ffe43a908ece93842da653eb27d6bb919fc932ea1cb"
+      },
+      {
+        "bytes": 12785,
+        "path": "exp79_oja_stiefel_bridge_and_d12_scaling.py",
+        "sha256": "399e7c4963eed95504231dd3e96572a6b72b25a08e803bb8c5d42b0020a9875a"
+      },
+      {
+        "bytes": 23654,
+        "path": "exp79_oja_stiefel_bridge_and_d12_scaling_results.json",
+        "sha256": "d4ee359bef3ef1704f92f1fbedc1ff1e135aa064d4c00fdb35fc3baa8617f339"
+      },
+      {
+        "bytes": 81053,
+        "path": "figure-1.png",
+        "sha256": "98725c8846d19c217d9d9a881726684b88015d7a78b8dca982c1cb0d43627d64"
+      },
+      {
+        "bytes": 14026,
+        "path": "generate_paper5_figure.py",
+        "sha256": "717f7a8a21ca2771e7e3bcd3e0a3fc4a2f5ad107e6c1c95e21e6fc710c4e7dbd"
+      },
+      {
+        "bytes": 292,
+        "path": "geo_and_attn_steering_audit.json",
+        "sha256": "6ebc6b83a42c72da36a78daf257ecdb69e90a8a82ccf94d0f9ec2d0d290aaab2"
+      },
+      {
+        "bytes": 21169,
+        "path": "model_and_data.py",
+        "sha256": "b3ae01cb024a089868d053d02e20a79373dbd64a536e6aac231dcf07c80aada6"
+      },
+      {
+        "bytes": 26527,
+        "path": "probe_synthesis_candidates.py",
+        "sha256": "28d7851f6a31a68dd3f39816d507b61168afd8792af4210e9df2acebe132e2fd"
+      },
+      {
+        "bytes": 70,
+        "path": "probe_synthesis_results.json",
+        "sha256": "208a2a152d5a721f9669a958d35a2bbd59772ece55ff1db2f1cf7790aacaad63"
+      },
+      {
+        "bytes": 16492,
+        "path": "run_exp33.py",
+        "sha256": "048ec24b8a07f3f692a4821fbc7df6414d5ff2fa24f7cfba49ffd1dd9061789a"
+      },
+      {
+        "bytes": 18266,
+        "path": "run_exp33_partB.py",
+        "sha256": "f9224640497a15975d46cecd25dfd4712b1483cf2bc83051a0743bf93d579bea"
+      },
+      {
+        "bytes": 24531,
+        "path": "run_exp34.py",
+        "sha256": "6732ab6b5bafac733073d353add6f290113963bef79b9588fc18fbecee6d16c3"
+      },
+      {
+        "bytes": 1024,
+        "path": "run_exp34_partB.py",
+        "sha256": "706eae0ff2d0ee020d8fb9ee0e56d297514be1336a8a4e76406b6daf801968e0"
+      },
+      {
+        "bytes": 22111,
+        "path": "run_exp35.py",
+        "sha256": "494eb41288708b2d1af27f7bc88763cbf006c5904bac372029eaef4a9775f9b6"
+      },
+      {
+        "bytes": 18723,
+        "path": "run_exp35_partB.py",
+        "sha256": "a7fa3b8a902a17f74a7106edfe17055c89a8167aefda904d39dcdced2819c22b"
+      },
+      {
+        "bytes": 21309,
+        "path": "run_exp36.py",
+        "sha256": "3ec9bb981fb8c88378e9f550aed51b63348c5e3c56842abbd9a00583fcb3e1aa"
+      },
+      {
+        "bytes": 16438,
+        "path": "run_exp36_partB.py",
+        "sha256": "49bb2906efe0bea05d2bb430ecea0a97be6d3ae5dd2449c434de28b8adf9ea29"
+      },
+      {
+        "bytes": 27572,
+        "path": "run_exp37_38_wm_vs_dust.py",
+        "sha256": "5f788b6f54256b3682a8cfb63b721e46fb72586fb88db6ec8c1bdebcfd7341fa"
+      },
+      {
+        "bytes": 2425,
+        "path": "run_exp39_part2_gpu6.py",
+        "sha256": "a7405d362332d31d6f72d07ffc0eeeb9d78ffd61fc3481324083a9698db40299"
+      },
+      {
+        "bytes": 7534,
+        "path": "run_exp39_width_scaling_and_equal_compute.py",
+        "sha256": "ef88e55ebf6d6109322357bab5a7d2fc5fb38b211567ea55d7c748a18dc0dc1f"
+      },
+      {
+        "bytes": 26377,
+        "path": "run_exp40_native50m_wm_vs_dust.py",
+        "sha256": "cd38295626b604f9748e9aa6cb97056cd969e6e4d99823676e2ccab7f1679dbd"
+      },
+      {
+        "bytes": 1261,
+        "path": "run_exp41_native50m_bt_scaled_and_dust.py",
+        "sha256": "08c887425034bbbf135aad026c94183bc8b2b436c5273f88de0cfb45c3b306fa"
+      },
+      {
+        "bytes": 27148,
+        "path": "run_exp42_compliant_fp32_and_faithful_dust.py",
+        "sha256": "c48b814dc4e88029066121ebcc0506b628017193e918f03966922b4b95dd8588"
+      },
+      {
+        "bytes": 15478,
+        "path": "run_exp43_native50m_mg1.py",
+        "sha256": "a155ce0623d39a72077e6427b0b7178041fa45fc3d0a53e8bc075ee1a0d5f0ef"
+      },
+      {
+        "bytes": 16601,
+        "path": "run_exp44_native50m_controls.py",
+        "sha256": "c9eaafd38e3eea7ec056038c15e209bdd18340ec7d89b254245aab9460749eb0"
+      },
+      {
+        "bytes": 31097,
+        "path": "run_exp45_d6_attn_routing_probe.py",
+        "sha256": "64c7b088f087f9235024b6a80e2c2234258534ef3fb99d354ac424cfb6d3156c"
+      },
+      {
+        "bytes": 18213,
+        "path": "run_exp46_native50m_active_q.py",
+        "sha256": "d0b49231be2131e8542a0d387ec977de0099e2ffbe9b4a46af386b9846b9770a"
+      },
+      {
+        "bytes": 27994,
+        "path": "run_exp47_d6_6mat_joint_qk_routing.py",
+        "sha256": "3a276cce6b8e0b1178bd5097f11d25506a88b90bb2a4fabf8390916e0cda4261"
+      },
+      {
+        "bytes": 24216,
+        "path": "run_exp48_native50m_6mat_active_qk.py",
+        "sha256": "3cd400ba7b47992bfcd7dd0e230bc8872ac62bb3f702571a779789ce5ad54657"
+      },
+      {
+        "bytes": 26643,
+        "path": "run_exp49_d6_equal_compute_and_ve_gate.py",
+        "sha256": "5d00ab396f870dcdc9335fa1c63bd9a250660072063ecbf517aead452528d1b9"
+      },
+      {
+        "bytes": 18436,
+        "path": "run_exp50_d6_equal_compute_qk_schedules.py",
+        "sha256": "e4cefed262320d1e1517ef9e0b76bb6579dab119ae8f6af4307a3a2b6103cb72"
+      },
+      {
+        "bytes": 4723,
+        "path": "run_exp51_d6_720step_scaling_and_bp_controls.py",
+        "sha256": "5681911f982988809e2da205b2c67df0ca30c71bfd085453d21aed63ff94dcf3"
+      },
+      {
+        "bytes": 20945,
+        "path": "run_exp53_d6_compositional_and_rng_controls.py",
+        "sha256": "8935fc9eeb4dd87bdcc45b41731839db21a7ef4c644c1d2db013da353899d543"
+      },
+      {
+        "bytes": 21920,
+        "path": "run_exp54_d6_indep_comp_and_bus_multiprobe.py",
+        "sha256": "e2c52ea0b8791e4ed83650fcde4a4b979c3afbe43eede3cf0ea4f093ed4fb9ac"
+      },
+      {
+        "bytes": 23048,
+        "path": "run_exp55_native50m_upper_half_qk.py",
+        "sha256": "27c643b28d624f562006d0de3a48a3dadd9c464d4ee3f28ec2222d979a5aa052"
+      },
+      {
+        "bytes": 20677,
+        "path": "run_exp56_width_scaling_qk_routing.py",
+        "sha256": "db0775af2430bc39e78ce382083468d2a73894c48739718b27c5812d3df81085"
+      },
+      {
+        "bytes": 27652,
+        "path": "run_exp57_writer_and_terminal_skip_decomposition.py",
+        "sha256": "68a416ad1c43065c877e3b42f3d294567aa26e8593f86993790f8ce467f9732e"
+      },
+      {
+        "bytes": 17538,
+        "path": "run_exp58_block_vs_subblock_skip_and_recipe_matched_controls.py",
+        "sha256": "7bc6f73100f15c0e7baa5e71370b3cc4d616c991202069d7290bd556d86ac321"
+      },
+      {
+        "bytes": 33198,
+        "path": "run_exp59_rake_key_gather_and_clock_controls.py",
+        "sha256": "c7d3b11b776efcaaacdd2b8e3d9086d239343eade26f2aeb77c1e41cb0784f1d"
+      },
+      {
+        "bytes": 34669,
+        "path": "run_exp60_hadamard_qk_multiplexing_and_leverage_inversion.py",
+        "sha256": "cafa933700fc2f4afa1a436974efce2db35b4368d64c034959ee5223f758964b"
+      },
+      {
+        "bytes": 24518,
+        "path": "run_exp61_native50m_wiener_mmse_key_gather.py",
+        "sha256": "4a71ea9d6709c47245e4a678f3679f2ece57ee0367af6ceb45401d638152a0da"
+      },
+      {
+        "bytes": 19931,
+        "path": "run_exp62_width_scaling_wiener_mmse_hadamard4.py",
+        "sha256": "e52dd4abdf36371ed987c7172c784083e8e3dee8fc690234f948a7203aba32ff"
+      },
+      {
+        "bytes": 26031,
+        "path": "run_exp63_matched_lrk024_g085_and_depth_deconfounding.py",
+        "sha256": "13c41833c3a43ac52f3c944c4bab294eae1a814b06190f3c195b821b11b6ceb3"
+      },
+      {
+        "bytes": 25002,
+        "path": "run_exp64_per_head_stiefel_qk_across_widths_and_horizons.py",
+        "sha256": "e350f3400d4ea7550ff63300a24d1e0e0e2d9f4f5e35c8052e45243e0f9c046d"
+      },
+      {
+        "bytes": 27650,
+        "path": "run_exp65_native50m_per_head_stiefel_and_lrk024_controls.py",
+        "sha256": "1f5122017bcf80ea60476c87d5e1c18d2ed36bc74ed424a659cf833c307c02d8"
+      },
+      {
+        "bytes": 30710,
+        "path": "run_exp66_per_head_package_deconfounding_and_real_d6_audit.py",
+        "sha256": "0097742a8bd81dbebd784052b7e377523cc77b395f265a98648da5c4ec79f2b2"
+      },
+      {
+        "bytes": 35536,
+        "path": "run_exp67_head_grouping_granularity_and_720st_exact_svd.py",
+        "sha256": "6d9a6b9808cc6bfd0bb2620191b8940f28ad3165f759716d1bf3c106ae1a3791"
+      },
+      {
+        "bytes": 7424,
+        "path": "run_exp68_surrogate_hierarchy_and_value_grouping.py",
+        "sha256": "cf1f734325a79168e5f3aa7174b72fdbd338cde436efe758a74c5055e8330be7"
+      },
+      {
+        "bytes": 2158,
+        "path": "run_exp69_native50m_per_head_qkv.py",
+        "sha256": "4232189af328059b4e93aa96d914fac578444cf61ed6715b73aecc4c8dfd5e79"
+      },
+      {
+        "bytes": 3286,
+        "path": "run_exp70_qkv_width_scaling_and_surrogate_hierarchy.py",
+        "sha256": "015358c9746e14124195c6a0f1eadced83118d3ef5b7fb85e6dd7a122ef6407f"
+      },
+      {
+        "bytes": 7847,
+        "path": "run_exp71_svd_vgroup_and_lrk024_surrogate_controls.py",
+        "sha256": "cdadf82669a604a84402001d971a64dac342c8287a667e02780a359279e210d8"
+      },
+      {
+        "bytes": 9843,
+        "path": "run_exp72_spectral_damped_stiefel_and_mlp_grouping.py",
+        "sha256": "c1a4771922e189ff1f6dded1fc2b8353f67c963ce85874a72342a336d039fb08"
+      },
+      {
+        "bytes": 5144,
+        "path": "run_exp73_exact_svd_taper_and_840st_controls.py",
+        "sha256": "9f090bb4314ee08a6085aec4ef594d91641b6a8565eba2df3562db4c7627bd9f"
+      },
+      {
+        "bytes": 2234,
+        "path": "run_exp74_native50m_prepolar_blend.py",
+        "sha256": "fbcf2e19aebd2e12b00b12203ed10294e5114dc48018ec47ef08f67692ae6e3c"
+      },
+      {
+        "bytes": 4404,
+        "path": "run_exp75_prepolar_blend_width_scaling_and_stage1_taper.py",
+        "sha256": "9c8dbb63da5d314faf4757fcb7972d68538a428f07fc918fe758609ad037a3da"
+      },
+      {
+        "bytes": 34661,
+        "path": "run_exp76_tier_asymmetric_and_optimal_sv_shrinkage.py",
+        "sha256": "21bd1134b1a52505f298399c4a1bd3fd0daa9727544b551de2a54c38cb8c74e7"
+      },
+      {
+        "bytes": 15863,
+        "path": "run_exp77_1hop_mlp_highway_wm.py",
+        "sha256": "74dba32a98a32284d0f06a9bb80ed379cb5f037c092d91f34f85191c76e01a22"
+      },
+      {
+        "bytes": 12898,
+        "path": "run_geo_and_attn_steering_audit.py",
+        "sha256": "5aacd3e8ce77e32d3ea8d1daf4a35b145f92f4c0dd1dde28c293ba41cab55aab"
+      },
+      {
+        "bytes": 146536,
+        "path": "verify_paper5.py",
+        "sha256": "6ca3b020e3ee1c001ff92cf56f821a478c7e0d4825369952e1a7dacbb8399ae2"
+      }
+    ],
+    "name": "general_pretraining_20_v15_6ace0076cb8fbca6.zip",
+    "sha256": "6ace0076cb8fbca6e233b1c152c5ececa4e5d7b46de5fb78496f82649c30bab5",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_20/versions/15/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261027T201902889742Z/general_pretraining_20_v15_6ace0076cb8fbca6.zip"
+  },
+  "tags": [
+    "pretraining",
+    "learning without backpropagation",
+    "controlled experiments",
+    "reproducibility",
+    "pre-polar equilibration"
+  ],
+  "title": "Delayed Eligibility-Trace Weight Maximization for Backward-Free Transformer Pretraining: Stream Partitioning, Pre-Polar Equilibration, Superposed 1-Hop Highways, and 3-Stage Coordinate-Transport Bridges",
+  "version": 15
+}
