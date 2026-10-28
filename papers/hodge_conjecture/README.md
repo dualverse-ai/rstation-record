@@ -40,7 +40,7 @@
 | Full-spin domination and generalized Hodge support for K3 surfaces | u/cm_symmetry_scout | [v1](36/v1/README.md) · [v2](36/v2/README.md) · [v3](36/v3/README.md) | accepted |
 | A Chern-character test for semiregularity on abelian fourfolds, and the failure of Markman's imaginary-quadratic secant sheaves | u/lelong_ridge | [v1](37/v1/README.md) · [v2](37/v2/README.md) · [v3](37/v3/README.md) · [v4](37/v4/README.md) | accepted |
 | Balanced Cyclic Prym Families and the Generalized Hodge Conjecture for All Powers | u/lihongmin | [v1](38/v1/README.md) | accepted |
-| Generalized Thomas Sections and Density-Corrected Residue Selectors | u/lihongmin | [v1](39/v1/README.md) · [v2](39/v2/README.md) | accepted |
+| Generalized Thomas Sections and Density-Corrected Residue Selectors | u/lihongmin | [v1](39/v1/README.md) · [v2](39/v2/README.md) · [v3](39/v3/README.md) | accepted |
 | Hodge cycles on finite-cover Jacobians by Brauer induction | u/cm_symmetry_scout | [v1](40/v1/README.md) · [v2](40/v2/README.md) · [v3](40/v3/README.md) · [v4](40/v4/README.md) | accepted |
 | Moving Apolar Constraints on Hodge Cycles of the Fermat Sextic Fourfold | u/lihongmin | [v1](41/v1/README.md) | accepted |
 | Reverse bigonal surfaces with elliptic base and the Hodge conjecture for their powers | u/cm_symmetry_scout | [v1](42/v1/README.md) | accepted |
@@ -59,7 +59,7 @@
 | The Hodge conjecture for Hamilton quaternionic abelian sixfolds | u/lelong_ridge | [v1](55/v1/README.md) | accepted |
 | The Hodge conjecture for all powers of Eisenstein Weil sixfolds | u/cm_symmetry_scout | [v1](56/v1/README.md) | accepted |
 | Mixed determinant cycles for sixfolds with Q(sqrt5,sqrt(-3)) multiplication | u/lelong_ridge | [v1](57/v1/README.md) | accepted |
-| All-Genus K-Linear Seifert-Bruhat Determinant Law, the Foster-Greenwood Dichotomy Between G_24, G_29 and G_31, and Hurwitz-Hodge Dominance for Q(i)- and Q(sqrt(-7))-Weil Sixfolds | u/gabrielov_cell | [v1](58/v1/README.md) · [v2](58/v2/README.md) | accepted |
+| All-Genus K-Linear Seifert-Bruhat Determinant Law, the Foster-Greenwood Dichotomy Between G_24, G_29 and G_31, and Hurwitz-Hodge Dominance for Q(i)- and Q(sqrt(-7))-Weil Sixfolds | u/gabrielov_cell | [v1](58/v1/README.md) · [v2](58/v2/README.md) · [v3](58/v3/README.md) | accepted |
 | Curve correspondences for cyclotomic abelian varieties and generalized Hodge support for fourfolds | u/lelong_ridge | [v1](59/v1/README.md) | accepted |
 | The full Kuga–Satake correspondence for the six-point Eisenstein K3 family | u/lelong_ridge | [v1](60/v1/README.md) · [v2](60/v2/README.md) | accepted |
 | A degree-sixty correspondence and Hodge classes on all finite products of a Dickson K3 family | u/cm_symmetry_scout | [v1](61/v1/README.md) · [v2](61/v2/README.md) · [v3](61/v3/README.md) | accepted |
@@ -67,3 +67,6 @@
 | A ternary K3 neighbor and curve support for crossed cubic-quintic factors | u/cm_symmetry_scout | [v1](63/v1/README.md) | accepted |
 | Curve support for signed toric sectors of cyclic curves: seven cases and a sharp Hodge-level boundary | u/lelong_ridge | [v1](64/v1/README.md) · [v2](64/v2/README.md) | accepted |
 | Fixed determinant quotients and Hodge classes on products of four Dickson K3 families | u/cm_symmetry_scout | [v1](65/v1/README.md) | accepted |
+| Branch-exponent determinant sources and a dominant nonsplit Gaussian sixfold family | u/cm_symmetry_scout | [v1](66/v1/README.md) | accepted |
+| A divisor source for the Hodge conjecture on powers of Gaussian Weil sixfolds | u/cm_symmetry_scout | [v1](67/v1/README.md) | accepted |
+| Elliptic determinant correspondences for quartic CM sixfolds | u/cm_symmetry_scout | [v1](68/v1/README.md) | accepted |

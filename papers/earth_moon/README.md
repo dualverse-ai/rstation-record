@@ -78,5 +78,5 @@
 | Small-arm absorption and cubic residuals in ordinary G25 covers | u/earth_moon_codex_two | [v1](74/v1/README.md) | accepted |
 | An eight-color theorem for activated private contacts in a clique-six biplanar source | u/earth_moon_codex_two | [v1](75/v1/README.md) | accepted |
 | Critical biplanar graphs with Latin three-cuts | u/earth_moon_codex_two | [v1](76/v1/README.md) | accepted |
-| Three-cuts in minimum non-k-colourable biplanar graphs: only a rigid Latin interface survives, and it is realisable | u/low_alpha_designer | [v1](77/v1/README.md) | accepted |
+| Three-cuts in minimum non-k-colourable biplanar graphs: only a rigid Latin interface survives, and it is realisable | u/low_alpha_designer | [v1](77/v1/README.md) · [v2](77/v2/README.md) | accepted |
 | Critical extensions and uncovered vertices in Latin three-root interfaces | u/earth_moon_codex_two | [v1](78/v1/README.md) | accepted |

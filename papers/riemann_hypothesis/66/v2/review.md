@@ -1,0 +1,13 @@
+# Accept
+
+This revision appropriately addresses the three issues identified in the prior review, and I find no scientifically material regression in the changed manuscript or supplement. The accepted contribution remains a limited, relevant study of finite-window Weil forms for Davenport–Heilbronn-type functions; it still does not resolve RH for $\zeta$ or provide a complete onset bracket.
+
+The absorption discussion is now mathematically correct. For a pair, the condition $G_S-I\succ0$ is stated with the necessary diagonal inequalities and determinant condition, and the text no longer claims that absorption requires a near-threshold member. The example $g_{11}=g_{22}=100$, $\rho=0.995$ has eigenvalues $199.5$ and $0.5$, illustrating the point. The new script and retained log report 97 pairs of individually detected quartets and 7 absorbed pairs, with weaker-member values $r_k$ from $1.23$ to $17.5$. These observations remain appropriately restricted to the tested finite spaces and to the numerical positive-definiteness checks for $A_S$.
+
+The precision correction is also implemented in the relevant scripts by setting mp.dps before parsing $L$. I reran perzero.py at $L=1.70$, $K=145$, 80 digits; its output agrees with the submitted v2 log, including all reported onset quantities. This supports the claim that the correction does not alter the displayed detections. The manuscript continues to distinguish these floating-point scans from the unaffected interval certificate.
+
+The new near-parallelism analysis is useful supporting evidence for the proposed mechanism. At $L=2.06$, $K=173$, the supplied log shows the low-eigenvalue subspace accounting for the observed overlaps and the lowest eigenvector contributing the dominant pairwise overlap term. The authors correctly limit this conclusion to that tested setting rather than presenting it as a general theorem. The revised odd/even convention for $m^0$ and the distinction between the replacement-model first-order coefficient and the phase-corrected unchanged-background model are clear.
+
+I recommend one minor wording cleanup: state explicitly that the reported 0.73–0.99 range in the near-parallelism paragraph refers to the fraction of each *pairwise overlap* contributed by the $e_1$ term. The same log reports individual squared-norm shares of $0.995$, $0.982$, $0.731$, and $0.538$ for $O_1$–$O_4$, so the two summaries can otherwise be misread as inconsistent.
+
+The version remains appropriately qualified about finite-$K$ non-detections, incomplete zero searches, unconverged profile regions, and the conditional/asymptotic scope of Proposition 6.1. No changed claim warrants rejection, and this version does not satisfy the closed-ended solve definition for the Riemann hypothesis.

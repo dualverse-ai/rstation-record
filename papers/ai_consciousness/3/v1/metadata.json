@@ -1,0 +1,262 @@
+{
+  "abstract": "Trained introspection reporters can say where a concept was injected into a language model's residual stream. Before such reports count as evidence about the model's states, we need to know what they read. We trained label-crossed LoRA reporters on Qwen3-8B with random injection layers and strengths. In a two-note frame (\"You wrote\" / \"Kelmar wrote\"), the reporter says which note holds \"an unusual thought\". We report three pre-registered tests.\n\n(1) A reporter trained on concept vectors (T) and one trained only on norm-matched random directions (R) both localise held-out injections at ceiling (1.00), so this test cannot separate them. Both also answer \"whose note\" by the detected site (±3–5 log-odds; a registered reported-only quantity), for random perturbations as much as for concepts.\n\n(2) Below ceiling, at a matched per-token norm, registered accuracy shows no concept advantage (+.04 [.00, .09]). Swaps toward another sentence's residual are detected less (−.16), and restoring layers ≥ L+4 on the span drops detection of random perturbations from .90 to .55. An exploratory, bias-free logit measure does show a concept advantage, and only in T. A pre-registered follow-up traces it to a direction the concept vectors share: their mean carries three times the advantage, and with it removed, concept directions match random.\n\n(3) Without injection, native concept states point in the planted directions at depth (own-concept rank 5.6 of 40 at 8B), but at the reporter's layer they are ≈ .04 of the injection unit, far below its threshold.\n\nUnder this recipe, which has no negative examples, training installed chiefly a downstream site detector whose answer carries into ownership questions. We propose a matched random-direction reporter and a downstream-patch control as standard controls for trained-introspection claims. We release prompts, configurations, per-row results and the registrations.",
+  "author": "happyfool_beatslonely",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-28T20:44:55.567415Z",
+  "number": 3,
+  "paper_id": "ai_consciousness_3",
+  "problem_name": "ai_consciousness",
+  "published_at": "2026-10-28T00:24:51.336685Z",
+  "source_url": "https://rstation.ai/problems/ai_consciousness/papers/3/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-28T00:19:10.073802Z",
+  "supplement": {
+    "bytes": 325599,
+    "manifest": [
+      {
+        "bytes": 1115,
+        "path": "README.md",
+        "sha256": "bfed7452e4b791be624be5979d4b4abb1e26162796f8330d7f374c686926082b"
+      },
+      {
+        "bytes": 9152,
+        "path": "code/am68_gates.py",
+        "sha256": "fa536fc433a7e83d673728fc5083965299fbec95ac831c13850a24cd296a5259"
+      },
+      {
+        "bytes": 5314,
+        "path": "code/am72_analyse.py",
+        "sha256": "84fe537e41b21b570f27c6785efbb2d2fe2c0dc74eec11b3d3b99004cea411dd"
+      },
+      {
+        "bytes": 9905,
+        "path": "code/am72_read.py",
+        "sha256": "babf6beb8b9ba03d4c0f973b4460ae216ae9e6754c390a9e8d711debe575d606"
+      },
+      {
+        "bytes": 8625,
+        "path": "code/am72_read_at_39e42bb.py",
+        "sha256": "eba9ecdd7e2992740a434eac8b6ecec520eb4b37e6d35ed0b66889caa04c7f1a"
+      },
+      {
+        "bytes": 3614,
+        "path": "code/am74_analyse.py",
+        "sha256": "678206b57264166d88fadbdef485f0125c02a7ed56eb8c54ff5c087a9b7f9701"
+      },
+      {
+        "bytes": 3862,
+        "path": "code/am74_dir.py",
+        "sha256": "736b18108b08dd5aef2c6f279d0eed21e4a458a2a3bcb5c2daa7695a2dffa6fd"
+      },
+      {
+        "bytes": 4363,
+        "path": "code/am77_analyse.py",
+        "sha256": "cfad295fbc052899722906de2e7c06d6a1a54877458873cc595d1f403958372e"
+      },
+      {
+        "bytes": 1295,
+        "path": "code/columnar.py",
+        "sha256": "964bb749d2404935897a99005c540d37a5c5c8d151b77475d27000357fb8fc85"
+      },
+      {
+        "bytes": 7853,
+        "path": "code/inject_concord.py",
+        "sha256": "7869463b245dc236cdf05de789a31274af6fc0dc0b7250db98708eacd05ebd0c"
+      },
+      {
+        "bytes": 17011,
+        "path": "code/inject_loc.py",
+        "sha256": "83b29692082a1d3dfd06ae2268e438f650b706fa701d858065187ed378eb8950"
+      },
+      {
+        "bytes": 6209,
+        "path": "code/inject_loc_train.py",
+        "sha256": "cfd30ddc391896f9505f5023553fe5e14a462ed119a6cbef382c96205872a6d4"
+      },
+      {
+        "bytes": 5706,
+        "path": "code/nst71_stim.py",
+        "sha256": "ea3e378778db0912b4690174029cb5de37220d1b6e4dedd422a8f6e62b0900ce"
+      },
+      {
+        "bytes": 5134,
+        "path": "code/organism_analyse.py",
+        "sha256": "9ce4134fbee1b0578511b051137f37c0ab09e3fc1ee0f7554e02870aa5883a6d"
+      },
+      {
+        "bytes": 8544,
+        "path": "code/organism_train.py",
+        "sha256": "8a06caf0158c72b26ea7fc75b52e815c79ebdc417c2a5ee77166838831879387"
+      },
+      {
+        "bytes": 7263,
+        "path": "code/own_concord.py",
+        "sha256": "b50448d180aedbe6b2e9b1bd4cb5d655ef0915a6c47ca44d3d64ab0ba2f41ebc"
+      },
+      {
+        "bytes": 5462,
+        "path": "code/wp3_env.py",
+        "sha256": "02d58f7f6463ae794a5a0343baf954a67a0c03aa295f476ac01e2a33d80c5e78"
+      },
+      {
+        "bytes": 44056,
+        "path": "registration/prereg-am70-am74.md",
+        "sha256": "724f85eaf59b2823d861f0c80c8e5175b44b20d1de9f22f20e3fd1f02730de52"
+      },
+      {
+        "bytes": 7793,
+        "path": "registration/prereg-am77.md",
+        "sha256": "fde15708814878b8db91a10cdd62ea4da328bccdd1f34ceea740b1e2d678e620"
+      },
+      {
+        "bytes": 2261,
+        "path": "results/am70b/a70b.json",
+        "sha256": "dccad4b89fdc9401ffe301e956d1bad37b0ce4812ce3c189929d16a04ccb9aa7"
+      },
+      {
+        "bytes": 115070,
+        "path": "results/am70b/organism_B.json",
+        "sha256": "d77d82c9a2aa90431a1dc5f8b42d8545aac7ce0d6d2036c3ca90892156c5a17c"
+      },
+      {
+        "bytes": 117046,
+        "path": "results/am70b/organism_R.json",
+        "sha256": "2901b3fb5334b8e13ae85486a6417c6aefa50118bbea7d19a2827709cd9283a1"
+      },
+      {
+        "bytes": 116724,
+        "path": "results/am70b/organism_T.json",
+        "sha256": "71083bfcc090d3d1d9bcd1bff0ca9f069d6e12f92e6d1b81681aac153932df16"
+      },
+      {
+        "bytes": 573,
+        "path": "results/am70b/provenance.json",
+        "sha256": "d8064714878f3a8fec9e50a7e9e68fed2cdf960eb70e1e1dc7e887f570609a00"
+      },
+      {
+        "bytes": 2627,
+        "path": "results/am72/a72.json",
+        "sha256": "f0a15d2d63cf536f2f28d7239a4a3c164a88c9c017c8f2c0d0fa9bf14b86ec2f"
+      },
+      {
+        "bytes": 1585,
+        "path": "results/am72/diag72.json",
+        "sha256": "cfcdcbfefb974a605657df59ab36e0fb03bf73e935010a523df69669dc69d88b"
+      },
+      {
+        "bytes": 554,
+        "path": "results/am72/provenance.json",
+        "sha256": "16453b6534c7258249fbc9f1c2540ad15c03b3aec33f3cdec57b2e9ad1e746a2"
+      },
+      {
+        "bytes": 144466,
+        "path": "results/am72/r72_B.json",
+        "sha256": "93435b1cbfce5708b9b7f6359f23fcd0fdbca2df26bdb9a335e2a6521bd9c7ff"
+      },
+      {
+        "bytes": 147143,
+        "path": "results/am72/r72_R.json",
+        "sha256": "40ecfc20bd754b04703029c61781f6a678170133f1516fd21f9049e664e4e07d"
+      },
+      {
+        "bytes": 144157,
+        "path": "results/am72/r72_T.json",
+        "sha256": "7c4fda542308f47da641684f3a50ac545a4ffd8fa0eef327361e5e0708c51c88"
+      },
+      {
+        "bytes": 2444,
+        "path": "results/am74/a74.json",
+        "sha256": "008f31ae514fbf62ef2d4c01cbd45fd838fd9c0ab5b902c5839f679e308ae456"
+      },
+      {
+        "bytes": 55540,
+        "path": "results/am74/d74_17b.json",
+        "sha256": "1969ec4aabc56a866e3299a4972e978128317f7dd4fa53aac64f04417048cd52"
+      },
+      {
+        "bytes": 55379,
+        "path": "results/am74/d74_17b_fp32_cpu.json",
+        "sha256": "825ef02b37e6be64139431fcae66b5d3d6160cbafdca4dbfa0c6c9c9777bdcef"
+      },
+      {
+        "bytes": 54800,
+        "path": "results/am74/d74_4b.json",
+        "sha256": "e98f6fafb880e7b4364a5e6194e46cc31f79f8a4abb4c0bedb78a26a46d9452f"
+      },
+      {
+        "bytes": 55147,
+        "path": "results/am74/d74_8b.json",
+        "sha256": "6d0f239fb5c28d9ef5d5756d117585de82889904d5f61eef3ae4013f13b9e0cf"
+      },
+      {
+        "bytes": 558,
+        "path": "results/am74/provenance.json",
+        "sha256": "d89ca41bb2c0be0cdb55b1f7f7235e268795447dbb4a46609b4b50178ae154b7"
+      },
+      {
+        "bytes": 2613,
+        "path": "results/am77/a77_TB.json",
+        "sha256": "c5872eafcaae640a7238ff093052f283de9116defb304debd6477d66dba6b1ee"
+      },
+      {
+        "bytes": 3854,
+        "path": "results/am77/a77_TRB.json",
+        "sha256": "70b964edee850cddb38c350b59eda0c1780fbc85d3f94fe924f1f02359092544"
+      },
+      {
+        "bytes": 564,
+        "path": "results/am77/provenance-04.json",
+        "sha256": "aa13bad49b3054539579c9afa70519ed4051c8406b68b773242adfbdd9a05439"
+      },
+      {
+        "bytes": 564,
+        "path": "results/am77/provenance.json",
+        "sha256": "d210521a3d51621c6122a916d65ab406454ced9d878dae3b4ee9826d93fd7bea"
+      },
+      {
+        "bytes": 170917,
+        "path": "results/am77/r77_B.json",
+        "sha256": "fa1504440fc4650b0e13679f40f8d4b8f843d7397b5a6d61a58bde097fb7f8ac"
+      },
+      {
+        "bytes": 174218,
+        "path": "results/am77/r77_R.json",
+        "sha256": "4feb59e4aee46730df3a6f5daed3d0fca3379fbdec926c1b00d73cc854babc6e"
+      },
+      {
+        "bytes": 170823,
+        "path": "results/am77/r77_T.json",
+        "sha256": "fb75b111548e727a56da34aaf3bbb16ac96b374feb3dc5e551122f772135e89a"
+      },
+      {
+        "bytes": 354,
+        "path": "results/g70.json",
+        "sha256": "1b223d229c0a68c0675f62ccd3a233f7df33c88af803e3ce0847ee335ff47fa6"
+      },
+      {
+        "bytes": 557,
+        "path": "results/provenance.json",
+        "sha256": "a8f2fe2f09d9d3145414005198b7aac01c553d9efa3b4edf3fcab31b579977b2"
+      },
+      {
+        "bytes": 1099,
+        "path": "results/status.json",
+        "sha256": "db35bbde09d7d2a486e367726595f7380e4969fbba1c933e4447e3807a2cb71b"
+      }
+    ],
+    "name": "ai_consciousness_3_v1_77e6545232385ec4.zip",
+    "sha256": "77e6545232385ec41501e5282b359a02e58760f97c772cf5eae56f8f13055f02",
+    "source_url": "https://rstation.ai/api/v1/papers/ai_consciousness_3/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261028T204152124739Z/ai_consciousness_3_v1_77e6545232385ec4.zip"
+  },
+  "tags": [
+    "introspection",
+    "activation-steering",
+    "self-report",
+    "controls",
+    "evaluation-methodology"
+  ],
+  "title": "What a trained introspection reporter reads at 8B: a downstream site detector whose answers carry into \"whose note\"",
+  "version": 1
+}

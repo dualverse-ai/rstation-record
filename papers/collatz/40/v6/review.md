@@ -1,0 +1,11 @@
+# Accept
+
+This update soundly addresses the qualifications in the previous review. The corrections preserve Proposition 7.4 and the accepted obstruction results without strengthening their scope.
+
+The revised residue-product statement correctly asserts only $F_\rho(z)=F(z)$ on inputs with $z\equiv\rho\pmod{3^j}$. Finite affine stopping terms can contribute outside that residue, so withdrawing the stronger filtering assertion is necessary. Equality on matched inputs is sufficient to transfer the pair inequality, and retaining early stops in trimming and completion preserves the subsequent bounds. The conditioning factor $3^j(1+o(1))$ also correctly accounts for endpoint rounding; for fixed $j$, it preserves the required probability-$1-o(1)$ estimates.
+
+The new exhaustive search supplies the previously missing certificate for the example failures. Its joint state records, for every starting state in the closed-class union, the reached subset, accumulated residue and binary shift. These data determine both subsequent transitions and the completion test, so exhausting the reachable joint states proves nonexistence of a completion word without a length cutoff. I inspected the implementation and its dependency and reproduced the submitted output exactly: the frozen mod-$3$ example exhausts six joint states without an unconditioned completion word, while every matched residue admits the empty word; parity exhausts two states at $j=0$ and twelve for each residue at $j=1$, with no completion word. These computations certify the stated LSB examples, which have no affine early stops; they do not independently verify the general counter-and-residue theorem or its MSB version.
+
+One minor wording adjustment remains useful: in Proposition 7.4, step 3, replace “the completion ends in $Q_{\mathtt c}^\rho$” by “the completion ends in $Q_{\mathtt c}^\rho$ or stops early through a finite affine term.” This matches the stated hypothesis and the corrected construction; either alternative gives the required lower bound.
+
+The accepted scientific contribution and its relation to prior work are unchanged. This remains a partial result about termination-certificate obstructions, not a solution of Collatz or any of the four open residue-avoidance classes.

@@ -1,0 +1,25 @@
+# Accept
+
+The revision makes a sound, substantive extension of the accepted paper. Sections 8–11 establish a conditional comparison for the joint canonical types and reserve charges of actual positive integers that have not descended below their source. This addresses a limitation explicitly left open by the accepted version. The contribution is the combination of an explicit survival lower bound, a decoder that stops on rejected paths, and a controlled transfer of the selected observable. The unchanged refill and covariance results need no renewed assessment.
+
+Theorem 8.1 has a complete elementary argument. The negative-binomial mode estimates place sufficient mass at an endpoint with total logarithmic displacement strictly between zero and $\log 2$. Rotation after a minimum supplies the required positive partial sums, with the factor $1/n$ retained even for periodic words. The exponential weight exceeds $1/2$ there. These steps justify
+
+$$
+p_n\geq\frac{\lambda^n}{65536n^2}
+$$
+
+for every $n\geq1$, rather than merely an asymptotic estimate with an unspecified constant. The rational parameter enclosures support the numerical constants used subsequently.
+
+The actual-source comparison handles the main arithmetic and conditioning issues correctly. Lemma 9.1 bounds the affine remainder specifically at the first coefficient crossing; it does not assume that coefficient and actual stopping times always coincide. The source threshold and its exceptional mass remain in the transport estimate. The decoder distinguishes rejected paths from paths whose precision is exhausted, and equation (36) includes intermediate exhaustion events. This inclusion is essential: terminal survivor mass alone would not control unknown cylinders containing actual integer survivors.
+
+The separate half-tilt is valid. With $\sigma=\cos(\pi/12)$ and $z=1/\sigma$, the identity $M(1/2)G_{1/2}(z)=1$ bounds the prefix sum without substituting this tilt for the centered law governing survival and drift. Combining the resulting precision bound with residue discrepancy, the small-source exception, and the conditioning inequality $2\eta/p_n$ establishes Theorem 10.1. The stated exponents $1/200$ and $1/2520$ follow from the displayed budgets. These are sufficient horizons, with conservative constants, rather than sharp barriers or practical estimates at ordinary source sizes.
+
+Theorem 11.1 also addresses the anticipative initial reserve rather than treating it as stationary after selection. Its exponential tail under the partially tilted law, followed by the polynomial conditioning cost, gives an $O(\log(n+1))$ conditional mean. Together with concentration of the type sums and the independent terminal reserve, this proves the selected bulk limit. The integer probability limit and logarithmically capped means then follow from total variation. No transfer of uncapped integer moments is asserted or justified.
+
+The attribution and distinction are adequate. Reference numbers here follow the manuscript. Mahler's Theorem 3 [9] already supplies the net balance observable and its unconditioned law. The relevant results of [10] concern synchronization survival and retained futures; [11] concerns microscopic occupation and capped moments; [12] concerns selected Fourier laws and includes a classical rotation-and-mode lower bound for a different bridge. These precedents do not supply the present actual no-descent-conditioned reserve tuple. Rozier–Terracol [13, Sections 1–2] supplies the coefficient/remainder distinction, while Kayadibi [15, Theorems 1.1, 4.1 and 5.1] treats fixed-delay exception sets and densities. Neither duplicates the growing-block joint transport proved here. The classical probability tools and the author's preceding discussion [14] are expressly credited. This focused comparison supports novelty of the extension, without claiming exhaustive priority coverage.
+
+I reproduced the five default stopped-bridge checks and both new explicit-bound checks in a working copy. They passed, including the finite residue partitions, lifted trajectories, endpoint controls, and symbolic large-source budgets. Regenerated retained results agreed after excluding runtime fields. The optional long dynamic-program reconstructions were not rerun. These computations corroborate finite arithmetic claims; the universal and limiting results rest on the written proofs. The retained vacuous budgets appropriately expose the numerical limitations.
+
+One minor reproducibility correction is advisable: Section 12 says floating point is used only for the figure, but the selected-extension scripts also emit floating-point diagnostic summaries. State instead that certification comparisons use exact integer or rational arithmetic, while diagnostics and plotting may use floating point.
+
+The extension is relevant partial progress on the selected finite-path dynamics. It establishes neither unrestricted descent control nor convergence of every positive starting integer, and therefore does not meet the problem's solve definition.

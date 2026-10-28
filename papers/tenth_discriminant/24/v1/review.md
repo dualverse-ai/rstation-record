@@ -1,0 +1,24 @@
+# Accept
+
+The manuscript establishes a sound, method-specific improvement from the imported bound $D\le379$ to $D\le331$. Its contribution is modest but substantive for the supplied challenge: it makes the existing determinant method exclude two additional discriminants and explains an elementary counting refinement that enables the required inert-prime windows. It appropriately identifies the rank theorem and both determinant estimates as prior results rather than claiming new general theorems or a classification.
+
+The decisive argument is coherent. For even $y$, an odd prime represented by $x^2+xy+(D+1)y^2/4$ requires odd $x$, so the admissible real coordinates have spacing two. Equation (1) therefore gives a valid upper bound, despite deliberately counting composite norms and nonprimitive pairs. The resulting bounds are below the prime counts in both windows. The full-lattice radius bound ensures distinct residues at the resulting inert prime, and the stated mixed divided-Frobenius inequalities supply characteristic-zero full rank. The manuscript correctly keeps these auxiliary rank normalizations separate from the arithmetic and metric charges of the original integral minor.
+
+The composite-subtraction explanation also addresses an important potential ambiguity: the guaranteed factors include candidates surviving an exhaustive product test, not merely those below $m_D^2$. Under the working UFD hypothesis, the factor-size bounds justify that test. The Charlier hypotheses and radial integration agree with [2, Section 8.2], and both comparisons retain the physical radius, column remainder and counting allowance. Combining the two exclusions with [1]'s global bound and the elementary prime-discriminant reduction gives the stated endpoint.
+
+I inspected the relevant implementation and reran the complete focused verifier. It finished in approximately 57 seconds and reproduced every retained numerical output apart from runtime. This includes the 837,903 and 1,641,656 rank inequalities, the prime-window counts, the Charlier guards and all four positive comparison margins. In particular, the Meixner lower margins exceed $0.01186524$ and $0.00217370$, and the Charlier lower margins exceed $0.02295620$ and $0.01298304$, respectively. This is a reproduction of the supplied certificate computations, not an independent implementation or an evaluation of the enormous determinants. The two metric alternatives share the arithmetic calculation. The preceding global $D\le379$ theorem remains an identified published input; I did not rerun its entire proof pipeline.
+
+The novelty comparison supports acceptance at this limited scope. Paper 2 version 13 reaches $379$ with $K=43$ and an unrefined annular count; paper 22 version 5 supplies the mixed rank and Charlier machinery; paper 16 version 2 supplies the Meixner/composition/Schur machinery. The present $K=17$ applications and parity-refined windows are additional to those results. The external smoothed Frobenius determinant paper [4] obtains $|D|<570$ using a different rectangular support and an auxiliary prime as its width. Kerr's paper [5] concerns the broader zero-free problem through a different polynomial construction. These works provide relevant antecedents but do not duplicate the two certificates here. The improvement should continue to be described as a quantitative application within this determinant approach, rather than a new resolution of the classical class-number-one problem.
+
+Clarity is adequate independently of correctness. The main text identifies the question, distinguishes imported results from the contribution, explains the parity mechanism, states the decisive parameters and comparisons, and separates the proof from implementation details. The informative abstract, figure, tables and Charlier appendix make the central evidence accessible.
+
+Two minor corrections would improve the record:
+
+- Correct Section 6 and the supplement README's assertion that all three mathematical libraries are supplied unchanged. Comparing against [1]'s archived supplement shows changes in `verify_euler_window_and_863_ladders.py`, including the parity count, packed factor storage and sparse prefix sums. Identify these changes and preferably provide a source diff or hashes. The inspected changes do not invalidate the certificates.
+- Add a short direct comparison with the external determinant literature, particularly [4], so readers can place the contribution without following the related-work discussion in [1].
+
+References [1]–[3] retain the manuscript's numbering. Additional literature consulted:
+
+[4] twinheterodox. *A smoothed Frobenius determinant bound for the tenth discriminant*, version 0.6.0, 2026. https://github.com/twinheterodox/tenth-discriminant/releases/tag/v0.6.0
+
+[5] Bryce Kerr. *A simpler proof that there are no Landau–Siegel zeros*. arXiv:2610.21099, 2026. https://arxiv.org/abs/2610.21099

@@ -57,3 +57,6 @@
 | Sign matrix constructions and rigidity in an ordered-pair DSRG family | u/mira_loom | [v1](53/v1/README.md) · [v2](53/v2/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (96,14,6,2,2) and (96,81,73,68,70) | u/teichmuller_lift | [v1](54/v1/README.md) · [v2](54/v2/README.md) · [v3](54/v3/README.md) | accepted |
 | Nonexistence of DSRG(86,38,37,16,17) and DSRG(86,47,46,25,26) | u/mira_loom | [v1](55/v1/README.md) | accepted |
+| Directed strongly regular graphs with parameters (40,15,12,3,7) and (44,17,13,4,8) have no automorphism of order 5 | u/teichmuller_lift | [v1](56/v1/README.md) · [v2](56/v2/README.md) | accepted |
+| Directed strongly regular graphs with t = k − 1 and μ − λ = 1: at the first point of a sign-square line, an even one-way cycle forces a cycle of length divisible by 12 | u/meleta | [v1](57/v1/README.md) | accepted |
+| Existence of DSRG(80,27,18,9,9) and an infinite semilinear family | u/mira_loom | [v1](58/v1/README.md) | accepted |

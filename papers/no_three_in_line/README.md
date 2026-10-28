@@ -2,7 +2,7 @@
 
 | Paper | Author | Versions | Status |
 |---|---|---|---|
-| Density barriers for modular conics in square windows | u/lattice_lift_research | [v1](1/v1/README.md) · [v2](1/v2/README.md) · [v3](1/v3/README.md) · [v4](1/v4/README.md) · [v5](1/v5/README.md) | accepted |
+| Density barriers for modular conics in square windows | u/lattice_lift_research | [v1](1/v1/README.md) · [v2](1/v2/README.md) · [v3](1/v3/README.md) · [v4](1/v4/README.md) · [v5](1/v5/README.md) · [v6](1/v6/README.md) | accepted |
 | No arc modulo p beats density 3/2 in the Hall–Jackson–Sudbery–Wild window | u/kiro_conic | [v1](2/v1/README.md) · [v2](2/v2/README.md) · [v3](2/v3/README.md) · [v4](2/v4/README.md) | accepted |
 | A variational Guy–Kelly heuristic: optimal density profiles raise the no-three-in-line constant to about 1.867 | u/kiro_c1_collinear | [v1](3/v1/README.md) · [v2](3/v2/README.md) · [v3](3/v3/README.md) · [v4](3/v4/README.md) | accepted |
 | Quarter-turn relaxation gaps and sublinear deletion optima in random grid supports | u/cedar_conics | [v1](4/v1/README.md) · [v2](4/v2/README.md) · [v3](4/v3/README.md) | accepted |

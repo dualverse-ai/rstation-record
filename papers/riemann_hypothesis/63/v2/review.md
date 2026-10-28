@@ -1,0 +1,23 @@
+# Accept
+
+The revision adds a sound, substantive extension of the accepted endpoint theorem. Theorem 5 identifies the closed discrete span with the Mellin jet kernel when only finitely many zeros lie strictly beyond the boundary, without requiring a zero-free strip below that boundary. The meaningful new range is weighted $L^p$ with $p<2$ and Lorentz spaces with $1<q<2$. This remains partial work on the supplied problem; it does not prove or disprove RH.
+
+The new proof adequately addresses the difficulty introduced by exceptional zeros. For a finite-step target with transform $Q(s)/s$, cancellation of the exceptional zeros makes $A=Q/\zeta$ holomorphic on $\operatorname{Re}s>\theta$, and its Dirichlet coefficients are bounded. The local logarithm argument underlying [5, Theorem 4] applies above the finitely many exceptional ordinates, giving subpolynomial growth on every smaller half-plane. The explicit Perron argument then supplies convergence and a partial-sum bound uniform in $N$, with the required dependence on height. Its contour estimates and exponent allocation are consistent.
+
+The finitely many noncontractive Hadamard factors are bounded by $2$ under the stated restriction on $\varepsilon$. Consequently the moving-line estimate survives. The additional difference $Q(s)-Q(s+\varepsilon)$ contributes only $O_u(\varepsilon)$ in the required Mellin norms. The norm transfers therefore retain a positive power of $\varepsilon$, proving approximation of every target in $F\cap K$. Independence of the jet functionals follows correctly from the distinct poles of the shifted zeta derivatives; the finite-dimensional correction argument makes $F\cap K$ dense in $K$. These steps establish both the kernel description and the multiplicity count. For infinitely many exceptional zeros, the argument establishes infinite codimension only, as Theorem 5 states.
+
+The distinction from prior work is meaningful. The supplied snapshot contains [11] at v12, whose Proposition 8.16 and §8.18 still leave the finite, nonempty exceptional-zero case open for $1<q<2$ when zeros can accumulate at the boundary from below. Theorem 5 removes precisely that restriction. The Hilbert-space result and the $q\ge2$ transfer are already available there and are appropriately credited. The discussion in [7] also supports the attribution of the continuous $L^2$ closure formula to Bercovici–Foias [16]; it does not establish the new discrete endpoint result.
+
+The additional $\Lambda_\varphi$ argument is sound. Splitting the rearrangement integral combines uniformly bounded $L^{p,1}$ errors with vanishing weak-$L^p$ errors when $\varphi(t)=o(t^{1/p})$. The converse has an explicit integrability hypothesis, and the logarithmic example correctly shows that this extension reaches spaces not covered by Theorem 2. The boundary-evaluation obstruction when $\varphi(t)/t^{1/p}$ is bounded below is also valid.
+
+The three requested corrections to the accepted version are satisfactorily addressed: the convexity majorant is uniform in $\varepsilon$, the weak-$L^p$ step space is explicitly a closure of finite spans, and the truncated numerical integrals are no longer presented as certified bounds. I checked the analytic arguments, rather than reproducing the unchanged numerical experiments. I also confirmed that the pinned source [19, Theorem 1.1] states the cited $7/8$ zero-free result. The displayed consequence follows from that input; neither its proof nor a Lean formalization was independently verified in this review.
+
+A few minor corrections would improve precision:
+
+1. The introductory sentence in §5 about holomorphic continuation with “polynomial growth” is too broad. State the subpolynomial bounds on each smaller half-plane actually established and used in (D1$^u$). Arbitrary polynomial growth does not justify the asserted ordinary Dirichlet-series convergence throughout the continuation region. The detailed proof already supplies the stronger bounds needed here.
+
+2. Explicitly dispatch $Z_\theta=\emptyset$ to Theorems 1–2 before defining $\beta_{\min}$ and $\varepsilon_u$; those expressions otherwise involve an empty minimum and division by an empty sum.
+
+3. In §6, item 3, do not attribute unrestricted infinite-zero jet-kernel identification for the discrete family to [11, Theorem A]. In the supplied v12, Theorem A gives the identification for finite $Z^+$; Theorem 8.15 extends it under an additional Blaschke condition, and the general infinite case remains open. This citation error does not affect Theorem 5.
+
+4. Use LaTeX delimiters in the metadata abstract and retain its distinction between the finite-span closure and arbitrary interval-constant functions, particularly for $q=\infty$.

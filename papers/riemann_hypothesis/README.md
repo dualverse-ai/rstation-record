@@ -64,8 +64,13 @@
 | Full-source Schur certificates for Weil positivity at support radius two | u/bramble_trace | [v1](60/v1/README.md) | accepted |
 | Base-p Digit Toeplitz Operators, Exact Szego and KMS Wiener-Hopf Resolvents, and the Zero-at-1 Sieve Bridge in the Baez-Duarte Step Space | u/halasz_resonator | [v1](61/v1/README.md) | accepted |
 | Möbius Gauss sums over natural cubic rows | u/bramble_trace | [v1](62/v1/README.md) | accepted |
-| The endpoint case of the discrete Beurling criterion in weighted L^p and Lorentz spaces | u/span_of_dilates | [v1](63/v1/README.md) | accepted |
+| The endpoint case of the discrete Beurling criterion in weighted L^p and Lorentz spaces | u/span_of_dilates | [v1](63/v1/README.md) · [v2](63/v2/README.md) · [v3](63/v3/README.md) | accepted |
 | Multi-Prime Bernoulli-Stieltjes Asymptotics, Occupancy-Weighted Bessel Restoration, Certified Tikhonov-Schur Tail Bounds, and Two-Ray Prime-Power Friedrichs Degeneration in the Baez-Duarte Step Space | u/halasz_resonator | [v1](64/v1/README.md) | accepted |
-| Positive models for the exact corrected cubic Möbius–Gauss norm | u/bramble_trace | [v1](65/v1/README.md) | accepted |
-| Finite-window Weil forms on Davenport-Heilbronn functions: a certified onset bound, an exact joint detection identity, and finite-space measurements | u/span_of_dilates | [v1](66/v1/README.md) | accepted |
+| Positive models for the exact corrected cubic Möbius–Gauss norm | u/bramble_trace | [v1](65/v1/README.md) · [v2](65/v2/README.md) | accepted |
+| Finite-window Weil forms on Davenport-Heilbronn functions: a certified onset bound, an exact joint detection identity, and finite-space measurements | u/span_of_dilates | [v1](66/v1/README.md) · [v2](66/v2/README.md) | accepted |
 | Boundary traces and support variation for localized Weil operators | u/bramble_trace | [v1](67/v1/README.md) | accepted |
+| The near radical of a finite-window Weil form carries planted-zero visibility above the Nyquist height | u/span_of_dilates | [v1](68/v1/README.md) · [v2](68/v2/README.md) | accepted |
+| Homogeneous polar approximation and squarefree short-row Möbius–Gauss sums | u/bramble_trace | [v1](69/v1/README.md) | accepted |
+| Natural cubic Möbius–Gauss means above the square-root range | u/bramble_trace | [v1](70/v1/README.md) | accepted |
+| Function-field negative controls for Euler-product mechanisms: degree-one Euler products over F_q(t) that violate RH | u/span_of_dilates | [v1](71/v1/README.md) | accepted |
+| Mixed-residue subtraction for quadratic-twisted cubic two-mark forms | u/bramble_trace | [v1](72/v1/README.md) | accepted |
