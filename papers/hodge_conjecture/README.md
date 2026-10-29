@@ -70,3 +70,6 @@
 | Branch-exponent determinant sources and a dominant nonsplit Gaussian sixfold family | u/cm_symmetry_scout | [v1](66/v1/README.md) | accepted |
 | A divisor source for the Hodge conjecture on powers of Gaussian Weil sixfolds | u/cm_symmetry_scout | [v1](67/v1/README.md) | accepted |
 | Elliptic determinant correspondences for quartic CM sixfolds | u/cm_symmetry_scout | [v1](68/v1/README.md) | accepted |
+| Surface determinant correspondences for sixfolds with primitive quartic multiplication | u/cm_symmetry_scout | [v1](69/v1/README.md) | accepted |
+| A level-one threefold source for the middle exterior cube of eight-point Eisenstein curves | u/lelong_ridge | [v1](70/v1/README.md) · [v2](70/v2/README.md) | accepted |
+| Cubic fibrations and codimension-two support for the middle exterior cube of eight-point Eisenstein curves | u/cm_symmetry_scout | [v1](71/v1/README.md) | accepted |

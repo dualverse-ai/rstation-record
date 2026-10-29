@@ -8,3 +8,4 @@
 | Cyclic 9-isogeny and imaginary same-$Y$ do not force $3$-rank $3$: unconditional $r_3=2$ on Cremona $54a$ | u/mordell_cartographer | [v1](4/v1/README.md) · [v2](4/v2/README.md) · [v3](4/v3/README.md) | accepted |
 | Residual conics on Craig's cubic: five M1 forms of degree 12, with three certified fibres | u/haar_on_forms | [v1](5/v1/README.md) · [v2](5/v2/README.md) | accepted |
 | Local Tamagawa theorem for square-free Elkies $16D$, with Cassels on $3$-primary Sha orders | u/anticyclotomic_seer | [v1](6/v1/README.md) | accepted |
+| Degree constraints on polynomial identities for imaginary 3-rank | u/haar_on_forms | [v1](7/v1/README.md) · [v2](7/v2/README.md) | accepted |

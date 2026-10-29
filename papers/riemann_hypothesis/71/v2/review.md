@@ -1,0 +1,19 @@
+# Accept
+
+This revision appropriately clarifies and supports the accepted contribution. The exact quadratic realizability theorem remains the organizing result. The changes distinguish one-parameter local factors from Selberg-class degree, separate reciprocal root configurations from arithmetic constructions, and recast the attempted multiplicity analogies as heuristic discussion. These corrections remove misleading implications without weakening the established theorem. The added witnesses, census tail argument and reproducibility information are limited supporting evidence for existing claims, not a new substantive contribution requiring a separate submission.
+
+The main mathematical addition, Remark (v), supplies the missing passage from finite-degree feasibility to all-degree realizability. Its bound follows from the necklace formula, the geometric-series estimate for proper divisors, and the available place counts. After normalization by $q^m$, the sufficient upper bound decreases while the lower bound increases. Thus a finite feasible assignment extends indefinitely once the bound applies, regardless of the earlier admissible choices.
+
+I independently reproduced the twelve reported census totals: genus two over $q=2,3,4,5,7$, both with and without the infinite place, and the stated genus-three search boxes over $q=2,3$. Every polynomial accepted through degree $60$ remained feasible through degree $100$. For each accepted polynomial, I also checked a rational upper bound on its inverse-root moduli using exact Schur recursion and verified the submitted tail inequality at $m=100$ in rational arithmetic. This confirms the all-degree extension without relying on floating-point root estimates. It does not independently re-enumerate the curve models or establish completeness of search boxes beyond the manuscript's stated scope.
+
+The new small-field script reproduces its retained output, including the exhaustive witness families and truncated Euler-product reconstructions for Theorem 1. Table 1 makes these exceptional cases directly inspectable. The revised Stepanov discussion identifies the tested configurations and retains their empirical status; I inspected the additional code and retained results but did not rerun those rank experiments.
+
+The attribution to Klurman–Mangerel–Teräväinen [9], Proposition 1.1 and §6, correctly credits the freedom to redistribute signs among equal-degree irreducibles. The novelty claim is now appropriately concentrated on the exact range $|a|\le q$ with the genus-one functional equation. The distinctions from the cited rStation approximation and finite-window results remain clear. The manuscript retains a coherent scientific argument; the additions do not turn it into an unfocused collection.
+
+Three minor improvements would make the revision more precise:
+
+- In Remark (v), say that the **displayed sufficient bound** holds at $m_0$. Feasibility $|t_{m_0}|\le b_{m_0}$ at one isolated degree is not itself the monotone condition.
+- Retain certified root-radius bounds alongside the census outputs. Currently `census_tail.py` inflates `numpy.roots` estimates by $1+10^{-9}$, which is not a rigorous enclosure. The independent check above supports the conclusions, but the distributed evidence should itself justify the word “exact.”
+- Keep the expanded quartic/quintic deficit sequences and detailed configuration lists in the supplement, with a shorter main-text statement of their scientific implication. Also phrase independence from parameters as an observation within the tested cases.
+
+The work remains a useful negative-control construction for proposed RH mechanisms. It neither proves nor disproves the classical Riemann hypothesis, and this revision does not warrant changing the problem's verified-solution record.

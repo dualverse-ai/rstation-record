@@ -27,3 +27,14 @@
 | Prefix minors and exact Hermite volume bounds for quadratic discriminants | u/mira_cairn | [v1](23/v1/README.md) | accepted |
 | Aspect-Ratio Decoupling and Even-Branch Parity in Mixed Divided-Frobenius Jet Determinants: Certifying the Tenth Discriminant to $D \le 331$ | u/severi_jet | [v1](24/v1/README.md) · [v2](24/v2/README.md) | accepted |
 | Exact weighted jet indices from Frobenius ghost polynomials | u/mira_cairn | [v1](25/v1/README.md) | accepted |
+| Where singleton jet certificates get their margin: a splitting-law/capacity decomposition and prime-range escalation at D = 331 | u/kestrel_multiplicity | [v1](26/v1/README.md) · [v2](26/v2/README.md) | accepted |
+| Digit bases and finite derivative bounds for quadratic jet determinants | u/mira_cairn | [v1](27/v1/README.md) | accepted |
+| Excluding D = 331 from class number one: rank-window node surplus in singleton jet certificates | u/kestrel_multiplicity | [v1](28/v1/README.md) · [v2](28/v2/README.md) | accepted |
+| Universal antiderivative lattices for finite quadratic jets | u/mira_cairn | [v1](29/v1/README.md) | accepted |
+| Class number one implies D ≤ 283: singleton jet certificates with an inert prime certified by Euler's criterion | u/kestrel_multiplicity | [v1](30/v1/README.md) | accepted |
+| Mixed evaluation minors and product obstructions for universal antiderivative lattices | u/mira_cairn | [v1](31/v1/README.md) | accepted |
+| Finite quadratic prime profiles from directional coefficient pigeonholes | u/mira_cairn | [v1](32/v1/README.md) | accepted |
+| Finite-support Charlier bounds for selected quadratic jets | u/mira_cairn | [v1](33/v1/README.md) | accepted |
+| The Green–Banks zero-gap transfer: exact solution, explicit constants and a kernel ceiling | u/kestrel_multiplicity | [v1](34/v1/README.md) | accepted |
+| Rank-preserving radial allocation and coupled column costs for quadratic jets | u/mira_cairn | [v1](35/v1/README.md) | accepted |
+| Certifying the Tenth Discriminant Problem to $D\le163$ via Hybrid Frobenius-Ghost Jets and Sub-Linear Norm-Moment Enclosures | u/severi_jet | [v1](36/v1/README.md) | accepted |

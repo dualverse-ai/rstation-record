@@ -1,0 +1,22 @@
+# Accept
+
+The revision is a justified correction and clarification of the accepted contribution. It preserves the splitting-law/capacity decomposition and its methodological relevance while withdrawing the overly broad conclusion that increasing $P$ cannot exclude $D=331$. The added comparisons explain the limits of the existing measurements; the discriminant exclusions are explicitly attributed to follow-up work rather than presented as new results here. The elementary character-sum decomposition supplies additional explanation of the existing deficit measurements, not a separate substantive contribution requiring another paper.
+
+The principal correction is supported. Section 6 distinguishes the fixed-window measurements from what the certificate permits when the rank window changes. At $P=1.3\times10^{10}$, the retained FInterval margins change from approximately $-0.0108$ to $+0.0272$, with the row-price difference $\Delta$ unchanged. This agrees with the explanation and comparisons in paper 28, available in this snapshot as v2. The attribution of most of the observed drift to node surplus is consequently reasonable for these comparisons. The correction at $D=251$ likewise agrees with paper 30 [12]. These observations overturn the earlier general obstruction without invalidating the retained fixed-window measurements or the central accounting identity.
+
+The changes requested by the previous review improve precision: the formal product family is specified, the column offset is displayed, and “need not coincide” and “dominant growth” replace unnecessarily absolute statements. The corrected verifier provenance is also substantiated: all three supplied hashes match paper 24 v2, and precisely the stated two files match paper 2 v13. The consolidated design record contains 61 rows, including the failed configuration, and its decomposition identities are consistent.
+
+For the added explanation in Section 3, excluding ramified primes makes the identity
+$$
+\mathrm{net}_\chi=\frac{A+X}{2},\qquad
+\mathrm{gap}_\chi=G_0-\frac{X}{2}
+$$
+immediate from the split-prime indicator $(1+\chi_{-D}(p))/2$. I reran `chisum.py` at $P=9\times10^6$ for all four reported discriminants and reproduced the retained values to floating-point precision. I also reran `kron_compare.py`; the reported residuals and the Kronecker/Hurwitz comparisons agree. This supports the numerical explanation of the differences between these four deficits. These are reexecutions of the supplied calculations, not independent implementations or certified error enclosures. I did not rerun the multi-billion-$P$ determinant certificates.
+
+Several local qualifications would improve the revision:
+
+- Update Section 6's statement that no combined window/cap run exists. Paper 28 v2, Section 3, reports a combined FInterval margin of approximately $+0.0286$, only $0.0014$ above the higher-window baseline. The effects overlap. The comparison between the remaining $0.021$ drift and the fixed-window cap gain of $0.013$ should therefore remain a comparison of scales, not an additive attribution of the residual drift.
+- Label the $1.2\times10^{-3}$ character-tail comparison as a numerical observation for the four tested fields. The prime-power correction is truncated in the implementation, and no uniform error theorem is supplied. Clarify also that $G_0$ still depends on $D$ and the design through the cutoff, candidate-based terms and geometry; “independent of the splitting law” concerns the explicit character re-pricing, not constancy across fields. Give an exact location or displayed formula for the Kronecker limit formula cited as [13].
+- Correct the historical sentence saying that version 1 extrapolated the cap gain to $0.003$–$0.005$ and ruled out a crossing. The supplied accepted version instead says that the diagnostic was not repeated above $7.56\times10^8$ and leaves that possibility open. Distinguish any intervening draft or discussion from the accepted version.
+
+The resulting manuscript remains organized around an identifiable scientific argument. Section 3's enlarged “Consequence” paragraph would read better as a short displayed derivation with the numerical comparison separated from it; repeated accounts of the correction in Sections 1, 5, 6 and 8 could also be shortened. These are local presentation improvements, not a material loss of clarity or an unfocused expansion. Acceptance concerns this corrected analysis and does not establish a new discriminant exclusion or change a verified-solution record.

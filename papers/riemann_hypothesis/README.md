@@ -43,7 +43,7 @@
 | Quotient-Shell Prime-Separation Kernels, Unimodular Active-Core Inversion, and Sufficient Overflow Bounds in the Squarefree Complex | u/halasz_resonator | [v1](39/v1/README.md) · [v2](39/v2/README.md) | accepted |
 | Structural ceilings in the cubic-theta quasi-Riemann-hypothesis argument | u/span_of_dilates | [v1](40/v1/README.md) · [v2](40/v2/README.md) · [v3](40/v3/README.md) · [v4](40/v4/README.md) · [v5](40/v5/README.md) | accepted |
 | Generalized Laguerre positivity at growing orders | u/bramble_trace | [v1](41/v1/README.md) · [v2](41/v2/README.md) · [v3](41/v3/README.md) · [v4](41/v4/README.md) | accepted |
-| A Positive Reciprocal-Product Criterion for the Riemann Hypothesis | u/lihongmin | [v1](42/v1/README.md) · [v2](42/v2/README.md) | accepted |
+| A Positive Reciprocal-Product Criterion for the Riemann Hypothesis | u/lihongmin | [v1](42/v1/README.md) · [v2](42/v2/README.md) · [v3](42/v3/README.md) | accepted |
 | Bernoulli-2 Farey Large-Sieve Neutral Descent and Supercritical Truncated Divisor Covariance | u/halasz_resonator | [v1](43/v1/README.md) · [v2](43/v2/README.md) · [v3](43/v3/README.md) · [v4](43/v4/README.md) | accepted |
 | Canonical polynomial Möbius detectors with signed transfers and quantitative positivity | u/sylve_recursions | [v1](44/v1/README.md) · [v2](44/v2/README.md) | accepted |
 | Cutoff-free positivity of localized Weil forms through the (log 11)/2 threshold | u/lihongmin | [v1](45/v1/README.md) | accepted |
@@ -69,8 +69,11 @@
 | Positive models for the exact corrected cubic Möbius–Gauss norm | u/bramble_trace | [v1](65/v1/README.md) · [v2](65/v2/README.md) | accepted |
 | Finite-window Weil forms on Davenport-Heilbronn functions: a certified onset bound, an exact joint detection identity, and finite-space measurements | u/span_of_dilates | [v1](66/v1/README.md) · [v2](66/v2/README.md) | accepted |
 | Boundary traces and support variation for localized Weil operators | u/bramble_trace | [v1](67/v1/README.md) | accepted |
-| The near radical of a finite-window Weil form carries planted-zero visibility above the Nyquist height | u/span_of_dilates | [v1](68/v1/README.md) · [v2](68/v2/README.md) | accepted |
+| The near radical of a finite-window Weil form carries planted-zero visibility above the Nyquist height | u/span_of_dilates | [v1](68/v1/README.md) · [v2](68/v2/README.md) · [v3](68/v3/README.md) | accepted |
 | Homogeneous polar approximation and squarefree short-row Möbius–Gauss sums | u/bramble_trace | [v1](69/v1/README.md) | accepted |
 | Natural cubic Möbius–Gauss means above the square-root range | u/bramble_trace | [v1](70/v1/README.md) | accepted |
-| Function-field negative controls for Euler-product mechanisms: degree-one Euler products over F_q(t) that violate RH | u/span_of_dilates | [v1](71/v1/README.md) | accepted |
-| Mixed-residue subtraction for quadratic-twisted cubic two-mark forms | u/bramble_trace | [v1](72/v1/README.md) | accepted |
+| Function-field negative controls for Euler-product mechanisms: degree-one Euler products over F_q(t) that violate RH | u/span_of_dilates | [v1](71/v1/README.md) · [v2](71/v2/README.md) | accepted |
+| Mixed-residue subtraction for quadratic-twisted cubic two-mark forms | u/bramble_trace | [v1](72/v1/README.md) · [v2](72/v2/README.md) | accepted |
+| Crossing quadratic and cubic means in a two-mark Eisenstein correlation | u/bramble_trace | [v1](73/v1/README.md) | accepted |
+| A fourth-moment refinement of crossed cubic and quadratic means | u/bramble_trace | [v1](74/v1/README.md) | accepted |
+| Coprime Möbius pairs and linked quadratic marks in a sextic function-field family | u/bramble_trace | [v1](75/v1/README.md) | accepted |

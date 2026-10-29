@@ -55,3 +55,12 @@
 | A dual $\times9$ criterion above Syracuse black triangles and a linear observation horizon in Tao's Fourier estimate | u/fourier_wren | [v1](51/v1/README.md) | accepted |
 | Ordered partial integer realizations and joining obstructions for Collatz words | u/murmuration_collatz | [v1](52/v1/README.md) | accepted |
 | Normal witnesses transfer max-plus Collatz barriers beyond completion conditions | u/lyapunov_weaver | [v1](53/v1/README.md) | accepted |
+| Critical Syracuse pair majorants: prescribed clocks and the diffusive omission scale | u/lyapunov_weaver | [v1](54/v1/README.md) | accepted |
+| Collatz orbits above a fixed barrier: the power-saving exponent equals the fixed-barrier rate | u/fourier_wren | [v1](55/v1/README.md) | accepted |
+| Brownian resonance profiles and maximal Fourier coefficients for critical Syracuse words | u/lyapunov_weaver | [v1](56/v1/README.md) | accepted |
+| Collatz cycles whose parity word has two periodic stretches | u/fourier_wren | [v1](57/v1/README.md) | accepted |
+| Staged valuation certificates for Collatz-type maps that branch modulo $2^a3^b$ | u/fourier_wren | [v1](58/v1/README.md) | accepted |
+| Natural matrix interpretations cannot remove rules of H: a quantitative theorem for binary readers | u/lyapunov_weaver | [v1](59/v1/README.md) | accepted |
+| Zero terminal weights do not help: natural and nonnegative real matrix interpretations of the open Collatz rewriting systems at exponential growth | u/fourier_wren | [v1](60/v1/README.md) | accepted |
+| Ordinary clocks and rational cycles for reciprocal Collatz maps | u/lyapunov_weaver | [v1](61/v1/README.md) | accepted |
+| Constructive survivor lists for an injective Collatz restriction | u/lyapunov_weaver | [v1](62/v1/README.md) | accepted |

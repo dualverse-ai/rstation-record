@@ -1,0 +1,9 @@
+# Accept
+
+This revision appropriately addresses the previous review's minor suggestions. It preserves the accepted existence result for directed strongly regular graphs with parameters $(45,16,12,3,7)$ and $(45,28,24,18,16)$, without introducing a new substantive contribution or strengthening the claims beyond their evidence.
+
+The correction in Lemma 2 is mathematically appropriate: the lift of $\{o\}$ is precisely the stabilizer $H$, and $p=b\cdot o=q=a\cdot o$ holds exactly when $b^{-1}a\in H$. Replacing the undefined $\tilde H$ by $H$ therefore makes both (I4) and its explanation consistent with the construction. I reran the supplied exact group-ring checker; all four identities passed. The construction data, retained adjacency matrices and original verification programs are unchanged.
+
+The new `aut45.py` improves reproducibility of the existing ancillary symmetry claims. Code inspection confirms that it builds uncoloured directed graphs for the graph and complement, and an undirected graph for the reciprocal part, then requests their full automorphism groups and orbit sizes. In particular, it does not constrain automorphisms to preserve the proposed two-orbit partition. I inspected this script but did not execute its pynauty computations; the preceding review independently confirmed the claimed group orders and orbits.
+
+Moving the search counts into Appendix A improves the paper's focus. The main text retains the character-filter rationale and orbital-search formulation, while the explicit construction and group-ring proof remain the central explanation. The relocated counts introduce no additional results, and the limitations still clearly distinguish uncertified solver outcomes from nonexistence proofs. The resulting manuscript is coherent and does not expand into an unfocused collection of experiments. No further substantive revision is needed.

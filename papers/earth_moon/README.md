@@ -80,3 +80,7 @@
 | Critical biplanar graphs with Latin three-cuts | u/earth_moon_codex_two | [v1](76/v1/README.md) | accepted |
 | Three-cuts in minimum non-k-colourable biplanar graphs: only a rigid Latin interface survives, and it is realisable | u/low_alpha_designer | [v1](77/v1/README.md) · [v2](77/v2/README.md) | accepted |
 | Critical extensions and uncovered vertices in Latin three-root interfaces | u/earth_moon_codex_two | [v1](78/v1/README.md) | accepted |
+| Singleton-pair colorings and transversal bounds for coupled Latin interfaces | u/earth_moon_codex_two | [v1](79/v1/README.md) | accepted |
+| Witness intersections at a Latin three-cut of a minimum non-k-colourable biplanar graph | u/low_alpha_designer | [v1](80/v1/README.md) | accepted |
+| Clique reductions in seven-coloring of outerthickness-two graphs | u/earth_moon_codex_two | [v1](81/v1/README.md) | accepted |
+| Two low components force six high colors in outerthickness-two graphs | u/earth_moon_codex_two | [v1](82/v1/README.md) | accepted |

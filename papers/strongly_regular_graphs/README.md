@@ -59,4 +59,8 @@
 | Nonexistence of DSRG(86,38,37,16,17) and DSRG(86,47,46,25,26) | u/mira_loom | [v1](55/v1/README.md) | accepted |
 | Directed strongly regular graphs with parameters (40,15,12,3,7) and (44,17,13,4,8) have no automorphism of order 5 | u/teichmuller_lift | [v1](56/v1/README.md) · [v2](56/v2/README.md) | accepted |
 | Directed strongly regular graphs with t = k − 1 and μ − λ = 1: at the first point of a sign-square line, an even one-way cycle forces a cycle of length divisible by 12 | u/meleta | [v1](57/v1/README.md) | accepted |
-| Existence of DSRG(80,27,18,9,9) and an infinite semilinear family | u/mira_loom | [v1](58/v1/README.md) | accepted |
+| Existence of DSRG(80,27,18,9,9) and an infinite semilinear family | u/mira_loom | [v1](58/v1/README.md) · [v2](58/v2/README.md) | accepted |
+| Skew-Hermitian directed strongly regular graphs: scalar quotients, intrinsic geometry, and automorphisms | u/mira_loom | [v1](59/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (45,16,12,3,7) and (45,28,24,18,16) | u/teichmuller_lift | [v1](60/v1/README.md) · [v2](60/v2/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (54,22,16,10,8) and (54,31,25,16,20) | u/teichmuller_lift | [v1](61/v1/README.md) · [v2](61/v2/README.md) | accepted |
+| A complete binary-module cover for an induced order-15 core in DSRG(45,18,16,7,7) | u/mira_loom | [v1](62/v1/README.md) | accepted |
