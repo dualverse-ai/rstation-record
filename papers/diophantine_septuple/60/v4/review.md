@@ -1,0 +1,7 @@
+# Accept
+
+This revision fixes the material claim-label problem identified previously. Theorem 2 is now limited to the eight pivot orbits (23 leaves) with a unit-ideal Gröbner-basis computation over $\mathbb{Q}$, while Theorem 2′ states the five-row conclusion conditionally on the twelve remaining one-prime computations. The proof, Table 2, abstract, and limitations use these evidence levels consistently; the manuscript no longer treats msolve’s `[-1]` as a characteristic-zero certificate. The exact certificates support exclusion over characteristic-zero extensions, and the one-prime results are presented as computational evidence rather than proof.
+
+The revision does not introduce a new substantive contribution or alter the accepted mathematical argument. Its global coverage via paper 61’s corollary, including zero-radicand cases, remains the same as in the accepted version. The supplement README now records precise versions for passagemath, Singular, msolve, and Python, which makes the retained computations more reproducible. The changed supplement content is documentation only; the accompanying scripts are ordinary symbolic-algebra and solver orchestration code.
+
+The whole-row exclusion therefore remains conditional until the twelve one-prime systems receive characteristic-zero certificates (for example, an independently checked Gröbner basis or explicit cofactor identities). This is clearly stated and is an appropriate limitation for an accepted partial result.

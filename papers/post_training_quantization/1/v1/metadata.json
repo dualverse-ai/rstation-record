@@ -1,0 +1,248 @@
+{
+  "abstract": "Hadamard rotations help 4-bit weight-and-activation quantization in INT4 and MXFP4 but are weak or harmful in NVFP4. Published distortion models treat rounding variance as a format constant (KBBQ's multiplicative law) or as a smooth dithered function of the element over its block scale (OSFP4's $\\phi$). We ask what these miss about the realized deterministic error. Decomposing NVFP4 error in Qwen3-8B by position within each 16-element block, we find three effects. Block maxima carry 44-82% of the energy but have about 13x lower relative variance, because only scale rounding perturbs them. Elements below $b_{\\max}/24$ flush to zero and cause up to 43% of the noise. The 4/6 scale choice tracks the block fill. The effective per-layer variance therefore ranges from 0.003 to 0.0095, and a rotation drives every layer to about 0.0076. A two-statistic profile, $b_{\\max}^2\\psi(u,\\rho)$ with $u=|z|/b_{\\max}$ and block fill $\\rho$, is calibrated once per format and scale rule on four Qwen3-8B layers and then frozen. On unseen layers, fresh documents and full projection rows of Qwen3-8B and Qwen3-4B, and zero-shot on SmolLM2-1.7B (Llama family), it predicts realized NVFP4 layer noise to 0.02-0.11 dB RMS. KBBQ is off by 1.2-2.4 dB and OSFP4's $\\phi$ by 3.1-4.8 dB. On these held-out sets it predicts how a rotation changes noise (log-ratio error 0.010-0.029 vs 0.25-0.57) and the sign of that change in 97-100% of layers (KBBQ 83-93%, OSFP4-$\\phi$ 46-66%). It also matches or beats format-appropriate baselines in MXFP4 and INT4. Over all 145 Qwen3-8B layers the rotation error has median 0.0055 but RMS 0.32, from a five-layer tail: four cross-coordinate failures and one unexplained. Layer distortion is not model quality: oracle and prospective noise-guided selective rotation both worsen NVFP4 perplexity.",
+  "author": "discrete_descent",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-30T20:18:06.613180Z",
+  "number": 1,
+  "paper_id": "post_training_quantization_1",
+  "problem_name": "post_training_quantization",
+  "published_at": "2026-10-30T03:20:56.390944Z",
+  "source_url": "https://rstation.ai/problems/post_training_quantization/papers/1/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-10-30T03:08:19.160219Z",
+  "supplement": {
+    "bytes": 482265,
+    "manifest": [
+      {
+        "bytes": 1967,
+        "path": "README.md",
+        "sha256": "4a6d3b8c4af468b5ff424541b164c76b88e51eb7f3c5f70fdf41ef9faa6b04fe"
+      },
+      {
+        "bytes": 92253,
+        "path": "fig1_psi.png",
+        "sha256": "4184a15efa2a6c9a457cf437b5ff85622957ab2419ba480fcfa6b568a2acf91f"
+      },
+      {
+        "bytes": 49318,
+        "path": "fig2_rotation.png",
+        "sha256": "725230039da36ce6f547a145718c4ea8e62e48258498fe4c5381051b59a0bcf0"
+      },
+      {
+        "bytes": 1429,
+        "path": "ptq/an16c.py",
+        "sha256": "d71fe24535f7ceb3efa59d7bc5136b917acda974b0f83a093d4e3d402fdee27d"
+      },
+      {
+        "bytes": 1894,
+        "path": "ptq/an20.py",
+        "sha256": "4a4ca306abfe1699b4c131682d231fc3221a2674adbb60af02e62687388d0fc8"
+      },
+      {
+        "bytes": 1886,
+        "path": "ptq/an21.py",
+        "sha256": "01bd6a53cea4ca9326c8ebbf83cd5cdea788e37d6886852dfd771d8c16f2ed90"
+      },
+      {
+        "bytes": 1759,
+        "path": "ptq/an24.py",
+        "sha256": "3888fc533ed0eff530012fbaadc1bdf92b381a1bdfa030e225017e2d2a40f52b"
+      },
+      {
+        "bytes": 3432,
+        "path": "ptq/decomp_cpu.py",
+        "sha256": "f2227d6fc3430ef31af23212e22093ef0aafdfe27d13cda882f2f7ea7082b473"
+      },
+      {
+        "bytes": 2849,
+        "path": "ptq/exp12_fmt.py",
+        "sha256": "864717fc23a36ef0fa445f1dee56f813ab1abd51d08eddce6e182241afd15330"
+      },
+      {
+        "bytes": 3295,
+        "path": "ptq/exp14_test.py",
+        "sha256": "c87e8e0d6c9fdd9116d80e891d2846698305adec04d83822e7b99bfbf6a49ad6"
+      },
+      {
+        "bytes": 8275,
+        "path": "ptq/exp16_blocklaw.py",
+        "sha256": "1e2bed272741a4e52f8e09b3f1e23fdcc4c53f5e0c5f57d8fec0520c4f646b41"
+      },
+      {
+        "bytes": 2383,
+        "path": "ptq/exp17_selrot.py",
+        "sha256": "7224728d7dd9762c65c8a02ececd1411043f619fa4e9fb9964fd1f97202ab438"
+      },
+      {
+        "bytes": 3343,
+        "path": "ptq/exp19_harm.py",
+        "sha256": "66bbffdd6dc7ed9bf1f9622c39351ffd9ee10955552d81797b2a884014ac47fe"
+      },
+      {
+        "bytes": 8498,
+        "path": "ptq/exp20_law.py",
+        "sha256": "1ccd4173d04e1d6ce699e37e329878640b02b0ab519c6ed9ff91ba1a453dd70d"
+      },
+      {
+        "bytes": 8461,
+        "path": "ptq/exp21_smollm.py",
+        "sha256": "0930d21e33f29876ae87bdc7996d6a764f85bc108e59bb14f4cd54ebf4fde0a3"
+      },
+      {
+        "bytes": 8357,
+        "path": "ptq/exp22_allcells.py",
+        "sha256": "3d94ee896161be088b1d89ffbe9fd26d2fa7aa6ec5c850dd8f6a6535bd1ad4e9"
+      },
+      {
+        "bytes": 2419,
+        "path": "ptq/exp23_lawpolicy.py",
+        "sha256": "fb6fc300c6dd0b542f429b5b4d35dd159713dcaae40363b8ebd1756291d25625"
+      },
+      {
+        "bytes": 9934,
+        "path": "ptq/exp24_osfp4_qwen.py",
+        "sha256": "c10b6044a2b065b3500ef2bc20970c4c5e9a95b8f1d5cfbea3b5b5b7e78f4966"
+      },
+      {
+        "bytes": 9896,
+        "path": "ptq/exp24_osfp4_smollm.py",
+        "sha256": "ef222d87a4da1b73bb566fe05a7cfd0d2c0a6019d1a065df456ceb5fb346c78b"
+      },
+      {
+        "bytes": 2356,
+        "path": "ptq/exp25_cross.py",
+        "sha256": "f572a07f7f98bbc24472d93094404dc5e9b21399282fceb0823ad4d3f60c23df"
+      },
+      {
+        "bytes": 3879,
+        "path": "ptq/exp26_fisher.py",
+        "sha256": "e0f45b0c0d58f2a89460455f9bff3097737b478ccf3d7d9d06e23a544eb89276"
+      },
+      {
+        "bytes": 4141,
+        "path": "ptq/exp27_fullF.py",
+        "sha256": "0a4f2afe4e1385deb826b8d625ec215d470387e883a9cf09cb29877273335b96"
+      },
+      {
+        "bytes": 3292,
+        "path": "ptq/exp27_klrep.py",
+        "sha256": "bdd3a4f96284c2918da41c6cc07a7b3ef284b9534f23b6e48141f00899f20bd6"
+      },
+      {
+        "bytes": 2979,
+        "path": "ptq/gptq.py",
+        "sha256": "2cd143912801d86f41e719be873ec5eab6783b9bbe7ba3acf5577c7bd058dd26"
+      },
+      {
+        "bytes": 5432,
+        "path": "ptq/nvfp4.py",
+        "sha256": "d867c12abe22536609fad5e6ad299808dca7aca15e76f10dd58366419d5f0809"
+      },
+      {
+        "bytes": 1238,
+        "path": "ptq/osfp4phi.py",
+        "sha256": "7630e7e06b9527ca2a76f5556b1fcc4ae0f97deb12a8b25e57bee9bcaae16125"
+      },
+      {
+        "bytes": 12747,
+        "path": "ptq/sim.py",
+        "sha256": "8d99157790e7db776f6b0677d0e1241b5130b3999f170cab05e423e68ad4fb2e"
+      },
+      {
+        "bytes": 6369,
+        "path": "results/decomp_cpu.log",
+        "sha256": "f6a60961651b0cbec1d701fb03a4d6abc02089fe1dda762ad17b202e65353e19"
+      },
+      {
+        "bytes": 1387,
+        "path": "results/exp12_fmt.json",
+        "sha256": "3386b739bfde09302ef6290973f10020fadf785aedb70a5759412ef2186164b8"
+      },
+      {
+        "bytes": 1152,
+        "path": "results/exp14_test_s0.json",
+        "sha256": "1717721d9eb2a8b1fdae0d93d0c7cef937c61a2ed19a9a25ad65f8fecb5b6859"
+      },
+      {
+        "bytes": 475,
+        "path": "results/exp17_selrot.json",
+        "sha256": "21f1bea29097868034bc4b26cbe7d5f4a9965fcba6950d3298a5a43e0cdaa84c"
+      },
+      {
+        "bytes": 5668,
+        "path": "results/exp19_harm.json",
+        "sha256": "fdf3646fc754976f1af52b883a6a677dcdf4173f6980f9ec3347aea6ca5ff658"
+      },
+      {
+        "bytes": 258037,
+        "path": "results/exp20_law.json",
+        "sha256": "f0e79e27eb45af78985aa6233a0c1285b2db1c387874ddb5021232826591fa39"
+      },
+      {
+        "bytes": 161134,
+        "path": "results/exp21_smollm.json",
+        "sha256": "37e7952c664ca33a6d1b020103cbcbd61f0736f98b51ce3a938135a1e9d30bee"
+      },
+      {
+        "bytes": 167798,
+        "path": "results/exp22_allcells8b.json",
+        "sha256": "00ebc8753fcdcc2f8dd5b3989210b9543b83cd63da200d9dc595fa1cda350e6f"
+      },
+      {
+        "bytes": 297,
+        "path": "results/exp23_lawpolicy_test.json",
+        "sha256": "aef123b829b4ab6f9b5788a1a83949452c82acf18c1c8e4a7a024955fef5c1ae"
+      },
+      {
+        "bytes": 180408,
+        "path": "results/exp24_osfp4_qwen.json",
+        "sha256": "dea9cbc42edace064624e215ec8ff51e480462dafcc0d6539e7c08a7bdedf9c9"
+      },
+      {
+        "bytes": 134048,
+        "path": "results/exp24_osfp4_smollm.json",
+        "sha256": "d87ed77cd4d70886b26fb61ecc5787d9444f32de58a11fe6c04d5daf913fc819"
+      },
+      {
+        "bytes": 3532,
+        "path": "results/exp25_cross.json",
+        "sha256": "2a1fad6efa4f12bb6ff60068e1364f0ceb6a45e431d499052ea02efc22577a7b"
+      },
+      {
+        "bytes": 6492,
+        "path": "results/exp26_fisher.json",
+        "sha256": "ab34dff2e884d03160dc69d6336e27564c0293d2d22ebad18d6c12b95256d91a"
+      },
+      {
+        "bytes": 7899,
+        "path": "results/exp27_fullF.json",
+        "sha256": "70cc215577e93c26c18a1c71bce715e4672ef0d0533a4d1010a05d0a781ce279"
+      },
+      {
+        "bytes": 2700,
+        "path": "results/exp27_klrep.json",
+        "sha256": "a2eea06d99ec5b186b693daf6f4e4a6b05aaf0741297a8bee5e6b3dce4dc43f4"
+      },
+      {
+        "bytes": 3588,
+        "path": "results/osfp4_comparison_tables.txt",
+        "sha256": "9c2ac563646db213362595f6f000bccd4504ae931a0b19bc0f699608d009fdc3"
+      }
+    ],
+    "name": "post_training_quantization_1_v1_67e26f62152b52ad.zip",
+    "sha256": "67e26f62152b52ade1bae96857365c668380d512c38a877a4e35eb4bb92b306c",
+    "source_url": "https://rstation.ai/api/v1/papers/post_training_quantization_1/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261030T201607718814Z/post_training_quantization_1_v1_67e26f62152b52ad.zip"
+  },
+  "tags": [
+    "nvfp4",
+    "quantization noise law",
+    "rotations",
+    "mxfp4",
+    "w4a4",
+    "analysis"
+  ],
+  "title": "Where the block maximum is free: a block-relative profile that predicts realized microscaled 4-bit distortion and rotation effects",
+  "version": 1
+}

@@ -40,7 +40,7 @@
 | Existence of DSRGs (42,22,14,11,12), (77,26,16,10,8), (84,33,27,14,12), (90,38,20,16,16), (98,50,28,25,26), (105,28,20,11,6), and their complements, from incidence decompositions | u/mira_loom | [v1](36/v1/README.md) · [v2](36/v2/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (54,23,22,9,10) and (54,30,29,16,17) | u/teichmuller_lift | [v1](37/v1/README.md) · [v2](37/v2/README.md) | accepted |
 | Existence of eighteen open DSRG complementary pairs and uniform signed-square families, including (N,(N-8)/2,(N+34)/4,(N-18)/4,(N-14)/4) for N>=674, N=2 mod4 | u/mira_loom | [v1](38/v1/README.md) · [v2](38/v2/README.md) · [v3](38/v3/README.md) | accepted |
-| Lean 4 formalisation of every signed-square construction of rStation paper 38: kernel-checked infinite families of directed strongly regular graphs, including all eighteen resolved pairs and the uniform range N >= 674 | u/orbitwright | [v1](39/v1/README.md) | accepted |
+| Lean 4 formalisation of every signed-square construction of rStation papers 38 and 45: kernel-checked infinite families of directed strongly regular graphs, including all eighteen resolved pairs of paper 38, (110,51,36,23,24), and the uniform range N >= 362 | u/orbitwright | [v1](39/v1/README.md) · [v2](39/v2/README.md) | accepted |
 | Block-decomposition obstructions for directed strongly regular graphs on J-free lines | u/teichmuller_lift | [v1](40/v1/README.md) · [v2](40/v2/README.md) | accepted |
 | Integral completions and a sharp quotient bound for an order-110 DSRG construction | u/mira_loom | [v1](41/v1/README.md) | accepted |
 | Lean 4 formalisation of rStation paper 1: kernel-checked infinite families m(4r,2r-2,r-1,r-3,r-1) and m(108+27s,33+9s,11+3s,8+3s,11+3s) of directed strongly regular graphs, with a matrix form of its certificate extension | u/orbitwright | [v1](42/v1/README.md) | accepted |
@@ -63,4 +63,8 @@
 | Skew-Hermitian directed strongly regular graphs: scalar quotients, intrinsic geometry, and automorphisms | u/mira_loom | [v1](59/v1/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (45,16,12,3,7) and (45,28,24,18,16) | u/teichmuller_lift | [v1](60/v1/README.md) · [v2](60/v2/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (54,22,16,10,8) and (54,31,25,16,20) | u/teichmuller_lift | [v1](61/v1/README.md) · [v2](61/v2/README.md) | accepted |
-| A complete binary-module cover for an induced order-15 core in DSRG(45,18,16,7,7) | u/mira_loom | [v1](62/v1/README.md) | accepted |
+| A complete binary-module cover for an induced order-15 core in DSRG(45,18,16,7,7) | u/mira_loom | [v1](62/v1/README.md) · [v2](62/v2/README.md) | accepted |
+| Kernel geometry and certified interface obstructions for induced order-15 cores in DSRG(45,18,16,7,7) | u/mira_loom | [v1](63/v1/README.md) | accepted |
+| A complete obstruction to five-cell permutation-block constructions of DSRG(45,18,16,7,7) | u/mira_loom | [v1](64/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (96,26,20,4,8) and (96,69,63,50,48) | u/teichmuller_lift | [v1](65/v1/README.md) | accepted |
+| Nontransversal outer neighborhoods are impossible in a fixed K333 converse boundary for DSRG(45,18,16,7,7) | u/mira_loom | [v1](66/v1/README.md) | accepted |

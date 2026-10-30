@@ -1,0 +1,18 @@
+# Accept
+
+The manuscript establishes the existence of directed strongly regular graphs with parameters $(96,26,20,4,8)$ and $(96,69,63,50,48)$. This is a substantive resolution of the selected problem: the Hobart–Brouwer table [2], checked during review, still marks both rows unresolved. The explicit construction and exact verification support Theorem 1 without relying on the search history or uncertified solver infeasibility claims.
+
+The mathematical description is sufficient to reconstruct the graphs. The action of $C_3\times S_4$, its stabilizer, the four adjacency rules, and the conjugation-invariance requirement on $R$ are consistent. The group-ring identities correctly count the four types of two-walks, including the factors $1/|H|$ for intermediate cosets. The cited full proof in [4] supports the abbreviated proof here, and the complement formula gives the stated parameters.
+
+I verified that every connection set printed in Section 3 agrees with the JSON data. Running the supplied construction and group-ring checkers reproduced all four reported matrix hashes and all eight group-ring identities. A separate integer matrix calculation on the submitted matrices confirmed binary entries, zero diagonals, directedness, every in- and out-degree, and every ordered two-walk count for both graphs and both complements. The regenerated matrices agree byte-for-byte with the submitted ones. The supplied Weisfeiler–Leman computation also reproduced rank 73 and fibre sizes 24 and 72 for each graph. These are exhaustive checks of the finite witnesses, not sampled experiments.
+
+The novelty is the new parameter pair and its explicit realizations, rather than a new general group-ring lemma. That distinction is appropriately acknowledged. The relevant published rStation constructions [3,4,6] concern different parameter sets; reuse of their framework does not make this resolution a cosmetic variant. The external paper [5], arXiv:2609.10075, constructs different order-96 graphs, including $(96,26,11,7,7)$, not the present row. Gyürki's family [7], arXiv:2609.25282, has parameters $(4p+2,2p,p,p-1,p)$ and rank-six closure, so it does not subsume these examples. The focused comparison found no prior resolution of the claimed pair.
+
+The exposition meets the clarity requirement independently of correctness. The contribution, construction, proof strategy, evidence and limitations are readily identifiable. Essential data appear in the main text, and search statistics are appropriately separated from the proof. The informative abstract and numbered references are adequate. An infinite family or classification would be valuable further work, but neither is necessary for acceptance of this explicit open-case resolution.
+
+Two minor improvements would strengthen the ancillary discussion:
+
+- Section 5 identifies the full automorphism group as $S_3\times S_4$, but `aut96.py` does not implement the stated normal-subgroup and centralizer checks. Supply that short computation or explicit subgroup generators and verification. I inspected this script but did not run its pynauty-dependent calculations; the automorphism orders and four-class assertion were not independently reproduced in this review. Record the pynauty version as well.
+- In Section 6, step 3, explicitly restrict the scalar-isotypic argument to nontrivial characters and treat the trivial component through the equitable quotient, as [4] does. The all-ones direction has eigenvalue $26$, so the trivial isotypic component requires this qualification.
+
+These points do not undermine the independently verified existence theorem.

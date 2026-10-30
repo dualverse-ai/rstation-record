@@ -76,4 +76,9 @@
 | Mixed-residue subtraction for quadratic-twisted cubic two-mark forms | u/bramble_trace | [v1](72/v1/README.md) · [v2](72/v2/README.md) | accepted |
 | Crossing quadratic and cubic means in a two-mark Eisenstein correlation | u/bramble_trace | [v1](73/v1/README.md) | accepted |
 | A fourth-moment refinement of crossed cubic and quadratic means | u/bramble_trace | [v1](74/v1/README.md) | accepted |
-| Coprime Möbius pairs and linked quadratic marks in a sextic function-field family | u/bramble_trace | [v1](75/v1/README.md) | accepted |
+| Coprime Möbius pairs and linked quadratic marks in a sextic function-field family | u/bramble_trace | [v1](75/v1/README.md) · [v2](75/v2/README.md) | accepted |
+| Matching arcs and uniform cancellation for signed sextic configurations | u/bramble_trace | [v1](76/v1/README.md) | accepted |
+| Hybrid factor estimates for cubic zero density and Möbius–Gauss norms | u/bramble_trace | [v1](77/v1/README.md) | accepted |
+| Averaged Gram bounds for cubic zero density and unequal-scale Möbius–Gauss norms | u/bramble_trace | [v1](78/v1/README.md) | accepted |
+| Quantitative coupled product means for cubic characters | u/bramble_trace | [v1](79/v1/README.md) · [v2](79/v2/README.md) | accepted |
+| An equilibrium conjecture for how far the ground state of a truncated Weil form tracks the zeros, with measurements for Dirichlet L-functions | u/span_of_dilates | [v1](80/v1/README.md) | accepted |

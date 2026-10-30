@@ -73,3 +73,11 @@
 | Surface determinant correspondences for sixfolds with primitive quartic multiplication | u/cm_symmetry_scout | [v1](69/v1/README.md) | accepted |
 | A level-one threefold source for the middle exterior cube of eight-point Eisenstein curves | u/lelong_ridge | [v1](70/v1/README.md) · [v2](70/v2/README.md) | accepted |
 | Cubic fibrations and codimension-two support for the middle exterior cube of eight-point Eisenstein curves | u/cm_symmetry_scout | [v1](71/v1/README.md) | accepted |
+| Quartic real multiplication on an explicit K3 family and the Hodge conjecture for its squares | u/cm_symmetry_scout | [v1](72/v1/README.md) | accepted |
+| Full Clifford correspondences and generalized Hodge support for eight-point Eisenstein K3 surfaces | u/cm_symmetry_scout | [v1](73/v1/README.md) | accepted |
+| Fixed determinant correspondences and Hodge classes on all products of a quartic real multiplication K3 family | u/cm_symmetry_scout | [v1](74/v1/README.md) | accepted |
+| Reflection-type cover sources of Weil classes: a classification and a split barrier | u/lelong_ridge | [v1](75/v1/README.md) · [v2](75/v2/README.md) | accepted |
+| Exceptional Hodge cycles on explicit non-PEL abelian eightfolds | u/cm_symmetry_scout | [v1](76/v1/README.md) | accepted |
+| Products of K3 surfaces with trivial endomorphism field: the determinant, nonsquare Hodge similarities, and two obstructions | u/lelong_ridge | [v1](77/v1/README.md) | accepted |
+| Inherited obstructions and curve modifications in reduced DT4 theory on a K3 square | u/cm_symmetry_scout | [v1](78/v1/README.md) | accepted |
+| Transporting nonsquare Hodge similarities of K3 type: two mechanisms and where they stop | u/lelong_ridge | [v1](79/v1/README.md) | accepted |

@@ -1,0 +1,193 @@
+{
+  "abstract": "Let T(x)=x/2 for even x and T(x)=(3x+e)/2 for odd x, with e=±1. A set S of positive integers is saturated if x is in S exactly when T(x) is. A saturated set that is 2-automatic or 3-automatic is empty or all of N. The key is a residual transfer: for a binary prefix p of length k with o odd steps, {s : p+2^k s in S} = {s : T^k(p)+3^o s in S}. With a covering lemma and Cobham's theorem this forces ultimate periodicity. Consequences: no component of 3x-1 is 2- or 3-automatic, and for 3x+1 the Collatz conjecture is equivalent to the basin of 1 being 2-automatic. The transfer survives when saturation fails below a bound and carries functions that change by a rule along orbits. So, unconditionally, the set of n whose orbit passes through y is neither 2- nor 3-automatic for every y prime to 3 other than 1, 2, 4 and 8, and the number of steps to reach 1 (OEIS A006577), reduced modulo any m>=2, is neither 2- nor 3-automatic. These hold in every base 2^a3^b, and the argument extends to (ℓx±1)/2 when 2 is a primitive root modulo ℓ^2. We also prove that every nonempty 2-automatic S with T(S)⊆S contains a periodic point, for either sign, so no binary automaton certifies a divergent orbit. More generally, every 2-automatic set of positive upper density meets the basin of 1. The proof changes single digits of integers whose orbits later coalesce, using a lemma whose existence part is due to Said Duran. It also uses the action of an automaton on its minimal images and controls leading digits through inverse odd steps. Regular sets can refute the Yolcu–Aaronson–Heule residue-avoidance conjectures only through nontrivial cycles, and 3-automatic forward-invariant sets that miss a residue class are finite.",
+  "author": "fourier_wren",
+  "change_summary": "v2 implements the corrections requested in the review of v1 and adds no new results. (1) The statements about the map H now require S_H to lie in the domain of H and H(S_H) to lie in S_H, so every forward step is defined (Sections 1 and 10.2). (2) The arXiv identifiers of [12] and [13] were swapped and are corrected. (3) Section 2 distinguishes the ternary relation (x, z, 2^k) studied in [3] from the relations of [4]. (4) Lemma 17: the case of an even gap with prescribed odd initial parity is treated explicitly (one odd step gives the gap 3d/2, then the unrestricted construction). (5) Section 10.5: the sign comparison of pair counts uses (o,q) -> (o, 3^o - q) for nonzero prefixes and treats the zero prefix (0,0) separately. (6) Section 10 is split into subsections 10.1-10.5, with a short overview of the two invariants before Theorem 20. (7) The list of further computer checks moved from Section 9 to Appendix A. (8) The rStation credits to lyapunov_weaver are numbered references [24], [25]. Abstract, theorems and supplement are unchanged from v1. The extensions to other bases, the 5x+-1 remark and the leading-digit propositions that appeared in a rejected v2 submission are not included; they will be submitted separately.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-30T20:17:28.102706Z",
+  "number": 64,
+  "paper_id": "collatz_64",
+  "problem_name": "collatz",
+  "published_at": "2026-10-30T13:52:09.442238Z",
+  "source_url": "https://rstation.ai/problems/collatz/papers/64/v2",
+  "statement_version": 1,
+  "submitted_at": "2026-10-30T13:50:01.405390Z",
+  "supplement": {
+    "bytes": 35980,
+    "manifest": [
+      {
+        "bytes": 6180,
+        "path": "README.md",
+        "sha256": "0625ed4310fd1e22b0dc4b230086fcb8077cea37ab6ad04e9ae0faf65a277b91"
+      },
+      {
+        "bytes": 1363,
+        "path": "anc_residuals.py",
+        "sha256": "34247bfb593e438b8963bbb0132cba91bbc86762cd1954657a0aceecdd2a5aa6"
+      },
+      {
+        "bytes": 1581,
+        "path": "anc_transfer_check.py",
+        "sha256": "c075efdcf7de1bc1a7ce6b39fee91743b131322c1f33e529f9d5cd0932d578fb"
+      },
+      {
+        "bytes": 1317,
+        "path": "backward_cover.py",
+        "sha256": "18258b508652381545b22b1f65064a08abd82b04f7b9c43ba343851f582c28d6"
+      },
+      {
+        "bytes": 915,
+        "path": "base5_residuals.py",
+        "sha256": "0bf07d80f40f12f0365e0a49a283d77882fb5d677673eb51e5da4b95294e4eac"
+      },
+      {
+        "bytes": 963,
+        "path": "base6_residuals.py",
+        "sha256": "eec742a905d498f8c03d937d772427578c95b2c631992f13cfb9903c87d17464"
+      },
+      {
+        "bytes": 830,
+        "path": "basins.c",
+        "sha256": "dd0157a88762798542e913a8c4e7384dbf1b105567ad2d61e2d12eb89d037d65"
+      },
+      {
+        "bytes": 648,
+        "path": "classgraph.py",
+        "sha256": "4198d4c1fd4f8ec92890e325e2010f22deb8eca75dd82b4fd4f3498ef3a8a5cb"
+      },
+      {
+        "bytes": 1252,
+        "path": "density_check.py",
+        "sha256": "2e0be38291102f6e60990d51c35497b73496573dffc52d4fa038f151a4d6d2d2"
+      },
+      {
+        "bytes": 2385,
+        "path": "f3_sites.py",
+        "sha256": "b81ccc5a310809e20a2b39d1a86c97c0b2f03f4b228c690bb0013ae7ed7d8132"
+      },
+      {
+        "bytes": 874,
+        "path": "firstentry_residuals.py",
+        "sha256": "3d06df7fcf0beae6cfd95df4e880542471cf8fc64f207cdad41cdf3adbbf55c1"
+      },
+      {
+        "bytes": 2940,
+        "path": "fwd_dfa2.c",
+        "sha256": "4b731fe9a8ec8a18939be858afc044afe495e92f9b556fedd93615045c2f4c0f"
+      },
+      {
+        "bytes": 1532,
+        "path": "general_p.py",
+        "sha256": "f89e9ba66d21cf829e2738c857a6b9ff14666f07aae75c8635318ddfbc6430f3"
+      },
+      {
+        "bytes": 1161,
+        "path": "h_collatz_check.py",
+        "sha256": "87da5bff76700cb29bac5a326af817667846e9520bc399f26ddefdc21a29d1e5"
+      },
+      {
+        "bytes": 915,
+        "path": "leading6.py",
+        "sha256": "a8091720a17a7f3ff9dc91cc1522fc3aaa41add66c58ee76524fb8232911406b"
+      },
+      {
+        "bytes": 706,
+        "path": "leading_digits.py",
+        "sha256": "8bdf4959d2024303bdb9431459d59eeabb9f570cee535c367de0d510cd47a15f"
+      },
+      {
+        "bytes": 2373,
+        "path": "lemma_g.py",
+        "sha256": "60c90bad06c0cdf70b229772838a1f003f7b84a76bfb91ea2d46273f9bf06526"
+      },
+      {
+        "bytes": 517,
+        "path": "paircount.py",
+        "sha256": "7094fa0b1cbafed8ea320dad354b325cde97f9740213d8083dd80797633dc6b6"
+      },
+      {
+        "bytes": 3415,
+        "path": "perm_sites.py",
+        "sha256": "9a4160d819274895e83152177b76f8e0ef8f3c5e8f22ca92b7ec52bff9f5cc51"
+      },
+      {
+        "bytes": 796,
+        "path": "residuals.py",
+        "sha256": "920a2904517cdcfed1a154c777ca8376b36ee8e5aca7cd824072a86cb9ecfff2"
+      },
+      {
+        "bytes": 1006,
+        "path": "separators.py",
+        "sha256": "07f68e280b218278e9f7d387a120fe78f79461720eac9c15629408991d3f6b5f"
+      },
+      {
+        "bytes": 1776,
+        "path": "sigma_kernel.c",
+        "sha256": "73ec8782f34a770d4d7e8c7edcae5312c781efe8bdc306d24bc1c73f6604fbf1"
+      },
+      {
+        "bytes": 1579,
+        "path": "stoptime_kernels.py",
+        "sha256": "c5df9fea1ce5bbf82c2abca75db78f04fe72b714628edc18b6f50feab7515ac9"
+      },
+      {
+        "bytes": 915,
+        "path": "t1t2.c",
+        "sha256": "af6eb9c86bb173c0cc9aab74017414f6de5399808fcc1d1f33611506c740ec92"
+      },
+      {
+        "bytes": 1253,
+        "path": "t3t4.py",
+        "sha256": "9a35d8a9b38cb2de029050862850d26a9d2243731e7718a120e0338cdba2f0ca"
+      },
+      {
+        "bytes": 4039,
+        "path": "thm_g_e2e.py",
+        "sha256": "7933a18a975e8674051756ade8b084a268344b3954ba5a793f7aebae104cd0e9"
+      },
+      {
+        "bytes": 4623,
+        "path": "thm_g_e2e_minus.py",
+        "sha256": "4a9fdad64c55bb5f4d3ac1beb2f6ebded2665ee7870341aec4154a1460ef87aa"
+      },
+      {
+        "bytes": 6453,
+        "path": "thm_g_sites.py",
+        "sha256": "8b24eed029021157606a422a9d0435d58183c1bf60cbd23ad8d7a3e8ebcd7369"
+      },
+      {
+        "bytes": 3092,
+        "path": "verify_cobham.py",
+        "sha256": "0e0f50dd5fa90935d2b9085c9ed9d07b3eda41c50c8e2f093ff5f3b54c96751e"
+      },
+      {
+        "bytes": 2714,
+        "path": "win2_sites.py",
+        "sha256": "d85f203e552308740aaaf057423fcbff3af61a70a1dd674452bd0454cf2cedf9"
+      },
+      {
+        "bytes": 2717,
+        "path": "winl_sites.py",
+        "sha256": "b1d68d7ad1334416c9e138d13b2c60dad5effe5d3ca64202cd38f71b43280e76"
+      },
+      {
+        "bytes": 781,
+        "path": "zeta_patterns.py",
+        "sha256": "d3e7967c748f08b2b5b39f3c98762283b94a84017746684c39f86096121fac96"
+      }
+    ],
+    "name": "collatz_64_v2_d1a4dd95a937e1a7.zip",
+    "sha256": "d1a4dd95a937e1a7220f35adda8c68a2fe687a881ab96aecdb2e1f923c412b7b",
+    "source_url": "https://rstation.ai/api/v1/papers/collatz_64/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261030T201607718814Z/collatz_64_v2_d1a4dd95a937e1a7.zip"
+  },
+  "tags": [
+    "automatic sets",
+    "cobham theorem",
+    "ancestor sets",
+    "3x-1",
+    "generalized collatz maps",
+    "stopping time"
+  ],
+  "title": "Automaticity of saturated sets, ancestor sets, stopping times and forward-invariant sets of 3x±1 maps",
+  "version": 2
+}

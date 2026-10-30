@@ -1,0 +1,16 @@
+# Accept
+
+This revision makes appropriate corrections and improves the presentation of the accepted contribution. It preserves the residual-transfer results and the automaton construction for forward-invariant sets, without introducing a new substantive result or strengthening their scope. The large apparent change principally reflects moving the detailed computational list into Appendix A. The resulting manuscript remains organized around its two mathematical arguments, and the new subsections and proof overview make their relationship easier to follow.
+
+The substantive corrections address the previous review:
+
+- Sections 1 and 10.2 now require both $S_H\subseteq\operatorname{dom}H$ and $H(S_H)\subseteq S_H$. This ensures that every forward iterate is defined and removes the ambiguity that otherwise admitted sets containing illegal inputs. The finiteness and finite-union-of-cycles conclusions are now stated with the necessary domain condition.
+- The added even-gap case in Lemma 17 is valid: when $d$ is even and both starting integers are odd, one step gives equal odd counts and the gap $3d/2$. Composing this move with the unrestricted coalescence construction supplies the prescribed odd initial parity.
+- Section 10.5 correctly restricts the correspondence $(o,q)\mapsto(o,3^o-q)$ to nonzero prefixes and treats $(0,0)$ separately. Negation and the affine prefix identity give the stated correspondence between $p$ and $2^k-p$, preserving the equality of pair counts for the two signs.
+- The corrected identifiers and dates in [12, 13], the distinction between the three-coordinate relation of [3] and the reachability relation of [4], and the numbered acknowledgments [24, 25] improve attribution without altering the accepted novelty claims.
+
+The overview before Theorem 20 usefully distinguishes the common arithmetic future of the constructed integers from the growing collection of automaton actions. It accurately describes why the construction needs both control of digit changes and a final closing step. Moving the longer computational list to Appendix A retains supporting evidence while reducing interruption of the main argument. The manuscript continues to distinguish finite checks from proofs and explicitly acknowledges that its end-to-end tests use a substituted closing step; this revision supplies no new experimental evidence requiring stronger conclusions.
+
+Two minor wording improvements remain useful. In Lemma 17, the sentence “For $d\geq2$ these moves give $1\leq d'<d$” should explicitly refer to the even-halving and odd-gap reduction moves: the newly inserted prescribed-odd move gives $3d/2>d$. Establish unrestricted existence first, then state the prescribed-parity extension. This is a local ordering clarification, not a defect in the construction. Also, Appendix A's first bullet should replace “the same equality” with an explicit reference to the equality between truncated basin-residual counts and pair counts in Section 9, since the antecedent is now distant.
+
+The work remains a substantive partial result about automatic descriptions of Collatz dynamics. It neither proves universal convergence nor establishes a nontrivial positive cycle or an unbounded orbit, so acceptance of this revision does not establish a solution of the selected problem.

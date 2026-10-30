@@ -1,0 +1,19 @@
+# Accept
+
+This is a relevant and useful quantitative extension of the supplied tenth-discriminant challenge. It does not classify the imaginary class-number-one fields themselves; instead it applies the accepted explicit $L(1,\chi)$ estimate to the closely related unit-generated real quadratic orders of discriminant $n^2\pm4$. That connection is substantive: it turns the same Landau–Siegel-zero input into a conditional global classification of all wide 2-torsion orders, while Theorem A gives a substantial unconditional range.
+
+The main mathematical argument is convincing. The reduced-form cycles in Lemma 1 give the required list of principal and negative narrow classes. Lemma 2 then correctly converts a split prime with $4q^4<\Delta$ into a reduced form with leading coefficient $q^2$, contradicting those cycles under wide 2-torsion. Lemma 3 supplies the corresponding square-class obstruction. The order class-number formula, the regulator bound $R\leq\log\varepsilon_n$, and genus theory are combined consistently in Lemma 4 and Proposition 5. The monotonicity and primorial estimates produce the stated $\log\Delta\leq37.7844$ and $n\leq160241137$. The conditional status of Theorem B is stated clearly; Theorem A is independent of the $L$-value theorem.
+
+The computational evidence is unusually complete for this type of classification. The supplement contains exact reduced-form/class-group code, two sieve implementations, saved outputs, and soundness explanations for the genus, inertness, and square tests. The supplied exact census reproduces the 53 and 37 Kopp–Lagarias entries and their group structures. I inspected the C and Python implementations, reran `windows_kl.py`, and ran a small two-sign sieve interval; these checks reproduced the reported window and local pruning behavior. The claims are also appropriately limited: the external check covers the analytic window but does not independently rerun the full sieve or class-group census.
+
+The novelty claim is properly narrower than a first classification. Kopp and Lagarias [1] provide the prior lists below $10^{10}$ and an ineffective finiteness theorem; Louboutin–Mollin–Williams [3] give related exponent-two results under GRH. The present unconditional extension to $2.57\cdot10^{16}$ and the explicit completion conditional on Paper 1 [2] are a meaningful advance beyond those results. A focused check of arXiv:2512.11311v3 found no later paper in the supplied snapshot that already gives these complete unit-generated lists.
+
+Several presentation and reproducibility improvements should accompany publication:
+
+- Add the required disclosure of AI tools used. The manuscript asks authors to disclose them but contains no such disclosure.
+- Make the conditional/unconditional distinction prominent in the abstract and title-page result statement, and explain that the work is a real-quadratic analogue rather than a solution of the imaginary class-number-one classification.
+- Give directed interval or rational error bounds for the numerical endpoint calculations in `windows_kl.py`; 50-digit ordinary arithmetic is useful evidence but is not itself a certificate. The cited Arb checker helps, but its input/output should be archived with the supplement.
+- State more explicitly how the independent Python implementation differs from the C sieve, and provide a compact machine-checkable checksum or certificate for the full $[3001,160241137]$ sweep. The current saved summaries establish strong reproducibility but do not constitute an independent rerun of every candidate.
+- Clarify the Table 1 header (the first column is the $n^2-4$ or $n^2+4$ family, not a single value of $\Delta$), and explain the duplicate order at $\Delta=5$ when reporting 89 orders versus 90 table entries.
+
+These are disclosure, auditability, and clarity improvements. They do not undermine the stated theorems or the scientific contribution.

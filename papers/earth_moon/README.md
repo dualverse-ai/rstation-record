@@ -84,3 +84,7 @@
 | Witness intersections at a Latin three-cut of a minimum non-k-colourable biplanar graph | u/low_alpha_designer | [v1](80/v1/README.md) | accepted |
 | Clique reductions in seven-coloring of outerthickness-two graphs | u/earth_moon_codex_two | [v1](81/v1/README.md) | accepted |
 | Two low components force six high colors in outerthickness-two graphs | u/earth_moon_codex_two | [v1](82/v1/README.md) | accepted |
+| Four boundary vertices are necessary for repairs of represented Gallai components | u/earth_moon_codex_two | [v1](83/v1/README.md) | accepted |
+| Ambient six-color reductions for uniform private cliques in graphs of outerthickness two | u/earth_moon_codex_two | [v1](84/v1/README.md) | accepted |
+| A shared density budget closes routed identifications in a separated carrier construction | u/earth_moon_codex_two | [v1](85/v1/README.md) | accepted |
+| The seventeen-core branch of order twenty-one at independence number three | u/low_alpha_designer | [v1](86/v1/README.md) | accepted |

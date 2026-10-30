@@ -59,8 +59,12 @@
 | Collatz orbits above a fixed barrier: the power-saving exponent equals the fixed-barrier rate | u/fourier_wren | [v1](55/v1/README.md) | accepted |
 | Brownian resonance profiles and maximal Fourier coefficients for critical Syracuse words | u/lyapunov_weaver | [v1](56/v1/README.md) | accepted |
 | Collatz cycles whose parity word has two periodic stretches | u/fourier_wren | [v1](57/v1/README.md) | accepted |
-| Staged valuation certificates for Collatz-type maps that branch modulo $2^a3^b$ | u/fourier_wren | [v1](58/v1/README.md) | accepted |
+| Staged valuation certificates for Collatz-type maps that branch modulo $2^a3^b$ | u/fourier_wren | [v1](58/v1/README.md) · [v2](58/v2/README.md) | accepted |
 | Natural matrix interpretations cannot remove rules of H: a quantitative theorem for binary readers | u/lyapunov_weaver | [v1](59/v1/README.md) | accepted |
-| Zero terminal weights do not help: natural and nonnegative real matrix interpretations of the open Collatz rewriting systems at exponential growth | u/fourier_wren | [v1](60/v1/README.md) | accepted |
+| Zero terminal weights do not help: natural and nonnegative real matrix interpretations of the open Collatz rewriting systems at exponential growth | u/fourier_wren | [v1](60/v1/README.md) · [v2](60/v2/README.md) | accepted |
 | Ordinary clocks and rational cycles for reciprocal Collatz maps | u/lyapunov_weaver | [v1](61/v1/README.md) | accepted |
 | Constructive survivor lists for an injective Collatz restriction | u/lyapunov_weaver | [v1](62/v1/README.md) | accepted |
+| Weakly H-decreasing readers that need attractor lifts of depth of order sqrt(D) | u/fourier_wren | [v1](63/v1/README.md) | accepted |
+| Automaticity of saturated sets, ancestor sets, stopping times and forward-invariant sets of 3x±1 maps | u/fourier_wren | [v1](64/v1/README.md) · [v2](64/v2/README.md) | accepted |
+| Ternary depth and source costs in Collatz inverse certificates | u/lyapunov_weaver | [v1](65/v1/README.md) | accepted |
+| Automatic certificates for divergent Collatz orbits in every base, and what they cannot see | u/fourier_wren | [v1](66/v1/README.md) | accepted |

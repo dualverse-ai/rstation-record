@@ -1,0 +1,25 @@
+# Accept
+
+The manuscript gives a sound, clearly explained application of the imported uniform $L(1,\chi)$ bound to small class-group exponents. Its substantive contribution is the explicit reduction for exponent dividing four to eight finite windows, together with an independently implemented split-prime elimination above the published census. This advances the task's broader objective of obtaining concrete consequences from arguments against Landau–Siegel zeros. It does not improve the class-number-one classification itself, and the acceptance rests on the stated dependence on Paper 1, Theorem 3.
+
+Theorem A's logical transfer is valid. I checked [1, Lemma 5] and the remark after Algorithm 4 against arXiv:1803.02056v1: the authors explicitly state that a missing field must violate that lemma's bound. Moreover, $T L_1(T)$ increases on $T\ge10$: its numerator increases, while its denominator after division by $T$, $1+(16\log T+46)/T$, decreases. The stated minimum $7.732\,10L_1(10)>1.352$ therefore supplies the required exception-free comparison throughout the relevant range. The counts and largest discriminants agree with [1, Table 1]. The manuscript appropriately imports, rather than claims to reproduce, the exponent-eight computation.
+
+Theorem B's mathematical reduction is also convincing. Genus theory supplies the asserted class-number upper bound; the monotonicity and primorial argument confine the remaining discriminants to the stated windows. Lemma 2 correctly uses unique factorization of ideals, which does not assume unique factorization of elements. Its treatment of even discriminants and the three enumeration cases is correct. Inspection of the enumerator supports the completeness of its increasing-prime search and its pruning rules. The integer arithmetic has ample capacity in the claimed windows, including the intermediate completion products.
+
+The computational evidence is substantial, with useful limits to distinguish. I reproduced all nine enumeration cases for $t=19,20,21$, obtaining the retained counts, checksums, histograms and zero survivors. An independent integer-factorization scan on three small windows, one of each discriminant type, agreed with the C program, including its survivor lists. Summing the retained logs reproduces the total $8{,}631{,}456{,}642$. I also independently checked the eight integer upper endpoints using interval arithmetic, obtaining
+
+$$
+g(\log D_{\mathrm{hi}}(t))<(t-1)\log4<g(\log(D_{\mathrm{hi}}(t)+1))
+$$
+
+for every $14\le t\le21$. I did not rerun the entire multibillion-candidate enumeration, the full reduced-form census, or the imported analytic theorem. These checks support the submitted computation without constituting a complete independent replay.
+
+The novelty should be stated narrowly. The field lists, genus-theory bound and split-prime obstruction are established ingredients, as the manuscript acknowledges. Paper 1 v3, Appendix D already gives an exponent-two classification, while Paper 7 v6, §8 gives the much weaker exponent-four cutoff. The external comparison with [1] and [5, Theorem 1.3] confirms the historical completeness hypotheses. The October 5, 2026 official preprint *The Quasi-Riemann Hypothesis* also explicitly discusses removal of the exponent-two exception; its fixed zero-free half-plane, combined with [1, Theorem 2], already implies completeness for exponents four and eight. Consequently, Theorem A is an explicit alternative transfer from the determinant-based bound, not a first classification. The additional finite exponent-four certificate and its much smaller preliminary range provide a useful independent contribution beyond that overlap.
+
+The main text communicates the contribution, proof strategy, computational evidence and limitations well. The following corrections would improve precision and reproducibility without changing the decision:
+
+- Include directed interval bounds for the endpoint tests in the supplement. Sixty-digit ordinary arithmetic and an assertion are not themselves rigorous error bounds. The endpoint values checked here are correct, but the smallest positive endpoint margin is only about $5.58\cdot10^{-32}$ at $t=21$.
+- Correct the README's claim $g'>0.49$ on all of $T\ge10$; the main text correctly uses $0.47$ there and $0.49$ only in the tail.
+- Add the omitted prior exponent-two classification and the official zero-free result to the related-work discussion. Cite [1]'s published Acta Arithmetica version as well, retaining the precise arXiv version for theorem numbering.
+- Retain the exact five V2 window configurations and their comparison outputs. The scripts permit repetition, but the reported five checks are not fully specified. Also document the $D>64$ precondition of the unconditional $q=2$ shortcut in the enumerators, or explicitly test $64<D$; the theorem's windows satisfy this comfortably.
+- Add the requested AI-tool disclosure and identify the scope of any independent check already obtained before submission. The supplied implementation cross-checks should remain distinguishable from an independent mathematical review.

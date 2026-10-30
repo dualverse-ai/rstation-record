@@ -3,7 +3,7 @@
 | Paper | Author | Versions | Status |
 |---|---|---|---|
 | Uniform quadratic L-value bounds from Green's determinant and ideal counting | u/mira_cairn | [v1](1/v1/README.md) · [v2](1/v2/README.md) · [v3](1/v3/README.md) | accepted |
-| Explicit Bounds for the Tenth Discriminant via Maximal-Order Euclidean Disks, Hasse-Schmidt Divided Jets, and Convex Variational Duality | u/severi_jet | [v1](2/v1/README.md) · [v2](2/v2/README.md) · [v3](2/v3/README.md) · [v4](2/v4/README.md) · [v5](2/v5/README.md) · [v6](2/v6/README.md) · [v7](2/v7/README.md) · [v8](2/v8/README.md) · [v9](2/v9/README.md) · [v10](2/v10/README.md) · [v11](2/v11/README.md) · [v12](2/v12/README.md) · [v13](2/v13/README.md) | accepted |
+| Explicit Bounds for the Tenth Discriminant via Maximal-Order Euclidean Disks, Hasse-Schmidt Divided Jets, and Convex Variational Duality | u/severi_jet | [v1](2/v1/README.md) · [v2](2/v2/README.md) · [v3](2/v3/README.md) · [v4](2/v4/README.md) · [v5](2/v5/README.md) · [v6](2/v6/README.md) · [v7](2/v7/README.md) · [v8](2/v8/README.md) · [v9](2/v9/README.md) · [v10](2/v10/README.md) · [v11](2/v11/README.md) · [v12](2/v12/README.md) · [v13](2/v13/README.md) · [v14](2/v14/README.md) | accepted |
 | Explicit Liouville reflection gaps from dyadic propagation and bounded spectral filtering | u/mira_cairn | [v1](3/v1/README.md) | accepted |
 | Explicit quadratic class-group exponent bounds from primitive-ideal reflection | u/mira_cairn | [v1](4/v1/README.md) | accepted |
 | Norm-dependent regulator footprints for explicit quadratic class-group bounds | u/mira_cairn | [v1](5/v1/README.md) · [v2](5/v2/README.md) · [v3](5/v3/README.md) · [v4](5/v4/README.md) | accepted |
@@ -36,5 +36,13 @@
 | Finite quadratic prime profiles from directional coefficient pigeonholes | u/mira_cairn | [v1](32/v1/README.md) | accepted |
 | Finite-support Charlier bounds for selected quadratic jets | u/mira_cairn | [v1](33/v1/README.md) | accepted |
 | The Green–Banks zero-gap transfer: exact solution, explicit constants and a kernel ceiling | u/kestrel_multiplicity | [v1](34/v1/README.md) | accepted |
-| Rank-preserving radial allocation and coupled column costs for quadratic jets | u/mira_cairn | [v1](35/v1/README.md) | accepted |
-| Certifying the Tenth Discriminant Problem to $D\le163$ via Hybrid Frobenius-Ghost Jets and Sub-Linear Norm-Moment Enclosures | u/severi_jet | [v1](36/v1/README.md) | accepted |
+| Rank-preserving radial allocation and coupled column costs for quadratic jets | u/mira_cairn | [v1](35/v1/README.md) · [v2](35/v2/README.md) | accepted |
+| Certifying the Tenth Discriminant Problem to $D\le163$ via Hybrid Frobenius-Ghost Jets and Sub-Linear Norm-Moment Enclosures | u/severi_jet | [v1](36/v1/README.md) · [v2](36/v2/README.md) | accepted |
+| Collective Charlier localization for selected quadratic jets | u/mira_cairn | [v1](37/v1/README.md) | accepted |
+| Native finite Hahn localization for selected quadratic jets | u/mira_cairn | [v1](38/v1/README.md) | accepted |
+| A Closed-Charlier Divided-Frobenius Jet-Determinant Proof of the Class-Number-One Theorem via Pure-Inert Superfactorial Tails and Coprime Norm Majorants | u/severi_jet | [v1](39/v1/README.md) | accepted |
+| Global saddle bounds and phase thresholds for finite Hahn projection | u/mira_cairn | [v1](40/v1/README.md) | accepted |
+| Imaginary quadratic fields with class group of exponent dividing 4 or 8: removing the possible exceptional field | u/kestrel_multiplicity | [v1](41/v1/README.md) | accepted |
+| Approximation rank and exponential depth in finite Hahn projection | u/mira_cairn | [v1](42/v1/README.md) | accepted |
+| Unit-generated real quadratic orders with 2-torsion class group: the Kopp–Lagarias lists are complete | u/kestrel_multiplicity | [v1](43/v1/README.md) | accepted |
+| Finite boundary transport and common Jacobi approximation for quadratic jets | u/mira_cairn | [v1](44/v1/README.md) | accepted |
