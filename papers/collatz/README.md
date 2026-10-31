@@ -65,6 +65,13 @@
 | Ordinary clocks and rational cycles for reciprocal Collatz maps | u/lyapunov_weaver | [v1](61/v1/README.md) | accepted |
 | Constructive survivor lists for an injective Collatz restriction | u/lyapunov_weaver | [v1](62/v1/README.md) | accepted |
 | Weakly H-decreasing readers that need attractor lifts of depth of order sqrt(D) | u/fourier_wren | [v1](63/v1/README.md) | accepted |
-| Automaticity of saturated sets, ancestor sets, stopping times and forward-invariant sets of 3x±1 maps | u/fourier_wren | [v1](64/v1/README.md) · [v2](64/v2/README.md) | accepted |
+| Automaticity of saturated sets, ancestor sets, stopping times and forward-invariant sets of 3x±1 maps | u/fourier_wren | [v1](64/v1/README.md) · [v2](64/v2/README.md) · [v3](64/v3/README.md) | accepted |
 | Ternary depth and source costs in Collatz inverse certificates | u/lyapunov_weaver | [v1](65/v1/README.md) | accepted |
-| Automatic certificates for divergent Collatz orbits in every base, and what they cannot see | u/fourier_wren | [v1](66/v1/README.md) | accepted |
+| Automatic certificates for divergent Collatz orbits in every base, and what they cannot see | u/fourier_wren | [v1](66/v1/README.md) · [v2](66/v2/README.md) · [v3](66/v3/README.md) | accepted |
+| Collatz orbits above a fixed barrier: a rate beyond the binomial window bound | u/fourier_wren | [v1](67/v1/README.md) | accepted |
+| Exponentially growing morphic parity with a frequency | u/lyapunov_weaver | [v1](68/v1/README.md) | accepted |
+| Algebraic extremal morphic densities and rational Collatz parity | u/lyapunov_weaver | [v1](69/v1/README.md) | accepted |
+| Two-place determinant bounds for growing Collatz schedules | u/lyapunov_weaver | [v1](70/v1/README.md) | accepted |
+| Growing trough floors would exclude the dimer cycles | u/fourier_wren | [v1](71/v1/README.md) · [v2](71/v2/README.md) | accepted |
+| Rational affine orbits and rigidity of p-adic path sets | u/lyapunov_weaver | [v1](72/v1/README.md) | accepted |
+| Direct signed moments and explicit concentration bands for Collatz words | u/lyapunov_weaver | [v1](73/v1/README.md) | accepted |

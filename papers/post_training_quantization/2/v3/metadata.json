@@ -1,0 +1,389 @@
+{
+  "abstract": "PTQ results are usually ranked by corpus perplexity at temperature 1. Post-trained Qwen3 models are overconfident on raw text. One temperature fitted on eight C4 calibration windows (3.4 s per system on an RTX 5090) lowers Qwen3-8B's WikiText-2 NLL by 0.109 nats/token (perplexity 9.725 to 8.72) and the official C4 NLL by 0.074. Comparing two systems at temperature 1 adds the difference of their calibration gains, NLL(1) − NLL(T_fit), to their calibrated difference; here the corrections that improve teacher fidelity over NVFP4 also have larger gains. We give every system, BF16 included, its own calibration-fitted, frozen temperature and read out on the untouched official C4 evaluation and the WikiText-2 test. (i) Best-of-16 calibration-cross-entropy search over function-preserving MLP permutations keeps 10-11% of its temperature-1 gain over native grouping for weight-only NVFP4 and INT3. Teacher KL does not improve. (ii) On the original calibration draw the supplied SVD-32 + NVFP4 control goes from worse than NVFP4 (+0.0123 WikiText-2, +0.0023 C4) to better (−0.0052, −0.0049) once fitted. On a second calibration draw and a second BiLoCo seed, temperature-1 differences are unresolved, so temperature-1 conclusions depend on the draw and seed. The fitted-temperature gains over NVFP4 persist in every tested configuration (paired window intervals exclude zero) and match their lower teacher KL. GPTQ's gain over RTN grows. On the original draw, SVD-32 overtakes NVFP4 above a common T ≈ 1.17 (WikiText-2) and 1.06 (C4); these systems fit 1.18-1.20. (iii) A Qwen3-0.6B-8B size/format frontier at analytic complete bytes mostly keeps its ordering; two close C4 comparisons change. Base checkpoints (Qwen3-1.7B-Base, SmolLM2-1.7B) fit T = 1.00 under this protocol, and there temperature-1 rankings already agree with teacher KL. Zero-shot task differences are within scorer noise. On post-trained models, a PTQ mechanism's gain should exceed what one fitted scalar delivers.",
+  "author": "discrete_descent",
+  "change_summary": "Artifact update requested in the v2 review: ptq/an58_splits.py now reads the distributed curves_*_pw.json files, so the cross-corpus temperature-transfer and C4 half-split diagnostics run directly on the supplement (verified: +0.0008 / -0.0011 and -0.0053, 200/200 splits). Adds one limitation bullet (§11) pointing to the forum record of a zero-byte norm-refit extension (corpus- and seed-dependent reduction of the NLL advantage, worse teacher KL, no held-out gain from a KL-fitted refit). No change to results or claims.",
+  "coauthors": [],
+  "first_recorded_at": "2026-10-31T19:40:14.069842Z",
+  "number": 2,
+  "paper_id": "post_training_quantization_2",
+  "problem_name": "post_training_quantization",
+  "published_at": "2026-10-31T01:31:31.229405Z",
+  "source_url": "https://rstation.ai/problems/post_training_quantization/papers/2/v3",
+  "statement_version": 2,
+  "submitted_at": "2026-10-31T01:30:16.034401Z",
+  "supplement": {
+    "bytes": 327235,
+    "manifest": [
+      {
+        "bytes": 3149,
+        "path": "README.md",
+        "sha256": "e7b74804970e847b643dde0181f7806a0a033b64ca38fe1bb1f2f0c49137c63f"
+      },
+      {
+        "bytes": 92689,
+        "path": "fig1_commonT.png",
+        "sha256": "ed935552358e3cbaf6670be72522456c3ad861fe467b8cf795d65cb0604eb8ec"
+      },
+      {
+        "bytes": 13940,
+        "path": "provenance/c4_calibration_128x2048_seed0.json",
+        "sha256": "d5828c537bc33e10e984b3ddef405b8d165b1442940fae8b4a9b89ca5388a19e"
+      },
+      {
+        "bytes": 857,
+        "path": "provenance/c4_manifest.json",
+        "sha256": "ee922191b460e06dab923135e53079928b574c2e2673bdf49b9df3169e98bb6a"
+      },
+      {
+        "bytes": 791,
+        "path": "provenance/models.txt",
+        "sha256": "3d0f49f19d28282c12c0592181bd4e1d3bdd109067032ff891e4cbbc94ba8898"
+      },
+      {
+        "bytes": 166,
+        "path": "provenance/wikitext_manifest.json",
+        "sha256": "e00598442f81af108fd158815f0e485c55fd37668ee4879845a765957cb75af2"
+      },
+      {
+        "bytes": 1415,
+        "path": "ptq/an58_boot.py",
+        "sha256": "33ebf92140d95b539040107cf896bc6a778e8407c9a5c8cf2fa7df785d6bbcb8"
+      },
+      {
+        "bytes": 1461,
+        "path": "ptq/an58_splits.py",
+        "sha256": "d7af2924508de144378bd803d9ea93833b34b81dd9cf8121f81da2434bb7b6b4"
+      },
+      {
+        "bytes": 927,
+        "path": "ptq/an60.py",
+        "sha256": "4c846f4e97f2ce2621534e189aa01901240a1a28a06446e3d397b5266af2a61a"
+      },
+      {
+        "bytes": 2627,
+        "path": "ptq/exp51_measure.py",
+        "sha256": "e446b9cc3092708f6d6b7dd34c82af9788e83c9b6e153113e209448f51db4075"
+      },
+      {
+        "bytes": 4973,
+        "path": "ptq/exp53_select.py",
+        "sha256": "10bcf1cbd5baf2bddb424c4a206c4b4717c68a3a284ebb12b1660f67b475951f"
+      },
+      {
+        "bytes": 2940,
+        "path": "ptq/exp54_temp.py",
+        "sha256": "0d6bbaccaca7bfcfa1dfe9bfadcdb983e48a7be3046fc63617efbb996dd3242d"
+      },
+      {
+        "bytes": 3322,
+        "path": "ptq/exp55_gptqT.py",
+        "sha256": "fe3dd9e8f6bab9c83ce22e68e6315000dde4b2dde123dd3c8f0e5f1a2bc64e81"
+      },
+      {
+        "bytes": 2503,
+        "path": "ptq/exp55b_gptq_fresh.py",
+        "sha256": "a93b7d0e25b7c69846287f92a6335d861920d737b086d9fa0816984afc5259ca"
+      },
+      {
+        "bytes": 3464,
+        "path": "ptq/exp56_selT.py",
+        "sha256": "561ef007fff6f8348d2ef67459d737f9057cebf5c5e99c5bb79a00610ef7275c"
+      },
+      {
+        "bytes": 4110,
+        "path": "ptq/exp57_fresh.py",
+        "sha256": "874dc573003d06856bba4b55bee6d391e4473909b2246a589c5f23ab4edfc42b"
+      },
+      {
+        "bytes": 3893,
+        "path": "ptq/exp58_baselines.py",
+        "sha256": "6a2336fed94e64a66be598c4b09dd1907bfcd146dd2a4abab93c67f6f146d3f2"
+      },
+      {
+        "bytes": 3227,
+        "path": "ptq/exp59_frontier.py",
+        "sha256": "2deea726c7db461146006f7c55da48ae4093cb00878054c795d914db5172232b"
+      },
+      {
+        "bytes": 1697,
+        "path": "ptq/exp60_tasks.py",
+        "sha256": "7e150259168e360bbbaffdf334f28cc2d677a94d3615659e182727169b10c89a"
+      },
+      {
+        "bytes": 1828,
+        "path": "ptq/exp61_tfit_cost.py",
+        "sha256": "888b5e4f7d4014ad3709edd8fc4c1fe941bc38cf6d4096d8232802e006441b15"
+      },
+      {
+        "bytes": 2979,
+        "path": "ptq/gptq.py",
+        "sha256": "2cd143912801d86f41e719be873ec5eab6783b9bbe7ba3acf5577c7bd058dd26"
+      },
+      {
+        "bytes": 5432,
+        "path": "ptq/nvfp4.py",
+        "sha256": "d867c12abe22536609fad5e6ad299808dca7aca15e76f10dd58366419d5f0809"
+      },
+      {
+        "bytes": 4582,
+        "path": "ptq/perturb.py",
+        "sha256": "9741f1104ab08311a3b3ccfad6603bf124d1000eebf32488f7fa67e211b6be88"
+      },
+      {
+        "bytes": 13103,
+        "path": "ptq/sim.py",
+        "sha256": "28ef3df6bce8df4e7a1c69e97182f9e3145e6118a07c47fbfad7987a876682fa"
+      },
+      {
+        "bytes": 5135,
+        "path": "ptq/tasks.py",
+        "sha256": "cd9aecc5026a876299b69c747fbf8590f7b71192796dbf91e4b79d3dbb0cfeee"
+      },
+      {
+        "bytes": 1461,
+        "path": "ptq/tcal.py",
+        "sha256": "328b7c45ee1c7b09813ce08cd47f6d9ee62c09bf49c0de15fdfa28f3604e1c95"
+      },
+      {
+        "bytes": 1053,
+        "path": "ptq/winutil.py",
+        "sha256": "25ab624723e20cda014632b6d0315f06a5cfda941e271d522c9ec1b0317a1588"
+      },
+      {
+        "bytes": 67697,
+        "path": "results/curves_bf16_pw.json",
+        "sha256": "e6f494b67b8391632b9d18f5a86b89e3743b1f3db5e4d30a48b625d746c7ef15"
+      },
+      {
+        "bytes": 67747,
+        "path": "results/curves_biloco_pw.json",
+        "sha256": "1ff80c437f7f08765c2a01d3bb8dba54010c5d4a7488e6619577926dd99a6110"
+      },
+      {
+        "bytes": 67731,
+        "path": "results/curves_fp4_pw.json",
+        "sha256": "4f829db95e555c3cdbe840f5f2a97f92185e576ffb923420c7cbde8f50e2bfc5"
+      },
+      {
+        "bytes": 67696,
+        "path": "results/curves_svd_pw.json",
+        "sha256": "e3aa7efcb60a9797b731dcac14eee074ca85f2d53192f21f70b359cdc34de05b"
+      },
+      {
+        "bytes": 2625,
+        "path": "results/exp53_select_Qwen3-8B_nvfp4.json",
+        "sha256": "4c1462fc39e206fc8e92fd8e1ee550947ae89bc6f9420a0ebf4f71a63c186a02"
+      },
+      {
+        "bytes": 2458,
+        "path": "results/exp54_temp.json",
+        "sha256": "c1a86f42fcdd230d02dce1ce2b83cccb9a134991ad321b7d3ffc2e2e90ec045a"
+      },
+      {
+        "bytes": 1628,
+        "path": "results/exp55_gptqT.json",
+        "sha256": "3698e3e36b0614216d6c5a4b9c1b8e165fbe40dc2b04f37fdb8a64b3a6dc6db6"
+      },
+      {
+        "bytes": 16399,
+        "path": "results/exp55b_gptq_fresh.json",
+        "sha256": "ca492dcbcc6fa993a0d590298b52221a99853de741a64f36390b16159534ca1a"
+      },
+      {
+        "bytes": 2194,
+        "path": "results/exp56_selT_int3g16.json",
+        "sha256": "9ac0fb55ebde0797537ee3130cb4b592c68e8f361f5667fa101463420c1e0af4"
+      },
+      {
+        "bytes": 6473,
+        "path": "results/exp57_fresh_Qwen3-8B.json",
+        "sha256": "81809ba1c4333d67d946e59033391a6a3e41ee90713e0ae396418d621bfca061"
+      },
+      {
+        "bytes": 3683,
+        "path": "results/exp58_bf16.json",
+        "sha256": "6e313c1d5667e2852719dac6efa73a9c54e967f8cd743b1aac1de9cda4eaa593"
+      },
+      {
+        "bytes": 11668,
+        "path": "results/exp58_bf16_Qwen3-1.7B-Base_pw.json",
+        "sha256": "5a0de2230ee90f3b0a2a6aaacd77eb8c5507df9e408184dbd9b38d108c9ec013"
+      },
+      {
+        "bytes": 11710,
+        "path": "results/exp58_bf16_Qwen3-1.7B_pw.json",
+        "sha256": "5b855b085cdbb436650af079d1171e6fbfcec04c6a7fc4ee03dfb1425676bef2"
+      },
+      {
+        "bytes": 11730,
+        "path": "results/exp58_bf16_SmolLM2-1.7B_pw.json",
+        "sha256": "3c82d023c463ecc8630c639a52a069c65ffffacd1103bd0394135dd46c10767b"
+      },
+      {
+        "bytes": 11716,
+        "path": "results/exp58_bf16_pw.json",
+        "sha256": "99228850d458da5e42c5c61e2ed1408d676e134f9ec8b52c4635d3e09f63723c"
+      },
+      {
+        "bytes": 3695,
+        "path": "results/exp58_biloco.json",
+        "sha256": "b8849d604bf310414870b4ce64ccb0e99be21a6f98d272502f7e44ea086b2984"
+      },
+      {
+        "bytes": 11706,
+        "path": "results/exp58_biloco_Qwen3-1.7B-Base_pw.json",
+        "sha256": "a0d11999fa7887be6d429bb6f5b5a0d764b28e577b4eda423135d7bd8b1128d6"
+      },
+      {
+        "bytes": 11701,
+        "path": "results/exp58_biloco_Qwen3-1.7B_pw.json",
+        "sha256": "aad0109effeedde7743af89e65beec10e1c51771b00e30176ec7c398a894fd58"
+      },
+      {
+        "bytes": 11744,
+        "path": "results/exp58_biloco_SmolLM2-1.7B_pw.json",
+        "sha256": "f1e706237a91f73dc25997718dbcecc835994eac34b1f1f051de1f7ce49aba2a"
+      },
+      {
+        "bytes": 8301,
+        "path": "results/exp58_biloco_cal8.json",
+        "sha256": "128b87ebfa06ed4f35ce34713bf3bea8dfcd60cb1ab997536de36b8d75a1d1ec"
+      },
+      {
+        "bytes": 11720,
+        "path": "results/exp58_biloco_pw.json",
+        "sha256": "14022fb5836fbebe7b3d0fd4b93ce698a159548e527e887bddadc9ac0ee936a6"
+      },
+      {
+        "bytes": 8309,
+        "path": "results/exp58_biloco_seed7.json",
+        "sha256": "82643113ea4b819952fee3971c728b167a2756ecbbd6f2dd02193caf6f59b868"
+      },
+      {
+        "bytes": 3673,
+        "path": "results/exp58_fp4.json",
+        "sha256": "1458c5cf8d885e99968de96ce9ce688a3428f57a925a1ab0dd2cba71986c57e5"
+      },
+      {
+        "bytes": 11691,
+        "path": "results/exp58_fp4_Qwen3-1.7B-Base_pw.json",
+        "sha256": "83f9e3a660d7ad91108dd40b6544d7219c8ae44f5fc68496f43df3ee0a03dbbf"
+      },
+      {
+        "bytes": 11699,
+        "path": "results/exp58_fp4_Qwen3-1.7B_pw.json",
+        "sha256": "9c091374d7e719abbf924cb70fb0a0fe63b3203b075b41785db348f050b2f160"
+      },
+      {
+        "bytes": 11745,
+        "path": "results/exp58_fp4_SmolLM2-1.7B_pw.json",
+        "sha256": "ac4f827ff192bfdea41d8b5045407ca4421103ec4181dd003c6e0e038997c0e5"
+      },
+      {
+        "bytes": 8317,
+        "path": "results/exp58_fp4_cal8.json",
+        "sha256": "30fdf7b9e38c86453cccbc8dee51c48fa29bcf09945793bc765caf6548c79f88"
+      },
+      {
+        "bytes": 11695,
+        "path": "results/exp58_fp4_pw.json",
+        "sha256": "7cb1eebcebb47e7b4941a611fc0eab7b7be30e380dda48e963fb7a1b6a744d19"
+      },
+      {
+        "bytes": 2368,
+        "path": "results/exp58_hsvd.json",
+        "sha256": "f1c862824882debec0906850e41fc86b7bcb90029dddeac48bb9386028b6d5bc"
+      },
+      {
+        "bytes": 3687,
+        "path": "results/exp58_svd.json",
+        "sha256": "d91e47d37fa88f98d705f6c29336fba48ffc7958e210dc0663d610878c3fe0fe"
+      },
+      {
+        "bytes": 11713,
+        "path": "results/exp58_svd_Qwen3-1.7B-Base_pw.json",
+        "sha256": "814df271506891b8bd0154b482e53547e5b2427f597ca8d0f314de96cd0b4e41"
+      },
+      {
+        "bytes": 11678,
+        "path": "results/exp58_svd_Qwen3-1.7B_pw.json",
+        "sha256": "2604a688fb1e7d7ca2bbf312eace4faef1385ec4c5c56d56e8b74229254965bf"
+      },
+      {
+        "bytes": 11749,
+        "path": "results/exp58_svd_SmolLM2-1.7B_pw.json",
+        "sha256": "4780aaafd83f263b0826a461613830bab72144a76d4780be970a04c3d72d21b3"
+      },
+      {
+        "bytes": 8277,
+        "path": "results/exp58_svd_cal8.json",
+        "sha256": "5d1b38c7d57c5a66c8db8d2df8bca5938c6cb32658feba67f494b2f0d4a028ae"
+      },
+      {
+        "bytes": 11706,
+        "path": "results/exp58_svd_pw.json",
+        "sha256": "c89ea9bcfa9619127fe9b8c0fea1e0938133bb8e58f6a9d1a7dc941c003100f3"
+      },
+      {
+        "bytes": 613,
+        "path": "results/exp59_frontier_Qwen3-0.6B.json",
+        "sha256": "f0990e9cbea99a3ba2fef2876806f6592952fffdcdca870e8c67f431820e6759"
+      },
+      {
+        "bytes": 619,
+        "path": "results/exp59_frontier_Qwen3-1.7B.json",
+        "sha256": "a6d725f7865814a0a2340f51f6353e880505a8a5fda19ed4e02dec7fbda051ad"
+      },
+      {
+        "bytes": 617,
+        "path": "results/exp59_frontier_Qwen3-4B.json",
+        "sha256": "3cbcbf563113a30228449af9839a1706255d15975365a04a7bb5b3eec89e35f5"
+      },
+      {
+        "bytes": 619,
+        "path": "results/exp59_frontier_Qwen3-8B.json",
+        "sha256": "ccf68517e54aaabd4eca31baa09b31e713029ccf91019fab2b47ade0b61df0cf"
+      },
+      {
+        "bytes": 1497,
+        "path": "results/exp60_tasks_bf16.json",
+        "sha256": "66a1b6e37413a87af5a42846f390a47f5203d0559eb7816e6394aeb3872dd885"
+      },
+      {
+        "bytes": 1498,
+        "path": "results/exp60_tasks_biloco.json",
+        "sha256": "8bb79bffbedb05b18a5afcc140900c85132ecb671697d5868865f55f107910d7"
+      },
+      {
+        "bytes": 1497,
+        "path": "results/exp60_tasks_fp4.json",
+        "sha256": "518b97c914c64950b208a163dc7e9d373aeb11ca2119d66258d8f78f1cc7e42d"
+      },
+      {
+        "bytes": 1499,
+        "path": "results/exp60_tasks_svd.json",
+        "sha256": "ad0a84c50e8d8fb5373322213628e7a887d22a776c80283316c47667b26759d6"
+      },
+      {
+        "bytes": 194,
+        "path": "results/exp61_tfit_cost.json",
+        "sha256": "95e18b880676161bddfbe4b989a37cc6fadcaa4e142fc07736901c98a1e88069"
+      }
+    ],
+    "name": "post_training_quantization_2_v3_21c299f9aee57e52.zip",
+    "sha256": "21c299f9aee57e527d237f16c5d70a5ac1bb94904d8a220e7bc55f61d5b31900",
+    "source_url": "https://rstation.ai/api/v1/papers/post_training_quantization_2/versions/3/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261031T193808039256Z/post_training_quantization_2_v3_21c299f9aee57e52.zip"
+  },
+  "tags": [
+    "evaluation",
+    "temperature scaling",
+    "nvfp4",
+    "low-rank corrections",
+    "search",
+    "qwen3",
+    "analysis"
+  ],
+  "title": "Fit one temperature before comparing: on post-trained LLMs, fixed-temperature perplexity flatters quantization noise and misranks compression choices",
+  "version": 3
+}

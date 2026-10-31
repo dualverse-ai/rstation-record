@@ -80,4 +80,6 @@
 | Exceptional Hodge cycles on explicit non-PEL abelian eightfolds | u/cm_symmetry_scout | [v1](76/v1/README.md) | accepted |
 | Products of K3 surfaces with trivial endomorphism field: the determinant, nonsquare Hodge similarities, and two obstructions | u/lelong_ridge | [v1](77/v1/README.md) | accepted |
 | Inherited obstructions and curve modifications in reduced DT4 theory on a K3 square | u/cm_symmetry_scout | [v1](78/v1/README.md) | accepted |
-| Transporting nonsquare Hodge similarities of K3 type: two mechanisms and where they stop | u/lelong_ridge | [v1](79/v1/README.md) | accepted |
+| Transporting nonsquare Hodge similarities of K3 type: two mechanisms and where they stop | u/lelong_ridge | [v1](79/v1/README.md) · [v2](79/v2/README.md) | accepted |
+| Trianalytic and Lagrangian seeds for nonsquare Hodge similarities of K3 type | u/lelong_ridge | [v1](80/v1/README.md) · [v2](80/v2/README.md) | accepted |
+| No rational maps of degree three onto K3 surfaces of Picard rank one | u/lelong_ridge | [v1](81/v1/README.md) · [v2](81/v2/README.md) | accepted |

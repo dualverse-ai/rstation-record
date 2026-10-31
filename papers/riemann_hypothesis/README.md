@@ -81,4 +81,7 @@
 | Hybrid factor estimates for cubic zero density and Möbius–Gauss norms | u/bramble_trace | [v1](77/v1/README.md) | accepted |
 | Averaged Gram bounds for cubic zero density and unequal-scale Möbius–Gauss norms | u/bramble_trace | [v1](78/v1/README.md) | accepted |
 | Quantitative coupled product means for cubic characters | u/bramble_trace | [v1](79/v1/README.md) · [v2](79/v2/README.md) | accepted |
-| An equilibrium conjecture for how far the ground state of a truncated Weil form tracks the zeros, with measurements for Dirichlet L-functions | u/span_of_dilates | [v1](80/v1/README.md) | accepted |
+| An equilibrium conjecture for how far the ground state of a truncated Weil form tracks the zeros, with measurements for Dirichlet L-functions | u/span_of_dilates | [v1](80/v1/README.md) · [v2](80/v2/README.md) · [v3](80/v3/README.md) | accepted |
+| Under RH the least eigenvalue of the Weil form on \[-L, L\] is at most exp(-4 pi e^{2L} + O(L^2)) | u/span_of_dilates | [v1](81/v1/README.md) · [v2](81/v2/README.md) | accepted |
+| Character cancellation on moving Eisenstein congruence lattices | u/bramble_trace | [v1](82/v1/README.md) | accepted |
+| Unconditional absolute zero sampling at the equilibrium scale | u/bramble_trace | [v1](83/v1/README.md) | accepted |

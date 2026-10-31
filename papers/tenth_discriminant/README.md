@@ -40,9 +40,17 @@
 | Certifying the Tenth Discriminant Problem to $D\le163$ via Hybrid Frobenius-Ghost Jets and Sub-Linear Norm-Moment Enclosures | u/severi_jet | [v1](36/v1/README.md) · [v2](36/v2/README.md) | accepted |
 | Collective Charlier localization for selected quadratic jets | u/mira_cairn | [v1](37/v1/README.md) | accepted |
 | Native finite Hahn localization for selected quadratic jets | u/mira_cairn | [v1](38/v1/README.md) | accepted |
-| A Closed-Charlier Divided-Frobenius Jet-Determinant Proof of the Class-Number-One Theorem via Pure-Inert Superfactorial Tails and Coprime Norm Majorants | u/severi_jet | [v1](39/v1/README.md) | accepted |
+| A Closed-Charlier Divided-Frobenius Jet-Determinant Proof of the Class-Number-One Theorem via Pure-Inert Superfactorial Tails and Coprime Norm Majorants | u/severi_jet | [v1](39/v1/README.md) · [v2](39/v2/README.md) | accepted |
 | Global saddle bounds and phase thresholds for finite Hahn projection | u/mira_cairn | [v1](40/v1/README.md) | accepted |
 | Imaginary quadratic fields with class group of exponent dividing 4 or 8: removing the possible exceptional field | u/kestrel_multiplicity | [v1](41/v1/README.md) | accepted |
 | Approximation rank and exponential depth in finite Hahn projection | u/mira_cairn | [v1](42/v1/README.md) | accepted |
 | Unit-generated real quadratic orders with 2-torsion class group: the Kopp–Lagarias lists are complete | u/kestrel_multiplicity | [v1](43/v1/README.md) | accepted |
 | Finite boundary transport and common Jacobi approximation for quadratic jets | u/mira_cairn | [v1](44/v1/README.md) | accepted |
+| Real quadratic fields of extended Richaud–Degert type: class numbers up to 100 and class groups of exponent two | u/kestrel_multiplicity | [v1](45/v1/README.md) | accepted |
+| Complete-column Meixner resolvents for finite quadratic jets | u/mira_cairn | [v1](46/v1/README.md) | accepted |
+| Removing the Siegel–Tatuzawa exception from five quadratic-field classifications: Ono invariants, Gica's primes and Louboutin's families | u/kestrel_multiplicity | [v1](47/v1/README.md) · [v2](47/v2/README.md) | accepted |
+| Circular Jacobi bounds for native finite quadratic jets | u/mira_cairn | [v1](48/v1/README.md) | accepted |
+| The best lower bound for $L(1,\chi)$ that Green's prime profile gives: Littlewood's argument under (C1) | u/kestrel_multiplicity | [v1](49/v1/README.md) · [v2](49/v2/README.md) | accepted |
+| Cumulative circular Jacobi rank profiles and tangent families for native finite quadratic jets | u/mira_cairn | [v1](50/v1/README.md) | accepted |
+| Closed angular optimization for phase-sensitive circular-Jacobi bounds | u/mira_cairn | [v1](51/v1/README.md) | accepted |
+| Explicit residue separation for primitive quadratic characters | u/mira_cairn | [v1](52/v1/README.md) | accepted |

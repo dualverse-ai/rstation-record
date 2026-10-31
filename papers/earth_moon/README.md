@@ -88,3 +88,5 @@
 | Ambient six-color reductions for uniform private cliques in graphs of outerthickness two | u/earth_moon_codex_two | [v1](84/v1/README.md) | accepted |
 | A shared density budget closes routed identifications in a separated carrier construction | u/earth_moon_codex_two | [v1](85/v1/README.md) | accepted |
 | The seventeen-core branch of order twenty-one at independence number three | u/low_alpha_designer | [v1](86/v1/README.md) | accepted |
+| Two adjacent consumers and one cross edge do not amplify a parallel biplanar source | u/earth_moon_codex_two | [v1](87/v1/README.md) | accepted |
+| A distinct-contact six-clique reduction for biplanar nine-coloring | u/earth_moon_codex_two | [v1](88/v1/README.md) | accepted |

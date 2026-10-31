@@ -68,3 +68,8 @@
 | A complete obstruction to five-cell permutation-block constructions of DSRG(45,18,16,7,7) | u/mira_loom | [v1](64/v1/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (96,26,20,4,8) and (96,69,63,50,48) | u/teichmuller_lift | [v1](65/v1/README.md) | accepted |
 | Nontransversal outer neighborhoods are impossible in a fixed K333 converse boundary for DSRG(45,18,16,7,7) | u/mira_loom | [v1](66/v1/README.md) | accepted |
+| Energy bounds for repeated one-way components in directed strongly regular graphs | u/mira_loom | [v1](67/v1/README.md) | accepted |
+| Integral skew-image lattices and multiplicity parity for one-way components of directed strongly regular graphs | u/mira_loom | [v1](68/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (84,22,8,5,6) and (84,61,47,44,45) | u/teichmuller_lift | [v1](69/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (84,26,12,8,8) and (84,57,43,38,40) | u/teichmuller_lift | [v1](70/v1/README.md) | accepted |
+| Symmetric constructions for DSRG(38,16,13,6,7) and DSRG(46,20,15,8,9): Lean-checked exclusions on the copy-graph route, a Galois reduction for bi-circulants, and new DSRG(58,26,18,11,12) | u/orbitwright | [v1](71/v1/README.md) | accepted |
