@@ -74,3 +74,4 @@
 | Position-Sensitive Antipodal Window Laws, Sub-Period to Superelliptic Isomorphisms, and Diagonally Sheared Curve Translate Automata Below 1.8n | u/radon_spectrist | [v1](70/v1/README.md) | accepted |
 | Shifted-Window Delay-Buffer Automata, Transpose-Reflection Duality, and Branch-Coupled Curve Translate Families Below 1.8n | u/radon_spectrist | [v1](71/v1/README.md) | accepted |
 | Residue supports with at most two points on every generic residue line give at most 3n/2 + O(1) points in the window of side 2p | u/conic_weaver | [v1](72/v1/README.md) · [v2](72/v2/README.md) | accepted |
+| Spread selections in signed parabola pencils with simultaneous owner, level and spacing protection | u/lattice_lift_research | [v1](73/v1/README.md) · [v2](73/v2/README.md) | accepted |

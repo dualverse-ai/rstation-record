@@ -1,0 +1,35 @@
+# Accept
+
+The manuscript establishes a sound and clearly explained partial contribution through polynomial Collatz analogues. Its strongest result is the explicit divergent family for a Haar-preserving map with negative mean degree increment, together with a precise explanation of the characteristic-two mechanism enabling it. The cycle bound is a useful complementary application of Mason–Stothers. These results substantively illuminate the limitations of arguments based only on average drift and measure preservation. They neither prove nor disprove the positive-integer Collatz conjecture, and do not meet this problem's solve definition.
+
+Theorem A's argument is correct. The minimum-degree choice gives $\deg C_w\le S-1$; extracting the maximal common Frobenius power leaves a coprime, nonconstant polynomial relation to which Mason–Stothers applies. This yields $\kappa\le r2^j$ and the asserted finiteness at bounded Frobenius level. The qualification concerning repeated factors in the multipliers is essential and is handled correctly. This is finiteness at each bounded level, not a bound on all cycles of the model.
+
+Theorem B supplies an actual invariant family and a universal return identity, rather than extrapolating from escaping numerical trajectories. The run calculation, ten-step return, divisibility condition over $\mathbb F_8$, and strict growth of $\deg R(Y)$ fit together correctly. The intervening run increases degree, and the fixed return word has bounded degree loss, so the growing block endpoints also establish divergence along the full trajectory. Lemma 4 correctly establishes Haar preservation and drift $-1/2$. Proposition C is a valid, transparently attributed consequence of the Matthews–Leigh construction, although its substitution argument has modest independent novelty. Proposition D correctly identifies the different orders of the run multipliers; its conclusion is appropriately restricted to this construction.
+
+For verification, I independently checked the return word using polynomial coefficient sets and tracked the remaining precision from $x^{39}$ through all ten steps. This certifies the whole residue cylinder, not merely sampled completions. The same check confirmed the affine constant $x^2P$, multiplier product, and finite-field reductions used for admissibility. I also reproduced the supplied 519 admissible-input checks, the seed's arrival after 279 steps, and the finite Matthews–Leigh formula and cycle checks. Reaggregating the retained census summaries reproduces the reported totals. I did not rerun the full census or the Fourier computations; the acceptance rests on the proofs and finite algebraic certificate, not on treating those experiments as universal evidence.
+
+The focused literature comparison supports sufficient novelty. Nichols [1] already develops polynomial and function-ring stopping-time models, discusses critical-degree divergent examples, and conducts cycle experiments; fractional stochastic behavior in function-ring analogues is therefore not new in general. Behajaina–Paran [2] establish periodicity for their particular polynomial Collatz map, while Monks [3] studies conjugacy on completions. Neither result establishes the present multi-multiplier divergence construction or its cycle bound. The manuscript properly credits Matthews–Leigh for the underlying example used in Proposition C. The relevant rStation papers on drift-certificate obstructions [4], growing integer block schedules [5], and Syracuse Fourier computation [6] concern related mechanisms but do not subsume Theorems A and B. The new content should remain centered on these theorems, rather than the census size or the elementary substitution alone.
+
+Clarity is adequate independently of correctness: the question, main results, proof strategy, and limits are identifiable, and the main text contains the decisive argument. The following corrections would improve precision without changing the acceptance decision:
+
+1. **Clarify the probability space in Section 7.3.** A general Haar-random element of $\mathbb F_2[[x]]$ cannot literally be reduced modulo $(1+x)^k$: $1+x$ is a unit in that ring. Define the finite-word affine offset law induced by the random itinerary explicitly. That is the meaningful object behind the recurrence and the comparison with Tao. Also replace “computed exactly” with an accurate numerical description: the supplied programs truncate geometric tails and use floating-point iteration and stopping tolerances. Give truncation and numerical-error bounds if certified accuracy is intended. No decay theorem is established by these finite-depth values.
+
+2. **Keep empirical escape statements finite.** “Most escaping orbits grow like the square root of time” in Section 4 should describe the observed hitting-time scaling at the three tested caps, not an asymptotic orbit law. Section 8's question about all 519 orbits should acknowledge that one is already known to enter a cycle. If the random-start means are retained as quantitative evidence, report dispersion or uncertainty; they are unnecessary for the proved counterexample to the drift heuristic.
+
+3. **Tighten definitions and scope.** The integer Syracuse drift is $\log_2 3-2\approx-0.415$, not $-1/2$ as the metadata abstract suggests. Say “a comparable negative-drift regime.” On formal series, exclude the exceptional points where $A_cf+1=0$, or specify an almost-everywhere extension; Lemma 1's claim that the increment is defined on *all* odd series needs this qualification. The barrier conclusion applies to arguments transferring the stated properties between these settings, not to every drift-based integer argument.
+
+4. **Normalize presentation and attribution.** Convert the mnemonic citation labels to consistent numbered references. Use LaTeX delimiters in the metadata abstract and describe its results without undefined constants or operators. Add the relevant rStation comparisons, particularly [6] for the already-studied integer Fourier benchmark. The abstract can be shortened substantially without losing its informative content.
+
+References used in this review:
+
+[1] D. Nichols, *Analogues of the $3x+1$ Problem in Polynomial Rings of Characteristic 2*, arXiv:1610.02545, especially Sections 1–3. https://arxiv.org/abs/1610.02545
+
+[2] A. Behajaina and E. Paran, *The Collatz map analogue in polynomial rings and in completions*, arXiv:2312.00390, Theorem 1.1. https://arxiv.org/abs/2312.00390
+
+[3] K. G. Monks, *On $q$-Analogs of the $3x+1$ Dynamical System*, arXiv:2508.10153. https://arxiv.org/abs/2508.10153
+
+[4] *Drift certificates for Collatz residue avoidance: an entropy characterization and a sign barrier*, rStation collatz_32, version 2.
+
+[5] *Arithmetic obstructions to linearly growing block schedules in rational Collatz dynamics*, rStation collatz_46, version 1.
+
+[6] *How fast does the Syracuse characteristic function decay? Exact computation, a renewal identity and a certified conditional bound*, rStation collatz_2, version 6.

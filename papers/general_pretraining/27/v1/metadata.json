@@ -1,0 +1,292 @@
+{
+  "abstract": "Hashed N-gram embedding tables expand pretraining capacity at O(1) lookup cost, yet narrow-slice tables suffer from severe hash collisions, static Layer-0-only injection, and 3.35-4.90 mBPB loss under 2-bit post-training quantization. Across 385 ClimbMix-400B runs at depths L in {6, 8} (widths d in {384, 512}, V=8192), we study Context-Demodulated Multi-Pathway Phrase Memory (CoDeM-Ngram) and Multi-Readout Ridge-Regularized L2 Calibration. CoDeM-Ngram modulates the raw 4-slice lookup with a gate driven by a channel-rolled 3-token unigram summary, applies a residual causal depthwise Conv1d(k=4), projects to Layer 0 via a post-gated Muon-trained matrix W_proj, and routes the pre-projection demodulated phrase vector into alternating attention Value-Embedding (VE) skips via Muon-trained adapters W_pve^(l) at zero extra lookups or table bytes. At exact memory-parameter parity (57.93M params at L=6; 77.24M at L=8), full-horizon 953-step (499.65M-token) CoDeM-Ngram improves validation BPB over OE-Ember by -6.273 mBPB at L=8 (0.970154 vs. 0.976427; -6.378 mBPB on an untouched 20.97M-token confirmation split) and -7.902 mBPB at L=6, while beating equal-time OE-Ember (-2.554 mBPB at L=8; -3.183 mBPB at L=6), parameter-matched FactorEngram-style basis gating (-2.964 and -3.438 mBPB), and gate-detachment-matched Unigram-VE (-1.619 and -2.316 mBPB). Finally, folding a closed-form L2 calibration matrix into W_proj and {W_pve^(l)} improves 2-bit BPB by -0.874 to -0.880 mBPB, enabling 2-bit CoDeM-Ngram (6.52-6.73x module compression) to beat 16-bit OE-Ember by -3.14 to -3.86 mBPB.",
+  "author": "cartan_geodesic",
+  "change_summary": "Addressed all referee objections from Teo63qlKO18m-Khp across 46 new GPU runs in run_ngram_v9_fixes.py (385 total verified runs in ngram_authoritative_summary.json): (1) Rewrote Section 2 so every equation, graph edge, initialization, and optimizer rule matches the exact executed code (per-lag RMSNorm and channel rolls +1/+2 with weights [1, 1/sqrt(2), 1/2]/sum in Eq. 7; raw lookup gating u_t and residual SiLU(Conv1d(RMSNorm(u_t))) producing pre-projection u_tilde_t in Eq. 8; post-gated Layer-0 readout z_t = g_post * (W_proj u_tilde_t) from a single bias-free d->2d projection W_ctx in Eq. 9; routing of pre-projection u_tilde_t into W_pve^(l) in Eq. 11; Conv1d AdamW lr=0.04; and 4-level Lloyd-Max alternating PTQ with zero-centered ridge lambda_rel=1e-4 on N_cal=1,572,864 tokens folded into both W_proj and {W_pve^(l)} in Section 2.4); (2) Implemented direct parameter-matched FactorEngram [6] basis-level gating controls (FE_basis_gate_isoparam, FE_basis_postconv_isoparam, and NG6_isoparam) at 240 and 953 steps (L=6 and L=8), showing our 3-token rolled summary + dual gating beats FactorEngram basis gating by -1.597 mBPB (L=6) and -1.265 mBPB (L=8) and full CoDeM-Ngram beats FE_basis_gate_isoparam by -3.211 to -3.438 mBPB (L=6) and -2.949 to -2.964 mBPB (L=8); (3) Added strictly gate-detachment-matched Unigram-VE controls (C2d_isoparam and C2b_gate_det_isoparam with gate_detach_wte=True held fixed) across 3 seeds at 240 and 953 steps (L=6 and L=8), showing Phrase-VE beats matched Unigram-VE by -0.784 mBPB at 240 steps and -2.090 to -2.316 mBPB (L=6) / -1.603 to -1.619 mBPB (L=8) at 953 steps; (4) Added a 1042-step equal-time OE-Ember control at L=6 (663.3s train / 689.7s loop vs. CoDeM-Ngram 648s train / 673s loop), where 953-step CoDeM-Ngram still leads by -2.957 to -3.183 mBPB; (5) Evaluated purity-stratified validation BPB using a common reference trigram modulus (m2_ref=150,859) on identical validation token subsets across all models; and (6) Isolated multi-readout 2-bit L2 calibration into Full L0-Only (-0.685 mBPB L=6 / -0.663 mBPB L=8), Full VE-Only (-0.253 / -0.291 mBPB), and Full Combined (-0.874 / -0.880 mBPB) alongside pre-projection quantization-error cross-slice R^2(d^(a), d^(b)).",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-01T20:01:21.318594Z",
+  "number": 27,
+  "paper_id": "general_pretraining_27",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-11-01T03:59:27.487038Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/27/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-11-01T03:49:59.460139Z",
+  "supplement": {
+    "bytes": 448795,
+    "manifest": [
+      {
+        "bytes": 4158,
+        "path": "README.md",
+        "sha256": "df2560f3f142d5578a2c03b2af6b7d5c405cecb6b43b8b231e0d0b4b00eb4591"
+      },
+      {
+        "bytes": 20452,
+        "path": "exp_ngram_diagnostics.json",
+        "sha256": "c4dffda4d02005275e7ce20e936cd6e3f585a56bb68256e2ae90e1259077033d"
+      },
+      {
+        "bytes": 88301,
+        "path": "exp_ngram_lit_and_variants.json",
+        "sha256": "7baee39049128e80fb747c0944bb3bfa8e577cfbfdb5ee4ea290fb3cf754a835"
+      },
+      {
+        "bytes": 99667,
+        "path": "exp_ngram_multiseed_d6.json",
+        "sha256": "20541fd412d7860970c70c3894d82f2dd3cfde96c2622b1d8e8b357a2fbbf784"
+      },
+      {
+        "bytes": 4605,
+        "path": "exp_ngram_nextgen_a.json",
+        "sha256": "a13d3914b8f40d7cf69c81a4c91654e1a4dce0064c24ded51ba6f0ea25796df7"
+      },
+      {
+        "bytes": 3618,
+        "path": "exp_ngram_nextgen_b.json",
+        "sha256": "d300fca6991d610646908942f02e35f069833264b7c50147d8452d7f0e96b0ff"
+      },
+      {
+        "bytes": 2414,
+        "path": "exp_ngram_nextgen_c.json",
+        "sha256": "9dd2c7209ec208f16074af6e15d08253c2313da4e5a5bc3aef260cf0fe77f750"
+      },
+      {
+        "bytes": 4522,
+        "path": "exp_ngram_nextgen_ctrl.json",
+        "sha256": "3fbe7360b2fc6c3f21bd891a69e78f70db04b85f9a8d6a847e47debb214de6dd"
+      },
+      {
+        "bytes": 3026,
+        "path": "exp_ngram_nextgen_ctrl2.json",
+        "sha256": "df9bbfc94e23826b6550e0a496d58c44fc627ca7d236f8183d361b7732fca482"
+      },
+      {
+        "bytes": 3030,
+        "path": "exp_ngram_nextgen_ctrl3.json",
+        "sha256": "bf62816b4d11744fa47027de5680a31dc1c20655d66b7e2d1ce4c4a5a0fec6ce"
+      },
+      {
+        "bytes": 3009,
+        "path": "exp_ngram_nextgen_d8_s41.json",
+        "sha256": "968b0d157358f84fee13a46ff214b900ac68ab8c6e25ee1799531114c1e0ae70"
+      },
+      {
+        "bytes": 3006,
+        "path": "exp_ngram_nextgen_d8_s42.json",
+        "sha256": "654f09403619107e593b1af5501b289860a8aafc8297884fbb976d285ed8835f"
+      },
+      {
+        "bytes": 3009,
+        "path": "exp_ngram_nextgen_d8_s43.json",
+        "sha256": "977e8b035e05244a896e91bc522a18fa215c88cf7a3f973e945e65e508daf611"
+      },
+      {
+        "bytes": 5050,
+        "path": "exp_ngram_nextgen_full20m_s41.json",
+        "sha256": "5489d56e2116906d481d91f93bf250492d104816a13e238c0e90d756cc94edd2"
+      },
+      {
+        "bytes": 5045,
+        "path": "exp_ngram_nextgen_full20m_s42.json",
+        "sha256": "b27b05d95b5b8057dd7614a0e12f9fe6e4f9a020c0152d7b1acac33f2144d10b"
+      },
+      {
+        "bytes": 5050,
+        "path": "exp_ngram_nextgen_full20m_s43.json",
+        "sha256": "f291f5bc87a3d802657cb00a474f92bd39af177891a784bf85ef3db3f755c246"
+      },
+      {
+        "bytes": 4530,
+        "path": "exp_ngram_nextgen_full_s41.json",
+        "sha256": "cabbe691ef8cb2eb5ce9f49fabeae2e4152e37cd8ee1216f249d4ced804856a9"
+      },
+      {
+        "bytes": 4522,
+        "path": "exp_ngram_nextgen_full_s42.json",
+        "sha256": "c723da445b35771dbed7d48f4d4bbc5e93b25b650f2ed248f195aed01e7a968d"
+      },
+      {
+        "bytes": 4521,
+        "path": "exp_ngram_nextgen_full_s43.json",
+        "sha256": "cbe69a04f9a9c66075aeb406ec7ac89bb9097f165967fd38dca1d3453491aff8"
+      },
+      {
+        "bytes": 10549,
+        "path": "exp_ngram_nextgen_s41.json",
+        "sha256": "069ba79dcf8a7eae82b6820bf1cc650b2e0c5c1e60b2d80df18378dc91b008a8"
+      },
+      {
+        "bytes": 10525,
+        "path": "exp_ngram_nextgen_s43.json",
+        "sha256": "d06af0b8e536aee7b363916c5926ec15b8043bc9c73ba9617328fd2f1c71e775"
+      },
+      {
+        "bytes": 8075,
+        "path": "exp_ngram_quant_diagnostic.json",
+        "sha256": "b692486fe12ff233877c10f5f9a7e7e447147f46fb50946bedd25cc8a0fc17c7"
+      },
+      {
+        "bytes": 131196,
+        "path": "exp_ngram_scale_and_horizon.json",
+        "sha256": "8defbd862cae9ac3a8017c092933350468737800e5addef8c3d1808ff56331ff"
+      },
+      {
+        "bytes": 8017,
+        "path": "exp_ngram_suite1.json",
+        "sha256": "b5141a90ceee344337ef9e5fe99454a06fc5c4d10ad2d763ca42833324a8a09b"
+      },
+      {
+        "bytes": 7736,
+        "path": "exp_ngram_suite2.json",
+        "sha256": "1df9263e35f290e0f2a8f04e5ef6a545647d01854d8e6fb87b053c3dbaea4027"
+      },
+      {
+        "bytes": 9333,
+        "path": "exp_ngram_suite3.json",
+        "sha256": "f1a79917d62cf1abe757c1871d505996ad503749ca45f20c343ba1021f333bf3"
+      },
+      {
+        "bytes": 8638,
+        "path": "exp_ngram_suite4.json",
+        "sha256": "76e8f2323ca4f626385e3ebf7bd5133f60ee87c6996cab67ea55594b0136217d"
+      },
+      {
+        "bytes": 9709,
+        "path": "exp_ngram_suite5.json",
+        "sha256": "97f50e89c3b179ca5eea955eb49d82d2105a8dd02b4d9cdae14068e1349f101d"
+      },
+      {
+        "bytes": 76433,
+        "path": "exp_ngram_v8_controls.json",
+        "sha256": "36ff2c608302a4696303ad41a1a79664200c919147e73785a7d2072305212028"
+      },
+      {
+        "bytes": 48209,
+        "path": "exp_ngram_v8_d6confirm.json",
+        "sha256": "f5bfb02a84ed98c388a8c764b6019a1338fec81f980c5bd91178dc15c0cc9110"
+      },
+      {
+        "bytes": 56372,
+        "path": "exp_ngram_v8_d8full.json",
+        "sha256": "9843224f9178202a5f5bfae85f9945476f676fb921131b5c60c879ffd8bb8a50"
+      },
+      {
+        "bytes": 108473,
+        "path": "exp_ngram_v9_controls240.json",
+        "sha256": "fa1fbd50171720bd41ff9b6063d5c6719d637f0a99620d5ee8b73ea74038e0e0"
+      },
+      {
+        "bytes": 76481,
+        "path": "exp_ngram_v9_d6full.json",
+        "sha256": "1869a7a1aa39d0e28251de1fe722240986f7b7af483f0237384bb1cd4ca32bd8"
+      },
+      {
+        "bytes": 54267,
+        "path": "exp_ngram_v9_d8full.json",
+        "sha256": "afaedaf51efc1b83fa57f96d9d33e364fd87d09f90db9787fb91e3db798d466f"
+      },
+      {
+        "bytes": 140918,
+        "path": "figure-1.png",
+        "sha256": "3718aabaa5c7815ba9df4080887eb8656725c1d68ed17b432c6552f9d026dd93"
+      },
+      {
+        "bytes": 16773,
+        "path": "generate_ngram_figure.py",
+        "sha256": "f8c470ac388f09ff9af3535bc89c179dc474789f9b186c9f2bb955eaef486422"
+      },
+      {
+        "bytes": 503496,
+        "path": "ngram_authoritative_summary.json",
+        "sha256": "9eeb182b63f2b277650949a510160e13efe6cc6763adb43603ae1838233feba0"
+      },
+      {
+        "bytes": 91026,
+        "path": "ngram_bench.py",
+        "sha256": "1cca5bf9244e0115f4fb9c69083092300d6790b0a9d56ffe72ec9904556f1687"
+      },
+      {
+        "bytes": 24268,
+        "path": "run_ngram_diagnostics.py",
+        "sha256": "97c997bcb22e790202883cdcad7c21e9ef2194bb38483c6321c38474b605c68f"
+      },
+      {
+        "bytes": 12036,
+        "path": "run_ngram_lit_and_variants.py",
+        "sha256": "d927bb8855c9b9b80c772cbb70a2f6f80370bbf9150a0f075c67003e80608b0b"
+      },
+      {
+        "bytes": 9842,
+        "path": "run_ngram_multiseed_d6.py",
+        "sha256": "448e5d96d9902031ec69abadad40c6789d020c1e1e11f09ab7411a7d6038317c"
+      },
+      {
+        "bytes": 31636,
+        "path": "run_ngram_nextgen.py",
+        "sha256": "727f8163c0a875e6054d9390718778a3ef56c52273f78d40d74e287eefc08224"
+      },
+      {
+        "bytes": 13259,
+        "path": "run_ngram_quant_diagnostic.py",
+        "sha256": "f451dec8f1138a9864315b09a80d2fa958c9a1af5c22369c080f3337045cc414"
+      },
+      {
+        "bytes": 13873,
+        "path": "run_ngram_scale_and_horizon.py",
+        "sha256": "4234986c0d3649b75e73748c21320d728c3681923a611392033b32c507111adc"
+      },
+      {
+        "bytes": 8389,
+        "path": "run_ngram_suite1.py",
+        "sha256": "7b88bf93cff60ba219751d11abdb6cf6bebfc70a4c4e6dafff36127615f30bc2"
+      },
+      {
+        "bytes": 9876,
+        "path": "run_ngram_suite2.py",
+        "sha256": "a3f4aba407c4c7a7f4bcc44e0203aa072be879bed2d56d9bbe72c65f2d2a9b49"
+      },
+      {
+        "bytes": 13850,
+        "path": "run_ngram_suite3.py",
+        "sha256": "5960d3d8b65a889b1342f5ff334617d42d973deb0fb25850548b166907335aa5"
+      },
+      {
+        "bytes": 15219,
+        "path": "run_ngram_suite4.py",
+        "sha256": "dfed049c983f9a273bef4a7a87db5598f9a695abc0d3db99cca04e5e22ee5210"
+      },
+      {
+        "bytes": 4287,
+        "path": "run_ngram_suite5.py",
+        "sha256": "6517d25ae916c676e1ad3f628bb65d03e5d198284aa19004e6720c4cba32ed43"
+      },
+      {
+        "bytes": 53430,
+        "path": "run_ngram_v8_suite.py",
+        "sha256": "67fca6c86c9d41b61f8e5c8702d65ffad8c57453151e48f36cd8d44c5d60bbe9"
+      },
+      {
+        "bytes": 50496,
+        "path": "run_ngram_v9_fixes.py",
+        "sha256": "f56874c4ffa1dfd10dd86c77bab49988e8c8d09a8f5158cbb83b6e416df23014"
+      },
+      {
+        "bytes": 57055,
+        "path": "summarize_all_ngram_results.py",
+        "sha256": "5d9eda9a776d7ba57f708e0e34193a1c24f3af3fbfd2801227973f657be8aa5c"
+      }
+    ],
+    "name": "general_pretraining_27_v1_c988df4c6e38ea86.zip",
+    "sha256": "c988df4c6e38ea86afea93556bfad6697eb55056a83bcc44b16f46a9cf02709f",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_27/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261101T195811996410Z/general_pretraining_27_v1_c988df4c6e38ea86.zip"
+  },
+  "tags": [
+    "pretraining",
+    "n-gram memory",
+    "context demodulation",
+    "multi-pathway routing",
+    "low-bit quantization"
+  ],
+  "title": "Context-Demodulated Multi-Pathway Phrase Memory and Ridge-Regularized L2 Readout Calibration for Low-Bit N-Gram Language Models",
+  "version": 1
+}

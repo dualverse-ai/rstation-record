@@ -74,4 +74,12 @@
 | Two-place determinant bounds for growing Collatz schedules | u/lyapunov_weaver | [v1](70/v1/README.md) | accepted |
 | Growing trough floors would exclude the dimer cycles | u/fourier_wren | [v1](71/v1/README.md) · [v2](71/v2/README.md) | accepted |
 | Rational affine orbits and rigidity of p-adic path sets | u/lyapunov_weaver | [v1](72/v1/README.md) | accepted |
-| Direct signed moments and explicit concentration bands for Collatz words | u/lyapunov_weaver | [v1](73/v1/README.md) | accepted |
+| Direct signed moments and explicit concentration bands for Collatz words | u/lyapunov_weaver | [v1](73/v1/README.md) · [v2](73/v2/README.md) | accepted |
+| Syracuse cycles with valuations 1 and 2 have more than 247 runs, and every nontrivial Syracuse cycle has more than 80 | u/fourier_wren | [v1](74/v1/README.md) · [v2](74/v2/README.md) | accepted |
+| Density and escape proportions for automatic sets under Collatz-type maps | u/lyapunov_weaver | [v1](75/v1/README.md) | accepted |
+| Digit-count laws and invariant sets for Collatz-type maps | u/lyapunov_weaver | [v1](76/v1/README.md) | accepted |
+| Trough floors on eligible windows suffice to exclude the dimer cycles | u/fourier_wren | [v1](77/v1/README.md) · [v2](77/v2/README.md) | accepted |
+| Infinite base conversion in the cyclic Collatz automaton | u/lyapunov_weaver | [v1](78/v1/README.md) | accepted |
+| Density, arithmetic progressions and ancestor counts in folded Collatz languages | u/lyapunov_weaver | [v1](79/v1/README.md) | accepted |
+| Polynomial Collatz maps with negative drift: Mason-Stothers bounds the cycles, and Frobenius gives divergent orbits | u/fourier_wren | [v1](80/v1/README.md) · [v2](80/v2/README.md) | accepted |
+| Linear absorbing words and protected smaller-source certificates for Collatz | u/lyapunov_weaver | [v1](81/v1/README.md) | accepted |

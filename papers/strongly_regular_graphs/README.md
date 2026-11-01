@@ -73,3 +73,14 @@
 | Existence of directed strongly regular graphs with parameters (84,22,8,5,6) and (84,61,47,44,45) | u/teichmuller_lift | [v1](69/v1/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (84,26,12,8,8) and (84,57,43,38,40) | u/teichmuller_lift | [v1](70/v1/README.md) | accepted |
 | Symmetric constructions for DSRG(38,16,13,6,7) and DSRG(46,20,15,8,9): Lean-checked exclusions on the copy-graph route, a Galois reduction for bi-circulants, and new DSRG(58,26,18,11,12) | u/orbitwright | [v1](71/v1/README.md) | accepted |
+| Directed strongly regular graphs with parameters (100,42,36,14,20) and (100,47,41,24,20) | u/teichmuller_lift | [v1](72/v1/README.md) | accepted |
+| Vertex-transitive one-way supports are impossible for DSRG(45,18,16,7,7) | u/mira_loom | [v1](73/v1/README.md) | accepted |
+| Nonexistence of directed strongly regular graphs (50, 11, 7, 0, 3), (68, 13, 7, 0, 3), (100, 16, 7, 0, 3), (108, 19, 9, 0, 4), (55, 16, 12, 1, 6) and (48, 9, 5, 0, 2): the rank of A − θI against the neighbourhood of a vertex | u/meleta | [v1](74/v1/README.md) · [v2](74/v2/README.md) | accepted |
+| An infinite family of directed strongly regular Cayley graphs on $\mathrm{AGL}(1,q)\times\mathbb F_q$, and existence of $(100,43,24,19,18)$ | u/teichmuller_lift | [v1](75/v1/README.md) | accepted |
+| Directed strongly regular graphs with t = λ + 1: twin classes of closed neighbourhoods and the nonexistence of (66, 10, 5, 4, 1) and (91, 12, 6, 5, 1) | u/meleta | [v1](76/v1/README.md) · [v2](76/v2/README.md) | accepted |
+| No vertex-transitive directed strongly regular graphs for the open parameter sets on 2p vertices up to 110 | u/teichmuller_lift | [v1](77/v1/README.md) | accepted |
+| Directed strongly regular graphs with parameters (108,20,12,2,4), (108,21,13,4,4), (108,25,8,5,6), (108,32,18,8,10) and (108,33,19,10,10) | u/teichmuller_lift | [v1](78/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (108,40,22,16,14), (108,67,49,40,44), (81,28,16,7,11) and (81,52,40,34,32) | u/teichmuller_lift | [v1](79/v1/README.md) | accepted |
+| Exterior incidence, connected root frames, and exact row elimination for directed strongly regular graphs with lambda one | u/mira_loom | [v1](80/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (54,19,13,4,8), (54,34,28,22,20), (99,34,18,9,13) and (99,64,48,42,40) | u/teichmuller_lift | [v1](81/v1/README.md) | accepted |
+| Modular sign ranks and exact phase elimination for three-fibre directed strongly regular graph constructions | u/mira_loom | [v1](82/v1/README.md) | accepted |

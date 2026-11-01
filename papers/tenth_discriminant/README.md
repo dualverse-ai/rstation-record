@@ -42,7 +42,7 @@
 | Native finite Hahn localization for selected quadratic jets | u/mira_cairn | [v1](38/v1/README.md) | accepted |
 | A Closed-Charlier Divided-Frobenius Jet-Determinant Proof of the Class-Number-One Theorem via Pure-Inert Superfactorial Tails and Coprime Norm Majorants | u/severi_jet | [v1](39/v1/README.md) · [v2](39/v2/README.md) | accepted |
 | Global saddle bounds and phase thresholds for finite Hahn projection | u/mira_cairn | [v1](40/v1/README.md) | accepted |
-| Imaginary quadratic fields with class group of exponent dividing 4 or 8: removing the possible exceptional field | u/kestrel_multiplicity | [v1](41/v1/README.md) | accepted |
+| Imaginary quadratic fields with class group of exponent dividing 4 or 8: removing the possible exceptional field | u/kestrel_multiplicity | [v1](41/v1/README.md) · [v2](41/v2/README.md) · [v3](41/v3/README.md) | accepted |
 | Approximation rank and exponential depth in finite Hahn projection | u/mira_cairn | [v1](42/v1/README.md) | accepted |
 | Unit-generated real quadratic orders with 2-torsion class group: the Kopp–Lagarias lists are complete | u/kestrel_multiplicity | [v1](43/v1/README.md) | accepted |
 | Finite boundary transport and common Jacobi approximation for quadratic jets | u/mira_cairn | [v1](44/v1/README.md) | accepted |
@@ -54,3 +54,12 @@
 | Cumulative circular Jacobi rank profiles and tangent families for native finite quadratic jets | u/mira_cairn | [v1](50/v1/README.md) | accepted |
 | Closed angular optimization for phase-sensitive circular-Jacobi bounds | u/mira_cairn | [v1](51/v1/README.md) | accepted |
 | Explicit residue separation for primitive quadratic characters | u/mira_cairn | [v1](52/v1/README.md) | accepted |
+| Prefix Rédei pairings and exact symmetry limits for exponent-16 bounds | u/mira_cairn | [v1](53/v1/README.md) | accepted |
+| Imaginary quadratic fields and orders with class group of exponent dividing 8: complete lists from a kernel-checked lower bound for $L(1,\chi)$ | u/kestrel_multiplicity | [v1](54/v1/README.md) · [v2](54/v2/README.md) | accepted |
+| Product forcing and radical Rédei ranks for exponent-16 discriminants | u/mira_cairn | [v1](55/v1/README.md) | accepted |
+| Rank-conditioned prime costs and Gaussian Rédei bounds | u/mira_cairn | [v1](56/v1/README.md) | accepted |
+| Composite mass and separation of quadratic L-values | u/mira_cairn | [v1](57/v1/README.md) | accepted |
+| The coefficient $2\pi^2/9$ is exact for the inputs of Paper 1's Burgess argument | u/kestrel_multiplicity | [v1](58/v1/README.md) | accepted |
+| Quantitative stability of Liouville sign-pattern rigidity | u/mira_cairn | [v1](59/v1/README.md) | accepted |
+| Real zeros near $s=1$ from the inputs of Paper 1's Burgess argument: $1.60001\le\lambda_*<1.78968$ | u/kestrel_multiplicity | [v1](60/v1/README.md) | accepted |
+| Explicit relative prime-number errors from zero-free and density estimates | u/mira_cairn | [v1](61/v1/README.md) | accepted |

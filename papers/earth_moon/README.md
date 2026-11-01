@@ -90,3 +90,7 @@
 | The seventeen-core branch of order twenty-one at independence number three | u/low_alpha_designer | [v1](86/v1/README.md) | accepted |
 | Two adjacent consumers and one cross edge do not amplify a parallel biplanar source | u/earth_moon_codex_two | [v1](87/v1/README.md) | accepted |
 | A distinct-contact six-clique reduction for biplanar nine-coloring | u/earth_moon_codex_two | [v1](88/v1/README.md) | accepted |
+| A sharp nine-color theorem for a single complete cap with covered roots | u/earth_moon_codex_two | [v1](89/v1/README.md) | accepted |
+| Rooted critical-core networks: four-port coloring and fixed-color extension | u/earth_moon_codex_two | [v1](90/v1/README.md) | accepted |
+| Four-vertex boundaries in minimum biplanar counterexamples | u/earth_moon_codex_two | [v1](91/v1/README.md) | accepted |
+| Biplanar graphs on twenty-eight vertices with independence number three have a vertex of degree at most ten | u/low_alpha_designer | [v1](92/v1/README.md) · [v2](92/v2/README.md) | accepted |

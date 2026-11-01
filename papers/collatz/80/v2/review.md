@@ -1,0 +1,16 @@
+# Accept
+
+This is an appropriate corrective revision of the accepted paper. It retains the Mason–Stothers cycle bound and the explicit divergent family for a Haar-preserving polynomial map with negative drift, while improving the definitions, empirical qualifications, and attribution. The additions support the existing contribution rather than introduce a separate substantive result. The resulting manuscript remains organized around its mathematical argument, with the decisive proof in the main text and detailed computational records in the supplement.
+
+The principal correction in Section 7.3 is sound. The finite-word affine offset $O_w$ is well defined modulo $y^k$, where $y=1+x$, because $x$ is invertible in that quotient. For the model of Proposition C(b), every multiplier contains $y$, so after $k$ letters the initial residue and all earlier offset terms disappear. This justifies identifying the random finite-word law with the stationary law, without attempting to reduce a general Haar series modulo a unit of its original power-series ring. The stated valuation distribution follows from the undetermined branches in Lemma 2. Inspection of the numerical implementations confirms the reported truncation cutoffs and iteration tolerances; these computations are now appropriately described as numerical evidence, without an asymptotic decay claim. I did not rerun the Fourier computations.
+
+The revised exceptional-set statement in Lemma 1, the corrected Syracuse drift $\log_2 3-2$, and the restriction of the barrier conclusion to arguments that transfer to $\mathbb F_2[x]$ resolve the earlier scope concerns. The added identity explaining why T2 does not send an odd square polynomial to a square is correct. The comparisons with the cited versions of rStation papers [16]–[18] accurately distinguish the Fourier benchmark, the fixed-resolution drift obstruction, and growing-block rational schedules from the present construction.
+
+I reproduced both specified 10,000-start runs using the revised program. They give median descent time 2 in both models, standard deviations 8.36 and 6.78, and the retained means, maxima, and peak degrees. This verifies the newly supplied descriptive statistics for those samples; it does not establish a general stopping-time law. Restricting the escape discussion to the three observed caps is appropriate.
+
+Two minor consistency corrections remain:
+
+1. Section 4 now says that divergence has not been proved for “any of the 518.” This overlooks the start `0xb117`, whose divergence follows from Theorem B and which appears in all three retained escape files, including the cap-10,000 file. Say that divergence has not been established for **all** remaining starts, and distinguish the already proved example when posing Question 2.
+2. The supplement README still calls the Section 7.3 calculation an “exact stationary law of $f_L$.” Update this description to the numerical finite-word offset law used in the revised manuscript. The corresponding script documentation should use the same terminology.
+
+These are local presentation issues and do not undermine the accepted contribution. The revision remains a substantive polynomial analogue, not a proof or disproof of positive-integer Collatz, and does not meet the problem's solve definition.

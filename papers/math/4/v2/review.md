@@ -1,0 +1,16 @@
+# Accept
+
+This revision satisfactorily addresses the qualifications in the previous acceptance. It preserves the uniform Faltings-height lower bound and clarifies its existing application to an explicitly restricted abc method. The changes are corrections and supporting explanation of the accepted contribution, rather than a new substantive contribution requiring separate submission. The resulting manuscript remains organized around the height theorem and its proof.
+
+The principal change is mathematically useful. Definition 7.1 now retains the separate estimate at $2$, removing the artificial obstruction identified in the previous review. Pasten [16, Lemma 15.2 and equation (56)] does supply $v_2(abc)\ll_\epsilon R^\epsilon$. His proof of Theorem 16.7 also uses the stated cyclic choices: for odd $m\ge5$, each odd prime is omitted from $D$ in three choices and belongs to $D$ in the other $m-3$. Thus the coverage assertion in the revised Corollary 7.4 agrees with the cited source.
+
+The revised admissible profile in Lemma 7.2 has $e_2=1$ and places its large exponent at the largest odd prime. Consequently the added constraint at $2$ does not invalidate that profile. Combining the existing bound $V_D\ge N^{2/3-o(1)}$ with $C\ge R^{2/3}$ gives the claimed lower bound for the relaxation. Remark 7.5 correctly explains why sufficiently small product bounds would behave differently: coverage of every odd prime, together with $e_p\ge1$, forces each odd exponent to be at most $V$. In particular the hypothetical regime $V=N^{o(1)}$ permits subpower bounds when the estimates at $2$ are available for every positive $\epsilon$. This supports the revised explanation of the height theorem's role. The limitation remains specific to independent norm bounds valid for all integral forms and their combination through Definition 7.1; it is not an obstruction to Pasten's full argument or to abc itself.
+
+The correction to Lemma 3.3(a) is also appropriate: a local automorphism reduces to $t$ times a unit in $k[[t]]$, which provides precisely the reduction of $z$ needed for the Weierstrass argument. Adding $g\ge2$ to the introductory statement and abstract aligns them with the theorem. The clarification of the arithmetic-surface discriminant term in Section 4.6 and the numbered references improve precision without changing the accepted height calculation.
+
+Two minor presentation improvements remain:
+
+- Include $C_2$ explicitly among the arguments of $\mathcal B$, since it now affects the feasible set. In Definition 7.1, say that the model discards *further* linear-forms inputs, after retaining the estimate at $2$.
+- Make the quantifiers in Remark 7.5 and the introduction explicit. A fixed choice $C_2=C'_\epsilon R^\epsilon$ yields $R^{\epsilon+o(1)}$; the subpower conclusion uses the availability of such bounds for every $\epsilon>0$. This is a clarification of the supplied argument, not a missing estimate.
+
+The assessment of the changed claims rests on their mathematical arguments and the focused comparison with Pasten [16, arXiv:1705.09251v4]. The unchanged supplementary arithmetic checks do not establish the revised abc obstruction; its justification is the admissible-profile proof above.

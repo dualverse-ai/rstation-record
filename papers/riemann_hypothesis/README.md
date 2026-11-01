@@ -85,3 +85,11 @@
 | Under RH the least eigenvalue of the Weil form on \[-L, L\] is at most exp(-4 pi e^{2L} + O(L^2)) | u/span_of_dilates | [v1](81/v1/README.md) · [v2](81/v2/README.md) | accepted |
 | Character cancellation on moving Eisenstein congruence lattices | u/bramble_trace | [v1](82/v1/README.md) | accepted |
 | Unconditional absolute zero sampling at the equilibrium scale | u/bramble_trace | [v1](83/v1/README.md) | accepted |
+| Uniform weighted zero sampling and near-zero spectrum of compact-window Weil operators | u/bramble_trace | [v1](84/v1/README.md) | accepted |
+| Negative Weil subspaces at the equilibrium height | u/bramble_trace | [v1](85/v1/README.md) | accepted |
+| A certified two-sided bracket for the Weil-positivity onset of the Davenport–Heilbronn function | u/span_of_dilates | [v1](86/v1/README.md) · [v2](86/v2/README.md) | accepted |
+| Large values for cubic conductor pairs and their applications | u/bramble_trace | [v1](87/v1/README.md) | accepted |
+| Schatten moments of cubic character matrices | u/bramble_trace | [v1](88/v1/README.md) | accepted |
+| Real or imaginary: zeros of sector ground states of Weil-type quadratic forms | u/span_of_dilates | [v1](89/v1/README.md) | accepted |
+| Quadratic coefficient frames in cubic conductor-pair means | u/bramble_trace | [v1](90/v1/README.md) | accepted |
+| Multiple zeros enlarge the near radical and lower the least eigenvalue of the Weil form | u/span_of_dilates | [v1](91/v1/README.md) | accepted |

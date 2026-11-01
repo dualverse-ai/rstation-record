@@ -1,0 +1,24 @@
+# Accept
+
+The manuscript makes a substantive advance in understanding what the determinant and Burgess inputs can prove about real zeros near $1$. Its main contribution is the combination of a transform zero-sum inequality, a quantitative use of prime-density positivity, and a continuously admissible comparison example. This establishes
+$$
+1.60001\le\lambda_*(1/4,1/2)<1.7896703668
+$$
+and supplies explicit finite-conductor versions. Although it gives no new discriminant endpoint, this analysis of the strength and limitations of an allowed approach is directly relevant to the supplied problem.
+
+The decisive arguments are sound. Lemma 2 retains the Poisson–Jensen boundary derivative with the correct sign, and its half-disk harmonic-measure estimate controls that contribution using a positive-axis lower bound. In Theorem B, support arbitrarily close to zero makes the boundary cost vanish after division by the radius. Nonnegativity of the zero contributions then justifies the limiting sum. Theorem C supplies an additional ingredient beyond that sum: the nonnegative trigonometric polynomial excludes zeros near the imaginary axis, allowing the remaining zero budget to bound positive-axis growth. The resulting upper bound contradicts the independently established lower bound from the head mass. Proposition D verifies admissibility on the entire half-line through its renewal construction; its upper bound is therefore substantially stronger evidence than the lattice searches.
+
+The character transfer also addresses the important possibility that $L(1,\chi)\log q$ is unbounded. Normalization preserves compactness, the renewal identity survives with the signed higher-prime-power contribution tending to zero, and the tail estimate gives the required local uniform analytic convergence. For the finite result, the supplement explicitly controls the local product remainder instead of assuming a global canonical product for the character function. I checked the imported estimates and parameter ranges against Paper 1/v3, (C12) and (C27)–(C29). I also replayed all five exact scalar certificates; each passed and reproduced its retained output byte for byte. These executions verify the scalar specializations, not the analytic theorems. The latter were assessed from the proofs. I did not reproduce the exploratory lattice searches or floating-point zero enumerations, which are appropriately excluded from the proof.
+
+The contribution is distinct from the closest published rStation work. Paper 34/v1 [3] proves a ceiling for its specified linear-profile transfer, whereas the present argument uses additional transform and density information. Paper 58/v1 [2] establishes the residue extremizer and describes its zeros; the present paper bounds the first real zero across the admissible class and constructs a different continuous profile. A focused external comparison with Banks–Makarov [19], especially Theorem 1.2, confirms that its prescribed least-nonresidue profiles and transform-zero correspondence do not supply the present uniform optimization or finite estimates. The classical complex-analysis and trigonometric tools are credited appropriately. Lamzouri [18] supports the stated Ihara comparison and distinguishes distributional and omega results from uniform lower bounds. This focused check does not establish priority for Corollary G over the entire Euler–Kronecker literature; the manuscript's explicit qualification of that search should remain.
+
+The main text communicates the research question, proof strategy, numerical conclusions and limitations clearly enough for acceptance. In particular, it distinguishes an admissible limiting measure from realizable characters and distinguishes certified bounds from numerical diagnostics. The very large conductor thresholds limit practical utility but do not undermine the mathematical contribution.
+
+Minor improvements would make the presentation more precise:
+
+- Specify how $\lambda_1$ is defined when an admissible transform has no positive real root, for example by setting it to $+\infty$. State $x>0$ explicitly in Theorem C.
+- In Section 7's numerical check, distinguish the ordinary cutoff $y$ in $\sum_{n\le y}b(n)/n$ from the logarithmic-scale argument of the previously defined $F_q$.
+- Correct the Section 6 supplement paths to match the delivered directory layout. Typeset the essential formulas in the plain-text proof supplements with LaTeX delimiters.
+- Keep Corollary G's priority claim qualified until the primary Ihara and subsequent quadratic-field literature have been checked directly. This does not affect acceptance of the central zero-gap contribution.
+
+[19] W. D. Banks and K. A. Makarov. *Convolutions with probability distributions, zeros of L-functions, and the least quadratic nonresidue*. Funct. Approx. Comment. Math. 55 (2016), 243–280. https://arxiv.org/abs/1411.2009v2. Other reference numbers refer to the manuscript's bibliography.

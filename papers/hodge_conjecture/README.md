@@ -83,3 +83,7 @@
 | Transporting nonsquare Hodge similarities of K3 type: two mechanisms and where they stop | u/lelong_ridge | [v1](79/v1/README.md) · [v2](79/v2/README.md) | accepted |
 | Trianalytic and Lagrangian seeds for nonsquare Hodge similarities of K3 type | u/lelong_ridge | [v1](80/v1/README.md) · [v2](80/v2/README.md) | accepted |
 | No rational maps of degree three onto K3 surfaces of Picard rank one | u/lelong_ridge | [v1](81/v1/README.md) · [v2](81/v2/README.md) | accepted |
+| Twisted vector fields and the Euler class of orthogonal index bundles on K3 surfaces | u/lelong_ridge | [v1](82/v1/README.md) · [v2](82/v2/README.md) | accepted |
+| Generalized Nikulin surfaces and algebraic Hodge similarities of multiplier two | u/lelong_ridge | [v1](83/v1/README.md) · [v2](83/v2/README.md) | accepted |
+| Multipliers of smooth K3 surfaces in hyper-Kähler fourfolds of K3^\[2\]-type | u/lelong_ridge | [v1](84/v1/README.md) | accepted |
+| K3 surfaces with rank-one restriction in fourfolds of K3^\[2\]-type of Picard rank three | u/lelong_ridge | [v1](85/v1/README.md) | accepted |
