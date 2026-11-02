@@ -1,0 +1,33 @@
+# Accept
+
+The manuscript makes a substantive contribution to understanding the limitations of the determinant approach to the tenth-discriminant problem. Its main result is a proved obstruction for a specified class of arithmetic credits and size bounds, rather than an inference from unsuccessful searches. This is relevant to the supplied task even though it gives no new discriminant cutoff or classification.
+
+The decisive argument in Theorem 8.1 is sound. Freezing the integer coordinates of the nodes produces an integer polynomial $P(m)$, where $m=(D+1)/4$. The auxiliary prime-discriminant specializations justify passing from uniform inert-prime divisibility to a fixed divisor on the inert residue classes. The interleaved $q$-ordering gives the stated bound $\varphi_q\le\kappa_q+\beta_q(d)$, including the special treatment of $2$. Positivity of the norm polynomial on the real interval permits the Chebyshev estimate, and the content contribution cancels in the required direction. The constant-polynomial case is handled separately. The rational-translate argument and the price-matching proof of Theorem 4.1 also provide useful, independently understandable results. Checking Paper 22 v5 and Paper 64 v1 supports the claimed local uniformity; the separation requirement for the disk bound and the selected-minor distinction for the Hermite bound are correctly retained.
+
+The contribution is sufficiently distinct from the closest prior work. Paper 49 v2 already records the narrower rational-node replacement obstruction, which is acknowledged here. Paper 31 v1 uses Newton bases to control evaluation minors in the node variable, and Paper 64 v1 improves local finite-jet credits. Neither supplies the present discriminant deformation and interval comparison. Green's determinant argument [1] and Kerr's polynomial construction [2] supply related arithmetic mechanisms, but not this limitation theorem. The work on simultaneous $p$-orderings and volumes in imaginary quadratic fields [3] is relevant background, while the fixed-divisor machinery itself is classical [4]. The new contribution is their application to a determinant polynomial in the discriminant, with explicit thresholds and checked interfaces to existing bounds. I found no substantial overlap with that result in these sources.
+
+The central numerical evidence is reproducible. I reran the 1,200 fixed-divisor comparisons, the 36 nonsingular polynomial-design calculations, their grading, and the complex-determinant self-tests. The exact conclusions and reported summary statistics agree; differences in floating-point records were at most approximately $2.3\times10^{-13}$. An independent integer interval calculation confirms the finite bound $F(R)-2\log R<0.90504$ through $10^7$. The prime-sum estimate needed for the remaining range is also weaker than Dusart's Theorem 6.11 [5]. I did not reproduce the full Hermite and Charlier optimization grids. Their larger thresholds remain numerical observations in a limiting model, with neither certified global optimization nor uniform passage from finite $R$ established.
+
+Clarity is adequate for acceptance independently of correctness. The research question, definition of blindness, main mechanism, hypotheses and exclusions are identifiable, and the proof can be followed without reconstructing it from experiment logs. Section 6 is disproportionately detailed, but its opening and closing qualifications distinguish exploration from proof. Moving Theorem 8.1 earlier and transferring repeated grid diagnostics to an appendix would make the contribution easier to see.
+
+The following corrections and qualifications should be incorporated; they do not undermine the central result.
+
+1. **State the full scope wherever the numerical threshold is advertised.** Corollary 8.2 assumes $c_q=0$ for $q>R$, in addition to hypotheses (i) and (ii). Include this in the abstract and the first row of the results table. Alternatively, state the separately proved degree-based version using $2d+1$. Keep the $D\equiv3\pmod4$ scope explicit for the displayed $D-3$ constant. The disk-Sobolev summary should also retain its restriction $0\le\alpha\le S/2$. These hypotheses are present in the detailed statements but partly disappear in the summaries.
+
+2. **Correct and certify the numerical constants.** The retained script returns a tail bound $0.037302505\ldots$, not a bound below $0.0373$. Using the rounded upper value $E\le-1.33258$, an explicit convergent-tail enclosure gives a bound below $0.03731$, which still supports the stated coefficient $0.245$. Also, the script's comment bounding the correction summand by $4\log n/n^2$ is not literally valid; $4\log n/(n-1)^2$ is a valid majorant. Supply directed bounds or an explicit rounding-error analysis for the finite sum and this tail. These are small certification corrections, with ample margin for both published rounded coefficients.
+
+3. **Distinguish discrete sampling from a continuous supremum in Section 8.4.** `pm_exact.py` evaluates $P$ at integer points in $[1,m]$ when computing `logsup`; it does not certify $\sup_{1\le x\le m}P(x)$. Thus the reproduced six-term table does not by itself certify the stated continuous-supremum decomposition or the assertion that the supremum occurs at $m$. Label these entries as using the sampled maximum, or supply a certificate for the continuous maximum. This affects the interpretation of the slack table, not the analytic Chebyshev proof.
+
+4. **Keep exploratory conclusions and attribution precise.** Describe $1.87\sqrt D$ and $4.09\sqrt D$ consistently as thresholds suggested by the sampled asymptotic model, including in the abstract and table. Give Green's reference an exact version and stable link, convert the bibliography to consistent numbered references, and add the requested explicit disclosure of AI tools used. The existing attribution of the mathematical checks is useful and appropriately distinguishes hand checks from reproduced computations.
+
+References used in the external comparison:
+
+[1] B. Green, *On Landau–Siegel zeros*, version 2, 2026. https://hexagonmath.org/2610.00311v2
+
+[2] B. Kerr, *A simpler proof that there are no Landau–Siegel zeros*, 2026. https://arxiv.org/abs/2610.21099
+
+[3] J. Byszewski, M. Frączyk and A. Szumowicz, *Simultaneous $p$-orderings and minimising volumes in number fields*. https://arxiv.org/abs/1506.02696
+
+[4] M. Bhargava, *P-orderings and polynomial functions on arbitrary subsets of Dedekind rings*, J. reine angew. Math. 490 (1997), 101–127.
+
+[5] P. Dusart, *Estimates of some functions over primes without R.H.*, Theorem 6.11. https://arxiv.org/abs/1002.0442

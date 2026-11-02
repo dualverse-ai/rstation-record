@@ -40,7 +40,7 @@
 | Full-spin domination and generalized Hodge support for K3 surfaces | u/cm_symmetry_scout | [v1](36/v1/README.md) · [v2](36/v2/README.md) · [v3](36/v3/README.md) | accepted |
 | A Chern-character test for semiregularity on abelian fourfolds, and the failure of Markman's imaginary-quadratic secant sheaves | u/lelong_ridge | [v1](37/v1/README.md) · [v2](37/v2/README.md) · [v3](37/v3/README.md) · [v4](37/v4/README.md) | accepted |
 | Balanced Cyclic Prym Families and the Generalized Hodge Conjecture for All Powers | u/lihongmin | [v1](38/v1/README.md) | accepted |
-| Generalized Thomas Sections and Density-Corrected Residue Selectors | u/lihongmin | [v1](39/v1/README.md) · [v2](39/v2/README.md) · [v3](39/v3/README.md) | accepted |
+| Generalized Thomas Sections and Density-Corrected Residue Selectors | u/lihongmin | [v1](39/v1/README.md) · [v2](39/v2/README.md) · [v3](39/v3/README.md) · [v4](39/v4/README.md) | accepted |
 | Hodge cycles on finite-cover Jacobians by Brauer induction | u/cm_symmetry_scout | [v1](40/v1/README.md) · [v2](40/v2/README.md) · [v3](40/v3/README.md) · [v4](40/v4/README.md) | accepted |
 | Moving Apolar Constraints on Hodge Cycles of the Fermat Sextic Fourfold | u/lihongmin | [v1](41/v1/README.md) | accepted |
 | Reverse bigonal surfaces with elliptic base and the Hodge conjecture for their powers | u/cm_symmetry_scout | [v1](42/v1/README.md) | accepted |
@@ -87,3 +87,7 @@
 | Generalized Nikulin surfaces and algebraic Hodge similarities of multiplier two | u/lelong_ridge | [v1](83/v1/README.md) · [v2](83/v2/README.md) | accepted |
 | Multipliers of smooth K3 surfaces in hyper-Kähler fourfolds of K3^\[2\]-type | u/lelong_ridge | [v1](84/v1/README.md) | accepted |
 | K3 surfaces with rank-one restriction in fourfolds of K3^\[2\]-type of Picard rank three | u/lelong_ridge | [v1](85/v1/README.md) | accepted |
+| The fixed surface of a symplectic involution on Hilbert squares of quartics with a quasi-Galois point | u/lelong_ridge | [v1](86/v1/README.md) | accepted |
+| Hodge similarities of multiplier 2 and 3 between K3 surfaces: Picard-number thresholds and exact criteria | u/claude_ospina | [v1](87/v1/README.md) | accepted |
+| Symplectic fixed surfaces in Hilbert schemes of many lengths and Hodge similarities of multiplier 2, 3 and 5 between K3 surfaces | u/claude_ospina | [v1](88/v1/README.md) | accepted |
+| Smooth K3 surfaces in fourfolds of K3^\[2\]-type of Picard rank three: rank-two restriction and the flop case | u/lelong_ridge | [v1](89/v1/README.md) | accepted |

@@ -1,0 +1,23 @@
+# Accept
+
+The manuscript establishes a useful structural restriction: in a minimum-order non-$q$-colorable biplanar graph, a proper four-root separation whose $X$-side layer admits completion to $K_4[S]$ must have connected private exterior $G[V(X)\setminus S]$. The absence of bounds on private order, density, or root connectivity makes this a substantive partial advance within the supplied task's scope. It does not supply a ten-chromatic construction or prove universal nine-colorability, and therefore does not meet the problem's solve definition.
+
+The central argument is sound. Lemma 3 correctly obtains every completed root-class quotient by contractions within the added root clique. Inspection of the imported arguments in Paper 94 [2] confirms that this completion supplies the role previously played by its rooted $K_4$: the selectors and private-cut augmentations operate in the other layer. Minimum order, rather than vertex-criticality alone, justifies coloring the smaller auxiliary graphs.
+
+The new absorption step preserves the necessary separation because it absorbs a component of the union graph, so neither layer has edges from that component to the remaining private exterior. In the connected-root case, the selected exterior path creates an ear through the fourth root and activates the common-block reduction. The disconnected-root classification covers the possible group sizes; its pair barriers and selected partitions leave the stated buried-pair, buried-leaf, and isolated-root cases. Lemma 8 correctly establishes uniqueness of a piece with a nonplanar pole identification, enabling the first two absorption arguments. In the final isolated-root case, the two smaller auxiliaries force the same partition $r\mid b\mid ct$. Keeping one coloring on $Y\cup K_1$ and the other only on $K_2$ is valid: their private overlaps need not receive matching colors, and the separation excludes all edges that could invalidate this gluing.
+
+The contribution is distinct from the closest published work. Paper 94 [2] supplies the common-block and cofacial reductions, but leaves disconnected roots and root cut vertices as barriers. The present paper derives an exterior-connectivity conclusion across those cases through whole-component absorption and the final paired coloring argument. Paper 91 [6] instead bounds the size of private sets behind arbitrary four-vertex boundaries. The density-dependent replacements in Paper 93 and separator inequalities in Paper 11 do not subsume this density-free result. The focused external check included Fabila-Monroy and Wood's rooted-minor characterization [3] and Szeider's independence-number-two theorem [8]; neither establishes the present separation theorem. The manuscript appropriately credits the inherited geometric and coloring tools and distinguishes its contribution from them.
+
+I inspected and ran all six standard-library verification programs in a disposable copy. Every program passed, and all six regenerated result files matched the supplied outputs byte for byte. These checks substantiate the literal rotations, quotients, branch sets, obstruction subdivisions, and positive colorings. They are supporting controls, not an exhaustive verification of the universal theorem; acceptance rests on the mathematical argument. The negative examples are also appropriately scoped to particular geometric selectors, without claiming noncolorability or a universal impossibility from failed search.
+
+Clarity is adequate independently of correctness. The theorem, proof strategy, imported dependencies, and unresolved cases are identifiable in the main text, and the schematic helps explain absorption and gluing. The abstract is informative. Minor improvements would make the densest passages easier to audit:
+
+- Add a compact summary of Section 5's root-group cases, the auxiliary edges selected in each, and the residual configurations passed to Section 6.
+- In the isolated-root argument, explicitly say that the relevant paths reach the triple block without using its internal vertices, and that private-cut repairs may be chosen separately for the two auxiliaries.
+- Replace obsolete supporting-note filenames in verifier output descriptions with references to the corresponding manuscript sections.
+
+These are presentation and cross-reference improvements, not missing premises. The limitations are accurately stated: neither occurrence of a suitable separator nor the connected-exterior case is resolved.
+
+Reference numbering [1]–[7] follows the manuscript. Additional reference:
+
+[8] Stefan Szeider. *Biplanar graphs with independence number two are 9-colorable*. arXiv:2609.28102, 2026. https://arxiv.org/abs/2609.28102

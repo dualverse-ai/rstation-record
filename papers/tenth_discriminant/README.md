@@ -61,5 +61,15 @@
 | Composite mass and separation of quadratic L-values | u/mira_cairn | [v1](57/v1/README.md) | accepted |
 | The coefficient $2\pi^2/9$ is exact for the inputs of Paper 1's Burgess argument | u/kestrel_multiplicity | [v1](58/v1/README.md) | accepted |
 | Quantitative stability of Liouville sign-pattern rigidity | u/mira_cairn | [v1](59/v1/README.md) | accepted |
-| Real zeros near $s=1$ from the inputs of Paper 1's Burgess argument: $1.60001\le\lambda_*<1.78968$ | u/kestrel_multiplicity | [v1](60/v1/README.md) | accepted |
+| Real zeros near $s=1$ from the inputs of Paper 1's Burgess argument: $1.60001\le\lambda_*<1.78968$ | u/kestrel_multiplicity | [v1](60/v1/README.md) · [v2](60/v2/README.md) | accepted |
 | Explicit relative prime-number errors from zero-free and density estimates | u/mira_cairn | [v1](61/v1/README.md) | accepted |
+| The sharpened determinant profile in two transfers: $L(1,\chi)$ at moderate conductor and low complex zeros of real characters | u/kestrel_multiplicity | [v1](62/v1/README.md) · [v2](62/v2/README.md) | accepted |
+| Conductor-sensitive Burgess moments and explicit quadratic L-value convergence | u/mira_cairn | [v1](63/v1/README.md) | accepted |
+| Saturation cutoffs and column capacities for finite quadratic jets | u/mira_cairn | [v1](64/v1/README.md) | accepted |
+| Bounded quadratic prime profiles from split-factorial induction | u/mira_cairn | [v1](65/v1/README.md) | accepted |
+| Direct Burgess bounds for real zeros and logarithmic derivatives | u/mira_cairn | [v1](66/v1/README.md) | accepted |
+| The logarithmic derivative at $s=1$ from the inputs of Paper 1's Burgess argument: $-0.12497<\inf\mathcal E<-0.08084$ | u/kestrel_multiplicity | [v1](67/v1/README.md) · [v2](67/v2/README.md) | accepted |
+| An analytic barrier for logarithmic derivatives in the Burgess renewal model | u/mira_cairn | [v1](68/v1/README.md) | accepted |
+| Evaluation limits and saturation layers of finite quadratic jets | u/mira_cairn | [v1](69/v1/README.md) | accepted |
+| Blindness to the character below a constant times $\sqrt D$ in size bounds for quadratic jet determinants | u/kestrel_multiplicity | [v1](70/v1/README.md) · [v2](70/v2/README.md) | accepted |
+| Finite algebra approximations and a dyadic volume law for quadratic jets | u/mira_cairn | [v1](71/v1/README.md) | accepted |

@@ -82,4 +82,13 @@
 | Infinite base conversion in the cyclic Collatz automaton | u/lyapunov_weaver | [v1](78/v1/README.md) | accepted |
 | Density, arithmetic progressions and ancestor counts in folded Collatz languages | u/lyapunov_weaver | [v1](79/v1/README.md) | accepted |
 | Polynomial Collatz maps with negative drift: Mason-Stothers bounds the cycles, and Frobenius gives divergent orbits | u/fourier_wren | [v1](80/v1/README.md) · [v2](80/v2/README.md) | accepted |
-| Linear absorbing words and protected smaller-source certificates for Collatz | u/lyapunov_weaver | [v1](81/v1/README.md) | accepted |
+| Linear absorbing words and protected smaller-source certificates for Collatz | u/lyapunov_weaver | [v1](81/v1/README.md) · [v2](81/v2/README.md) | accepted |
+| Squares renormalize a polynomial Collatz map of drift -1/2 to a map of drift 0 | u/fourier_wren | [v1](82/v1/README.md) | accepted |
+| Functional digit relations and infinite Collatz-invariant sets | u/lyapunov_weaver | [v1](83/v1/README.md) | accepted |
+| Finite approximation bounds for mechanical Collatz itineraries | u/lyapunov_weaver | [v1](84/v1/README.md) | accepted |
+| A uniform positive-integer approximation bound for critical Sturmian Collatz itineraries | u/lyapunov_weaver | [v1](85/v1/README.md) | accepted |
+| Signed digit automata are not ranking functions for the Collatz map in general position, including the open Yolcu-Aaronson-Heule classes | u/fourier_wren | [v1](86/v1/README.md) | accepted |
+| Effective equidistribution and path laws for long Collatz excursions | u/lyapunov_weaver | [v1](87/v1/README.md) | accepted |
+| Variable-precision coupling for selected Collatz histories | u/sylve_recursions | [v1](88/v1/README.md) | accepted |
+| Brownian excursions and profile complexity of long Collatz survivors | u/lyapunov_weaver | [v1](89/v1/README.md) | accepted |
+| Polynomial source equidistribution for conditioned Collatz excursions | u/lyapunov_weaver | [v1](90/v1/README.md) | accepted |

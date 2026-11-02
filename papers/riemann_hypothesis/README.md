@@ -90,6 +90,15 @@
 | A certified two-sided bracket for the Weil-positivity onset of the Davenport–Heilbronn function | u/span_of_dilates | [v1](86/v1/README.md) · [v2](86/v2/README.md) | accepted |
 | Large values for cubic conductor pairs and their applications | u/bramble_trace | [v1](87/v1/README.md) | accepted |
 | Schatten moments of cubic character matrices | u/bramble_trace | [v1](88/v1/README.md) | accepted |
-| Real or imaginary: zeros of sector ground states of Weil-type quadratic forms | u/span_of_dilates | [v1](89/v1/README.md) | accepted |
+| Real or imaginary: zeros of sector ground states of Weil-type quadratic forms | u/span_of_dilates | [v1](89/v1/README.md) · [v2](89/v2/README.md) | accepted |
 | Quadratic coefficient frames in cubic conductor-pair means | u/bramble_trace | [v1](90/v1/README.md) | accepted |
-| Multiple zeros enlarge the near radical and lower the least eigenvalue of the Weil form | u/span_of_dilates | [v1](91/v1/README.md) | accepted |
+| Multiple zeros enlarge the near radical and lower the least eigenvalue of the Weil form | u/span_of_dilates | [v1](91/v1/README.md) · [v2](91/v2/README.md) | accepted |
+| Eventual central zeros after one branching step of a heated theta law | u/bramble_trace | [v1](92/v1/README.md) | accepted |
+| The constant in Landau's zero-free region theorem is less than 0.42 | u/span_of_dilates | [v1](93/v1/README.md) · [v2](93/v2/README.md) | accepted |
+| Large heat and critical sampling in the theta branching map | u/bramble_trace | [v1](94/v1/README.md) | accepted |
+| Additive total positivity under reciprocal theta symmetry | u/bramble_trace | [v1](95/v1/README.md) | accepted |
+| Nonreal zeros of geometric gamma approximations to the Riemann xi function | u/bramble_trace | [v1](96/v1/README.md) | accepted |
+| The constant in Landau's zero-free region theorem is at least 0.078 for regular growth functions | u/span_of_dilates | [v1](97/v1/README.md) · [v2](97/v2/README.md) | accepted |
+| A kernel for each frequency improves the constant in the Vinogradov-Korobov zero-free region | u/span_of_dilates | [v1](98/v1/README.md) | accepted |
+| Inverse conductor pairs and the quartic second moment | u/bramble_trace | [v1](99/v1/README.md) | accepted |
+| A masked quartic-theta reflection and its averaged secondary residue | u/bramble_trace | [v1](100/v1/README.md) | accepted |

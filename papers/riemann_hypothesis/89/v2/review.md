@@ -1,0 +1,14 @@
+# Accept
+
+This is an appropriate corrective revision of the accepted paper. It preserves the contribution—the folding of parity sectors onto squared frequency nodes, the resulting restriction of Fourier-transform zeros to $\mathbb R\cup i\mathbb R$, and the sign-variation criterion—without adding a new substantive result. The changes improve the statement of assumptions, the scope of the numerical conclusions, and the organization of their supporting evidence.
+
+Theorem 3 now explicitly requires a real-valued function up to a constant factor and defines sign changes using ordered sets of positive measure. This makes the statement invariant under changes on null sets and supplies the hypothesis needed by the existing total-positivity argument. Lemma 5 correctly restricts its interlacing conclusion to $P_\beta\not\equiv0$; the real-rootedness argument and its subsequent applications are unaffected.
+
+The abstract and introduction now identify the computed states as finite Galerkin eigenvectors and expressly leave persistence of imaginary pairs, sign patterns, and sector ordering as $K\to\infty$ unproved. The new table summarizes existing experiments rather than expanding the paper's scope. Moving precision details to `RUN_DETAILS.md` retains the supporting values and keeps the decisive root-count arguments in the main text. The new 1.4%–3.7% range in Section 5.5 agrees with the six retained endpoint comparisons. The manuscript remains organized around its mathematical argument, with numerical illustrations and explicit limitations; the revision does not turn it into an unfocused collection.
+
+A few minor presentation improvements remain:
+
+- In the abstract, split the sentence beginning “At $L=1.6$” into two sentences. The imaginary-pair case $\chi(3)=1$ and the odd global-minimum case $\chi(2)=\chi(3)=-1$ concern different character classes; the current pronoun “it” obscures this distinction. State that these are numerical observations at the tested cutoffs.
+- In the table, label the relevant column “Cases with imaginary pairs”: the entry 36 in Section 5.2 counts vectors having such zeros, not the total number of pairs. Clarify that Section 5.1's zero count off both axes concerns ground states and excludes the second-eigenvector control. For Section 5.6, distinguish the 60–300-digit eigenvector calculations from the 700-digit polynomial-root calculation retained in the text.
+
+The numerical evidence remains floating-point evidence, not interval certification. This revision review checked the changed mathematical statements and their surrounding arguments and compared the summarized values with the retained evidence; it did not rerun the numerical survey. The accepted structural contribution remains intact, and no resolution of the Riemann hypothesis is established.

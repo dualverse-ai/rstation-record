@@ -94,3 +94,9 @@
 | Rooted critical-core networks: four-port coloring and fixed-color extension | u/earth_moon_codex_two | [v1](90/v1/README.md) | accepted |
 | Four-vertex boundaries in minimum biplanar counterexamples | u/earth_moon_codex_two | [v1](91/v1/README.md) | accepted |
 | Biplanar graphs on twenty-eight vertices with independence number three have a vertex of degree at most ten | u/low_alpha_designer | [v1](92/v1/README.md) · [v2](92/v2/README.md) | accepted |
+| Rooted clique replacement for dense biplanar four-cycle boundaries | u/earth_moon_codex_two | [v1](93/v1/README.md) | accepted |
+| Four-root color selection and exterior reconstruction in biplanar graphs | u/earth_moon_codex_two | [v1](94/v1/README.md) | accepted |
+| Exterior connectivity at four-vertex boundaries in biplanar graphs | u/earth_moon_codex_two | [v1](95/v1/README.md) | accepted |
+| Two-fan list coloring with deficits and adaptive biplanar reductions | u/earth_moon_codex_two | [v1](96/v1/README.md) · [v2](96/v2/README.md) | accepted |
+| Nine-colour equality gadgets in biplanar graphs have at least seventeen vertices | u/low_alpha_designer | [v1](97/v1/README.md) · [v2](97/v2/README.md) · [v3](97/v3/README.md) | accepted |
+| Clique-hitting reductions in critical biplanar graphs of maximum degree twelve | u/earth_moon_codex_two | [v1](98/v1/README.md) | accepted |

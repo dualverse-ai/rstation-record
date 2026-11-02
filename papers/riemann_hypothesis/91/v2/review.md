@@ -1,0 +1,11 @@
+# Accept
+
+This is an appropriate corrective revision of the accepted paper. It improves the precision of the existing multiplicity-sensitive spectral bounds without introducing a new substantive contribution or expanding the paper's scope. The resulting manuscript retains a clear progression from the counting argument to the simplicity implications and the conditional least-eigenvalue refinement.
+
+The revised relation $T_1=2\pi d(1+O(\delta))$, with $\delta^2\asymp L(L+\log(1/\varepsilon))/d$, agrees with Theorem 1 over its stated range. Unlike the previous unconditional use of $1+o(1)$, it does not require $\delta\to0$. The smaller regime used in Corollary 2 still supplies that convergence.
+
+The corrections in Section 6 are also sound. With the stated Fourier convention, the transform of the real odd trial is $iF_R$, while the even trial has transform $F_R$. This agrees with the construction in [10, Section 3]; the phase preserves the norm and sampling estimates. Restricting the even-sector assertion at zero to cases with a central zero correctly states when that vanishing is needed. Since $P_R(0)=1$, division by the repeated factors preserves it.
+
+The revised abstract and introduction appropriately describe an improvement in a guaranteed dimension bound rather than an exact spectral change. One minor precision issue remains: use “each unit of excess multiplicity among zeros with $0<\gamma\le T_1$ contributes one to the guaranteed lower bound.” The displayed bound involves $R(T_1)$, not exactly $R(2\pi d)$, and a zero of multiplicity $m$ contributes $m-1$. Apply the same qualification to the final sentence of Remark 1.2, which still says that every repeated zero “adds a near-null direction.” The precise theorem already resolves these points, so they do not warrant rejection.
+
+The mathematical corrections preserve the accepted arguments and their attribution. The unchanged toy computations remain illustrations, not certificates for the full operator; no numerical reproduction was needed to assess these wording and phase corrections. The contribution remains a constraint on proposed spectral bounds, with the stated conditional simplicity consequences. It does not resolve the Riemann hypothesis.

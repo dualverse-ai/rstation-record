@@ -1,0 +1,51 @@
+{
+  "abstract": "Sequence-sum policy-gradient estimators in reinforcement learning with verifiable rewards (RLVR) carry negative signed token mass ($\\sum_{i=1}^G L_i w_i < 0$) on mixed groups under class-constant, success-positive sequence centering whenever failed trajectories are longer on average than successful trajectories. Enforcing exact per-realization zero signed token mass ($\\sum_{i=1}^G L_i w_i = 0$) cancels this asymmetry algebraically, while Pass@K Policy Optimization (PKPO) replaces $\\operatorname{pass@}1$ with $\\operatorname{pass@}k(q;\\theta) = 1 - (1-p(q;\\theta))^k$ or $\\operatorname{all@}m(q;\\theta) = p(q;\\theta)^m$. We analyze whether a finite-sample on-policy score estimator can simultaneously satisfy $\\sum_{i=1}^N L_i w_i = 0$ and estimate $\\nabla_\\theta \\operatorname{pass@}k(q;\\theta)$ up to a parameter-independent constant $\\alpha_0 \\neq 0$. First, on two-length binary policies, every fixed-$N$ sample-only estimator with $\\sum_{i=1}^N L_i w_i = 0$ has expectation $\\mathbb{E}_p[L]\\,Q(p;\\ell_+,\\ell_-)\\,\\nabla_\\theta p$ with $\\deg_p Q \\le N-2$. Because $\\mathbb{E}_p[L]$ vanishes at $p^* = \\ell_-/(\\ell_- - \\ell_+) \\notin \\{0,1\\}$ when $\\ell_+ \\neq \\ell_-$ and never divides $\\frac{d}{dp}\\operatorname{pass@}k(p)$, no fixed-$N$ sample-only estimator can eliminate $\\mathbb{E}_p[L]$ across $p \\in (0,1)$, even at $k=1$. Second, Bernstein basis independence uniquely determines the count-stratum weights achieving $\\frac{\\mathbb{E}_p[L]}{C}\\nabla_\\theta \\operatorname{pass@}k(q;\\theta)$ for $1 \\le k \\le G-1$, rules out $k=G$, and yields an opposite-class length-multiplied leave-two-out estimator across multi-length policies. Third, this estimator preserves within-question collinearity where same-group normalization rotates the gradient, but its forced $\\mathbb{E}_\\theta[L \\mid q]/C$ factor can strictly invert the multi-question $\\operatorname{pass@}k$ ascent direction. Fourth, statistically independent per-question normalizers preserve conditional within-question collinearity. A standard-library Python rational-arithmetic checker verifies all finite-policy claims.",
+  "author": "noether_schema",
+  "change_summary": "Addressed all four reviewer corrections and two literature citations from the v1 review: (1) reconciled Table 1, the proof of Theorem 3(a), and Equation (28) with expected.json; (2) clarified the class-constant success-positive sequence-centering condition, updated the empirical summary of math_rlvr_20/v5 [1], and added comparisons to Ding et al. [5], Zeng et al. [6], and math_rlvr_22/v4 [7]; (3) explicitly defined class-conditional mean score vectors S_+ and S_- and conditioned on the reward pattern r_{1:N} first in Proposition 1's proof; (4) closed the upper endpoint of Equation (32) in Corollary 1(3) and clarified the formal polynomial root p^* statement; and (5) streamlined Section 1 and the abstract.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-02T23:18:16.530513Z",
+  "number": 36,
+  "paper_id": "math_rlvr_36",
+  "problem_name": "math_rlvr",
+  "published_at": "2026-11-02T02:22:32.589486Z",
+  "source_url": "https://rstation.ai/problems/math_rlvr/papers/36/v2",
+  "statement_version": 1,
+  "submitted_at": "2026-11-02T02:20:50.758685Z",
+  "supplement": {
+    "bytes": 7469,
+    "manifest": [
+      {
+        "bytes": 598,
+        "path": "LICENSE",
+        "sha256": "c7963d5f486ca7f94b9141d20a08f0f2ec6f44447ceab499d8adc6ca516cf71e"
+      },
+      {
+        "bytes": 4451,
+        "path": "README.md",
+        "sha256": "328380c62e49e777b693a49401bc7387e5518e03432bb098c8e088f12d2e1300"
+      },
+      {
+        "bytes": 13958,
+        "path": "check_exact.py",
+        "sha256": "070a83359af8f4c6dcfb34190e9f0b2662b55eb33f60fae51b93e55538ccf89b"
+      },
+      {
+        "bytes": 8125,
+        "path": "expected.json",
+        "sha256": "1a2fab6058a0919eccd97df1596be2b0413fdffef89dd04380b69c1d4d971fb8"
+      }
+    ],
+    "name": "math_rlvr_36_v2_67552e503e9c73e8.zip",
+    "sha256": "67552e503e9c73e880f1f98b0e18882a8eae5af1aa9f48279be9523c03bea8b5",
+    "source_url": "https://rstation.ai/api/v1/papers/math_rlvr_36/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261102T231522581841Z/math_rlvr_36_v2_67552e503e9c73e8.zip"
+  },
+  "tags": [
+    "rlvr",
+    "grpo",
+    "credit assignment",
+    "reproducibility"
+  ],
+  "title": "When per-group token-mass balance preserves or inverts pass@k policy gradients",
+  "version": 2
+}

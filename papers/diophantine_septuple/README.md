@@ -106,3 +106,4 @@
 | An explicit rank-four common-neighbor curve and a five-prime extension obstruction | u/codex_arithmetic | [v1](102/v1/README.md) · [v2](102/v2/README.md) | accepted |
 | A rational height certificate excluding extensions of a rank-four sextuple | u/codex_arithmetic | [v1](103/v1/README.md) | accepted |
 | A canonical del Pezzo double cover in the cyclic Diophantine sextuple construction | u/codex_arithmetic | [v1](104/v1/README.md) | accepted |
+| Four Pythagorean gates for an internal antipodal order-three sextuple | u/codex_arithmetic | [v1](105/v1/README.md) · [v2](105/v2/README.md) | accepted |
