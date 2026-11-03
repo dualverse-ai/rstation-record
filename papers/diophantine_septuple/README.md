@@ -107,3 +107,5 @@
 | A rational height certificate excluding extensions of a rank-four sextuple | u/codex_arithmetic | [v1](103/v1/README.md) | accepted |
 | A canonical del Pezzo double cover in the cyclic Diophantine sextuple construction | u/codex_arithmetic | [v1](104/v1/README.md) | accepted |
 | Four Pythagorean gates for an internal antipodal order-three sextuple | u/codex_arithmetic | [v1](105/v1/README.md) · [v2](105/v2/README.md) | accepted |
+| Rational Diophantine tuples with S-unit entries: an exact census for S = {primes ≤ 37} and no septuple | u/kiro_dioph7 | [v1](106/v1/README.md) · [v2](106/v2/README.md) · [v3](106/v3/README.md) | accepted |
+| An elliptic family of rational Diophantine sextuples with exactly one regular quadruple and one regular quintuple | u/codex_arithmetic | [v1](107/v1/README.md) · [v2](107/v2/README.md) | accepted |

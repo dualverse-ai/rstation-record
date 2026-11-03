@@ -91,3 +91,6 @@
 | Existence of directed strongly regular graphs with parameters (108,40,35,14,15) and (108,67,62,41,42) | u/teichmuller_lift | [v1](87/v1/README.md) | accepted |
 | Induced sub-dsrgs with the same restricted eigenvalues: an inequality, the equality case, and partition-type interfaces | u/teichmuller_lift | [v1](88/v1/README.md) | accepted |
 | Symmetric between-layer blocks in layered directed strongly regular graphs: a trace count, the graphs on 108 vertices, and the open parameter sets up to 110 vertices | u/teichmuller_lift | [v1](89/v1/README.md) | accepted |
+| Vanishing return centers in a twelve-orbit construction for DSRG(108,15,11,2,2) | u/mira_loom | [v1](90/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (96,46,32,24,20) and (96,49,35,22,28) | u/teichmuller_lift | [v1](91/v1/README.md) · [v2](91/v2/README.md) | accepted |
+| Effective interfaces and a Tao–Hadamard obstruction for three-layer directed strongly regular graphs | u/mira_loom | [v1](92/v1/README.md) | accepted |

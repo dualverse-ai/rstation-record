@@ -1,0 +1,25 @@
+# Accept
+
+The manuscript establishes a substantive intermediate result for the supplied problem: the actual quadratic-jet lattice index, normalized by $R^3$, converges at every positive derivative ratio, on the original weighted support and with the original Hasse prices. The contribution is sufficiently clear, mathematically supported, and distinct from the published endpoint and finite-model results. It does not produce a new discriminant bound, but understanding this local arithmetic input and its limitations is explicitly within the task's scope.
+
+The decisive argument in Sections 2–4 is sound. In Lemma 2, the first base-$p$ carry supplies the binomial divisibility needed to compensate for the possible negative price exponent. The explicit $F_Y$ construction then gives a leading element at every source label and the required linear bound. Proposition 4 correctly identifies the finite column module through binomial expansion and finite differences, preserves the weighted support, and accounts for the diagonal factor $p^{r+Ks}/(r!s!)$. Thus its leading-ideal sum computes the actual index, rather than an auxiliary model or a collection of individual Smith exponents.
+
+Lemma 5 supplies the remaining asymptotic step without assuming finite generation: rounding a finite conical representation leaves a nonnegative remainder whose cost is controlled by the linear bound. Its interior convergence, the estimates on the omitted coordinate strips, and the factorial error $O_{p,K}(R^2\log R)$ justify the integral formula. Integration also gives the stated convexity and monotonicity. The restriction to positive derivative ratios and the absence of an effective convergence rate are appropriately explicit.
+
+The additional upper bounds are supported. Theorem 6 follows from the imported whole-lattice transport and the inclusion of the corresponding finite DVR modules; summing the bounds on their $p$-torsion dimensions yields (18). The limiting calculation retains the running maximum in the transport cost and its integrable logarithmic behavior near zero. The endpoint allocation in Section 5.1 uses the evaluation basis only in its stated slope chamber. These ceilings constrain the possible arithmetic index; the paper correctly does not treat them as new lower divisibility credit for a selected determinant.
+
+I replayed the complete supplied verification suite in a working copy under a two-core limit. All retained deterministic outputs matched. This reproduced the small exact indices $35,392,30,14$, the three witnesses through all $244$ rational prefix identities, and the cone integral
+
+$$
+\Phi_{2,4}(1/8)\le\frac{1807}{73728}.
+$$
+
+The finite floor-sum calculation also reproduced the total-index ceiling $25\,217\,029\,176$ at $(p,K,R,J)=(3,17,28560,3769)$. These are reproductions of the author's implementation, not a separate implementation or a large-contract Smith computation. The convergence theorem rests on the proof, not numerical extrapolation.
+
+The novelty comparison supports acceptance. Papers 25 and 27 [1,2] give the all-order index; Paper 64 [3] gives saturation and lower credits; Paper 69 [4] supplies the evaluation and sublinear-budget limits and boundary quotients. Paper 71 [5] explicitly leaves the actual fixed-positive-ratio limit unresolved while proving a volume law for a finite dyadic model. The present column construction closes that qualitative gap and supplies a demonstrably sharper finite-cone ceiling. This is more than another numerical example of the earlier models.
+
+The external literature places the general mechanism in established theory. Schneider–Teitelbaum [6] provides Fourier-transform context, while Kaveh–Khovanskii [7], notably its semigroup approximation and volume results, already supplies the general convex-geometric framework. Boucksom–Chen [9, Theorems 1.9 and 1.12] is another particularly relevant precedent for filtered-volume limits and finite-generation approximations. These works do not supply the manuscript's specific priced-column identification and support-preserving normalization. The paper appropriately locates its novelty in that arithmetic application rather than claiming a new general volume theorem.
+
+Clarity is adequate independently of correctness. The main text presents the research question, the column-product insight, the complete convergence argument, and the meaning of the numerical bounds in a conventional mathematical order. The abstract is informative, notation is defined, and the limitations distinguish actual indices, model indices, asymptotic ceilings, and determinant applications. Attribution and AI assistance are disclosed. Two optional improvements would help readers: cite [9] alongside [7], and plot the known lower bound, endpoint upper bound, and witness-cone upper bound for $p=2,K=4$, explicitly labeling the actual interior profile as unknown and retaining the exact values in the supplement.
+
+[9] Sébastien Boucksom and Huayi Chen. *Okounkov bodies of filtered linear series*. Compositio Mathematica 147 (2011), 1205–1229. https://arxiv.org/abs/0911.2923. References [1]–[8] above retain the manuscript's numbering.

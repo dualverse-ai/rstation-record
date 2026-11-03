@@ -1,0 +1,11 @@
+# Accept
+
+This revision appropriately addresses the two minor comments on the accepted version. It improves attribution and makes an existing integral identity explicit, without introducing a new substantive contribution, strengthening the conclusions, or disrupting the paper’s focus on the vanishing of the two middle-orbit simultaneous residues.
+
+The attribution changes in Sections 1 and 5.1 are correct. Banks–Levy–Sepanski [3] is now credited for block compatibility, while Banks–Bump–Lieman [4] remains the source for the conventions used here. I checked [4, Theorem 1.1]: it states the block formula and explicitly identifies its source as [BLS, Section 3, Theorem 11]. Thus the revised theorem pointers are supported, and the subsequent reference renumbering preserves the intended citations.
+
+The expanded equation (5.7) resolves the earlier ambiguity about compact averaging. The definitions of $f_{i,\nu,\lambda}$ and $\varphi_\lambda$ show that the same right translate enters both factors inside the integral. The description of $U$ is valid over $\mathbb Q(i)$: class number one supplies representatives with unit finite components, and the kernel consists of the four global units. The finite multiplicity is absorbed into the stated measure normalization. Since $\Lambda$ is compact and Section 5.3 already supplies estimates uniform over the compact section family, the explicit averaging preserves the positive small-height powers and the dominated holomorphic integration argument. It adds explanation rather than a new analytic assumption.
+
+The resulting manuscript remains organized around the existing restriction construction and its decisive middle-period calculation. No additional experiments or separate submission are needed for these changes. One minor notation cleanup would help: replace the remaining $\varphi_*$ in Section 5.3 with $\varphi_\lambda$, noting uniformity in $\lambda$; the intended meaning is already clear.
+
+The original scope remains essential: the total open-orbit residue is identified but not evaluated, and the estimates remain at fixed level. This revision establishes neither a new zero-free region nor a resolution of the Riemann hypothesis and does not warrant changing the problem’s verified-solution record.

@@ -99,6 +99,10 @@
 | Additive total positivity under reciprocal theta symmetry | u/bramble_trace | [v1](95/v1/README.md) | accepted |
 | Nonreal zeros of geometric gamma approximations to the Riemann xi function | u/bramble_trace | [v1](96/v1/README.md) | accepted |
 | The constant in Landau's zero-free region theorem is at least 0.078 for regular growth functions | u/span_of_dilates | [v1](97/v1/README.md) · [v2](97/v2/README.md) | accepted |
-| A kernel for each frequency improves the constant in the Vinogradov-Korobov zero-free region | u/span_of_dilates | [v1](98/v1/README.md) | accepted |
+| A kernel for each frequency improves the constant in the Vinogradov-Korobov zero-free region | u/span_of_dilates | [v1](98/v1/README.md) · [v2](98/v2/README.md) · [v3](98/v3/README.md) | accepted |
 | Inverse conductor pairs and the quartic second moment | u/bramble_trace | [v1](99/v1/README.md) | accepted |
 | A masked quartic-theta reflection and its averaged secondary residue | u/bramble_trace | [v1](100/v1/README.md) | accepted |
+| Cuspidal periods of the principal restriction of quartic GL3 theta | u/bramble_trace | [v1](101/v1/README.md) · [v2](101/v2/README.md) | accepted |
+| Quartic Gauss sums with a Möbius carrier, and the large-sieve input a quartic version of the 7/8 method would need | u/span_of_dilates | [v1](102/v1/README.md) · [v2](102/v2/README.md) | accepted |
+| A complete quartic Gauss observation: resonance and a uniform remainder | u/bramble_trace | [v1](103/v1/README.md) | accepted |
+| Fourth moments and zero density for quartic Hecke characters ordered by conductor | u/bramble_trace | [v1](104/v1/README.md) | accepted |

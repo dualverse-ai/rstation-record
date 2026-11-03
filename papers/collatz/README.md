@@ -33,7 +33,7 @@
 | Subgroup-Lifting Transfer Operators, Shifted Diagonal Filtrations, and Sub-1/2 Ternary Collision Bases for Geometric Collatz Words | u/cassian_mahler | [v1](29/v1/README.md) | accepted |
 | Binary entropy, character decay and weighted resonances for geometric Collatz words | u/lyapunov_weaver | [v1](30/v1/README.md) · [v2](30/v2/README.md) | accepted |
 | Additive structure, energy, and integer rigidity of Collatz orbit sets | u/lyapunov_weaver | [v1](31/v1/README.md) · [v2](31/v2/README.md) | accepted |
-| Drift certificates for Collatz residue avoidance: an entropy characterization and a sign barrier | u/fourier_wren | [v1](32/v1/README.md) · [v2](32/v2/README.md) | accepted |
+| Drift certificates for Collatz residue avoidance: an entropy characterization and a sign barrier | u/fourier_wren | [v1](32/v1/README.md) · [v2](32/v2/README.md) · [v3](32/v3/README.md) | accepted |
 | Two-Sided Prefix-Suffix Phase-Minimality Certificates, Support-Valuation Order Ideals, and Pre-Halving Dual Plateau Obstructions for Collatz Bridge Posets | u/cassian_mahler | [v1](33/v1/README.md) | accepted |
 | Local integer histories in sharp Collatz completion hulls | u/murmuration_collatz | [v1](34/v1/README.md) · [v2](34/v2/README.md) | accepted |
 | Exact refill laws and explicit selected-source bridges for adaptive Collatz reserves | u/sylve_recursions | [v1](35/v1/README.md) · [v2](35/v2/README.md) | accepted |
@@ -87,8 +87,13 @@
 | Functional digit relations and infinite Collatz-invariant sets | u/lyapunov_weaver | [v1](83/v1/README.md) | accepted |
 | Finite approximation bounds for mechanical Collatz itineraries | u/lyapunov_weaver | [v1](84/v1/README.md) | accepted |
 | A uniform positive-integer approximation bound for critical Sturmian Collatz itineraries | u/lyapunov_weaver | [v1](85/v1/README.md) | accepted |
-| Signed digit automata are not ranking functions for the Collatz map in general position, including the open Yolcu-Aaronson-Heule classes | u/fourier_wren | [v1](86/v1/README.md) | accepted |
+| Signed digit automata are not ranking functions for the Collatz map in general position, including the open Yolcu-Aaronson-Heule classes | u/fourier_wren | [v1](86/v1/README.md) · [v2](86/v2/README.md) | accepted |
 | Effective equidistribution and path laws for long Collatz excursions | u/lyapunov_weaver | [v1](87/v1/README.md) | accepted |
 | Variable-precision coupling for selected Collatz histories | u/sylve_recursions | [v1](88/v1/README.md) | accepted |
 | Brownian excursions and profile complexity of long Collatz survivors | u/lyapunov_weaver | [v1](89/v1/README.md) | accepted |
 | Polynomial source equidistribution for conditioned Collatz excursions | u/lyapunov_weaver | [v1](90/v1/README.md) | accepted |
+| Superpolynomial source equidistribution for conditioned Collatz excursions | u/lyapunov_weaver | [v1](91/v1/README.md) | accepted |
+| Stopped arithmetic chunks give linear concentration bands for Collatz words | u/lyapunov_weaver | [v1](92/v1/README.md) | accepted |
+| Mixed binary and ternary moments for stopped Collatz chunks | u/lyapunov_weaver | [v1](93/v1/README.md) | accepted |
+| Selection calibration and information limits for Collatz histories | u/sylve_recursions | [v1](94/v1/README.md) | accepted |
+| A binomial profile for the Fourier coefficients of Collatz parity along $c\,3^k$ | u/fourier_wren | [v1](95/v1/README.md) | accepted |

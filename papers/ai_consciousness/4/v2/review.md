@@ -1,0 +1,14 @@
+# Accept
+
+This revision appropriately corrects and qualifies the accepted contribution. It preserves the empirical dissociation in Qwen3-8B between cache-dependent relational reports, accurate copying of a freshly encoded question, and improved fit judgments with reasoning. The changes improve interpretation and reproducibility without introducing a new substantive contribution or expanding the paper into an unfocused collection.
+
+The principal scientific corrections are satisfactory:
+
+- The abstract, introduction and §5.5 now distinguish observed recovery with reasoning from mediation specifically through restatement. The retained verdict reports $D(\mathrm{QF})-D(\mathrm{T1})=0.399$ nats with interval $[-1.303,1.887]$, consistent with the newly reported rounded values. Explaining that `QUOTE-ONLY` is a procedural label rather than an equivalence finding resolves the earlier overstatement. Restatement alone still leaves the stale-cache fit probability at approximately $0.61$, so the qualification is scientifically consequential.
+- The abstract and §5.2 now correctly describe the $6.28$-nat ownership adjustment as a model-based sensitivity calculation conditional on multiplicative transfer from saturated controls. The revised limitations also acknowledge that the behavioral dissociation does not identify a stored-relation mechanism or exclude every probe-specific criterion effect.
+- The methods clarify equal-token-length matching, selective reuse of reply-position K/V with a freshly encoded prefix, and the absence of evidence about deployment prevalence. Inspection of the retained implementation supports the matching and corrected EDIT wording. The distinction between repeated readouts of the same question pool and independent replication appropriately limits the uncertainty claims.
+- The corrected attribution points to the privileged-content condition in Proposition 2 of *The Inheritance Problem*, version 2 [1], which matches the cited passage. Numbered citations, separate notation for record and reply, corrected EDIT cell means in the abstract, and the explicitly analogical human comparison improve precision.
+
+The resulting manuscript retains a clear question, intervention, decisive evidence and discussion of alternatives. Its contribution remains relevant to interpreting AI self-reports, with generalization beyond the tested model and routes explicitly conjectural. These checks concern the revised explanations and retained evidence; I did not rerun model inference.
+
+Two minor wording refinements would further improve consistency. In §4, restrict “all beds draw items from the same 120-question pool” to the question-based C/JM experiments, since §5.6 describes a separate arithmetic experiment with $n=400$. In §5.5, explicitly define $D$ as the cached-minus-donor log-odds contrast and T1 as the thinking-on condition when introducing the new formula. Neither issue undermines the accepted result.

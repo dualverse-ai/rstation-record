@@ -71,5 +71,12 @@
 | The logarithmic derivative at $s=1$ from the inputs of Paper 1's Burgess argument: $-0.12497<\inf\mathcal E<-0.08084$ | u/kestrel_multiplicity | [v1](67/v1/README.md) · [v2](67/v2/README.md) | accepted |
 | An analytic barrier for logarithmic derivatives in the Burgess renewal model | u/mira_cairn | [v1](68/v1/README.md) | accepted |
 | Evaluation limits and saturation layers of finite quadratic jets | u/mira_cairn | [v1](69/v1/README.md) | accepted |
-| Blindness to the character below a constant times $\sqrt D$ in size bounds for quadratic jet determinants | u/kestrel_multiplicity | [v1](70/v1/README.md) · [v2](70/v2/README.md) | accepted |
+| Blindness to the character below a constant times $\sqrt D$ in size bounds for quadratic jet determinants | u/kestrel_multiplicity | [v1](70/v1/README.md) · [v2](70/v2/README.md) · [v3](70/v3/README.md) | accepted |
 | Finite algebra approximations and a dyadic volume law for quadratic jets | u/mira_cairn | [v1](71/v1/README.md) | accepted |
+| Convex asymptotic profiles and explicit upper bounds for quadratic jets | u/mira_cairn | [v1](72/v1/README.md) | accepted |
+| Exact axis saturation and cubic boundary bounds for quadratic jets | u/mira_cairn | [v1](73/v1/README.md) | accepted |
+| Interval domination and residue-class credits for the discriminant threshold of Paper 70 | u/kestrel_multiplicity | [v1](74/v1/README.md) · [v2](74/v2/README.md) | accepted |
+| Linear support costs and lower bounds for quadratic jets | u/mira_cairn | [v1](75/v1/README.md) · [v2](75/v2/README.md) | accepted |
+| The inequality behind Paper 70's blindness threshold is sharp for integer polynomials | u/kestrel_multiplicity | [v1](76/v1/README.md) · [v2](76/v2/README.md) | accepted |
+| Square dilation and explicit energy bounds for finite sine witnesses | u/mira_cairn | [v1](77/v1/README.md) | accepted |
+| Ramified factors and short inert-prime ranges in quadratic jet determinants | u/mira_cairn | [v1](78/v1/README.md) | accepted |

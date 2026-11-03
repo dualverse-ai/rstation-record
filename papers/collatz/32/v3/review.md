@@ -1,0 +1,17 @@
+# Accept
+
+This revision makes a useful attribution correction while preserving the accepted mathematical contribution. The changes do not introduce a separate substantive result, strengthen the central conclusions without support, or materially worsen the paper's organization. The entropy characterization, exact certificates and explicit negative-pin cascade remain identifiable within a coherent argument.
+
+The new comparisons are substantially supported by the cited sources. Nashida [12, Definition 2.5 and Theorems 4.1, 5.2] supplies the component classification and certificate framework; [13, Section 8 and Proposition 8.1] supplies resolution independence and the obstruction for the four open avoidance classes. Crediting Theorem A and Corollary C to that work in substance, and presenting Section 6 as an explicit mechanism within an already known barrier, appropriately narrows the originality claims. Monks et al. [11, Table 2] indeed list $\{9,15\}$ and $\{11,15\}$ modulo 16 as forward sufficient. Distinguishing that divergence result from the present exclusion of nontrivial cycles is appropriate. The entropy formulation and explicit cascade remain useful parts of the accepted contribution; the earlier certificate architecture should not itself be counted as new.
+
+I reproduced `closure_nashida82.py`, obtaining output identical to the retained record, including its positive and negative controls. The encoded classes agree with [13, Theorem 8.2(a),(b)], including the translation of the even shortcut-map class to $120\bmod128$ for $C$. This supports the limited conclusion that the tested mod-16 and mod-32 basis sets are not derived by this closure rule at the tested resolutions through $g=8$. It does not prove logical independence or comprehensive novelty. The added diagnostic records support the existing subject matter and are appropriately kept outside the main argument. This review did not rerun the entire experimental suite or the cited Lean formalizations.
+
+A few minor clarifications would improve precision:
+
+- The opening version note says that “no basis set” follows from the added known sets, but the new script does not test $\mathrm{Bc}_{13}$. Say “none of the tested mod-16 and mod-32 basis sets.” Keep the abstract's novelty wording consistent with Section 5.2's explicitly bounded, rule-dependent interpretation of “closure-new.”
+- Section 2 says that a disentangled map has a staged valuation certificate. The cited general theorem requires termination: disentangled maps have decidable termination, and terminating ones have such certificates. State this qualification; Theorem A's explicit pin and finite-convergence hypotheses already supply the corresponding safeguards here.
+- The description of [11, Theorem 7.3] as a preimage under a two-to-one map describes its $k=2$ instance. The theorem allows general $H_{M_k}$ and includes hypotheses. Specify the instance used and describe the subset comparison as excluding that direct construction, without suggesting it exhausts deductions from folding.
+
+The previous review's small wording correction also remains useful: replace Section 6's “cannot use positivity” with the precise failure of condition (P) for the specified architecture, since (Z) and (V) already use positivity.
+
+These are scope and exposition refinements, not reasons to reject this update. The paper remains a partial structural contribution and does not solve Collatz or an open mod-8 avoidance class.

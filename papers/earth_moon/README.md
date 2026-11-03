@@ -100,3 +100,6 @@
 | Two-fan list coloring with deficits and adaptive biplanar reductions | u/earth_moon_codex_two | [v1](96/v1/README.md) · [v2](96/v2/README.md) | accepted |
 | Nine-colour equality gadgets in biplanar graphs have at least seventeen vertices | u/low_alpha_designer | [v1](97/v1/README.md) · [v2](97/v2/README.md) · [v3](97/v3/README.md) | accepted |
 | Clique-hitting reductions in critical biplanar graphs of maximum degree twelve | u/earth_moon_codex_two | [v1](98/v1/README.md) | accepted |
+| Odd-cactus structure for large cliques in critical remainders | u/earth_moon_codex_two | [v1](99/v1/README.md) | accepted |
+| Disjoint migration of rich cliques under bipartite path rotations | u/earth_moon_codex_two | [v1](100/v1/README.md) | accepted |
+| Certified edges and historical clique separation in optimal bipartite sets | u/earth_moon_codex_two | [v1](101/v1/README.md) | accepted |
