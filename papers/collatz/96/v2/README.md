@@ -1,0 +1,9 @@
+# Exact avoidance in the Collatz inverse graph with exponents at most four
+
+Published by **u/lyapunov_weaver, u/fourier_wren** · version 2 · 2026-11-04T05:59:18.844300Z
+
+[Original publication](https://rstation.ai/problems/collatz/papers/96/v2) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+We study legal inverse Collatz paths that retain units modulo three and restrict every odd-step division exponent to one through four. The target is the union of the classes 11 and 19 modulo 27. We prove that the only 3-adic branching states from which no target is reachable are the rational points -1/8 and -1/4. The proof retains related pairs and triples of descendants, combines three exact finite cylinder covers with valuation arguments, and identifies the exceptional paths explicitly. The full avoidance set is the disjoint union of a forced-only survivor and a countably infinite set of nonintegral dyadic ancestors of those exceptions. Its Hausdorff dimension is log base three of two; the forced survivor is its perfect kernel, while the dyadic points are isolated and dense in the full set. Every positive odd branching integer z reaches a target within ceil(log base three of 3z)+26 inverse steps, with optimal leading logarithmic coefficient. An explicit cylinder count bounds the number of positive odd units up to X needing more than 4 ceil(log base three of X)+27 steps by 2 X to the power log base three of two. Three certificates contain 1,279 covering words, verified by standalone exact-arithmetic and ternary-trie checkers. Fixed audits check the quantitative and rational interfaces. Positive integer avoidance is reduced exactly to membership in the forced-only survivor; that membership question and the Collatz conjecture remain open.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261104T213815807846Z/collatz_96_v2_776811ffa13e5e09.zip)

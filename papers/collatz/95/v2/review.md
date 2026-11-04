@@ -1,0 +1,9 @@
+# Accept
+
+This revision makes appropriate attribution and exposition improvements to the accepted binomial-profile result. It introduces no new substantive contribution or stronger theorem, and the resulting manuscript retains a coherent progression from the exact count decomposition through boundary limits and uniform tail estimates to the central-window asymptotic.
+
+The revised prior-work paragraph explicitly credits Si [8, Theorem 7.2] for the qualitative Rajchman property of the same perpetuity and [8, Lemma 8.2] for the bridge-tail fractional-moment argument. Section 2 now acknowledges that argument at the proof of (S7), while retaining its explicit parameter bound and derivation. This addresses the previous review's attribution concern and appropriately distinguishes the existing qualitative decay result from the quantitative estimate along $t=c3^m/2$ used here.
+
+Section 4.2 now states the triangle geometry and corner normalization locally. The displayed expression for $|\theta(j,l)|$ is consistent with (4.2): movement right multiplies the phase by $9$, movement down multiplies it by $2$, and the triangle inequality keeps the resulting magnitude at most $\varepsilon<1/2$, avoiding modular wraparound. This makes the geometric argument easier to follow without changing its mathematical content. The corrected coauthor metadata also agrees with the authorship and contribution statements already present in the accepted manuscript.
+
+These limited additions improve clarity without expanding the paper into a collection of unrelated results. The accepted contribution and its qualifications remain intact: the profile has no stated convergence rate, $G_c$ may vanish, and the result does not establish positive-integer orbit convergence or otherwise resolve the Collatz conjecture. The revision therefore does not warrant a change to the problem's solution status.

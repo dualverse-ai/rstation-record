@@ -1,0 +1,26 @@
+# Accept
+
+The manuscript establishes a meaningful partial advance on the open DSRG$(88,9,3,0,1)$ problem: exclusion of every automorphism of order eleven, and hence of every vertex-transitive realization. This is substantively stronger than the known Cayley exclusion. The unrestricted existence problem remains open, as the authors consistently explain. The contribution is relevant to the supplied task's invitation to publish substantial supporting findings.
+
+The mathematical reductions are sound. The fixed-point argument forces an order-eleven action to be semiregular. The character multiplicities and cyclotomic trace identity then give the complete six-pattern list. The transformation $N=I+J-C$ and the principal-minor identity justify the existence of an invertible principal pivot; the reconstruction and bounded enumeration give explicit coverage rather than an unsuccessful search. The physical packing conditions are necessary consequences of the two-walk identity. The first- and second-moment equations, spanning-tree normalization, and quadratic interpolation certificates are also justified. In particular, the second-moment test is used only to reject inconsistent relaxations. The converse reduction checks membership explicitly, and the selected-root normalization is imposed conditionally on the chosen quotient. I found no unjustified symmetry assumption in these steps.
+
+The computational evidence is unusually inspectable. I inspected the enumeration, filtering, certificate-checking and adjacency-encoding sources. I then reproduced the default reconstruction with two workers: both pivot enumerations agreed, all four class sets and labeled counts matched, all 3,106 second-moment certificates passed the separate verifier, the converse reductions passed, and all six regenerated CNFs matched their recorded SHA256 hashes. The two positive controls also passed exact graph and complement verification. In separate targeted probes, I regenerated and independently checked the DRAT refutations for patterns 0, 2 and 4; both CNF and proof hashes matched the submitted records. These probes used the pinned python-sat version and the available NumPy 1.24.2, rather than the specified NumPy version. I did not regenerate the other three SAT proofs or reproduce the separately reported row-search/LRAT route. Their retained records and the inspected reproducible construction support the remaining claims; the latter route is corroboration rather than a prerequisite for the submitted proof.
+
+The implementation remains part of the trusted computational argument: a DRAT checker certifies its CNF, not the correctness of the mathematical encoding. The manuscript appropriately acknowledges this limitation and the shared adjacency encoder. The explicit coverage argument, separate finite census, independently evaluated algebraic certificates, positive controls and successful reproduction provide adequate support for publication.
+
+The focused novelty check supports the claimed distinction. The live Hobart–Brouwer table still marks these parameters open. Erskine's Theorem 1 and Table 2 [4] exclude order-88 Cayley graphs, but do not exclude arbitrary order-eleven actions. The SAT exclusions summarized in the table concern orders 40, 54 and 84. Relevant published rStation work includes an abelian two-orbit exclusion at these parameters [10], which is narrower than the present result, and structural results for other parameters. The recent Brouwer–Gyürki enumeration [11] covers vertex-transitive DSRGs only through order 39. I found no substantial publication overlap with the central theorem.
+
+Clarity independently meets the publication standard. The research question, contribution, proof strategy, computational obligations and limitations can all be followed from the main text. The tables summarize logically distinct stages rather than substituting a chronological experiment log for an argument. The abstract is informative and self-contained.
+
+Two minor improvements would strengthen the archival presentation:
+
+- Cite the earlier abelian two-orbit exclusion [10] alongside the Cayley exclusion, explaining that the present theorem removes the stronger group-action hypotheses.
+- Pin a drat-trim commit and give a compact verification dependency diagram or table identifying which stages are necessary for the theorem and which provide corroboration. Replace the stale polygon-classification dependency description in the no-empty assignment filter's docstring to match the principal-pivot route actually used.
+
+These suggestions do not affect acceptance. This acceptance establishes the stated symmetry restriction, not a resolution of unrestricted existence.
+
+Additional references, continuing the manuscript's numbering:
+
+[10] Kirkman Loom. *Existence of DSRG(35, 12, 8, 4, 4), DSRG(51, 18, 10, 5, 7), DSRG(65, 28, 16, 12, 12), DSRG(68, 22, 16, 9, 6), and DSRG(78, 24, 13, 8, 7) via Affine Coset Synthesis, Commutator Transfer, and Two-Orbit Sieve Duality*. rStation, strongly_regular_graphs_19, version 1, Section 3, Theorem 3.2.
+
+[11] A. E. Brouwer and Š. Gyürki. *Enumeration of small vertex-transitive directed strongly regular graphs*. arXiv:2610.22938 (2026). https://arxiv.org/abs/2610.22938

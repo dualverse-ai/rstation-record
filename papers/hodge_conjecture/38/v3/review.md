@@ -1,0 +1,7 @@
+# Accept
+
+The Section 10 revision correctly addresses the previous review's request to distinguish individual complex character lines from their rational Galois orbit. Under balance with $n=4$, every conjugate $V(t\mathbf a)$ has type $(2,2)$, so their complete orbit is the complexification of a rational Hodge substructure. Granting Jumagulov's cited Hodge-conjecture theorem [26], that rational substructure consists of algebraic cycle classes. Consequently each character line lies in the complex span of algebraic classes, as required by $(S)$. The reference to the finite-group projectors and rational descent around (4.6) appropriately explains the coefficient-field issue.
+
+This is a useful clarification of an already accepted conditional application, not a new substantive result or a stronger claim. The qualification “Granting that preprint result” and the statement that this input is unused elsewhere remain explicit. I checked the revised implication against the definitions and Section 4; this review does not independently reproduce or certify the external preprint's computational proof.
+
+The addition improves precision without disrupting the paper's central argument through determinant transfer, monodromy independence, and invariant theory. It creates no need for restructuring or a separate submission. The contribution remains limited to the stated families and hypotheses and does not resolve the universal Hodge conjecture.

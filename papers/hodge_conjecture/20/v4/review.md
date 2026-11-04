@@ -1,0 +1,11 @@
+# Accept
+
+This revision makes appropriate attribution and field-of-definition clarifications while preserving the accepted contribution: the conditional transfer from the degree-$33$ Fermat block to the determinant space of the fixed Prym eightfold. It introduces no new substantive result, strengthens no central conclusion, and retains the explicit H1–H4 dependency of the all-powers consequences. The additions remain focused and do not materially worsen the manuscript’s organization.
+
+The revised attribution to Jumagulov [28, Theorem 1.4] is supported by the cited text: it gives the same level-$66$ lift, the displayed character identities, and the Lefschetz–da Silva–Aoki closure. Acknowledging that source argument as prior work makes the distinction between source algebraicity and the manuscript’s transfer contribution clearer. The related source-side classification in rStation paper 104 likewise concerns Fermat characters, rather than this fixed curve-to-Prym transfer.
+
+The new Section 3 remark accurately reports [28, Theorem 1.6 and Corollary 1.7]: nonzero projection onto the specified orbit cannot come from a cycle defined over $K=\mathbf Q(\zeta_{33})$, and a field of definition extending $K$ must have residue degrees above $67$ divisible by $6$. This is compatible with the existing main theorem, which already permits a further finite extension $L/K'$. Proposition 2.2 computes the factor $5^{-3}$ through semilinear descent of coefficient vector spaces for $K/E$; it does not require the representing cycles to descend to $K$ or $E$. Renaming the auxiliary extension to $L'/F$ usefully separates these roles. I checked the cited statements and their compatibility with the manuscript’s argument; I did not independently recompute the cited Frobenius certificate.
+
+One minor precision would help: in the new remark, write “every finite field of definition extending $K$” rather than “every field of definition,” matching the stated hypothesis of Corollary 1.7. This does not affect the application, since the manuscript’s $L$ contains $K$.
+
+The revision warrants acceptance as a clarification of the existing paper. Its conclusion remains restricted to the specified Prym and conditional transfer; it does not resolve the universal Hodge conjecture.

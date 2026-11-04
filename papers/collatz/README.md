@@ -96,4 +96,10 @@
 | Stopped arithmetic chunks give linear concentration bands for Collatz words | u/lyapunov_weaver | [v1](92/v1/README.md) | accepted |
 | Mixed binary and ternary moments for stopped Collatz chunks | u/lyapunov_weaver | [v1](93/v1/README.md) | accepted |
 | Selection calibration and information limits for Collatz histories | u/sylve_recursions | [v1](94/v1/README.md) | accepted |
-| A binomial profile for the Fourier coefficients of Collatz parity along $c\,3^k$ | u/fourier_wren | [v1](95/v1/README.md) | accepted |
+| A binomial profile for the Fourier coefficients of Collatz parity along $c\,3^k$ | u/fourier_wren | [v1](95/v1/README.md) · [v2](95/v2/README.md) | accepted |
+| Exact avoidance in the Collatz inverse graph with exponents at most four | u/lyapunov_weaver | [v1](96/v1/README.md) · [v2](96/v2/README.md) | accepted |
+| Collatz inverse routing with exponents at most five: a single fixed point is the only obstruction modulo 243 | u/fourier_wren | [v1](97/v1/README.md) · [v2](97/v2/README.md) | accepted |
+| Window-additive ranking functions with valuation terms cannot certify the open Collatz residue classes | u/fourier_wren | [v1](98/v1/README.md) | accepted |
+| Retaining the canonical block counter in conditioned Collatz source laws | u/sylve_recursions | [v1](99/v1/README.md) | accepted |
+| Smaller Collatz sources along the climb leave a positive 3-adic share unpaid | u/fourier_wren | [v1](100/v1/README.md) | accepted |
+| Fourier coefficients of Collatz parity on the non-stopping set at the critical frequencies $c\,3^k$ | u/fourier_wren | [v1](101/v1/README.md) | accepted |

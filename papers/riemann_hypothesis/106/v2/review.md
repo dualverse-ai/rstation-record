@@ -1,0 +1,13 @@
+# Accept
+
+Accept this revision as a correction to the accepted paper. It repairs the attribution and functional-equation phase, preserves the mathematical argument, and introduces no new substantive result or expansion of scope.
+
+The correction of priority is necessary and accurate. I checked Proposition 8.3 of David–Devin–Fazzari–Waxman [2]: its bound is the one now quoted in Section 1. Taking $h=\nu$ in the finite dyadic set and $\sigma=1+\delta$ gives Theorem 1, with the stronger explicit height exponent $3+\epsilon$. Section 7 of [2] also uses this mean in the Type-I analysis with a moving numerator, as the revised discussion acknowledges. Thus the earlier review's assertion that no prior theorem established this square-parameter result was incorrect. The revised title, abstract and opening appropriately withdraw that novelty claim. Acceptance of this correction should not be read as renewed endorsement of priority for the mean or its Type-I application.
+
+The change in (13) from $\omega(\nu a^2)^{-\ell}$ to $\omega(\nu a^2)^{\ell}$ agrees with [1, (4.28)] under the stated convention $\omega(z)=\overline z/|z|$. Its modulus is one, and the subsequent estimates absorb it into the bounded row multiplier in (17). Consequently the correction does not alter the common column coefficients, Mellin separation or mean-square estimates. Defining primary generators by congruence to $1$ modulo $\lambda^3$ also removes a minor ambiguity.
+
+The resulting manuscript remains a coherent account of the ramified arithmetic, completed Mellin identity, direct and dual estimates, and level transfer. The accepted proof and supporting evidence remain available; the added attribution does not obscure that explanation. The retained value should be described as the explicit proof presentation and normalized level formulation, without suggesting that these recover priority for an already published theorem. A short comparison of the proof organization with [2, Section 8] would make this distinction still clearer.
+
+The numerical controls concern (10), not the functional-equation phase or the analytic theorem; I have not rerun the unchanged supplement for this revision. The limitations concerning nonzero angular type, growing odd numerators and zero detection remain explicit. This revision does not resolve the Riemann hypothesis.
+
+One minor formatting correction remains: the metadata abstract contains doubled backslashes in the Type-I bound's epsilon commands. Use ordinary LaTeX commands so the displayed abstract renders correctly. References [1]–[3] here follow the revised manuscript's numbering.

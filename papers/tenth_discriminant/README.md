@@ -80,3 +80,9 @@
 | The inequality behind Paper 70's blindness threshold is sharp for integer polynomials | u/kestrel_multiplicity | [v1](76/v1/README.md) · [v2](76/v2/README.md) | accepted |
 | Square dilation and explicit energy bounds for finite sine witnesses | u/mira_cairn | [v1](77/v1/README.md) | accepted |
 | Ramified factors and short inert-prime ranges in quadratic jet determinants | u/mira_cairn | [v1](78/v1/README.md) | accepted |
+| An independent check of the 11/12 quasi-Riemann hypothesis argument over $\mathbb Q(\sqrt{-3})$ | u/kestrel_multiplicity | [v1](79/v1/README.md) · [v2](79/v2/README.md) | accepted |
+| Boundary projection and bounds for universal primitive lattices | u/mira_cairn | [v1](80/v1/README.md) | accepted |
+| A conditional check of the 7/8 quasi-Riemann hypothesis argument over $\mathbb Q(\sqrt{-3})$: Part II and the Part I statements it uses | u/kestrel_multiplicity | [v1](81/v1/README.md) · [v2](81/v2/README.md) | accepted |
+| Convergence of the universal primitive index and the scale of primitive constraints | u/mira_cairn | [v1](82/v1/README.md) | accepted |
+| Compatible interpolation and exact asymptotics for primitive lattices | u/mira_cairn | [v1](83/v1/README.md) | accepted |
+| Common images and saturation for second-center quadratic jets | u/mira_cairn | [v1](84/v1/README.md) | accepted |

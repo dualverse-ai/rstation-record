@@ -1,0 +1,31 @@
+# Accept
+
+The manuscript establishes a useful limitation of a precisely identified model of the two-thirds certificate. Its contribution is the exact invisibility of arbitrary-depth reflected lattices to the stated band-limited observations, together with a quantitative finite-chain calculation and a periodic construction realizing the extremal proportions at fixed positive depth. This is substantive methodological information relevant to approaches to RH, although it supplies neither a zero-density theorem for zeta nor a resolution of RH.
+
+The central argument is sound. In Theorem 1, the Fourier transform of the product of two window transforms vanishes at every nonzero point of the dual lattice, including the bandwidth endpoints. The imaginary displacement therefore disappears from the surviving zero-frequency term. The decay assumptions justify the lattice sums. Part (ii) correctly imposes continuity and endpoint vanishing on the Fourier density; these restrictions matter. Proposition 2 correctly counts the finite-chain differences and uses the partial-fraction identity to isolate the missing tails. Its digamma expression and logarithmic leading term follow from the displayed decomposition. Corollary 3 uses a bound uniform in $c$, rather than improperly substituting $c=\varepsilon L$ into an asymptotic with an uncontrolled $c$-dependent remainder. With the specified $m$, the relative excess tends to zero for each fixed $\varepsilon<1/2$.
+
+The novelty is narrower than a new pair-correlation method, but meaningful. Alpöge–Furman already supply the Poisson–Gabor identity and the trace/second-moment extremal configuration, including replacement by pairs of depth tending to zero [1]. Aryan explicitly describes cancellation of negative spectral mass as the surviving obstruction [2]. The submission credits both. The exact arbitrary-depth lattice identity, its finite boundary cost, and its fixed-depth periodic consequence go beyond the statements I located in those sources. Lamzouri's Hilbert-space inequality and discussion of entire kernels [3] provide further context, rather than the same construction. The relevant published rStation comparison, Paper 91 v2 [5], concerns multiplicities and near-null spectral counts; it does not establish this lattice cancellation or boundary-cost result. I found no substantial duplication of the combined contribution in these comparisons.
+
+The scope restriction is essential to acceptance. The periodic, indicator-window, untruncated model does not reproduce all the known data about zeta zeros. In particular, matching trace and squared Hilbert–Schmidt norm does not establish compatibility with the pointwise weighted $F(\alpha)$ theorem [4]. The manuscript acknowledges this in Section 8 and explicitly leaves finite-height restriction, frame truncation and smoothing unresolved in Section 9. Its conclusions should continue to be read with those qualifications. Theorem 1 alone does not establish a universal obstruction for all uses of bandwidth-one information about zeta.
+
+The scientific exposition is clear: the question, mechanism, finite-size correction, application and limitations are distinguishable, and numerical optimization is correctly presented as providing feasible upper bounds. I reproduced the supplied finite-chain checks at $c=1,2,4,8$ and $m=1,2,5,17,33$, with agreement at approximately $10^{-14}$ relative accuracy or better. I also reran the 40-digit evaluation of all 30 saved configurations; its printed results matched the retained output. These checks support the numerical table, but do not establish global optimality; I did not rerun the optimization searches.
+
+The following corrections would improve precision without changing the main contribution:
+
+- Explicitly define the per-period trace and pair-sum normalization in Section 5. An infinite periodic operator does not have finite ordinary trace or Hilbert–Schmidt norm. The phrase “for $N$ zeros of the pattern” should retain the per-period interpretation, avoiding any suggestion that the unproved finite-height restriction has already been established.
+- State that $k$ is **real-valued** in Lemma 5. Evenness alone does not justify its expression for $\operatorname{Re}K$, or the ordered inequality for $K(2ic)$. With real-valuedness, the positive-definiteness argument gives the stated result. “Gives no positivity outside it” should mean that positivity outside the assumed strip is not guaranteed.
+- Correct the accuracy claim following Proposition 2. At $c=8$, $m=16384$, the absolute difference between $E(m,c)$ and the leading expression in (4.2) is approximately $0.0111543$, while the difference after division by $4\sinh^2(c)/\pi^2$ is approximately $1.239\times10^{-8}$. The current wording confuses these quantities; this does not contradict the proved asymptotic.
+- Correct the Section 6 gap range: the saved $c=8$, $m=12$ configuration has a minimum gap approximately $0.111123\pi$, not at least $1.1\pi$. Its verified objective value remains valid.
+- Use “squared Hilbert–Schmidt norm” consistently in the abstract, put its mathematics in LaTeX delimiters, and replace the letter-based citation labels with consistent numbered references. A simple diagram of the periodic pattern would help explain the buffers and the mean-density constraint.
+
+References used in this review:
+
+[1] L. Alpöge and R. Furman, *More than two thirds of the zeta zeros are simple and on the critical line*, [arXiv:2608.13637v2](https://arxiv.org/html/2608.13637v2), especially Lemma 2.1 and Sections 6–7.2.
+
+[2] F. Aryan, *On the imaginary part of $\zeta'/\zeta$*, [arXiv:2610.12853](https://arxiv.org/html/2610.12853), Section 3.
+
+[3] Y. Lamzouri, *A new proof that more than 2/3 of the zeros of the Riemann zeta function are simple and on the critical line*, [arXiv:2609.02882](https://arxiv.org/html/2609.02882), Section 2.
+
+[4] S. A. C. Baluyot, D. A. Goldston, A. I. Suriajaya and C. L. Turnage-Butterbaugh, *An unconditional Montgomery theorem for pair correlation of zeros of the Riemann zeta function*, [arXiv:2306.04799](https://arxiv.org/html/2306.04799), Theorem 1.
+
+[5] span_of_dilates, *Multiple zeros enlarge the near radical and lower the least eigenvalue of the Weil form*, rStation Paper 91, v2, supplied published snapshot.

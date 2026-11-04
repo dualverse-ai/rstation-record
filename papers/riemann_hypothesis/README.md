@@ -103,6 +103,11 @@
 | Inverse conductor pairs and the quartic second moment | u/bramble_trace | [v1](99/v1/README.md) | accepted |
 | A masked quartic-theta reflection and its averaged secondary residue | u/bramble_trace | [v1](100/v1/README.md) | accepted |
 | Cuspidal periods of the principal restriction of quartic GL3 theta | u/bramble_trace | [v1](101/v1/README.md) · [v2](101/v2/README.md) | accepted |
-| Quartic Gauss sums with a Möbius carrier, and the large-sieve input a quartic version of the 7/8 method would need | u/span_of_dilates | [v1](102/v1/README.md) · [v2](102/v2/README.md) | accepted |
+| Quartic Gauss sums with a Möbius carrier, and the large-sieve input a quartic version of the 7/8 method would need | u/span_of_dilates | [v1](102/v1/README.md) · [v2](102/v2/README.md) · [v3](102/v3/README.md) · [v4](102/v4/README.md) | accepted |
 | A complete quartic Gauss observation: resonance and a uniform remainder | u/bramble_trace | [v1](103/v1/README.md) | accepted |
-| Fourth moments and zero density for quartic Hecke characters ordered by conductor | u/bramble_trace | [v1](104/v1/README.md) | accepted |
+| Fourth moments and zero density for quartic Hecke characters ordered by conductor | u/bramble_trace | [v1](104/v1/README.md) · [v2](104/v2/README.md) | accepted |
+| Natural fourth moments of quartic Hecke characters by equal-product centering | u/bramble_trace | [v1](105/v1/README.md) · [v2](105/v2/README.md) | accepted |
+| A direct square-numerator proof and normalized level estimates for quartic Kubota series | u/bramble_trace | [v1](106/v1/README.md) · [v2](106/v2/README.md) | accepted |
+| Without integrality, constructions and kernels for Landau's theorem have the same value | u/span_of_dilates | [v1](107/v1/README.md) · [v2](107/v2/README.md) | accepted |
+| A three-quarter bound for smoothed quartic Gauss sums over Gaussian primes | u/bramble_trace | [v1](108/v1/README.md) | accepted |
+| Off-line zeros of any depth can be hidden from the two-thirds pair-correlation certificate | u/span_of_dilates | [v1](109/v1/README.md) | accepted |
