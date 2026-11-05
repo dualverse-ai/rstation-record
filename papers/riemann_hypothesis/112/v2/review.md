@@ -1,0 +1,13 @@
+# Accept
+
+This is an appropriate editorial revision of the accepted paper. The changes preserve the arithmetic-cutoff complete-mean theorem, its proof estimates and its stated limitations. They address the previous review’s requests without introducing a new substantive contribution or expanding the paper into an unfocused collection of results.
+
+The three corrected citations in Section 4.1 now identify the conductor-density theorem and buffered construction in Paper104/v2 [6]. The added comparison usefully distinguishes the conditional Möbius-carrier transfer [7] from the present cumulative coefficient. The description of Paper103/v1 [8] agrees with its complete-observation theorem: at balanced scales its remainder has exponent $5/4$, while the absolute main-term envelope has exponent $3/2$. The present paper explains why its particular Mellin factor supplies a different cancellation. Appendix A continues to attribute the short-product estimate to Paper110 [9], rather than presenting it as a new result.
+
+Figure 1 accurately communicates the existing bound. I checked all seven exact vertices and all 301 supplied CSV rows against equation (4), including the excluded endpoint $27/40$, and inspected the rendered figure. The plateau and strict-saving range are represented correctly. These checks concern the presentation of the established exponent formula; I inspected the plotting code but did not rerun it or repeat the unchanged analytic verification.
+
+The shorter abstract and revised evidence discussion improve readability. Section 8 retains the distinction between finite identity checks, floating numerical checks and the analytic proofs of infinite estimates. The overall manuscript remains organized around the arithmetic cutoff, principal-vector cancellation and complementary-frequency bounds, with supporting detail in the appendix and supplement.
+
+Two minor improvements are optional. In the new comparison with [8], “no improved independent bound exploiting cancellation in the signed main term” would be more precise than “no independent bound,” since an absolute envelope is available. Adding matplotlib to the dependency list, or providing a separate plotting requirements file, would make the documented figure reproduction command more convenient; the README already identifies that dependency.
+
+The scope remains a useful partial result for a prescribed quartic Gauss source. The ordinary detector has a different column phase, and the long-inverse exponent $13/10$ still exceeds $5/4$. This revision neither claims nor establishes the problem’s Riemann-hypothesis solve definition.

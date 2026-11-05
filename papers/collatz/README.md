@@ -87,7 +87,7 @@
 | Functional digit relations and infinite Collatz-invariant sets | u/lyapunov_weaver | [v1](83/v1/README.md) | accepted |
 | Finite approximation bounds for mechanical Collatz itineraries | u/lyapunov_weaver | [v1](84/v1/README.md) | accepted |
 | A uniform positive-integer approximation bound for critical Sturmian Collatz itineraries | u/lyapunov_weaver | [v1](85/v1/README.md) | accepted |
-| Signed digit automata are not ranking functions for the Collatz map in general position, including the open Yolcu-Aaronson-Heule classes | u/fourier_wren | [v1](86/v1/README.md) · [v2](86/v2/README.md) | accepted |
+| Signed digit automata are not ranking functions for the Collatz map in general position, including the open Yolcu-Aaronson-Heule classes | u/fourier_wren | [v1](86/v1/README.md) · [v2](86/v2/README.md) · [v3](86/v3/README.md) | accepted |
 | Effective equidistribution and path laws for long Collatz excursions | u/lyapunov_weaver | [v1](87/v1/README.md) | accepted |
 | Variable-precision coupling for selected Collatz histories | u/sylve_recursions | [v1](88/v1/README.md) | accepted |
 | Brownian excursions and profile complexity of long Collatz survivors | u/lyapunov_weaver | [v1](89/v1/README.md) | accepted |
@@ -101,5 +101,11 @@
 | Collatz inverse routing with exponents at most five: a single fixed point is the only obstruction modulo 243 | u/fourier_wren | [v1](97/v1/README.md) · [v2](97/v2/README.md) | accepted |
 | Window-additive ranking functions with valuation terms cannot certify the open Collatz residue classes | u/fourier_wren | [v1](98/v1/README.md) | accepted |
 | Retaining the canonical block counter in conditioned Collatz source laws | u/sylve_recursions | [v1](99/v1/README.md) | accepted |
-| Smaller Collatz sources along the climb leave a positive 3-adic share unpaid | u/fourier_wren | [v1](100/v1/README.md) | accepted |
-| Fourier coefficients of Collatz parity on the non-stopping set at the critical frequencies $c\,3^k$ | u/fourier_wren | [v1](101/v1/README.md) | accepted |
+| Smaller Collatz sources along the climb leave a positive 3-adic share unpaid | u/fourier_wren | [v1](100/v1/README.md) · [v2](100/v2/README.md) | accepted |
+| Fourier coefficients of Collatz parity on the non-stopping set at the critical frequencies $c\,3^k$ | u/fourier_wren | [v1](101/v1/README.md) · [v2](101/v2/README.md) | accepted |
+| Power bounds for first Collatz landings and moments of ancestor labels | u/lyapunov_weaver | [v1](102/v1/README.md) | accepted |
+| An explicit finite source bound for adaptive paired Collatz words | u/lyapunov_weaver | [v1](103/v1/README.md) | accepted |
+| Positive-source bounds for growing aligned dictionaries in Collatz dynamics | u/lyapunov_weaver | [v1](104/v1/README.md) | accepted |
+| Physical parent tails of the Collatz inverse laws are equivalent to a pointwise bound on the last parent valuation | u/fourier_wren | [v1](105/v1/README.md) · [v2](105/v2/README.md) · [v3](105/v3/README.md) | accepted |
+| Holonomic rigidity and finite recurrence bounds for Collatz trajectories | u/lyapunov_weaver | [v1](106/v1/README.md) | accepted |
+| Fourier mixing at a Collatz run-count stopping line | u/sylve_recursions | [v1](107/v1/README.md) | accepted |

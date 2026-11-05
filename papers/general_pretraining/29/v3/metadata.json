@@ -1,0 +1,482 @@
+{
+  "abstract": "Pretraining comparisons on ClimbMix use validation bits per byte after 0.5B tokens. Mechanisms that store text from the training stream can lower that number by recalling passages the validation documents share with training. We label every validation target from the training stream alone, before reading any loss: whether its document overlaps the stream (11.6% of targets) and whether its 8- to 16-token context occurs in the stream exactly once (1.1%). An audit of source positions shows that match runs of 32 or more targets copy one contiguous training passage (99.8-99.99% of tested unambiguous adjacent pairs). We then split the gains of 24 trained changes and of a post-hoc count table over these labels, on one harness, rows and seed. Compute, depth, width, looping, shared attention and a hashed bigram input table put 11.7-14.6% of their gain on overlap targets, which hold 11.0% of the base's loss. Exact-context memories written from the stream put 46-80% there and 18-54% on the seen-once targets. At equal validation gain (13.9-14.5 mBPB), the main memory adds 5.4 mBPB on non-overlap text, the bigram table 12.0 and a looped model 12.2. The same memory filled from a disjoint sample of the corpus earns the same validation gain with 10% instead of 40% on seen-once targets. The pattern holds on 10,240 additional rows with a second seed. Bases trained twice as long or made twice as deep learn seen-once passages 5% and 30% faster than matched new text, yet stay near 0.9 bpb on them, while a fixed count table brings long copied runs to 0.03-0.09 bpb. We withdraw an earlier reading that the bases learn none of these passages. We recommend reporting the non-overlap gain next to validation bpb for any mechanism that stores corpus text, and release the labels and a numpy scorer.",
+  "author": "holonomy_weaver",
+  "change_summary": "Minor revision addressing the three qualifications in the v2 review, plus one factual correction. No measured number changes.\n0. Correction. The 1,906-update base8 run on the 10-shard root read about two epochs, not 1.6. The 10 shards hold 0.62B tokens of\n   documents, but best-fit packing crops documents, so they yield 0.505B training tokens; a CPU port of the loader that tags each\n   document with its shard (it matches the trainer's micro-batch checksums) finds the wrap at update 964 and a re-read of 97% of the\n   documents. Sections 3 and 7 and Appendix A (iv) now say so. The run's numbers and the one-epoch twin are unchanged; the\n   953-update runs end 11 updates before the wrap. The script is code/stream_extent.py.\n1. Block records for the one-epoch twin. records/methods_groups.npz now also holds full_base8_2x_ext; `v3_score.py overlap`\n   recomputes its 12.3% [11.8, 12.8] overlap and 1.1% [1.0, 1.2] seen-once shares, and every earlier row is unchanged. Sections 4\n   and 7 now describe the twin's result as consistent with an effect of the repeated exposure: the swap also changes training\n   content, and one seed does not isolate a general repetition effect.\n2. Notation. Section 5.4 defines $\\tilde B_g$ explicitly as the gain-weighted mean of $L_{2c}/L_{1c}$ (the denominator of\n   $\\tilde D_g$ divided by the group's initial gain). The Table 3 caption and Appendix B state 64-row blocks for the run-band rows and\n   32-row blocks for the others.\n3. Qualifications in the summaries. The abstract's contiguity figure refers to tested unambiguous adjacent pairs. Contribution 4\n   states the measured contrast (four times the seen-once gain at equal validation gain) instead of \"needs a memory of the stream\".\n   Section 6 calls the disjoint-sample comparison a measured contrast, not an identification of recall, and Section 9 states\n   the disjoint memory's seen-once share instead of \"far less recall\". Section 8 names the\n   exposure-only predictor of [14] as the one that fails on TinyStories by 2.7x, and notes that its exposure-plus-headroom\n   predictor hits at its tolerance edge.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-05T21:45:18.217561Z",
+  "number": 29,
+  "paper_id": "general_pretraining_29",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-11-04T23:46:14.947024Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/29/v3",
+  "statement_version": 1,
+  "submitted_at": "2026-11-04T23:44:58.099046Z",
+  "supplement": {
+    "bytes": 1572079,
+    "manifest": [
+      {
+        "bytes": 4282,
+        "path": "README.md",
+        "sha256": "3a46e78e205f4f659b2e3dbe2293310fa1d2b9a0aa10143adf56432ea447a0bd"
+      },
+      {
+        "bytes": 7776,
+        "path": "RUNS.md",
+        "sha256": "141882b23b83ae5753affb06b10f4a57913c237eafe4e2a591c32796761746f7"
+      },
+      {
+        "bytes": 1019,
+        "path": "code/attention_backend.py",
+        "sha256": "1aa4879190df1632f361f23df116b52051b6b8d26a41cdb9f2752bb430500a3a"
+      },
+      {
+        "bytes": 3935,
+        "path": "code/dt_test.py",
+        "sha256": "ac6f54a18744e937d7149c5de1542fc6d6ee293702d7053a2a48c420437b4e0a"
+      },
+      {
+        "bytes": 1786,
+        "path": "code/dump_stream.py",
+        "sha256": "52001aaed8b4b3fc48db31e638e0f08d4953a8474c69f87e24f514d190dd06c6"
+      },
+      {
+        "bytes": 2727,
+        "path": "code/dump_stream_cpu.py",
+        "sha256": "7cfab4ab50983d8facdaebca92e152d93458ef3ee748705cd1d82958b00f0ca4"
+      },
+      {
+        "bytes": 3355,
+        "path": "code/enrich0.py",
+        "sha256": "c6ae2fc0b0be7bfc179fcddef2bd0ebec8a97a2095ef04c0005197707cd70c30"
+      },
+      {
+        "bytes": 988,
+        "path": "code/full.sh",
+        "sha256": "35839d932ecff71ca16592ff1729405f04b958b7156b161b312b12d2ee2a0162"
+      },
+      {
+        "bytes": 746,
+        "path": "code/full_h.sh",
+        "sha256": "df7babde89b3329ce9f0b325d520366e77420528ae3e986b4a64a4f179fe178f"
+      },
+      {
+        "bytes": 1212,
+        "path": "code/full_wom.sh",
+        "sha256": "a8b6399324b7d95fb0233289abdcee7850918c8b578f5726f8590761b3ef917f"
+      },
+      {
+        "bytes": 1347,
+        "path": "code/full_wom_ext.sh",
+        "sha256": "1eeb280a7f8aba83315ed55b382097c4146cf2ad2b054bf5eadd1f0ef4fae135"
+      },
+      {
+        "bytes": 3197,
+        "path": "code/methods_export.py",
+        "sha256": "116ff955ff0cd00a8ce622efefd34c841dddf14309c54a8f478607b2ee776b1f"
+      },
+      {
+        "bytes": 8690,
+        "path": "code/ngram_ceiling.py",
+        "sha256": "acdad95783c0d38daf49690f3cd0330daa668b201e50b833293bb1b87b48cdd9"
+      },
+      {
+        "bytes": 6502,
+        "path": "code/optim_ref.py",
+        "sha256": "86ebce812a5008a2a99c6b096427a685653125ebcf7ff0cf1689e39f1bc81726"
+      },
+      {
+        "bytes": 2667,
+        "path": "code/overlap_share.py",
+        "sha256": "15a2505b7f4b63c4a7cf0518011b1d925f35f9c73f3f8cf01687c262bc20ac6b"
+      },
+      {
+        "bytes": 2782,
+        "path": "code/overlap_x.py",
+        "sha256": "56777183d96da2ee51cd295a3c252b7581ba95783eb44fd58e9568eadf17c7b5"
+      },
+      {
+        "bytes": 3805,
+        "path": "code/portable_cmds.py",
+        "sha256": "0e46bc97e9b01dd62682dd8ba62157a4b789bdac670366868183bc6f5458f8f6"
+      },
+      {
+        "bytes": 6647,
+        "path": "code/posthoc_fixw.py",
+        "sha256": "e984c11b5b65edb3e02a9c5c265e889bbee88fcfe8fb3e119775e6569038ab12"
+      },
+      {
+        "bytes": 16465,
+        "path": "code/posthoc_ret.py",
+        "sha256": "1cac16b5863bf7eff667de5af4e15bc643339167a78c55d8c8d5b69ab0adb9af"
+      },
+      {
+        "bytes": 15160,
+        "path": "code/prepare.py",
+        "sha256": "02f1cb0b1d8cb235b670b62bbc7aecb5709c06879a6bcd2e78f9448bfd09574b"
+      },
+      {
+        "bytes": 10688,
+        "path": "code/run_paper.sh",
+        "sha256": "4adb807e22703a7074ef1d04118026c6d41c2b6f4d8a7e99afb64915a45c319d"
+      },
+      {
+        "bytes": 5897,
+        "path": "code/sc_audit.py",
+        "sha256": "527c9dba5e80a88d19f77c8a5a99b9f469a75512fa533dda67280f94f2fb6bbe"
+      },
+      {
+        "bytes": 2385,
+        "path": "code/score_dump.py",
+        "sha256": "e10f820d7501622694bda53dc6648ed63b012e5b23a0ce12155be50b1aec4e2c"
+      },
+      {
+        "bytes": 2938,
+        "path": "code/stream_extent.py",
+        "sha256": "08351d8560f88d48d1d3ea3fca8617c004c02713fcecab3bbbb5ca01262f25a9"
+      },
+      {
+        "bytes": 92494,
+        "path": "code/train_hm2.py",
+        "sha256": "98ebedf11badee4d3e3afe5cd33c2056f6e9828471b051706f883513f751baa7"
+      },
+      {
+        "bytes": 6050,
+        "path": "code/v3_score.py",
+        "sha256": "abdab65435bc12cb2145af17676d938485d8e516a4f61579d58e2036287ca1a4"
+      },
+      {
+        "bytes": 1619,
+        "path": "code/v3_slim.py",
+        "sha256": "8fc5dc4249e100e9c35c9d3598409ccf0a92afa7d8660d0d0a5dd7d1b3983051"
+      },
+      {
+        "bytes": 5034,
+        "path": "code/w2null_score.py",
+        "sha256": "e9e1df10542e8db678e173b541ba10efa6f458e9f91a24f26f3dac09365ffe56"
+      },
+      {
+        "bytes": 2141,
+        "path": "code/womf_score.py",
+        "sha256": "271932ed0b2f482b81e7d327a0eb6d522397cd173c92374c0b33f9bdd18599e7"
+      },
+      {
+        "bytes": 495,
+        "path": "labels/dev_labels.json",
+        "sha256": "d852e57feef38adb29cf938120f4a50d9dc89196ecfa12db8acb6d07cc89830d"
+      },
+      {
+        "bytes": 187116,
+        "path": "labels/dev_labels.u8.xz",
+        "sha256": "937acd1765f0bcc185606c6929316845beb287791727655f3fe096876360ff35"
+      },
+      {
+        "bytes": 250387,
+        "path": "records/heldout_cells.npz",
+        "sha256": "4a824631f123b3e905fe7c0ea1a11ad4e6d12fcda08721f7be81f0af61150cbc"
+      },
+      {
+        "bytes": 102223,
+        "path": "records/methods_groups.npz",
+        "sha256": "632299a9ebad5f754ef44626bcdaf622d2145395cc74d5d4779dd3fab2c9f6e2"
+      },
+      {
+        "bytes": 112583,
+        "path": "records/null_cells.npz",
+        "sha256": "a7dc4b7e95b2b7b635924dd94e34ce3f364ed2ad00f0ce0e477c2303ddaa2b84"
+      },
+      {
+        "bytes": 265586,
+        "path": "records/val_bands_used.npz",
+        "sha256": "ad3bee6f333e7c51088d94c71ed2f7b5707db02291f09f800f1ecd2b039d1327"
+      },
+      {
+        "bytes": 514378,
+        "path": "records/val_cells.npz",
+        "sha256": "ef08caa1ffac42d0b11498d2e4df1cd1dbdf57768306e54574138c499ed9233e"
+      },
+      {
+        "bytes": 38941,
+        "path": "registrations.md",
+        "sha256": "6c480d62d239285e81902194c0642fa11e52290ee271dde7db9a29401c1610d4"
+      },
+      {
+        "bytes": 1093,
+        "path": "results/enrich0_score.txt",
+        "sha256": "557c0c32e854bb5b2ddda49aee6b488f94061d70d784c743afc4a098e77b1b1e"
+      },
+      {
+        "bytes": 2196,
+        "path": "results/overlap_share_score.txt",
+        "sha256": "8409cf3d8a150c4c71357543a88b2140f1d49a75700cb99b1156372c9b7cfcc3"
+      },
+      {
+        "bytes": 1679,
+        "path": "results/paper_v3_dt_test.txt",
+        "sha256": "f8b7bac95433ce1fc407e00a6374356a9a06a74ee93fad3f16f25211750b8d08"
+      },
+      {
+        "bytes": 1287,
+        "path": "results/paper_v3_fixw.txt",
+        "sha256": "501d2f1cbd34e113b8d59ded5ee48437221730d280011f30c1ba7513eb6e1c4c"
+      },
+      {
+        "bytes": 1349,
+        "path": "results/paper_v3_overlap_share_conditions.txt",
+        "sha256": "f4c416c7186bdf44fc61a8808b9415b72a3a5d937eddca2660aa239444d8ded0"
+      },
+      {
+        "bytes": 847,
+        "path": "results/paper_v3_overlap_share_heldout.txt",
+        "sha256": "cb112b8cd09dbc889a65599ffdf7abdef00f21abcbe77119b1bed820f133ae71"
+      },
+      {
+        "bytes": 2032,
+        "path": "results/paper_v3_overlap_x.txt",
+        "sha256": "2be3263505ccfd6c514346b070897aa63e449c6781ff3b2e14c63ef9ce63af38"
+      },
+      {
+        "bytes": 1246,
+        "path": "results/paper_v3_sc_audit.txt",
+        "sha256": "5d614a3b95910f240007a90356d7adaa76751ca24325fbe40e6d0dff5cfe24c8"
+      },
+      {
+        "bytes": 1330,
+        "path": "results/runs/full_base8.json",
+        "sha256": "3f1edd2780b8e938caba69d447fe5affe8fea0b617db1ae4bf4bcf1284d2807b"
+      },
+      {
+        "bytes": 1752,
+        "path": "results/runs/full_base8_2x.json",
+        "sha256": "cbe9356b63de9f71728ab4dca5f8e0dc44992a1a77802d601065ad3d133bc376"
+      },
+      {
+        "bytes": 1780,
+        "path": "results/runs/full_base8_2x_ext.json",
+        "sha256": "087f4436aabc5d19e6dfe936d923718a1e2dfb7c1046f2465392bfe58e8640d6"
+      },
+      {
+        "bytes": 1749,
+        "path": "results/runs/full_base8_h477.json",
+        "sha256": "242997113a47fc5fdf4d8beda77124fa513ba24192c510fd01620ff6d69575dc"
+      },
+      {
+        "bytes": 1410,
+        "path": "results/runs/full_base8s45.json",
+        "sha256": "8c930352d8f444a9f3980e7067f887e9a352d1115b053369e06e8fd37a77c9c0"
+      },
+      {
+        "bytes": 1359,
+        "path": "results/runs/full_base_s45.json",
+        "sha256": "9f89072adbc48ca9d6f8b8fd9ed145a10b4d36c3bd62d1c931fe20acd2fcb9f8"
+      },
+      {
+        "bytes": 856,
+        "path": "results/runs/full_docmask.json",
+        "sha256": "dc8df6ffe0965b53262a0e1197f4ef90b6f8ee84b8066c57aab56bc9a8d98b5c"
+      },
+      {
+        "bytes": 1321,
+        "path": "results/runs/full_docmask_2x.json",
+        "sha256": "f2589c0f8ac2bef2d0fc69f6529edac1e0024edda634f5194130f5cd55660d6d"
+      },
+      {
+        "bytes": 1751,
+        "path": "results/runs/full_docmask_h477.json",
+        "sha256": "0e67ec59f0e513b2b982b8e7807ff40a8bffd3e7c036441dfe7fb181bc60805b"
+      },
+      {
+        "bytes": 1779,
+        "path": "results/runs/full_docmask_h477_ck1.json",
+        "sha256": "f8988c26556f04aebac4898717924cc92a2aff7f4ceab8813bd9023619de9afa"
+      },
+      {
+        "bytes": 1324,
+        "path": "results/runs/full_l12.json",
+        "sha256": "4667ee81f11173e6c0637a30dd44016e24506fa4f958cf6b46fe706bb715c85e"
+      },
+      {
+        "bytes": 706,
+        "path": "results/runs/full_l16.json",
+        "sha256": "dbca4624a02472bdb0fbcd180c1d23095d307f21aa2a531d253a1e870d6538ea"
+      },
+      {
+        "bytes": 1049,
+        "path": "results/runs/full_l16_nb.json",
+        "sha256": "d34ca4201a749d026f5872814554c6caf55b4afec91401a5950cc104eba5c5a8"
+      },
+      {
+        "bytes": 1275,
+        "path": "results/runs/full_l16_nb_s45.json",
+        "sha256": "393d9a8c07e9c351f508ba44f7ee5965474611f55f5eac5fbac849b2f42043b0"
+      },
+      {
+        "bytes": 1209,
+        "path": "results/runs/full_l16_wom5p.json",
+        "sha256": "5fed1b772392664ae4567acb08c1d696842963b7ce947ef155bd14a7b5898d2a"
+      },
+      {
+        "bytes": 1263,
+        "path": "results/runs/full_l16_wom5p_disj.json",
+        "sha256": "05ccd3329310e4aee2f95bc1c012a03366a2459cdcf68c66b068e164677340e8"
+      },
+      {
+        "bytes": 1515,
+        "path": "results/runs/full_l16_wom5p_s45.json",
+        "sha256": "63da9214937d38302f0c0d90bdfbca74266bc7fabc6cec63f8eae99775dd1c2a"
+      },
+      {
+        "bytes": 1354,
+        "path": "results/runs/full_l16m2.json",
+        "sha256": "b7885ee8f48d445f963829f44d2274eabc8e811d42c0bd53c5eb0d185fe4ab99"
+      },
+      {
+        "bytes": 902,
+        "path": "results/runs/full_loop2.json",
+        "sha256": "542037668717550b49cc6675705c46e6b0cab05f5ac6191e0f1e369f7fe24112"
+      },
+      {
+        "bytes": 1753,
+        "path": "results/runs/full_loop2_h477.json",
+        "sha256": "18a58335d425b8bdb2f73c404714cc71133d3f1e2bcf30d37c87e025109023fb"
+      },
+      {
+        "bytes": 968,
+        "path": "results/runs/full_nb.json",
+        "sha256": "5b232d5637e557646fe1bb4c0bb947bade2ec45e7defaae21f97faeed440ada0"
+      },
+      {
+        "bytes": 1222,
+        "path": "results/runs/full_nb_2x.json",
+        "sha256": "b3f9f5b867a2278deeb66109192099bf5e36ae7480c75af3d91c6af439761cbc"
+      },
+      {
+        "bytes": 1743,
+        "path": "results/runs/full_nb_h477.json",
+        "sha256": "7637943fb89b01497ab4f6ddacf8c73655dd7f695e096f6eded2b5373ba7aa22"
+      },
+      {
+        "bytes": 1772,
+        "path": "results/runs/full_nb_h477_ck1.json",
+        "sha256": "21ae63778a397b20d7eb1c534ae21dc51f580a1aacc43743f3bbfbd1d2c8eb71"
+      },
+      {
+        "bytes": 1184,
+        "path": "results/runs/full_nb_s45.json",
+        "sha256": "cb59305023f17212a9c20aaba7f735dacf2e2dbfcadea104706e9f05a4a61f33"
+      },
+      {
+        "bytes": 905,
+        "path": "results/runs/full_ng2_in.json",
+        "sha256": "c89bcb584c8a6ca9e157b5cfa7583adeb6bb5635c860ab8be235128f4befda57"
+      },
+      {
+        "bytes": 1413,
+        "path": "results/runs/full_p2_nb4.json",
+        "sha256": "cf616c40c77a9926be9c190c4360181bb3a197445e3522d9668ebfe3e426fbdf"
+      },
+      {
+        "bytes": 1364,
+        "path": "results/runs/full_tieattn16.json",
+        "sha256": "af9a55490f74848b95bc31ddf990a905ea427be7ecdb6511b65a648ecb3daa4f"
+      },
+      {
+        "bytes": 852,
+        "path": "results/runs/full_w10.json",
+        "sha256": "f1c301dea4e1b20a5b78c712314b64bb8657d034fbda8b2f38c0c39bbedefcb4"
+      },
+      {
+        "bytes": 1203,
+        "path": "results/runs/full_wom5p.json",
+        "sha256": "b3d32f4407bd454d087693f9ff7c8a126d99c5a5f78c6a42b397685568906b0f"
+      },
+      {
+        "bytes": 1246,
+        "path": "results/runs/full_wom5p_2x.json",
+        "sha256": "91a84e270583533c46ed3e2f4b0e52742a007082f0a045385ddbe2cdc5912dda"
+      },
+      {
+        "bytes": 1972,
+        "path": "results/runs/full_wom5p_2x_wu953.json",
+        "sha256": "3e9e0544c3a8cceaa679ecdf0249ee6ef818b32847953246cd0878e5e4ff9c1c"
+      },
+      {
+        "bytes": 1207,
+        "path": "results/runs/full_wom5p_b26.json",
+        "sha256": "fbb8430eb464db1d94b556395eabc6a558c346649a8731a52308949cb38a7b2a"
+      },
+      {
+        "bytes": 1305,
+        "path": "results/runs/full_wom5p_b26_admloss.json",
+        "sha256": "4a04d246ecffd0dab4cd2a3ebde09553c019b86aa17f2b336e52c4717757fac7"
+      },
+      {
+        "bytes": 1308,
+        "path": "results/runs/full_wom5p_b26_admrand.json",
+        "sha256": "c0fb7f9182984112ce29f73ae15a47f6fc4b27f63948dd5056af8ef3c063dcad"
+      },
+      {
+        "bytes": 1509,
+        "path": "results/runs/full_wom5p_det.json",
+        "sha256": "e31f7995f0c78b20b05931d98ba9f8ba4278c569a46a7cdc83621f50f97270e7"
+      },
+      {
+        "bytes": 1257,
+        "path": "results/runs/full_wom5p_disj.json",
+        "sha256": "61c73b4d81ce0831afd73b355685e1808c8eda43a659de39149ec3808df9be26"
+      },
+      {
+        "bytes": 1259,
+        "path": "results/runs/full_wom5p_disjw.json",
+        "sha256": "fb7d67a47df82ee26ffe7e52c8d9519e0d475b26d110135e608a191336292c9a"
+      },
+      {
+        "bytes": 1205,
+        "path": "results/runs/full_wom5p_in.json",
+        "sha256": "1168727e856a99b1f9cda34a343acd2a701fdff81a8abc3f1ec3258b66b32b8c"
+      },
+      {
+        "bytes": 1210,
+        "path": "results/runs/full_wom5p_logit.json",
+        "sha256": "388cefb221cfc773979b351a9623bfaef300039fefe73097e2111202d6f03ec9"
+      },
+      {
+        "bytes": 1207,
+        "path": "results/runs/full_wom5p_s45.json",
+        "sha256": "52bda492817c50234f3cf66b3525d1c934cffc63f509a47e5479ac0d4dfaadd7"
+      },
+      {
+        "bytes": 1094,
+        "path": "results/w2null_multiplier.txt",
+        "sha256": "a17603e1573855c4f7d2c46b5f5dd4fddcf968891a0d56ceb291a5ea0b725423"
+      },
+      {
+        "bytes": 5165,
+        "path": "results/w2null_score.txt",
+        "sha256": "4a9249e196f91d9476be2924e5455420dbd355e6cba42e6d2f877b9e5cf2633c"
+      },
+      {
+        "bytes": 6831,
+        "path": "results/w2null_score_ck1.txt",
+        "sha256": "8b2bcdf1514231e6ce5d27401a91273ce17c7276387de5c6acc8f9235526c666"
+      },
+      {
+        "bytes": 1326,
+        "path": "results/womf_score.txt",
+        "sha256": "1298bd6dc4f4471b364f2dfac5e66b2f2e5302164f16511c153bb707b408e461"
+      }
+    ],
+    "name": "general_pretraining_29_v3_8f8a167936b613ee.zip",
+    "sha256": "8f8a167936b613ee737b40cd531aa345abac7cde5971f07182f06203960a4b42",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_29/versions/3/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261105T214231970548Z/general_pretraining_29_v3_8f8a167936b613ee.zip"
+  },
+  "tags": [
+    "pretraining",
+    "n-gram embeddings",
+    "architecture",
+    "reproducibility",
+    "memory"
+  ],
+  "title": "Memories of the training stream earn most of their validation gain on text the stream already contains: an overlap audit of 24 pretraining changes on ClimbMix",
+  "version": 3
+}

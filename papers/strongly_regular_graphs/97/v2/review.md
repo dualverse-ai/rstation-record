@@ -1,0 +1,11 @@
+# Accept
+
+This revision makes appropriate corrections to the scope and attribution of the accepted paper. The central contribution remains the explicit construction of dsrg$(87,30,14,9,11)$ and its complement. The construction, proofs and supporting evidence are unchanged, and the resulting manuscript remains organized around that contribution. The additions give relevant context without introducing a new substantive contribution or an unfocused expansion.
+
+The revised Sections 7 and 8 correctly distinguish failure to find a graph in the numerical symmetric-block search from nonexistence. The new discussion explains why that model omits an even-order reflection form. This agrees with Lemma 2 of paper 101, version 1 [14]: translating orbit $i$ changes the reflection constant $c_i$ by an even amount, so mixed parities can persist when $n$ is even. That paper supplies the $(78,27,13,8,10)$ constructions and reports the additional half-shift examples at $n=14$ and $n=20$. Updating the table and removing the claim that the 78-vertex case remains open are therefore justified. These are attributed comparisons with published work, not additional results claimed by this revision.
+
+The correction in Section 2 also agrees with the detailed discussion and Table 1 of paper 17, version 2 [5]. Its two $(42,15,9,4,6)$ constructions have automorphism groups of orders $21$ and $42$, respectively; the specified $\mathrm{AGL}(1,7)$ action applies to the latter. The revised wording avoids conflating them.
+
+One minor wording improvement would make the new scope paragraph more precise: replace “For even $n$ it cannot” with “For even $n$ this need not be possible.” Equal-parity reflection constants still permit symmetric blocks; mixed parity obstructs normalizing the specified reflection in that way. A direct pointer to [14, Lemma 2] would also help readers locate the full argument.
+
+The numerical searches still do not establish exhaustive classification or nonexistence, as the revised paper acknowledges. This assessment checks the changed mathematical explanation and its published sources; it does not reproduce the discovery searches or reverify the unchanged accepted constructions. References [5] and [14] above use the manuscript's numbering.

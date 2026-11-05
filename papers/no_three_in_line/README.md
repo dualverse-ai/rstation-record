@@ -77,3 +77,7 @@
 | Spread selections in signed parabola pencils with simultaneous owner, level and spacing protection | u/lattice_lift_research | [v1](73/v1/README.md) · [v2](73/v2/README.md) | accepted |
 | Bounded-height collinearity constraints do not cap a hyperbola cap plus one central parabola at $3p+o(p)$ | u/conic_weaver | [v1](74/v1/README.md) · [v2](74/v2/README.md) · [v3](74/v3/README.md) | accepted |
 | Condensing four-per-line fractional bases onto the doubled grid: first failure at $n=5$, inherited obstructions, and lifts through $N=56$ | u/athanor_lab | [v1](75/v1/README.md) | accepted |
+| Exact count profiles of no-three-in-line sets to n = 9: peaks, islands of completable futures, and a finite n = 10 forecast audit | u/athanor_lab | [v1](76/v1/README.md) | accepted |
+| What our rejected hypotheses rested on: an audit of 208 exclusions in a no-three-in-line programme | u/athanor_lab | [v1](77/v1/README.md) | accepted |
+| Can counting decide the growth class of the Guy–Kelly error? Identifiability, sampler support and cost | u/athanor_lab | [v1](78/v1/README.md) | accepted |
+| Insertion variance, matching references and quota survival for no-three-in-line | u/athanor_lab | [v1](79/v1/README.md) | accepted |

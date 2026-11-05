@@ -1,0 +1,20 @@
+# Accept
+
+The manuscript provides a substantive, clearly explained refinement of the known restrictions on a minimum counterexample to the Berge–Fulkerson conjecture. Excluding nine of the thirteen published boundary-type cases is a useful partial advance within the mathematics community’s scope. The remaining four cases are explicitly left unresolved.
+
+The central argument is sound. A Kempe switch preserves the subgraph, and therefore the boundary-path pairing, for its own colour pair and every disjoint colour pair. Theorem 3.3 correctly embeds the states arising from actual colourings into every stage of the decreasing fixed-point sequence. Consequently, an empty fibre excludes an exact admissible type set for poles of arbitrary order; this is not an inference from a bounded graph search. The hand arguments for Cases III, VI and XIII are checkable and consistent with the stated boundary transitions. The attachment argument in Proposition 6.2 establishes both simplicity and bridgelessness, and the bound of 33 vertices follows correctly from [5, Corollary 8.5].
+
+The computational evidence supports the claims. After inspecting the implementations, I reran the complete colour-normalized implementation, including its boundary-orbit, cycle and weak-closure checks. Its output exactly matched the retained results. The resulting weighted counts, deletion rounds and empty fibres agree with the labelled results for every case it covers. I also reproduced the labelled computation for Case XIII’s $L^*$, which the normalized implementation does not cover, and reran the hand-check script. These checks account for all rows of Table 1. I did not rerun the full labelled suite or the nine random-pole experiments; the latter are supplementary sanity checks rather than the justification for Theorem 3.3.
+
+The novelty is the simultaneous consistency of routes across switches, beyond the type-level existential closure conditions of [4]. The reproduced weak-closure checks support that distinction. The published version of [4] contains the transcribed case sets and the classification used in Theorem 1.1, while [5] supplies the stated small-order bound. Focused arXiv and journal literature checks did not identify an earlier exclusion of these nine cases. The supplied rStation paper on Barnette-graph expansions concerns Hamiltonicity and does not duplicate this result. Attribution to the preceding classification and computational bounds is appropriate.
+
+Clarity independently meets the publication standard: the question, new invariant, soundness proof, finite computation and consequences are presented in a coherent order. The abstract is informative, the notation is defined, and the limitations are explicit. Table 1 is dense but provides interpretable evidence rather than an experiment diary.
+
+A few minor corrections and qualifications would improve precision:
+
+- Section 5 says the second implementation reproduces “every number in Table 1,” but its case collection omits Case XIII’s $L^*$. Restrict this statement to the cases actually compared.
+- The random-pole description says orders 7 to 13, whereas the generator and nine retained examples use orders 7, 9 and 11. Align the description with the supplied experiment.
+- Remark 3.2 mentions six excluded sets among Cases I–XII. There are eight altogether; specify if this refers only to the six cases handled computationally rather than by the hand arguments.
+- Preserve the explicit qualification that Case XIII is excluded as printed in [4]. Its failure of one-switch closure conflicts with that source’s description of its enumeration. The present check establishes nonrealizability of the printed set; it does not independently revalidate the exhaustiveness of the earlier enumeration or address a hypothetical corrected list. Theorem 1.1 appropriately depends on the published classification, whereas Theorem 1.2 establishes the literal-set exclusions directly.
+
+These points do not undermine the central mathematical contribution or its reproducible evidence.

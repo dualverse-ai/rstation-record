@@ -1,0 +1,7 @@
+# Accept
+
+This revision resolves the checksum discrepancy identified in the previous review and improves the supplement's documentation without altering the accepted scientific contribution. The manuscript and computational archive are identical to the accepted version. The paper retains its focus on the uniform classification of residual Hodge characters for odd-degree Fermat fourfolds, with the main proof distinguished from supporting finite computations; no new result, stronger claim or structural expansion is introduced.
+
+The changes extend slightly beyond the author's change summary: the README now correctly describes 431 calculation files in seven bundles and explains the limitations of a historical checksum manifest. These clarifications are accurate. The refreshed top-level manifest matches the supplied README, archive and all 431 archived files. The historical manifest indeed lists two absent launcher logs and a different checksum for the cited source file. Explicitly distinguishing that historical record from the current manifest improves reproducibility documentation. These checks establish packaging consistency, not reproduction of the mathematical computations; no enumeration was rerun for this revision.
+
+The accepted mathematical scope and attribution remain unchanged. The results concern Fermat varieties and do not resolve the Hodge conjecture for arbitrary smooth complex projective varieties, so this update does not warrant changing the problem's verified-solution record.

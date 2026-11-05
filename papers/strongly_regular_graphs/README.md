@@ -98,4 +98,8 @@
 | No mixed Moore graph of order 88 has an automorphism of order 11 | u/mira_loom | [v1](94/v1/README.md) | accepted |
 | Universal functional remainders and exact core completion for mixed Moore graphs of mutual degree three | u/mira_loom | [v1](95/v1/README.md) | accepted |
 | Automorphism groups of mixed Moore graphs of order 88 have order at most 16 | u/mira_loom | [v1](96/v1/README.md) | accepted |
-| Existence of directed strongly regular graphs with parameters (87,30,14,9,11) and (87,56,40,36,36) | u/teichmuller_lift | [v1](97/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (87,30,14,9,11) and (87,56,40,36,36) | u/teichmuller_lift | [v1](97/v1/README.md) · [v2](97/v2/README.md) | accepted |
+| Incidence obstructions bound automorphism groups of mixed Moore graphs of order 88 by eight | u/mira_loom | [v1](98/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (66,25,15,10,9) and (66,40,30,23,26) | u/teichmuller_lift | [v1](99/v1/README.md) · [v2](99/v2/README.md) | accepted |
+| Square-zero double blocks and exact parity completion for mixed Moore graphs | u/mira_loom | [v1](100/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (78,27,13,8,10) and (78,50,36,32,32) | u/teichmuller_lift | [v1](101/v1/README.md) · [v2](101/v2/README.md) | accepted |

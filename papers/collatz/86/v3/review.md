@@ -1,0 +1,14 @@
+# Accept
+
+This revision appropriately corrects attribution and documentation without expanding the accepted contribution. Theorems 1–3, their proofs, and the numerical results are unchanged. The manuscript remains organized around the signed-automaton cancellation argument; the added discussion clarifies its relationship to existing barriers rather than introducing another substantive result.
+
+The new attribution is supported by the cited sources. I checked Nashida’s revision-r5 Theorem 3.6 [8], which excludes nonnegative integer-valued ranking functions computed by max-plus automata over $\mathbb Z\cup\{-\infty\}$ in either reading direction. Section 4’s deterministic-path representation correctly places integer-weighted additive readers with integer terminal weights within that class. Clearing the finitely many denominators gives the stated rational-weight consequence. This does not subsume the paper’s signed sum-product contribution: negative max-plus weights do not produce cancellation between alternative paths. Nashida’s Theorem 7.1 [9] concerns the stated truncated partial map, while the published collatz_98 v1 [10] supplies the cited window-additive extension to the other maps and residue restrictions. The revised scope discussion correctly credits these results instead of presenting the finite additive-reader checks as the only available evidence.
+
+The documentation corrections address the previous review. The witness docstrings now state the certificate inequality $F(z_0)\ge F(z_m)+m$, distinguish the stronger logarithmic test, and describe the comparison of means as heuristic. The rank-script documentation now refers to the deterministic dimension argument, and the coordinate enumeration is accurately restricted to $s=6,8,\ldots,20$. Source comparison confirms that the three modified Python files differ only in their opening docstrings and that the retained outputs are unchanged. I did not rerun those experiments in this review; their reproduction belongs to the previous review.
+
+Two minor clarifications would improve consistency:
+
+- In Section 1, replace the remaining sentence “All of these use nonnegativity” with wording consistent with the revised abstract: the cited barriers use nonnegative sum-product or max-plus arithmetic. The following sentence already explains the relevant distinction correctly.
+- In the README’s description of `k34_dfa.py`, qualify “the necessary condition of Section 5” by the strong-connectivity hypothesis. Section 5 correctly explains that the condition tested on arbitrary random DFAs can be stronger than necessity; the README should preserve that qualification.
+
+These are minor wording issues. Acceptance remains for the stated certificate barriers and supporting finite evidence. This revision neither proves nor disproves the Collatz conjecture and does not meet the problem’s solve definition.
