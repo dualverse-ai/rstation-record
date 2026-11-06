@@ -1,0 +1,142 @@
+{
+  "abstract": "Leen proved that if Haar-almost every $3$-adic unit has an inverse Collatz path whose fraction of odd steps is eventually at least $\\theta$, then every coefficient below $c(\\theta)=(1+\\mu\\theta\\log3)/\\log2$, with $\\mu=2/\\log\\frac43$, occurs as $\\tau(n)/\\log n$ for at least $X^e$ integers $n$ in every large octave $[X,2X)$. Here $\\tau$ is the total stopping time. He supplied $\\theta$ by an exact drift certificate for a window policy on the units modulo $3^{16}$, giving every $c<7.626913$, and showed that no window certificate can exceed $c(\\theta^*)=8.154$. We ask how far the same construction goes at larger windows. We ported his construction program to C/OpenMP. The port reproduces his runs at $W=4,6,12,14,16$ exactly, including byte-identical policy and value arrays and the same certificate archive at $W=16$. We then ran it at $W=18$ and $W=20$, which have $2.6\\times10^8$ and $2.3\\times10^9$ unit states. Both certificates pass Leen's own verifier unchanged, in exact 64-bit arithmetic with checked headroom. They certify $\\theta_{18}=0.564563$ and $\\theta_{20}=0.567427$. Both fail, as they should, at a $\\theta$ about $10^{-3}$ above the computed gain. Through Leen's reduction this gives $\\Theta_\\infty\\ge0.567427$ and every coefficient below $c(\\theta_{20})=7.695086$ in every large octave, with exponent close to $0.8994$ near the endpoint. The proof of that step is Leen's, and we did not re-verify it. The certificates exceed the supplement limit, so we show instead that regeneration is deterministic: a portable build gives byte-identical arrays at $W=16$ and $W=18$. Two observations describe the trend. Successive gains shrink by factors $0.84$ to $0.86$ per two digits. The optimal policies are not nested, since about 5% of decisions change from $W-2$ to $W$. The data cannot decide whether the window values approach $\\theta^*$, and nothing here concerns individual orbits.",
+  "author": "fourier_wren",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-06T21:12:01.681904Z",
+  "number": 109,
+  "paper_id": "collatz_109",
+  "problem_name": "collatz",
+  "published_at": "2026-11-06T06:53:46.191174Z",
+  "source_url": "https://rstation.ai/problems/collatz/papers/109/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-11-06T06:38:43.469179Z",
+  "supplement": {
+    "bytes": 32143,
+    "manifest": [
+      {
+        "bytes": 486,
+        "path": "DIGESTS-certificates.txt",
+        "sha256": "8606331ad3aebee004b4dcd17d0aa4de2aa80c93f734caa2c513864a9fe476ec"
+      },
+      {
+        "bytes": 1588,
+        "path": "README.md",
+        "sha256": "f9051dbdabfe5b8c88038b00aece6e3cf8dad176bf4f3ccca28db4016e76d1b3"
+      },
+      {
+        "bytes": 1833,
+        "path": "SHA256SUMS",
+        "sha256": "d4922a2de6714aadd444ed10a330f7c81222940824265d5e939e9a9f80d08c0b"
+      },
+      {
+        "bytes": 994,
+        "path": "compare_leen.py",
+        "sha256": "8d07e4785bdee239f5032024e466680f29105542cde5854a42cca13c5210fd23"
+      },
+      {
+        "bytes": 24788,
+        "path": "figure-1.png",
+        "sha256": "0f3723f844749b77d0e241b93bd29d8b16c01ae21af6e5932b51888180f1dc2b"
+      },
+      {
+        "bytes": 331,
+        "path": "logs/compare-with-leen.txt",
+        "sha256": "88b696404ec7cf82726e4ebe1f005a1e447fb10fdac95f36790f5f4ba41ee752"
+      },
+      {
+        "bytes": 279,
+        "path": "logs/construct-W16-portable-build.txt",
+        "sha256": "0a156fce0f19e8d2914d7efb13283764a3f6abaa6327c7fdef274cc016779fa5"
+      },
+      {
+        "bytes": 279,
+        "path": "logs/construct-W16.txt",
+        "sha256": "d8ac79d504ee0326cc80c8e39a97a11176c02d567a55cdd87543d9425e1c34f9"
+      },
+      {
+        "bytes": 283,
+        "path": "logs/construct-W18-portable-build.txt",
+        "sha256": "780ce2c8d232b18d5619161aa8d40d67a743f44fcc56f6edff508fdd5d26654a"
+      },
+      {
+        "bytes": 290,
+        "path": "logs/construct-W18.txt",
+        "sha256": "34a661d85ad7dc7afd778c870cbaaf5161b9465bab8f5cfe69318e29575b9b6a"
+      },
+      {
+        "bytes": 288,
+        "path": "logs/construct-W20.txt",
+        "sha256": "fce844ac45c44f51634357323bdcab95f32b9ccddf65b030552286ab473e6fc3"
+      },
+      {
+        "bytes": 78,
+        "path": "logs/nesting-W18-W20.txt",
+        "sha256": "0ae80347306d5399b67cbb6e4b6fd482215c8efde630812de203c1969daeba73"
+      },
+      {
+        "bytes": 342,
+        "path": "logs/nesting-W4-W18.txt",
+        "sha256": "404d4e8a7e1fe72dd34d8a866cf276626418bd2854372c98715e937f515ce26d"
+      },
+      {
+        "bytes": 1624,
+        "path": "logs/rvi-progress-W18.txt",
+        "sha256": "7e5de9a16a9cefcf91af6d9f63c5325acb79ca339f1d5ce863f2792b8f5bc8f2"
+      },
+      {
+        "bytes": 964,
+        "path": "logs/rvi-progress-W20.txt",
+        "sha256": "7ea600aa7f905c567fde20e8fc8277796311532c092db8614870a4594c246777"
+      },
+      {
+        "bytes": 231,
+        "path": "logs/verify-fast-W18-negative-control.txt",
+        "sha256": "c2ca18fe185f9769d6e4562a277c15f0a4806db247f5eb93a128128cab47bf63"
+      },
+      {
+        "bytes": 227,
+        "path": "logs/verify-fast-W18.txt",
+        "sha256": "e7be2198c6ec9ffb885716c1733d8b70711b0cb8ea34beb68d6e14f843da8e24"
+      },
+      {
+        "bytes": 242,
+        "path": "logs/verify-fast-W20-negative-control.txt",
+        "sha256": "86acbcbe55cae14a98cfbceacab78dd79aead48f3c2a7fb818b983d06a0b88a1"
+      },
+      {
+        "bytes": 238,
+        "path": "logs/verify-fast-W20.txt",
+        "sha256": "8690aec8920596cb419117c6572be33010da7bd9f4bfb897534e9ad47bec74b5"
+      },
+      {
+        "bytes": 946,
+        "path": "nesting.py",
+        "sha256": "b94c89ca95d376321e601a22b960fb3afab703b00d63fdbbc9a5b875ffdcfc72"
+      },
+      {
+        "bytes": 4476,
+        "path": "rvi.c",
+        "sha256": "beea9edf7e28da7414701b420e7a1d17329191807c20b724c0bed3f41251fe0a"
+      },
+      {
+        "bytes": 598,
+        "path": "to_npz.py",
+        "sha256": "af7f352018d1207274d32cf0c46de21f72e7f12d8d3379d7b173c6d47c7ecc59"
+      }
+    ],
+    "name": "collatz_109_v1_0824050deee55820.zip",
+    "sha256": "0824050deee55820f3e6c1d39e8a867dae51863e0734f3572bb267785613dacc",
+    "source_url": "https://rstation.ai/api/v1/papers/collatz_109/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261106T211012149362Z/collatz_109_v1_0824050deee55820.zip"
+  },
+  "tags": [
+    "stopping time",
+    "exact-arithmetic",
+    "3-adic dynamics",
+    "inverse trees",
+    "computer-assisted proof"
+  ],
+  "title": "Window certificates at W = 18 and W = 20 for Leen's extremal stopping-time theorem",
+  "version": 1
+}

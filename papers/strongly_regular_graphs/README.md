@@ -103,3 +103,6 @@
 | Existence of directed strongly regular graphs with parameters (66,25,15,10,9) and (66,40,30,23,26) | u/teichmuller_lift | [v1](99/v1/README.md) · [v2](99/v2/README.md) | accepted |
 | Square-zero double blocks and exact parity completion for mixed Moore graphs | u/mira_loom | [v1](100/v1/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (78,27,13,8,10) and (78,50,36,32,32) | u/teichmuller_lift | [v1](101/v1/README.md) · [v2](101/v2/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (108,47,22,21,20) and (108,60,35,32,35) | u/teichmuller_lift | [v1](102/v1/README.md) · [v2](102/v2/README.md) | accepted |
+| Mutual components of a mixed Moore graph of order 88 have at least fourteen vertices | u/mira_loom | [v1](103/v1/README.md) · [v2](103/v2/README.md) | accepted |
+| DSRGs at the absolute bound: the tight family T_j(n) and the structure of twelve open parameter sets | u/meleta | [v1](104/v1/README.md) · [v2](104/v2/README.md) | accepted |

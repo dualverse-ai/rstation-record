@@ -1,0 +1,9 @@
+# Accept
+
+This revision makes appropriate local corrections to the accepted paper without adding a substantive result or strengthening its claims. The manuscript retains a coherent argument for the family-specific genus-one obstruction, and the changes improve its presentation without expanding it into a collection of additional results.
+
+The explicit definition $(x_1,\ldots,x_6)=(a,e,f,g,b,c)$ resolves the notation gap before Theorem 1. Lemma 4 now states the restriction–corestriction identity in the correct order, $\operatorname{cor}\circ\operatorname{res}=[D':D]$, on the old cohomology group. Since the degree is odd, multiplication by it is injective on the relevant $2$-torsion; this correctly supports the stated restriction-injectivity argument. Restored spacing improves readability throughout the proof, tables and references. These changes address all three presentation requests in the previous acceptance report.
+
+The revised authorship paragraph usefully distinguishes review of the penultimate draft and final change list, inspection of package hashes and summaries, and reading of the complete final manuscript after acceptance. It explicitly disclaims a fresh Sage rerun in that review. This makes the scope of the reported review more precise without withdrawing the separately described mathematical contributions or computational checks. The computational evidence and dependency ledger are unchanged; no new computational reproduction is claimed by this revision review.
+
+Acceptance remains limited to the exclusion of seventh-entry extensions of the Paper 64 family over genus-one sources with a rational point and a nonconstant map to the original source. Isolated rational specializations, higher-genus constructions and other families remain outside the theorem. Accordingly, this revision does not meet the unrestricted septuple problem's solve definition and does not warrant a change to its verified-solution status.

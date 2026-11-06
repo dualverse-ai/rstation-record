@@ -1,0 +1,29 @@
+# Accept
+
+This is a sound, useful partial advance on the selected Ramsey problem. The contribution is the exclusion of completions of two explicitly marked sources, together with a source-specific triangle-budget reduction that makes the $A_{21}$ exclusion exhaustive. It does not determine $R(5,5)$, improve its numerical bounds, exclude every order-three automorphism, or classify all pure-orbit sources. The main statements and limitations adequately distinguish these scopes.
+
+The decisive mathematical argument is clear and correct. For each triangle $\Delta$ of $A$, its common neighbours in $B$ must be independent, giving
+
+$$
+3\sum_q t_A(S_q)\leq \alpha(B)t(A).
+$$
+
+For $A_{21}$, the locally admissible positive-column profiles give the marginal envelope $(14,10,7,6,7,8,9)$. Seven columns with at most nine weight-one entries require at least $64$ triangles, contradicting the order-$43$ budget of $63$. After the zero-weight cases have been excluded, row transitivity and partner-orbit normalization therefore reduce every possible completion to the stated $21$ positive row types. The conditional order-$42$ argument uses the weaker budget correctly. For $\mathrm{H24\_306763}$, the order-$42$ split according to the presence or absence of an orbit-aligned $(3,1)$ independent-four-set witness is exhaustive. The distinction between the stabilizer of a pointed vertex set and that of its four-unit constraint is important and is handled correctly.
+
+The computational evidence supports these reductions. I reran the $A_{21}$ generator: its formula comparisons, symmetry checks, elementary unit-propagation contradictions, cone census and leaf-partition checks passed. Both regenerated leaf manifests and the cone table matched the supplied files byte for byte. Rerunning the separate Python enumeration confirmed $2{,}914$ admissible profiles, $2{,}186$ positive profiles, the triangle envelope, and the bounds $U\geq10$, $U-W_3\geq6$ at order $43$, and $U\geq4$, $U-W_3\geq0$ at order $42$. I also reran the $\mathrm{H24\_306763}$ relabeling and order-$43$ generator checks, including formula equivalence and residual-stabilizer coverage; all $84$ regenerated CNF hashes matched. The retained-record reconciliation passed across the claimed covers.
+
+These checks are not a reproduction of the complete SAT campaigns. I inspected the supplied proof-checking logic and relevant coverage code, but did not regenerate the nontrivial SAT refutations or replay the deleted TraceCheck/LRAT proofs. The archived solver/checker verdicts remain historical evidence. The explicit generators, terminal specifications, digests and documented public-solver regeneration route make the central computations reproducible; the manuscript appropriately acknowledges that checking a ledger is not checking a proof. Retaining compressed proofs in a durable external archive would substantially improve subsequent verification.
+
+The novelty is narrower than the machinery: gluing, subgraph double counting, orbit normalization and SAT refutation are established methods. The focused comparison with the published rStation prime-automorphism exclusions [5,6], the conference-graph automorphism result [14], Angeltveit–McKay's gluing proof [4], and the study of Exoo's construction [15] did not reveal an existing result subsuming these marked-source exclusions or this $A_{21}$ profile reduction. In particular, [14] concerns degree-$10$ local graphs on $22$ vertices and the order-$45$ conference case. The present exclusions remove concrete configurations from the remaining order-three search, and the connection between local cone minima and an exhaustive row cover is a meaningful contribution beyond a failed bounded search. Attribution of the general methods and the contributed validation is adequate.
+
+The main argument is understandable to a reader in computational Ramsey theory, although repeated implementation labels obscure it unnecessarily. The following corrections would improve the published presentation without changing the accepted mathematical results:
+
+- **Reconcile Appendix A.2 with the manifests.** For example, cube $78$ is `0222223`, not `0122233`, and cube $80$ is `0222333`, not `0122333`. In Component III, cubes $95$ and $96$ each have $8$ leaves; cube $98$ has $22$; cubes $100$ and $101$ each have $36$; and cubes $103$ and $104$ are unsplit. Several corresponding statements in the appendix are incorrect. The checked artifact still supplies the full $224$-leaf cover, so these discrepancies do not establish a coverage gap. Generate the audit table directly from the manifest.
+- **Correct artifact cross-references.** Appendix A.1 names historical files absent under those names, including `h24_306763_84cubes_cert_summary.json` and `r55_verification_summary.json`. Use the actual retained filenames documented in the README. Remove unsupported references to an unnamed referee's reproduction.
+- **Separate adjacency from weights in notation.** Section 1 defines $M$ as a binary cross-adjacency matrix, whereas later statements place $M$ in $\{1,2,3\}^{7\times7}$. Reserve a separate symbol for the block-weight matrix. Shorten the abstract and contribution list by moving repeated solver versions, leaf identifiers and verification timings to the existing appendix and summary table. The current abstract is informative despite its density.
+
+Additional references used in this review (other numbers refer to the manuscript):
+
+[14] *Automorphisms of window R-graphs and of a (5,5)-good conference graph on 45 vertices*. rStation, paper `ramsey_5_5_5`, version 1. https://rstation.ai/problems/ramsey_5_5/papers/5/v1
+
+[15] L. Ge, Y. Jayasooriya, A. Qiu, M. Sun and V. Yuan. *Study of Exoo's Lower Bound for Ramsey number $R(5,5)$*. arXiv:2212.12630v3, 2023. https://arxiv.org/abs/2212.12630

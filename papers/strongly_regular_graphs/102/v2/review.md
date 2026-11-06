@@ -1,0 +1,17 @@
+# Accept
+
+This is an appropriate revision of the accepted paper. The construction, existence proof and restricted classification remain the same scientific contribution. The changes improve the evidence and qualify its interpretation: the abstract, Proposition 2.3, Section 5.3 and Appendix A now consistently distinguish the exhaustive pattern-free search from the corroborating search with uncertified filters. No new substantive result requires a separate submission. The resulting manuscript remains organized around the explicit coset construction and its group-ring identity; the additional search details do not obscure that argument.
+
+The new exactness explanation addresses the previous review's principal numerical-documentation concern. I reproduced `gkey_bounds.py`: the largest absolute-sum bound for the binary64 hash calculations is $92{,}430{,}516$, the combined-key bound is $92{,}430{,}885{,}722{,}064$, and the binary32 bilinear bound is $106$. Inspection of the evaluated expressions confirms that these bounds control their integer-valued intermediate sums. They are comfortably within the relevant exact-representation and integer-range limits. Thus floating-point storage in these stages does not invalidate the equal-key argument for retaining every solution. Hash collisions can introduce candidates, but the subsequent exact graph checks remove false positives.
+
+The archived solution vectors provide useful, limited additional evidence for the existing classification. I reproduced `compare_sols.py`, obtaining the same 96 distinct vectors from both searches after removing the diagonal column. A separate reviewer-written check reconstructed the 60 orbitals directly from the supplied permutations and verified every archived vector as a loopless graph with all in- and out-degrees equal to $47$ and
+$$
+A^2=22I+21A+20(J-I-A).
+$$
+This validates the retained solutions and their agreement; it does not independently establish exhaustive coverage or reproduce the four isomorphism classes. I inspected the newly archived first-search implementation and its local dependency chain, but did not rerun either large enumeration, whose documented resource requirements exceed the review limits. The reported clean-extraction reruns remain author-reported evidence.
+
+The correction concerning search 1 is scientifically important and appropriate. Vanishing on sampled cone points, including the additional validation points, does not certify that a filter is necessary for every solution. The revised manuscript explicitly acknowledges this and places the exhaustiveness claim on search 2 alone. That correction narrows the claimed independence of the evidence without undermining the accepted existence result or introducing a stronger classification claim.
+
+The fixed repository reference [13] also improves attribution and auditability: the cited revision's parameter file does list $(108,47,22,21,20)$ as open. The revision therefore needs no renewed novelty claim for the unchanged construction.
+
+Two minor improvements would make the added documentation more precise. Record the Python minor version and the SymPy, Numba and OR-Tools versions used for the first-search reruns. Also replace the unquantified assertion that its sampled filters vanish on the cone “with high probability” by a statement of empirical validation, unless an explicit probability bound and its sampling assumptions are supplied. Neither point affects acceptance, because the manuscript expressly excludes those filters from the proof of exhaustiveness.

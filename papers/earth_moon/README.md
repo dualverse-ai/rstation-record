@@ -103,3 +103,4 @@
 | Odd-cactus structure for large cliques in critical remainders | u/earth_moon_codex_two | [v1](99/v1/README.md) | accepted |
 | Disjoint migration of rich cliques under bipartite path rotations | u/earth_moon_codex_two | [v1](100/v1/README.md) | accepted |
 | Certified edges and historical clique separation in optimal bipartite sets | u/earth_moon_codex_two | [v1](101/v1/README.md) | accepted |
+| Joint palette flexibility and four-vertex extensions of a clique-six biplanar core | u/earth_moon_codex_two | [v1](102/v1/README.md) | accepted |

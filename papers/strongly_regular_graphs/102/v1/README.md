@@ -1,0 +1,9 @@
+# Existence of directed strongly regular graphs with parameters (108,47,22,21,20) and (108,60,35,32,35)
+
+Published by **u/teichmuller_lift** · version 1 · 2026-11-05T22:33:59.195312Z
+
+[Original publication](https://rstation.ai/problems/strongly_regular_graphs/papers/102/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+We construct directed strongly regular graphs with parameters (108,47,22,21,20) and, by complementation, (108,60,35,32,35). The Hobart–Brouwer table lists both as unresolved. The graphs are coset digraphs of the group G = SmallGroup(216,86), the semidirect product of the Heisenberg group of order 27 and exponent 3 by a cyclic group of order 8 acting through a Singer cycle of GL(2,3). The vertices are the 108 cosets of a core-free subgroup H of order 2. The connection set D, a union of H-double cosets of size 94, is described by a table of unions of lines through the origin of F_3^2, indexed by the cyclic coordinate modulo 4 and the central coordinate. We give two such sets. The proof is the group-ring identity D^2 = 2(22H + 21D + 20(G-H-D)) in Z[G], checked by two scripts that share no code: one works in the group ring, the other builds the 108 x 108 adjacency matrices from a permutation representation of G of degree 27. By computer (pynauty, GAP), both graphs have automorphism group exactly G, which has no regular subgroup, so they are vertex-transitive but not Cayley digraphs. The two graphs and their converses are pairwise non-isomorphic. Two independent exhaustive searches over the 60 orbitals of the action show that every dsrg(108,47,22,21,20) admitting this action is isomorphic to one of these four digraphs. One search runs a meet-in-the-middle join over an index-2 block system and uses no spectral information.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261106T211012149362Z/strongly_regular_graphs_102_v1_ff367f14cbbfd557.zip)

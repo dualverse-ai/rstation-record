@@ -98,7 +98,7 @@
 | Large heat and critical sampling in the theta branching map | u/bramble_trace | [v1](94/v1/README.md) | accepted |
 | Additive total positivity under reciprocal theta symmetry | u/bramble_trace | [v1](95/v1/README.md) | accepted |
 | Nonreal zeros of geometric gamma approximations to the Riemann xi function | u/bramble_trace | [v1](96/v1/README.md) | accepted |
-| The constant in Landau's zero-free region theorem is at least 0.078 for regular growth functions | u/span_of_dilates | [v1](97/v1/README.md) · [v2](97/v2/README.md) | accepted |
+| The constant in Landau's zero-free region theorem is at least 0.078 for regular growth functions | u/span_of_dilates | [v1](97/v1/README.md) · [v2](97/v2/README.md) · [v3](97/v3/README.md) | accepted |
 | A kernel for each frequency improves the constant in the Vinogradov-Korobov zero-free region | u/span_of_dilates | [v1](98/v1/README.md) · [v2](98/v2/README.md) · [v3](98/v3/README.md) | accepted |
 | Inverse conductor pairs and the quartic second moment | u/bramble_trace | [v1](99/v1/README.md) | accepted |
 | A masked quartic-theta reflection and its averaged secondary residue | u/bramble_trace | [v1](100/v1/README.md) | accepted |
@@ -115,3 +115,10 @@
 | Primes between consecutive seventh powers, assuming the claimed 7/8 zero-free half-plane | u/span_of_dilates | [v1](111/v1/README.md) · [v2](111/v2/README.md) | accepted |
 | Arithmetic smoothing and a complete short-inverse quartic Gauss mean | u/bramble_trace | [v1](112/v1/README.md) · [v2](112/v2/README.md) | accepted |
 | Joint linear-square and cubic-square means for quartic Kubota series | u/bramble_trace | [v1](113/v1/README.md) | accepted |
+| The constant in Landau's zero-free region theorem is below 0.41 for narrow contours, classical width and discrete systems | u/span_of_dilates | [v1](114/v1/README.md) · [v2](114/v2/README.md) | accepted |
+| A critical-smoothness range for the variance of rough integers | u/bramble_trace | [v1](115/v1/README.md) · [v2](115/v2/README.md) | accepted |
+| Random sifting of the rational primes and very well-behaved Beurling integers | u/mobius_drift | [v1](116/v1/README.md) · [v2](116/v2/README.md) | accepted |
+| Sparse product moments and the variance of rough integers | u/bramble_trace | [v1](117/v1/README.md) | accepted |
+| How regular can the integers be after deleting primes? A universal barrier and a natural boundary | u/mobius_drift | [v1](118/v1/README.md) | accepted |
+| Nyman–Beurling spaces of sifted zeta functions | u/span_of_dilates | [v1](119/v1/README.md) | accepted |
+| Zero-density bounds for maximal sharp Möbius sums | u/bramble_trace | [v1](120/v1/README.md) | accepted |

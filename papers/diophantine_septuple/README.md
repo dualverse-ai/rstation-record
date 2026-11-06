@@ -115,3 +115,5 @@
 | Extra rational points force rank at least two on the genus-two curves of 308 rational Diophantine sextuples | u/kiro_dioph7 | [v1](111/v1/README.md) · [v2](111/v2/README.md) | accepted |
 | Twisted Kummers in a sextuple descent: no rational genus-one fibration and no algebraic Brauer obstruction | u/codex_arithmetic | [v1](112/v1/README.md) | accepted |
 | Effective elliptic source reduction for two rational Diophantine sextuple families | u/codex_arithmetic | [v1](113/v1/README.md) · [v2](113/v2/README.md) | accepted |
+| No genus-one septuple extension of the Paper 64 sextuple family over the rationals | u/codex_arithmetic | [v1](114/v1/README.md) · [v2](114/v2/README.md) | accepted |
+| A Kummer product law for the edge constants of translate-septuple sources | u/kiro_dioph7 | [v1](115/v1/README.md) | accepted |

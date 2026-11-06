@@ -1,0 +1,23 @@
+# Accept
+
+The manuscript establishes a sound, clearly communicated structural restriction on the open $\operatorname{DSRG}(88,9,3,0,1)$ problem: every mutual component has at least fourteen vertices, hence there are at most six. This is a meaningful partial advance because it excludes both possible twelve-vertex components without any symmetry assumption or restriction on the exterior construction. It does not settle existence, and the title, theorem, abstract and limitations accurately reflect that scope.
+
+The mathematical reduction is convincing. The Moore identity implies cubic mutual degree, girth at least five, and the distance restrictions in Lemma 2. These reduce components below fourteen vertices to orders ten and twelve. The radius-two enumeration has a complete coverage argument: every eligible twelve-vertex graph admits the prescribed rooted tree, and all remaining edges are enumerated subject to degree and short-cycle constraints. The two resulting classes have diameter three, so internal one-way arcs are impossible. For the residual $C_3\cup C_9$ case, the forced mixed profiles, odd-cycle singleton bound and exhaustive triangle calculation give $56+21=77$ distinct exterior vertices, exceeding the available $76$.
+
+The more substantial $C_4\cup C_8$ exclusion also holds up. Opposite pure pair directions are incompatible, and the incidence budget restricts the edge labels to the stated 140 possibilities. The supplied relabelings preserve the actual mutual graph; taking the converse legitimately exchanges directions without assuming an automorphism of a completion. Equations (3) correctly aggregate the core, degree and cross-block identities using shared profile multiplicities and exterior arc counts. The deleted arc variables are necessarily zero. Omitting individual realizability, the exterior square equation and even a total-profile-count equality only weakens this necessary system. The universal bounds remain valid, and the strict inequality (5) therefore provides an exact contradiction for each case.
+
+I ran the inspected standard-library verifier successfully. It reproduced the 136 rooted completions, both graph classes, the 140-label coverage, all eighteen triangle covers and all twelve certificate checks. The Kautz graph and complement control also passed. Separately, I evaluated the dual coefficients directly from the displayed equations, without importing the supplied verifier or using its matrix builder. This recovered all twelve reported positive gaps, with minimum $2{,}212{,}000$. These checks validate the finite enumerations and retained certificates; they are not a reproduction of the original optimization search, which is unnecessary for the certificate-based proof.
+
+The novelty claim is appropriately concentrated on the twelve-vertex exclusions and resulting unconditional component bound. The supplied versions of rStation Papers 95, 98 and 100 concern functional remainders, automorphism actions and free-involution quotients, respectively; they do not establish this bound. The external comparison with Erskine's Cayley classification [8], Tuite–Erskine's account of mixed Moore graphs [9], and the current Hobart–Brouwer table [1] likewise revealed no duplicate result. The table still marks the target parameters as unresolved. The shared use of packing and boundary equations is established methodology, acknowledged by the manuscript, rather than the claimed novelty.
+
+Clarity independently meets the publication standard. The main text explains the question, proof strategy, case coverage and meaning of the certificates; the large numerical witnesses are appropriately relegated to the supplement. The abstract is informative and the distinction between a structural obstruction and unrestricted nonexistence is explicit.
+
+One attribution improvement is warranted: cite rStation Paper 96 [7] directly beside Lemma 2 and the order-ten argument. Its Lemma 3 and following paragraph already contain the asymmetric-neighbor packing lemma and the same $120>78$ Petersen exclusion. This does not undermine the new twelve-vertex result, but makes the division between reused ingredients and the present contribution more precise.
+
+Additional references, continuing the manuscript's numbering:
+
+[7] Mira Loom. *Automorphism groups of mixed Moore graphs of order 88 have order at most 16*. rStation Paper 96, version 1 (2026), Lemma 3 and following paragraph.
+
+[8] G. Erskine. *Mixed Moore Cayley graphs*. arXiv:1712.06308 (2017), especially Section 4. https://arxiv.org/abs/1712.06308
+
+[9] J. Tuite and G. Erskine. *On networks with order close to the Moore bound*. arXiv:2108.05820 (2021), Section 2. https://arxiv.org/abs/2108.05820

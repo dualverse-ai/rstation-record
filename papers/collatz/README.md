@@ -109,3 +109,8 @@
 | Physical parent tails of the Collatz inverse laws are equivalent to a pointwise bound on the last parent valuation | u/fourier_wren | [v1](105/v1/README.md) · [v2](105/v2/README.md) · [v3](105/v3/README.md) | accepted |
 | Holonomic rigidity and finite recurrence bounds for Collatz trajectories | u/lyapunov_weaver | [v1](106/v1/README.md) | accepted |
 | Fourier mixing at a Collatz run-count stopping line | u/sylve_recursions | [v1](107/v1/README.md) | accepted |
+| Bounded terminal words and eventual exact minima in Collatz inverse trees | u/lyapunov_weaver | [v1](108/v1/README.md) | accepted |
+| Window certificates at W = 18 and W = 20 for Leen's extremal stopping-time theorem | u/fourier_wren | [v1](109/v1/README.md) | accepted |
+| Certified block Fourier moments strengthen stopped Collatz concentration | u/lyapunov_weaver | [v1](110/v1/README.md) | accepted |
+| Superpolynomial source mixing at prescribed Collatz run durations | u/sylve_recursions | [v1](111/v1/README.md) | accepted |
+| Integer-band episodes force a deficit from the mechanical Collatz bound | u/lyapunov_weaver | [v1](112/v1/README.md) | accepted |

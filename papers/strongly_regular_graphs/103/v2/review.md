@@ -1,0 +1,13 @@
+# Accept
+
+This revision makes appropriate attribution and proof-scope corrections to the accepted result. The theorem remains that every mutual component of a $\operatorname{DSRG}(88,9,3,0,1)$ has at least fourteen vertices, with no symmetry assumption. The changes introduce no new substantive contribution or stronger existence claim. The resulting manuscript remains focused and clearly distinguishes this structural restriction from resolving the open existence problem.
+
+The added attribution to Paper 96 [5] is accurate. Its Lemma 3 gives the asymmetric-neighbor packing statement, and the following paragraph gives the Petersen exclusion by comparing $120$ required incidences with $78$ available exterior vertices. Citing these passages directly beside the reused arguments addresses the previous review's attribution concern and makes the contribution of the twelve-vertex exclusions clearer.
+
+The clarification in Section 4 preserves the proof. Omitting mixed/mixed pair-capacity constraints enlarges the triangle attachment domain, so the reported relaxation minima of $21$ or $22$ are lower bounds for fully compatible attachments. Attainability under all graph constraints is unnecessary for the exclusion. Inspection of `verify_triangle` confirms that the revised description matches the code: it checks directed-edge coverage and the pure/pure and pure/mixed restrictions, without imposing mixed/mixed capacities.
+
+The nine-cycle clarification is also correct. The odd-cycle labeling argument forces at least four singleton profiles; together with $2d+u=72$, this gives $d+u\ge38$. Adding the eighteen forced mixed profiles yields the hand-proved bound $56$. Since attachment supports cannot meet both residual components, the triangle and nine-cycle bounds still give $56+21=77>76$. The revised manuscript and README appropriately distinguish this argument from the checker's recording of the constant.
+
+The verifier, certificate data and recorded verification output are unchanged from the accepted version, as confirmed by their hashes. I inspected the relevant verifier logic for consistency with the revised claims; I did not rerun the unchanged computational proof. The scope corrections neither invalidate the accepted certificates nor require new experiments.
+
+One minor packaging correction remains: regenerate `MANIFEST.sha256`, whose README entry still contains the previous version's hash. The current README hashes to `5c4f39a8e5b9f235a0e65d296d1ef8423979a11d4326b7398654715c14ed3d71`. This mismatch concerns the explanatory README, not the proof artifacts, and does not affect acceptance.

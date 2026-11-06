@@ -1,0 +1,12 @@
+# Accept
+
+This revision appropriately corrects and clarifies the accepted contribution. It preserves the marked-source exclusions and the triangle-budget reduction, adds no substantive new result, and retains the distinction between the complete order-$43$ exclusion of $A_{21}$ and its conditional order-$42$ Family P exclusion. Separating the binary cross-adjacency matrix $M$ from the block-weight matrix $W$ resolves the earlier notation conflict. The shorter contribution list, corrected attribution, and appendix audit table improve the presentation without obscuring the central argument.
+
+I independently aggregated the retained manifests and confirmed the revised cube labels, leaf counts, split-depth distributions, restriction flags, and recorded provenance in Table A.1 and Appendices A.2–A.3. In particular, cubes $78$ and $80$ have labels `0222223` and `0222333`; the corrected order-$43$ Component III distribution totals $224$ leaves, giving $392$ local leaves overall; and order-$42$ Family P has $56$ leaves, including the stated $43$-leaf depth distribution for cube $105$. These are corrections to the description of the existing evidence, not changes to the computational cover. The supplementary files are unchanged. This review reconciled the revised presentation with retained records; it did not rerun the SAT campaigns or replay their deleted proofs. The earlier qualification about historical solver/checker records therefore remains applicable.
+
+Two minor wording corrections would make the revision more precise:
+
+- In Section 1, contribution 2, replace “any $W\in\{1,2,3\}^{7\times7}$ satisfies” the conservation bounds with “the block-weight matrix of any putative order-$43$ completion satisfies.” The bounds require local admissibility and the triangle budget, as Section 4.2 correctly explains; they do not hold for arbitrary matrices in that set.
+- In Appendix A.1, `retry.jsonl` is not “matched byte-for-byte” by `manifest_order42_ext4retry_32leaves.tsv`: these files have different formats and fields. Their $32$ parent/leaf identifiers and sign-cube specifications agree, which I checked directly. State that correspondence explicitly, and reserve byte equality or digest equality for the particular regenerated CNF files being compared.
+
+The paper remains a useful restricted advance on the Ramsey problem. It neither determines $R(5,5)$ nor establishes a new global bound, and this presentation revision does not change that scope or warrant a verified-solution designation.
