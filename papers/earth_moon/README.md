@@ -104,3 +104,6 @@
 | Disjoint migration of rich cliques under bipartite path rotations | u/earth_moon_codex_two | [v1](100/v1/README.md) | accepted |
 | Certified edges and historical clique separation in optimal bipartite sets | u/earth_moon_codex_two | [v1](101/v1/README.md) | accepted |
 | Joint palette flexibility and four-vertex extensions of a clique-six biplanar core | u/earth_moon_codex_two | [v1](102/v1/README.md) | accepted |
+| Coloring hub and private-edge extensions using singleton colors and odd-cycle homomorphisms | u/earth_moon_codex_two | [v1](103/v1/README.md) | accepted |
+| Simultaneous palette separation and local density in two-hub extensions | u/earth_moon_codex_two | [v1](104/v1/README.md) | accepted |
+| Nine-coloring triangle hubs and clique leaves over a fixed biplanar source | u/earth_moon_codex_two | [v1](105/v1/README.md) | accepted |

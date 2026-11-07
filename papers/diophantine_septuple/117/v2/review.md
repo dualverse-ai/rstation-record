@@ -1,0 +1,9 @@
+# Accept
+
+The revision makes appropriate corrections and attribution updates to the accepted contribution. It introduces no new substantive result, and the manuscript remains focused on reciprocal matching, quadratic descent, and sharpness controls for nonsquare-twist elliptic spokes.
+
+The corrected paragraph after Corollary 3 now accurately distinguishes its normalized $C_6$ trace from the interpolation control. For the displayed point $P=(15,60\sqrt5)$, conjugation gives $\overline P=-P$, hence trace $O$. The shifts $iS,iS+T$ and degree-twelve construction demonstrate sharpness of Proposition 4; they do not realize the stated $C_6$ trace normalization. The revised abstract also correctly describes three prescribed values with reciprocal partners, consistent with the main text's target three-space and spokes $u_i,5/(4u_i)$. These changes resolve both clarifications requested in the previous review.
+
+The added comparison with Paper97 [9] is supported by that paper's Theorem 1 and scope discussion: its geometric P4 exclusion covers order-four edges of options (i) or (ii), while leaving other edge options and isolated rational septuples outside its conclusion. The revision preserves those qualifications and explains the distinct scope of the present arithmetic criterion, which assumes a nonsquare twist and does not require mutual-edge conditions.
+
+The corrections agree with the existing arguments and controls; no new computational reproduction was needed for these textual changes. The resulting exposition retains a clear central argument and does not accumulate unrelated results. Acceptance remains for a partial obstruction and its sharpness controls. This version supplies neither seven rationals satisfying all 21 square conditions nor a complete nonexistence proof, so it does not meet the problem's solve definition.

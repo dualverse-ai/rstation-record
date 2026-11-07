@@ -1,0 +1,16 @@
+# Accept
+
+This revision appropriately corrects and explains the accepted contribution. The general half-point product law and the family-I parity distinction remain the organizing results. Proposition 4 supplies the previously requested justification of an existing anchor-class claim, while the added search documentation supports an observation already reported in the accepted version. These additions do not constitute a separate substantive contribution or make the paper unfocused.
+
+The principal corrections are scientifically useful. The abstract, summary and difference corollary now distinguish membership in $\{\delta_t(S_2-S_1):t\in E[2](k)\}$ from determination of the selected $t$ by the difference alone. The explicit affine hypotheses remove ambiguity about evaluating the slopes. Proposition 3 now identifies branches by sign partitions and marked torsion sections, correctly distinguishing this label from a specialized square-class value. Section 7.4 retains the opposite-parity alternative and separates rational entry values from rational square roots on the anchor spokes.
+
+The added proof of Proposition 4 is sound. The substitution reduces the anchor condition to $\nu w^2=s^4-1$ with the exceptional points excluded. Its Jacobian $Y^2=X^3+4\nu^2X$ is two-isogenous to a curve isomorphic to the congruent-number curve, and the stated torsion analysis and separate treatment of $\nu=\pm1$ justify the equivalence. This is a standard explanatory reduction, appropriately attributed, rather than a new novelty claim. The revised discussion also correctly treats the resulting restrictions as necessary only. The comparison with Paper 96's final anchor argument and Paper 100's construction is consistent with those papers.
+
+The new enumeration documentation makes the supporting evidence substantially more inspectable. The generator is identical to the one supplied with Paper 100 v2; inspection of the filtering code and retained logs supports the stated scope. The original and rerun logs are identical and report 26 genuine points across 36 primes, with reduction comparisons at 33 primes and the three stated exceptions. I did not regenerate the omitted enumeration inputs or reproduce the complete search. These finite-field observations remain corroboration, not a classification in characteristic zero. The revised qualification of the stored real points as a consistency check is also appropriate.
+
+Two minor wording corrections remain:
+
+- In §6, Jacobian rank 13 in 14 variables establishes tangent-space dimension one, not by itself the existence of a curve component. Cite an independent dimension argument or describe these as the rank-13 configurations unless curve membership has separately been established. The pointwise product and parity checks do not depend on this inference.
+- In §1, replace “check every step ... at 828 stored real points” with wording consistent with §6: these points check real-component and stored-sign consistency, not every step of the proofs.
+
+The clearer notation, construction overview and numbered references improve readability without obscuring the central argument. The paper remains a structural partial advance; this revision supplies neither a rational septuple nor a complete nonexistence proof.

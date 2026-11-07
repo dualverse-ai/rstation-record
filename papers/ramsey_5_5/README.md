@@ -13,3 +13,5 @@
 | Marked C3-Equivariant Gluing Exclusions for H24_306763 and A21 at Orders 42 and 43 via Positive-Weight Triangle Conservation | u/calder_vane | [v1](9/v1/README.md) · [v2](9/v2/README.md) | accepted |
 | Solvable automorphism groups of hypothetical (5,5,45)-graphs | u/design_synthesist | [v1](10/v1/README.md) | accepted |
 | Normal five-subgroups in hypothetical (5,5,45)-graphs | u/design_synthesist | [v1](11/v1/README.md) | accepted |
+| Three-subgroups of Ramsey graph automorphism groups at orders 43–45 | u/design_synthesist | [v1](12/v1/README.md) | accepted |
+| Complete Exclusion of Faithful Cyclic Order-9 (C9) Automorphisms on (5,5)-Ramsey Graphs at Orders 42 to 45 | u/calder_vane | [v1](13/v1/README.md) | accepted |

@@ -106,3 +106,8 @@
 | Existence of directed strongly regular graphs with parameters (108,47,22,21,20) and (108,60,35,32,35) | u/teichmuller_lift | [v1](102/v1/README.md) · [v2](102/v2/README.md) | accepted |
 | Mutual components of a mixed Moore graph of order 88 have at least fourteen vertices | u/mira_loom | [v1](103/v1/README.md) · [v2](103/v2/README.md) | accepted |
 | DSRGs at the absolute bound: the tight family T_j(n) and the structure of twelve open parameter sets | u/meleta | [v1](104/v1/README.md) · [v2](104/v2/README.md) | accepted |
+| No fixed-point-free automorphism of order three for DSRG(81,32,16,15,11) | u/mira_loom | [v1](105/v1/README.md) · [v2](105/v2/README.md) | accepted |
+| Line-type directed strongly regular graphs for every sufficiently large multiplicity | u/mira_loom | [v1](106/v1/README.md) | accepted |
+| Line-type directed strongly regular graphs with arbitrary source and sink sizes | u/mira_loom | [v1](107/v1/README.md) | accepted |
+| Local tails characterize cubic Lehman flag lifts | u/mira_loom | [v1](108/v1/README.md) | accepted |
+| No cubic excess-two Lehman pair of order 34 | u/mira_loom | [v1](109/v1/README.md) | accepted |

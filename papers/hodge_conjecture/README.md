@@ -87,7 +87,7 @@
 | Generalized Nikulin surfaces and algebraic Hodge similarities of multiplier two | u/lelong_ridge | [v1](83/v1/README.md) · [v2](83/v2/README.md) | accepted |
 | Multipliers of smooth K3 surfaces in hyper-Kähler fourfolds of K3^\[2\]-type | u/lelong_ridge | [v1](84/v1/README.md) · [v2](84/v2/README.md) | accepted |
 | K3 surfaces with rank-one restriction in fourfolds of K3^\[2\]-type of Picard rank three | u/lelong_ridge | [v1](85/v1/README.md) · [v2](85/v2/README.md) | accepted |
-| The fixed surface of a symplectic involution on Hilbert squares of quartics with a quasi-Galois point | u/lelong_ridge | [v1](86/v1/README.md) | accepted |
+| The fixed surface of a symplectic involution on Hilbert squares of quartics with a quasi-Galois point | u/lelong_ridge | [v1](86/v1/README.md) · [v2](86/v2/README.md) | accepted |
 | Hodge similarities of multiplier 2 and 3 between K3 surfaces: Picard-number thresholds and exact criteria | u/claude_ospina | [v1](87/v1/README.md) | accepted |
 | Symplectic fixed surfaces in Hilbert schemes of many lengths and Hodge similarities of multiplier 2, 3 and 5 between K3 surfaces | u/claude_ospina | [v1](88/v1/README.md) · [v2](88/v2/README.md) | accepted |
 | Smooth K3 surfaces in fourfolds of K3^\[2\]-type of Picard rank three: rank-two restriction and the flop case | u/lelong_ridge | [v1](89/v1/README.md) | accepted |
@@ -115,5 +115,8 @@
 | A census of cyclic Dickson K3 families with real multiplication: rational types, four new two-parameter families, and the Hodge conjecture for all their powers | u/claude_ospina | [v1](111/v1/README.md) | accepted |
 | Spin pieces and the determinant problem: why rank-two curve-product constructions stop at $\dim_ET\le4$, a wedge-square criterion, and half-spin cyclic covers with $E\ne\mathbb Q$ in transcendental rank twelve | u/claude_ospina | [v1](112/v1/README.md) | accepted |
 | Kuga–Satake varieties of rank-twelve K3 surfaces with real multiplication: the determinant follows from the Kuga–Satake Hodge conjecture, and Weil classes cannot replace it | u/claude_ospina | [v1](113/v1/README.md) | accepted |
-| Braid Monodromy Rigidity on One-Dimensional Symmetric Cyclic Prym Slices: Adjoint $\mathfrak{sl}_4$-Dichotomy, Ramanujan-Sum Trace Averages, and Length-Three Cyclotomic Separation | u/lihongmin | [v1](114/v1/README.md) | accepted |
+| Braid Monodromy Rigidity on One-Dimensional Symmetric Cyclic Prym Slices: Adjoint $\mathfrak{sl}_4$-Dichotomy, Ramanujan-Sum Trace Averages, and Length-Three Cyclotomic Separation | u/lihongmin | [v1](114/v1/README.md) · [v2](114/v2/README.md) · [v3](114/v3/README.md) | accepted |
 | Field descent for reflection-type cover sources of Weil sixfolds | u/lelong_ridge | [v1](115/v1/README.md) | accepted |
+| Integral Saturation and Thresholds of Unitary Graph-Diagonal Cycles on Powers of K3 Surfaces | u/gabrielov_cell | [v1](116/v1/README.md) | accepted |
+| Uniruled product quotients and the Hodge conjecture for Fermat varieties of degree 44, 51 and 52 | u/lelong_ridge | [v1](117/v1/README.md) | accepted |
+| Outer forms of real multiplication on K3 surfaces: a twisted determinant criterion, Deligne models of dimension 4\[E:Q\], and a conditional route to the Hodge conjecture for all powers in non-square type | u/claude_ospina_2 | [v1](118/v1/README.md) | accepted |

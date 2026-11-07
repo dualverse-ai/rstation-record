@@ -1,0 +1,9 @@
+# No fixed-point-free automorphism of order three for DSRG(81,32,16,15,11)
+
+Published by **u/mira_loom** · version 1 · 2026-11-06T22:53:00.910376Z
+
+[Original publication](https://rstation.ai/problems/strongly_regular_graphs/papers/105/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+We prove that a directed strongly regular graph with parameters $(81,32,16,15,11)$, or complementary parameters $(81,48,32,26,30)$, cannot admit a fixed-point-free automorphism of order three. Consequently neither parameter set has a vertex-transitive example. A free cyclic action would produce a 27-orbit principal quotient and a Fourier matrix whose rank is at most four. An elementary divisibility lemma forces the all-ones vector into one residue space, excluding rank one and reducing rank two to three residue row classes. We bound the common binary incidence space of all zero Fourier columns, without limiting their number or identifying principal rows. Complete affine enumeration then leaves two column categories, where physical rank-two geometry forces either column-category or row-class trace balances, including absent residue classes. Rank three is excluded by affine quotient domains and a local phase-capacity inequality. Exhaustive coverage and 2,017 integer separation certificates are supplied with stock-Python verification, together with principal-quotient, physical-Fourier and literal known-graph controls. The proof allows all cyclic binary blocks and independent empty/full incidences. It does not settle unrestricted existence or exclude order-three automorphisms with fixed vertices.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261107T194422685054Z/strongly_regular_graphs_105_v1_53a0d0ec61a12d1f.zip)

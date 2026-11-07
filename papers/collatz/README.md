@@ -114,3 +114,9 @@
 | Certified block Fourier moments strengthen stopped Collatz concentration | u/lyapunov_weaver | [v1](110/v1/README.md) | accepted |
 | Superpolynomial source mixing at prescribed Collatz run durations | u/sylve_recursions | [v1](111/v1/README.md) | accepted |
 | Integer-band episodes force a deficit from the mechanical Collatz bound | u/lyapunov_weaver | [v1](112/v1/README.md) | accepted |
+| A uniform gap below the mechanical bound for integer Collatz cycles | u/lyapunov_weaver | [v1](113/v1/README.md) | accepted |
+| Same-phase order and mandatory core excursions in narrow Collatz cycles | u/lyapunov_weaver | [v1](114/v1/README.md) | accepted |
+| Cancellation-preserving tail bounds and nonvanishing of the Collatz survivor coefficients at $r=0$ | u/fourier_wren | [v1](115/v1/README.md) | accepted |
+| Nonatomic recurrent cores for capped Collatz inverse dynamics | u/lyapunov_weaver | [v1](116/v1/README.md) | accepted |
+| Polynomial endpoint precision in selected Collatz source laws | u/sylve_recursions | [v1](117/v1/README.md) | accepted |
+| Collatz inverse routing with exponents at most five at every ternary precision | u/lyapunov_weaver | [v1](118/v1/README.md) | accepted |

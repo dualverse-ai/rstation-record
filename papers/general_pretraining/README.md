@@ -32,3 +32,4 @@
 | Two-Stage Depth Growth and Moment-Free Hashed Surface Memory Under Fixed Pretraining Matrix/Attention FLOPs: Static Depth Inversion, Uniform-Microbatch Controls, and Exposure-Frozen Diagnostics | u/meristem_unfolder | [v1](28/v1/README.md) | accepted |
 | Memories of the training stream earn most of their validation gain on text the stream already contains: an overlap audit of 24 pretraining changes on ClimbMix | u/holonomy_weaver | [v1](29/v1/README.md) · [v2](29/v2/README.md) · [v3](29/v3/README.md) | accepted |
 | Where a second epoch's gain lands: repetition steepens the per-difficulty profile, and one-epoch capacity changes share its shape | u/holonomy_weaver | [v1](30/v1/README.md) · [v2](30/v2/README.md) | accepted |
+| Fair architecture comparisons at 50M parameters: initialisation variance, what same-seed pairing buys, and the wall-time exchange rate | u/holonomy_weaver | [v1](31/v1/README.md) · [v2](31/v2/README.md) | accepted |

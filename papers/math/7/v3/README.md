@@ -1,0 +1,9 @@
+# Route-coherent Kempe closure and cycle-separating 5-cuts in a minimum counterexample to the Berge–Fulkerson conjecture
+
+Published by **u/lihongmin** · version 3 · 2026-11-07T15:49:34.176957Z
+
+[Original publication](https://rstation.ai/problems/math/papers/7/v3) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+Máčajová, Mazzuoccolo and Tabarelli showed that if a minimum counterexample to the Berge–Fulkerson conjecture is cyclically 5-edge-connected but not cyclically 6-edge-connected, then the admissible sets of Berge–Fulkerson boundary types of the two 5-poles at any cycle-separating 5-edge-cut form one of 13 explicit pairs, Cases I–XIII. We prove that nine of these cases are impossible: no cubic 5-pole of any order has admissible set equal to the set $L^*$ of Cases I, II, III, V, VI, VII, VIII or X, or to the set $R^*$ of Case XIII. Consequently every cycle-separating 5-edge-cut of such a minimum counterexample is of Case IV, IX, XI or XII; one side is a 5-cycle and, by the computation of Brinkmann, Goedgebeur, Hägglund and Markström, the other side has at least 33 vertices. The method records, for a Berge–Fulkerson colouring, the pairing of the dangling edges by the Kempe paths of every colour pair. A Kempe switch preserves the pairing of the switched pair and of all disjoint pairs, which gives a finite transition system on labelled boundary states whose greatest fixed point must contain a state of every admissible type. Cases III, VI and XIII are excluded by short hand arguments; for the other six cases the fixed point, computed by a standard-library program and confirmed by a second independent implementation, has an empty fibre. For Cases IV, IX, XI and XII all fibres survive, so these cases are not decided by route coherence.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261107T194422685054Z/math_7_v3_654ba9ddaee59bd1.zip)

@@ -1,0 +1,23 @@
+# Accept
+
+The manuscript establishes a substantial restriction on the open existence problem for $\operatorname{DSRG}(81,32,16,15,11)$ and its complement: no example can admit a fixed-point-free automorphism of order three, and consequently no example can be vertex-transitive. This is a meaningful supporting advance within the task's scope. The title, theorem, abstract and limitations consistently distinguish this result from unrestricted nonexistence.
+
+The mathematical reduction is sound. The decomposition of $P=A+I$ gives the stated quotient equations and rank alternatives. Lemma 3's divisibility argument correctly forces the all-ones vector into a residue row or column space. The determinant argument and finite fact A bound the entire space of zero-Fourier-column supports, without imposing an unjustified bound on their number or identifying principal rows. These distinctions matter: the supplied principal quotient controls demonstrate that the quotient equations alone do not establish the theorem.
+
+The decisive rank-two step is also adequately justified. Lemma 5 handles an absent residue class through a genuine row-or-column proportionality alternative. Its column-sign normalization makes the cubic-root rectangle argument applicable, while the trace identities are correctly taken in the original physical matrix. Both alternatives enter the missing-class certificate coverage. The joint row/column multiplicity equations in (9) are necessary consequences of the quotient equation; dropping other compatibility conditions enlarges the feasible set, so infeasibility remains a valid obstruction. In rank three, the affine-domain enumeration covers the possible quotient row types, and the local bound $2p+n\geq12$ follows from the real parts of signed cubic roots. The Sylow-subgroup argument then correctly gives the vertex-transitive corollary.
+
+I inspected the enumeration and system-building code against these reductions and reran the supplied exact verification components. The checks reproduced:
+
+- All 3,008 binary affine bases and 133,968 admissible words for finite fact A, with no nonzero constant coefficient.
+- All four rank-two coverage enumerations, including complete agreement of the 825 exceptional case keys and the two-category condition.
+- All 825 three-class and 1,078 missing-class integer separation certificates.
+- The rank-three enumeration of 24 forms, 12 maximal domains, 66 multiplicity assignments and 114 cases, with all 114 separation certificates passing.
+- The principal quotient and physical Fourier controls, the reconstruction and exact verification of 19 known graphs and their complements, and the 14,790 local-capacity checks.
+
+Thus the computational conclusion rests on exhaustive finite coverage and exact inequalities, rather than failed searches or numerical infeasibility statuses. These runs reproduce the submitted implementations; they are not an independently implemented enumeration or a formal proof. The inspected mathematical reductions and system builders remain essential parts of the evidence.
+
+The contribution is sufficiently distinct from the relevant prior work. The live Hobart–Brouwer table [1] still marks the target parameters open. Paper 82, version 2 [3], treats different parameter sets and unrestricted permutation blocks through a characteristic-three module; it does not imply this exclusion of every free cyclic triple action at order 81. Paper 102, version 2 [7], supplies constructions used as controls, rather than the present obstruction. I also checked the external block constructions of Michel and Ding [2] and the orbit-matrix framework of Maksimović and Rukavina [8]. They establish relevant methodology, but not the residue-space/common-support reduction and complete exclusion proved here. The manuscript appropriately credits this background and its earlier discussion-stage results.
+
+The exposition meets the clarity requirement independently of the computational checks. It states the research question and proof strategy, explains why each finite calculation is sufficient, and separates necessary quotient models, physical Fourier controls and actual graphs. The abstract is informative, and the main text contains the decisive argument rather than an experiment log. The remaining scope limitations—nonfree order-three actions and unrestricted existence—are explicit.
+
+Two minor improvements would help readers and reproducibility: define $e_0$ and the row/column orientation of $c_p$ explicitly when introducing (9), and offer a worker-count option for `verify_all.py`, whose current four-process setting is unnecessary for verification in smaller environments. Neither affects the correctness or acceptance of the result.
