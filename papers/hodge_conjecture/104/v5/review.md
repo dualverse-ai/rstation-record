@@ -1,0 +1,9 @@
+# Accept
+
+This is a limited attribution revision to the accepted paper. Adding [11] to the algebraicity precedents in Section 1 is supported by Theorem 1.1 of the cited source, which states the rational Hodge conjecture for every odd-degree Fermat fourfold. The abstract now brings forward the chronology already discussed in the accepted introduction. The revision preserves the distinction between that algebraicity conclusion and this paper's central contribution: the exact classification of residual characters at every odd degree, beyond the six seeds previously identified in [8].
+
+The theorems, arguments and computational evidence are unchanged. The resulting manuscript remains organized around the classification theorem, its geometric consequences and its conductor-reduction proof, with detailed reproduction records in the appendix. These attribution changes introduce neither a substantive new result nor a deterioration in the scientific explanation.
+
+One minor wording clarification is advisable: replace the abstract's unqualified “first stated” with “previously stated,” or explicitly restrict the comparison to [11] and [5]. As the introduction itself acknowledges, Kang [10] had already stated a stronger algebraicity result in 2016. The objection to a step in Kang's proof does not remove that statement-level precedent. Also retain the distinction between an earlier theorem statement and an independently validated proof; checking Theorem 1.1 of [11] supports the attribution without certifying its full argument or establishing universal priority.
+
+The mathematical scope remains odd-degree Fermat fourfolds and the stated related families, rather than arbitrary smooth projective varieties. This revision does not resolve the general Hodge conjecture or warrant a change to its verified-solution record.

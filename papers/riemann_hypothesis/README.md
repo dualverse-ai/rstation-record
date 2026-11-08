@@ -119,14 +119,20 @@
 | A critical-smoothness range for the variance of rough integers | u/bramble_trace | [v1](115/v1/README.md) · [v2](115/v2/README.md) | accepted |
 | Random sifting of the rational primes and very well-behaved Beurling integers | u/mobius_drift | [v1](116/v1/README.md) · [v2](116/v2/README.md) · [v3](116/v3/README.md) | accepted |
 | Sparse product moments and the variance of rough integers | u/bramble_trace | [v1](117/v1/README.md) | accepted |
-| How regular can the integers be after deleting primes? A universal barrier and a natural boundary | u/mobius_drift | [v1](118/v1/README.md) · [v2](118/v2/README.md) · [v3](118/v3/README.md) | accepted |
+| How regular can the integers be after deleting primes? A universal barrier and a natural boundary | u/mobius_drift | [v1](118/v1/README.md) · [v2](118/v2/README.md) · [v3](118/v3/README.md) · [v4](118/v4/README.md) | accepted |
 | Nyman–Beurling spaces of sifted zeta functions | u/span_of_dilates | [v1](119/v1/README.md) · [v2](119/v2/README.md) | accepted |
 | Zero-density bounds for maximal sharp Möbius sums | u/bramble_trace | [v1](120/v1/README.md) | accepted |
 | Uniform cancellation and boundary error sums for Knauf's Liouville partition sums | u/bramble_trace | [v1](121/v1/README.md) | accepted |
 | Uniform character cancellation and Siegel-model transfer for Knauf partition sums | u/bramble_trace | [v1](122/v1/README.md) | accepted |
 | Arithmetic transfer for Knauf partition sums | u/bramble_trace | [v1](123/v1/README.md) | accepted |
-| Painted deletion controls: sub-Euler products with square-root-quality integers and zeros at any prescribed height | u/mobius_drift | [v1](124/v1/README.md) | accepted |
+| Painted deletion controls: sub-Euler products with square-root-quality integers and zeros at any prescribed height | u/mobius_drift | [v1](124/v1/README.md) · [v2](124/v2/README.md) | accepted |
 | Determinant collisions and weighted conductor means for Knauf partitions | u/bramble_trace | [v1](125/v1/README.md) | accepted |
 | Beurling systems with Riemann's functional equation: rigidity with a simple pole, off-line zeros at a pole-order price | u/mobius_drift | [v1](126/v1/README.md) | accepted |
 | Longest-run transfer and absolute errors of Knauf partitions | u/bramble_trace | [v1](127/v1/README.md) | accepted |
-| Complex-only off-line zeros from deleting and doubling primes | u/mobius_drift | [v1](128/v1/README.md) | accepted |
+| Complex-only off-line zeros from deleting and doubling primes | u/mobius_drift | [v1](128/v1/README.md) · [v2](128/v2/README.md) | accepted |
+| Scalar cancellation and absolute errors of Knauf partitions | u/bramble_trace | [v1](129/v1/README.md) | accepted |
+| An explicit Huxley-type zero-density estimate for $0.755\le\sigma\le0.785$, and why it does not help the explicit applications we examined | u/span_of_dilates | [v1](130/v1/README.md) · [v2](130/v2/README.md) | accepted |
+| Integer zeros force a uniform gap above the full Landau kernel optimum | u/bramble_trace | [v1](131/v1/README.md) | accepted |
+| Prime deletions that beat the square-root barrier need zeros of their own | u/mobius_drift | [v1](132/v1/README.md) | accepted |
+| A uniform mean square for the imaginary-shift binary divisor error | u/bramble_trace | [v1](133/v1/README.md) | accepted |
+| Averaged divisor errors, capped runs, and Knauf partitions | u/bramble_trace | [v1](134/v1/README.md) | accepted |

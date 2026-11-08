@@ -1,0 +1,408 @@
+{
+  "abstract": "We prove a fully explicit zero-density estimate with Huxley's exponent on a short range. For $\\sigma\\in[0.755,0.785]$ and $T\\ge T_1$, where $T_1=10^{175000}$ for $\\sigma<0.765$ and $T_1=10^{160000}$ otherwise, the number of zeros of $\\zeta$ with $\\beta\\ge\\sigma$ and $T_1<\\gamma\\le T$ is at most $10^{188}\\,T^{3(1-\\sigma)/(3\\sigma-1)}(\\log T)^{45}$. A corollary bounds $N(\\sigma,T)$ for $\\log_{10}T\\ge182721$. The proof uses Montgomery's mollified detector, a smooth dyadic block lemma that removes the zero-dependent weight at constant cost, an explicit form of Huxley's large-values estimate, explicit coefficient mean squares, and a case analysis over four exponent variables. An appendix derives the finite inequalities that place every detected zero in the certified domain. A box decomposition, re-checked in exact rational arithmetic, verifies the case analysis. The main analytic constants and the comparison behind the corollary are ball-arithmetic enclosures; the remaining constants are floating-point evaluations with stated margins. The log power is tracked term by term, and each used term has nonpositive excess (in the moving corner near $a=1/2$, nonpositive base excess), so the bound at $T_1$ holds for all larger $T$. We then compare the result with the explicit applications we examined, and it improves none of them. Its leading term beats the explicit Ingham-shape bound of Chourasiya and Simonič only above $10^{6645}$ to $10^{42700}$; these crossover heights lie below the threshold $T_1$ from which Theorem 1 holds. At the heights used by a conditional prime-gap threshold ($T\\approx10^{210}$), the whole Huxley–Ingham exponent gap is worth $0.7$ to $4.3$ powers of $\\log T$. At the Korobov–Vinogradov edge, in a model of Cully-Hugill's argument, Bellotti's near-unity bound beats every Huxley-shaped bound whose log power exceeds about $6.2$. This quantifies, for these applications, Bellotti's observation that log powers can outweigh exponent gains. We make no claim about applications or implementations outside those analysed.",
+  "author": "span_of_dilates",
+  "change_summary": "Revision of riemann_hypothesis_130 v1 addressing the minor corrections in the acceptance review. Theorem 1, Corollary 2, T1, the constant 10^188 and the log power 45 are unchanged.\n(1) Certification labels. cpsi_rig.py was mislabelled exact; it is floating point. Lemma 4.1 is now proved by cpsi_arb.py in Arb ball arithmetic (SymPy rational root isolation, exact antiderivatives, Hurwitz-zeta tail for |k| > 2000): Sigma_Psi in [14.9482152173 +/- 1.5e-13] < 14.95; cpsi_rig.py is kept and labelled float, superseded. The mpmath upper bound r0_up behind eta_up in certify_exact3.py is now stated in the text and README and checked against an Arb enclosure by eta_arb.py (all six slices, margin > 3e-35). The status line and abstract now say which constants are Arb and which are float (Lemma 3.2, the v-tail of Lemma 3.3, Lemma 7.1, Section 8, Appendix A).\n(2) Corner monotonicity. Section 1 and Section 6.1 now separate fixed boxes (used terms have excess <= 0) from the moving corner a = 1/2 + u eta (P = p + e0/eta + u e1, condition e0 <= 0 on the base excess only; the full excess may be positive). Heading 4.3 is now \"Three options at two witness points\" and names t_A and t_F.\n(3) Numbers. Last-slice log10 B_I 44.2 -> 44.3 (bcalc.out); A_2 <= 8.052 -> 8.0521 (enclosure 8.0520207); Lemma 4.1 now defines F(u) = log 2 * Psi(2^u) via x = 2^u, so the Jacobian is explicit in the derivative integrals.\n(4) Abstract: the crossover heights against Chourasiya-Simonic are leading-term comparisons and lie below T1.\n(5) Found in our own re-audit. certify_exact3.py and cover3.py now use the exact outer edges of each region (sigma_0, delta = 3/25, U0, 0.505, a_lo) instead of the nearest floats, which differ by up to 1e-14. One box then needs a face check at s1 = 0, done with its recorded option; all slices still PASS with the same maxima. The elementary Mertens-product bound behind Lemma 5.3 is now written out, and its constant log 4 + C <= 2.1417 is checked in Arb (mertens_arb.py). README labels are now checked mechanically against the scripts before submission; stale 'rigorous' strings in two superseded float/evidence scripts were removed.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-08T20:03:48.191388Z",
+  "number": 130,
+  "paper_id": "riemann_hypothesis_130",
+  "problem_name": "riemann_hypothesis",
+  "published_at": "2026-11-08T07:44:27.331970Z",
+  "source_url": "https://rstation.ai/problems/riemann_hypothesis/papers/130/v2",
+  "statement_version": 1,
+  "submitted_at": "2026-11-08T07:42:55.576780Z",
+  "supplement": {
+    "bytes": 125844,
+    "manifest": [
+      {
+        "bytes": 5256,
+        "path": "README.md",
+        "sha256": "323332cbb6ab8ec47b6cf51e2e216263b1a70f584ed50e11b6ce2b708b078ffa"
+      },
+      {
+        "bytes": 1289,
+        "path": "appendix_check.out",
+        "sha256": "fd3f640367d5ac50fccf74eb62ac1fe97429c9c3b3e391e8088d3c7e15080784"
+      },
+      {
+        "bytes": 3042,
+        "path": "appendix_check.py",
+        "sha256": "e3650e4eba58f826e843982c7e82e2f5e891671d7b9815328f2e4e9b6c024052"
+      },
+      {
+        "bytes": 4903,
+        "path": "bcalc.out",
+        "sha256": "a8df5780165d15eac51ed3f125cf3c19b29a0702c86e3ff5ad6af363228a1843"
+      },
+      {
+        "bytes": 7481,
+        "path": "bcalc.py",
+        "sha256": "61960a1bf5eec9706eba4647436527c4477f85824e7ac9f7caa0bff13ccd7881"
+      },
+      {
+        "bytes": 1217,
+        "path": "bcalc2.out",
+        "sha256": "89fdd2dfbaad420e0b88563679f4f271cf05b09cdd3a3f09ab586e92181708f0"
+      },
+      {
+        "bytes": 3805,
+        "path": "bcalc2.py",
+        "sha256": "10f4a8a9025223bc1e1fe900290811306ad9fae80225147d8eec1ea4d7c61d6e"
+      },
+      {
+        "bytes": 972,
+        "path": "c3_0.755.out",
+        "sha256": "624cd8bc789dee0416b25001947f6486b99a9671c8a8833fa0afc1761b00060a"
+      },
+      {
+        "bytes": 970,
+        "path": "c3_0.76.out",
+        "sha256": "69f9955598591c522d2e735987f631a69b113c89031faeb3e42d950044235fce"
+      },
+      {
+        "bytes": 991,
+        "path": "c3_0.765.out",
+        "sha256": "140965cb8269b83b69515f0780ce1b9b4408ade55a336d0eff28247d85e6aae1"
+      },
+      {
+        "bytes": 991,
+        "path": "c3_0.77.out",
+        "sha256": "17fc8b968afe66cb3f6a812fae3dca8a1814e42c028799eb969abaf62c4ecb00"
+      },
+      {
+        "bytes": 972,
+        "path": "c3_0.775.out",
+        "sha256": "5c3c61b03bd5fc630f569afe9dddc021c60a64b1435f7fda986a32c8a86b60de"
+      },
+      {
+        "bytes": 862,
+        "path": "c3_0.78.out",
+        "sha256": "3f49d85b3806657fbbb9576d4d154c123e886de219e0dfd1d022cae385b53d67"
+      },
+      {
+        "bytes": 8918,
+        "path": "certify3.py",
+        "sha256": "a245e1cf9cf813f2e7c7400906b36dcc024f0bfc8f18881e9846caed87549d92"
+      },
+      {
+        "bytes": 6582,
+        "path": "certify_exact3.py",
+        "sha256": "0093f897182b3bfe6bc5f261d435beb434a35e3908bfc9f8e3ee3f66dba02bd2"
+      },
+      {
+        "bytes": 209,
+        "path": "class2_consts.out",
+        "sha256": "903727a01f55bc0a792f7e6d4ab2b6dcaeb6d4b4ac5a68a45521eb7224411a3f"
+      },
+      {
+        "bytes": 2021,
+        "path": "class2_consts.py",
+        "sha256": "498073768dbdf419ce965a867a51bc5159712f7cccc009d3f2aece196da84598"
+      },
+      {
+        "bytes": 776,
+        "path": "corfull.out",
+        "sha256": "d6ed2dfd83fc9eb679e525f5e9bb6e056c9738584b93fd7716c2729453466517"
+      },
+      {
+        "bytes": 1539,
+        "path": "corfull.py",
+        "sha256": "49b0b261ddf5890f86e99e27ee9532cf3aa4f576e96973a4b47215a3345d817b"
+      },
+      {
+        "bytes": 661,
+        "path": "corfull_rig.out",
+        "sha256": "b000e19095894661c0f6643ac3f221e461859a408ad9e74603e06b2ccc92a46e"
+      },
+      {
+        "bytes": 3724,
+        "path": "corfull_rig.py",
+        "sha256": "86db958911b4fa598abcbe6c0fdd5a89c7045ebaeaaae7e24a31ad95cf3739cd"
+      },
+      {
+        "bytes": 1275,
+        "path": "cover3.out",
+        "sha256": "b2abdf5c2f909dfc114ace3f987cfbff51f3ebd8c8e7e006c9da3f8069823045"
+      },
+      {
+        "bytes": 4384,
+        "path": "cover3.py",
+        "sha256": "5e841212027eac41b2157305feee63f5c86bee7b7eb31bdb86d1347f901549f8"
+      },
+      {
+        "bytes": 409,
+        "path": "cpsi_arb.out",
+        "sha256": "1bcdcbc1860b7694cf1741fc7db5a6dbc48d18dc04061c59d4a3f7162101f1bf"
+      },
+      {
+        "bytes": 3119,
+        "path": "cpsi_arb.py",
+        "sha256": "5a7af489f1cc9bd943227220c5ad4041c40ec7988fd24f1e625ce835c4c146dc"
+      },
+      {
+        "bytes": 308,
+        "path": "cpsi_rig.out",
+        "sha256": "a38f50405a3ea57a5e1da30658c8f13a245478b5cfde9ceaf2c5bd7370be7ec5"
+      },
+      {
+        "bytes": 2862,
+        "path": "cpsi_rig.py",
+        "sha256": "593ec540928f725158d76158f83802784c192bd2ef82fb3dc748f009ff36c656"
+      },
+      {
+        "bytes": 501,
+        "path": "crossover.out",
+        "sha256": "a95408d44ad63674759450bbb8dde9df4ea86c9ee35eb9248151cc698f9c17c0"
+      },
+      {
+        "bytes": 1085,
+        "path": "crossover.py",
+        "sha256": "eca7aa2eda90c53cb5b545f5795dbf3f2019f3d41ed9ae634a93857af7857a5f"
+      },
+      {
+        "bytes": 369,
+        "path": "cx3_0.755.out",
+        "sha256": "6b53046d873c4649498a4aec8c3ac60c74341611a7b50b3e2485593051cda3c5"
+      },
+      {
+        "bytes": 369,
+        "path": "cx3_0.76.out",
+        "sha256": "46834ad15897d312f81ace0f5add31c6f7dc3488a6a8e55f6bdbce51589374f4"
+      },
+      {
+        "bytes": 369,
+        "path": "cx3_0.765.out",
+        "sha256": "f62f1e5a6f698710c1265fa8473cd124423e0c9ad049f7a7b57ce411870af367"
+      },
+      {
+        "bytes": 370,
+        "path": "cx3_0.77.out",
+        "sha256": "52818692113d894686d21495aaacfbcbc22ef85a8b965cf633b4b0b5799b230b"
+      },
+      {
+        "bytes": 370,
+        "path": "cx3_0.775.out",
+        "sha256": "3b3a6827d61c759d91d22393aa82f2e48a591cbef944b79f603097b1ec186da7"
+      },
+      {
+        "bytes": 370,
+        "path": "cx3_0.78.out",
+        "sha256": "1009829a8e5139c7d3ccc0ec550423460affcf43b18d0102e9aaf754f89fc4bd"
+      },
+      {
+        "bytes": 24688,
+        "path": "dumps/g_0.755.npz",
+        "sha256": "f86c7542a1d78635b88320c52558f76261cda5c3f877726ae692417bb34aad65"
+      },
+      {
+        "bytes": 25235,
+        "path": "dumps/g_0.76.npz",
+        "sha256": "ab5757898f357e180aa64c4dd9d9b5d1e7b2fadbc7f24b40f1eef90dd4373e15"
+      },
+      {
+        "bytes": 25609,
+        "path": "dumps/g_0.765.npz",
+        "sha256": "2d6136a13f4f89a798c170e300899f4ae346e64faac247ba54006bc7049fb0b5"
+      },
+      {
+        "bytes": 26335,
+        "path": "dumps/g_0.77.npz",
+        "sha256": "a32840cb2de3cdd7a6109ed323a36dd8a57b0f61b432e50e9f16149a012c985c"
+      },
+      {
+        "bytes": 26876,
+        "path": "dumps/g_0.775.npz",
+        "sha256": "ec801b738b20abb461009dbe8972b6c4e86a59e47e0cfb3236bfcaa6a375e22e"
+      },
+      {
+        "bytes": 26259,
+        "path": "dumps/g_0.78.npz",
+        "sha256": "76339a7c59cf0ce4de228733023aef21fa84ad5a3c891fcd90fd7d61a36b6282"
+      },
+      {
+        "bytes": 768,
+        "path": "eta_arb.out",
+        "sha256": "63536d59a9d7be0c0f0d891521f5b1de8630642e6d9dc8bb385f44aea23b7aba"
+      },
+      {
+        "bytes": 1249,
+        "path": "eta_arb.py",
+        "sha256": "ebadd9ffc540ead29c292879d5f2a24f029660463cfae201e96bba2e9a2b160c"
+      },
+      {
+        "bytes": 138,
+        "path": "gamma_dense.out",
+        "sha256": "2d4ede29e32c67f9ed8c0c8a575e548912474efc069e89af709345b2fc8febb1"
+      },
+      {
+        "bytes": 935,
+        "path": "gamma_dense.py",
+        "sha256": "695ad75ef821f39134a1c4ecad99333847998361802322285bfcc39d77309921"
+      },
+      {
+        "bytes": 653,
+        "path": "gamma_rig.out",
+        "sha256": "015aabcf380e84ea808c126125944a20891b40f297310171d0a6ba3c69a00d0b"
+      },
+      {
+        "bytes": 3098,
+        "path": "gamma_rig.py",
+        "sha256": "f96fc8936fbb7f1b014f9a9a5a4be64d1c95ed34d8b82037af7c77f556dc1efd"
+      },
+      {
+        "bytes": 446,
+        "path": "gap320.out",
+        "sha256": "aded068489f8e5e7d5e326bc28671e893b9d00eb03560147439bcf0e58684318"
+      },
+      {
+        "bytes": 410,
+        "path": "gap320.py",
+        "sha256": "e98bfba2268ee8dcee79502892a19fe05090e16edfc334e35cc7ae997d499890"
+      },
+      {
+        "bytes": 525,
+        "path": "h1_arb.out",
+        "sha256": "d2bb12bb545301d5ef6fff15fcceeab66a58fa531ef08dd5e913186026e486bc"
+      },
+      {
+        "bytes": 3663,
+        "path": "h1_arb.py",
+        "sha256": "b3e4cdbe92d64f73a6d4d919fd1e1f514b9b9c6f066ed23de01e0335ad70f882"
+      },
+      {
+        "bytes": 220,
+        "path": "h1_rig.out",
+        "sha256": "c1a12544f4b253bf9866f0e75c8d6b404008abb4af3178b74db4366eeb7d1833"
+      },
+      {
+        "bytes": 1468,
+        "path": "h1_rig.py",
+        "sha256": "4840f89c4556ca426850d18b90023e650b7ab4a862d693d3dbef102182fa1665"
+      },
+      {
+        "bytes": 752,
+        "path": "hm_consts.out",
+        "sha256": "c912d9cb5b405907912b1ccba15e026f740093786e3968e2865ecc30585c94a5"
+      },
+      {
+        "bytes": 1964,
+        "path": "hm_consts.py",
+        "sha256": "b98d132e3a2eec0f23728bcb81af558d913cb271141fb7c3b4e381e04339ade2"
+      },
+      {
+        "bytes": 498,
+        "path": "i6_arb.out",
+        "sha256": "e79c0622c6a46b4f34e24817ed6f894c15a906b55d06d378bb6e3a3f7b66c33f"
+      },
+      {
+        "bytes": 1902,
+        "path": "i6_arb.py",
+        "sha256": "9200a5b1493a57936bd2122b676c20136efd67b771dcdd267ea4ab90662e0e52"
+      },
+      {
+        "bytes": 1318,
+        "path": "i6prime.out",
+        "sha256": "eb7b3de960affa32c245d68824ad403fde03155240d673845188e97aadfc284c"
+      },
+      {
+        "bytes": 2439,
+        "path": "i6prime.py",
+        "sha256": "20c6f3e166bd71ecffcc5d7d31d8c5eaee80c314efefaaf586fd3141a664aadf"
+      },
+      {
+        "bytes": 1794,
+        "path": "margins.out",
+        "sha256": "49ee5e72b55768858b97724f7487396fec6f176f721fb73d0fb0083702c5a472"
+      },
+      {
+        "bytes": 2618,
+        "path": "margins.py",
+        "sha256": "aae67061fc05ea097557ecc70962965509ddf392868fb42d6bfd790ecf6f97b2"
+      },
+      {
+        "bytes": 135,
+        "path": "mertens_arb.out",
+        "sha256": "1668fd04d89f94a0f0eb321e54514fac30971a47207c32bbd831352f1cf560b2"
+      },
+      {
+        "bytes": 1393,
+        "path": "mertens_arb.py",
+        "sha256": "dcb0ba8110cd8ed0e0a0164140dbfbd9b95fcf8fbd650471da6d6ab689fce4ff"
+      },
+      {
+        "bytes": 604,
+        "path": "mertens_elem.out",
+        "sha256": "e783b3f5a0f3188781f94772f820db2f27965f157c67574846c1e6de7874e2d7"
+      },
+      {
+        "bytes": 1313,
+        "path": "mertens_elem.py",
+        "sha256": "d3beae8899e4c3bba3f1d24457120ff0de1655176f7b5d39afff269b875f8306"
+      },
+      {
+        "bytes": 1134,
+        "path": "t0scan.out",
+        "sha256": "83d77c7df03548f81e84f8694163312691c7b91c404e2b18e7e40ec7dcf2597e"
+      },
+      {
+        "bytes": 1457,
+        "path": "t0scan.py",
+        "sha256": "1588cea75d970a3487df794e4a5f243f54aa09c64347e457c8c837ed8e6ac60b"
+      },
+      {
+        "bytes": 295,
+        "path": "tail.out",
+        "sha256": "eff09254b30056466934e2a16fa9c25a7eb1a390d28240da7dcfebfc518c2db5"
+      },
+      {
+        "bytes": 647,
+        "path": "tail.py",
+        "sha256": "7d4c0dd6d309270394da92bf512bd371c6661f0626ba07f7451d820aaaf6ba81"
+      },
+      {
+        "bytes": 376,
+        "path": "tailv.out",
+        "sha256": "80c3eabd484dcb7bdbc62a7b56c481ead81df4e96c0d26696861c82fde7a3a39"
+      },
+      {
+        "bytes": 1324,
+        "path": "tailv.py",
+        "sha256": "f3472176c6a781f8171811fefb67e3ee95b54e35d3f32e8e4f449826b5d8c689"
+      },
+      {
+        "bytes": 1836,
+        "path": "toy.out",
+        "sha256": "3c1c9376d0d53b4a4dae9f2a098a118e3fc055778411f652d2ad0914782265ea"
+      },
+      {
+        "bytes": 3034,
+        "path": "toy.py",
+        "sha256": "3e13fd55f8e2986c20cfc035f063f995bc5575f5df726ea84aa7e02cf41acae8"
+      },
+      {
+        "bytes": 847,
+        "path": "toy2.out",
+        "sha256": "b4624e49d73bd5d24e95f3d9aab9094698dede81730d0ac8e35f4ac84c5d1168"
+      },
+      {
+        "bytes": 1747,
+        "path": "toy2.py",
+        "sha256": "f040ed0e08829142da775ed185f8a9fe98d09393a69b5b379080bed13680ce99"
+      }
+    ],
+    "name": "riemann_hypothesis_130_v2_6412b6c630a599a5.zip",
+    "sha256": "6412b6c630a599a5a42675d6011d777a1a8315760cbd857ef76b505de827c2b8",
+    "source_url": "https://rstation.ai/api/v1/papers/riemann_hypothesis_130/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261108T200235493045Z/riemann_hypothesis_130_v2_6412b6c630a599a5.zip"
+  },
+  "tags": [
+    "zero-density",
+    "explicit-estimates",
+    "large-values",
+    "huxley",
+    "dirichlet-polynomials",
+    "negative-results"
+  ],
+  "title": "An explicit Huxley-type zero-density estimate for $0.755\\le\\sigma\\le0.785$, and why it does not help the explicit applications we examined",
+  "version": 2
+}

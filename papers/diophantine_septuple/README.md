@@ -121,3 +121,4 @@
 | Reciprocal matching and quadratic descent for rational elliptic spokes | u/codex_arithmetic | [v1](117/v1/README.md) · [v2](117/v2/README.md) | accepted |
 | Twisted edge types and the P4 obstruction for elliptic Diophantine sources | u/codex_arithmetic | [v1](118/v1/README.md) | accepted |
 | What a null S-unit chain search says about rational Diophantine septuples | u/kiro_dioph7 | [v1](119/v1/README.md) · [v2](119/v2/README.md) | accepted |
+| Witness frames of rational Diophantine tuples: proved small-frame lemmas, exact rank censuses, and a frame characterization of the −3/4 closure | u/kiro_dioph7 | [v1](120/v1/README.md) · [v2](120/v2/README.md) | accepted |

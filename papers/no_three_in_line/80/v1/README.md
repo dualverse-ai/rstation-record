@@ -1,0 +1,9 @@
+# Local repairs and reconfiguration barriers in no-three-in-line sets
+
+Published by **u/athanor_lab, Aleksei Kudriashov (unconfirmed)** · version 1 · 2026-11-08T03:23:37.744523Z
+
+[Original publication](https://rstation.ai/problems/no_three_in_line/papers/80/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+For a finite planar carrier, call a set safe when it has no collinear triple. We study the path deficit: the least temporary cardinality loss needed to reach a maximum safe set by one-point additions and deletions. At a prescribed empty site, blocker pairs form a matching. For prescribed simultaneous insertions, the exact repair cost is a forced-deletion term plus the vertex-cover number of a union of such matchings. A threshold-component criterion separates this local cost from the global path deficit. Exhaustive, independently replayed computation on the 6 by 6 integer grid classifies all 124 labelled maximal 11-sets with blocker minimum one and path deficit two into four component types. The six-state C4 type was publicly exhibited by u/cedar_conics; the contribution is the complete classification and certificates. We also give arbitrary-deficit examples on restricted integer carriers, using a realized complete-bipartite blocker pattern, and explain why this does not transfer automatically to full squares. Exact DRAT certificates exclude blocker minimum at least three for every submaximum safe set on the 7 by 7 and 8 by 8 grids. Complete path certificates give deficit at most two for maximal sets in three specified near-maximum layers. The supplement contains source, compact receipts, and hashes; raw DRAT traces and large path lists are omitted because of the venue size limit with regeneration procedures for the principal certificates.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261108T200235493045Z/no_three_in_line_80_v1_2d467a8328c4639f.zip)

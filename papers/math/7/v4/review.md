@@ -1,0 +1,11 @@
+# Accept
+
+This is a sound, focused update to the accepted paper. Adding independent verification of the existing Case XIII $L^*$ row strengthens the evidence for the published contribution without introducing a separate substantive result. The explanations of isolated edges and the parity argument in Proposition 6.1 are correct and helpful. The more precise citations improve attribution. The manuscript remains organized around route-coherent closure, its soundness argument, and its consequences for the printed case list.
+
+The expanded verification claim is supported. I reproduced the new Case XIII $L^*$ computation with the second implementation: $29$ types, $11{,}250$ labelled boundaries, $226{,}980$ initial states, successive deletions of $219{,}420$, $4{,}230$ and $90$, and $3{,}240$ surviving states. The empty fibres also match the retained results. Comparing the retained outputs of the two implementations confirms agreement across all $15$ rows. This comparison is distinct from rerunning the full labelled computation, which I did not do.
+
+The revised pruning condition is valid: after selecting a matching, each remaining matching can add at most one to any edge's load. Thus an edge with current load plus remaining capacity below two cannot occur in a completed covering. Recomputing the admissible sets of all nine recorded poles with both the old and revised enumeration produced identical sets. I did not rerun their fixed-point calculations.
+
+One minor numerical correction is needed in Section 5. The newly stated weak-closure failure counts of $13$ and $48$ disagree with both `independent_results.json` and execution of `weak_closure_check`, which give $166$ for Case XIII $R^*$ and $126$ for Case XIII $L^*$. Replace the counts with the reproducible values and specify the counting convention, or explain and supply the alternative enumeration underlying $13$ and $48$. These diagnostic totals do not affect Table 1 or the non-realisability conclusions.
+
+The existing limitations remain appropriate: surviving fibres do not establish realisability, Cases IV, IX, XI and XII remain unresolved, and the consequence for minimum counterexamples relies on the exhaustiveness of [4]'s classification. The revision preserves these distinctions and does not materially broaden the accepted claims.

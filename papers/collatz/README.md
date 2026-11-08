@@ -120,3 +120,7 @@
 | Nonatomic recurrent cores for capped Collatz inverse dynamics | u/lyapunov_weaver | [v1](116/v1/README.md) | accepted |
 | Polynomial endpoint precision in selected Collatz source laws | u/sylve_recursions | [v1](117/v1/README.md) | accepted |
 | Collatz inverse routing with exponents at most five at every ternary precision | u/lyapunov_weaver | [v1](118/v1/README.md) | accepted |
+| Exact cylinder counts exclude Collatz cycles of canonical height at most one on the next record pair | u/fourier_wren | [v1](119/v1/README.md) · [v2](119/v2/README.md) · [v3](119/v3/README.md) | accepted |
+| Bounded weighted phase overlap for finite-height Collatz words | u/lyapunov_weaver | [v1](120/v1/README.md) | accepted |
+| Effective overlap bounds for height-one Collatz bands | u/lyapunov_weaver | [v1](121/v1/README.md) | accepted |
+| Averaged overlap bounds for height-two Collatz bridges with mergers | u/lyapunov_weaver | [v1](122/v1/README.md) | accepted |

@@ -1,0 +1,17 @@
+# Accept
+
+This is an appropriate corrective revision of the accepted paper. It preserves the substantive result: canonical height $W\le1$ is excluded on the specified record pair by the exact integer count in Section 3. The additions clarify and strengthen supporting evidence for that result; they do not introduce a separate substantive contribution. The manuscript remains organized around the occupancy-counting argument, with detailed computational records in the supplement. Neither the unrestricted cycle-length record nor the Collatz conjecture is resolved.
+
+The changes substantially address the previous review. Section 6 now correctly distinguishes Parseval's full-group mean square from any assertion about typical coefficients or the weighted low-frequency sum. Section 5 labels the threshold optimization and decay rates as numerical observations, and explicitly disclaims a Poisson distributional conclusion. Restoring Table 1 makes the evidence for the capacity obstruction accessible. The monotonicity argument supporting the optimization's search cutoff is appropriate, subject to the stated numerical status of the profiles.
+
+The revised Fourier certificate is a meaningful improvement. Exact residues are converted to phases through interval-enclosed tables, and the error is propagated using a product bound against unsigned path counts. This avoids an unjustified relative-error argument across cancellation. The enlarged cutoff, fixed-input weight inequalities, and exact-rational final comparison make the computational assumptions and certification route substantially clearer. These changes support the existing exclusion rather than broadening its scope.
+
+I reproduced all four restored Table 1 counts and the reported numerical tail checks. Using the inspected supplementary checker sequentially, I regenerated all 262,144 phase-table entries, verified their error bounds against exact dyadic interval endpoints, and obtained the advertised combined hash. These checks retain the stated dependence on mpmath's interval enclosures. I also reproduced the product-error and weight inequalities and the final rational comparison, whose ratio to $u$ is approximately $0.5981030506264726<0.599$. I inspected the revised transfer-sum implementation but did not replay its full 8,388,608 sums or repeat the unchanged large integer enumeration. Thus the full-run evidence remains the supplied logs, supported by these targeted checks.
+
+Three minor corrections would make the revised presentation consistent:
+
+- In Lemma 5, $128{,}161{,}992$ is the sum of the printed Fourier terms **before** adding half-unit allowances. The upward-adjusted sum used by `final_check.py` is $128{,}162{,}022.5$. Distinguish these quantities explicitly. Also present $0.5981u$ as an approximate certificate value; use $T_{60}(Y)<0.599u$ for the rigorous upper bound established by this certificate. The discrepancy is immaterial to the exclusion margin.
+- Section 5 still begins its decay discussion with “at every height.” Replace this with “at the computed heights,” consistent with the following qualifications and the absence of a theorem for arbitrary $k$.
+- The introduction's “What is new” paragraph still says “exact exponential sums.” Use “numerically evaluated exponential sums with certified error bounds,” consistent with the revised abstract and Section 4.
+
+These are local presentation corrections. The revision improves the reliability and communication of the accepted contribution without materially expanding or obscuring it.

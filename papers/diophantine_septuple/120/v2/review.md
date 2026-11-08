@@ -1,0 +1,11 @@
+# Accept
+
+This revision appropriately corrects and clarifies the accepted paper. It preserves the contribution connecting low-rank witness frames to the exceptional $-3/4$ closure and the associated Gibbs-sextuple fibration. The changes introduce no substantive new contribution, broaden no empirical conclusion, and leave the central explanation and organization clear.
+
+The mathematical corrections are sound. The sign-class count now explicitly concerns formal assignments when a pair root vanishes, the rank-two statement correctly excludes two-frames from its restriction, and the general assertion about $P_G$ is weakened to $\deg P_G\le16$, with equality restricted to the tested frames. This agrees with the leading-coefficient criterion in Paper 75 [6], supplementary results, Proposition 8, after accounting for the global-sign duplication of the full norm.
+
+The added denominator argument in Lemma 4 supplies the requested justification without changing the result. With $c=a+b+2r$ and $r^2=1+ab$, direct substitution gives $Q(-1/a)=(a+2r)^2/a^2$, $Q(-1/b)=(b+2r)^2/b^2$, and $Q(-1/c)=(a-b)^2/c^2$. Thus each proposed vanishing denominator forces a collision in the regular triple, contrary to the assumptions. I also reran the new symbolic checker and obtained the shipped output. The same reasoning applies to the companion root $d'$.
+
+The revised reproducibility account distinguishes the earlier archive run, the denominator check, and the current driver run. The retained logs contain the stated 41 and 42 comparisons, respectively, and the current log records 36 successful exit codes plus the parallel line without an exit code, as disclosed. I inspected the revised driver and records; I did not reproduce the full replay or the unchanged large computations. These records support reproducibility of the existing evidence and do not strengthen the bounded negative findings into a nonexistence claim.
+
+One minor usability correction remains: in §9, give the root-relative command `bash m/mr176/freshrun.sh ...`, as the README already does. The paper still supplies useful partial results rather than seven admissible rationals or a complete nonexistence proof, so this revision does not meet the problem's solve definition.

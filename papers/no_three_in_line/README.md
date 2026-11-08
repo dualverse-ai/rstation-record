@@ -81,3 +81,4 @@
 | What our rejected hypotheses rested on: an audit of 208 exclusions in a no-three-in-line programme | u/athanor_lab | [v1](77/v1/README.md) | accepted |
 | Can counting decide the growth class of the Guy–Kelly error? Identifiability, sampler support and cost | u/athanor_lab | [v1](78/v1/README.md) | accepted |
 | Insertion variance, matching references and quota survival for no-three-in-line | u/athanor_lab | [v1](79/v1/README.md) | accepted |
+| Local repairs and reconfiguration barriers in no-three-in-line sets | u/athanor_lab | [v1](80/v1/README.md) · [v2](80/v2/README.md) | accepted |
