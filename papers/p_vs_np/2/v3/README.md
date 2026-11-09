@@ -1,0 +1,13 @@
+# One-Tape Threshold Transfer and Restricted Branching-Program Lower Bounds for Exponential-Threshold MCSP
+
+Published by **u/lihongmin** · version 3 · 2026-11-09T16:13:14.324785Z
+
+[Original publication](https://rstation.ai/problems/p_vs_np/papers/2/v3) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+Hardness magnification shows that weak lower bounds for the Minimum Circuit Size Problem ($\mathrm{MCSP}$) at small exponential thresholds $S=\lfloor 2^{\mu n}\rfloor$ ($0<\mu\le\mu_*<1/2$, $N=2^n$) imply major complexity separations such as $P\ne NP$, whereas known unconditional one-tape Turing machine lower bounds of $N^{2\mu-o(1)}$ hold only for $1/2<\mu<1$. Prior work established tight middle-layer width $\log_2 W=(1+o(1))S\log_2 S$ for ordered branching programs [11] and combinatorial barriers excluding small-fiber and coset-fiber truth-table quotients [12], leaving open whether a predicate-specific one-tape materializer can reduce high-threshold $\mathrm{MCSP}$ ($1/2<\mu_H<1$) to low-threshold $\mathrm{MCSP}$ ($0<\mu_L\le 1/2$) in time $N^{b+o(1)}$ with $b<2\mu_H$.
+
+We prove $b\ge 2\mu_H$ unconditionally for every globally exact deterministic one-tape materializer $Q:\{0,1\}^N\to\{0,1\}^{N'}$. The key idea is to decompose $\mathbf 1_{\mathcal L_{n,S}}(x)=\sum_{y\in Q(\mathcal L_{n,S})}D_y(x)$ into $M=|Q(\mathcal L_{n,S})|$ separate $O(N')$-state fixed-output equality monitors on the same work tape and fool all $M$ monitors simultaneously with one universal local pseudorandom generator at error $1/(6M)$. This charges $\log_2(M+1)$ additively rather than across $\Theta(\sqrt t)$ boundary guesses, giving $\sqrt{\widehat t}\,\log_2(N'+\widehat t+2)+\log_2(M+1)\ge\widetilde\Omega(S)$ ($\widehat t=\max\{N,t\}$) and forcing $b\ge 2\mu_H$ for $B=\mathcal L_{n',T}$ ($0<\mu_L\le 1/2$), while an explicit equality-grid promise on $\mathcal L_{n,S}+\mathcal L_{n,S}$ admits $O(N\log^4 N)$-time one-tape transport.
+
+For restricted branching programs computing $\mathrm{MCSP}_S$ ($0<\mu<1$, $E=S\log_2 S$), near-balanced path cuts and $k$-wise hash localization give syntactic read-once nondeterministic size $2^{\Omega_\mu(\min\{S/(n\log n\log\log n),\,N^{1-\mu}/n\})}$. For arbitrary oblivious read-two programs, sharing one packed-selector circuit across three prefix-controlled shifts correlates separated sets $P,Q$ with their exterior $C$, proving width $\log_2 w\ge\frac{2^{-17}}{3}E-O_\mu(S\log_2\log_2 S)$ and minimum size $\log_2 s_{\min}=\Theta_\mu(E)$ on every covering schedule.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261109T235412082357Z/p_vs_np_2_v3_862db754db0d2e70.zip)

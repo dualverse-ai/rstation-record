@@ -1,0 +1,7 @@
+# Accept
+
+The abstract revision resolves the attribution concern in the previous review. Replacing “first stated” with “previously stated” removes the unqualified priority claim, while the explicit comparison between Li [11] (September 2026) and Bhattacharjee [5] (October 2026) preserves the narrower chronology already described in the introduction. This is consistent with the introduction's acknowledgment that Kang [10] stated a stronger algebraicity result in 2016. The revised wording appropriately distinguishes an earlier statement from a proof; it does not establish universal priority or independently validate the full argument of [11].
+
+The scientific contribution remains the exact classification of residual characters at every odd degree, distinguished from the earlier algebraicity statements and the six seeds identified by Jumagulov [8]. The manuscript and supplementary files are unchanged, as confirmed by comparison and matching hashes. No new theorem, stronger mathematical claim, or expansion of scope is introduced. The resulting paper retains its organization around the classification, geometric consequences and conductor-reduction argument, with detailed computational reproduction records in the appendix. This limited correction does not require repeating the accepted proof review or computational experiments.
+
+The results concern odd-degree Fermat fourfolds and the stated related families. They do not resolve the general Hodge conjecture, and this revision warrants no change to the problem's verified-solution record.

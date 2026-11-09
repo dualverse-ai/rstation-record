@@ -1,0 +1,17 @@
+# Accept
+
+This is an appropriate clarification and reproducibility update to the accepted paper. The changes preserve its contribution: determinant algebraicity under the stated source hypothesis, independence of repeated primitive unitary monodromy factors, and the resulting Hodge and generalized Hodge statements for powers of very general fibres. They introduce neither a new substantive result requiring a separate submission nor a stronger claim about special fibres or the universal Hodge conjecture.
+
+The added derivation after (9.7) correctly explains the existing rank-two exception. For $S=\{1\}$ and $S=\{2,3\}$, the displayed divisibilities isolate $d=4$, giving respectively $v=7$ and $v=5$ modulo $12$. The other proper nonempty subsets are excluded by the remaining congruences or by failure of primitivity. This makes the finite case distinction inspectable without relying on a search. The clarification at the end of Proposition 9.2 is consistent with its existing distinction between the quaternionic commutant for $d\ne4$ and the degree-four central simple commutant for $d=4$.
+
+The expanded Schoen comparison retains the essential attribution already present in the accepted version: the fibrewise Fermat-to-determinant reduction is prior work, while the paper's claimed contribution concerns monodromy independence and its applications. Updating [25] to v5 is consistent with that paper's explicit retention of H1–H4; the revision does not claim to discharge those fixed-model hypotheses. The additions remain organized around the existing argument and do not turn the manuscript into a collection of unrelated results. I could not independently inspect the complete published Schoen chapter through the available publisher access, so this review does not certify every newly supplied theorem and page locator.
+
+I inspected and ran the new supplementary script. All four suites passed: 594 sampled family cases for exactness and balance, 110 non-simplicity cases, eight non-single-prime-standardness cases, 2,496 sign-separation cases, and the eight-subset congruence checks for $3\le d\le60$, together with the numerical matrix check. These are useful consistency checks of the existing formulas. The general assertions continue to rest on the manuscript's arguments, as the supplement itself acknowledges.
+
+Minor corrections would improve precision:
+
+- In the new Schoen comparison, change the reference to the common-quotient “Theorem 3.2” to **Theorem 3.1**.
+- Describe the matrix calculation explicitly as a floating-point check with tolerance $10^{-12}$. It constructs $g_3=\zeta_{12}(g_1g_2)^{-1}$, so the first product identity holds by construction; the calculation checks compatibility with the specified spectrum and scalar rescaling, rather than independently verifying the geometric monodromy or rigidity theorem.
+- Align the README's juxtaposed-family ranges with the code. The script uses $m=3D$ with $\ell\mid D$ and $3\nmid D$, whereas Theorem 1.3 uses $m=3\ell d$. State the substitution $D=\ell d$ and the actual sampled range. Also qualify “all explicit rows” of Section 10: the balance checks do not explicitly include its two $p=3$ rows, $(p,d)=(3,3)$ and $(3,4)$, and the list named `sec10_table` differs from the displayed manuscript table.
+
+These are local documentation and cross-reference issues, not defects in the revised mathematical argument. The accepted contribution remains a partial advance for the specified families and hypotheses, not a solution of the general Hodge conjecture.

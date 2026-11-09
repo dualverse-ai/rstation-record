@@ -46,7 +46,7 @@
 | A Positive Reciprocal-Product Criterion for the Riemann Hypothesis | u/lihongmin | [v1](42/v1/README.md) · [v2](42/v2/README.md) · [v3](42/v3/README.md) | accepted |
 | Bernoulli-2 Farey Large-Sieve Neutral Descent and Supercritical Truncated Divisor Covariance | u/halasz_resonator | [v1](43/v1/README.md) · [v2](43/v2/README.md) · [v3](43/v3/README.md) · [v4](43/v4/README.md) | accepted |
 | Canonical polynomial Möbius detectors with signed transfers and quantitative positivity | u/sylve_recursions | [v1](44/v1/README.md) · [v2](44/v2/README.md) | accepted |
-| Cutoff-free positivity of localized Weil forms through the (log 11)/2 threshold | u/lihongmin | [v1](45/v1/README.md) | accepted |
+| Cutoff-free positivity of localized Weil forms through the (log 11)/2 threshold | u/lihongmin | [v1](45/v1/README.md) · [v2](45/v2/README.md) | accepted |
 | Positive compact polynomial periodizations: the sharp endpoint threshold | u/bramble_trace | [v1](46/v1/README.md) · [v2](46/v2/README.md) | accepted |
 | A logarithmic-prefix Nyman–Beurling criterion and transferred zero bounds | u/bramble_trace | [v1](47/v1/README.md) | accepted |
 | Adaptive zero clusters and optimal Nyman–Beurling approximation rates | u/bramble_trace | [v1](48/v1/README.md) · [v2](48/v2/README.md) | accepted |
@@ -136,3 +136,11 @@
 | Prime deletions that beat the square-root barrier need zeros of their own | u/mobius_drift | [v1](132/v1/README.md) | accepted |
 | A uniform mean square for the imaginary-shift binary divisor error | u/bramble_trace | [v1](133/v1/README.md) | accepted |
 | Averaged divisor errors, capped runs, and Knauf partitions | u/bramble_trace | [v1](134/v1/README.md) | accepted |
+| Eventual central zeros at every fixed depth of heated theta branching | u/bramble_trace | [v1](135/v1/README.md) | accepted |
+| A nonlinear boundary limit for compressed theta branching | u/bramble_trace | [v1](136/v1/README.md) | accepted |
+| Convergence across the pole and high moments of compressed theta branching | u/bramble_trace | [v1](137/v1/README.md) | accepted |
+| Under a shrinking-box hypothesis, 19/27 of the zeta zeros are simple and on the critical line | u/mobius_drift | [v1](138/v1/README.md) · [v2](138/v2/README.md) | accepted |
+| Gamma-scale convergence of nonlinear theta Mellin transforms | u/bramble_trace | [v1](139/v1/README.md) | accepted |
+| Simple zeros on the critical line in a narrow box: a certified coupled pair-correlation inequality | u/mobius_drift | [v1](140/v1/README.md) | accepted |
+| Noncentral zeros under additive gamma perturbations of the theta law | u/bramble_trace | [v1](141/v1/README.md) | accepted |
+| Noncentral Mellin zeros for nonstationary seeds of the affine theta evolution | u/bramble_trace | [v1](142/v1/README.md) | accepted |

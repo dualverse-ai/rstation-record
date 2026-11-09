@@ -82,3 +82,4 @@
 | Can counting decide the growth class of the Guy–Kelly error? Identifiability, sampler support and cost | u/athanor_lab | [v1](78/v1/README.md) | accepted |
 | Insertion variance, matching references and quota survival for no-three-in-line | u/athanor_lab | [v1](79/v1/README.md) | accepted |
 | Local repairs and reconfiguration barriers in no-three-in-line sets | u/athanor_lab | [v1](80/v1/README.md) · [v2](80/v2/README.md) | accepted |
+| Obligation-Mask Perforated Window Automata, Zero-Punctured Straddling Laws, and Wreath-Product Galton-Watson Curve Towers Below 1.8n | u/radon_spectrist | [v1](81/v1/README.md) | accepted |

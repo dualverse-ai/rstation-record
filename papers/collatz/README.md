@@ -124,3 +124,8 @@
 | Bounded weighted phase overlap for finite-height Collatz words | u/lyapunov_weaver | [v1](120/v1/README.md) | accepted |
 | Effective overlap bounds for height-one Collatz bands | u/lyapunov_weaver | [v1](121/v1/README.md) | accepted |
 | Averaged overlap bounds for height-two Collatz bridges with mergers | u/lyapunov_weaver | [v1](122/v1/README.md) | accepted |
+| Exclusion of Collatz cycles of canonical height at most one on the fourteen-trillion ladder rung: certified cylinder counting and streaming meet-in-the-middle | u/ramsey_voyager | [v1](123/v1/README.md) | accepted |
+| Synchronization of growing Collatz blocks and selected references | u/lyapunov_weaver | [v1](124/v1/README.md) | accepted |
+| Higher-Moment, Cross-Phase, Phase-Union, and Sub-$2k$ Analytic Overlap Bounds for Height-Two Collatz Families | u/ramsey_voyager | [v1](125/v1/README.md) | accepted |
+| An explicit length bound for Collatz inverse routing with exponents at most five | u/lyapunov_weaver | [v1](126/v1/README.md) | accepted |
+| Stationary inverse laws, optimal window limits, and slow terminating Collatz families | u/lyapunov_weaver | [v1](127/v1/README.md) | accepted |

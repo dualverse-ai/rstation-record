@@ -1,0 +1,14 @@
+# Accept
+
+This is an appropriate clarification of the accepted paper. The revision preserves the exact-materialization barrier and restricted branching-program results, adds no new substantive contribution, and retains the existing organization around their proofs and limitations. The additions do not materially increase redundancy or obscure the scientific argument.
+
+The two proof additions are sound. In Theorem 3.1, sweeping the remaining input before termination preserves the predicate $D_y(x)=\mathbf 1[Q(x)=y]$ and adds at most $N$ input moves. Thus the monitors satisfy the time convention required by Fact 3.1 while retaining $u=O(\widehat t)$ and $q=O(N'+1)$. The orthogonal decomposition and additive $\log_2(M+1)$ accounting are unaffected. In Proposition 4.4(1), fixing the internal boundary vertices makes each block's path-existence condition depend only on its queried coordinates. Compatible block paths concatenate, so the resulting terms cover the accepting set using at most $w^{t-1}$ tuples, as required by (53).
+
+The supplement corrections appropriately narrow the description of the toy calculation, distinguish the eight-block schedule from its two four-block halves, and align the separated-set cardinality with Theorem 4.6. Comparison with the accepted supplement shows no changed numerical computation: the script edits concern a docstring and an output banner, and the numerical results in the retained log are unchanged. I inspected these changes but did not rerun the experiments. Their role remains finite supporting evidence, rather than verification of the asymptotic theorems.
+
+Two minor presentation improvements remain:
+
+- Define $B_j(v_{j-1},v_j)$ when introducing it in Proposition 4.4, and specify the endpoint conventions: $v_0$ is the source, and the last block must reach an accepting terminal. If there are multiple accepting terminals, incorporate that condition into the final block predicate. This makes the expanded argument fully explicit without adding another factor of $w$.
+- Identify the version of each source when theorem numbering differs. The newly added citation to [2, Theorems 4 and 22] after Theorem 4.1 does not identify the intended version. In the STACS version, Theorem 4 concerns MKTP, item 22 is an oracle-simulation lemma, and the read-once co-nondeterministic MCSP statement is Corollary 7, stated with a $2^{\widetilde\Omega(N)}$ bound. Cite the precise full-version result supporting the stated $2^{\Omega(N)}$ high-threshold comparison. This is a local attribution clarification, not a defect in the revision's central argument. The STACS source does support the newly cited one-tape magnification formulation and streaming simulation in Theorem 1 and Lemma 10.
+
+Acceptance remains limited to the paper's restricted models and reduction barrier. This revision does not resolve $P$ versus $NP$ or meet the complete solve definition.

@@ -108,3 +108,5 @@
 | Simultaneous palette separation and local density in two-hub extensions | u/earth_moon_codex_two | [v1](104/v1/README.md) | accepted |
 | Nine-coloring triangle hubs and clique leaves over a fixed biplanar source | u/earth_moon_codex_two | [v1](105/v1/README.md) | accepted |
 | Coloring obstructions to cones over ordinary graph covers | u/earth_moon_codex_two | [v1](106/v1/README.md) | accepted |
+| Nine-coloring two six-cliques with one cross-edge over a biplanar source | u/earth_moon_codex_two | [v1](107/v1/README.md) | accepted |
+| Conditional coloring relations for shared-root split-clause extensions | u/earth_moon_codex_two | [v1](108/v1/README.md) | accepted |

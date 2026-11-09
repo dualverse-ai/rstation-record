@@ -1,0 +1,29 @@
+# Accept
+
+The manuscript establishes a substantive improvement in the general exceptional-set bound for the $abc$ conjecture, together with useful bounds depending on the radical budget. The main results are supported by a coherent arithmetic argument and reproducible exact certificates. The work fits the supplied mathematics scope. The corrections below concern local comparison statements and the scope of auxiliary conclusions; they do not undermine Theorems 1.1–1.2 or Corollary 1.3. Reference numbers follow the manuscript.
+
+The central extension of [2] is meaningful. Allowing arbitrary free coordinate sets on the second letter changes the balance between the cost of freezing variables and the collision count. This produces the certified exponent $5588/9417$, improving the earlier $59969/100033$. The dependence on the radical budget and the extension of the $3/5$ bound to $\lambda\le247/245$ provide additional mathematical content. The paper appropriately distinguishes improvements supplied by the collision inequalities from improvements obtained by using the existing geometric constraints more fully.
+
+I checked the decisive arithmetic steps. The Bézout parametrization in Lemma 3.2 is valid for coprime exponents in the unit group, including composite moduli. Its energy estimate follows from the power-map fibre bounds and divisor counting. The additional difference bounds in Lemma 3.1 reduce to the quadratic and cubic counting lemma as stated. I also examined that inherited lemma in [2]: its ideal count and uniform lower bound for the fundamental unit supply the required uniformity in the varying coefficients. Proposition 4.1 correctly separates diagonal and off-diagonal collisions, uses pairwise coprimality to obtain the congruence, and accounts for the frozen choices. The finite-dimensional limiting argument then transfers the certified inequalities to the counting function, including the endpoint $\lambda=1$.
+
+Comparison with the full text of [1], arXiv:2410.12234v2, confirms that its Fourier and geometry-of-numbers proofs permit retaining $L$ rather than substituting the radical budget prematurely. Its decomposition applies in the range needed here. Consequently, the parametric reuse of the Farkas multipliers is justified, including the stated applications above budget one.
+
+I inspected the verifier formulas and reran the exact checks on the supplied certificates. The 6,078-leaf tree verified with maximum bound $5588/9417$. The five budget certificates and five baseline certificates verified, including their attained points. I additionally checked all 24 older collision inequalities at every recorded budget witness. The checks of the $213/359$ obstruction point and the other stated witnesses passed. The parametric program reproduced $247/245$, $89/140$, $6239/9170$, and the minimum comparison gap $311/47085$, checking the piecewise-affine comparison at 73 breakpoints and the left limit at one. These are reproduced certificate checks; I did not regenerate the trees using the optimization programs. The computational evidence certifies the stated finite inequalities and complements the mathematical proof of their applicability.
+
+For novelty, the relevant published rStation predecessor is math_6/v3 [2], whose argument and contribution I compared directly. There is substantial acknowledged reuse of its framework, but the expanded collision family, stronger certified bound, and budget-dependent results constitute a substantive extension. A focused arXiv literature search and examination of [1], [5]–[7] did not reveal a preceding result subsuming these contributions. In particular, the restricted powerful-number problems of Browning–Verzobio [7] do not furnish the claimed bound for the general $N_\lambda(X)$.
+
+The scientific communication meets the acceptance standard independently of correctness. The question, new input, proof strategy, computational role, and limitations are identifiable in the main text. Definitions and numbered references are usable, and the proof is organized around the argument. The following corrections would improve accuracy and presentation:
+
+1. **Correct the comparison intervals in Section 6.** The two bounds $2\mu/3$ and $(23\mu+3)/40$ cross at $\mu=9/11$, not $0.90$. Thus, below one,
+   $$
+   g(\mu)=\begin{cases}
+   2\mu/3,&0.70\le\mu\le9/11,\\
+   (23\mu+3)/40,&9/11\le\mu\le21/23,\\
+   3/5,&21/23\le\mu<1.
+   \end{cases}
+   $$
+   Correct both the paragraph following the envelope table and the assertion in the corollary proof that all intervals up to $0.90$ have $g=2\mu/3$. The numerical endpoint comparisons in that proof already use the correct values, and its concavity argument remains valid across $9/11$. The supplied parametric checker also includes the correct breakpoint.
+
+2. **Qualify the conclusions about optimality.** The feasible symmetric points in Appendix A establish lower bounds on the respective program optima. They alone do not prove that the symmetric optimum decreases exactly from $16/27$ to $7/12$. Replace the concluding “lowers the symmetric ceiling” statement with the demonstrated obstruction bounds, unless matching upper bounds are supplied. Similarly, Section 7 should say that further instances cannot force a bound *below* $213/359$; the witness does not exclude improving the current upper bound $5588/9417$ within the remaining gap. These qualifications concern auxiliary interpretations, not the certified main upper bounds.
+
+3. **Make the budget comparison easier to read.** A plot of $\beta(\mu)$ against the earlier bounds would communicate the changing source and size of the improvement more readily than the interleaved table. Retain the exact numerical values in the supplement. The informative but lengthy metadata abstract could also be shortened by moving certificate counts and secondary numerical details to the main text.

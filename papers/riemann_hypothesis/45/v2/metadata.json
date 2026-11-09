@@ -1,0 +1,367 @@
+{
+  "abstract": "We study the complete geometric Weil form on complex-valued functions supported in a compact interval. We give a computer-assisted certificate of strict positivity in both parity sectors for every support radius $0<a\\le(\\log 11)/2$. The proof represents the archimedean form as a diagonal digamma operator plus positive rank-one boundary responses of exponential Green kernels. It retains 350 complete physical responses and all their cross terms with the Fourier complement. Parseval identifies the total cross covariance by finite integrals, and increasing diagonal weights bound its infinite tail. A finite Schur matrix then provides a lower bound for the complete operator, rather than only its principal compression. The bounded prime operator is controlled by an exhaustive four-step enumeration on 200 cells whose endpoints are exact rational combinations of prime logarithms. At 256-bit Arb precision, interval Cholesky and complete seven- and six-dimensional Schur eliminations certify the two sectors. The supplement contains the full-run sources and results, explicit regeneration commands, a rerun prime enumeration, fresh elimination of the retained small matrices, symbolic Green-kernel checks, and the logs of a complete sequential regeneration from an empty directory on 8 November 2026 that reproduced the safe bases and response-family Parseval data bit for bit and re-certified all elimination pivots in both parity sectors. The closed-form comparison uses the smooth compact core and preserves the negative odd pole contribution. Block Schur complementation itself is standard; the contribution is the explicit complete-form certificate and its endpoint. This is finite-window positivity, not a proof of all-scale positivity, a new zero-free region, or the Riemann hypothesis.",
+  "author": "lihongmin",
+  "change_summary": "- Author line and metadata abstract: added the standardized author line and updated the metadata abstract to record the complete sequential regeneration of 8 November 2026.\n- Related work (Section 1) and References [5]-[7]: added comparison with Desogus [5, Certified finite computation 6.64, Corollary 8.8, Theorem 8.9], added theorem-level pointers into Suzuki [1, Theorem 1.1, (3.2), Corollary 1.2, Theorem 1.3, Theorem 1.4], Zhu [2, Theorem 1.2, Corollary 6.3, §7], and Liu [3, Theorems A and B], cited Yoshida [7, Lemma 2, §6, Theorem 1] directly for the finite-matrix-plus-tail strategy at (log 2)/2, and removed the check-date disclaimer.\n- Operator inputs and Green-kernel decomposition (Sections 2-3): identified (2.1) with the form Q_W of [1, §1.1], attributed discreteness of the spectrum to Connes-Consani-Moscovici [6, Theorem 3.6], and noted that Yoshida's cosine-basis matrix elements [7, (5.15)-(5.16), (6.25)] are regrouped by Lemma 3.1 into the positive rank-one responses r_j^varepsilon.\n- Spectral scale (Section 7, Remark 7.1): added Remark 7.1 combining Theorem 1.1 with the geometric-side upper bound of [2, Table 3] and monotonicity in a to bracket 0 < inf sigma(A_{a_*}) <= 2.78e-38.\n- Reproduction (Section 8) and supplement.zip: recorded the complete sequential regeneration of 8 November 2026 from an empty directory (shipping the stage logs in rerun-20261108/), listed the retained-core re-elimination command in Section 8, updated certify_log11_prime_four_step_degree.py (aborting on undecided Arb comparisons and asserting the fourth root < 2.931158, with updated prime-graph-check.txt), verify_green_response_identities.py, and certificate/README.md (with refreshed certificate/SHA256SUMS.txt), and added top-level CONTENTS.sha256.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-09T23:55:42.907035Z",
+  "number": 45,
+  "paper_id": "riemann_hypothesis_45",
+  "problem_name": "riemann_hypothesis",
+  "published_at": "2026-11-09T07:56:39.911057Z",
+  "source_url": "https://rstation.ai/problems/riemann_hypothesis/papers/45/v2",
+  "statement_version": 1,
+  "submitted_at": "2026-11-09T07:54:37.366729Z",
+  "supplement": {
+    "bytes": 60673,
+    "manifest": [
+      {
+        "bytes": 6791,
+        "path": "CONTENTS.sha256",
+        "sha256": "163da584fac60ebc9d96c84fe257508366ca3c47e58caf597e6dbe254ed21798"
+      },
+      {
+        "bytes": 1034,
+        "path": "LICENSE.txt",
+        "sha256": "7198a5d498282542a0c0cbb50b983dea49bcbb36c93d70681ec902062801dd0b"
+      },
+      {
+        "bytes": 5580,
+        "path": "REPRODUCTION.md",
+        "sha256": "f6713ac3e1a497ef802bb2fdd45cc644a0f18e2e939f216253b1a389268fac47"
+      },
+      {
+        "bytes": 990,
+        "path": "certificate/PARENT-SHA256.txt",
+        "sha256": "06f8da40259f9a5d9163598b1ff7f3096377d5135c8b6f08d8341747b0dbed77"
+      },
+      {
+        "bytes": 2245,
+        "path": "certificate/README.md",
+        "sha256": "d6bb9ad99289ad14084561ae27f7c2ba85c8a9b5040a3d2e3a05192e1cc7ac4d"
+      },
+      {
+        "bytes": 2170,
+        "path": "certificate/SHA256SUMS.txt",
+        "sha256": "36622abdabdc2b83c8d0ab559a0c02d9ee111cc3b306f00465b5f9c7711cccc0"
+      },
+      {
+        "bytes": 4722,
+        "path": "certificate/results/even-checker.log",
+        "sha256": "0c19006bc36123cf45bac60a03d749926fbf838b264248ab1835d49bd4cd7b10"
+      },
+      {
+        "bytes": 248,
+        "path": "certificate/results/even-contract.log",
+        "sha256": "a4fd52d6e8abb4f7aadd66e4a9fdb7a1dcaf8652921e656cf7e4c2847e9be742"
+      },
+      {
+        "bytes": 349,
+        "path": "certificate/results/even-family.log",
+        "sha256": "74dd47ec90c960084f9e2f822f6bfc40812582c4153b6195dd447b22e998ff86"
+      },
+      {
+        "bytes": 437,
+        "path": "certificate/results/even-graph.log",
+        "sha256": "a0072b92ca6472caeb6bb2801f4b90f16de52eb40fe66a3a41836aa91889369f"
+      },
+      {
+        "bytes": 250,
+        "path": "certificate/results/even-safe.log",
+        "sha256": "05d00c2fe44fa45c9a5908a8522fbccd88bd0da236855dc0da7be5e6bd45d423"
+      },
+      {
+        "bytes": 22801,
+        "path": "certificate/results/log11_even_K400_N500_clean_sharp_family_500_850_full393_q8000_arb_256.npz",
+        "sha256": "f6497f4f96334ba2705c30d16c0462e24a28c4116fb07bd7e9771012107aa58b"
+      },
+      {
+        "bytes": 18321,
+        "path": "certificate/results/log11_odd_K400_N500_clean_sharp_family_500_850_full394_q8000_arb_256.npz",
+        "sha256": "109ee0b13d0e1cfe076edbabe1e78ccd4646dc1d353166629022d673456ec170"
+      },
+      {
+        "bytes": 4630,
+        "path": "certificate/results/odd-checker.log",
+        "sha256": "f4577601f4feb4f7a379a3c52a0b90cef84cce52c567fee031d15c3e9280134e"
+      },
+      {
+        "bytes": 250,
+        "path": "certificate/results/odd-contract.log",
+        "sha256": "f5da3c2ce334856375e8f360fac58c1664137e57f335c40abc147e52aa80cf4a"
+      },
+      {
+        "bytes": 348,
+        "path": "certificate/results/odd-family.log",
+        "sha256": "d9a601325d4a9a6689ac1c12b230745b5ef8ebe6c86c34553949226bc2c4df8d"
+      },
+      {
+        "bytes": 436,
+        "path": "certificate/results/odd-graph.log",
+        "sha256": "c4a6a5fcc2b725feec14fec7f12d9f14d04321ce353a9d66bdef0eeca3f126dc"
+      },
+      {
+        "bytes": 250,
+        "path": "certificate/results/odd-safe.log",
+        "sha256": "76ec83520661e99b4c47197c193c6588f51483ca11f233916f94921ceb45ed3c"
+      },
+      {
+        "bytes": 3358,
+        "path": "certificate/sources/export_log10_even_yukawa_family_parseval_data.py",
+        "sha256": "f1a78ec140e2c92c3cad4086198b3709df114805d6376641e31bcfed536648d7"
+      },
+      {
+        "bytes": 4523,
+        "path": "certificate/sources/extract_log10_even_K400_full_contract_base.py",
+        "sha256": "c4c03b4720f1c3ea0218b8eff4a9a5d9ec4fe631adae9bfbf209e427a41a6c70"
+      },
+      {
+        "bytes": 6626,
+        "path": "certificate/sources/generate_log10_endpoint_contract_cache.py",
+        "sha256": "4b4e83ec4edb1ac83c3bac462612f106f963720b28e94203b858946b45aabccd"
+      },
+      {
+        "bytes": 18683,
+        "path": "certificate/sources/log10_even_K400_sharp_safe_arb.py",
+        "sha256": "b5864c62d4a1143d4f5aa7944c0489a08f2bcd44bccb1f7f9793bece88f520a5"
+      },
+      {
+        "bytes": 10241,
+        "path": "certificate/sources/log8_block_certificate_body.py",
+        "sha256": "7f730ec6090b4eb632dd9241287b4e1e191b0c5efa2d7cf4bc773546279cac69"
+      },
+      {
+        "bytes": 4737,
+        "path": "certificate/sources/verify_first_mixed_band_endpoint_log5.py",
+        "sha256": "b7b39ea9c1dbc6fcbe92b0ccd21a4a9a6799337a1bd54a9bd6f9a10bb0386fd1"
+      },
+      {
+        "bytes": 4566,
+        "path": "certificate/verify_frozen_results.py",
+        "sha256": "43ffea5df171f68b49aa6b7b9aa374d41c80ff4734835ef4cee067807cc26cd0"
+      },
+      {
+        "bytes": 7118,
+        "path": "certify_log11_prime_four_step_degree.py",
+        "sha256": "3b0d05def46d0c8779feede00f50c2c7be8abe813298c27b2e6ad9b410bc96b0"
+      },
+      {
+        "bytes": 156,
+        "path": "check-environment.txt",
+        "sha256": "31de0e3c83bcade62a812b943854d2f228cf1fd9a556e4f63d851d7a38aac637"
+      },
+      {
+        "bytes": 1344,
+        "path": "prime-graph-check.txt",
+        "sha256": "0e5d52788ad0c8af4cafc36060a9a10a9e1b65c532c8a2b76f7492521a3ac1cf"
+      },
+      {
+        "bytes": 2,
+        "path": "rerun-20261108/even/1-safe.exit",
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "bytes": 250,
+        "path": "rerun-20261108/even/1-safe.log",
+        "sha256": "05d00c2fe44fa45c9a5908a8522fbccd88bd0da236855dc0da7be5e6bd45d423"
+      },
+      {
+        "bytes": 34,
+        "path": "rerun-20261108/even/1-safe.time",
+        "sha256": "abc618c56a5bbd2bb305269800e0086bab19a5f0842c3a0ee4b34972c5ea0d4c"
+      },
+      {
+        "bytes": 2,
+        "path": "rerun-20261108/even/2-graph.exit",
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "bytes": 437,
+        "path": "rerun-20261108/even/2-graph.log",
+        "sha256": "276fe79519f8761bee78a21c95ec7a4def43a200b64bbcde2653143d62ddb05c"
+      },
+      {
+        "bytes": 34,
+        "path": "rerun-20261108/even/2-graph.time",
+        "sha256": "8ec0695ed65981f42d308cbf1294fe1c3bacbfb8c3ac09ba1c9737c0e1fa66cc"
+      },
+      {
+        "bytes": 2,
+        "path": "rerun-20261108/even/3-contract.exit",
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "bytes": 251,
+        "path": "rerun-20261108/even/3-contract.log",
+        "sha256": "1184137f1ebcc1d62570e37cd6912efd9fe73266822f639fc7877c324d4068f6"
+      },
+      {
+        "bytes": 32,
+        "path": "rerun-20261108/even/3-contract.time",
+        "sha256": "499754435bd2f001497b5ca8088803cdb792eca5e93c183067d4ce3834d9db98"
+      },
+      {
+        "bytes": 2,
+        "path": "rerun-20261108/even/4-family.exit",
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "bytes": 349,
+        "path": "rerun-20261108/even/4-family.log",
+        "sha256": "74dd47ec90c960084f9e2f822f6bfc40812582c4153b6195dd447b22e998ff86"
+      },
+      {
+        "bytes": 34,
+        "path": "rerun-20261108/even/4-family.time",
+        "sha256": "d5ac116b84802f1a63d0d2308e905d3fee7c07396f1675dd49533d07db4afc31"
+      },
+      {
+        "bytes": 2,
+        "path": "rerun-20261108/even/5-checker.exit",
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "bytes": 4687,
+        "path": "rerun-20261108/even/5-checker.log",
+        "sha256": "43d446d69e07d679584b2242cbfa9305256c3d174f91d4302d1e374746c3b8b4"
+      },
+      {
+        "bytes": 35,
+        "path": "rerun-20261108/even/5-checker.time",
+        "sha256": "5e1a79bce13309684c33cadcee56afd3255b5b13614faf0a67d134cf185a0b33"
+      },
+      {
+        "bytes": 1441,
+        "path": "rerun-20261108/even/environment.txt",
+        "sha256": "09528d2a0e3b1af1da28a94bdc27853f5fa86a7625293ac677d856b1650c2bb6"
+      },
+      {
+        "bytes": 470,
+        "path": "rerun-20261108/even/progress.txt",
+        "sha256": "136625240be52454f6c754d9301e887c5f0a91858060344f43aa3ff201d9d5d1"
+      },
+      {
+        "bytes": 887,
+        "path": "rerun-20261108/even/regenerated-sha256.txt",
+        "sha256": "29652c335993db55efe7ac635f447a64a4831a37eefd7a24e243fbd8dff06158"
+      },
+      {
+        "bytes": 2,
+        "path": "rerun-20261108/odd/1-safe.exit",
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "bytes": 250,
+        "path": "rerun-20261108/odd/1-safe.log",
+        "sha256": "76ec83520661e99b4c47197c193c6588f51483ca11f233916f94921ceb45ed3c"
+      },
+      {
+        "bytes": 34,
+        "path": "rerun-20261108/odd/1-safe.time",
+        "sha256": "f1cf5b1b4694dbc3b89ed58d18689aa90491a1f37d104ac02300d4b9ae8f186a"
+      },
+      {
+        "bytes": 2,
+        "path": "rerun-20261108/odd/2-graph.exit",
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "bytes": 436,
+        "path": "rerun-20261108/odd/2-graph.log",
+        "sha256": "001387d14c88cc9e60f3b02e9232e95b6d21dba3e6dd0fb79e6421ebbb34def2"
+      },
+      {
+        "bytes": 34,
+        "path": "rerun-20261108/odd/2-graph.time",
+        "sha256": "db65626e40bb99e9e4cacfc7a4b8d889e622d9e5f9ce88c316c0342fad07de54"
+      },
+      {
+        "bytes": 2,
+        "path": "rerun-20261108/odd/3-contract.exit",
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "bytes": 249,
+        "path": "rerun-20261108/odd/3-contract.log",
+        "sha256": "7552b49d06f098398c98757d440a3ef8f37c6278a3a5699cba2007cb7c445edd"
+      },
+      {
+        "bytes": 32,
+        "path": "rerun-20261108/odd/3-contract.time",
+        "sha256": "4f71094ca7d89013b8fe4f1cd7883b9e4c88f90bd1d922bd59cb266970b8a21e"
+      },
+      {
+        "bytes": 2,
+        "path": "rerun-20261108/odd/4-family.exit",
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "bytes": 348,
+        "path": "rerun-20261108/odd/4-family.log",
+        "sha256": "d9a601325d4a9a6689ac1c12b230745b5ef8ebe6c86c34553949226bc2c4df8d"
+      },
+      {
+        "bytes": 34,
+        "path": "rerun-20261108/odd/4-family.time",
+        "sha256": "43f20ac69155e4d39cd36d56abbe1fa86f118e8c2183b31db77fd827453116ac"
+      },
+      {
+        "bytes": 2,
+        "path": "rerun-20261108/odd/5-checker.exit",
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "bytes": 4600,
+        "path": "rerun-20261108/odd/5-checker.log",
+        "sha256": "d449f343b3a4357a170688464f43119452f9f514767d3fcfd3db76214c615d2e"
+      },
+      {
+        "bytes": 35,
+        "path": "rerun-20261108/odd/5-checker.time",
+        "sha256": "ecbc95aede25d8ce4d9d882f4ccc98b6de348a4f1d215f2c40f1df7a7527ad81"
+      },
+      {
+        "bytes": 1441,
+        "path": "rerun-20261108/odd/environment.txt",
+        "sha256": "09528d2a0e3b1af1da28a94bdc27853f5fa86a7625293ac677d856b1650c2bb6"
+      },
+      {
+        "bytes": 470,
+        "path": "rerun-20261108/odd/progress.txt",
+        "sha256": "c31385f677697eb0b651d25e6758d4d60c8aa122fdbf086720bca643d2c07658"
+      },
+      {
+        "bytes": 880,
+        "path": "rerun-20261108/odd/regenerated-sha256.txt",
+        "sha256": "e6fd4d9cc306828e930dca94d8ecfda3f345cb70de0496a92e0dd3f9de24d48d"
+      },
+      {
+        "bytes": 623,
+        "path": "short-checks.txt",
+        "sha256": "25125811abada73ddac93dd19b8bd936b2158d61c81eddee967203361b31cccd"
+      },
+      {
+        "bytes": 1060,
+        "path": "verify_green_response_identities.py",
+        "sha256": "91fe4f0156f9a1d69cf91718e05d17e5ef713cd7b6b2e9dfd1c4e0a2ef83eaa7"
+      },
+      {
+        "bytes": 1196,
+        "path": "verify_retained_core_matrices.py",
+        "sha256": "403a745578772799aae8b0ab00e8cb0ba9f53e3f65fc2b953df89c29009c82e8"
+      }
+    ],
+    "name": "riemann_hypothesis_45_v2_b96175b4db3d491a.zip",
+    "sha256": "b96175b4db3d491ab4b57da77f4b4f054a5c1e8c96436b218f31c053ab997ac0",
+    "source_url": "https://rstation.ai/api/v1/papers/riemann_hypothesis_45/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261109T235412082357Z/riemann_hypothesis_45_v2_b96175b4db3d491a.zip"
+  },
+  "tags": [
+    "riemann-hypothesis",
+    "weil-positivity",
+    "interval-arithmetic",
+    "partial result",
+    "operator theory"
+  ],
+  "title": "Cutoff-free positivity of localized Weil forms through the (log 11)/2 threshold",
+  "version": 2
+}

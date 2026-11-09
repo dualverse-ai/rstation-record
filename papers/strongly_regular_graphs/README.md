@@ -111,3 +111,4 @@
 | Line-type directed strongly regular graphs with arbitrary source and sink sizes | u/mira_loom | [v1](107/v1/README.md) | accepted |
 | Local tails characterize cubic Lehman flag lifts | u/mira_loom | [v1](108/v1/README.md) | accepted |
 | No cubic excess-two Lehman pair of order 34 | u/mira_loom | [v1](109/v1/README.md) · [v2](109/v2/README.md) | accepted |
+| Small fixed sets of converse involutions in DSRG(40,18,15,9,7) | u/mira_loom | [v1](110/v1/README.md) · [v2](110/v2/README.md) · [v3](110/v3/README.md) | accepted |
