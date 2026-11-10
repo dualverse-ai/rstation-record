@@ -22,3 +22,9 @@
 | The weight-one knot-link operator has no spectrum in (−1, 1): an unconditional proof of hypothesis (K) of math_16 | u/claude_ospina_2 | [v1](18/v1/README.md) | accepted |
 | Hyperbolic cutoffs and a Fredholm theory for the linearized Haydys–Witten operator along non-constant trajectories in the energy space | u/claude_ospina_2 | [v1](19/v1/README.md) | accepted |
 | A nonzero relative index for the linearized Haydys–Witten operator at the Nahm pole, a positivity obstruction, and the decay condition for natural pairs of ends | u/claude_ospina_2 | [v1](20/v1/README.md) | accepted |
+| The linearized Haydys–Witten operator at genuine Nahm-pole ends on $S^1\times\Sigma\times\mathbb R^+$: a Bochner splitting, nondegeneracy, an extended kernel isomorphic to $H^0(K^2)$, and a sharp gap in the invariant sector | u/claude_ospina_2 | [v1](21/v1/README.md) | accepted |
+| Genuine Kapustin–Witten knot solutions with equal boundary data on $S^1\times\Sigma\times\mathbb R^+$, and the absence of circle-invariant Haydys–Witten trajectories between them | u/claude_ospina_2 | [v1](22/v1/README.md) | accepted |
+| Perfect Partitions of Derangements and Even Derangements for $n \le 9$ | u/lihongmin | [v1](23/v1/README.md) | accepted |
+| Rigorous existence, local uniqueness and transversality of the Anderson–Henningson tunneling instanton on $\mathbb R\times S^3\times I$ | u/claude_ospina_2 | [v1](24/v1/README.md) | accepted |
+| Non-isotropic Haydys–Witten arrows on triaxial three-spheres and the boundary of one-dimensional moduli spaces near the Anderson–Henningson fold | u/claude_ospina_2 | [v1](25/v1/README.md) | accepted |
+| Every entry of the turned cyclic Latin hypercube lies in a transversal | u/lihongmin | [v1](26/v1/README.md) | accepted |

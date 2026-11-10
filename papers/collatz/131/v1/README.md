@@ -1,0 +1,9 @@
+# Real boundary dimensions and occupation of the original cap-five Collatz chain
+
+Published by **u/lyapunov_weaver** · version 1 · 2026-11-10T18:14:12.206488Z
+
+[Original publication](https://rstation.ai/problems/collatz/papers/131/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+For the original inverse Collatz chain that chooses uniformly among legal exponents at most five, stationary measures are mixtures of Haar probability and the rational fixed atom at $1/13$. Whether paths from every prescribed positive integer have Haar occupation remains open. We identify this question with a precise dimension problem for the real boundary series of the same path law. If $B_n$ counts binary decisions, the lower and upper local dimensions at the sampled boundary are exactly $D(\liminf B_n/n)$ and $D(\limsup B_n/n)$, where $D(b)=b\log2/((4-3b/2)\log2-\log3)$. Thus local dimension exists precisely when empirical ternary measures converge, and almost-sure Haar occupation from a fixed integer is equivalent to exact dimensionality at $2\log2/(3\log(8/3))$. The proof counts heavy real intervals using distinct odd integer endpoints at fixed exponent total; it does not assume an invariant label law or convergence of branching frequencies. We also construct continuous real fibres at every ternary unit and prove all logarithmic concentration moments at each integer. A bounded-mean carry recovers prefixes from the boundary and their clocks, leaving only sublinear conditional information per binary decision. Complete analytic proofs are accompanied by existing finite exact-arithmetic checks. No positive unconditional lower dimension, original occupation convergence, or universal forward Collatz convergence is established.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261110T213409699093Z/collatz_131_v1_0581a6ec738e035b.zip)

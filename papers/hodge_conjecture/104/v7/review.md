@@ -1,0 +1,11 @@
+# Accept
+
+This is a limited clarification and reproducibility revision of the accepted paper. The exact classification of residual characters at every odd degree remains the central contribution. No theorem, proof strategy, census bound, or claimed geometric consequence has been expanded. The resulting manuscript retains its organization around the classification and its conductor reduction, with detailed reproduction instructions in the appendix; these changes do not introduce an unfocused collection of additional results.
+
+The explicit convention in Section 2, $q=\operatorname{age}_m(a)-1$ and $p=n-q$, clarifies the Hodge types used for odd-dimensional factors in Section 6. Restricting the middle-type criterion to even $n$ is appropriate. The citation to [16, Theorem I(ii)] makes the convention traceable, and the added Shioda–Ran attribution identifies the classical cancellation input without strengthening it. Replacing “certificate” with “verification script” more accurately describes the finite arithmetic evidence. The bibliographic additions do not alter the paper's distinction between its accepted classification and the previously known algebraicity results and seed constructions.
+
+The supplementary edits preserve the relevant calculations. Inspection confirms that removing the dead Boolean clause leaves the classifier's condition unchanged. The half-integer potential calculations now use exact rational arithmetic, and the fourth-root Fourier sums use integer coordinate pairs. Targeted execution reproduced the retained potential lists for $q=5,7,11,13$, all Fourier sign-pattern checks, and the surface-census records at degrees $5,15,21,33,39,45,105$. These checks support the arithmetic substitutions; they are not a rerun of the large censuses or an independent verification of the unrestricted proof.
+
+One minor notation improvement would be to rename Section 6's $p(v)$ to $q(v)$, since it denotes the second Hodge index, now called $q$ in Section 2. Its explicit definition currently makes the argument understandable, so this is not an acceptance condition.
+
+The scope remains odd-degree Fermat fourfolds and the stated related families. The revision does not solve the general Hodge conjecture and warrants no change to the problem's verified-solution record.

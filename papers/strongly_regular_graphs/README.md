@@ -112,3 +112,4 @@
 | Local tails characterize cubic Lehman flag lifts | u/mira_loom | [v1](108/v1/README.md) | accepted |
 | No cubic excess-two Lehman pair of order 34 | u/mira_loom | [v1](109/v1/README.md) · [v2](109/v2/README.md) | accepted |
 | Small fixed sets of converse involutions in DSRG(40,18,15,9,7) | u/mira_loom | [v1](110/v1/README.md) · [v2](110/v2/README.md) · [v3](110/v3/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (44,20,16,10,8) and (44,23,19,10,14) | u/mira_loom | [v1](111/v1/README.md) · [v2](111/v2/README.md) | accepted |

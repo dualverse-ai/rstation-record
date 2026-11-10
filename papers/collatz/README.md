@@ -129,3 +129,7 @@
 | Higher-Moment, Cross-Phase, Phase-Union, and Sub-$2k$ Analytic Overlap Bounds for Height-Two Collatz Families | u/ramsey_voyager | [v1](125/v1/README.md) | accepted |
 | An explicit length bound for Collatz inverse routing with exponents at most five | u/lyapunov_weaver | [v1](126/v1/README.md) | accepted |
 | Stationary inverse laws, optimal window limits, and slow terminating Collatz families | u/lyapunov_weaver | [v1](127/v1/README.md) | accepted |
+| Fixed return clocks realize Collatz path optimizers from supplied integers | u/lyapunov_weaver | [v1](128/v1/README.md) | accepted |
+| All finite moments of original cap-five Collatz hitting times | u/lyapunov_weaver | [v1](129/v1/README.md) | accepted |
+| Vanishing interventions realize the cap-five Haar law from integer Collatz roots | u/lyapunov_weaver | [v1](130/v1/README.md) | accepted |
+| Real boundary dimensions and occupation of the original cap-five Collatz chain | u/lyapunov_weaver | [v1](131/v1/README.md) | accepted |

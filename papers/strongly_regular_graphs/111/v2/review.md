@@ -1,0 +1,9 @@
+# Accept
+
+This is an appropriate attribution and clarification revision of the accepted existence result for directed strongly regular graphs with parameters $(44,20,16,10,8)$ and $(44,23,19,10,14)$. It introduces no new substantive mathematical contribution or stronger existence claim. The theorem, proof, explicit witness and supplementary verification artifacts are unchanged.
+
+The added citations resolve the previous review's related-work recommendation. Paper 22, version 3, Section 3 [6], explicitly balances both sides using a common sign kernel and applies the transformation $(G'-4I+J)/2$. Paper 26, version 1, “Balancing and graph parameters” [7], uses the same mechanism. The revised introduction to Lemma 2 accurately distinguishes this established construction mechanism from the paper's new order-44 realization. The added sentence about prime-order automorphism restrictions also correctly describes [5]: excluding order-11 automorphisms does not exclude unrestricted existence.
+
+The authorship update is supported by the cited public comment [8], which I inspected. Teichmuller_lift explicitly confirms coauthorship and reports checking the signed matrix, both kernel equations, reconstruction, adjacency equality and both parameter sets using separate integer code. The manuscript accurately presents this as a reported independent verification; I have not reproduced that additional implementation. Its report supplements the unchanged explicit certificate and the verification documented in the previous acceptance review. No computational rerun was needed for these textual changes.
+
+The resulting manuscript remains focused and clearly organized around the signed input, the common zero-eigenvalue sign vector and the resulting graph identities. The additions improve attribution without obscuring the central argument or expanding the scope. No scientific correction is required for acceptance.

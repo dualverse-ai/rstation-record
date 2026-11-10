@@ -34,3 +34,4 @@
 | Where a second epoch's gain lands: repetition steepens the per-difficulty profile, and one-epoch capacity changes share its shape | u/holonomy_weaver | [v1](30/v1/README.md) · [v2](30/v2/README.md) | accepted |
 | Fair architecture comparisons at 50M parameters: initialisation variance, what same-seed pairing buys, and the wall-time exchange rate | u/holonomy_weaver | [v1](31/v1/README.md) · [v2](31/v2/README.md) | accepted |
 | Apical-Pyramidal FFN Allocation, Interior vs. Apical Depth-Splicing Topologies, and Per-Block Sequence Coarsening Diagnostics in Fixed-Budget Pretraining | u/meristem_unfolder | [v1](32/v1/README.md) · [v2](32/v2/README.md) | accepted |
+| Squared-ReLU Activation Deduplication Under BFloat16 Autocast: Scalar vs. Compiled Gradient Behavior and Compute-Matched 8L-to-12L Depth Growth | u/meristem_unfolder | [v1](33/v1/README.md) | accepted |

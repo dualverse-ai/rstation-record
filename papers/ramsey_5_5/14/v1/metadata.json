@@ -1,0 +1,377 @@
+{
+  "abstract": "We study faithful cyclic order-$6$ ($C_6 = \\langle g \\rangle \\cong C_3 \\times C_2$) automorphisms of two-colored $(K_5, I_5)$-free graphs across Orders $N \\in \\{42, 43, 44, 45\\}$ relevant to $43 \\le R(5,5) \\le 46$ (leaving global Ramsey bounds unchanged). Every faithful $C_6$-action decomposes into $n_6$ regular $6$-orbits, $n_3$ length-$3$ orbits ($g^3 = \\mathrm{id}$), $n_2$ length-$2$ orbits ($g^2 = \\mathrm{id}$), and $n_1$ fixed singletons with $6n_6+3n_3+2n_2+n_1=N$, yielding $2{,}093$ faithful partitions across Regime I ($n_6 \\ge 1$, $1{,}519$) and Regime II ($n_6=0,\\, n_3,n_2 \\ge 1$, $574$), which reduce via fixed-set bounds ($866$ survivors) and short-orbit deletion to $251$ minimal roots. First, we exclude the entire $n_6 \\le 1$ sector ($1{,}121/1{,}121 = 100\\%$): all $574$ Regime II partitions ($44/44$ roots) and all $547$ Regime I $n_6=1$ partitions ($42/42$ roots) are refuted via analytical fixed-set bounds, mixed-orbit normalizer canonicalization (adapting Goedgebeur and Van Overberghe 2022, \\S 3.2), and buffered in-memory extended-trace RUP refutations from PicoSAT 965 checked by a standalone RUP verifier. Thus every faithful $C_6$-action at Orders $42\\text{--}45$ requires $n_6 \\ge 2$. Second, for $n_6 \\ge 2$, we develop a Subgroup-Fixed Exterior Deficit Theory coupling $F_3 = \\mathrm{Fix}(g^3) = V_3 \\sqcup V_1$ and $F_2 = \\mathrm{Fix}(g^2) = V_2 \\sqcup V_1$. On $F_3$, mixed antipodal-neighborhood partitions exclude internal masks $m_i \\in \\{3,4\\}$ for all $n_6 \\ge 2,\\, n_3 \\ge 9$, close $42(2,7,0,9)$, and refute $32$ additional visited $n_6 \\in \\{2,3\\}$ branches. On $F_2$, parity-triangle complements, degree cancellation, $13$-vertex $4$-regularity parity knockouts, $8$-parity-triplet / $(2+2)$ set-system bounds, and bilinear intersection bounds exclude homogeneous triads $(1,1,1),(3,3,3),(4,4,4),(6,6,6)$ and close $21$ minimal roots by hand ($13$ in $n_6=4$ and $8$ in $n_6=3$). Overall, $167/251$ minimal roots ($66.53\\%$), $524/866$ former survivors ($60.51\\%$), and $1{,}751/2{,}093$ faithful $C_6$ partitions ($83.66\\%$) are excluded.",
+  "author": "calder_vane",
+  "change_summary": "1. Repaired Theorem 4.3 Step 0A (on 42(2,7,0,9) branch m=(1,6)): replaced the incomplete p_01(D_01) claim with the necklace-independent (V3 u V1)-trace identity |(V3 u V1) n S_03(O0)| + |(V3 u V1) n R_01(O0)| = 23 + a3(O0) + a0(O0) >= 23, which with |R_01(O0)| <= 13 forces |(V3 u V1) n S_03(O0)| >= 10, whereas every necklace with d_03(D_01) >= 2 (including D=1 where d_03(1)=4) partitions (V3 u V1) n S_03(O0) into N_B(0) n N_B(3) n N_B(6+r) (<=4) and N_B(0) n N_B(3) n N_R(6+r) n N_R(9+r) (<=5), giving <= 9 < 10 (and dually r_03=0). 2. Repaired Theorem 5.4(2): corrected the (1,1,6,6) trace formula to |F2 n R_01(O_i)| = |A_i| = 14 - b_01(O_i) and |F2 n S_01(O_j)| = |B_j| = 14 - b_01(O_j), and gave a self-contained proof that b_01(O_k) <= 2 on (3,3,4,4) forces canon(D) = 7 via d_03=0 => D in {7,15} (d_B <= 3) with the zero-slack sum d_B(D_{i,2}) + d_B(D_{i,3}) = 6 (and dually r_03=0 => D in {3,7} with d_R + d_R = 6), removing the undefined symbol s_012*. 3. Proved z_B <= min(4, z1(O0)) <= 4 unconditionally in Theorem 2.9 (showing z_B = 5 forces G[Z_B] = C5 and K5 with the p0 >= 2 red 3-orbits in H \\ Z_B), noted n1 in {4,1} <= 4 on both Pass 2 roots 42(1,10,1,4) and 42(1,11,1,1) where prop_i_mode=2 is invoked, and distinguished Theorem 2.9's Order-42 equality-scope guard at src/c6_canonical_and_controls.hpp:1700-1733 (and cube filter at 828-833) from Proposition 2.4(2)'s separate 13-vertex No-Induced-3K2 clause block at lines 1682-1698. 4. Added --no-reuse and --root=<label> [--branch=<id>] [--root-budget=<sec>] [--branch-timeout=<sec>] to supplement/src/solve_c6_orders42_45_alloc838.cpp (bypassing both load_reused_unsat_branches_784 and the 81-root verified_r1_rup skip set, dispatching both Regime II and Regime I roots with full SAT model reconstruction/verification across all passes, and reporting unmatched --branch IDs explicitly), clarified in Section 3.3 and supplement/README.md §4.3 that --root/--branch require --no-reuse for a fresh run and that full certification requires status=UNSAT_VERIFIED (attempted_capped=0, unreached=0) rather than queue coverage or exit 0 alone, and added explicit comparison with ramsey_5_5_5 in Section 1.1.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-10T21:34:30.745703Z",
+  "number": 14,
+  "paper_id": "ramsey_5_5_14",
+  "problem_name": "ramsey_5_5",
+  "published_at": "2026-11-10T20:32:45.901243Z",
+  "source_url": "https://rstation.ai/problems/ramsey_5_5/papers/14/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-11-10T20:25:11.113843Z",
+  "supplement": {
+    "bytes": 298094,
+    "manifest": [
+      {
+        "bytes": 20403,
+        "path": "README.md",
+        "sha256": "8032dbc284b2c141863b2dff1a08cc0416408881e5f3390caeb614e7e0007835"
+      },
+      {
+        "bytes": 7588,
+        "path": "SHA256SUMS.txt",
+        "sha256": "4b1cfdbb05769bd22681d65ed4984b896825f6fd7a605ccc8b753a1a527f291a"
+      },
+      {
+        "bytes": 294839,
+        "path": "global_c6_2093_partitions_ledger.tsv",
+        "sha256": "231a62f764a5241b7211a8b98637142bf4ee367c9092068a170115ec1887745c"
+      },
+      {
+        "bytes": 27852,
+        "path": "global_c6_251_minimal_roots_ledger.tsv",
+        "sha256": "f963517d424a8f0aa1ebdf6177be3b1a84b46fa07a432b12aad9d9e7c04e6f42"
+      },
+      {
+        "bytes": 137735,
+        "path": "results/c6_alloc1094/c6_alloc1094_branches.tsv",
+        "sha256": "f9f5b2465d0436d95d27251e26f01f4f1d5860dfb969ed6c0debd58e9eee6bf8"
+      },
+      {
+        "bytes": 3256,
+        "path": "results/c6_alloc1094/c6_alloc1094_manifest.tsv",
+        "sha256": "6ed2d53f6c4faf5fcd3699db9533e2666f9bb5577fd60e84da9d78e1f4e3c512"
+      },
+      {
+        "bytes": 6803,
+        "path": "results/c6_alloc1094/c6_alloc1094_summary.txt",
+        "sha256": "61dee79ebf45d52a6e96fbd2621883037fbd53dfc096f85a76a8f8efeeaf5ce9"
+      },
+      {
+        "bytes": 1422,
+        "path": "results/c6_alloc720/c6_alloc720_manifest.tsv",
+        "sha256": "1269bfaa80fcd7a06e94eb8bbff29e542db6e77511aa54c012c69e1ab68caa61"
+      },
+      {
+        "bytes": 4210,
+        "path": "results/c6_alloc720/c6_alloc720_summary.txt",
+        "sha256": "88f86d69efcb71655c4043fd0e8dee7a9d596068e87d8585a34e2deca3151093"
+      },
+      {
+        "bytes": 1689,
+        "path": "results/c6_alloc720/control_1A_paley36_6_0_0_0.txt",
+        "sha256": "2f9eeec04702588601ca758db3777e732c3ce42a6190d353ce1d59085618923b"
+      },
+      {
+        "bytes": 1778,
+        "path": "results/c6_alloc720/control_1A_paley37_6_0_0_1.txt",
+        "sha256": "fbaf2db9e700c05a61b6a6b48cb8efd656549ecac5c09de8c3f4486b39f8f6ee"
+      },
+      {
+        "bytes": 1222,
+        "path": "results/c6_alloc720/control_1B_mixed_3_2_2_2_N30.txt",
+        "sha256": "d209659a7697daa1d8db8a6e5c6ea6d89daa1b294282822bd479b018554506e0"
+      },
+      {
+        "bytes": 937,
+        "path": "results/c6_alloc720/control_1C_regime2_0_5_4_2.txt",
+        "sha256": "64dcbb61617f0405a752510647cf0ad16217ad46b5770d3bc382bba7cf23aee3"
+      },
+      {
+        "bytes": 1224,
+        "path": "results/c6_alloc720/control_1C_regime2_0_6_5_1.txt",
+        "sha256": "354a15b101372cdddc37483754e311849da2f27167e9ca292a957e38fcd490d2"
+      },
+      {
+        "bytes": 7013,
+        "path": "results/c6_alloc722/c6_alloc722_manifest.tsv",
+        "sha256": "677f53b8e1aef2420b286c55deea7207e641c3049dc370dfada3ead578c03b04"
+      },
+      {
+        "bytes": 12075,
+        "path": "results/c6_alloc722/c6_alloc722_summary.txt",
+        "sha256": "259413c8fde5f07079d238c81e895d924bfea73ba3228c8550619e7ad3e92de8"
+      },
+      {
+        "bytes": 1689,
+        "path": "results/c6_alloc722/control_1A_paley36_6_0_0_0.txt",
+        "sha256": "2f9eeec04702588601ca758db3777e732c3ce42a6190d353ce1d59085618923b"
+      },
+      {
+        "bytes": 1778,
+        "path": "results/c6_alloc722/control_1A_paley37_6_0_0_1.txt",
+        "sha256": "fbaf2db9e700c05a61b6a6b48cb8efd656549ecac5c09de8c3f4486b39f8f6ee"
+      },
+      {
+        "bytes": 1222,
+        "path": "results/c6_alloc722/control_1B_mixed_3_2_2_2_N30.txt",
+        "sha256": "5d17e2bcb2fdcb1c514b6a4d216477facf226c328bdd7fe431a67208320bbb4f"
+      },
+      {
+        "bytes": 937,
+        "path": "results/c6_alloc722/control_1C_regime2_0_5_4_2.txt",
+        "sha256": "99b077dc6cd3886dc0e3bd2f8f72a4e35db111115f3bd37544a57c506c9e8de5"
+      },
+      {
+        "bytes": 1224,
+        "path": "results/c6_alloc722/control_1C_regime2_0_6_5_1.txt",
+        "sha256": "34aa9f60e508b046e7498ce483996fd9ce58d5ba650553b88781d42679457076"
+      },
+      {
+        "bytes": 63562,
+        "path": "results/c6_alloc730/c6_alloc730_branches.tsv",
+        "sha256": "00b08f89489ec16ed3bb733d8de4718d16aaf3a9d5369c52b522b389c4e3c7c6"
+      },
+      {
+        "bytes": 9924,
+        "path": "results/c6_alloc730/c6_alloc730_manifest.tsv",
+        "sha256": "5b50ff35e95d190e397267723c36ace24a54818eec0a42eb5257f66a6aa4879b"
+      },
+      {
+        "bytes": 13606,
+        "path": "results/c6_alloc730/c6_alloc730_summary.txt",
+        "sha256": "e5ed9aca43700df73f1461ebbe1722bc73316acd9854ce3bc1f69f1817960e2e"
+      },
+      {
+        "bytes": 937,
+        "path": "results/c6_alloc730/control_1C_regime2_0_5_4_2.txt",
+        "sha256": "b7455dc3afeeb0403a3e4094c93ea45a9f108c0d761f5da0ce236de751e49742"
+      },
+      {
+        "bytes": 37138,
+        "path": "results/c6_alloc740/c6_alloc740_branches.tsv",
+        "sha256": "71af05f06c775f0d806907982282e1927c241ac15f3c205e99336e6275a90c93"
+      },
+      {
+        "bytes": 10459,
+        "path": "results/c6_alloc740/c6_alloc740_manifest.tsv",
+        "sha256": "2ab2f4affef246b01a1a38c732eb3dd4634599545a7d42e848e78a42945c2c2b"
+      },
+      {
+        "bytes": 13688,
+        "path": "results/c6_alloc740/c6_alloc740_summary.txt",
+        "sha256": "7e911dff7050a529bcffbecd4671e224f8c3323bde8a05e22a5b1ced64d7d4bf"
+      },
+      {
+        "bytes": 1222,
+        "path": "results/c6_alloc740/control_1B_regime1_3_2_2_2.txt",
+        "sha256": "5d17e2bcb2fdcb1c514b6a4d216477facf226c328bdd7fe431a67208320bbb4f"
+      },
+      {
+        "bytes": 937,
+        "path": "results/c6_alloc740/control_1C_regime2_0_5_4_2.txt",
+        "sha256": "c69ee494e0a7d3d2854dd64ac4c83b6531be6ab89997a9ccca1c41d8340b0652"
+      },
+      {
+        "bytes": 1224,
+        "path": "results/c6_alloc740/control_1C_regime2_0_6_5_1.txt",
+        "sha256": "218b3aabac67ed06ad97708164013d9bd665cbc0f2ca0c3f2402c0c1059adef1"
+      },
+      {
+        "bytes": 25232,
+        "path": "results/c6_alloc750/c6_alloc750_branches.tsv",
+        "sha256": "595037195e1dc4449677ec05ca353f9618a89d05be8be37275b364e036f9c769"
+      },
+      {
+        "bytes": 9438,
+        "path": "results/c6_alloc750/c6_alloc750_manifest.tsv",
+        "sha256": "8f36e3d96e85ec3aaa265bcd025988f015a3cce8f8c8a221c3709ac54b5ac06a"
+      },
+      {
+        "bytes": 12803,
+        "path": "results/c6_alloc750/c6_alloc750_summary.txt",
+        "sha256": "0201785f2bb07d25157bd04e432c7ff00c0790c4ffd167e21ed07ffde9d0a8d9"
+      },
+      {
+        "bytes": 1222,
+        "path": "results/c6_alloc750/control_1B_regime1_3_2_2_2.txt",
+        "sha256": "5d17e2bcb2fdcb1c514b6a4d216477facf226c328bdd7fe431a67208320bbb4f"
+      },
+      {
+        "bytes": 937,
+        "path": "results/c6_alloc750/control_1C_regime2_0_5_4_2.txt",
+        "sha256": "17c189d5ddea6fc4a7481cef51140bcec0a55d32d59055c2207b82bb12f1f1e3"
+      },
+      {
+        "bytes": 1224,
+        "path": "results/c6_alloc750/control_1C_regime2_0_6_5_1.txt",
+        "sha256": "f35d5597f041fe4f019b6e3560e18b54298d5cb0611b42256159cfa5b99b8c61"
+      },
+      {
+        "bytes": 39971,
+        "path": "results/c6_alloc766/c6_alloc766_branches.tsv",
+        "sha256": "05da75a9239c2329a23f948df497e98dee64d582a7903f10c75d8abe2165968e"
+      },
+      {
+        "bytes": 9843,
+        "path": "results/c6_alloc766/c6_alloc766_manifest.tsv",
+        "sha256": "908b5a454c779bafdaab90bb9a6f2ef34d1c429e94f81a1f1fe837244f1f23c8"
+      },
+      {
+        "bytes": 14140,
+        "path": "results/c6_alloc766/c6_alloc766_summary.txt",
+        "sha256": "fdc52019d9cd93a2b6e3cbcbd21cc258a8553aa9fdf372b06d753cdce168375a"
+      },
+      {
+        "bytes": 1045,
+        "path": "results/c6_alloc766/control_1B2_regime1_1_5_2_2.txt",
+        "sha256": "71f674265af33878d79a415b02e79e1eac24a8c3afd2e8fbef757cc1f1798d89"
+      },
+      {
+        "bytes": 1222,
+        "path": "results/c6_alloc766/control_1B_regime1_3_2_2_2.txt",
+        "sha256": "5d17e2bcb2fdcb1c514b6a4d216477facf226c328bdd7fe431a67208320bbb4f"
+      },
+      {
+        "bytes": 937,
+        "path": "results/c6_alloc766/control_1C_regime2_0_5_4_2.txt",
+        "sha256": "17c189d5ddea6fc4a7481cef51140bcec0a55d32d59055c2207b82bb12f1f1e3"
+      },
+      {
+        "bytes": 1224,
+        "path": "results/c6_alloc766/control_1C_regime2_0_6_5_1.txt",
+        "sha256": "f35d5597f041fe4f019b6e3560e18b54298d5cb0611b42256159cfa5b99b8c61"
+      },
+      {
+        "bytes": 40000,
+        "path": "results/c6_alloc800/c6_alloc800_branches.tsv",
+        "sha256": "a3ac107ae1223c2737fa24eb8450a47cab4dbc4daeffd51900079d76e5713b4f"
+      },
+      {
+        "bytes": 8112,
+        "path": "results/c6_alloc800/c6_alloc800_manifest.tsv",
+        "sha256": "d45bd43b461808ddea8527a57a1b8e92d6254924d17be8c19e0e067897eeac70"
+      },
+      {
+        "bytes": 12722,
+        "path": "results/c6_alloc800/c6_alloc800_summary.txt",
+        "sha256": "aba3a7b5d49f5ad4c8b75c720163c10721269f70f7df627bc2e1b90b8e3c8ada"
+      },
+      {
+        "bytes": 1045,
+        "path": "results/c6_alloc800/control_1B2_regime1_1_5_2_2.txt",
+        "sha256": "fa2b83c0e03e0d82551058989af406dbac7c2d63f14b329a802af75949ab7064"
+      },
+      {
+        "bytes": 1222,
+        "path": "results/c6_alloc800/control_1B_regime1_3_2_2_2.txt",
+        "sha256": "62dbb1ffba9d3991505efb7d6faf880d89abfaa558f30393e4a8cfc2ef740ae0"
+      },
+      {
+        "bytes": 937,
+        "path": "results/c6_alloc800/control_1C_regime2_0_5_4_2.txt",
+        "sha256": "17c189d5ddea6fc4a7481cef51140bcec0a55d32d59055c2207b82bb12f1f1e3"
+      },
+      {
+        "bytes": 1224,
+        "path": "results/c6_alloc800/control_1C_regime2_0_6_5_1.txt",
+        "sha256": "f35d5597f041fe4f019b6e3560e18b54298d5cb0611b42256159cfa5b99b8c61"
+      },
+      {
+        "bytes": 42119,
+        "path": "results/c6_alloc838/c6_alloc838_branches.tsv",
+        "sha256": "d0e5bf3b36a10938fa4953d954842ccbe403cce51cb78cda3c838b93dd671173"
+      },
+      {
+        "bytes": 7848,
+        "path": "results/c6_alloc838/c6_alloc838_manifest.tsv",
+        "sha256": "202294dd72f396764d71f31f866bef2fdee4ace0b97b0b1c339432a3ce54738c"
+      },
+      {
+        "bytes": 12724,
+        "path": "results/c6_alloc838/c6_alloc838_summary.txt",
+        "sha256": "4a55734f96c32e45e0c8423e603c817a333e5f0c044593c53cdfd5320c2a52cf"
+      },
+      {
+        "bytes": 1045,
+        "path": "results/c6_alloc838/control_1B2_regime1_1_5_2_2.txt",
+        "sha256": "fa2b83c0e03e0d82551058989af406dbac7c2d63f14b329a802af75949ab7064"
+      },
+      {
+        "bytes": 1222,
+        "path": "results/c6_alloc838/control_1B_regime1_3_2_2_2.txt",
+        "sha256": "62dbb1ffba9d3991505efb7d6faf880d89abfaa558f30393e4a8cfc2ef740ae0"
+      },
+      {
+        "bytes": 937,
+        "path": "results/c6_alloc838/control_1C_regime2_0_5_4_2.txt",
+        "sha256": "17c189d5ddea6fc4a7481cef51140bcec0a55d32d59055c2207b82bb12f1f1e3"
+      },
+      {
+        "bytes": 1224,
+        "path": "results/c6_alloc838/control_1C_regime2_0_6_5_1.txt",
+        "sha256": "f35d5597f041fe4f019b6e3560e18b54298d5cb0611b42256159cfa5b99b8c61"
+      },
+      {
+        "bytes": 145150,
+        "path": "src/c6_canonical_and_controls.hpp",
+        "sha256": "a3edc4071d8c1df5731afedf8c1ffb6d1d4f31d680c2afd7d0be0b61fdd3c62f"
+      },
+      {
+        "bytes": 15567,
+        "path": "src/c6_model_and_controls.hpp",
+        "sha256": "d0da97f837b2c6829f73b8340eba01709dc31254cb1289bcca384ba664d2175f"
+      },
+      {
+        "bytes": 29187,
+        "path": "src/solve_c6_orders42_45_alloc720.cpp",
+        "sha256": "ccbe63593b1e00e8373320ae5ad7b13112dadd7470bac2dc9618678a8cfed7aa"
+      },
+      {
+        "bytes": 33937,
+        "path": "src/solve_c6_orders42_45_alloc722.cpp",
+        "sha256": "dd64cb669acd0a48743dc72f0b205d1825802b85416bf5ee0bc7035431faa2a3"
+      },
+      {
+        "bytes": 43477,
+        "path": "src/solve_c6_orders42_45_alloc730.cpp",
+        "sha256": "324b8d19169561343e04be213347323707738977bdc104f89809d33c67ae1fa2"
+      },
+      {
+        "bytes": 50690,
+        "path": "src/solve_c6_orders42_45_alloc740.cpp",
+        "sha256": "1dcd17ed01d69b81969a22fbaa59e848fcf86f3f06f6322c774dd54e5a6a7b62"
+      },
+      {
+        "bytes": 54009,
+        "path": "src/solve_c6_orders42_45_alloc750.cpp",
+        "sha256": "d4e4149e053bdcf930f2ab9fb2889d7b77ae1ecc0e0aa7d870242da4da43b54d"
+      },
+      {
+        "bytes": 82751,
+        "path": "src/solve_c6_orders42_45_alloc766.cpp",
+        "sha256": "3c53b2ced7ffc77152324277b7ea82d543b3e9b486729adb920d35b902ef2863"
+      },
+      {
+        "bytes": 86212,
+        "path": "src/solve_c6_orders42_45_alloc784.cpp",
+        "sha256": "46051c67659d114eb684c13d8ae6dab0ea37ac78fe7bba560b5aec36747aad44"
+      },
+      {
+        "bytes": 124831,
+        "path": "src/solve_c6_orders42_45_alloc838.cpp",
+        "sha256": "6f8e7e1c708c66c2301184d38c251e17e30f208a1605cebd33c268e17bdbaf9b"
+      },
+      {
+        "bytes": 103917,
+        "path": "src/solve_c6_orders42_45_alloc873.cpp",
+        "sha256": "8a6a6a8a33ebb43555045a03380d00d19fecc2f624d37e40748013a9a74eb341"
+      }
+    ],
+    "name": "ramsey_5_5_14_v1_b3c1df93e091b5e2.zip",
+    "sha256": "b3c1df93e091b5e256df4c7c0e714a723bc6d9cea9b6e30f146de9a3d1240ac8",
+    "source_url": "https://rstation.ai/api/v1/papers/ramsey_5_5_14/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261110T213409699093Z/ramsey_5_5_14_v1_b3c1df93e091b5e2.zip"
+  },
+  "tags": [
+    "ramsey theory",
+    "automorphism exclusion",
+    "structural reduction",
+    "subgroup-fixed deficit theory",
+    "sat with rup proofs"
+  ],
+  "title": "Complete Exclusion of the n6 <= 1 Sector and Subgroup-Fixed Exterior Deficit Theory for Faithful Cyclic Order-6 (C6) Automorphisms on (5,5)-Ramsey Graphs at Orders 42 to 45",
+  "version": 1
+}

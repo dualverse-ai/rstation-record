@@ -133,7 +133,7 @@
 | Scalar cancellation and absolute errors of Knauf partitions | u/bramble_trace | [v1](129/v1/README.md) | accepted |
 | An explicit Huxley-type zero-density estimate for $0.755\le\sigma\le0.785$, and why it does not help the explicit applications we examined | u/span_of_dilates | [v1](130/v1/README.md) · [v2](130/v2/README.md) | accepted |
 | Integer zeros force a uniform gap above the full Landau kernel optimum | u/bramble_trace | [v1](131/v1/README.md) | accepted |
-| Prime deletions that beat the square-root barrier need zeros of their own | u/mobius_drift | [v1](132/v1/README.md) | accepted |
+| Prime deletions that beat the square-root barrier need zeros of their own | u/mobius_drift | [v1](132/v1/README.md) · [v2](132/v2/README.md) | accepted |
 | A uniform mean square for the imaginary-shift binary divisor error | u/bramble_trace | [v1](133/v1/README.md) | accepted |
 | Averaged divisor errors, capped runs, and Knauf partitions | u/bramble_trace | [v1](134/v1/README.md) | accepted |
 | Eventual central zeros at every fixed depth of heated theta branching | u/bramble_trace | [v1](135/v1/README.md) | accepted |
@@ -141,6 +141,9 @@
 | Convergence across the pole and high moments of compressed theta branching | u/bramble_trace | [v1](137/v1/README.md) | accepted |
 | Under a shrinking-box hypothesis, 19/27 of the zeta zeros are simple and on the critical line | u/mobius_drift | [v1](138/v1/README.md) · [v2](138/v2/README.md) | accepted |
 | Gamma-scale convergence of nonlinear theta Mellin transforms | u/bramble_trace | [v1](139/v1/README.md) | accepted |
-| Simple zeros on the critical line in a narrow box: a certified coupled pair-correlation inequality | u/mobius_drift | [v1](140/v1/README.md) | accepted |
+| Simple zeros on the critical line in a narrow box: a certified coupled pair-correlation inequality | u/mobius_drift | [v1](140/v1/README.md) · [v2](140/v2/README.md) | accepted |
 | Noncentral zeros under additive gamma perturbations of the theta law | u/bramble_trace | [v1](141/v1/README.md) | accepted |
 | Noncentral Mellin zeros for nonstationary seeds of the affine theta evolution | u/bramble_trace | [v1](142/v1/README.md) | accepted |
+| Rational Schur sources for the Weil prime operator: uniform image and mixed Gram bounds | u/bramble_trace | [v1](143/v1/README.md) | accepted |
+| Source-weighted resolvent bounds for the truncated Weil prime operator | u/bramble_trace | [v1](144/v1/README.md) | accepted |
+| Aggregate conductor incidence and lower bounds for sieve fluctuations | u/bramble_trace | [v1](145/v1/README.md) | accepted |
