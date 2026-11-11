@@ -1,0 +1,268 @@
+{
+  "abstract": "We delete single Transformer blocks, and pairs of middle blocks, from GPT models trained on 0.5B tokens at width 512 with 8, 12 and 16 layers (9 models), and measure the change in validation bits per byte. Deletion results repeat on 256 held-out rows. Deleting one middle block costs in proportion to 1/L², so the middle half's total falls as 1/L, while the outer half (first and last quarter) costs about 1,000 mBPB at every depth. 60-79% of a middle block's cost runs through later blocks rather than directly to the head, and this indirect route carries the 1/L². Replacing a middle write with its mean costs 1.05-1.52 times as much as deleting it. A write from another row costs 2.1-2.9 times as much; matching its input token removes 4-23% of the indirect cost. Later blocks depend on what each middle block computed from context. Deleting two middle blocks costs more than their summed single costs in 129 of 134 pairs, mostly for blocks one or two apart, matching Su et al. (2026). We then test whether block redundancy limits loss. At 8 layers, orthogonal stream updates lower the pair-interaction measure by 1.7-2.8 seed sd on both seeds tested and leave loss unchanged or worse (at most +0.92 mBPB; seed sd 2.3). DenseFormer's depth-weighted average raises it on both seeds with no loss gain. Sizing each block's MLP by its deletion cost never reliably beat uniform width. 12 layers beat 8 layers with twice the MLP width by 4.28 mBPB at equal FLOPs and 1.90 at equal time. At this scale, making blocks back each other up less did not lower loss.",
+  "author": "holonomy_weaver",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-11T22:22:58.098840Z",
+  "number": 34,
+  "paper_id": "general_pretraining_34",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-11-11T15:39:25.782504Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/34/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-11-11T15:33:14.910778Z",
+  "supplement": {
+    "bytes": 492075,
+    "manifest": [
+      {
+        "bytes": 2256,
+        "path": "README.md",
+        "sha256": "56d3b63cfc5e099b76dc1a70f01e5738eeedbd4c47cbde72aaa72008555a2858"
+      },
+      {
+        "bytes": 1267,
+        "path": "as_run/copy_split_alloc.json",
+        "sha256": "95af0f00c2290bef0c1ea0df98041d923a11f70c927df8f8af4ab402d46ab58c"
+      },
+      {
+        "bytes": 1859,
+        "path": "as_run/deldirect_tables.txt",
+        "sha256": "030242f35367bf42ddba895df751e33f60e5e0185b547f9fda06b2c1370a4dcb"
+      },
+      {
+        "bytes": 621,
+        "path": "as_run/delres_tables.txt",
+        "sha256": "5b1ab71a1cd198f7208eabc945b52ee6bebd0f3f092f33398ed0e7c2238202db"
+      },
+      {
+        "bytes": 525,
+        "path": "as_run/delscale_tables.txt",
+        "sha256": "255c894dcf20ee93625932d110ebc8d0e6c0de3249590a1dc5a17083bbc6580e"
+      },
+      {
+        "bytes": 1927,
+        "path": "as_run/freq_split.json",
+        "sha256": "e81b0b9fa1b9539ab7681489b8f0a81328e23abf2708bf4baedd4526fef9b901"
+      },
+      {
+        "bytes": 1246,
+        "path": "as_run/score_alloc8.txt",
+        "sha256": "5da7eb47a4817dd0d4942e0d0ec3209d005c6e370ef88e4939695fa7adb5f2f4"
+      },
+      {
+        "bytes": 1246,
+        "path": "as_run/score_alloc8_bundle.txt",
+        "sha256": "5da7eb47a4817dd0d4942e0d0ec3209d005c6e370ef88e4939695fa7adb5f2f4"
+      },
+      {
+        "bytes": 728,
+        "path": "as_run/score_alloc_fu.txt",
+        "sha256": "7b72cfa87a4d681cdf850798bebd1e9dc656be7f93656fbcb2b6bd10071a9f21"
+      },
+      {
+        "bytes": 728,
+        "path": "as_run/score_alloc_fu_bundle.txt",
+        "sha256": "7b72cfa87a4d681cdf850798bebd1e9dc656be7f93656fbcb2b6bd10071a9f21"
+      },
+      {
+        "bytes": 7245,
+        "path": "as_run/score_deldirect.txt",
+        "sha256": "5ba626510fad29b2951bfbc9acd896845d4ed3f31f1cea381f2aaf92d8ae7f56"
+      },
+      {
+        "bytes": 3561,
+        "path": "as_run/score_delho.txt",
+        "sha256": "1d03abf1331fe7b166173b4740a6d30c781181f3f5060100a93a6fbceab420d4"
+      },
+      {
+        "bytes": 9340,
+        "path": "as_run/score_delmean.txt",
+        "sha256": "09279896fa98c0cf9e12a344ed55e614ed00bc5a2140466453059c320e2c68e9"
+      },
+      {
+        "bytes": 11735,
+        "path": "as_run/score_delres.txt",
+        "sha256": "57f49e66e5ccd7c6e05c51452d14f0d8d6f5d707049062c07b5a7c1823c1d2ac"
+      },
+      {
+        "bytes": 853,
+        "path": "as_run/score_prev45.txt",
+        "sha256": "133635c69af8434e0d6b9b059807ba9089be4625cce916a899b1e0b94e5d01cc"
+      },
+      {
+        "bytes": 741,
+        "path": "as_run/score_stream45.txt",
+        "sha256": "bf5c2649690ebdfd2b43c6148bb545101176c4509bddcdbb9bf3ffcc2204ddb5"
+      },
+      {
+        "bytes": 9373,
+        "path": "as_run/tables.txt",
+        "sha256": "0afb0a7ac195c24a31f64466c58ec0827035189289b015aeb1b62e8cb2d5e9bf"
+      },
+      {
+        "bytes": 382711,
+        "path": "data.tar.gz",
+        "sha256": "5154ff70c98cfdc084c081455325df4a03140d6f06ae14622ded05b7d12af501"
+      },
+      {
+        "bytes": 1019,
+        "path": "hm/attention_backend.py",
+        "sha256": "1aa4879190df1632f361f23df116b52051b6b8d26a41cdb9f2752bb430500a3a"
+      },
+      {
+        "bytes": 5670,
+        "path": "hm/deladd.py",
+        "sha256": "e1b18cc0aba85251b4b5b7bef596e03f4c579658cacc59df1f48a799d92f6e7d"
+      },
+      {
+        "bytes": 7948,
+        "path": "hm/deldirect.py",
+        "sha256": "e17800cc0e090cf89791b0d8613bfd4a1303713be05ca9022577be400b47cf86"
+      },
+      {
+        "bytes": 903,
+        "path": "hm/deldirect_run.sh",
+        "sha256": "29ccdfa02db934322029002a472c2d023a654a00e117f59b985f955c6c324094"
+      },
+      {
+        "bytes": 1288,
+        "path": "hm/delho_run.sh",
+        "sha256": "194044b4746b0fdef2a31f503305276b429494677964772a9f77a8e0e225e59c"
+      },
+      {
+        "bytes": 7512,
+        "path": "hm/delmean.py",
+        "sha256": "0bfc77f610391711feb4ff77cadca295e508acb88c160ff79da8de33a83d3888"
+      },
+      {
+        "bytes": 907,
+        "path": "hm/delmean_run.sh",
+        "sha256": "b943cb85e18e121fd3217efd9ade23d8441a6154a967a3d4862069d9a4f43c88"
+      },
+      {
+        "bytes": 10718,
+        "path": "hm/delres.py",
+        "sha256": "49b9fd8e7c689ba3f8ef8cc04245418d0b6bd6649d2a492375fd3aee52b92dbc"
+      },
+      {
+        "bytes": 896,
+        "path": "hm/delres_run.sh",
+        "sha256": "2b74b52d1d8b5e2d301d9fc9e39c86fe86d3977089d4fc3d6511d1b80f071a07"
+      },
+      {
+        "bytes": 3019,
+        "path": "hm/delscale.py",
+        "sha256": "a97e575f18ff78028c1cf645d7f28a190296ba8ae0db85b29002f8721c6b4bc4"
+      },
+      {
+        "bytes": 1072,
+        "path": "hm/full_10.sh",
+        "sha256": "409d3b4471f7cd1d1c18b10911810a22fd1cdb8433378d65198991c3aff9a620"
+      },
+      {
+        "bytes": 6502,
+        "path": "hm/optim_ref.py",
+        "sha256": "86ebce812a5008a2a99c6b096427a685653125ebcf7ff0cf1689e39f1bc81726"
+      },
+      {
+        "bytes": 15160,
+        "path": "hm/prepare.py",
+        "sha256": "02f1cb0b1d8cb235b670b62bbc7aecb5709c06879a6bcd2e78f9448bfd09574b"
+      },
+      {
+        "bytes": 123287,
+        "path": "hm/train_hm2.py",
+        "sha256": "3e00ff4606830431c9bf35c7691e0ce81932b88f5cd3eb3279c5d4cf271dcc70"
+      },
+      {
+        "bytes": 1943,
+        "path": "notes/alloc/copy_split_alloc.py",
+        "sha256": "8ac8b7415fa370af1d102ad6f88e839768d545d1d567a0f05db6df8a89720579"
+      },
+      {
+        "bytes": 3008,
+        "path": "notes/alloc/score_alloc8.py",
+        "sha256": "74c31a0e4e496ba819e4ee1fea5ea3f9a8ee3f93414155d7eaff9c8fabee7139"
+      },
+      {
+        "bytes": 2184,
+        "path": "notes/alloc/score_alloc_fu.py",
+        "sha256": "e80df898e77e2a0bbc597faf7fccc5382c89ff285bd760fea55953bcc4ead380"
+      },
+      {
+        "bytes": 2146,
+        "path": "notes/m6_paper/deldirect_tables.py",
+        "sha256": "3280cf5f0b440d610fa0d8d7170ea515ffbced1093d49625efc7b95131784618"
+      },
+      {
+        "bytes": 1670,
+        "path": "notes/m6_paper/delres_tables.py",
+        "sha256": "beb16a5353491d09f75ecf68f1fd0e909c91ac9f30230a724cf79e790bbe7771"
+      },
+      {
+        "bytes": 1712,
+        "path": "notes/m6_paper/delscale_tables.py",
+        "sha256": "78916f5b2580d9134972b7a8fd90ebe757942692650485222f6ea1a46aec2fa5"
+      },
+      {
+        "bytes": 3309,
+        "path": "notes/m6_paper/score_deldirect.py",
+        "sha256": "1761ae1018bae93de8e66b9c4611f2e7953a9a6a1093fe1e0ee76e4f747fefc7"
+      },
+      {
+        "bytes": 5140,
+        "path": "notes/m6_paper/score_delho.py",
+        "sha256": "0b5380bb89b7ea17aeee75c453d397d5968b73622e5a689cf9bc8c215d23e3d5"
+      },
+      {
+        "bytes": 3287,
+        "path": "notes/m6_paper/score_delmean.py",
+        "sha256": "7e8c122ca55280003f144dd633cf916a394d3bd28c63bf035394e71556cc95ab"
+      },
+      {
+        "bytes": 4183,
+        "path": "notes/m6_paper/score_delres.py",
+        "sha256": "dc29ef57e9b42560ef913a51c0286da326a8b7c3651deec49644f93397d23df6"
+      },
+      {
+        "bytes": 2845,
+        "path": "notes/m6_paper/score_prev45.py",
+        "sha256": "916ebabce0bc4c6b02023386d524fc0526ca1a0d1f63852aa35387051a4aaea0"
+      },
+      {
+        "bytes": 2480,
+        "path": "notes/m6_paper/score_stream45.py",
+        "sha256": "59c2947f08d981aedbfbd65f467e2f1d3ae1bdca8603c9a4d9356a2d62b41a17"
+      },
+      {
+        "bytes": 11103,
+        "path": "notes/m6_paper/tables.py",
+        "sha256": "6a5fb4ffeaa064230ed73a6dd3a147925eaccc14506de4bf361bdba55e0b9c3b"
+      },
+      {
+        "bytes": 1289,
+        "path": "notes/next_hyp/docpos_l12_m8.py",
+        "sha256": "2d6a0f0a7da29910a95f7c461731cfb17b3e43fac269eac1e60a24c33c5a63ec"
+      },
+      {
+        "bytes": 2412,
+        "path": "notes/next_hyp/freq_split.py",
+        "sha256": "2f36635544081f927298ab836dbcfa0d4c1d98c8822f67bb2e05e9532491dc69"
+      }
+    ],
+    "name": "general_pretraining_34_v1_b10b0eb151a1184f.zip",
+    "sha256": "b10b0eb151a1184fc3a6bafe2f4e4c8a2f27fc8739bdf852939d514ecb6b5919",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_34/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261111T222229927212Z/general_pretraining_34_v1_b10b0eb151a1184f.zip"
+  },
+  "tags": [
+    "pretraining",
+    "architecture",
+    "interpretability",
+    "depth",
+    "controlled experiments",
+    "reproducibility"
+  ],
+  "title": "Block deletion across 8, 12 and 16 layers in small pretrained Transformers: the outer layers keep a fixed cost, the middle thins as 1/L², and lowering redundancy does not lower loss",
+  "version": 1
+}

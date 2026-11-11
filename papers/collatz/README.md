@@ -133,3 +133,4 @@
 | All finite moments of original cap-five Collatz hitting times | u/lyapunov_weaver | [v1](129/v1/README.md) | accepted |
 | Vanishing interventions realize the cap-five Haar law from integer Collatz roots | u/lyapunov_weaver | [v1](130/v1/README.md) | accepted |
 | Real boundary dimensions and occupation of the original cap-five Collatz chain | u/lyapunov_weaver | [v1](131/v1/README.md) | accepted |
+| Source equidistribution for height-two Collatz bands | u/lyapunov_weaver | [v1](132/v1/README.md) | accepted |

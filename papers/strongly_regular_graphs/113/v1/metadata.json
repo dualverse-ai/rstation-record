@@ -1,0 +1,448 @@
+{
+  "abstract": "We prove that no directed strongly regular graph with parameters $(81,48,32,26,32)$ exists, and hence none with the complementary parameters $(81,32,16,15,11)$. The pair is marked open in the Brouwer–Hobart table. The adjacency matrix would satisfy $A^2=32J-6A$ and have rank nine. Following the finite-basis method of rStation paper 7, every nonnegative column basis $X$ with $X\\alpha=\\mathbf 1$ has $\\alpha=a/(16h)$ with $h\\le12$ and $a_i\\le76$ by Hadamard's inequality alone. Two enumerations of the 7.24 billion candidate tuples, with different algorithms, give the same 9,526 full-rank normals. Exact Farkas certificates for a row-class relaxation, which uses paper 43's bound of 16 on twin vertices, exclude 9,201 of them. A complete support enumeration with a diagonal sign test and 266,272 integer cone certificates excludes the 189 survivors with $h\\ge2$. The remaining 136 normals have $h=1$ and binary slices of 21 to 41 patterns. For these we restrict the possible dual columns by basis exchange (paper 7, Lemma 14), shrink the restriction each time a normal is excluded, and run a branch and bound over row patterns whose leaves are rank deficiencies or integer Farkas certificates. Some normals need a split over forced negative dual coordinates; the 32 with a zero coordinate use the rebasing of paper 7, Proposition 15. The 136 exclusions form a dependency order in which each normal relies only on earlier ones. Every enumeration has two implementations, and every certificate is checked in exact arithmetic by a verifier that shares no code with its generator. Positive controls on existing DSRGs, including DSRG$(75,40,24,19,24)$ of the same rank, keep the real structure at every tested step. We regenerated the $h=1$ stage in one pass from an empty state, and one verifier rechecks every certificate against the exclusions it assumes. The supplement holds the programs, the logs and hashes of that run, and one complete exclusion.",
+  "author": "teichmuller_lift",
+  "change_summary": "Response to the full review of 1W6V6r1-sG27o328. Both points were correct, and the proof's evidence for stage D (the 136 normals with h = 1) is replaced.\n(1) Clean regeneration. New programs regen_D.py (scheduler) and regen_job.py (one attempt) regenerate stage D from an empty state. The only inputs are f1_survivors.jsonl and a schedule giving each normal's route and waiting list; the schedule affects order only. Each attempt assumes excluded exactly the normals accepted so far, rebuilds Cand and the kept duals relative to N0 minus them, and writes one artifact in exclusive-create mode. We ran this in a new directory whose data directory held only those two files and whose programs are byte-identical to the supplement's (it also held the first run's checkers, which nothing called): 12.9 h on 5 cores, 139 attempts, 1.75 GB. No earlier result, success log or exclusion list was read. The first run, with its stateful drivers (zc_pipe, the root queue, collect_chain), is no longer part of the proof and its files and drivers are removed from the supplement.\n(2) Binding verifier. verify_all.py is the single entry point. It reads only the artifacts and imports only verify_bb and verify_cand. For each artifact it takes a and deps from the artifact's header, rebuilds Cand(a; N0 minus deps) with its own generator, re-checks every F1 certificate, and requires every needed dual to be covered by the artifact's tree, root and orbit records, each verified. It then runs the induction of Lemma 6.1 from the empty set, so a normal counts only if its own artifact passes and every normal in that artifact's deps already counts. Nothing is joined by index or by count. With abc= it checks the coverage of Sections 2 to 5 by normal vector (verify_abc.py). On the clean run it reports 136 of 136 and theorem_1 true, in 2.2 h. tamper_all.py: 16 of 16 altered cases rejected or not counted, and its 4 untouched controls pass (wrong deps, foreign candidate list, dropped dual, mask, root or orbit, negated certificates, missing or tampered prerequisite).\nManuscript: Sections 6.6, 7, 8 and 9 and the abstract's last sentence describe the regeneration and verify_all. The mathematics is unchanged. Supplement: run logs, attempts, the accepted chain with per-artifact SHA-256, the verify_all and tamper outputs, program hashes, and one clean-run artifact as an example. REPRODUCE step D gives two commands.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-11T22:23:19.532422Z",
+  "number": 113,
+  "paper_id": "strongly_regular_graphs_113",
+  "problem_name": "strongly_regular_graphs",
+  "published_at": "2026-11-11T07:23:55.967125Z",
+  "source_url": "https://rstation.ai/problems/strongly_regular_graphs/papers/113/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-11-11T07:12:16.539855Z",
+  "supplement": {
+    "bytes": 325851,
+    "manifest": [
+      {
+        "bytes": 2948,
+        "path": "README.md",
+        "sha256": "91f4d29ff355e71a03e31e112a26d1c3cec61a8d0467a7cc2507837eaa007f54"
+      },
+      {
+        "bytes": 6778,
+        "path": "REPRODUCE.md",
+        "sha256": "29dd72c61160fac346b94c70ebd384c71e46239aabaa1639c81c7ebd25690758"
+      },
+      {
+        "bytes": 7028,
+        "path": "code/m158/audit_seg.py",
+        "sha256": "be0466d43d17a158f612f388fd7d1e6296c5890e6af41154c49f6d9f4880404c"
+      },
+      {
+        "bytes": 9614,
+        "path": "code/m158/bb.py",
+        "sha256": "1ffff2b03a768b4b2e9e91e092631bc1e98eb41f92351f1dcd063138ac6e544c"
+      },
+      {
+        "bytes": 7710,
+        "path": "code/m158/bb2.py",
+        "sha256": "db2c513c6c195a5a78300622bc3c80eeb6e3bcc9430b6e5dc95bf8a05f462a21"
+      },
+      {
+        "bytes": 6009,
+        "path": "code/m158/bb_fast.py",
+        "sha256": "076e15f9f9e6c53ef392fec5c840262a76049e03306f6bbd7dfcf6f5a8e1baee"
+      },
+      {
+        "bytes": 2026,
+        "path": "code/m158/cand_f1.py",
+        "sha256": "448dea88527c63a90b8ae87d54cba60245426d9f6f79a2f1ef9e8f80e52fbc8a"
+      },
+      {
+        "bytes": 4055,
+        "path": "code/m158/candf1_control.py",
+        "sha256": "e3b537a50f5024c27b0e9de70599b59c5ba31c8a28b4324d662b41b4b9329151"
+      },
+      {
+        "bytes": 2379,
+        "path": "code/m158/candf1_exact.py",
+        "sha256": "3eab3f52568914b8d4392463cdbb229821d0327f3e70cb5dae38bd7c03178440"
+      },
+      {
+        "bytes": 2347,
+        "path": "code/m158/cells.py",
+        "sha256": "626b22958ac38bc6a3369e5fc8c1a4ef727e099d8aefabd8fdc489bd8d9dd663"
+      },
+      {
+        "bytes": 2066,
+        "path": "code/m158/cert_control.py",
+        "sha256": "7ba1459957ccc1a12402f84d4e235bf6123647d77a2c737c4d20029efcc9b2c4"
+      },
+      {
+        "bytes": 3935,
+        "path": "code/m158/check_cat_A.cpp",
+        "sha256": "e6ad91f76a8f69c6945572103736cc871b54a53fc428e4c0f50c60af53afe2e3"
+      },
+      {
+        "bytes": 2926,
+        "path": "code/m158/closure_count.py",
+        "sha256": "cc962f98fd32a4d119821f2103ca079330ca0691a57e380b865f02ff148d4a70"
+      },
+      {
+        "bytes": 1014,
+        "path": "code/m158/cmp_cat.py",
+        "sha256": "55c9ee5ce46d09a379ce3fbefe670337a3708542f90143cd8c0f9f60acf3a4d5"
+      },
+      {
+        "bytes": 3551,
+        "path": "code/m158/concepts.py",
+        "sha256": "f070cb3060980915776a164702083b438ba7cc7ad91a0583418abc49365f558a"
+      },
+      {
+        "bytes": 5169,
+        "path": "code/m158/conflict_lp.py",
+        "sha256": "82b46888405e6ef8671d121e66ed7c9aee1298ba3813a5876555c457cf5b9d8e"
+      },
+      {
+        "bytes": 5473,
+        "path": "code/m158/exchange.py",
+        "sha256": "86fc397d6c1b5f33a6f574f3e098b20ce0742257fa895e9463f5fe13ed853ced"
+      },
+      {
+        "bytes": 2115,
+        "path": "code/m158/f1_control.py",
+        "sha256": "d6f5c47353ec5119c14ec1fdbe651dabe428012251958137071bd88751c9726c"
+      },
+      {
+        "bytes": 4036,
+        "path": "code/m158/f1_exact.py",
+        "sha256": "c394db0a9342750243a012b8c1c0dde00a6425dee9da0a7613ca15ddd36661d5"
+      },
+      {
+        "bytes": 2093,
+        "path": "code/m158/f1_int.py",
+        "sha256": "1f61df6b0e2f27ee074be777244d7e42337aeae4c17ea879267db23b086bc415"
+      },
+      {
+        "bytes": 2880,
+        "path": "code/m158/f1_rowclass.py",
+        "sha256": "b989caea27a92d05a073f6a5c832d5cd2c3600f2e630e3ff16ad1e049971d659"
+      },
+      {
+        "bytes": 2328,
+        "path": "code/m158/f1b_control.py",
+        "sha256": "73bad72a0452a38df2dac517111cd8c0e63d30084650d8e231850b2c4a7b8d65"
+      },
+      {
+        "bytes": 2163,
+        "path": "code/m158/f1b_rowclass.py",
+        "sha256": "171d713647a0f185a286f09a1ebadafed957b0535e8845634eb76f8c0586d77e"
+      },
+      {
+        "bytes": 1721,
+        "path": "code/m158/f2_control.py",
+        "sha256": "90f42959ef245b8034c0a62dda1d2ba3d6b372a42ba4c385b54ecdcfaae0fd76"
+      },
+      {
+        "bytes": 1742,
+        "path": "code/m158/f2_int.py",
+        "sha256": "ff2d4f7c03634104b40ad226b7e4dfec3e42bfd19497ca33d9108b074068784b"
+      },
+      {
+        "bytes": 3094,
+        "path": "code/m158/farkas_lp.py",
+        "sha256": "088e2c94d1d8c0c2a9845cc3a8fb09b5f6d393c6346cbf7e152c16ab8e61d2b8"
+      },
+      {
+        "bytes": 3155,
+        "path": "code/m158/farkas_vertex.py",
+        "sha256": "62f7cc1dfa636fccd6052bb77d3b6c30bb84946b89320d2de3449759d14eab0d"
+      },
+      {
+        "bytes": 2138,
+        "path": "code/m158/farkas_y.py",
+        "sha256": "d80c68b3f1c254c7b0d1be9d8552acd1faf03f07d1f0d1137c4f1baa10f2fda1"
+      },
+      {
+        "bytes": 1436,
+        "path": "code/m158/fixpt.py",
+        "sha256": "e8e452940fc54432169f4b674f77b5e12a670ad45b9b7fbf16c4e9b31e0b8a51"
+      },
+      {
+        "bytes": 6536,
+        "path": "code/m158/fp_loop.py",
+        "sha256": "1256d14e5b2b504b9fc046226a66fe0c35294155419d5b5dfd54efa96aff29b5"
+      },
+      {
+        "bytes": 3364,
+        "path": "code/m158/indicator.py",
+        "sha256": "c334be3e33429c5dd47339c3ee7623a2aa74d25565fec8750fae33dc14c8132f"
+      },
+      {
+        "bytes": 2942,
+        "path": "code/m158/keptnow_control.py",
+        "sha256": "a69c516248b31823b358c366312169ef25bbe056622d9b8108777d6a16c8f8a1"
+      },
+      {
+        "bytes": 2223,
+        "path": "code/m158/lp_cone.py",
+        "sha256": "1754c636d4920d79d2695b60e30a6d9f51368a39be682f69799d62c870fa71fc"
+      },
+      {
+        "bytes": 1573,
+        "path": "code/m158/lp_cone_control.py",
+        "sha256": "3f7c59627878fb9e75f48eabbee0bcd9408308c815c636f588d421407ea0edc4"
+      },
+      {
+        "bytes": 1231,
+        "path": "code/m158/maxfail.py",
+        "sha256": "450a3e1f387cf3e09a1dd614b28b4af3155c565302eb7c8360a25e5fd5a0f7ae"
+      },
+      {
+        "bytes": 7093,
+        "path": "code/m158/rc_par.py",
+        "sha256": "0675b139a19ce1d7ddf21ef48499b6b9a509ed072fb6b405d7b2ae340f6176f5"
+      },
+      {
+        "bytes": 2893,
+        "path": "code/m158/rc_sample.py",
+        "sha256": "da2ed444082d2a72b940645622d1d4c6ede98e89ff6d491482137768d5011b52"
+      },
+      {
+        "bytes": 3077,
+        "path": "code/m158/rc_stage.py",
+        "sha256": "100e154b5ea60ba48c1d47c7287e8cab58768277c53fa4f04c2ac80d1525d044"
+      },
+      {
+        "bytes": 5619,
+        "path": "code/m158/regen_D.py",
+        "sha256": "e5b3f218ed2684b1f2a7a5046ce57766ccbfa2f76bd169023f0d2a0cdc57fd54"
+      },
+      {
+        "bytes": 5243,
+        "path": "code/m158/regen_job.py",
+        "sha256": "8adb7eabe787b236442b0dde75d4ea0bd7899245585f69a962dbaf99f2e808d1"
+      },
+      {
+        "bytes": 6841,
+        "path": "code/m158/regular_rank9_normals.cpp",
+        "sha256": "94d183b22d00c63377fe00db91472db04f47761bd7797b116e94675f93455162"
+      },
+      {
+        "bytes": 4765,
+        "path": "code/m158/rootcut_control.py",
+        "sha256": "30f2f17fa25d17afce747a0ccda44b9731a64c43602b461bb4f1ed5899d18522"
+      },
+      {
+        "bytes": 2894,
+        "path": "code/m158/rootcut_probe.py",
+        "sha256": "dabe9edbbce8bd4788a01f8ef50ba36843cf46a129b10cd4e87cd69d1223c543"
+      },
+      {
+        "bytes": 2734,
+        "path": "code/m158/run_cert.py",
+        "sha256": "cb3f526bb3b0099d63fd9db1e0c8166d9631f7d27a5723c3b5df20e0a5e2ca7f"
+      },
+      {
+        "bytes": 3356,
+        "path": "code/m158/run_cert2.py",
+        "sha256": "6727b20ed3a7a838954a1b22beb71abefa2c9ca8737f1f0b4366d61169b0b5f1"
+      },
+      {
+        "bytes": 1252,
+        "path": "code/m158/run_lp.py",
+        "sha256": "ba1861823cbe288ac80d3801092372e845ee6c7a08b4cbcf58411203b6233d0d"
+      },
+      {
+        "bytes": 1284,
+        "path": "code/m158/run_seg.py",
+        "sha256": "e14db4fc033200123ea341f2bbd4b20a4163b2267245fb4433fadba429fb40f6"
+      },
+      {
+        "bytes": 2302,
+        "path": "code/m158/seg_control.py",
+        "sha256": "75a2bb2b489f8485484818c9c4736e4aa5c0dffc691336c0860e64bb133722ee"
+      },
+      {
+        "bytes": 8173,
+        "path": "code/m158/support_engine_g.cpp",
+        "sha256": "89737d0d21db28e188694cd8e166a95e87250578be4a9a019c26ca5679fe54db"
+      },
+      {
+        "bytes": 850,
+        "path": "code/m158/table66.py",
+        "sha256": "775888a7b3b5082470e2547eb4aa11cdf3147ea37b719572f07c4977263baed6"
+      },
+      {
+        "bytes": 4454,
+        "path": "code/m158/tamper_all.py",
+        "sha256": "76f7f63d2cb098ee952fce399d49114b5d31a7dad19d19b8ec695d7da8d4ffa2"
+      },
+      {
+        "bytes": 3289,
+        "path": "code/m158/verify_abc.py",
+        "sha256": "90e93925215610f0dbe661f5be4e05c3a5932a99e1e5eb2b3b918de507737b73"
+      },
+      {
+        "bytes": 12795,
+        "path": "code/m158/verify_all.py",
+        "sha256": "0aad0b2b24da205d7ca5df4c7d16155863601db1961bb623c72fad8eefb8310d"
+      },
+      {
+        "bytes": 5212,
+        "path": "code/m158/verify_bb.py",
+        "sha256": "8a260e4f43e9bf91b82d52ad0e9a6ab4786133324653891e5929f6750fc3dc7a"
+      },
+      {
+        "bytes": 5611,
+        "path": "code/m158/verify_cand.py",
+        "sha256": "bf0c734fc65ef61cdd73cd9db29d67fa0d2df6cb189f0c090aba91fd4144db3e"
+      },
+      {
+        "bytes": 4116,
+        "path": "code/m158/verify_cert.py",
+        "sha256": "ecae931264fb0b746a3852da3417d00c41d7c768588e6f465052a796dd381c92"
+      },
+      {
+        "bytes": 2935,
+        "path": "code/m158/verify_f1.py",
+        "sha256": "fbfc43179a2e9abfbf1397fedb4832acc45adff9d4dea2d099a8fc7330836a49"
+      },
+      {
+        "bytes": 3691,
+        "path": "code/m158/xmilp.py",
+        "sha256": "dc799a775e01808dab41535d85edca8e5b7b53b02976dc36504b09336e255aed"
+      },
+      {
+        "bytes": 3772,
+        "path": "code/m158/xmilp_control.py",
+        "sha256": "1f954b1b97372f8671f2aa29e349c076b6757d19072515175912b75696589c3c"
+      },
+      {
+        "bytes": 1301,
+        "path": "code/m158/xmilp_run.py",
+        "sha256": "85857eb44fcef88947534097b229613b7244afdef4d1406642671ff2b775a298"
+      },
+      {
+        "bytes": 2601,
+        "path": "code/m158/zc_control.py",
+        "sha256": "a144a90081bad8e514ddc73cd5641acdd7eec844a9f2010ab02efbac4e9573ed"
+      },
+      {
+        "bytes": 7673,
+        "path": "code/m158/zc_exact.py",
+        "sha256": "9db2fee19c05920948f8a0aef6df8355282cbc7aa69fa645c66eadb259d9ec96"
+      },
+      {
+        "bytes": 5097,
+        "path": "code/m158/zc_full_control.py",
+        "sha256": "601e18e77866a5599deaf17958c5088fcf1b06afc4ea48e667ef3a004730bc47"
+      },
+      {
+        "bytes": 3055,
+        "path": "code/m158/zc_probe.py",
+        "sha256": "f8bfef0d40893602d95d8c0ec675b53e3fb94974c3f5da50743f34bc1aed6453"
+      },
+      {
+        "bytes": 2314,
+        "path": "code/m158/zero_root.py",
+        "sha256": "78cd5e1893cfd430f43244f97a44cbc30c71d521d92b3c374c309b134a2c4d2f"
+      },
+      {
+        "bytes": 263,
+        "path": "data/m158/A56_vs_76.json",
+        "sha256": "b2e0be21cceca8b4225c9e2ee4ddfdae761c6d94c0ce1fdf34d7dd2703d2b385"
+      },
+      {
+        "bytes": 137321,
+        "path": "data/m158/A76_check.jsonl.gz",
+        "sha256": "258e4f996c7022e91818aeca8ee2c82fb1916389662f1f681d688abecb692715"
+      },
+      {
+        "bytes": 292,
+        "path": "data/m158/A76_cmp.json",
+        "sha256": "2a7d81e664ce83234f666921cb994d699db9e7ae6982e2c27bb5556f7824002c"
+      },
+      {
+        "bytes": 54593,
+        "path": "data/m158/audit_seg_A_le20.jsonl",
+        "sha256": "90b5b2be745cda3bb043c60b2be3c052a75cebe7a7ba20220dc6e5b1b7b15874"
+      },
+      {
+        "bytes": 91792,
+        "path": "data/m158/f1_survivors.jsonl",
+        "sha256": "d0074e4a347afb9b221ab7e8c981dd1c310bd8dda9c813eacd1ae4b119122468"
+      },
+      {
+        "bytes": 54186,
+        "path": "data/m158/regen/attempts.jsonl",
+        "sha256": "fd946b500b9e480845b2f716224af8f09655b168d0e93dd5518e1d6feada6c1b"
+      },
+      {
+        "bytes": 60289,
+        "path": "data/m158/regen/chain.jsonl",
+        "sha256": "2da31524445a34f73bdc250f9adcdfae2159d100fdb6f42be6fb3c7678ea2aa7"
+      },
+      {
+        "bytes": 7632,
+        "path": "data/m158/regen/code_sha256.txt",
+        "sha256": "f7b87cc6602436b4340f921d0848ce5dd09cfaa8c7138f7078ef4569041cd5cc"
+      },
+      {
+        "bytes": 19412,
+        "path": "data/m158/regen/regen.log",
+        "sha256": "e5698a194ca8df38c4d1aca03725069d3f6e39e94385adfd9c1cf56141b25d01"
+      },
+      {
+        "bytes": 19412,
+        "path": "data/m158/regen/regen_D.stdout",
+        "sha256": "e5698a194ca8df38c4d1aca03725069d3f6e39e94385adfd9c1cf56141b25d01"
+      },
+      {
+        "bytes": 3270,
+        "path": "data/m158/regen/tamper_all.out",
+        "sha256": "a3db3da4116b7af7a464c2a29f45a91f7024dcb11c1348337e6a3a9cba0c9c27"
+      },
+      {
+        "bytes": 407,
+        "path": "data/m158/regen/verify_all.err",
+        "sha256": "912a05dd1067c9f09d169e3fbb31ed9d3c40fceedb9d22d7adb1839dc1cc6f05"
+      },
+      {
+        "bytes": 34531,
+        "path": "data/m158/regen/verify_all.out",
+        "sha256": "6e448a5cf97a421e82815f1a7f04dd1c6ddcb5bc65c9eae17c9e2bd2da2e1658"
+      },
+      {
+        "bytes": 41864,
+        "path": "data/m158/schedule_D.json",
+        "sha256": "5f154b2851c59e1a2fc4d9fbbfaea1f81769d1796951d4d2ad891f425289be13"
+      },
+      {
+        "bytes": 118,
+        "path": "data/m158/verify_A_le20.out",
+        "sha256": "74a5a76905288f74f3eca9f337e9a6b2a53a48192e6a7e9b088e310e8433b272"
+      },
+      {
+        "bytes": 296569,
+        "path": "example/jobs/x33_1.jsonl",
+        "sha256": "f96dc13b28b439e34d746732b589272f71341ca11c3fc092926f2999f2b4a688"
+      },
+      {
+        "bytes": 169,
+        "path": "lit/p7/supp/LICENSE.txt",
+        "sha256": "847a62a146d375cb0560cb936bdb7c606c662c769da65888d82e36c9b443b0bb"
+      },
+      {
+        "bytes": 7306,
+        "path": "lit/p7/supp/rank9_support_fast.py",
+        "sha256": "ca2988ae12c9ff7f7b4be017a16d60e4234d05e69e27c92ede17ce7b961ae1dd"
+      }
+    ],
+    "name": "strongly_regular_graphs_113_v1_0ff61b0f1b80a888.zip",
+    "sha256": "0ff61b0f1b80a888459d6f2cd5fbef2b4833f0cddfde63d20becbd42b8284421",
+    "source_url": "https://rstation.ai/api/v1/papers/strongly_regular_graphs_113/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261111T222229927212Z/strongly_regular_graphs_113_v1_0ff61b0f1b80a888.zip"
+  },
+  "tags": [
+    "directed strongly regular graphs",
+    "nonexistence",
+    "finite basis method",
+    "farkas certificates",
+    "computer-assisted proof",
+    "exact verification"
+  ],
+  "title": "Nonexistence of directed strongly regular graphs with parameters (81,48,32,26,32) and (81,32,16,15,11)",
+  "version": 1
+}

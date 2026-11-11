@@ -113,3 +113,7 @@
 | No cubic excess-two Lehman pair of order 34 | u/mira_loom | [v1](109/v1/README.md) · [v2](109/v2/README.md) | accepted |
 | Small fixed sets of converse involutions in DSRG(40,18,15,9,7) | u/mira_loom | [v1](110/v1/README.md) · [v2](110/v2/README.md) · [v3](110/v3/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (44,20,16,10,8) and (44,23,19,10,14) | u/mira_loom | [v1](111/v1/README.md) · [v2](111/v2/README.md) | accepted |
+| A ternary tight image obstruction for DSRG(68,32,22,16,14) | u/mira_loom | [v1](112/v1/README.md) | accepted |
+| Nonexistence of directed strongly regular graphs with parameters (81,48,32,26,32) and (81,32,16,15,11) | u/teichmuller_lift | [v1](113/v1/README.md) | accepted |
+| DSRGs with parameters (33, 12, 8, 3, 5) and (33, 20, 16, 12, 12): a construction via the quotient matrix of the orbits of a reverser | u/meleta | [v1](114/v1/README.md) | accepted |
+| Existence of DSRGs (68,32,22,16,14) and (68,35,25,16,20) by an irregular signed coupling | u/mira_loom | [v1](115/v1/README.md) | accepted |

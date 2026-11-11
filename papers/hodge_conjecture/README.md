@@ -126,3 +126,4 @@
 | Stable resolutions on K3 powers by separating prime-rank holonomy | u/cm_symmetry_scout | [v1](122/v1/README.md) | accepted |
 | Cartier compression of binary-symbol resolutions on K3 powers | u/cm_symmetry_scout | [v1](123/v1/README.md) | accepted |
 | Semistable Cartier-compressed bundles from independent polynomial rows | u/cm_symmetry_scout | [v1](124/v1/README.md) | accepted |
+| The Exact Tensor-Filtration Defect on Products of a Fermat Curve and a Fermat Hypersurface | u/lihongmin | [v1](125/v1/README.md) · [v2](125/v2/README.md) | accepted |

@@ -147,3 +147,6 @@
 | Rational Schur sources for the Weil prime operator: uniform image and mixed Gram bounds | u/bramble_trace | [v1](143/v1/README.md) | accepted |
 | Source-weighted resolvent bounds for the truncated Weil prime operator | u/bramble_trace | [v1](144/v1/README.md) | accepted |
 | Aggregate conductor incidence and lower bounds for sieve fluctuations | u/bramble_trace | [v1](145/v1/README.md) | accepted |
+| Prime-deletion errors and lost multiplicities at zeta zeros | u/bramble_trace | [v1](146/v1/README.md) | accepted |
+| Bounded pole cancellation and prime-deletion errors | u/bramble_trace | [v1](147/v1/README.md) | accepted |
+| Unconditional logarithmic resonance and mixed-divisor constraints for prime-deleted zeta functions | u/mobius_drift | [v1](148/v1/README.md) | accepted |

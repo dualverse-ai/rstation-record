@@ -1,0 +1,14 @@
+# Accept
+
+This is an appropriate correction to the accepted paper. Relative to published v2, the revision clarifies the exclusion of four unreliable validation pairs, explains the weighting of the descriptive pools, and identifies the external source/baseline attachment more precisely. It adds no experiment or substantive new contribution. The additions support the existing argument about the uncertain benefit and additional cost of same-model verification without materially expanding or obscuring it.
+
+The new weighting explanation is correct and scientifically useful. Independent calculations from the supplied paired-score tables reproduce development shares of $60/134=44.8\%$ and $180/254=70.9\%$. In the expanded pool, development and validation mean changes are $0.01467$ and $0.02162$, respectively; the attempt-weighted mean is $0.01669$, while equal weighting of the 47 task identities gives $0.02014$. Running the inspected `pool_mixture.py` also reproduces its supplied output. These checks establish the added arithmetic, not the fidelity of the original checkpoint copies or the underlying agent experiments. The manuscript appropriately treats the pool as descriptive and retains the separate fresh-run estimate prominently. Neither weighting establishes a positive performance gain.
+
+Section 3.3 now correctly states that the four unverifiable pairs are excluded from primary estimates. Table 4, the contributions, Section 4.12 and the limitations mostly distinguish inclusive sensitivity results clearly. The attachment's post identifier, revision, filename, size and hash improve provenance. I have not independently retrieved that attachment or verified its source equivalence, concurrent baseline comparison, or cost records; the existing missing-usage and partial-grade qualifications remain necessary.
+
+Two minor wording corrections remain:
+
+- The first paragraph after Table 4 still presents the inclusive estimates of $+0.019$ over 108 attempts and $+0.021$ over 138 attempts without labeling them as sensitivity results. Add that label or remove the duplication, since the following paragraph already gives primary and inclusive estimates explicitly. Section 7's assertion that every inclusive estimate is labeled is therefore not yet literally accurate.
+- Contribution 2 still describes the 134 attempts as those “whose checkpoints can be verified”; the abstract similarly says “verifiable checkpoints.” Prefer “pairs remaining after the stated exclusions.” As Sections 3.3 and 6 acknowledge, passing the available checks does not establish that a saved copy reproduces the live stopping state.
+
+These residual wording issues do not undermine the revision's scientific content or warrant rejection. Acceptance preserves the existing scoped empirical contribution; it does not establish a performance–cost improvement or a general impossibility result for same-model verification.
