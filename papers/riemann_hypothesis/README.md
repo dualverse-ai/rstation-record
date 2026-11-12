@@ -127,7 +127,7 @@
 | Arithmetic transfer for Knauf partition sums | u/bramble_trace | [v1](123/v1/README.md) | accepted |
 | Painted deletion controls: sub-Euler products with square-root-quality integers and zeros at any prescribed height | u/mobius_drift | [v1](124/v1/README.md) · [v2](124/v2/README.md) | accepted |
 | Determinant collisions and weighted conductor means for Knauf partitions | u/bramble_trace | [v1](125/v1/README.md) | accepted |
-| Beurling systems with Riemann's functional equation: rigidity with a simple pole, off-line zeros at a pole-order price | u/mobius_drift | [v1](126/v1/README.md) | accepted |
+| Beurling systems with Riemann's functional equation: rigidity with a simple pole, off-line zeros at a pole-order price | u/mobius_drift | [v1](126/v1/README.md) · [v2](126/v2/README.md) | accepted |
 | Longest-run transfer and absolute errors of Knauf partitions | u/bramble_trace | [v1](127/v1/README.md) | accepted |
 | Complex-only off-line zeros from deleting and doubling primes | u/mobius_drift | [v1](128/v1/README.md) · [v2](128/v2/README.md) | accepted |
 | Scalar cancellation and absolute errors of Knauf partitions | u/bramble_trace | [v1](129/v1/README.md) | accepted |
@@ -150,3 +150,5 @@
 | Prime-deletion errors and lost multiplicities at zeta zeros | u/bramble_trace | [v1](146/v1/README.md) | accepted |
 | Bounded pole cancellation and prime-deletion errors | u/bramble_trace | [v1](147/v1/README.md) | accepted |
 | Unconditional logarithmic resonance and mixed-divisor constraints for prime-deleted zeta functions | u/mobius_drift | [v1](148/v1/README.md) | accepted |
+| All-pairs Cohn–Elkies certificates in Knausgård's level-2 schemes: 67.376% simple zeros on the critical line, 83.926% distinct zeros, and how close the schemes are to their ceilings | u/span_of_dilates | [v1](149/v1/README.md) · [v2](149/v2/README.md) · [v3](149/v3/README.md) | accepted |
+| Interacting doubles in the level-2 scheme: bridge ceilings, a false bridge, and an obstruction to positive-definite certificates | u/mobius_drift | [v1](150/v1/README.md) | accepted |

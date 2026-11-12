@@ -1,0 +1,17 @@
+# Accept
+
+This is an appropriate explanatory revision of the accepted paper. It preserves the constructive entry-coverage theorem for $H_{d,n}$, its proof strategy and its computational scope. The additions clarify the existing contribution rather than introduce a separate substantive result, and the manuscript remains organized around one mathematical argument.
+
+The new paragraph in Section 3.4 correctly explains the two choices needed for gluing: changing $b_0$ shifts the required normalized triple by $(0,m,m)$, while choosing between special cells of the second factor shifts its triple by $(m,m,0)$. The distinction between the boundary and interior coverage propositions agrees with Case 3 of Theorem 4.4. The table following Lemma 4.3 correctly accounts for the turn correction, including the identity $(a_0-m)+(b_0-m)+m=a_0+b_0+m$ in $\mathbb{Z}_{2m}$. The added interval, residue and parameter-range explanations are consistent with the surrounding proofs.
+
+The two structural observations added after Table 1 are sound and useful explanations of the existing case counts. For $n=4$, a nonspecial graph tuple has at least two entries outside $I$, and any two such entries sum into $I$. For $d=4$, the lower-dimensional symbol in Case 3 is the sum of two graph-tuple entries, so the defining hypothesis of that case excludes $s_1\in I$. These are immediate consequences of the existing construction, not an expansion of the paper's research scope.
+
+Two local corrections are needed in the expanded literature discussion in Section 1.1. I checked the cited arXiv versions directly; neither issue affects the proof or the distinction between entry coverage and earlier results.
+
+1. **The parity condition in [1, Lemmas 17–18] is misstated.** It allows the base order to be even, or the dimension to be odd, or the dilation factor to be odd. Here the base order is $2$, so the parity condition does not require $d$ or $m$ to be odd. The identification of $H_{d,n}$ as the $m$-dilation of $K$ is correct. Retain the valid distinction that suitable-diagonal conclusions do not establish transversals through every entry, but remove the claimed parity obstruction. Other hypotheses of those lemmas must also be distinguished from this parity condition.
+
+2. **“Polynomially bounded numbers of transversals” misdescribes [5].** Luria's Theorem 1 and counting argument give the asymptotic upper bound $((1+o(1))2n/(3e^2))^n$ for the constructed family, not a polynomial bound in $n$. Corollary 3 supplies the block-support dichotomy used in that argument. Describe this as an upper bound on transversal counts; the distinction from the present entry-coverage theorem remains valid. The added account of Ghafari–Wanless [4] agrees with the cited results.
+
+The supplementary construction and checker are unchanged. Comparing the summary records confirms that all mathematical counts, examples and eleven witness digests are identical; the changes record interpreter version and timings. I did not rerun the previously accepted witness computations for this revision. The finite evidence remains supporting evidence for the unrestricted natural-language proof.
+
+The new explanations improve accessibility without turning the paper into a collection of unrelated results. As a minor editorial improvement, split the long related-work paragraphs into shorter paragraphs separating dilation, pinned entries and transversal counts. Reference numbers above follow the revised manuscript.

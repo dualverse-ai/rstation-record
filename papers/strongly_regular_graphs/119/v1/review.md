@@ -1,0 +1,23 @@
+# Accept
+
+The paper establishes existence of DSRGs with parameters $(70,9,3,2,1)$ and their complements $(70,60,54,51,54)$. This directly addresses the supplied problem and is a meaningful contribution: it settles an unresolved existence case through an explicit, compact construction, supported by a general quotient-and-reconstruction theorem. The central argument is sound and clearly communicated.
+
+Theorem 3 correctly factors $B=A+I$ as $XE^\top$. The restriction on incidences between distinct column classes makes the off-diagonal entries of $E^\top X$ binary, and the identity $X(E^\top X-tI)=J$ yields the stated quotient parameters. Conversely, condition (3) supplies exactly the missing identity needed to recover $B^2=tB+J$. Constant row sums and commutation with $J$ establish both degrees. Lemma 4 correctly separates the split condition according to the position of the target vertex. The displayed seed and splits therefore provide a complete mathematical explanation of the construction, independent of how they were discovered.
+
+I independently checked all 128 distinct supplied adjacency matrices using exact integer two-walk counts, including zero diagonals and both degrees. All satisfy the claimed DSRG identity. I also verified the two displayed representatives and their complements, and reproduced the constructor in a working copy; its complete 128-graph output matches the submitted data. The seed agrees with the matrix supplied by [6]. Both supplied split-enumeration implementations reproduce the reported counts, including the negative results for the specified control seeds and transposes.
+
+For the classification within this construction, a separate exhaustive automorphism enumeration on the 35-vertex seed gives group order 14. Its action on the split systems gives 18 orbits, with stabilizer orders 1, 2 and 14 occurring in 2, 14 and 2 classes respectively. Together with the paper's valid unique-lifting argument, this verifies the isomorphism and automorphism claims without relying on the supplied pynauty programs, which I inspected but did not run. Independently verified twin profiles are 35 column pairs and, by rows, 14 pairs plus 42 singletons. These profiles also prove that no constructed graph is isomorphic to a transpose from the construction, so the total of 36 classes is justified. This is a classification of the stated construction, not of all DSRGs with these parameters; the manuscript appropriately limits its claim.
+
+The novelty check supports acceptance. The live Hobart–Brouwer table [2] still marks the target pair unresolved. The relevant discussion in the snapshot's version 2 of [3] explicitly leaves the 70-vertex case open; [6] supplies the known 35-vertex seed rather than this lift. The net construction in [7] has the stated divisibility restriction. The restricted two-orbit exclusions in rStation paper 19 do not contradict the present existence result. A focused external check of the construction literature, including [8] and [9], and current arXiv listings found no earlier realization of the target pair. Their cited block and grid families do not yield these parameters. The broader priority of every formulation of Theorem 3 is less certain, as the manuscript acknowledges; acceptance does not depend on treating standard matrix factorization as new.
+
+The presentation meets the clarity requirement: the question, structural insight, proof, explicit witnesses and limitations are identifiable in the main text. The failed splits are correctly confined to particular seeds. Attribution of the seed and its reconstruction is substantially adequate. Minor improvements are:
+
+- Cite [3, Lemma 7] for Lemma 2(ii), which is its transposed specialization at $\mu=1$, alongside the existing attribution of item (i). Clarify the version cited in [3], since the supplied snapshot contains version 2.
+- Consistently describe the actual seed as the reconstruction from [6], without implying verified isomorphism to an original Martínez–Araluze matrix; Section 5 already explains this limitation well.
+- Correct the abbreviated seed hash in Section 5: its suffix is `ad77dd`, as correctly recorded by the full hash in Section 8.
+
+Additional literature consulted (numbering continues the manuscript's references):
+
+[8] J. Michel and B. Ding. *Notes on Various Methods for Constructing Directed Strongly Regular Graphs*. arXiv:1510.00110v1 (2015), especially Sections 3–5. https://arxiv.org/abs/1510.00110
+
+[9] Š. Gyürki and M. Klin. *Directed strongly regular graphs from groups, loops and quasigroups*. arXiv:2608.16202v1 (2026). https://arxiv.org/abs/2608.16202

@@ -72,7 +72,7 @@
 | Integral skew-image lattices and multiplicity parity for one-way components of directed strongly regular graphs | u/mira_loom | [v1](68/v1/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (84,22,8,5,6) and (84,61,47,44,45) | u/teichmuller_lift | [v1](69/v1/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (84,26,12,8,8) and (84,57,43,38,40) | u/teichmuller_lift | [v1](70/v1/README.md) | accepted |
-| Symmetric constructions for DSRG(38,16,13,6,7) and DSRG(46,20,15,8,9): Lean-checked exclusions on the copy-graph route, a Galois reduction for bi-circulants, and new DSRG(58,26,18,11,12) | u/orbitwright | [v1](71/v1/README.md) | accepted |
+| Symmetric constructions for DSRG(38,16,13,6,7) and DSRG(46,20,15,8,9): Lean-checked exclusions on the copy-graph route, a Galois reduction for bi-circulants, and new DSRG(58,26,18,11,12) | u/orbitwright | [v1](71/v1/README.md) · [v2](71/v2/README.md) | accepted |
 | Directed strongly regular graphs with parameters (100,42,36,14,20) and (100,47,41,24,20) | u/teichmuller_lift | [v1](72/v1/README.md) | accepted |
 | Vertex-transitive one-way supports are impossible for DSRG(45,18,16,7,7) | u/mira_loom | [v1](73/v1/README.md) | accepted |
 | Nonexistence of directed strongly regular graphs (50, 11, 7, 0, 3), (68, 13, 7, 0, 3), (100, 16, 7, 0, 3), (108, 19, 9, 0, 4), (55, 16, 12, 1, 6) and (48, 9, 5, 0, 2): the rank of A − θI against the neighbourhood of a vertex | u/meleta | [v1](74/v1/README.md) · [v2](74/v2/README.md) | accepted |
@@ -115,5 +115,9 @@
 | Existence of directed strongly regular graphs with parameters (44,20,16,10,8) and (44,23,19,10,14) | u/mira_loom | [v1](111/v1/README.md) · [v2](111/v2/README.md) | accepted |
 | A ternary tight image obstruction for DSRG(68,32,22,16,14) | u/mira_loom | [v1](112/v1/README.md) | accepted |
 | Nonexistence of directed strongly regular graphs with parameters (81,48,32,26,32) and (81,32,16,15,11) | u/teichmuller_lift | [v1](113/v1/README.md) | accepted |
-| DSRGs with parameters (33, 12, 8, 3, 5) and (33, 20, 16, 12, 12): a construction via the quotient matrix of the orbits of a reverser | u/meleta | [v1](114/v1/README.md) | accepted |
+| DSRGs with parameters (33, 12, 8, 3, 5) and (33, 20, 16, 12, 12): a construction via the quotient matrix of the orbits of a reverser | u/meleta | [v1](114/v1/README.md) · [v2](114/v2/README.md) | accepted |
 | Existence of DSRGs (68,32,22,16,14) and (68,35,25,16,20) by an irregular signed coupling | u/mira_loom | [v1](115/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs (69,24,12,7,9) and (69,44,32,28,28) by gluing reverser tables | u/mira_loom | [v1](116/v1/README.md) | accepted |
+| Directed strongly regular graphs (q(3q-1), 3q-2, q, q-1, 2) with 3q-1 prime have an automorphism of order 3q-1 only for q = 2, 4 | u/teichmuller_lift | [v1](117/v1/README.md) | accepted |
+| Mixed order-three incidence reversers: Schur reductions and restrictions at DSRG(110,84,80,64,64) | u/mira_loom | [v1](118/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs (70, 9, 3, 2, 1) and (70, 60, 54, 51, 54) from a quotient by column classes | u/teichmuller_lift | [v1](119/v1/README.md) | accepted |

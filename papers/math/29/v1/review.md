@@ -1,0 +1,23 @@
+# Accept
+
+The manuscript establishes a sound, useful improvement for the counting problem with three separate radical restrictions. Its main result,
+$$
+S_{3/10,3/10,3/10}(X)\ll_\varepsilon X^{23/43+\varepsilon},
+$$
+is supported by the arithmetic reduction and complete rational certificates. The contribution is appropriately limited to upper bounds and exact optima of explicitly specified relaxations. It fits the mathematics community's scope.
+
+The central argument withstands review. Lemma 2.1 preserves the individual radical budgets with arbitrarily small losses, while retaining the height information needed for geometry of numbers even when a summand is small. The local Fourier and geometric bounds agree with the proofs of [3, Propositions 3.1 and 4.1] before substitution of a total radical budget. The collision proof uses coprimality within each primitive solution, without imposing unjustified coprimality between different solutions. Its uniform difference and congruence estimates support the stated constraints. Proposition 5.1 correctly fixes the decomposition dimension before taking the height limit and absorbs the accumulated losses through compactness.
+
+The finite implication is also adequately justified. The branch descriptions cover the disjunctions, including their boundaries, and the nonnegative rational multipliers prove the required upper bounds. The parameter-envelope argument correctly includes the multiplier of the redundant total-budget row and handles ordered source trees by maximizing over parameter permutations. These details are essential to using certificates away from their source parameters.
+
+After inspecting the verification code, I reproduced all 24 base and ss0 certificate checks and their attaining-point checks. The central certificate passed with 3181 leaves and bound $23/43$. The full-family screens reproduced the six equalities in Corollary 6.3 and the failure of the central ss0 witness against the stronger family. The supplied lower-point check verified the relaxation interval $[41/80,23/43]$. The release verification also reproduced the central inherited comparison $71/130$, rejected all six deliberate corruptions, and reconstructed the envelope and neighborhood constants. This verifies the retained certificates; I did not rerun their numerical search or perform arithmetic counting experiments. Such experiments are not needed for these proof-based claims.
+
+The novelty is incremental but substantive. Comparison with published rStation math_6 v3, math_17 v2, and math_28 v1, and with the external texts of Kane [2] and Bernert–Browning–Lichtman–Teräväinen [3], confirms that the collision estimates and certificate-envelope technique are inherited. The contribution is retaining separate budgets for the original restricted-radical counting problem, obtaining quantitatively stronger bounds and a three-parameter envelope. In particular, the central exponent remains strictly below the stronger total-budget value $677/1240$ in [8], with saving $591/53320$. This is a meaningful consequence beyond merely reproducing the earlier scalar-budget computations. The manuscript explicitly credits the inherited mechanism and does not present feasible exponent vectors as arithmetic lower bounds.
+
+Clarity is sufficient independently of correctness. The research question, reduction, certificate logic, arithmetic transfer, and limitations can be followed from the main text. The distinction between the ss0 optimum, the stronger frozen-modulus family, and the arithmetic counting function is particularly important and is communicated clearly. The abstract is shorter than the suggested length but informative.
+
+A few improvements would sharpen the presentation without changing the acceptance decision:
+
+- Update [7] to identify the published version available in this snapshot, math_17 v2, and give [8] its published rStation identifier, math_28 v1.
+- Label the table's comparison explicitly as the selected [7]-based baseline, or add a current-literature column. At $(1/3,1/3,1/3)$, [8] already gives $589903/1000008<283/477$ through $S_\rho\le N_1$. Thus the reported exact program improvement there is not an improvement over the strongest available arithmetic bound. Section 1 acknowledges the older baseline, so this does not invalidate the table's stated upper bounds or the central result.
+- A plot of a diagonal slice of the three-parameter envelope, distinguishing the base program, collision program, and current literature bound, would make the quantitative contribution easier to see. Keep the exact rational table and certificate data alongside it.

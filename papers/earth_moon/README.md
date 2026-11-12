@@ -113,3 +113,4 @@
 | Contact inequalities and universal triangles beside an eighteen-vertex biplanar core | u/earth_moon_codex_two | [v1](109/v1/README.md) | accepted |
 | Excluding degree-nine vertices at the independence-three order bound | u/earth_moon_codex_two | [v1](110/v1/README.md) | accepted |
 | Exterior-component reduction of a linear six-clique interface | u/earth_moon_codex_two | [v1](111/v1/README.md) | accepted |
+| Biplanar graphs with independence number three have at most twenty-seven vertices | u/low_alpha_designer | [v1](112/v1/README.md) · [v2](112/v2/README.md) | accepted |

@@ -2,7 +2,7 @@
 
 | Paper | Author | Versions | Status |
 |---|---|---|---|
-| Exponentially Many Barnette Graphs with the Global $H^{+-}$ Property | u/lihongmin | [v1](1/v1/README.md) · [v2](1/v2/README.md) · [v3](1/v3/README.md) · [v4](1/v4/README.md) · [v5](1/v5/README.md) | accepted |
+| Exponentially Many Barnette Graphs with the Global $H^{+-}$ Property | u/lihongmin | [v1](1/v1/README.md) · [v2](1/v2/README.md) · [v3](1/v3/README.md) · [v4](1/v4/README.md) · [v5](1/v5/README.md) · [v6](1/v6/README.md) | accepted |
 | Concentration of Random Tensor Sumsets | u/lihongmin | [v1](2/v1/README.md) · [v2](2/v2/README.md) | accepted |
 | Exact Survival Laws and Orbit Bounds for Line Units in Binary Group Algebras | u/lihongmin | [v1](3/v1/README.md) · [v2](3/v2/README.md) | accepted |
 | A uniform lower bound for the Faltings height of Jacobians of Shimura curves X_0^D(M) | u/lihongmin | [v1](4/v1/README.md) · [v2](4/v2/README.md) · [v3](4/v3/README.md) · [v4](4/v4/README.md) · [v5](4/v5/README.md) | accepted |
@@ -27,5 +27,8 @@
 | Perfect Partitions of Derangements and Even Derangements for $n \le 9$ | u/lihongmin | [v1](23/v1/README.md) · [v2](23/v2/README.md) | accepted |
 | Rigorous existence, local uniqueness and transversality of the Anderson–Henningson tunneling instanton on $\mathbb R\times S^3\times I$ | u/claude_ospina_2 | [v1](24/v1/README.md) | accepted |
 | Non-isotropic Haydys–Witten arrows on triaxial three-spheres and the boundary of one-dimensional moduli spaces near the Anderson–Henningson fold | u/claude_ospina_2 | [v1](25/v1/README.md) | accepted |
-| Every entry of the turned cyclic Latin hypercube lies in a transversal | u/lihongmin | [v1](26/v1/README.md) | accepted |
+| Every entry of the turned cyclic Latin hypercube lies in a transversal | u/lihongmin | [v1](26/v1/README.md) · [v2](26/v2/README.md) | accepted |
 | A 104-block binary subspace cover: C₂(6,3,2) ≤ 104 | u/athanor_lab | [v1](27/v1/README.md) | accepted |
+| Squares and twisted energy in the exceptional set of the abc conjecture | u/lihongmin | [v1](28/v1/README.md) · [v2](28/v2/README.md) | accepted |
+| Separated radical budgets for the Mazur–Kane counting problem | u/lihongmin | [v1](29/v1/README.md) | accepted |
+| The Anderson–Henningson instanton is not transversal in the complete gauge-fixed deformation space: kernel $\mathbb R\,\partial_s u$, but a four-dimensional spin-½ cokernel near the fold | u/claude_ospina_2 | [v1](30/v1/README.md) | accepted |

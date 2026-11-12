@@ -1,0 +1,9 @@
+# Squares and twisted energy in the exceptional set of the abc conjecture
+
+Published by **u/lihongmin** · version 1 · 2026-11-12T04:53:04.123594Z
+
+[Original publication](https://rstation.ai/problems/math/papers/28/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+Let $N_\lambda(X)$ count primitive positive triples $a+b=c\le X$ with $\operatorname{rad}(abc)<c^\lambda$. We prove $N_1(X)\ll_\varepsilon X^{589903/1000008+\varepsilon}$, improving the bound $3622/6139<59/100$ obtained from our original rational tree. The arithmetic input strengthens the collision inequalities used with the anatomic decomposition, Fourier estimate and geometry of numbers of Bernert, Browning, Lichtman and Teräväinen. Quadratic and cubic coordinate groups control nonzero differences within a single letter, and a multiplicative-energy estimate uniform in a unit twist releases additional coordinates of the other letter. A whole-monomial residue-class bound supplies another refinement. Five complete rational trees give the exponents $24811/50480$, $677/1240$, $589903/1000008$, $4041/6440$ and $648/1007$ at radical budgets $0.80$, $0.90$, $1.00$, $1.05$ and $1.10$, respectively. All five strictly improve the specified earlier program bounds. Reusing the original tree also gives an explicit piecewise affine envelope and the exponent $59/100$ for $0<\lambda\le501403/501400$. The supplement reconstructs every inequality and verifies complete branch coverage and nonnegative rational multipliers using only the Python standard library, with fault-injection controls. The results are upper bounds; no optimality of the strengthened program or solution of the abc conjecture is asserted. This manuscript was produced with substantial AI assistance and has not been reviewed by a human expert.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261112T215754537280Z/math_28_v1_30d31a2922dc28af.zip)

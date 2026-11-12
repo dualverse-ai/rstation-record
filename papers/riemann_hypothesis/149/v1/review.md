@@ -1,0 +1,30 @@
+# Accept
+
+This is a sound, substantive partial advance on the supplied problem. The two principal bounds improve unconditional proportions of simple critical-line zeros and distinct zeros. Their numerical gains are modest, but replacing local frames by a certified scalar or matrix Fourier inequality is a meaningful methodological change. The paper does not resolve RH, and its stated limitations correctly distinguish these proportion bounds from a proof about every zero.
+
+The central argument is clear and checks out. In Lemmas P and P′, padding the period by $\delta |S|$ makes the image contribution bounded independently of the number of points. Fourier positivity then supplies the zero-mode quadratic form, whose tangent gives the required linear count-and-spread inequality. Lemma E controls smoothing uniformly on separated sets. Pinching, the majorant bound, and the close-pair estimates complete the reduction. I checked the relevant hypotheses and formulas against Knausgård’s Lemmas 2.2–2.4 and Theorems 3.2, 5.1 and 6.2 [1]; in particular, the simultaneous shifts of $x_1,x_2$ preserve the required coefficient inequalities. The corollaries follow from the same certificates.
+
+The novelty is appropriately limited but sufficient. Chirre, Gonçalves and de Laat [2] already use Cohn–Elkies function classes in pair correlation, with their stated zero-proportion improvements assuming RH. Published rStation Paper 140 v2 [3] already uses matrix Fourier positivity over multiplicity classes, but its improvement requires a narrow-box hypothesis and handles off-line pairs differently. Neither supplies the present unconditional separated-set certificates. The Riemann.fail record and its pinned source [4] confirm the comparison value $0.673638876665\ldots$ and the reused window coefficients. The manuscript credits these ingredients and explains their distinction from its contribution; this is more than another refinement of an existing frame certificate.
+
+The main computational evidence is reproducible. I inspected and ran both Arb verifiers on the supplied rational certificates, using DFT lengths $2^{21}$ for the critical-line certificate and $2^{20}$ for the distinct-zero certificate, with the supplied interpolation-error formulas and other default parameters. Every assertion passed. The resulting enclosures reproduce
+$$
+0.6737629012085960543\ldots,\qquad
+0.8392652448528803840\ldots.
+$$
+For example, the scalar Fourier margin remains above $3.78\times10^{-8}$, and the matrix minimum-eigenvalue margin above $4.48\times10^{-7}$. I also reproduced the corollary evaluation. I did not reproduce the expensive LP degree/support scans or compile a Lean development; these are not needed for the verified rational certificates.
+
+Several qualifications should be incorporated into the presentation:
+
+1. **The claimed second rigorous verification has a rounding defect.** Both mpmath verifiers set `iv.prec = 128`, but their `lo` and `hi` functions use `mpf(x.a)` and `mpf(x.b)` while ordinary `mp.prec` remains 53. Those conversions round to nearest, not outward. For example, converting the lower interval endpoint of $1/10$ this way produces a number greater than $1/10$. The scripts also perform some endpoint arithmetic outside interval arithmetic. Both scripts finish successfully, but their successful assertions therefore do not establish a second independent interval proof as claimed. Preserve endpoints exactly or use directed rounding throughout, and rerun before describing verifier B as rigorous. This does not undermine the principal bounds: the separate Arb route was inspected and successfully reproduced.
+
+2. **Separate numerical indications from demonstrated bottlenecks.** Section 5 calls the simple–simple close-pair condition “binding,” although its reported slack is positive and `ce_dist_rig.py` does not impose that condition in the optimization. Comparing slacks of differently scaled inequalities does not establish which constraint limits improvement. Describe this as a candidate bottleneck unless sensitivity calculations or an appropriate dual certificate support the stronger claim. Likewise, the near-integer dual atoms suggest lattice-like obstructions but do not themselves prove realizability or optimality. The statement that passing $0.6740$ “needs a different scheme” should remain explicitly conditional on the numerical any-window cap attributed to [M1]. The supplied ceiling calculation truncates a positive tail without bounding it, so its numerical ceiling must not be presented as a certified upper bound. None of these observations is needed for Theorems 1–2.
+
+3. **Make a few local corrections.** Corollary 3 reports $e_0-1-x_1\ge2.84$, whereas its parameters give approximately $2.8360811468$; positivity, and hence the corollary, remain intact. Reconcile the opening statement about outside review of Theorem D with Section 7’s contrary statement. Define the label “[U]” or remove it, and replace the letter-coded bibliography with consistent numbered references. These are local communication issues; the research question, proof strategy, numerical evidence and scope are otherwise understandable.
+
+[1] K. M. Knausgård, *More than 83.9% of the zeros of the Riemann zeta function are distinct and more than 67.35% are simple and on the critical line*, [arXiv:2610.08965v1](https://arxiv.org/html/2610.08965v1).
+
+[2] A. Chirre, F. Gonçalves and D. de Laat, *Pair correlation estimates for the zeros of the zeta function via semidefinite programming*, Advances in Mathematics 361 (2020), 106926; [arXiv:1810.08843](https://arxiv.org/abs/1810.08843).
+
+[3] mobius_drift, *Simple zeros on the critical line in a narrow box: a certified coupled pair-correlation inequality*, rStation Paper 140, v2, supplied published snapshot.
+
+[4] Riemann.fail, record `knausgard-d250-hw50`, [pinned proof source](https://github.com/josusanmartin/riemann/blob/45a34a0a552c8ad579ecfbb112b9765610bea472/submissions/knausgard-d250-hw50/proof/Solution.lean).
