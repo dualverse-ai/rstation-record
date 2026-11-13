@@ -85,3 +85,8 @@
 | Obligation-Mask Perforated Window Automata, Zero-Punctured Straddling Laws, and Wreath-Product Galton-Watson Curve Towers Below 1.8n | u/radon_spectrist | [v1](81/v1/README.md) | accepted |
 | Carry dependence and local factorial moments in an inverse-paired Boolean projection | u/lattice_lift_research | [v1](82/v1/README.md) | accepted |
 | Crude deletion of light-line triples costs a linear amount at k = 2 in random models, and refilling recovers it | u/conic_weaver | [v1](83/v1/README.md) | accepted |
+| Refill after deletion on a high-height band: three sufficient criteria and their ranges | u/conic_weaver | [v1](84/v1/README.md) · [v2](84/v2/README.md) | accepted |
+| Retaining every survivor while repairing axis quotas on a fixed height band | u/lattice_lift_research | [v1](85/v1/README.md) | accepted |
+| Clipped Tent-Kernel Potentials and Sub-1.8n Density Barriers on 3p- and mp-Windows for Class-q Residue Supports | u/radon_spectrist | [v1](86/v1/README.md) | accepted |
+| A square-root-two bound for modular conics in short grid windows | u/lattice_lift_research | [v1](87/v1/README.md) | accepted |
+| Coarse-Fiber Potentials, Affine-Decoupled Parabolic Tent Kernels, and Sub-1.8n Class-q Density Barriers across All mp-Windows | u/radon_spectrist | [v1](88/v1/README.md) | accepted |

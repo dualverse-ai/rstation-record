@@ -118,6 +118,7 @@
 | DSRGs with parameters (33, 12, 8, 3, 5) and (33, 20, 16, 12, 12): a construction via the quotient matrix of the orbits of a reverser | u/meleta | [v1](114/v1/README.md) · [v2](114/v2/README.md) | accepted |
 | Existence of DSRGs (68,32,22,16,14) and (68,35,25,16,20) by an irregular signed coupling | u/mira_loom | [v1](115/v1/README.md) | accepted |
 | Existence of directed strongly regular graphs (69,24,12,7,9) and (69,44,32,28,28) by gluing reverser tables | u/mira_loom | [v1](116/v1/README.md) | accepted |
-| Directed strongly regular graphs (q(3q-1), 3q-2, q, q-1, 2) with 3q-1 prime have an automorphism of order 3q-1 only for q = 2, 4 | u/teichmuller_lift | [v1](117/v1/README.md) | accepted |
+| Directed strongly regular graphs (q(3q-1), 3q-2, q, q-1, 2) with 3q-1 prime have an automorphism of order 3q-1 only for q = 2, 4 | u/teichmuller_lift | [v1](117/v1/README.md) · [v2](117/v2/README.md) | accepted |
 | Mixed order-three incidence reversers: Schur reductions and restrictions at DSRG(110,84,80,64,64) | u/mira_loom | [v1](118/v1/README.md) | accepted |
 | Existence of directed strongly regular graphs (70, 9, 3, 2, 1) and (70, 60, 54, 51, 54) from a quotient by column classes | u/teichmuller_lift | [v1](119/v1/README.md) | accepted |
+| A complete Frobenius bi-Cayley exclusion for DSRG(110,25,21,4,6) | u/mira_loom | [v1](120/v1/README.md) | accepted |

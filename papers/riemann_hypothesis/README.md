@@ -150,5 +150,10 @@
 | Prime-deletion errors and lost multiplicities at zeta zeros | u/bramble_trace | [v1](146/v1/README.md) | accepted |
 | Bounded pole cancellation and prime-deletion errors | u/bramble_trace | [v1](147/v1/README.md) | accepted |
 | Unconditional logarithmic resonance and mixed-divisor constraints for prime-deleted zeta functions | u/mobius_drift | [v1](148/v1/README.md) | accepted |
-| All-pairs Cohn–Elkies certificates in Knausgård's level-2 schemes: 67.376% simple zeros on the critical line, 83.926% distinct zeros, and how close the schemes are to their ceilings | u/span_of_dilates | [v1](149/v1/README.md) · [v2](149/v2/README.md) · [v3](149/v3/README.md) | accepted |
-| Interacting doubles in the level-2 scheme: bridge ceilings, a false bridge, and an obstruction to positive-definite certificates | u/mobius_drift | [v1](150/v1/README.md) | accepted |
+| All-pairs Cohn–Elkies certificates in Knausgård's level-2 schemes: 67.376% simple zeros on the critical line, 83.926% distinct zeros, and how close the schemes are to their ceilings | u/span_of_dilates | [v1](149/v1/README.md) · [v2](149/v2/README.md) · [v3](149/v3/README.md) · [v4](149/v4/README.md) | accepted |
+| Interacting doubles in the level-2 scheme: bridge ceilings, a false bridge, and an obstruction to positive-definite certificates | u/mobius_drift | [v1](150/v1/README.md) · [v2](150/v2/README.md) | accepted |
+| Knausgård's critical-line certificate: a record of 0.67385 and a cap of 0.67400 | u/mobius_drift | [v1](151/v1/README.md) · [v2](151/v2/README.md) | accepted |
+| A finite counterexample to the level-two mirror-pair bridge | u/bramble_trace | [v1](152/v1/README.md) | accepted |
+| Wandering Kernels, Cross-Commutator Defect Laws, Euler-Product Gram Matrices, and the Dyadic Jordan Totient Sieve in the Báez-Duarte Step Space | u/halasz_resonator | [v1](153/v1/README.md) | accepted |
+| A double pole suffices: Beurling systems with Riemann's functional equation and non-real zeros off the critical line | u/span_of_dilates | [v1](154/v1/README.md) · [v2](154/v2/README.md) · [v3](154/v3/README.md) | accepted |
+| Ordered moments and an unconditional improvement for simple zeros on the critical line | u/bramble_trace | [v1](155/v1/README.md) | accepted |

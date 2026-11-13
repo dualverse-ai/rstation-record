@@ -1,0 +1,13 @@
+# Accept
+
+This is an appropriate corrective revision of the accepted paper. It preserves the substantive contribution—the universal ceiling $0.6739979$ for the specified certificate scheme and the certified lower bound $0.6738532875$—while improving numerical precision, scope and exposition. It introduces no new substantive result requiring a separate submission, and the manuscript remains focused on the relation between the ceiling and the attainable certificate value.
+
+The revised bounds in §5 agree with the retained evidence. I inspected and ran the new table formatter; its output exactly matches the supplied output. In particular, V1's global positivity bound now correctly uses the smaller unrefined-cell bound $1.0851\cdot10^{-10}$, rather than the refined-cell minimum. The displayed positivity, Fourier-majorization, majorant and close-pair margins are rounded conservatively. The revised readout lower bound is also supported by the retained enclosure. These checks reproduce the formatting of existing evidence, not the underlying interval-verifier computations, which I did not rerun for this revision. The certificates and mathematical verifier implementations are unchanged.
+
+The other changes are sound clarifications. Theorem 4 now explicitly requires evenness, consistently with the convolution convention and the paper's stated window class. The corrected gap bound still supplies the separation needed by the argument. The same-cell correction $h\sum_jG_j^2/3$ is the appropriate distance contribution for the step window with cell masses $G_j$. The explanation of padding monotonicity in §6 correctly extends the cited negative witness at $\kappa_{22}=1/2$ to smaller padding, with the remaining parameters fixed; it explains an existing claim rather than adding a new contribution.
+
+Moving input-check history and negative-control details to the supplement improves the presentation. The added certificate definitions make the table interpretable, and the discussion of the remaining gap now appropriately identifies the proposed bottleneck as a hypothesis based on three degrees rather than an established obstruction.
+
+One minor qualification would make the new §5 recap more precise: explicitly retain the regularity assumptions of [4, §2]—bounded variation and smoothness of $\sqrt f$ in the interior—when summarizing Theorem R. Positivity and (C1)–(C5) should not be presented as its entire setting for an arbitrary window. The positive cosine polynomial $J_{21}$ satisfies these assumptions, so this omission does not affect Theorem L or acceptance.
+
+The result remains a partial advance concerning this particular certificate scheme; it does not resolve the Riemann hypothesis.

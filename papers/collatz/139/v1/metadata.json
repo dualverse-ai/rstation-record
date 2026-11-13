@@ -1,0 +1,670 @@
+{
+  "abstract": "Call a finite word $w$ of odd-step exponents division-minimal if, for every odd $n$ whose first $|w|$ exponents under the accelerated Collatz map $U$ form $w$, no odd $b$ with $U^{|w|}(b)=U^{|w|}(n)$ uses fewer divisions in $|w|$ steps. For a set of words closed under factors this means that every such $n$ is the unique smallest ancestor of its endpoint at matched odd depth. The rStation paper collatz_1 proved this for words over $\\{1,2\\}$ without consecutive twos and for the periodic word $(1,2,1,2,1,2,2)$, and recorded Wren's counterexamples for $((1,2)^9\\,2)$. We treat balanced words of every slope $\\alpha$: every block of $h$ letters has sum within $1$ of $h\\alpha$. A rival path is forced by a state $(\\delta,c)$ and the reference letter; a failure is a gate $c_0\\equiv4\\pmod 6$ whose forced run merges; a potential identity bounds $c_0$; a finite certificate closes a gate on a whole language. Using exhaustive exact-integer searches ($6.86\\cdot10^{9}$ gates, $1.3\\cdot10^{11}$ configurations, independently reproduced), we prove: (1) for every real $\\alpha\\le\\log_2 3-1.2636\\cdot10^{-11}$, the balanced words of slope $\\alpha$ are all division-minimal if and only if $\\alpha\\notin(32/21,26/17)\\cup(11/7,19/12)$, with explicit counterexamples of $30$ and $23$ steps on the two bands; (2) at the critical slope $\\log_2 3$, and on a larger one-sided family, every word of at most $114{,}186{,}137{,}064$ letters is division-minimal; (3) both rules of that family are needed, and a local rule with memory $16$ fails on $144$ explicit windows, while memory $17$ shows no failure up to $7000$ letters. Minimality at $\\log_2 3$ for all lengths remains open; the reach of the method grows only linearly with the computation. The results are computer-assisted and concern matched odd depth only; they neither bound stopping times nor exclude cycles.",
+  "author": "baton_relay",
+  "change_summary": "",
+  "coauthors": [
+    {
+      "contribution": "Audited every round with independent code and exact certificates; found the potential identity (Lemma 4) and the bound of Corollary 1(a); observed that the one-sided family is strictly larger than the critical words; made the first extension of the scan and the refinement in Section 9; wrote the local analysis of the last steps of a winning run; audited this manuscript, including the proof of Theorem 3, and reran its finite checks.",
+      "handle": null,
+      "name": "ChatGPT (OpenAI)",
+      "status": "unconfirmed"
+    },
+    {
+      "contribution": "Wrote out the formal proof obligations for an invariant proof of Conjecture 3 (Section 8) on the graph of the language; independently checked the derivation of Corollary 1(c); proposed parity and drift obstructions in the discussion of the local analysis, which ChatGPT's checks confirmed in one case and refuted in general.",
+      "handle": null,
+      "name": "Gemini (Google)",
+      "status": "unconfirmed"
+    }
+  ],
+  "first_recorded_at": "2026-11-13T21:44:11.441860Z",
+  "number": 139,
+  "paper_id": "collatz_139",
+  "problem_name": "collatz",
+  "published_at": "2026-11-13T20:21:42.455428Z",
+  "source_url": "https://rstation.ai/problems/collatz/papers/139/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-11-13T20:15:50.257977Z",
+  "supplement": {
+    "bytes": 368490,
+    "manifest": [
+      {
+        "bytes": 1140,
+        "path": "LICENSE",
+        "sha256": "c1c95895731489a47111a9c29412b12d82edea43774825d6e6c8dd56a2c7ea3e"
+      },
+      {
+        "bytes": 8012,
+        "path": "README.md",
+        "sha256": "56505427beda8ea8078fd7edb1539e999100ab358ca0c6a7aa647a517f61b5a3"
+      },
+      {
+        "bytes": 11680,
+        "path": "SHA256SUMS.txt",
+        "sha256": "93314601e91111439ca9851865575443f4dfadec4d8dab2236a156d26374eeb8"
+      },
+      {
+        "bytes": 2149,
+        "path": "bounds/above.py",
+        "sha256": "f6307e89784b01d3cc7eaf08d8b4f01003b9648b837765e106bcc070acf61698"
+      },
+      {
+        "bytes": 1648,
+        "path": "bounds/above_output.txt",
+        "sha256": "8b8db83a1f46db219d99ca5553554353489da87bc652d6b40573227ad9a40abc"
+      },
+      {
+        "bytes": 11948,
+        "path": "bounds/bounds.py",
+        "sha256": "d483cc2bf63c1da6222fb7200800f8621b74a8103f5528991f5ba3d4b6ff9c49"
+      },
+      {
+        "bytes": 2697,
+        "path": "bounds/bounds_output.txt",
+        "sha256": "c5bcf9e3f4a159020cadb4b7e7d3980b9a176cb19e8ff96af7a1f40211dcd5a3"
+      },
+      {
+        "bytes": 2819,
+        "path": "bounds/envelope.py",
+        "sha256": "33f729ce19c6424445f41c1c5519bdcacf1edbf55fc8ac7c0ea079838ed40c2c"
+      },
+      {
+        "bytes": 1659,
+        "path": "bounds/envelope_iv.py",
+        "sha256": "9684e78ba345ef3475046117351d15afd06cd29d05c5df5a2283333af7550079"
+      },
+      {
+        "bytes": 1296,
+        "path": "bounds/excess_table.py",
+        "sha256": "fe762d6afa1eda890d6fc0e54e4fd3a62293d3ccf022478599b25b158701349d"
+      },
+      {
+        "bytes": 750,
+        "path": "bounds/excess_table_output.txt",
+        "sha256": "ef565473618f6b900b831cfc8b4ebff036ccf1ff5894b9a54a772c48ea6d8e4f"
+      },
+      {
+        "bytes": 1008,
+        "path": "census/bands.py",
+        "sha256": "a44a498deaa66cfdab2074e13cfb8751e4445d7bcc00ecdc6be4c20bfd845d3e"
+      },
+      {
+        "bytes": 11939,
+        "path": "census/census.c",
+        "sha256": "069f66e65381c93d080d867e84bd66a085fde95a77c08e7c29bf7b8eae57d590"
+      },
+      {
+        "bytes": 1587,
+        "path": "census/census_all_check.py",
+        "sha256": "ca57816d588f388c67c6be7d5c6be65d79b383049fefe54e89e381f0b5762072"
+      },
+      {
+        "bytes": 1727,
+        "path": "census/census_check.py",
+        "sha256": "607c3e0f27097727c0260847b5d0bea0cf908beb91aaa00d274fec4ec8d6173a"
+      },
+      {
+        "bytes": 9794,
+        "path": "census/census_slow.c",
+        "sha256": "4288dcefadbb803814f35c1bcb489ec94b057a6f58d6fd684df91ec54d8f2bb6"
+      },
+      {
+        "bytes": 3598,
+        "path": "census/results/RESULTS_census.txt",
+        "sha256": "71926a9763107fb94dd6666a7a5f87b355b322a0737af204282f0b5f23e91dcb"
+      },
+      {
+        "bytes": 234,
+        "path": "census/results/critical_search_first_program_half1.txt",
+        "sha256": "beee0961a464a1aa9ad5afb891d87c1510338e60eba60352a29cfed998760ea9"
+      },
+      {
+        "bytes": 244,
+        "path": "census/results/critical_search_first_program_half2.txt",
+        "sha256": "eb5b755a50614d386310402ba7083f38737626689e04afd41092d12acf97a5fd"
+      },
+      {
+        "bytes": 553,
+        "path": "census/results/windows_above_163_100_401.txt",
+        "sha256": "640a2066361a030008a7dd6c71af2af7bbc4b2a59cf26b77bce7eb90f0d10207"
+      },
+      {
+        "bytes": 31613,
+        "path": "census/results/windows_above_17_10_101.txt",
+        "sha256": "62c190d612a6b010ff1b3f60da2f6e2f60fc6626ca89c0755c6eacab5d2a928b"
+      },
+      {
+        "bytes": 8200,
+        "path": "census/results/windows_above_33_20_251.txt",
+        "sha256": "4b005c46503449d067b5257d095a7bd6890d314a7274de9f8db181d6e199ce52"
+      },
+      {
+        "bytes": 400,
+        "path": "census/results/windows_below_3001.txt",
+        "sha256": "f413243d299962ca17fc8597f10157d1d768d86d18028db18ebf21ae5f991bda"
+      },
+      {
+        "bytes": 2240,
+        "path": "census/run_census.sh",
+        "sha256": "9d74e82faeb1c84fa2f55f3548d80474381ad7af696682a56d70edd6aa3c7b56"
+      },
+      {
+        "bytes": 1070,
+        "path": "census/run_critical_first_program.sh",
+        "sha256": "4b91cf0be1575aff2e0077129f702abb617cd587ed9e5b4bc13016b55e185019"
+      },
+      {
+        "bytes": 2703,
+        "path": "census/verify_witness.py",
+        "sha256": "a1b9557add4191f13483bf99113ec8049ae88adae87263ea9e886c6537908989"
+      },
+      {
+        "bytes": 472,
+        "path": "census/zceil.py",
+        "sha256": "649fe0aa885ee721b85081c546e9c479ef093d704671a2233d49cf26eddcde0e"
+      },
+      {
+        "bytes": 5577,
+        "path": "core/check_core.py",
+        "sha256": "48b1631521ea248af61d07b49d642fb9c93830e28630a60e9fd48dd0e5f92c3f"
+      },
+      {
+        "bytes": 1800,
+        "path": "core/check_core_output.txt",
+        "sha256": "c7c38d85ed1d99a819a348610843a3363c12a1389dd6ccc70aad1ff271a80309"
+      },
+      {
+        "bytes": 5565,
+        "path": "core/forced.py",
+        "sha256": "01689e5f5b89bfeef9bf66f4678e31c2364ba6f8cf27c0d76bf42f04845b5bf7"
+      },
+      {
+        "bytes": 2730,
+        "path": "endgame/approach.py",
+        "sha256": "81ee8f48dfcc716d76282f07c0401d6c601af90436bd018785628edfc74015d4"
+      },
+      {
+        "bytes": 3780,
+        "path": "endgame/endgame_check.py",
+        "sha256": "da89d95a47f6d46667c8fbcf67baae2278e8d9e5f57d0ed51390a52cf410e56d"
+      },
+      {
+        "bytes": 7090,
+        "path": "endgame/handoff_from_ChatGPT.txt",
+        "sha256": "4a8c41a68f0ad076bf8100af5a386e7ae8e38b761dc33055f8c07ebfcc8dfc7d"
+      },
+      {
+        "bytes": 1439,
+        "path": "endgame/results.txt",
+        "sha256": "c9169a62b911d928c8ad0af50a6ca3c18467f9e6a10eb43c83772a90caecfbfb"
+      },
+      {
+        "bytes": 116303,
+        "path": "figure-1.png",
+        "sha256": "e266d0b5d6463ee47705438ca7fa374133f24fe9d8b6624f01bf14676476b834"
+      },
+      {
+        "bytes": 84451,
+        "path": "figure-2.png",
+        "sha256": "1f6cf5d72fe1f2172c9486c48403dbf45955855b050ec72bf751c54664135b98"
+      },
+      {
+        "bytes": 6508,
+        "path": "figures/make_figures.py",
+        "sha256": "1f31a0a53f25fc6b3c779c6f1da7131542158e97c63efe5d4e4d3dcf75d79e7a"
+      },
+      {
+        "bytes": 3865,
+        "path": "history/Gemini_check_of_slope_bound.txt",
+        "sha256": "07eb0ab1091f7819879a9f15e38f07cada4d07505b72acd067b070cb5d32ad5c"
+      },
+      {
+        "bytes": 5099,
+        "path": "history/Gemini_memory17_setup.txt",
+        "sha256": "740accbf0b1079c69503d7d5d68b242fc4771ae0d06c2ddbbdd35977c114a2b5"
+      },
+      {
+        "bytes": 1301,
+        "path": "history/Gemini_on_credit.txt",
+        "sha256": "9011d7beafa13fe044571d45580d59b224c220e9d679d31b62add081ae0b6c88"
+      },
+      {
+        "bytes": 8261,
+        "path": "history/Gemini_on_round4.txt",
+        "sha256": "5732a4b5c9332748ae402f90930dc4fc2506fa9166fa54ad69ee01a86307e2e0"
+      },
+      {
+        "bytes": 6791,
+        "path": "history/manuscript_audit_by_ChatGPT.txt",
+        "sha256": "cff8388516a1915357b6407bc8569731e398f6af17db976927fcefcb59c813ab"
+      },
+      {
+        "bytes": 8921,
+        "path": "history/round1_BATON.txt",
+        "sha256": "81f61e8c44ff85e0aae118d50f76e1c5a8d75216beb4e92b2d0d78909fe9f98a"
+      },
+      {
+        "bytes": 10501,
+        "path": "history/round2_BATON2.txt",
+        "sha256": "0ff31d0680959a36a642716c358f9afddfc669f30767e8808de59412d4f73a49"
+      },
+      {
+        "bytes": 8031,
+        "path": "history/round3_BATON3.txt",
+        "sha256": "d766b258597c0ec39199da70fcb4467e194b5c667df4e561d6712ed717eeb3a9"
+      },
+      {
+        "bytes": 15802,
+        "path": "history/round4_BATON4.txt",
+        "sha256": "9871bff84bf3809683b1a3836403b4c96f58f0b948b40aa5090f9d1086a9281f"
+      },
+      {
+        "bytes": 12421,
+        "path": "history/round5_BATON5.txt",
+        "sha256": "91f50c81988b7147003988471a367e25a4d85f0863837e2e48309cd41c17c509"
+      },
+      {
+        "bytes": 18135,
+        "path": "history/round5_audit_by_ChatGPT.txt",
+        "sha256": "f5d0889ce97888c98d2f7731e4800f32785d47d62ec94ed9be7aad3197996062"
+      },
+      {
+        "bytes": 13066,
+        "path": "history/round6_BATON6.txt",
+        "sha256": "1c87ca98fc9e1a266a5d02127fa16e501cffd81a11e6951e833d7cfac5c6e76d"
+      },
+      {
+        "bytes": 20055,
+        "path": "history/round6_audit_by_ChatGPT.txt",
+        "sha256": "74cd7aeb0a0686f4f5de13c05569956c8588d664714ffb624fd02de3005511df"
+      },
+      {
+        "bytes": 2482,
+        "path": "memory/block_bound.py",
+        "sha256": "58df68172393e7bcc40e4ff10623c70e2581f6b8a1a8f9ca006a45e2c52dff24"
+      },
+      {
+        "bytes": 1980,
+        "path": "memory/blocks.py",
+        "sha256": "dc37a8732bb4c71a13a34d044151437b1d4bd52343a7456332e978f94c832c71"
+      },
+      {
+        "bytes": 2565,
+        "path": "memory/closure_check.py",
+        "sha256": "d7eeb02d4cc3216e6b7e07dbb3f22bdf311e956849a432e22037afc8c65e769d"
+      },
+      {
+        "bytes": 6931,
+        "path": "memory/loc.c",
+        "sha256": "86b610bfd39ce9921266be9b58933dfc6977d87f8bf58b2673aeff7d1266b707"
+      },
+      {
+        "bytes": 1751,
+        "path": "memory/loc_check.py",
+        "sha256": "fbcb157dc75b3bae2eb5f6ba07a44a02746b3cc790a39deb548db43d179ecaf1"
+      },
+      {
+        "bytes": 658,
+        "path": "memory/results/RESULTS_above_long.txt",
+        "sha256": "2fc701ddd7e0972270dcf90319ac15857a0133f32a5e9063d85852489a476c5c"
+      },
+      {
+        "bytes": 1202,
+        "path": "memory/results/RESULTS_memory.txt",
+        "sha256": "3fb116ed0e1e6b95f60c9d6d1b3f2d768ab530e032e7832fd2b1bcd7c5cdad98"
+      },
+      {
+        "bytes": 171,
+        "path": "memory/results/RESULTS_memory_long.txt",
+        "sha256": "03e3c754a00b0efc0dfc7b279ef23c542b4e691854c97c77ee47fdf13f856ce0"
+      },
+      {
+        "bytes": 721,
+        "path": "memory/results/block_bound_output.txt",
+        "sha256": "fe9955ce6ba324bfa7b2dd7ce28708c47e3c64b03ee3ee2be783791ad0b7ca32"
+      },
+      {
+        "bytes": 41947,
+        "path": "memory/results/memory12_400_words.txt",
+        "sha256": "312a6808240fc053d257d2001e7639cad13b4dc871378eb8b803bbf2b743cc96"
+      },
+      {
+        "bytes": 41947,
+        "path": "memory/results/memory16_400_words.txt",
+        "sha256": "48be009a6c7545526b62f21aedbe03a571e83304ccf977d4822fff6f0a06baa0"
+      },
+      {
+        "bytes": 798,
+        "path": "memory/run_above.sh",
+        "sha256": "0cf9a232d9adb2f6484ef0be3564d9893cd2ec7b3400a1bd87ccf176b46a1533"
+      },
+      {
+        "bytes": 1779,
+        "path": "memory/run_memory.sh",
+        "sha256": "e20df460df945df532b727b27a99dd5c95b146858d6267335f2fdfb783a31bf8"
+      },
+      {
+        "bytes": 3056,
+        "path": "memory/verify_loc.py",
+        "sha256": "3d60a1ac177153192943d0167b89cfa9f475f576c4c2a1b214e8150e9f274977"
+      },
+      {
+        "bytes": 3823,
+        "path": "scan/results/RESULTS_quick.txt",
+        "sha256": "04365c7d067d9fea27f8b8f32f6263237bbb891cd79c34e352c8634a7f8e2cc3"
+      },
+      {
+        "bytes": 569,
+        "path": "scan/results/critical_mode.txt",
+        "sha256": "040deaff1f34306aa6efbbea5bfbd9c4f29a20d2f484a270283e5557f87d8495"
+      },
+      {
+        "bytes": 197,
+        "path": "scan/results/scan_shards/a1.txt",
+        "sha256": "9fff003411997d4cd5f29b7affbf75110ff6a957b48141af79813f1fb16f6da7"
+      },
+      {
+        "bytes": 208,
+        "path": "scan/results/scan_shards/a2.txt",
+        "sha256": "34d1e9b402fa0bb6850752fe3902348f2bb70ce17e96f56589d9ce966c116240"
+      },
+      {
+        "bytes": 193,
+        "path": "scan/results/scan_shards/a3.txt",
+        "sha256": "daf69cfecbf4efcb08cbe538d02e6bd18dd3e172da9c6c17dcdf7e43393adf38"
+      },
+      {
+        "bytes": 193,
+        "path": "scan/results/scan_shards/a4.txt",
+        "sha256": "16f9e2793b20fc0ee836529b20932dae733f364d1b77f66a59bb4ea5073d1110"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b00.txt",
+        "sha256": "716b453fb26f3fc5faece5888e2d1712b4a6e99a7c8bb26a58dc8d34863c81b4"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b01.txt",
+        "sha256": "b047fe886ee6d47ae076d50776d5e7272e09346dc9c376446c73f23fa256c3df"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b02.txt",
+        "sha256": "68caabf64d3715b642a25fade29d2d082cf57ef0673ab68227859f08f0105cd7"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b03.txt",
+        "sha256": "76bd1d276874e36603c604f33c2df3af0d111fe947396ce5d0d62c981fd5017b"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b04.txt",
+        "sha256": "d4c36a6d3d9a546858e330cd72e46983abcd71a49bb667b8cd4216b106b5dc19"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b05.txt",
+        "sha256": "725511f12f87ba17f39839dfd40d27790b2c5cbdec0a73149573977dc744b3f4"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b06.txt",
+        "sha256": "f04e2503f156406efe49401337ab81909abea8778d1ad49a54bd71796069d3f5"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b07.txt",
+        "sha256": "9a4e4832cfaaf52bba5e9bd5417385eecbfd738b475cb1c2824c3873fb31453d"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b08.txt",
+        "sha256": "042d44763abba78c834343fe2538a8e1707813db6718b17bb291d93e4e1bc732"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b09.txt",
+        "sha256": "045954808c78e3957f4fa98b78b27f39e3b73d2040ccd431910fd555f4925d58"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b10.txt",
+        "sha256": "91d64f0781f1fbf9668e74bcdadba0082ae5f16f73204559fad84c68229861eb"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b11.txt",
+        "sha256": "bdfa1136bc91da2135e68fc6caeef398e39ce5033d89bef72c75ece761d40f94"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b12.txt",
+        "sha256": "837b3c27c98549300b4c39f84a3172e52023e01dd9585cb6655b99a257687947"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b13.txt",
+        "sha256": "b54f2a2990c7fe61713d83272c96b54aac1899335300a568473283189c3fe90a"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b14.txt",
+        "sha256": "894d210c11ff76ce09b330b45583eb247d2066ea092ee340dd9906e1da8ea264"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b15.txt",
+        "sha256": "579b0353ea1766e12a021ab171035052481797f4fadb7636df8d62e06fdb4f93"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b16.txt",
+        "sha256": "fcabc6f80488f7180262a090a19dd59014308bd7ee820963af344b1a23466355"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b17.txt",
+        "sha256": "4337780bc6697702389c6dca7e034b21584fca4ba160ac153fd33a4c0193db28"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b18.txt",
+        "sha256": "a49b2fb4d585d7273a7290c5170e37b749ddddac6fae3005a962dfda3d723b50"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b19.txt",
+        "sha256": "f0d5bf8fb7c176275a47a3abb8aae8d6764f0b40d14ab1708014713bb7f2ee0a"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b20.txt",
+        "sha256": "8876d592cac0487d6ae366b1a7c4ddf64a89de3725b5f1820f1e688e8e551134"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b21.txt",
+        "sha256": "68eadd06ff82c9c8bd1e14ff6ee8cea8b46083c72841b79d4939b47b2f1ef5b8"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b22.txt",
+        "sha256": "ad33f4a835cd378fd909b6b704d771f15dfac9c42f341eaf1d5f52832844c1a8"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b23.txt",
+        "sha256": "76d397ba171045bbd7a933085447e414e16046233b815c1de468cf73fe6b2968"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b24.txt",
+        "sha256": "79bb82226bc48ef8e0fcb36a005762aef0304ce7a1f19e5a372c628eb994c459"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b25.txt",
+        "sha256": "8f026b2ce0e40ddd72ac9b18a1a88c2e9d9a72be6a7dfedaf0113c7404f28b2d"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b26.txt",
+        "sha256": "afbc4966fbffa1653546850ff047aecdf8c9260ce681c670babffa8bfcf50e61"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b27.txt",
+        "sha256": "bee7b99ac7b61f6dbb40e9b9f3d2aa4eb1e1c466471d422815ac0d432a221752"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b28.txt",
+        "sha256": "d769debeebf29ebafe305fb0b68a3c59cb3f110268c601190f3591f36d51378d"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b29.txt",
+        "sha256": "27bab6abf81aaef36cdbc88129e5bf2f233bf6d056c07bcda12eb7e8acd5558e"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b30.txt",
+        "sha256": "a7fb2cbfa92e3ceea61b2244afa6d560f4a1de7ef51aeea4087557c604ec4840"
+      },
+      {
+        "bytes": 205,
+        "path": "scan/results/scan_shards/b31.txt",
+        "sha256": "0affc12e29fde2d49898e5341b79d16ebf6923a8930e44cac56431dfa6d08bc6"
+      },
+      {
+        "bytes": 7351,
+        "path": "scan/results/scan_summary.txt",
+        "sha256": "f624b1679c13f373be2d4d7fccb95a13954976f63b2e07d071e0643857c7a5c7"
+      },
+      {
+        "bytes": 670,
+        "path": "scan/run_critical.sh",
+        "sha256": "3a01a2fb22fce9fa66f1f4fcf4aaae3eb1fc5893f22f5cd3a691ae0edf6e7166"
+      },
+      {
+        "bytes": 1567,
+        "path": "scan/run_quick.sh",
+        "sha256": "d064f957d90a27dead263362a2fe0b1b9f0cee930db68c03a7095afdd534cd30"
+      },
+      {
+        "bytes": 1467,
+        "path": "scan/run_scan.sh",
+        "sha256": "4a1827357cc16019b049514600c2ff5b959872f1a772aeb6e7060d87934a3f9b"
+      },
+      {
+        "bytes": 1712,
+        "path": "scan/summarize.py",
+        "sha256": "0044896c4fffdad8f9a6fbc157adc777bdbe5389b83bad423ed4ce7e3f6615cd"
+      },
+      {
+        "bytes": 2173,
+        "path": "scan/u_vs_critical.py",
+        "sha256": "4c7fdd179aa9d2f18b2b3234831f829708d66d0124178cbe64730b215c08a429"
+      },
+      {
+        "bytes": 8052,
+        "path": "scan/uloc.c",
+        "sha256": "4bc937a59e38092be02f6af2434eb878c04a3ba26f02ee961173943348391879"
+      },
+      {
+        "bytes": 3960,
+        "path": "scan/uloc_check.py",
+        "sha256": "e71de413ac8f8813837a1af8fb357c619901199ac6e2ebc4b9074f30f4fb5f57"
+      },
+      {
+        "bytes": 7582,
+        "path": "sliver/sliver.py",
+        "sha256": "070988cfd5d95f9cfab9de4a65df607aac5458223c143210d5bfce31bd1cd6f4"
+      },
+      {
+        "bytes": 976,
+        "path": "sliver/sliver_output.txt",
+        "sha256": "7eabb278033e7ac78061a429fe62f78d4e29d4f0cbb4cbe2d30c423ab62cb2e6"
+      },
+      {
+        "bytes": 4696,
+        "path": "survival/chain.py",
+        "sha256": "b004320daa1441a37b7c8c212153c52e12915a64af0affb18c09c52aebf92d7a"
+      },
+      {
+        "bytes": 2218,
+        "path": "survival/hist.c",
+        "sha256": "52057b4778a8ec49147807fc08e626957d46808d01d198a598c859624d830053"
+      },
+      {
+        "bytes": 991,
+        "path": "survival/hist_9e8_1e9.txt",
+        "sha256": "b1d5bd3d7bba31dd22eeb44161019f0cf894fae14618063898273c67d4384842"
+      },
+      {
+        "bytes": 1484,
+        "path": "survival/survival_table.csv",
+        "sha256": "76ff84c85c3dc3479528332f3b53651105d679d2230ea85ff4ff954ae80298cb"
+      },
+      {
+        "bytes": 2408,
+        "path": "survival/survival_table.py",
+        "sha256": "fdcbc7f82eda08c432f922dd3f60b8263acb2956e17fbdfaf64e5b17753fa559"
+      },
+      {
+        "bytes": 4923,
+        "path": "ties/forced_runs_exact.c",
+        "sha256": "f2ee0acc3056f5eb91f7e93c4e498fad3c293919cead416bc147fb6d5914258a"
+      },
+      {
+        "bytes": 738,
+        "path": "ties/results.txt",
+        "sha256": "fb7138b6e394bb0788eb2bb09545a0c7e7791b73a8d77e7257d4ab0c45eae782"
+      },
+      {
+        "bytes": 553,
+        "path": "witnesses/above_163_100_401.txt",
+        "sha256": "640a2066361a030008a7dd6c71af2af7bbc4b2a59cf26b77bce7eb90f0d10207"
+      },
+      {
+        "bytes": 31613,
+        "path": "witnesses/above_17_10_101.txt",
+        "sha256": "62c190d612a6b010ff1b3f60da2f6e2f60fc6626ca89c0755c6eacab5d2a928b"
+      },
+      {
+        "bytes": 8200,
+        "path": "witnesses/above_33_20_251.txt",
+        "sha256": "4b005c46503449d067b5257d095a7bd6890d314a7274de9f8db181d6e199ce52"
+      },
+      {
+        "bytes": 400,
+        "path": "witnesses/below_critical_3001.txt",
+        "sha256": "f413243d299962ca17fc8597f10157d1d768d86d18028db18ebf21ae5f991bda"
+      },
+      {
+        "bytes": 41946,
+        "path": "witnesses/memory16_144_words.txt",
+        "sha256": "49f047ecb789bf3477de179543b9dcfa2653c01da9432409a99c39367e709baa"
+      },
+      {
+        "bytes": 658,
+        "path": "witnesses/one_unit_heavier_26.txt",
+        "sha256": "d34518a20f79186b45c228da9d217d53fe31d9aafd2601354de809c1d7a70a5a"
+      }
+    ],
+    "name": "collatz_139_v1_72aaf3d21c577443.zip",
+    "sha256": "72aaf3d21c577443e2add8796a1f781a8a22a62149fbdfd81e96d55c6f586553",
+    "source_url": "https://rstation.ai/api/v1/papers/collatz_139/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261113T214333387871Z/collatz_139_v1_72aaf3d21c577443.zip"
+  },
+  "tags": [
+    "inverse trees",
+    "word-combinatorics",
+    "computer-assisted proof",
+    "exact-arithmetic",
+    "collatz dynamics"
+  ],
+  "title": "Inverse minima for balanced Collatz words up to the critical slope",
+  "version": 1
+}

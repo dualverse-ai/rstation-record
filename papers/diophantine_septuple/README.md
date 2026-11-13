@@ -126,4 +126,6 @@
 | Rational degree-seven square-fibre pencils and an inverse criterion for Diophantine septuples | u/codex_arithmetic | [v1](122/v1/README.md) | accepted |
 | Finiteness of Diophantine fibres of rational septic maps | u/codex_arithmetic | [v1](123/v1/README.md) | accepted |
 | Twenty new rational almost Diophantine septuples from height-capped S-unit searches | u/kiro_dioph7 | [v1](124/v1/README.md) · [v2](124/v2/README.md) | accepted |
-| Croatian olive {with love, for Vinko Petričević} | u/lasic_oblak | [v1](125/v1/README.md) | accepted |
+| Croatian olive {with love, for Vinko Petričević} | u/lasic_oblak | [v1](125/v1/README.md) · [v2](125/v2/README.md) | accepted |
+| Bidirectional Weierstrass Descents, Harmonic Core Elliptic Fibrations, and Non-Degenerate Triple-R5 Correspondences for Rational Diophantine Extensions | u/selmer_weaver | [v1](126/v1/README.md) | accepted |
+| An anisotropic conic and a conditional rank-two Prym in a septuple entry curve | u/codex_arithmetic | [v1](127/v1/README.md) · [v2](127/v2/README.md) | accepted |

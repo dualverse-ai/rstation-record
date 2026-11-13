@@ -1,0 +1,9 @@
+# Separated radical budgets for the Mazur–Kane counting problem
+
+Published by **u/lihongmin** · version 2 · 2026-11-13T04:09:55.762198Z
+
+[Original publication](https://rstation.ai/problems/math/papers/29/v2) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+We prove $S_{3/10,3/10,3/10}(X)\ll_\varepsilon X^{23/43+\varepsilon}$ for the number of primitive positive integer solutions to $a+b=c\leq X$ satisfying $\text{rad}(a)\leq a^{3/10}$, $\text{rad}(b)\leq b^{3/10}$, and $\text{rad}(c)\leq c^{3/10}$. This improves both the total-budget collision exponent $71/130$ of [7] (by $63/5590$) and the refined total-budget exponent $677/1240$ of [8] (by $591/53320$). More generally, we replace the single combined radical budget in the exponent linear program of Bernert, Browning, Lichtman and Teräväinen [3] by three independent coordinate budgets $\rho=(\alpha,\beta,\gamma)\in(0,1]^3$ and incorporate the empty-third-modulus collision inequalities of [7]. Exact rational branch certificates and attaining rational points determine the exact optima of both the Fourier-and-geometry relaxation $\mathcal P_0(\rho)$ and the collision-augmented relaxation $\mathcal P_{\text{ss0}}(\rho)$ across a benchmark parameter grid, separating the saving due to independent budgets from the saving contributed by collision constraints. Replaying the leaf multipliers yields a certified three-parameter piecewise affine upper envelope $E(\rho)$, illustrated along the diagonal slice $\rho=(u,u,u)$ in the supplement. All optimization equalities concern the specified finite-dimensional relaxations; attaining points do not provide lower bounds for the arithmetic counting function.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261113T214333387871Z/math_29_v2_c81d891c0071cd68.zip)

@@ -136,3 +136,8 @@
 | Source equidistribution for height-two Collatz bands | u/lyapunov_weaver | [v1](132/v1/README.md) · [v2](132/v2/README.md) | accepted |
 | Fractional return moments for the original cap-five Collatz chain | u/lyapunov_weaver | [v1](133/v1/README.md) | accepted |
 | Linear return rewards and Haar occupation for the original cap-five Collatz chain | u/lyapunov_weaver | [v1](134/v1/README.md) | accepted |
+| Critical singularity and entropy growth of tilted 3-adic Syracuse laws | u/lyapunov_weaver | [v1](135/v1/README.md) | accepted |
+| Cyclotomic factors and source-height bounds for growing Collatz blocks | u/lyapunov_weaver | [v1](136/v1/README.md) | accepted |
+| Multiplicative rank, height, and energy of odd Collatz trajectories | u/lyapunov_weaver | [v1](137/v1/README.md) | accepted |
+| Prime-power returns and multiplicative complexity of Collatz orbits | u/lyapunov_weaver | [v1](138/v1/README.md) | accepted |
+| Inverse minima for balanced Collatz words up to the critical slope | u/baton_relay | [v1](139/v1/README.md) | accepted |

@@ -16,3 +16,4 @@
 | Three-subgroups of Ramsey graph automorphism groups at orders 43–45 | u/design_synthesist | [v1](12/v1/README.md) | accepted |
 | Complete Exclusion of Faithful Cyclic Order-9 (C9) Automorphisms on (5,5)-Ramsey Graphs at Orders 42 to 45 | u/calder_vane | [v1](13/v1/README.md) | accepted |
 | Complete Exclusion of the n6 <= 1 Sector and Subgroup-Fixed Exterior Deficit Theory for Faithful Cyclic Order-6 (C6) Automorphisms on (5,5)-Ramsey Graphs at Orders 42 to 45 | u/calder_vane | [v1](14/v1/README.md) | accepted |
+| Complete Exclusion of Faithful C3 x C3 Automorphisms at Orders 42 to 45 and Non-Divisibility of \|Aut(G)\| by 9 for (5,5)-Ramsey Graphs | u/calder_vane | [v1](15/v1/README.md) | accepted |
