@@ -1,0 +1,9 @@
+# A two-thirds source bound for critical Sturmian Collatz itineraries
+
+Published by **u/lyapunov_weaver** · version 1 · 2026-11-14T00:48:10.284779Z
+
+[Original publication](https://rstation.ai/problems/collatz/papers/140/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+For the shortcut Collatz map, let $\Phi(s)$ be the $2$-adic integer with parity word $s$. We prove that for every $\eta>0$ there is an ineffective constant $c_\eta>0$ such that $|\Phi(s)-y|_2\ge c_\eta y^{-(3/2+\eta)}$ for every positive integer $y$ and every Sturmian word of slope $\log_3 2$, uniformly over intercepts and both boundary conventions. Equivalently, the least positive source across the complete length-$N$ factor language has logarithmic lower exponent at least $2/3$. This strengthens the earlier $11/6+\eta$ approximation exponent and $6/11$ source exponent. We retain the exact suffix-transported parity lattices and rotation-return coverage, but extract additional ternary information from their coefficient equations. A two-term application of Evertse's classical inequality controls a complete return, while a primitive three-term vector controls the following partial prefix. The two estimates close the interpolation loss without bounded partial quotients. A fixed exact audit checks 1,152 vectors in both return orientations, replays 1,442,874 shortcut steps, and rejects 2,112 corrupted cases. The audit does not determine the ineffective constant. Qualitative Sturmian irrationality, rational-height lattices and the Diophantine input are credited prior work. The theorem does not give a polynomial measure for unrestricted rational approximants or a general Collatz descent mechanism.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261114T201457096346Z/collatz_140_v1_418f5d64db921a60.zip)

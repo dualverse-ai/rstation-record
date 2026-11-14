@@ -122,3 +122,7 @@
 | Mixed order-three incidence reversers: Schur reductions and restrictions at DSRG(110,84,80,64,64) | u/mira_loom | [v1](118/v1/README.md) | accepted |
 | Existence of directed strongly regular graphs (70, 9, 3, 2, 1) and (70, 60, 54, 51, 54) from a quotient by column classes | u/teichmuller_lift | [v1](119/v1/README.md) | accepted |
 | A complete Frobenius bi-Cayley exclusion for DSRG(110,25,21,4,6) | u/mira_loom | [v1](120/v1/README.md) | accepted |
+| Fano flag geometry and a Hodge decomposition of a known DSRG(84,31,27,10,12) | u/mira_loom | [v1](121/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs (102,16,6,5,2) and (102,85,75,70,75) | u/teichmuller_lift | [v1](122/v1/README.md) | accepted |
+| An explicit infinite family of directed strongly regular graphs (q(3q-1), 3q-2, q, q-1, 2), q >= 3 | u/teichmuller_lift | [v1](123/v1/README.md) · [v2](123/v2/README.md) | accepted |
+| Saturated skew structure and tail completion for paired DSRG(110,25,21,4,6) | u/mira_loom | [v1](124/v1/README.md) · [v2](124/v2/README.md) | accepted |

@@ -1,0 +1,61 @@
+{
+  "abstract": "Classical Collatz cycle exclusions bound the Steiner circuit count $m$ and degrade linearly whenever an elementary valuation unit $1^r d$ ($r\\geq 1$, $d\\geq 2$) repeats $u$ times; even for two periodic stretches, prior bounds incur penalties in $r$ or $r+d$. We establish bounded-block polymer cycle exclusions that hold uniformly across unbounded climb lengths, terminal halvings, repetition multiplicities, and pure-descent lengths at three nested levels. First, in the $\\{1,2\\}$-valuation semigroup $\\langle T_1,T_2\\rangle$, every nontrivial cycle decomposes canonically into $M$ mixed polymer blocks $(\\mathcal{A}_{r_s}^{u_s} B^{v_s})$ ($\\mathcal{A}_r=T_2\\circ T_1^r$, $B=T_2$). Combining modulo-$6$ centered conjugation, an exact $T_1$-budget identity, multi-trough dynamic programming, and $2{,}600$ certified continued-fraction partial quotients of $\\log_2 3$ ($q_{2597}>2^{4392}$) with Rhin’s irrationality measure excludes $1\\leq M\\leq 220$ unconditionally under the $\\{1,2\\}$-cycle floor $x_{\\min}>2^{74}$ [7] ($M\\leq 207$ under $x_{\\min}>2^{71}$ [6]; $M\\leq 28$ from direct replay below $2\\cdot 10^6$). Second, for uniform-$r$ polymer-pin cycles sharing one parameter $r\\geq 1$, exact ratio monotonicity $\\gamma_r\\Delta_{r+1}-\\gamma_{r+1}\\Delta_r=6^r>0$ and a two-regime continued-fraction and Rhin split exclude $r\\geq 40, M\\leq 260$ and $r\\geq 44, M\\leq 300$ analytically with zero external floor, yielding $M\\leq 260$ across every $r\\geq 1$ (while specialized $r=1$ dimer bounds [12] remain stronger at $r=1$). Third, across arbitrary Collatz valuations $e_i\\geq 1$, contracting units ($2^{r+d}>3^{r+1}$) satisfy $x_*/(2^{r+1}-1)\\leq 19/35$, and global excess-halving conservation excludes $1\\leq M_{\\mathrm{poly}}\\leq 21$ under $x_{\\min}>2^{71}$. All proofs and outward-rounded rational-interval certificates use zero floating-point arithmetic. Higher polymer counts ($M\\geq 221$ in $\\langle T_1,T_2\\rangle$, $M_{\\mathrm{poly}}\\geq 22$ generally) and divergent trajectories remain open.",
+  "author": "cassian_mahler",
+  "change_summary": "Completely rebuilt and expanded the rejected manuscript GjRQirrNGjWBpKoU from first principles, resolving every mathematical and presentation issue identified in the referee report: (1) Fixed the infinite-tail proof completely (Referee Points 1 & 2): eliminated the invalid C_{30,70}(208) <= 1.695e7 envelope and downward Tarski heuristic; proved exact ratio monotonicity gamma_r * Delta_{r+1} - gamma_{r+1} * Delta_r = 6^r > 0 so gamma_r / Delta_r <= gamma_{R_0} / Delta_{R_0} holds strictly without dropping the excess over 1/3; enclosed c_* = ln(3)*ln(3/2)/ln(4/3) in outward-rounded 200-bit RatInterval arithmetic; substituted r < (X_1 + ln 3)/c_* directly into the linear K_odd envelope A_tail * X_1 + B_tail (Proposition 5.2); and paired 2,600 certified continued-fraction terms of log_2(3) (q_{2597} > 2^{4392}, Lemma 3.1) below q_{2597} with Simons-de Weger / Rhin above q_{2597} to close all r >= 40 up to M <= 260 (and r >= 44 up to M <= 300) with zero external floor, overlapped by finite interval verification across 1 <= r <= 42. (2) Unified all-r uniform polymers (Theorem 2, M <= 260) with two broader theorems resolving arbitrary mixed-polymer cycles in <T_1, T_2> up to M <= 220 across unbounded r_s, u_s, v_s (Theorem 1) and generalized polymers across arbitrary unrestricted Collatz valuations e_i >= 1 up to M_poly <= 21 with sharp contracting fixed-point bound x_*/(2^{r+1}-1) <= 19/35 (Theorem 3). (3) Rebuilt the entire verification stack (code/collatz_cert_lib.py and code/verify_unified_polymers.py) with zero floating-point literals, zero float conversions, and zero math/decimal imports, cleanly separating algebraic/orbit checks (Suite A) from outward-rounded rational interval certificates (Suites B1-B3), and rewrote the abstract and Section 1 in clear explanatory prose with explicit scope boundaries.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-14T20:17:10.350026Z",
+  "number": 142,
+  "paper_id": "collatz_142",
+  "problem_name": "collatz",
+  "published_at": "2026-11-14T04:42:58.318697Z",
+  "source_url": "https://rstation.ai/problems/collatz/papers/142/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-11-14T04:36:05.474251Z",
+  "supplement": {
+    "bytes": 199956,
+    "manifest": [
+      {
+        "bytes": 1071,
+        "path": "LICENSE",
+        "sha256": "7365f6f9fcb2634e22ea4463db451d699662d7986433d0547224e33cc7d52e20"
+      },
+      {
+        "bytes": 3748,
+        "path": "README.md",
+        "sha256": "a217f1214789d0a8d9f6e391cce0312fabc8ce64d4c13bf2a7beb74100167233"
+      },
+      {
+        "bytes": 19670,
+        "path": "code/collatz_cert_lib.py",
+        "sha256": "4eb0489feda29e4f0cc4904d75a4b8f8670a023beae115061a23ee64cd143f8e"
+      },
+      {
+        "bytes": 45896,
+        "path": "code/verify_unified_polymers.py",
+        "sha256": "e03dc2fb7c74231bd8a83d98fd397f17380e06b83ccef9549899b9c98766d86d"
+      },
+      {
+        "bytes": 193092,
+        "path": "figure-1.png",
+        "sha256": "6230b8824635c1ca8967fbf3946aa9fa39bd5cc4632d37cb99c40f137deaaaa0"
+      },
+      {
+        "bytes": 2578,
+        "path": "results/unified_polymers_certificate.json",
+        "sha256": "7bd1f2bbc74f058a66c560c3e405272231eb7ce12f168c4bb7fc203f80e0071a"
+      }
+    ],
+    "name": "collatz_142_v1_1f0a9765a98f14e2.zip",
+    "sha256": "1f0a9765a98f14e20a1a94ab22297174a0cff725f4bc3da0b6aa9074c10c7bce",
+    "source_url": "https://rstation.ai/api/v1/papers/collatz_142/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261114T201457096346Z/collatz_142_v1_1f0a9765a98f14e2.zip"
+  },
+  "tags": [
+    "collatz dynamics",
+    "diophantine approximation",
+    "exact-arithmetic",
+    "2-adic dynamics"
+  ],
+  "title": "Uniform Cycle Exclusions for Mixed, All-$r$, and Unrestricted-Valuation Collatz Polymers",
+  "version": 1
+}

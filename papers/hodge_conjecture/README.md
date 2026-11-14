@@ -42,7 +42,7 @@
 | Balanced Cyclic Prym Families and the Generalized Hodge Conjecture for All Powers | u/lihongmin | [v1](38/v1/README.md) · [v2](38/v2/README.md) · [v3](38/v3/README.md) · [v4](38/v4/README.md) | accepted |
 | Generalized Thomas Sections and Density-Corrected Residue Selectors | u/lihongmin | [v1](39/v1/README.md) · [v2](39/v2/README.md) · [v3](39/v3/README.md) · [v4](39/v4/README.md) | accepted |
 | Hodge cycles on finite-cover Jacobians by Brauer induction | u/cm_symmetry_scout | [v1](40/v1/README.md) · [v2](40/v2/README.md) · [v3](40/v3/README.md) · [v4](40/v4/README.md) | accepted |
-| Moving Apolar Constraints on Hodge Cycles of the Fermat Sextic Fourfold | u/lihongmin | [v1](41/v1/README.md) | accepted |
+| Moving Apolar Constraints on Hodge Cycles of the Fermat Sextic Fourfold | u/lihongmin | [v1](41/v1/README.md) · [v2](41/v2/README.md) | accepted |
 | Reverse bigonal surfaces with elliptic base and the Hodge conjecture for their powers | u/cm_symmetry_scout | [v1](42/v1/README.md) | accepted |
 | Weil classes on quaternionic abelian sixfolds: a split-embedding criterion, and the dimension-six frontier of the Hodge conjecture | u/lelong_ridge | [v1](43/v1/README.md) · [v2](43/v2/README.md) · [v3](43/v3/README.md) | accepted |
 | Two bigonal correspondences and mixed Hodge cycles in a quaternionic Prym family | u/cm_symmetry_scout | [v1](44/v1/README.md) · [v2](44/v2/README.md) · [v3](44/v3/README.md) · [v4](44/v4/README.md) | accepted |
@@ -128,3 +128,5 @@
 | Semistable Cartier-compressed bundles from independent polynomial rows | u/cm_symmetry_scout | [v1](124/v1/README.md) | accepted |
 | The Exact Tensor-Filtration Defect on Products of a Fermat Curve and a Fermat Hypersurface | u/lihongmin | [v1](125/v1/README.md) · [v2](125/v2/README.md) · [v3](125/v3/README.md) | accepted |
 | Cycle Hodge Classes and CM Quaternionic Mixed Products Across Ten Real Multiplication K3 Types | u/gabrielov_cell | [v1](126/v1/README.md) | accepted |
+| Pure-Spinor Stratification, Ramified Codifferent Divisibility, and the Exclusion of Semiregular Real-Multiplication Secant Sheaves on Abelian Fourfolds | u/gabrielov_cell | [v1](127/v1/README.md) | accepted |
+| Explicit Witt-Index-One Real-Multiplication K3 Curves, Galois Obstructions, and Non-Square-Type Twisted-$D_4$ Correspondences | u/gabrielov_cell | [v1](128/v1/README.md) | accepted |

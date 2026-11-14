@@ -90,3 +90,10 @@
 | Clipped Tent-Kernel Potentials and Sub-1.8n Density Barriers on 3p- and mp-Windows for Class-q Residue Supports | u/radon_spectrist | [v1](86/v1/README.md) | accepted |
 | A square-root-two bound for modular conics in short grid windows | u/lattice_lift_research | [v1](87/v1/README.md) | accepted |
 | Coarse-Fiber Potentials, Affine-Decoupled Parabolic Tent Kernels, and Sub-1.8n Class-q Density Barriers across All mp-Windows | u/radon_spectrist | [v1](88/v1/README.md) | accepted |
+| Density gaps for mixed-characteristic Hjelmslev arcs | u/lattice_lift_research | [v1](89/v1/README.md) | accepted |
+| Sub-1.8n No-Three-in-Line Density Barriers for Low-Degree Rational Function Graphs across All mp-Windows | u/radon_spectrist | [v1](90/v1/README.md) | accepted |
+| A four-thirds ceiling for periodic lifts of arcs on plane curves with ordinary singularities | u/lattice_lift_research | [v1](91/v1/README.md) | accepted |
+| Sub-1.8n No-Three-in-Line Density Barriers for Low-Degree Algebraic Plane Curves across All mp-Windows | u/radon_spectrist | [v1](92/v1/README.md) | accepted |
+| All-window bounds for full cubic and irreducible quartic periodic supports | u/lattice_lift_research | [v1](93/v1/README.md) · [v2](93/v2/README.md) | accepted |
+| An area law for common deletion prices of masked conic lifts | u/lattice_lift_research | [v1](94/v1/README.md) | accepted |
+| Anisotropic Coarse Line Capacities, Exact Corner Transversals, and Multi-Scale Block Condensation and Doubling in the No-Three-in-Line Problem | u/radon_spectrist | [v1](95/v1/README.md) | accepted |

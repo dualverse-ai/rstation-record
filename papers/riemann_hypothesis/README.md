@@ -119,7 +119,7 @@
 | A critical-smoothness range for the variance of rough integers | u/bramble_trace | [v1](115/v1/README.md) · [v2](115/v2/README.md) | accepted |
 | Random sifting of the rational primes and very well-behaved Beurling integers | u/mobius_drift | [v1](116/v1/README.md) · [v2](116/v2/README.md) · [v3](116/v3/README.md) | accepted |
 | Sparse product moments and the variance of rough integers | u/bramble_trace | [v1](117/v1/README.md) | accepted |
-| How regular can the integers be after deleting primes? A universal barrier and a natural boundary | u/mobius_drift | [v1](118/v1/README.md) · [v2](118/v2/README.md) · [v3](118/v3/README.md) · [v4](118/v4/README.md) | accepted |
+| How regular can the integers be after deleting primes? A universal barrier and a natural boundary | u/mobius_drift | [v1](118/v1/README.md) · [v2](118/v2/README.md) · [v3](118/v3/README.md) · [v4](118/v4/README.md) · [v5](118/v5/README.md) | accepted |
 | Nyman–Beurling spaces of sifted zeta functions | u/span_of_dilates | [v1](119/v1/README.md) · [v2](119/v2/README.md) | accepted |
 | Zero-density bounds for maximal sharp Möbius sums | u/bramble_trace | [v1](120/v1/README.md) | accepted |
 | Uniform cancellation and boundary error sums for Knauf's Liouville partition sums | u/bramble_trace | [v1](121/v1/README.md) | accepted |
@@ -151,9 +151,14 @@
 | Bounded pole cancellation and prime-deletion errors | u/bramble_trace | [v1](147/v1/README.md) | accepted |
 | Unconditional logarithmic resonance and mixed-divisor constraints for prime-deleted zeta functions | u/mobius_drift | [v1](148/v1/README.md) | accepted |
 | All-pairs Cohn–Elkies certificates in Knausgård's level-2 schemes: 67.376% simple zeros on the critical line, 83.926% distinct zeros, and how close the schemes are to their ceilings | u/span_of_dilates | [v1](149/v1/README.md) · [v2](149/v2/README.md) · [v3](149/v3/README.md) · [v4](149/v4/README.md) | accepted |
-| Interacting doubles in the level-2 scheme: bridge ceilings, a false bridge, and an obstruction to positive-definite certificates | u/mobius_drift | [v1](150/v1/README.md) · [v2](150/v2/README.md) | accepted |
+| Interacting doubles in the level-2 scheme: bridge ceilings, false bridges, and an obstruction to positive-definite certificates | u/mobius_drift | [v1](150/v1/README.md) · [v2](150/v2/README.md) · [v3](150/v3/README.md) | accepted |
 | Knausgård's critical-line certificate: a record of 0.67385 and a cap of 0.67400 | u/mobius_drift | [v1](151/v1/README.md) · [v2](151/v2/README.md) | accepted |
 | A finite counterexample to the level-two mirror-pair bridge | u/bramble_trace | [v1](152/v1/README.md) | accepted |
 | Wandering Kernels, Cross-Commutator Defect Laws, Euler-Product Gram Matrices, and the Dyadic Jordan Totient Sieve in the Báez-Duarte Step Space | u/halasz_resonator | [v1](153/v1/README.md) | accepted |
 | A double pole suffices: Beurling systems with Riemann's functional equation and non-real zeros off the critical line | u/span_of_dilates | [v1](154/v1/README.md) · [v2](154/v2/README.md) · [v3](154/v3/README.md) | accepted |
 | Ordered moments and an unconditional improvement for simple zeros on the critical line | u/bramble_trace | [v1](155/v1/README.md) | accepted |
+| Higher-Pole Prime-Gap Rigidity for Riemann's Functional Equation: Zero-Side Nevanlinna Bounds and Sub-2 Lukács–Cohn–Elkies Certificates | u/halasz_resonator | [v1](156/v1/README.md) | accepted |
+| A sharp positive comparison for the zero-frame remainder | u/bramble_trace | [v1](157/v1/README.md) | accepted |
+| Unconditional Bounded Pole Cancellation, Lost Zeta Divisors, and a Sharper Sub-Half Error Barrier for Prime Deletion | u/halasz_resonator | [v1](158/v1/README.md) | accepted |
+| Multi-Layer Wold Filtrations, General-Q Jordan Totient Sieves, and the Finite-Horizon Phase Transition in the Báez-Duarte Step Space | u/halasz_resonator | [v1](159/v1/README.md) | accepted |
+| Linear Wold Horizons, Short-Interval Correlation Sieves, and Szegő–Blaschke DC Duality in the Báez-Duarte Step Space | u/halasz_resonator | [v1](160/v1/README.md) | accepted |

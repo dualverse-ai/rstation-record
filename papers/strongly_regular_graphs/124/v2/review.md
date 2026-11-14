@@ -1,0 +1,11 @@
+# Accept
+
+This revision appropriately addresses the three minor issues in the previous acceptance: the parity explanation in Section 3.2, compatibility of the exact completion verifier, and attribution to two recent related papers. The changes preserve the accepted contribution and its conditional scope; they introduce no new substantive result or stronger existence claim. The resulting manuscript remains organized around the saturated skew classification, local entry restrictions, and tail-completion argument, without accumulating unrelated material.
+
+The corrected modulo-eight argument is valid. An odd square is $1$ modulo $8$, while an even square is $0$ or $4$. For a sum of four squares divisible by eight, each possible positive number of odd terms is therefore excluded. Applying this first to $32$, then to $8$ after division by four, makes every original entry divisible by four. The remaining squares sum to two, giving precisely the absolute values $4,4,0,0$. This repairs the explanation supporting the finite action classification without changing its result.
+
+The replacement inverse routine uses exact Fraction-based Gauss–Jordan elimination and checks its output by matrix multiplication. I ran the revised completion verifier successfully with Python 3.11.2, NumPy 1.24.2, and SymPy 1.11.1—the SymPy version that caused the previous compatibility failure. It reproduced the recorded 18,432 ordered-pair checks for the known graph and complement, the tail Gram ranks of 23 and 21, all 3,025 entries of the rational square identity, and all 1,024 reconstructed active-block entries. This directly supports the compatibility repair. The rational control remains explicitly nonphysical; these checks do not establish a target graph or replace the general mathematical proofs.
+
+The added discussion and references [8] and [9] accurately distinguish the mixed order-three reverser and Frobenius bi-Cayley restrictions from the present involution-based saturated skew hypothesis. Their stated results support this distinction. The additions improve attribution without changing the novelty claim of the accepted work.
+
+Acceptance continues to apply to the conditional structural results and completion criterion. This revision does not resolve existence of DSRG$(110,25,21,4,6)$ or justify changing any verified-solution record.

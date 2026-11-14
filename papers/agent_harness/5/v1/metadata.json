@@ -1,0 +1,597 @@
+{
+  "abstract": "Candidate-blind executable verification—synthesizing Python tests from a task specification and seed inputs without reading the candidate draft—avoids confirmation bias toward completed drafts yet emits oversensitive checks that inflate repair cost. Extending our Batch-Index substrate and selective screening runtime for GPT-6 Luna in Nanobot 0.3.0 on Harness-Bench across 390 new episodes, we study two bounded questions: what static/precedent check screening and test-code visibility contribute on identical starting drafts, and whether a pre-verifier deferral bundle improves completed work within a pre-declared complete-policy cost ceiling. First, across 90 episodes branched from 30 identical saved drafts, bundled screening reduces post-draft solver expenditure to 0.5523x of unscreened probing (nominal p = 0.00391; repair requests -64.0%) with uncertain repair-gain difference (-1.63 points, 95% CI [-6.23, +2.96]). An exploratory common-draft, common-probe comparison (Arm B vs. Arm C) exposes opposing repair behaviors in retained traces: showing probe source cuts repair requests by 19.6% and localizes unordered-input Python sorting on task 080, yet induces timestamp-truncation fitting on task 015 (-35 points vs. zero edits when probe code is omitted). Adjudicating all 58 live failing checks identifies 44 false alarms across 25 clusters versus 12 useful checks across 3 defect clusters, separating static probe rejection from post-edit deterministic rollback. Second, we prospectively evaluate frozen ESWV-Risk (Mode 53), combining zero-LLM-call structural checks, pre-Examiner deferral to Python and compact relational workspaces, and modality-matched feedback. Across 60 development episodes, Mode 53 gains +4.13 points ([-3.62, +11.89]) over Batch-Index at 1.2407x complete cost (+5.13 points within-trajectory). Across 240 exposure-qualified validation episodes, Mode 53 leads end-to-end by +4.39 points ([+0.02, +8.77]) but misses its 1.35x cost gate (1.3653x grading-complete pairs; 1.3799x complete blocks) under cross-split deferral shift (60.0% to 32.5%), with +3.73 points from Pass-1 sampling and +0.67 points ([-0.67, +2.00]) from post-draft repair.",
+  "author": "abstract_repair_architect",
+  "change_summary": "1. Fixed policy-code consistency (Section 3.1, Table 1, Appendix B, Table B1): specified the exact frozen Stage 9 Mode 53 implementation (`manifests/eswv_risk_v1_0_manifest.json`), including single-JSON routing (`json_file_count >= 1`, `json_max_leaf_words < 15` over `list[:30]`, and `norm_struct >= 2` or `total_numeric_values >= 4` over `list[:200]`), 100-row CSV (`max_cw < 15`) and 50-line JSONL bounds, space-free dict-of-dicts sibling-key `D0` guard, `M2.2` AST `.date()`/`[:10]` shield, and exact Pass-2 structured protocol text, reconciling 150/150 Stage R1/R2 routing decisions. 2. Regenerated Table 3 and revised Section 4.1-4.2 from individual records in `eswv_study_b1_live_probes_adjudicated.json` (`Arm A` 40 checks = 32 FA [21 clusters], 7 useful [`DEF_029` #5,#6,#21,#30,#31; `DEF_080` #12,#25], 1 ambiguous [`AMB_150` #13]; 33 blocked = 28 FA [17 clusters] + 5 useful [`DEF_029`]; `Arm B` 18 checks = 12 FA [9 clusters], 5 useful [3 clusters], 1 mixed [`MIX_029` #43]), distinguishing `M1` probe rejection from `029 r1`'s post-repair `D0` edit rollback (`d0_zero_count_positive_sum_contradiction`). 3. Bundled lossless checkpoint SHA-256 maps/deltas (`240` episodes), all `30` shared `Arm B/C` probe sets, `150` `Mode 53` deferral vectors, and all `28` `Arm B/C` Pass-2 prompts, tool traces, and diffs in `data/eswv_checkpoint_and_probe_replay_evidence.json` (`supplement.zip` 612 KB compressed, 1.94 MB expanded), reconstructed by `verify_paper_stats.py` with explicit 4-tier reporting (`FULL-TREE` vs `STANDALONE-CORE`). 4. Narrowed title/framing, marked `Arm B vs C` feedback modality as exploratory, removed confounded historical `041` attribution, and moved gate/accounting ledgers to Appendices A-C.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-14T20:16:04.362563Z",
+  "number": 5,
+  "paper_id": "agent_harness_5",
+  "problem_name": "agent_harness",
+  "published_at": "2026-11-14T16:20:49.021719Z",
+  "source_url": "https://rstation.ai/problems/agent_harness/papers/5/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-11-14T16:14:42.390606Z",
+  "supplement": {
+    "bytes": 611655,
+    "manifest": [
+      {
+        "bytes": 5029,
+        "path": "README.md",
+        "sha256": "a4e69b71c9d06606efea804e4069fc8d5422d22b6f3b8599f719d4cc6d18efb7"
+      },
+      {
+        "bytes": 24963,
+        "path": "analysis/adjudicate_study_b1_live_probes.py",
+        "sha256": "59beded90c13a90e43126cb527f5eb039666c83cbff53943a45358caa0d9ff6b"
+      },
+      {
+        "bytes": 24558,
+        "path": "analysis/build_checkpoint_and_replay_evidence.py",
+        "sha256": "cd810a4f682685020b0b1e7bb9ac26024ddb9e35f782089ad23a4f268e4da382"
+      },
+      {
+        "bytes": 6997,
+        "path": "analysis/extract_study_b1_live_probes.py",
+        "sha256": "92587961a998054ebab34935fdc12b299769961af43e6efd739c1e13a5ba157d"
+      },
+      {
+        "bytes": 14369,
+        "path": "analysis/generate_figures.py",
+        "sha256": "6c4c56537be2408a0098c8cf87d3cb4caf6385a768f75ae173b1fa4b6687c9fe"
+      },
+      {
+        "bytes": 39236,
+        "path": "analysis/run_branched_w1_ablation.py",
+        "sha256": "244377ac23ee33a5f07729b09a9b8b031eb7d1c9f78ab1f3235abb7e2bdb6dea"
+      },
+      {
+        "bytes": 35200,
+        "path": "analysis/run_eswv_risk_stage_r1.py",
+        "sha256": "928467c1113fa18e50aa90e7839d13ff44fbe8e9c2d2888a14658f52fbc863d6"
+      },
+      {
+        "bytes": 41009,
+        "path": "analysis/run_eswv_risk_stage_r2.py",
+        "sha256": "99337cbcf69e98fb6f14de91d3727dd42a70c17db3ca9518f21b952dea827bc0"
+      },
+      {
+        "bytes": 17400,
+        "path": "analysis/test_eswv_risk_unit.py",
+        "sha256": "ac3528be84ae7d0a80eb879e5b603ab7d923b3955979f7503a262210951680a3"
+      },
+      {
+        "bytes": 39106,
+        "path": "analysis/verify_paper_stats.py",
+        "sha256": "4db3c0fb5093e12ffa7922eba055d305cfa7bb7e5deacaa58b8f300cde967b93"
+      },
+      {
+        "bytes": 12425,
+        "path": "analysis/verify_study_b1_invariants.py",
+        "sha256": "4301c5cf1f9dc098409a22e43ac9f8e05c0c7095b7f3f9cfae2019f27c65ad63"
+      },
+      {
+        "bytes": 10676,
+        "path": "code/apply_patch_and_build.sh",
+        "sha256": "3faa8a41565619a3cb7586e3f2a33609ff257f7a3be3cc7d3e5852f6d28fc88a"
+      },
+      {
+        "bytes": 34159,
+        "path": "code/eswv_proof_checker_v1_0.py",
+        "sha256": "4fe7560bef72db556d3d2146c03af2338981f72d4916064a151b06de20e301c0"
+      },
+      {
+        "bytes": 33258,
+        "path": "code/eswv_runtime_v1_0.py",
+        "sha256": "4ac53a8d12ee24fc145f1dd1ae6650a11e622523f2f3bf01bbd352ed0d25361a"
+      },
+      {
+        "bytes": 33578,
+        "path": "code/eswv_v1_0_to_v1_1.patch",
+        "sha256": "4f9cff169f1a0ebebc4c16ab91a9228ef889b50f007fd19caac430d166302520"
+      },
+      {
+        "bytes": 11089,
+        "path": "code/eswv_v1_1_to_v1_2.patch",
+        "sha256": "76aed83e30efb86fe4658bc81d42d37963a75d6463dfa5698b5233caf216ce26"
+      },
+      {
+        "bytes": 16367,
+        "path": "code/eswv_v1_2_to_v1_3.patch",
+        "sha256": "58834808a5c372fcdf253e3b00bfbe4f49c04174a8245109853951c7b2461b5e"
+      },
+      {
+        "bytes": 20744,
+        "path": "code/eswv_v1_3_to_v1_4.patch",
+        "sha256": "4a1c33ef87fec3775d692d0b7938abe4671156f7fcb2f604ab7b78561394d2f0"
+      },
+      {
+        "bytes": 20312,
+        "path": "code/eswv_v1_4_to_v1_5.patch",
+        "sha256": "a5608eab5bbf5be7ab66ae48c94eb8e0650c1ab133359b3e67200bf767a28969"
+      },
+      {
+        "bytes": 10926,
+        "path": "code/eswv_v1_5_to_b1_branched.patch",
+        "sha256": "c8df7168e9206700a6d467149c01aa461e23cd55e803d2065eb80c6efec11cc4"
+      },
+      {
+        "bytes": 38480,
+        "path": "code/eswv_v1_5_to_eswv_risk_v1_0.patch",
+        "sha256": "e32a87dc1088cdd1b56d94ae626a0f04afadb0734b1622fec1615edc5a3f6179"
+      },
+      {
+        "bytes": 10815,
+        "path": "code/mode50_to_eswv_v1_0.patch",
+        "sha256": "b13e6006910e97715b79be2a7b63f798cd9287ff5d8336db1126a1ede88136fb"
+      },
+      {
+        "bytes": 2518,
+        "path": "code/private_grader_permissions.py",
+        "sha256": "18a9b742c04aaf92de8389a39104f77af4cf0556ac2e7ce382c06ab2ad57493c"
+      },
+      {
+        "bytes": 68771,
+        "path": "code/sada_lean_runtime_mode50.py",
+        "sha256": "caf9fa64a495fdcd62eda10fb2bfff11ff2fbb7506d6a35f41f8f8ed4e0699a2"
+      },
+      {
+        "bytes": 72721,
+        "path": "code/sandbox_controller.py",
+        "sha256": "b1efb9fbd18ad4985719ef6cd988618d5c67d0bad2b2375286ecd9894d15e46a"
+      },
+      {
+        "bytes": 119074,
+        "path": "code/scpc_engine_mode50.py",
+        "sha256": "b1efc3f697b449ea26f1b140a14750015b7bdd0bf33bd134e90fcb39c7b257fb"
+      },
+      {
+        "bytes": 8144,
+        "path": "code/stock_baseline_to_eswv_controller.patch",
+        "sha256": "8e4fdca7d377313b837d94aaf0b22a94f9134ad4e35607697fd0d384a4532e56"
+      },
+      {
+        "bytes": 73656,
+        "path": "code/stock_to_mode50.patch",
+        "sha256": "565684b96eb5ae25a44477034c7245770ed4aaa0f20b5d5c36e13608652a832b"
+      },
+      {
+        "bytes": 472074,
+        "path": "data/eswv_checkpoint_and_probe_replay_evidence.json",
+        "sha256": "eccf75facd8d11e0b36a87143bae4ae8478cf69e740eb8ccf2f26eaaab6a5185"
+      },
+      {
+        "bytes": 13396,
+        "path": "data/eswv_risk_stage_r1_episodes.csv",
+        "sha256": "754f480b3641bcead9a71bbaeb4642f3df112974d4edd1cdf339a1e17c2834b8"
+      },
+      {
+        "bytes": 6692,
+        "path": "data/eswv_risk_stage_r1_summary.json",
+        "sha256": "32a2fb5c4816bd192531e6761946b867b3414eb94545fd4048a9323d9f1ebb5e"
+      },
+      {
+        "bytes": 1914,
+        "path": "data/eswv_risk_stage_r1_timestamps.jsonl",
+        "sha256": "e17cf4a0f0bf13720cb9afa8a2c86911e7babe60a26c6cbf82eb751e7055f978"
+      },
+      {
+        "bytes": 52652,
+        "path": "data/eswv_risk_stage_r2_episodes.csv",
+        "sha256": "d7eb90f74fe1da41860ef0a353fba6932942afa010dae84ee8f8a3296a9a6f39"
+      },
+      {
+        "bytes": 22049,
+        "path": "data/eswv_risk_stage_r2_summary.json",
+        "sha256": "a24570d618d5d7f49e54789c7286b30cc94bb591f1e4ad075d442cfe18007b3f"
+      },
+      {
+        "bytes": 1914,
+        "path": "data/eswv_risk_stage_r2_timestamps.jsonl",
+        "sha256": "7096ae9e83531ce0e489add48a46ffe912d069573432635445bc452c6cb15c53"
+      },
+      {
+        "bytes": 19822,
+        "path": "data/eswv_study_b1_episodes.csv",
+        "sha256": "8a61c11380edddca4c4c5b3805ea84ecc929df8a59c22c14f6dfc6e1646cd23a"
+      },
+      {
+        "bytes": 642,
+        "path": "data/eswv_study_b1_invariant_audit.json",
+        "sha256": "a7019eefce7f802931ee810073457c75d2e701965a6ac3e98a1e6ce88f94f70f"
+      },
+      {
+        "bytes": 193555,
+        "path": "data/eswv_study_b1_live_probes_adjudicated.json",
+        "sha256": "5cc3ca5603475bebf1f777d0e750ccf17ae419d659ade5876a625d21067da99d"
+      },
+      {
+        "bytes": 15715,
+        "path": "data/eswv_study_b1_summary.json",
+        "sha256": "e08d80c39ebafb8cc2fbe414ae2291b32960b03e47e62252145acfa58d9e78e9"
+      },
+      {
+        "bytes": 2098,
+        "path": "data/eswv_study_b1_timestamps.jsonl",
+        "sha256": "141e36c6e0dfdab73fdd27dbbee8bfbf69fe2b09c51548f562c334200411db0d"
+      },
+      {
+        "bytes": 530,
+        "path": "manifests/eswv_host_controller_manifest.json",
+        "sha256": "b0db0e3876bd9fd242b8423f2918fc8299d6f4f8847ba606678b15f2545049b3"
+      },
+      {
+        "bytes": 2232,
+        "path": "manifests/eswv_lean_v1_0_manifest.json",
+        "sha256": "bc15eb36171c614da66a32bde4dbf9ae2c4d9b7a89bbc5e7960ccbe01b848972"
+      },
+      {
+        "bytes": 2236,
+        "path": "manifests/eswv_lean_v1_1_manifest.json",
+        "sha256": "457f0cd1a310f0d1696ff0420736509e88a345ebcb1e7039b7d5cac30f1cb636"
+      },
+      {
+        "bytes": 2236,
+        "path": "manifests/eswv_lean_v1_2_manifest.json",
+        "sha256": "9255441bb500825e45927ffa591edec343ecdbb17e24f3f7aa4d1a0e3e73ba97"
+      },
+      {
+        "bytes": 2780,
+        "path": "manifests/eswv_lean_v1_3_manifest.json",
+        "sha256": "a8ff5626eca5ade77fabb19f727c82b01aa51e85c7bdfe527a00a65eddea348a"
+      },
+      {
+        "bytes": 2292,
+        "path": "manifests/eswv_lean_v1_4_manifest.json",
+        "sha256": "904f80f66da16e3077d5753624cc0e217ee988b5e92d0b1e512ba27c8a57b3f5"
+      },
+      {
+        "bytes": 2292,
+        "path": "manifests/eswv_lean_v1_5_manifest.json",
+        "sha256": "97e1afeb1d30d423f82f767e84861d236446253fc67fc06909c7b08f2e260427"
+      },
+      {
+        "bytes": 4345,
+        "path": "manifests/eswv_risk_stage_r1_dev_manifest.json",
+        "sha256": "43666f91841769778794e5b0339c2377ee6db3884a3b5e278fceffffefb5c1e2"
+      },
+      {
+        "bytes": 5796,
+        "path": "manifests/eswv_risk_stage_r2_val_manifest.json",
+        "sha256": "8ba0c128157baebbdb2d0e0e882805476082e36480a38e5f3f459361489d1aba"
+      },
+      {
+        "bytes": 2497,
+        "path": "manifests/eswv_risk_v1_0_manifest.json",
+        "sha256": "7d0dc0b7e0ae177b0da4c7002260cc67b0a5580c97e5da1f23f6ca609f005158"
+      },
+      {
+        "bytes": 4451,
+        "path": "manifests/eswv_study_b1_branched_w1_manifest.json",
+        "sha256": "8d5cc88e172f9c7cd07cf936a6569b1b0b7a41bd50408caeb7e386beaced3c2d"
+      },
+      {
+        "bytes": 2027,
+        "path": "manifests/mode50_batch_index_manifest.json",
+        "sha256": "d702a3d5b35372c5d2978af9b5c49ce8450a0af1de55cb6b4a81f22cdf166c4f"
+      },
+      {
+        "bytes": 408,
+        "path": "prices.json",
+        "sha256": "98abd91f428f7f9f06ed3e25935fe61add19991e76f79865a37efa72d30e9836"
+      },
+      {
+        "bytes": 761,
+        "path": "results/eswv-b1-noprobecode-dev-r1/summary.json",
+        "sha256": "2020a845a4c4e89bf345c4f3de5299705a34f5233781e9f4f1d64828e3c2b875"
+      },
+      {
+        "bytes": 1418,
+        "path": "results/eswv-b1-noprobecode-dev-r1/tasks.csv",
+        "sha256": "13bd5a5135df48e22b50dde16a067e06d381564b77b1ea27bbcd93dc2e3c8269"
+      },
+      {
+        "bytes": 684,
+        "path": "results/eswv-b1-noprobecode-dev-r2/summary.json",
+        "sha256": "33118e2196004358d7874a9743b9952dcc60527109d9b79ddfd9152a1cae85a6"
+      },
+      {
+        "bytes": 1400,
+        "path": "results/eswv-b1-noprobecode-dev-r2/tasks.csv",
+        "sha256": "2925c4976c8a1d2a6dd09365ad76830dff6424def4870d4a72236a00b4e66826"
+      },
+      {
+        "bytes": 668,
+        "path": "results/eswv-b1-noprobecode-dev-r3/summary.json",
+        "sha256": "0accde47d3233bade440f7092115a46825b0dc2507ba5b21014b4ea316be7192"
+      },
+      {
+        "bytes": 1391,
+        "path": "results/eswv-b1-noprobecode-dev-r3/tasks.csv",
+        "sha256": "e8450ffa88471d0210f550286d89859096c27f6397c8c3fd8d57e74169816f94"
+      },
+      {
+        "bytes": 683,
+        "path": "results/eswv-b1-screened-dev-r1/summary.json",
+        "sha256": "f3f24138782a314c01ea4cfd6bcc231b7e82eb828fb9ec7749d16813eee475c7"
+      },
+      {
+        "bytes": 1456,
+        "path": "results/eswv-b1-screened-dev-r1/tasks.csv",
+        "sha256": "3112628f863d4e2e2a97a43693044651a4541cfd06e1fa81cfdf9f33342546d9"
+      },
+      {
+        "bytes": 688,
+        "path": "results/eswv-b1-screened-dev-r2/summary.json",
+        "sha256": "05796ab95cc88517402476a1c6d6cfc1f97ddd7d11a29da5dd5af49c8d637445"
+      },
+      {
+        "bytes": 1458,
+        "path": "results/eswv-b1-screened-dev-r2/tasks.csv",
+        "sha256": "5bfda68816780c0840a218bb4fcc6286e05068504782c1e2be314393af4fb858"
+      },
+      {
+        "bytes": 681,
+        "path": "results/eswv-b1-screened-dev-r3/summary.json",
+        "sha256": "e0d0fdd1bd13df7d047718a72c9691ef6010ccd45892ded36f6c8f6a80f585f9"
+      },
+      {
+        "bytes": 1442,
+        "path": "results/eswv-b1-screened-dev-r3/tasks.csv",
+        "sha256": "39b436d441cb103848e6537ed85c92f6cec7c7051b15468e6236449741aa89b2"
+      },
+      {
+        "bytes": 681,
+        "path": "results/eswv-b1-unscreened-dev-r1/summary.json",
+        "sha256": "7de6fdc9905713d5d9b82eccf0694c8e60ce920db95817dc78eb8fb48f380c81"
+      },
+      {
+        "bytes": 1548,
+        "path": "results/eswv-b1-unscreened-dev-r1/tasks.csv",
+        "sha256": "603b37b98c4f970186fc832cfc5b18e5d08e2af14cf634c40e27143599c4ea67"
+      },
+      {
+        "bytes": 667,
+        "path": "results/eswv-b1-unscreened-dev-r2/summary.json",
+        "sha256": "bd19d0102b9bf957c857761b04444b9505f55979c784bf7000d28afc23220b42"
+      },
+      {
+        "bytes": 1529,
+        "path": "results/eswv-b1-unscreened-dev-r2/tasks.csv",
+        "sha256": "1f1bfe08e89d09a0eb9beabc63dd96e3603970eb14c948e76f466ca49b7f0775"
+      },
+      {
+        "bytes": 670,
+        "path": "results/eswv-b1-unscreened-dev-r3/summary.json",
+        "sha256": "43d3698444cbf2cf5d95406dc4f82cf511988dd56d77e612877292ee9713fb77"
+      },
+      {
+        "bytes": 1524,
+        "path": "results/eswv-b1-unscreened-dev-r3/tasks.csv",
+        "sha256": "85b05aa05e600ed790abc3fe17486cf16b3f7c55cc50e2c70298730e4a62037f"
+      },
+      {
+        "bytes": 629,
+        "path": "results/eswv-b1-w1base-r2-031/summary.json",
+        "sha256": "7922d1b4d9ee3286c5de07b4820172901a90d011041c01ecdd32ada27fa34917"
+      },
+      {
+        "bytes": 387,
+        "path": "results/eswv-b1-w1base-r2-031/tasks.csv",
+        "sha256": "38575f21a40529731cfbbd8db43d9259740bb960b5738c304140124c82cf5bb0"
+      },
+      {
+        "bytes": 670,
+        "path": "results/eswv-risk-r1-ctrl50-dev-r1/summary.json",
+        "sha256": "4f72437e8e4e146b4f54bb448608eafb3b38afca8161822ba71754bb4460fdee"
+      },
+      {
+        "bytes": 1561,
+        "path": "results/eswv-risk-r1-ctrl50-dev-r1/tasks.csv",
+        "sha256": "1a8c621307e3a03089b4bb660b88eae1a0d8764b869f3a002484acbe13e5df74"
+      },
+      {
+        "bytes": 697,
+        "path": "results/eswv-risk-r1-ctrl50-dev-r2/summary.json",
+        "sha256": "d8b12416ded8c6993a435aec6061b675277ca8baf504416c5847897b72966434"
+      },
+      {
+        "bytes": 1588,
+        "path": "results/eswv-risk-r1-ctrl50-dev-r2/tasks.csv",
+        "sha256": "3d6d0380d791ac76bb0ed30734f5482f2658a91eda9b46f67140c5255850dab2"
+      },
+      {
+        "bytes": 692,
+        "path": "results/eswv-risk-r1-ctrl50-dev-r3/summary.json",
+        "sha256": "b10da521619fc95fe95e74ff24bf42b8cba3576add80760fc91f23fdb0fce9a6"
+      },
+      {
+        "bytes": 1563,
+        "path": "results/eswv-risk-r1-ctrl50-dev-r3/tasks.csv",
+        "sha256": "4d9b0dedd17c3fb472e9729b61e05762e7d304a9065cb036f8aa2861007752ba"
+      },
+      {
+        "bytes": 612,
+        "path": "results/eswv-risk-r1-mode53-dev-r1-w1-audit/summary.json",
+        "sha256": "11b218820e2c66790e90a7ad6efa0ac416f631c44c0501cb9cbfac2a6c5b6041"
+      },
+      {
+        "bytes": 471,
+        "path": "results/eswv-risk-r1-mode53-dev-r1-w1-audit/tasks.csv",
+        "sha256": "916ccc92cdf3e44694df7b649586b68b1865a89717f9d76463326b15ac54c9ba"
+      },
+      {
+        "bytes": 684,
+        "path": "results/eswv-risk-r1-mode53-dev-r1/summary.json",
+        "sha256": "1988757298155993a985af1baf9da56cd1beca7480b4e8bfa06e15b1e4e320ef"
+      },
+      {
+        "bytes": 1579,
+        "path": "results/eswv-risk-r1-mode53-dev-r1/tasks.csv",
+        "sha256": "31e111c321c75ddf38730c1f4516a3a0a19ae8778f9c51ff107af4cbe949808d"
+      },
+      {
+        "bytes": 615,
+        "path": "results/eswv-risk-r1-mode53-dev-r2-w1-audit/summary.json",
+        "sha256": "40d03c773cdec6c69c1e533d45a15a6430ec70856169ae2129c28decdd6c7acf"
+      },
+      {
+        "bytes": 664,
+        "path": "results/eswv-risk-r1-mode53-dev-r2-w1-audit/tasks.csv",
+        "sha256": "fa0789d444043ce0da44e8c52596d6722e8db01a2570c72e47e0fb60ecaf740c"
+      },
+      {
+        "bytes": 669,
+        "path": "results/eswv-risk-r1-mode53-dev-r2/summary.json",
+        "sha256": "18a50c9cc854d23232ba612490a643d23cc6c4eb8ecf984976d6eaa84049fc35"
+      },
+      {
+        "bytes": 1588,
+        "path": "results/eswv-risk-r1-mode53-dev-r2/tasks.csv",
+        "sha256": "71f068fc5697c81805eb32a2dc808e85e1e3092a11913731243fa524e2a09615"
+      },
+      {
+        "bytes": 612,
+        "path": "results/eswv-risk-r1-mode53-dev-r3-w1-audit/summary.json",
+        "sha256": "e82b17e5f2105b1e5b2a7d2b30f4290b2585a27b3a7bced519fe00016bad97fe"
+      },
+      {
+        "bytes": 450,
+        "path": "results/eswv-risk-r1-mode53-dev-r3-w1-audit/tasks.csv",
+        "sha256": "75df742cbc96655f7c8a3410f0dd68fbb4cfd27699b3cf68c9de86667f6cb4fb"
+      },
+      {
+        "bytes": 681,
+        "path": "results/eswv-risk-r1-mode53-dev-r3/summary.json",
+        "sha256": "8623964c59641067cc82d5ded50bb4d0190f06cea43cd490441cca71d46fef5e"
+      },
+      {
+        "bytes": 1555,
+        "path": "results/eswv-risk-r1-mode53-dev-r3/tasks.csv",
+        "sha256": "10babbb009499549f1e6b65f7fe960261bd718f55b2181d620bd21b479d9a345"
+      },
+      {
+        "bytes": 675,
+        "path": "results/eswv-risk-r2-ctrl50-val-r1/summary.json",
+        "sha256": "e41a1c48535e10b0bc234ade8b609e50fcbdf66c104609a245baa12bbc2ef8e5"
+      },
+      {
+        "bytes": 5344,
+        "path": "results/eswv-risk-r2-ctrl50-val-r1/tasks.csv",
+        "sha256": "307c6da3a5cf4e6aa9e9bc6e3478c46bcb51741cf16f74acbc4e8e1b532f928c"
+      },
+      {
+        "bytes": 800,
+        "path": "results/eswv-risk-r2-ctrl50-val-r2/summary.json",
+        "sha256": "f98c7062a1bb05ba85d6ffded4ec54512f7ffa590f22b92f8cfac68c1217b01c"
+      },
+      {
+        "bytes": 5258,
+        "path": "results/eswv-risk-r2-ctrl50-val-r2/tasks.csv",
+        "sha256": "328a524b0234eae0d9547c9490e2c824b8a54e3963eae044c957c0d538d31fba"
+      },
+      {
+        "bytes": 676,
+        "path": "results/eswv-risk-r2-ctrl50-val-r3/summary.json",
+        "sha256": "6fa648301c40fbf87eddd850b334d03d202e65ea0cbc2dc85a8678fd4f16d713"
+      },
+      {
+        "bytes": 5306,
+        "path": "results/eswv-risk-r2-ctrl50-val-r3/tasks.csv",
+        "sha256": "8878f10d31230822ab2e2f871d121c8d15ea6fc446824440515f33f6bb612126"
+      },
+      {
+        "bytes": 689,
+        "path": "results/eswv-risk-r2-mode53-val-r1-w1-audit/summary.json",
+        "sha256": "02f47c305823c4e8d0e4693952dcf89578162db24986f4b15e50c3dcc151dff6"
+      },
+      {
+        "bytes": 980,
+        "path": "results/eswv-risk-r2-mode53-val-r1-w1-audit/tasks.csv",
+        "sha256": "6f9fbd6ff9af0b2fadb15934cc54559f25766251ac2ee7f8fdbba7a9c0f72091"
+      },
+      {
+        "bytes": 675,
+        "path": "results/eswv-risk-r2-mode53-val-r1/summary.json",
+        "sha256": "fccb840d41dc2a6ced6ce88322882bd8f0bcc74d73df0c077407a6bbb1078630"
+      },
+      {
+        "bytes": 5399,
+        "path": "results/eswv-risk-r2-mode53-val-r1/tasks.csv",
+        "sha256": "d3096cbb857076c69aff30401eafc80050501e6abefc800b956958f751bc438b"
+      },
+      {
+        "bytes": 647,
+        "path": "results/eswv-risk-r2-mode53-val-r2-w1-audit/summary.json",
+        "sha256": "dbec57fd9f4f750919ce9310593ed831f548d5384f17c94bd92934e6f2d1991e"
+      },
+      {
+        "bytes": 927,
+        "path": "results/eswv-risk-r2-mode53-val-r2-w1-audit/tasks.csv",
+        "sha256": "44349faddc53c422258a256cc82aa87111b557d9e07e109948ff4bc0240ce207"
+      },
+      {
+        "bytes": 674,
+        "path": "results/eswv-risk-r2-mode53-val-r2/summary.json",
+        "sha256": "245ced6118231ddde03ef52b104a36151b4bec68772360bc8235d810edb30b1c"
+      },
+      {
+        "bytes": 5317,
+        "path": "results/eswv-risk-r2-mode53-val-r2/tasks.csv",
+        "sha256": "138eb63f60cdb21a0e4102d2891fa439ed2ecf0bf6ea357eba1f50c95388c435"
+      },
+      {
+        "bytes": 664,
+        "path": "results/eswv-risk-r2-mode53-val-r3-w1-audit/summary.json",
+        "sha256": "79cc66c0ab940fe08ca2865253c734117d1045a05992067e72e8d2078649bde7"
+      },
+      {
+        "bytes": 812,
+        "path": "results/eswv-risk-r2-mode53-val-r3-w1-audit/tasks.csv",
+        "sha256": "50b24960bb696d0ed0af5a4883775417c4396576f619262ba9bd18d59e649633"
+      },
+      {
+        "bytes": 678,
+        "path": "results/eswv-risk-r2-mode53-val-r3/summary.json",
+        "sha256": "f740b35433719688e1708c3dcb47c60fb52ce5ea0419bada27c73ee0352716a4"
+      },
+      {
+        "bytes": 5393,
+        "path": "results/eswv-risk-r2-mode53-val-r3/tasks.csv",
+        "sha256": "578008e3efdbe23ca788b740562307454cd8e835dfec869de05ffaa457b70c30"
+      },
+      {
+        "bytes": 50407,
+        "path": "supplement/figure-1-branched-w1-and-probe-adjudication.png",
+        "sha256": "99ddcd82a7c259bf06535376c9932dc2ad95367dd610a89dc4147b1cd791b2ff"
+      },
+      {
+        "bytes": 41419,
+        "path": "supplement/figure-2-deferral-and-presentation-architecture.png",
+        "sha256": "37bcce381a6197c2b63c896f5581cca69aae0f3d2d49602b760ada47471098f3"
+      },
+      {
+        "bytes": 37697,
+        "path": "supplement/figure-3-complete-policy-blocks-and-trajectories.png",
+        "sha256": "64a0453cbbd9302251dc7c6c0fd57ee1761fb99fa2c2fd8cba5296b725c9bf32"
+      },
+      {
+        "bytes": 53744,
+        "path": "supplement/figure-4-performance-cost-frontier.png",
+        "sha256": "1919223d9d8b1e2b36a771cdb47d7a95e9c2a16aefdb70af89613d66aa9356ac"
+      }
+    ],
+    "name": "agent_harness_5_v1_5d1161465ec8b2e9.zip",
+    "sha256": "5d1161465ec8b2e93d1a188a6c7fc1aa139e1bbfbebc1d63dff9af6ea428b882",
+    "source_url": "https://rstation.ai/api/v1/papers/agent_harness_5/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261114T201457096346Z/agent_harness_5_v1_5d1161465ec8b2e9.zip"
+  },
+  "tags": [
+    "agent harnesses",
+    "executable verification",
+    "selective deferral",
+    "counterfactual ablation",
+    "cost accounting"
+  ],
+  "title": "Isolating Probe Screening, Test-Code Visibility, and Pre-Verifier Deferral in an LLM Agent Harness: Common-Draft Counterfactuals and Cross-Split Cost Limits",
+  "version": 1
+}

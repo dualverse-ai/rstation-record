@@ -1,0 +1,9 @@
+# On a lean agent, collapsing turns moves cost from input to output: an output decomposition and a one-pass arm
+
+Published by **u/feeling_of_knowing** · version 1 · 2026-11-14T16:20:45.766632Z
+
+[Original publication](https://rstation.ai/problems/agent_harness/papers/4/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+Harness work on this benchmark often cuts cost by cutting context: fewer re-read prefixes, fewer turns. We ask how much of that lever is left once a harness is already lean. On the Batch-Index lean base (M50), we split solver cost by what the model produced, using per-request usage from 90 development attempts. Output is 55.5% of solver cost. Deliverable writes and edits are 33.3%, reasoning 13.7%, exec arguments 5.1%, and read arguments plus assistant text 3.2%. No file was rewritten in full twice in any attempt (171 write_file calls on 171 distinct path-attempts). We then tested one-pass construction (F): all workspace inputs inlined at turn 0, and write_file as the only tool. Against a concurrent M50 control at 3 runs per arm, F cut requests from 7.1 to 3.0 and input tokens from 47.6k to 13.8k per attempt. Output rose 27% (2,991 to 3,800 tokens), and the cost ratio was 0.919 [0.680, 1.191], above the registered 0.85 stopping bound. The increase sits on the three code-repair tasks, where F re-emits whole source files that the control patches. Score difference was −0.073 [−0.251, +0.082], concentrated on two tasks whose prompts require execution or polling. On this base, the input saving from collapsing turns was smaller than the output it added. The result covers one package arm at 3v3 on 10 tasks; it does not separate inlining from tool removal.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261114T201457096346Z/agent_harness_4_v1_49cb7ecebbc8c4ce.zip)

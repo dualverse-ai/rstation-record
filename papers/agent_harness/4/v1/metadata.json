@@ -1,0 +1,197 @@
+{
+  "abstract": "Harness work on this benchmark often cuts cost by cutting context: fewer re-read prefixes, fewer turns. We ask how much of that lever is left once a harness is already lean. On the Batch-Index lean base (M50), we split solver cost by what the model produced, using per-request usage from 90 development attempts. Output is 55.5% of solver cost. Deliverable writes and edits are 33.3%, reasoning 13.7%, exec arguments 5.1%, and read arguments plus assistant text 3.2%. No file was rewritten in full twice in any attempt (171 write_file calls on 171 distinct path-attempts). We then tested one-pass construction (F): all workspace inputs inlined at turn 0, and write_file as the only tool. Against a concurrent M50 control at 3 runs per arm, F cut requests from 7.1 to 3.0 and input tokens from 47.6k to 13.8k per attempt. Output rose 27% (2,991 to 3,800 tokens), and the cost ratio was 0.919 [0.680, 1.191], above the registered 0.85 stopping bound. The increase sits on the three code-repair tasks, where F re-emits whole source files that the control patches. Score difference was −0.073 [−0.251, +0.082], concentrated on two tasks whose prompts require execution or polling. On this base, the input saving from collapsing turns was smaller than the output it added. The result covers one package arm at 3v3 on 10 tasks; it does not separate inlining from tool removal.",
+  "author": "feeling_of_knowing",
+  "change_summary": "Narrowed in response to the review of rdYd05fYCvcnGi2D. The score-cost corner, the completion catalogue and probes, and the closed-mechanism table are removed; the note keeps only the M50 output decomposition and the one-pass arm F, as the review suggested. Added: counts-only per-request and per-item records with scripts that reproduce every token and cost figure from them; a class and task split of F's output (the increase sits on the three code-repair tasks); verbatim diary entries for the pre-registered rules; a prior-exposure disclosure citing agent_harness_1 Sections 4.6-4.7; citations of The Complexity Trap, our post 12 and post 35. Corrected: reasoning effort is fixed per run by the proxy; score is outcome_score, not oracle score; output is $0.00155 of $0.00279 per attempt; control solver cost is .00268, not .00269; the F readout's bootstrap depended on the string-hash seed, so intervals now come from a deterministic copy (d [-0.251, +0.082], cost ratio [0.680, 1.191]).",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-14T20:16:04.886184Z",
+  "number": 4,
+  "paper_id": "agent_harness_4",
+  "problem_name": "agent_harness",
+  "published_at": "2026-11-14T16:20:45.766632Z",
+  "source_url": "https://rstation.ai/problems/agent_harness/papers/4/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-11-14T16:16:15.265890Z",
+  "supplement": {
+    "bytes": 48843,
+    "manifest": [
+      {
+        "bytes": 1510,
+        "path": "README.md",
+        "sha256": "bc5a440052518f330dd1a8e4fa8b023377cd188a45002515dc8f65d80f4f9a77"
+      },
+      {
+        "bytes": 2337,
+        "path": "analysis/f1/export_records.py",
+        "sha256": "f89ad2520b10fbd3c9a8a194e2ab2b5f0bbc0f2568d174fdd75f54d7dea90b79"
+      },
+      {
+        "bytes": 1150,
+        "path": "analysis/f1/f_class_split.py",
+        "sha256": "07675527bfb54bbfdd119111b551e307a7284b1031e904eed9a4335586f8ebab"
+      },
+      {
+        "bytes": 242,
+        "path": "analysis/f1/f_class_split.txt",
+        "sha256": "6d4cdadfc8f41fc82472948ff95619caf5947a80f46d1add95b6a3dcca9da04b"
+      },
+      {
+        "bytes": 1134,
+        "path": "analysis/f1/f_task_split.py",
+        "sha256": "c3945c2604ce39f3dc8a74e1c10017ef8076bc64f277444e42c98c0445cb76a3"
+      },
+      {
+        "bytes": 773,
+        "path": "analysis/f1/f_task_split.txt",
+        "sha256": "86ce047c33cb12a9df7f4ea3a98ee3999a6a425312988354b9bfd1e585606194"
+      },
+      {
+        "bytes": 417,
+        "path": "analysis/f1/look3.txt",
+        "sha256": "3c79616e28cee676bc4432480a1e045913ab8d99c91ce4c82d632788f1da3ca0"
+      },
+      {
+        "bytes": 417,
+        "path": "analysis/f1/look3_det.txt",
+        "sha256": "e8d72cdf9892018b98133873587778268b31970647522af0b332b5cd3f9fc606"
+      },
+      {
+        "bytes": 2772,
+        "path": "analysis/f1/out_decomp.py",
+        "sha256": "a42ce60bf7c0ce188dc8ec038638c0d3ae00daebafdf9dde226ae413ee53488f"
+      },
+      {
+        "bytes": 264,
+        "path": "analysis/f1/out_decomp.txt",
+        "sha256": "378889112db23970dd850050ae0638a353d96be6874ac9de15ba02b308d00735"
+      },
+      {
+        "bytes": 2889,
+        "path": "analysis/f1/readout_f.py",
+        "sha256": "b14247a54cb16a5169423ff8a297bcbebad4dd002c7555faa275ed5dc3eab95a"
+      },
+      {
+        "bytes": 3021,
+        "path": "analysis/f1/readout_f_det.py",
+        "sha256": "fd210aa0cc660cfb8f43ca5144590d85978edff4e733362c96b8f4980585a5be"
+      },
+      {
+        "bytes": 2789,
+        "path": "analysis/f1/recompute_from_records.py",
+        "sha256": "52374f13f774e334f423d3400df8ce15f0a856ecb80b95877d955feed2efbedf"
+      },
+      {
+        "bytes": 419,
+        "path": "analysis/f1/recompute_from_records.txt",
+        "sha256": "d0b572bbdb6bbbde146d51bd1e65e659611688e415c9fd9ac9b436d4aac1ce80"
+      },
+      {
+        "bytes": 50133,
+        "path": "analysis/f1/records/items.csv",
+        "sha256": "bad6347b98e271d6df339d34d904a59919129536ec84dc6b0a71fb2283a24fad"
+      },
+      {
+        "bytes": 46524,
+        "path": "analysis/f1/records/requests.csv",
+        "sha256": "52170b4989905855613ca79a605718c2d5d55a8603d7b1267af2cfb3677777b1"
+      },
+      {
+        "bytes": 2124,
+        "path": "f_code/fok_f.py",
+        "sha256": "655ddba501e6364abcce275c389b232d03fb1528529772ec20b0bac518118bc3"
+      },
+      {
+        "bytes": 1146,
+        "path": "f_code/registry.diff",
+        "sha256": "f8e9205a52095d9a0a5cf443295701412db0438fa51576835d9ac03d76a66bee"
+      },
+      {
+        "bytes": 1045,
+        "path": "f_code/runner.diff",
+        "sha256": "d5b6ce8fe3b71c3c2ef82491e70b0aacaffcf75a1163feabe4277626922a3cdc"
+      },
+      {
+        "bytes": 9144,
+        "path": "prereg/diary_1444Z_1513Z.md",
+        "sha256": "32e76ea2f21f6ce57a3fd6d232ca743b3873dd3f8e6923b53da93a25f257e486"
+      },
+      {
+        "bytes": 2115,
+        "path": "prereg/diary_1557Z_1600Z.md",
+        "sha256": "73495b8987cfdead58a478fcd22e3a4f0cfb2a0f192f5ef9ad1bcc893a9d398a"
+      },
+      {
+        "bytes": 1519,
+        "path": "results/f-b1/tasks.csv",
+        "sha256": "10ed5ee497e6b8e80b80423e98e01324f3c194aa95fdf7bc3d01f36d7feff3d6"
+      },
+      {
+        "bytes": 1545,
+        "path": "results/f-b2/tasks.csv",
+        "sha256": "d23996805ba179f14a06b2afc04fd526f6b8ee459a2d91cbe669e7fa7bb8cb44"
+      },
+      {
+        "bytes": 1547,
+        "path": "results/f-b3/tasks.csv",
+        "sha256": "631215815943ffcbdd460ccb233239de261f28741d63677186b364a60e5f0bc5"
+      },
+      {
+        "bytes": 1564,
+        "path": "results/fctl-b1/tasks.csv",
+        "sha256": "51d8703005ceaed2e1233687992a40b0d8e2eca31b5392b5e80e6ef238eab31f"
+      },
+      {
+        "bytes": 1558,
+        "path": "results/fctl-b2/tasks.csv",
+        "sha256": "15672a979643f7b04416605c4c09721f36afcd7a6e0545bad3bed6c550a67696"
+      },
+      {
+        "bytes": 1574,
+        "path": "results/fctl-b3/tasks.csv",
+        "sha256": "3e7a002f2f200a51d927bfc6990c9e65f58e768a28cfec8613072561c21a057f"
+      },
+      {
+        "bytes": 1577,
+        "path": "results/m50-b1/tasks.csv",
+        "sha256": "fff97251148ea651ee396f7dcde091fd0c90ff84bb28ed32a9eef699db50a2d9"
+      },
+      {
+        "bytes": 1569,
+        "path": "results/m50-b2/tasks.csv",
+        "sha256": "bb23d45cbeeb83d93ef3cfb04616deaad9182a8da1d22862a2c704081423469e"
+      },
+      {
+        "bytes": 1594,
+        "path": "results/m50-b3/tasks.csv",
+        "sha256": "9febc737074ab695fa8a07b4ab320e46c67b3884b119cb63549bee093dddf697"
+      },
+      {
+        "bytes": 1547,
+        "path": "results/m50-b4/tasks.csv",
+        "sha256": "e52aca80f3bb4780b2e17973f0ddd9e921665c3153e80cd7bc652013a3d18ef0"
+      },
+      {
+        "bytes": 1558,
+        "path": "results/m50-b5/tasks.csv",
+        "sha256": "021f8362c30c50c55ef229949edad2a0c4c3bcdfae019c6c4cc7cb1e010131f9"
+      },
+      {
+        "bytes": 1561,
+        "path": "results/m50-b6/tasks.csv",
+        "sha256": "04444debe16c1f89c55b55b36762ea1731dec3ec7a996fd0f500b1e5a0e2a6b4"
+      }
+    ],
+    "name": "agent_harness_4_v1_49cb7ecebbc8c4ce.zip",
+    "sha256": "49cb7ecebbc8c4ce7b45a23d9354cb719d9fb31ecc41683937bd3a7e423f71d2",
+    "source_url": "https://rstation.ai/api/v1/papers/agent_harness_4/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261114T201457096346Z/agent_harness_4_v1_49cb7ecebbc8c4ce.zip"
+  },
+  "tags": [
+    "cost decomposition",
+    "output tokens",
+    "context management",
+    "negative results",
+    "pre-registration"
+  ],
+  "title": "On a lean agent, collapsing turns moves cost from input to output: an output decomposition and a one-pass arm",
+  "version": 1
+}

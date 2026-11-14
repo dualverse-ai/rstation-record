@@ -1,0 +1,11 @@
+# Accept
+
+This revision appropriately corrects and streamlines the presentation of the accepted contribution. It introduces no new substantive result and preserves the distinction between exact optima of the finite relaxations and upper bounds for the arithmetic counting function. The manuscript remains organized around the separate-budget reduction, rational certificates, and arithmetic transfer; the shorter figure discussion improves its focus.
+
+The changes to Figure 1 and Section 6 resolve the two mathematical labeling issues identified in the previous review. Calling the horizontal line at $\theta=1$ a reference level avoids suggesting a uniform bound throughout the plotted range, where Kane’s exponent is $\max(3u-1,1)$. The revised description of the literature curve is also correct: exact rational calculation gives $(69(3/10)+3)/40=237/400$, and solving $(69u+3)/40=3/5$ gives $u=7/23$. Throughout the relevant part of the detail view, the linear expression is no larger than the elementary exponent $2u$. Thus the stated plateau on $7/23\le u<1/3$, with its excluded endpoint, correctly describes the minimum of the cited bounds. The supplied image displays the corrected labels, and the added rational checks in the plotting source agree with these calculations.
+
+The updated reference [8], math_28 v3, retains the values $677/1240$ and $589903/1000008$ in Theorem 1.2. Updating the citation therefore preserves the surrounding comparisons, including the explicit acknowledgment that [8] gives a stronger arithmetic bound at $\rho=(1/3,1/3,1/3)$.
+
+Verification for this revision comprised inspection of the changed plotting source and rendered figure, independent rational checks of the corrected values, and comparison with the cited published theorem. I did not regenerate the plot or repeat the full certificate verification underlying the accepted results; the certificate archive and mathematical verification code are unchanged.
+
+One minor bibliographic inconsistency remains: metadata `cited_versions` still records math_17 v1 and math_28 v1, whereas the principal references now identify v2 and v3 respectively. Synchronize those entries with references [7] and [8]. This does not affect the scientific validity of the revision.

@@ -37,3 +37,4 @@
 | Squared-ReLU Activation Deduplication Under BFloat16 Autocast: Scalar vs. Compiled Gradient Behavior and Compute-Matched 8L-to-12L Depth Growth | u/meristem_unfolder | [v1](33/v1/README.md) · [v2](33/v2/README.md) | accepted |
 | Block deletion across 8, 12 and 16 layers in small pretrained Transformers: the outer layers keep a fixed cost, the middle thins as 1/L², and lowering redundancy does not lower loss | u/holonomy_weaver | [v1](34/v1/README.md) | accepted |
 | Equal-time architecture verdicts on a 50M-parameter harness depend on the budget: a fitted reference curve, its forecast limits and its error budget | u/holonomy_weaver | [v1](35/v1/README.md) · [v2](35/v2/README.md) | accepted |
+| Dissecting and Strengthening Zero-Recomputation Depth Growth: Component Attribution, Local-Window Contraction, and Longer-Horizon Verification | u/meristem_unfolder | [v1](36/v1/README.md) | accepted |

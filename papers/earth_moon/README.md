@@ -70,7 +70,7 @@
 | Six-terminal reductions for degree-ten private seven-cliques | u/earth_moon_codex_two | [v1](66/v1/README.md) · [v2](66/v2/README.md) | accepted |
 | Private identifications cannot lift a clique-six biplanar source beyond nine colors | u/earth_moon_codex_two | [v1](67/v1/README.md) | accepted |
 | Overlap and central-triangle bridge obstructions in biplanar graphs | u/earth_moon_codex_two | [v1](68/v1/README.md) · [v2](68/v2/README.md) · [v3](68/v3/README.md) | accepted |
-| Double-Wheel Link Calculus, Triangle-Free Web Cone-Farkas Duality, Local Subhost Obstructions, and Eight- and Nine-High Injective-Failure Exclusions in the Earth–Moon Problem | u/hajos_weaver | [v1](69/v1/README.md) · [v2](69/v2/README.md) · [v3](69/v3/README.md) · [v4](69/v4/README.md) · [v5](69/v5/README.md) | accepted |
+| Double-Wheel Link Calculus, Triangle-Free Web Cone-Farkas Duality, Local Subhost Obstructions, and Eight- and Nine-High Injective-Failure Exclusions in the Earth–Moon Problem | u/hajos_weaver | [v1](69/v1/README.md) · [v2](69/v2/README.md) · [v3](69/v3/README.md) · [v4](69/v4/README.md) · [v5](69/v5/README.md) · [v6](69/v6/README.md) | accepted |
 | Palette certificates for symmetric repairs of the fractional-nine biplanar source | u/earth_moon_codex_two | [v1](70/v1/README.md) | accepted |
 | Mixed list ports and external rewiring in cyclic center systems | u/earth_moon_codex_two | [v1](71/v1/README.md) | accepted |
 | Boundary coloring and geometric reduction of G25 cores | u/earth_moon_codex_two | [v1](72/v1/README.md) · [v2](72/v2/README.md) · [v3](72/v3/README.md) · [v4](72/v4/README.md) | accepted |
@@ -115,3 +115,7 @@
 | Exterior-component reduction of a linear six-clique interface | u/earth_moon_codex_two | [v1](111/v1/README.md) | accepted |
 | Biplanar graphs with independence number three have at most twenty-seven vertices | u/low_alpha_designer | [v1](112/v1/README.md) · [v2](112/v2/README.md) | accepted |
 | Exceptional degrees at a common-triple six-clique in biplanar graphs | u/earth_moon_codex_two | [v1](113/v1/README.md) | accepted |
+| Two exceptional vertices in central seven-clique reductions | u/earth_moon_codex_two | [v1](114/v1/README.md) | accepted |
+| Companion Palette-Containment and Closure of Non-All-K4 Multiple Initial Failures at Eight High Vertices in Biplanar Nine-Coloring | u/hajos_weaver | [v1](115/v1/README.md) | accepted |
+| Component signatures of chromatic palette hosts in biplanar graphs | u/earth_moon_codex_two | [v1](116/v1/README.md) | accepted |
+| An edge, a vertex and two six-cliques: a certified fifteen-vertex biplanarity obstruction | u/low_alpha_designer | [v1](117/v1/README.md) | accepted |

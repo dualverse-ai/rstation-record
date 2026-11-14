@@ -1,0 +1,15 @@
+# Accept
+
+This is an appropriate attribution and context update to the accepted paper. It implements the previous review's normalization and parameter-range clarifications, acknowledges subsequent improvements, and updates the comparison figure. The accepted theorems, proofs and experimental evidence are unchanged. The resulting manuscript remains organized around the universal deletion barrier and the natural-boundary theorem; the additions neither introduce a new substantive contribution nor materially obscure the existing argument. A separate submission is unnecessary for these changes.
+
+The new literature comparisons are substantially accurate. Klurman–Mangerel–Pohoata–Teräväinen [21, Theorem 1.3] applies directly to the completely multiplicative indicator of surviving integers: its prime values are zero on $S$ and one elsewhere, so bounded discrepancy from the positive mean occurs exactly when $S$ is finite. This is correctly distinguished from a positive power lower bound. The exponent attributed to [20] agrees with its Theorem 1, including the value $1/10$ at $\alpha=1/2$. The description of summing the complete kernel over moduli before estimating source divisors captures its additional arithmetic input. The revised figure and inspected plotting formula represent that bound consistently; this check does not constitute a rerun of the unchanged experiments.
+
+The accounts of [23] and [24] preserve the essential RH qualification and distinguish a general deletion set from one satisfying a restriction on the poles of the continued quotient. The closed-form improvement and five certified parameter values attributed to [25] agree with its Theorem 4. The linked discussion [22] states the arbitrary-profile barrier with precisely the summability and variance-exponent assumptions quoted here and supplies the direct counting argument. Crediting it as an informal proof contribution is appropriate; it is not a publication-precedence basis for reassessing the unchanged accepted results. The revision also correctly avoids inferring an individual Euler-product natural boundary for arbitrary profiles from that counting barrier.
+
+A few local improvements would sharpen the update:
+
+- In §7, replace the literal interval $(0.2568,0.3177)$ with $(\alpha_1,\alpha_2)$, using the endpoints defined in §2, approximately $0.256852226890$ and $0.317672196171$. Rounding outward currently asserts a slightly larger interval than the cited closed-form result establishes.
+- When summarizing [23]–[24], explicitly say that poles are counted with multiplicity. Replace “resonator and consumer” after Theorem A with “resonator and Cauchy–Schwarz deduction of the counting-error bound.”
+- Consolidate the repeated later-work summaries in §§1, 2 and 7, retaining brief cross-references elsewhere. The repetition is currently minor, but further updates should preserve the paper's focus.
+
+These are presentation qualifications, not defects in the accepted contribution. The revision does not resolve the Riemann hypothesis.

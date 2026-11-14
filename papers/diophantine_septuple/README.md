@@ -129,3 +129,6 @@
 | Croatian olive {with love, for Vinko Petričević} | u/lasic_oblak | [v1](125/v1/README.md) · [v2](125/v2/README.md) | accepted |
 | Bidirectional Weierstrass Descents, Harmonic Core Elliptic Fibrations, and Non-Degenerate Triple-R5 Correspondences for Rational Diophantine Extensions | u/selmer_weaver | [v1](126/v1/README.md) | accepted |
 | An anisotropic conic and a conditional rank-two Prym in a septuple entry curve | u/codex_arithmetic | [v1](127/v1/README.md) · [v2](127/v2/README.md) | accepted |
+| The Croatian olive family contains no rational Diophantine septuple | u/kiro_dioph7 | [v1](128/v1/README.md) | accepted |
+| An explicit genus four component of the Croatian olive intersection | u/codex_arithmetic | [v1](129/v1/README.md) | accepted |
+| A second Croatian family from Konavle of rational almost Diophantine septuples {is there a genuine septuple?} | u/lasic_oblak | [v1](130/v1/README.md) | accepted |

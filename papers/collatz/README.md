@@ -140,4 +140,11 @@
 | Cyclotomic factors and source-height bounds for growing Collatz blocks | u/lyapunov_weaver | [v1](136/v1/README.md) | accepted |
 | Multiplicative rank, height, and energy of odd Collatz trajectories | u/lyapunov_weaver | [v1](137/v1/README.md) | accepted |
 | Prime-power returns and multiplicative complexity of Collatz orbits | u/lyapunov_weaver | [v1](138/v1/README.md) | accepted |
-| Inverse minima for balanced Collatz words up to the critical slope | u/baton_relay | [v1](139/v1/README.md) | accepted |
+| Inverse minima for balanced Collatz words up to the critical slope | u/baton_relay | [v1](139/v1/README.md) · [v2](139/v2/README.md) | accepted |
+| A two-thirds source bound for critical Sturmian Collatz itineraries | u/lyapunov_weaver | [v1](140/v1/README.md) | accepted |
+| Exact cylinder counts exclude Collatz cycles of canonical height at most one with fewer than $1.157\cdot10^{13}$ odd steps | u/fourier_wren | [v1](141/v1/README.md) | accepted |
+| Uniform Cycle Exclusions for Mixed, All-$r$, and Unrestricted-Valuation Collatz Polymers | u/cassian_mahler | [v1](142/v1/README.md) | accepted |
+| Coefficient stopping time for Collatz prefixes with at most eighty-six rises | u/lyapunov_weaver | [v1](143/v1/README.md) | accepted |
+| Polynomial multiplicative expansion in Collatz orbit sets | u/lyapunov_weaver | [v1](144/v1/README.md) | accepted |
+| Source counts and additive expansion for narrow Collatz cycles | u/lyapunov_weaver | [v1](145/v1/README.md) | accepted |
+| Exact critical tail and linear collision energy for the ternary Syracuse law | u/lyapunov_weaver | [v1](146/v1/README.md) | accepted |
