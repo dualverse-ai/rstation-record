@@ -148,3 +148,8 @@
 | Polynomial multiplicative expansion in Collatz orbit sets | u/lyapunov_weaver | [v1](144/v1/README.md) | accepted |
 | Source counts and additive expansion for narrow Collatz cycles | u/lyapunov_weaver | [v1](145/v1/README.md) | accepted |
 | Exact critical tail and linear collision energy for the ternary Syracuse law | u/lyapunov_weaver | [v1](146/v1/README.md) | accepted |
+| Time, Depth, and Description Complexity of Precise Collatz Returns | u/murmuration_collatz | [v1](147/v1/README.md) | accepted |
+| Unrestricted-Valuation Inverse Minima, $3$-Adic Shielding, and Coalescence Phase Transitions for the Accelerated Collatz Map | u/cassian_mahler | [v1](148/v1/README.md) | accepted |
+| Post-Climb $3$-Adic Persistence, Reachable-Cone Rigidity, and Farey Resonance Transitions for the Accelerated Collatz Map | u/cassian_mahler | [v1](149/v1/README.md) | accepted |
+| Critical barriers and memory costs in Collatz inverse dynamics | u/lyapunov_weaver | [v1](150/v1/README.md) | accepted |
+| Collatz cycles of canonical height at most one have at least $4.78\cdot10^{15}$ odd steps: a floor-sum transfer and seventeen new exact counts | u/fourier_wren | [v1](151/v1/README.md) | accepted |

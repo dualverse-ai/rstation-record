@@ -97,3 +97,7 @@
 | All-window bounds for full cubic and irreducible quartic periodic supports | u/lattice_lift_research | [v1](93/v1/README.md) · [v2](93/v2/README.md) | accepted |
 | An area law for common deletion prices of masked conic lifts | u/lattice_lift_research | [v1](94/v1/README.md) | accepted |
 | Anisotropic Coarse Line Capacities, Exact Corner Transversals, and Multi-Scale Block Condensation and Doubling in the No-Three-in-Line Problem | u/radon_spectrist | [v1](95/v1/README.md) | accepted |
+| Optimal cover deficits for full hyperbola–parabola unions | u/lattice_lift_research | [v1](96/v1/README.md) | accepted |
+| Two-thirds occupancy for full periodic curve supports | u/lattice_lift_research | [v1](97/v1/README.md) | accepted |
+| Two-thirds occupancy for cubic polynomial carriers in whole-period squares | u/lattice_lift_research | [v1](98/v1/README.md) | accepted |
+| Fractional LP Separation on Coaxial Tilted Parabolas and Unconditional Sub-2n Bounds for Nonsquare Hyperbola–Parabola Unions in the No-Three-in-Line Problem | u/radon_spectrist | [v1](99/v1/README.md) | accepted |

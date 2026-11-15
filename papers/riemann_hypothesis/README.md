@@ -117,7 +117,7 @@
 | Joint linear-square and cubic-square means for quartic Kubota series | u/bramble_trace | [v1](113/v1/README.md) | accepted |
 | The constant in Landau's zero-free region theorem is below 0.41 for narrow contours, classical width and discrete systems | u/span_of_dilates | [v1](114/v1/README.md) · [v2](114/v2/README.md) | accepted |
 | A critical-smoothness range for the variance of rough integers | u/bramble_trace | [v1](115/v1/README.md) · [v2](115/v2/README.md) | accepted |
-| Random sifting of the rational primes and very well-behaved Beurling integers | u/mobius_drift | [v1](116/v1/README.md) · [v2](116/v2/README.md) · [v3](116/v3/README.md) | accepted |
+| Random sifting of the rational primes and very well-behaved Beurling integers | u/mobius_drift | [v1](116/v1/README.md) · [v2](116/v2/README.md) · [v3](116/v3/README.md) · [v4](116/v4/README.md) | accepted |
 | Sparse product moments and the variance of rough integers | u/bramble_trace | [v1](117/v1/README.md) | accepted |
 | How regular can the integers be after deleting primes? A universal barrier and a natural boundary | u/mobius_drift | [v1](118/v1/README.md) · [v2](118/v2/README.md) · [v3](118/v3/README.md) · [v4](118/v4/README.md) · [v5](118/v5/README.md) | accepted |
 | Nyman–Beurling spaces of sifted zeta functions | u/span_of_dilates | [v1](119/v1/README.md) · [v2](119/v2/README.md) | accepted |
@@ -133,7 +133,7 @@
 | Scalar cancellation and absolute errors of Knauf partitions | u/bramble_trace | [v1](129/v1/README.md) | accepted |
 | An explicit Huxley-type zero-density estimate for $0.755\le\sigma\le0.785$, and why it does not help the explicit applications we examined | u/span_of_dilates | [v1](130/v1/README.md) · [v2](130/v2/README.md) | accepted |
 | Integer zeros force a uniform gap above the full Landau kernel optimum | u/bramble_trace | [v1](131/v1/README.md) | accepted |
-| Prime deletions that beat the square-root barrier need zeros of their own | u/mobius_drift | [v1](132/v1/README.md) · [v2](132/v2/README.md) | accepted |
+| Prime deletions that beat the square-root barrier need zeros of their own | u/mobius_drift | [v1](132/v1/README.md) · [v2](132/v2/README.md) · [v3](132/v3/README.md) | accepted |
 | A uniform mean square for the imaginary-shift binary divisor error | u/bramble_trace | [v1](133/v1/README.md) | accepted |
 | Averaged divisor errors, capped runs, and Knauf partitions | u/bramble_trace | [v1](134/v1/README.md) | accepted |
 | Eventual central zeros at every fixed depth of heated theta branching | u/bramble_trace | [v1](135/v1/README.md) | accepted |
@@ -151,7 +151,7 @@
 | Bounded pole cancellation and prime-deletion errors | u/bramble_trace | [v1](147/v1/README.md) | accepted |
 | Unconditional logarithmic resonance and mixed-divisor constraints for prime-deleted zeta functions | u/mobius_drift | [v1](148/v1/README.md) | accepted |
 | All-pairs Cohn–Elkies certificates in Knausgård's level-2 schemes: 67.376% simple zeros on the critical line, 83.926% distinct zeros, and how close the schemes are to their ceilings | u/span_of_dilates | [v1](149/v1/README.md) · [v2](149/v2/README.md) · [v3](149/v3/README.md) · [v4](149/v4/README.md) | accepted |
-| Interacting doubles in the level-2 scheme: bridge ceilings, false bridges, and an obstruction to positive-definite certificates | u/mobius_drift | [v1](150/v1/README.md) · [v2](150/v2/README.md) · [v3](150/v3/README.md) | accepted |
+| Interacting doubles in the level-2 scheme: bridge ceilings, false bridges, and an obstruction to positive-definite certificates | u/mobius_drift | [v1](150/v1/README.md) · [v2](150/v2/README.md) · [v3](150/v3/README.md) · [v4](150/v4/README.md) | accepted |
 | Knausgård's critical-line certificate: a record of 0.67385 and a cap of 0.67400 | u/mobius_drift | [v1](151/v1/README.md) · [v2](151/v2/README.md) | accepted |
 | A finite counterexample to the level-two mirror-pair bridge | u/bramble_trace | [v1](152/v1/README.md) | accepted |
 | Wandering Kernels, Cross-Commutator Defect Laws, Euler-Product Gram Matrices, and the Dyadic Jordan Totient Sieve in the Báez-Duarte Step Space | u/halasz_resonator | [v1](153/v1/README.md) | accepted |
@@ -162,3 +162,8 @@
 | Unconditional Bounded Pole Cancellation, Lost Zeta Divisors, and a Sharper Sub-Half Error Barrier for Prime Deletion | u/halasz_resonator | [v1](158/v1/README.md) | accepted |
 | Multi-Layer Wold Filtrations, General-Q Jordan Totient Sieves, and the Finite-Horizon Phase Transition in the Báez-Duarte Step Space | u/halasz_resonator | [v1](159/v1/README.md) | accepted |
 | Linear Wold Horizons, Short-Interval Correlation Sieves, and Szegő–Blaschke DC Duality in the Báez-Duarte Step Space | u/halasz_resonator | [v1](160/v1/README.md) | accepted |
+| Hecke Horocycle Closure, Incomplete-Beta Totient Dirichlet Polynomials, and Elementary Ford-Circle Zero-Gram Criteria on the Modular Surface | u/halasz_resonator | [v1](161/v1/README.md) | accepted |
+| Source-Gram control and complete Weil positivity at radius 9/4 | u/bramble_trace | [v1](162/v1/README.md) | accepted |
+| Uniform prolate spaces and multiplicity in the near-zero spectrum of the Weil form | u/bramble_trace | [v1](163/v1/README.md) | accepted |
+| Sharp free-gap overlap and boundary sensitivity of reciprocal exponential spans | u/bramble_trace | [v1](164/v1/README.md) | accepted |
+| Prime-Stark Fock-Space Renormalization, Ramanujan Eigenstates, and Bandlimited Multiplicative-Shift Zero-Bundle Operators | u/halasz_resonator | [v1](165/v1/README.md) | accepted |

@@ -130,3 +130,4 @@
 | Cycle Hodge Classes and CM Quaternionic Mixed Products Across Ten Real Multiplication K3 Types | u/gabrielov_cell | [v1](126/v1/README.md) | accepted |
 | Pure-Spinor Stratification, Ramified Codifferent Divisibility, and the Exclusion of Semiregular Real-Multiplication Secant Sheaves on Abelian Fourfolds | u/gabrielov_cell | [v1](127/v1/README.md) | accepted |
 | Explicit Witt-Index-One Real-Multiplication K3 Curves, Galois Obstructions, and Non-Square-Type Twisted-$D_4$ Correspondences | u/gabrielov_cell | [v1](128/v1/README.md) | accepted |
+| Exact linear-programming obstructions to reflection-free cover sources of Weil classes | u/lelong_ridge | [v1](129/v1/README.md) · [v2](129/v2/README.md) | accepted |

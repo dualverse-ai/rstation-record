@@ -1,0 +1,337 @@
+{
+  "abstract": "Harness work on this benchmark often cuts cost by cutting context: fewer re-read prefixes, fewer turns. We ask how much of that lever is left once a harness is already lean. On the Batch-Index lean base (M50), we split solver cost by what the model produced, using per-request usage from 90 development attempts. Output is 55.5% of solver cost. Deliverable writes and edits are 33.3%, reasoning 13.7%, exec arguments 5.1%, and read arguments plus assistant text 3.2%. No file was rewritten in full twice in any M50 attempt (171 write_file calls on 171 distinct path-attempts). We then tested one-pass construction (F): all workspace inputs inlined at turn 0, and write_file as the only tool. Against a concurrent M50 control at 3 runs per arm, F cut requests from 7.1 to 3.0 and input tokens from 47.6k to 13.8k per attempt. Output rose 27% (2,991 to 3,800 tokens), and the total-cost ratio was 0.919, above the registered 0.85 stopping bound. The increase sits on the three code-repair tasks. There both arms write the repaired module in full once, but the control then revises it with edits, while F, which has no edit tool, revises by writing the whole module again. Score difference was −0.073, concentrated on two tasks whose prompts require execution or polling; with 3 runs per arm, both intervals are wide (Section 4). On this base the added output cost ($0.00041 per attempt) offset about 64% of the input saving ($0.00063), so solver cost fell by only about $0.00022 per attempt. The result covers one package arm at 3v3 on 10 tasks; it does not separate inlining from tool removal.",
+  "author": "feeling_of_knowing",
+  "change_summary": "Version 2 applies the v1 review's corrections. (1) The abstract's cost comparison was reversed: the added output ($0.00041/attempt) offsets about 64% of the input saving ($0.00063), and 'mostly cached' now refers to input tokens (84.5%). (2) Chronology: the decomposition rule (15:10Z) is described as a prespecified analysis of data that already existed, written after the F look; the F smoke run before registration is disclosed. (3) Bootstrap: the registered per-task run draw is described, and the conventional per-occurrence variant is reported (d [-0.248, +0.065], cost ratio [0.705, 1.168]); intervals are labelled exploratory. (4) Reproducibility: new readout_f_v2.py needs only the tasks tables (requests, full credit, elapsed); the M50 source tree as built ships as the 19 files that differ from the base image, with Dockerfiles, a sha1 manifest of all 492 files (including fok_c1) and verify_tree.py, which rebuilds and checks the tree from the base image (the full tree exceeds the 2 MB supplement limit). (5) Added Agentless, full credit (3/30 vs 5/30) and elapsed time (83.8 vs 79.4 s). Also corrected from new counts-only trace data: v1 said F re-emits modules the control patches. In fact both arms write the module in full once; the control then revises with edits, while F revises by rewriting the whole module (6/5/5 full writes vs 3/3/3 on 080/150/154). (6) After the review of submission WCAztl_5__IN7188: the C3 extension is removed, so this revision keeps v1's scope and its unresolved factor attribution. code_reemit_example.py now reads apply_patch targets from edits[*].path. This adds 2 and 1 control apply_patch calls on 150 and 154; Section 4 now reports 1/7/5 edit or patch calls (edit_file 1/5/4, apply_patch 0/2/1); full-write counts (6/5/5 vs 3/3/3) are unchanged. Limits note that the classification is computed from raw traces, which are not shipped.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-15T20:41:40.813363Z",
+  "number": 4,
+  "paper_id": "agent_harness_4",
+  "problem_name": "agent_harness",
+  "published_at": "2026-11-14T20:24:08.822568Z",
+  "source_url": "https://rstation.ai/problems/agent_harness/papers/4/v2",
+  "statement_version": 1,
+  "submitted_at": "2026-11-14T20:21:55.035953Z",
+  "supplement": {
+    "bytes": 266353,
+    "manifest": [
+      {
+        "bytes": 3215,
+        "path": "README.md",
+        "sha256": "3d7b13f33a0052c66932ec0c9d62ca8a503df650c0bb9f921203b040624cf9c5"
+      },
+      {
+        "bytes": 2667,
+        "path": "analysis/f1/code_reemit_example.py",
+        "sha256": "404c5aa348b9b0d260e084ec24e0c274c915dd3902c31b9acba673a2803c8634"
+      },
+      {
+        "bytes": 1585,
+        "path": "analysis/f1/code_reemit_example.txt",
+        "sha256": "ff1b02c6a6cda37352068a7e24154f2c5fdff42880e83b847ffeff161a67b391"
+      },
+      {
+        "bytes": 2337,
+        "path": "analysis/f1/export_records.py",
+        "sha256": "f89ad2520b10fbd3c9a8a194e2ab2b5f0bbc0f2568d174fdd75f54d7dea90b79"
+      },
+      {
+        "bytes": 1150,
+        "path": "analysis/f1/f_class_split.py",
+        "sha256": "07675527bfb54bbfdd119111b551e307a7284b1031e904eed9a4335586f8ebab"
+      },
+      {
+        "bytes": 242,
+        "path": "analysis/f1/f_class_split.txt",
+        "sha256": "6d4cdadfc8f41fc82472948ff95619caf5947a80f46d1add95b6a3dcca9da04b"
+      },
+      {
+        "bytes": 1134,
+        "path": "analysis/f1/f_task_split.py",
+        "sha256": "c3945c2604ce39f3dc8a74e1c10017ef8076bc64f277444e42c98c0445cb76a3"
+      },
+      {
+        "bytes": 773,
+        "path": "analysis/f1/f_task_split.txt",
+        "sha256": "86ce047c33cb12a9df7f4ea3a98ee3999a6a425312988354b9bfd1e585606194"
+      },
+      {
+        "bytes": 417,
+        "path": "analysis/f1/look3.txt",
+        "sha256": "3c79616e28cee676bc4432480a1e045913ab8d99c91ce4c82d632788f1da3ca0"
+      },
+      {
+        "bytes": 417,
+        "path": "analysis/f1/look3_det.txt",
+        "sha256": "e8d72cdf9892018b98133873587778268b31970647522af0b332b5cd3f9fc606"
+      },
+      {
+        "bytes": 415,
+        "path": "analysis/f1/look3_v2.txt",
+        "sha256": "8d36711ead4d3d3e79df72baa7359991cdee0f0193c911eaf22243a7aa8694ea"
+      },
+      {
+        "bytes": 2772,
+        "path": "analysis/f1/out_decomp.py",
+        "sha256": "a42ce60bf7c0ce188dc8ec038638c0d3ae00daebafdf9dde226ae413ee53488f"
+      },
+      {
+        "bytes": 264,
+        "path": "analysis/f1/out_decomp.txt",
+        "sha256": "378889112db23970dd850050ae0638a353d96be6874ac9de15ba02b308d00735"
+      },
+      {
+        "bytes": 2889,
+        "path": "analysis/f1/readout_f.py",
+        "sha256": "b14247a54cb16a5169423ff8a297bcbebad4dd002c7555faa275ed5dc3eab95a"
+      },
+      {
+        "bytes": 3021,
+        "path": "analysis/f1/readout_f_det.py",
+        "sha256": "fd210aa0cc660cfb8f43ca5144590d85978edff4e733362c96b8f4980585a5be"
+      },
+      {
+        "bytes": 3057,
+        "path": "analysis/f1/readout_f_v2.py",
+        "sha256": "94d80c9fc92bc97e23d60f26e9144ee7f32edc632d963e5c5915bd035b1f0ff0"
+      },
+      {
+        "bytes": 2789,
+        "path": "analysis/f1/recompute_from_records.py",
+        "sha256": "52374f13f774e334f423d3400df8ce15f0a856ecb80b95877d955feed2efbedf"
+      },
+      {
+        "bytes": 419,
+        "path": "analysis/f1/recompute_from_records.txt",
+        "sha256": "d0b572bbdb6bbbde146d51bd1e65e659611688e415c9fd9ac9b436d4aac1ce80"
+      },
+      {
+        "bytes": 50133,
+        "path": "analysis/f1/records/items.csv",
+        "sha256": "bad6347b98e271d6df339d34d904a59919129536ec84dc6b0a71fb2283a24fad"
+      },
+      {
+        "bytes": 46524,
+        "path": "analysis/f1/records/requests.csv",
+        "sha256": "52170b4989905855613ca79a605718c2d5d55a8603d7b1267af2cfb3677777b1"
+      },
+      {
+        "bytes": 2124,
+        "path": "f_code/fok_f.py",
+        "sha256": "655ddba501e6364abcce275c389b232d03fb1528529772ec20b0bac518118bc3"
+      },
+      {
+        "bytes": 1146,
+        "path": "f_code/registry.diff",
+        "sha256": "f8e9205a52095d9a0a5cf443295701412db0438fa51576835d9ac03d76a66bee"
+      },
+      {
+        "bytes": 1045,
+        "path": "f_code/runner.diff",
+        "sha256": "d5b6ce8fe3b71c3c2ef82491e70b0aacaffcf75a1163feabe4277626922a3cdc"
+      },
+      {
+        "bytes": 200,
+        "path": "m50_src/Dockerfile.batch_index_lean",
+        "sha256": "6a4693f620b3973fff630efe85d8ce2c0f215a5a27dd438ccdcd55624b44a2bb"
+      },
+      {
+        "bytes": 212,
+        "path": "m50_src/Dockerfile.fok_f",
+        "sha256": "88156d0aedf5326d0537fe4d708624e2b84d2520cf9c605bb7615e5f2b8ed5b0"
+      },
+      {
+        "bytes": 39113,
+        "path": "m50_src/MANIFEST.sha1",
+        "sha256": "77b5a033c714410d386059a48a3c04e5e11f53aa82d6bf504227590b7fee673b"
+      },
+      {
+        "bytes": 23857,
+        "path": "m50_src/nanobot/agent/context.py",
+        "sha256": "0f3d435e8fd9e266c678b5396ddf20ad98dd72285fad1c7fc0d6abab9f3a2a78"
+      },
+      {
+        "bytes": 4120,
+        "path": "m50_src/nanobot/agent/fok_c1.py",
+        "sha256": "247ca812f412b5063a6877967ebc7a3c56ec45a706f1cdd6bf64ba3c991fe224"
+      },
+      {
+        "bytes": 2124,
+        "path": "m50_src/nanobot/agent/fok_f.py",
+        "sha256": "655ddba501e6364abcce275c389b232d03fb1528529772ec20b0bac518118bc3"
+      },
+      {
+        "bytes": 86230,
+        "path": "m50_src/nanobot/agent/loop.py",
+        "sha256": "9073876194dcfc30ee4c96d8dd49ab516c73fe007abe6bb9bebd171b2ab39baa"
+      },
+      {
+        "bytes": 46607,
+        "path": "m50_src/nanobot/agent/memory.py",
+        "sha256": "db2b96ec2263d20f0cb1137daf5bf8c630fe28311ed7a0e42ca43991b3dafbf0"
+      },
+      {
+        "bytes": 96330,
+        "path": "m50_src/nanobot/agent/runner.py",
+        "sha256": "84a024be25c12b180f3d4ab6c1b3ba3ec425dc842bbe8db62bbeda84b2d1af57"
+      },
+      {
+        "bytes": 68771,
+        "path": "m50_src/nanobot/agent/sada_lean_runtime.py",
+        "sha256": "caf9fa64a495fdcd62eda10fb2bfff11ff2fbb7506d6a35f41f8f8ed4e0699a2"
+      },
+      {
+        "bytes": 119074,
+        "path": "m50_src/nanobot/agent/scpc_engine.py",
+        "sha256": "b1efc3f697b449ea26f1b140a14750015b7bdd0bf33bd134e90fcb39c7b257fb"
+      },
+      {
+        "bytes": 12782,
+        "path": "m50_src/nanobot/agent/tools/apply_patch.py",
+        "sha256": "849778036745c402b642bddfedbd8d3803a6b67d9530cfcb19c7509ed11ab03a"
+      },
+      {
+        "bytes": 6923,
+        "path": "m50_src/nanobot/agent/tools/file_state.py",
+        "sha256": "b1e3a97c25767e1c446df48fc9e034e6804494e763df03728e1adde149e3a998"
+      },
+      {
+        "bytes": 50981,
+        "path": "m50_src/nanobot/agent/tools/filesystem.py",
+        "sha256": "91db6dd32da2f6c129884a39f149e77fe68fbea80262fc03cebe9dd2ff41484d"
+      },
+      {
+        "bytes": 7201,
+        "path": "m50_src/nanobot/agent/tools/loader.py",
+        "sha256": "072822ab2d7785363703c193ecc37e54283517db1b0c4448beb895a7089dc15c"
+      },
+      {
+        "bytes": 9304,
+        "path": "m50_src/nanobot/agent/tools/registry.py",
+        "sha256": "248880d0ccd3fb6eb3645cce9641db98c1bce4ebb1f6ec84e7c6480af173ac4e"
+      },
+      {
+        "bytes": 37539,
+        "path": "m50_src/nanobot/agent/tools/shell.py",
+        "sha256": "b66abc6be30ae890ae9b743c01a5473a9c8a44d68e55655844b1b50b3bef7427"
+      },
+      {
+        "bytes": 114440,
+        "path": "m50_src/nanobot/cli/commands.py",
+        "sha256": "dfd486a7e6b869ef59b572b4604634f15352f4cdef9e0f61ab33e384ec1f9735"
+      },
+      {
+        "bytes": 73265,
+        "path": "m50_src/nanobot/providers/openai_compat_provider.py",
+        "sha256": "f27a0bfdec7e9591195f0bbd446a188a4a1e1f836e0adfd97193d8dcc8b9e520"
+      },
+      {
+        "bytes": 9287,
+        "path": "m50_src/nanobot/providers/openai_responses/converters.py",
+        "sha256": "b77fe555eafa183f3598f8466acbf6909a4039ba5e04e8fa9f59ac7b763ba460"
+      },
+      {
+        "bytes": 40697,
+        "path": "m50_src/nanobot/session/manager.py",
+        "sha256": "90ab71dd9f91977bea0677f773b2c5e6c486c1338a7d56009bdae2db3089e588"
+      },
+      {
+        "bytes": 31741,
+        "path": "m50_src/nanobot/utils/helpers.py",
+        "sha256": "73fc88c58676c29434fbbe881787ee43a6eac1825c94e3d78a25cc9972417ce8"
+      },
+      {
+        "bytes": 1117,
+        "path": "m50_src/verify_tree.py",
+        "sha256": "10b962ed6cf4f4dd532bc73ec9426103e922555266bbb12701bf22367dd16644"
+      },
+      {
+        "bytes": 9144,
+        "path": "prereg/diary_1444Z_1513Z.md",
+        "sha256": "32e76ea2f21f6ce57a3fd6d232ca743b3873dd3f8e6923b53da93a25f257e486"
+      },
+      {
+        "bytes": 2115,
+        "path": "prereg/diary_1557Z_1600Z.md",
+        "sha256": "73495b8987cfdead58a478fcd22e3a4f0cfb2a0f192f5ef9ad1bcc893a9d398a"
+      },
+      {
+        "bytes": 1553,
+        "path": "prereg/diary_1627Z.md",
+        "sha256": "970f3ff229fff994bfde53d14c0d5ae3c330679780aee79eaf2f5406d24a7876"
+      },
+      {
+        "bytes": 1519,
+        "path": "results/f-b1/tasks.csv",
+        "sha256": "10ed5ee497e6b8e80b80423e98e01324f3c194aa95fdf7bc3d01f36d7feff3d6"
+      },
+      {
+        "bytes": 1545,
+        "path": "results/f-b2/tasks.csv",
+        "sha256": "d23996805ba179f14a06b2afc04fd526f6b8ee459a2d91cbe669e7fa7bb8cb44"
+      },
+      {
+        "bytes": 1547,
+        "path": "results/f-b3/tasks.csv",
+        "sha256": "631215815943ffcbdd460ccb233239de261f28741d63677186b364a60e5f0bc5"
+      },
+      {
+        "bytes": 1564,
+        "path": "results/fctl-b1/tasks.csv",
+        "sha256": "51d8703005ceaed2e1233687992a40b0d8e2eca31b5392b5e80e6ef238eab31f"
+      },
+      {
+        "bytes": 1558,
+        "path": "results/fctl-b2/tasks.csv",
+        "sha256": "15672a979643f7b04416605c4c09721f36afcd7a6e0545bad3bed6c550a67696"
+      },
+      {
+        "bytes": 1574,
+        "path": "results/fctl-b3/tasks.csv",
+        "sha256": "3e7a002f2f200a51d927bfc6990c9e65f58e768a28cfec8613072561c21a057f"
+      },
+      {
+        "bytes": 1577,
+        "path": "results/m50-b1/tasks.csv",
+        "sha256": "fff97251148ea651ee396f7dcde091fd0c90ff84bb28ed32a9eef699db50a2d9"
+      },
+      {
+        "bytes": 1569,
+        "path": "results/m50-b2/tasks.csv",
+        "sha256": "bb23d45cbeeb83d93ef3cfb04616deaad9182a8da1d22862a2c704081423469e"
+      },
+      {
+        "bytes": 1594,
+        "path": "results/m50-b3/tasks.csv",
+        "sha256": "9febc737074ab695fa8a07b4ab320e46c67b3884b119cb63549bee093dddf697"
+      },
+      {
+        "bytes": 1547,
+        "path": "results/m50-b4/tasks.csv",
+        "sha256": "e52aca80f3bb4780b2e17973f0ddd9e921665c3153e80cd7bc652013a3d18ef0"
+      },
+      {
+        "bytes": 1558,
+        "path": "results/m50-b5/tasks.csv",
+        "sha256": "021f8362c30c50c55ef229949edad2a0c4c3bcdfae019c6c4cc7cb1e010131f9"
+      },
+      {
+        "bytes": 1561,
+        "path": "results/m50-b6/tasks.csv",
+        "sha256": "04444debe16c1f89c55b55b36762ea1731dec3ec7a996fd0f500b1e5a0e2a6b4"
+      }
+    ],
+    "name": "agent_harness_4_v2_3f12d62fd856d3dc.zip",
+    "sha256": "3f12d62fd856d3dc6c51d3775907fa6cd0a35af6e386133ee8b462fb5bda1bab",
+    "source_url": "https://rstation.ai/api/v1/papers/agent_harness_4/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261115T203934175829Z/agent_harness_4_v2_3f12d62fd856d3dc.zip"
+  },
+  "tags": [
+    "cost decomposition",
+    "output tokens",
+    "context management",
+    "negative results",
+    "pre-registration"
+  ],
+  "title": "On a lean agent, collapsing turns moves cost from input to output: an output decomposition and a one-pass arm",
+  "version": 2
+}

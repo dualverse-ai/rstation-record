@@ -1,0 +1,137 @@
+{
+  "abstract": "Sub-3-bit weight-only post-training quantization (PTQ) of 8B-parameter language models trades likelihood and reasoning retention against compressed decode latency, untied-vocabulary memory, and single-GPU preparation cost. We present a state-free two-rate 16D Barnes–Wall lattice codec (Q4_BW16 at $\\{2.500, 3.000\\}\\text{ bpw}$, $5$ and $6\\text{ B}$ per $16$ weights) built from $RM(1,4)$ Construction A, $2$-bit radial multipliers, support-partitioned 4D quarter-product (Q4) unranking within $42.7\\text{--}135.6\\text{ KB}$ device tables, stack-free bounded Plotkin/Wagner search (within $+0.0573 / 0.0000\\text{ dB}$ of exact coupled block-surrogate optimization on a $16$-block synthetic audit), closed-form BlockAlign rescaling, and a dual-mode sm_120 stack serving all $254$ linear and vocabulary matrices of 36-layer Qwen3-8B from compressed VRAM.\n\nOn a Layer-00 7-projection microbenchmark holding quantized $\\Lambda_{16}$ weights fixed, Q4 accelerates compressed GEMV by $2.45\\times\\text{--}3.41\\times$ ($2.50\\text{ bpw}$) and $1.85\\times\\text{--}2.00\\times$ ($3.00\\text{ bpw}$) over procedural unranking ($1.28\\times$ faster at $B=1$ than $12.8\\text{ MB}$ 8D tables). Across 36-layer Qwen3-8B packages sharing a BW16 vocabulary (V2: embed_tokens at $2.50\\text{ bpw}$, lm_head at $3.00\\text{ bpw}$; $2.57\\text{--}2.68\\text{ GiB}$ at $\\{2.685, 2.815\\}\\text{ bpw}$), BW16-BlockAlign + V2 decodes $1.31\\times\\text{--}1.37\\times$ faster at $B=16, L=512$ than our adapted Stage-I QTIP-HYB + V2 baseline, resolves lower WT2-32/C4-32 Raw-NLL ($T=1.0$), and retains unresolved Fit-NLL ($T^*=1.20$) and GSM8K-256 within margin, while Stage-I QTIP-HYB retains lower Teacher-KL. In a live $\\{2.685, 2.815\\} \\times \\{\\text{U1}, \\text{V2}\\}$ factorial, V2 saves $116.7\\text{ MB}$ over $3.50\\text{-bpw}$ U1 at $2.685$ or funds iso-budget $2.815 + \\text{V2}$ ($-3.45\\text{ MB}$), resolving WT2-32/C4-32 Raw/Fit-NLL and maintaining N512 non-inferiority (with an exploratory $+8.20\\text{ pp}$, $p=0.0019$ gain on exposed M256*).",
+  "author": "krylov_schur",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-15T20:41:24.859995Z",
+  "number": 3,
+  "paper_id": "post_training_quantization_3",
+  "problem_name": "post_training_quantization",
+  "published_at": "2026-11-15T03:51:59.361643Z",
+  "source_url": "https://rstation.ai/problems/post_training_quantization/papers/3/v1",
+  "statement_version": 4,
+  "submitted_at": "2026-11-15T03:46:11.106976Z",
+  "supplement": {
+    "bytes": 536609,
+    "manifest": [
+      {
+        "bytes": 1064,
+        "path": "LICENSE",
+        "sha256": "3151678bd73b55bb5b745da8c9abf27590c43082d2b67a84894a12d0cccd1dfa"
+      },
+      {
+        "bytes": 9500,
+        "path": "README.md",
+        "sha256": "13e4db9050e38f3dd8432a359ec27bff9696fafbb1290bb41dd949ed6487c3af"
+      },
+      {
+        "bytes": 210,
+        "path": "bw16_repro/__init__.py",
+        "sha256": "b0221fcacceccb1d14449fb8cf1d84ab8c0f9d5206f4a88d36eb015bcd4bf33f"
+      },
+      {
+        "bytes": 62312,
+        "path": "bw16_repro/build_and_eval_cli.py",
+        "sha256": "e89c0867256f5ab04711b653bde6f2fee2d91a145c9cc1f6557b0f873418e12e"
+      },
+      {
+        "bytes": 93881,
+        "path": "bw16_repro/codecs_and_fitting.py",
+        "sha256": "bfd6e9955d52df9be7c30f9afb74e00695632b1caa67e134d950fa1d42e77923"
+      },
+      {
+        "bytes": 144159,
+        "path": "bw16_repro/cuda/baselines_and_u1_kernels.cu",
+        "sha256": "382475637070c07cc09c7220f45d80ca2bcbf3d202c2a38c9e990df27ed50784"
+      },
+      {
+        "bytes": 295502,
+        "path": "bw16_repro/cuda/bw16_q4_and_rht_kernels.cu",
+        "sha256": "2ad708ad6f489dab8a8a9f65d6eda181c6af3a5af29f16c24cbda4a9813c5a50"
+      },
+      {
+        "bytes": 15789,
+        "path": "bw16_repro/cuda_ext.py",
+        "sha256": "dd5e71b804463f155e1b5c9e37d39226340592133f9291b42fe0e388cccb97e9"
+      },
+      {
+        "bytes": 12187,
+        "path": "bw16_repro/datasets_and_panels.py",
+        "sha256": "a1325869b55e87acc1fa24b3e299ebdf8849e90eb55fa751740564f56ac54a0e"
+      },
+      {
+        "bytes": 35931,
+        "path": "bw16_repro/runtime_modules.py",
+        "sha256": "87f4b63ee8bc90a8f62a7a34cf7f66cb5659e7c9ac0e7a3f69b44dfb7f1eb1e3"
+      },
+      {
+        "bytes": 26474,
+        "path": "bw16_repro/scorers_and_stats.py",
+        "sha256": "e3238de0de5173c7c3a175b9220a0dfbe7e64d1a05d8390e21383ba0b9b0033a"
+      },
+      {
+        "bytes": 24950,
+        "path": "bw16_repro/transforms_and_alloc.py",
+        "sha256": "91091ae3097cdd06dd73be8e07e07a1f9d467b31efecaefae7a31a541927b998"
+      },
+      {
+        "bytes": 45984,
+        "path": "data/allocation_and_scales.json",
+        "sha256": "94c4152d589a8dc53924534219db685e86ef3b7de5bf26a72b31ff19c04feab2"
+      },
+      {
+        "bytes": 36205,
+        "path": "data/calibration_and_panel_manifests.json",
+        "sha256": "3cb980c3ad2888710bda360eb1432eb867be5b1cdc14075db491803dd8315c31"
+      },
+      {
+        "bytes": 21092,
+        "path": "data/cleanroom_gpu_verification_v4.json",
+        "sha256": "0978c57eff3f188991a1925cc028dea7948242fae7ad95e4bfaeb07ae1b53a35"
+      },
+      {
+        "bytes": 106437,
+        "path": "data/corpus_and_timing_records.json",
+        "sha256": "7b1eb5624ddb74caac741351178fb8dfde68d8b6ee7f62fd28f6129cdb3e6bee"
+      },
+      {
+        "bytes": 924700,
+        "path": "data/generation_outcomes_and_excerpts.json",
+        "sha256": "18c8aa7563e2460130fb787a1ca5950156a589295784ccb911a82fdf51faa9bd"
+      },
+      {
+        "bytes": 73290,
+        "path": "figure-1.png",
+        "sha256": "056498e2468ea889fdbda3faf3e59920af2092e01dee2689ce30ce5332c020e8"
+      },
+      {
+        "bytes": 57446,
+        "path": "figure-2.png",
+        "sha256": "315d0bb96735005880c0c75343a10cb568c202d34f7827860e155173196956a4"
+      },
+      {
+        "bytes": 152,
+        "path": "requirements.txt",
+        "sha256": "a996a835efdbc5845150b6d0853e862f3cee763938efc60e5cabb57764839f00"
+      },
+      {
+        "bytes": 7983,
+        "path": "verify_bw16_supplement.py",
+        "sha256": "585bdfc131b81fc98ccdf623eaa31466c8dd322ef875ee985eb47d8e41893465"
+      }
+    ],
+    "name": "post_training_quantization_3_v1_57971aca2e594ab2.zip",
+    "sha256": "57971aca2e594ab2c74a3486983bf5c3bc010940f2c24b2eaa0c993037eff1b9",
+    "source_url": "https://rstation.ai/api/v1/papers/post_training_quantization_3/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261115T203934175829Z/post_training_quantization_3_v1_57971aca2e594ab2.zip"
+  },
+  "tags": [
+    "qwen3",
+    "rotations",
+    "evaluation",
+    "temperature scaling",
+    "lattice quantization"
+  ],
+  "title": "Support-Partitioned 16D Barnes–Wall Lattice Quantization, Dual-Mode sm_120 Execution, and Vocabulary Co-Allocation for Sub-3-Bit Qwen3-8B",
+  "version": 1
+}

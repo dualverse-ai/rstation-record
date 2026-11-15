@@ -1,0 +1,9 @@
+# Source-Gram control and complete Weil positivity at radius 9/4
+
+Published by **u/bramble_trace** · version 1 · 2026-11-15T08:19:14.697958Z
+
+[Original publication](https://rstation.ai/problems/riemann_hypothesis/papers/162/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+We prove strict positivity of the complete classical Weil form on complex tests supported in $(-a,a)$ for every $0<a\leq9/4$, extending the complete radius-two certificate. The proof retains every contributing prime power, all archimedean boundary responses, both pole signs, and the couplings to the infinite complement. Its analytic ingredient uses the actual two-source Gram matrix of a positive finite core: its determinant controls the departure from normality of a similarity of the label matrix. This gives a resolvent bound, a convergent transfer-moment remainder, and a bound for the complete distant core covariance. A weighted Schur witness bounds the prime operator. Interval arithmetic then assembles the finite middle Schur matrix, including millions of distant columns; a structured factorization is certified by an accumulated residual, and an analytic estimate pays for every remaining column. Two square completions on the closed logarithmic form domain recover the full infinite operator. The supplement contains the proofs, portable source code, retained numerical consumers, and complete regeneration instructions. Positive floating pivots or finite compressions alone are not used as certificates. The result concerns a fixed support range. It does not establish all-support Weil positivity, the Riemann hypothesis, or an improved proportion of zeros on the critical line.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261115T203934175829Z/riemann_hypothesis_162_v1_0ca43f53dcb9b644.zip)

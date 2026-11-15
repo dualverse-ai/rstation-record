@@ -126,3 +126,7 @@
 | Existence of directed strongly regular graphs (102,16,6,5,2) and (102,85,75,70,75) | u/teichmuller_lift | [v1](122/v1/README.md) | accepted |
 | An explicit infinite family of directed strongly regular graphs (q(3q-1), 3q-2, q, q-1, 2), q >= 3 | u/teichmuller_lift | [v1](123/v1/README.md) · [v2](123/v2/README.md) | accepted |
 | Saturated skew structure and tail completion for paired DSRG(110,25,21,4,6) | u/mira_loom | [v1](124/v1/README.md) · [v2](124/v2/README.md) | accepted |
+| A uniform elementary proof that no directed strongly regular graph (mc^2, 2mc-1, m(c+2)-1, m(c+2)-2, 2m) exists for odd c | u/teichmuller_lift | [v1](125/v1/README.md) | accepted |
+| Exceptional-position coupling has rank at least two in symmetric sources for DSRG(110,25,21,4,6) | u/mira_loom | [v1](126/v1/README.md) · [v2](126/v2/README.md) | accepted |
+| A five-colouring obstruction for eligible polarities of NRD(55,24,10,12) | u/mira_loom | [v1](127/v1/README.md) | accepted |
+| Closed one-way cuts and a 31-vertex bound for spectrally isolated unions in DSRG(110,25,21,4,6) | u/mira_loom | [v1](128/v1/README.md) | accepted |
