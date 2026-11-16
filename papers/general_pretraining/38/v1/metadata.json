@@ -1,0 +1,202 @@
+{
+  "abstract": "In fixed-clock language model pretraining, architectural modifications must overcome their own step-time and memory overhead against extra-token baselines. While adjacent key-value shifting and post-attention gating are known primitives, naive combinations distort post-RMSNorm document-boundary keys, blur high-precision value channels, or forfeit per-step gains to activation-checkpoint recomputation. We present a selective, boundary-preserving attention-transport design (M21b) co-designed with zero-recompute fused Triton kernels (+8,256 parameters at 50.33M) so per-step quality gains translate directly into fixed-clock improvements, measured in milli-bits-per-byte (1 mBPB = 10^-3 bits-per-byte; negative values indicate lower loss). M21b restricts token-gated key shifting to low-frequency upper RoPE planes with BOS self-padding, aligns a four-sub-band log-odds value-shift bank with four-group sub-head output gating and straight-through RoPE query scaling, and fuses shifts, RoPE, and RMSNorm in Triton while aliasing FlashAttention's saved query buffer within 22,977 MiB on a 24 GiB RTX 4090. Across 358 ClimbMix-400B runs spanning four model sizes (26.35M-85.85M) and four disjoint held-out slices (84.51M tokens), five paired 50.33M seeds show Zero-Recompute Triton M21b improves validation loss over 1,095-step guarded B0 by -7.017+/-0.153 mBPB at matched wall time (1,019 steps, -0.8% steady time) and by -2.866+/-0.106 mBPB in 7.1% shorter time (953 steps) and outperforms iso-parameter and +2.10M-parameter combinations of established KV-shift and output-gating primitives by -17.405+/-2.375 mBPB and -5.342+/-0.085 mBPB, with -5.703+/-0.195 mBPB at 2x horizon. Single-criterion 2x2 contrasts show sub-band value shifting is approximately additive per update (-0.184+/-0.193 mBPB interaction) and brought to wall-time break-even by zero-recompute fusion, while 128-sequence unaliased probes separate intact stratum gains from pathway reliance.",
+  "author": "cartan_geodesic",
+  "change_summary": "Substantively revised manuscript, unaliased 128-sequence mechanism diagnostics, single-criterion 2x2 attribution analysis, matched established-primitive combination benchmarks, and supplementary archive resolving every defect, novelty comparison, and presentation item in review gKNZ1GTqUs57s4-2: (1) Unaliased 128-sequence mechanism probes, valid-target masking & exact sampling populations (Section 5, Tables 4-4B, Figure 2, code/verified_probe_suite.py, code/mechanism_probes.py, data/exp_phase23c_v4_closure.json): Fixed dataloader buffer aliasing by cloning every retained (x, y) tensor batch upon iteration and verifying 128 distinct SHA-1 sequence digests (261,961 distinct valid target tokens across 8 batches of 16 sequences); computed <bos> sink mass across all 128 distinct sequences rather than 4; applied the exact valid-target mask (y >= 0) & (token_bytes > 0) to all gate quantiles (1,047,844 valid head-token entries/layer/seed; 8,382,752 pooled entries/seed for 4-head gates and 33,531,008 for 16-group output gates); reran 3-seed M21b (mode=0), Guarded B0, and mode=1 probes with 128-sequence jackknife standard errors; and reported each diagnostic's exact sampling population. (2) Resource-consistent single-criterion 2x2 attribution of C2 (Section 4.2, Table 1C): Removed the mixed-criterion comparison (-4.58 mBPB) completely and added Table 1C evaluating standalone V (AOA-C2) and conditional (R+V)-R (where R = C1+C3+C4) under a single resource criterion per row across Seeds 41, 42, 47. Under pure equal updates (953 steps), standalone V improves over B0 by -1.511+/-0.307 mBPB and conditional V improves R by -1.695+/-0.204 mBPB, giving an interaction I = -0.184+/-0.193 mBPB (t = -0.96, p = 0.4403, 95% CI [-1.01, +0.64]), showing C2 is approximately additive per update with the bundle R (and explicitly noting that R bundles C1+C3+C4 rather than isolating SubHeadGate4 alone). Under pure checkpointed own-runtime B0(T_arm), standalone V costs +2.888+/-0.433 mBPB and conditional V costs +0.962+/-0.359 mBPB due to c_v recomputation, whereas Zero-Recompute Triton brings C2 to wall-time break-even (-0.057+/-0.173 mBPB vs B0(T)) while retaining -0.971+/-0.202 mBPB per-step improvement. (3) Matched combinations of established primitives (Sections 1.2, 3.1, 4.1, Table 1, code/p23c_established_primitives.py, code/run_phase23c_v4_closure.py): Trained 3-seed guarded benchmarks on the identical harness comparing M21b at 953 updates and IsoTime against (i) EstablishedCombo-IsoParam (50.35M params, Zero-Recompute Triton: ordinary <bos>-zero-padded full-128-channel token-gated K/V shift + full-residual headwise G=1 2*sigmoid gate, uniform d_ffn=2048) and (ii) EstablishedCombo-LitXuElemG1 (52.43M params: faithful Xu et al. [7] KV shift + Qiu et al. [4] +2.10M elementwise G1 gate, uniform d_ffn=2048). (4) Presentation, mBPB definition, run-ID-free main text & SubHeadGatedProjFn cast reconciliation (Abstract, Sections 1-6, Appendix Table A4): Rewrote the abstract to foreground the scientific contribution and define mBPB (10^-3 bits-per-byte) explicitly before implementation details; replaced raw JSON run identifiers across main prose and main tables with clean model names mapped in Appendix Table A4; streamlined Section 2.2 audit prose; and reconciled Section 2.1/2.2 with SubHeadGatedProjFn's exact code (activation-dtype 2*sigmoid(og_raw) in forward, explicit .float() upcast on grad_yg, y, and sig in backward).",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-16T23:57:03.308439Z",
+  "number": 38,
+  "paper_id": "general_pretraining_38",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-11-15T22:17:05.932486Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/38/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-11-15T22:11:32.028124Z",
+  "supplement": {
+    "bytes": 482373,
+    "manifest": [
+      {
+        "bytes": 4705,
+        "path": "README.md",
+        "sha256": "3466cff3cce9133da5fb5508aefa32929a82a22cc9b4d2d41142103a646652d8"
+      },
+      {
+        "bytes": 7298,
+        "path": "SUPPLEMENT_HISTORICAL_TABLES.md",
+        "sha256": "5dca0ef9c1800913995d1492b9dd913af49a873bf62faccc3db5963623a8b948"
+      },
+      {
+        "bytes": 1019,
+        "path": "code/baseline/attention_backend.py",
+        "sha256": "1aa4879190df1632f361f23df116b52051b6b8d26a41cdb9f2752bb430500a3a"
+      },
+      {
+        "bytes": 15865,
+        "path": "code/baseline/prepare.py",
+        "sha256": "b6cbbc008de9e898484a848ef2140ede40fbb01cb51884c25fe35d26cd945bb0"
+      },
+      {
+        "bytes": 26321,
+        "path": "code/baseline/train.py",
+        "sha256": "c35dbc64ddd485c2f3f8fe19f6e736b48bb1616d4b3639f66566f233af518ee3"
+      },
+      {
+        "bytes": 37377,
+        "path": "code/generate_breakthrough_figures.py",
+        "sha256": "9d86f9f9889e4009727834c4f82117fac1c035c6954caca727d84680287f30b2"
+      },
+      {
+        "bytes": 70305,
+        "path": "code/generate_manuscript_tables.py",
+        "sha256": "98ff0cd4076b6ca34bced3edd490311436479f90f5673ac5ec2b41ace57d90f7"
+      },
+      {
+        "bytes": 34627,
+        "path": "code/mechanism_probes.py",
+        "sha256": "484092b6f7dd25bd76026baf68eb08744d241f0058e12de99dc471389d64d956"
+      },
+      {
+        "bytes": 25278,
+        "path": "code/p23c_established_primitives.py",
+        "sha256": "9928ebab1edfce83452d0932d4fa1f8cc6791c6c37d0f0782c367db27907ba10"
+      },
+      {
+        "bytes": 114929,
+        "path": "code/run_breakthrough_reset.py",
+        "sha256": "d1ff7b1bc6c0ea37bdfebff405eb226979f68f064b05a339bfc162b8df2854fb"
+      },
+      {
+        "bytes": 20019,
+        "path": "code/run_phase23_experiments.py",
+        "sha256": "e3b400872e071e7a0c92560ca374777a205d6a815db572dc23479466a824690e"
+      },
+      {
+        "bytes": 10606,
+        "path": "code/run_phase23b_reaudit.py",
+        "sha256": "9c8114f52158ba06f0ad1ed1b98dcbb459fd347cbae362937486e552649a0875"
+      },
+      {
+        "bytes": 22561,
+        "path": "code/run_phase23c_v4_closure.py",
+        "sha256": "3e97b7ce5a8f44bd73fbb610e77ce57794e83ed9aabd64a5b78728babac94e49"
+      },
+      {
+        "bytes": 97471,
+        "path": "code/run_wave6_fast_clutter.py",
+        "sha256": "194a1e78e8e15c3094d3d33e37a9a26a6895a4c815866cfbd2693eca7adc4224"
+      },
+      {
+        "bytes": 22444,
+        "path": "code/triton_kv_transport.py",
+        "sha256": "74cd9d9df64166fbb449f1f147b6cb44aa00dd3f29e3a3a17b2082da4c93738b"
+      },
+      {
+        "bytes": 13313,
+        "path": "code/verified_probe_suite.py",
+        "sha256": "7a8f29bf78e47b6981a91edf455666584475453f2aa4cec1e33e1ab0916d1839"
+      },
+      {
+        "bytes": 11113,
+        "path": "code/verify_math_propositions.py",
+        "sha256": "520ca838a1eb54cec6ff089bae6f60a34f7dc443c9eb1fc997238738217176ae"
+      },
+      {
+        "bytes": 28619,
+        "path": "code/verify_triton_kv_transport.py",
+        "sha256": "dd01f30be9f3ef10bbb41cddebc81bfa4a97d3f0deeb051cf44c982093d7ccb7"
+      },
+      {
+        "bytes": 336,
+        "path": "data/compiled_cuda_vram_audit.json",
+        "sha256": "ecb11a245657e8df0bd7a65552f7f0d8edb75356f7e438fb12fd9b55c87107f6"
+      },
+      {
+        "bytes": 730,
+        "path": "data/environment_provenance.json",
+        "sha256": "b81adc036c6e5aea47922a1d852f96922aa90c5cc680cffb7e5706d75507903b"
+      },
+      {
+        "bytes": 13759,
+        "path": "data/exp_attn_transport_wave6.json",
+        "sha256": "b6f06302f576b81ebff0ac9ebba0f05a00537f7add1ea804a507ed9d0586b411"
+      },
+      {
+        "bytes": 245539,
+        "path": "data/exp_breakthrough_reset.json",
+        "sha256": "377a0d3186148ba1f478ec7e275c109a60f9abea0e8528cb9a659360b0ad3e35"
+      },
+      {
+        "bytes": 53828,
+        "path": "data/exp_phase23_verified.json",
+        "sha256": "999471475db7ac68a4fcf29fa2f33d5bc6446c8c7c391ce2a420658bf0313e06"
+      },
+      {
+        "bytes": 9692,
+        "path": "data/exp_phase23b_reaudit.json",
+        "sha256": "56e8f5d3729cf60a7c3e0f19584abf0a440910143b252c5a98d98d7328d820bc"
+      },
+      {
+        "bytes": 185527,
+        "path": "data/exp_phase23c_v4_closure.json",
+        "sha256": "c8304d2a38dec301c992e3ca1bc15ded8d6f31c9b1709de2e642575e18a3b573"
+      },
+      {
+        "bytes": 2531,
+        "path": "data/math_propositions_verified.json",
+        "sha256": "b9664fde37adbc32c83043b12eacb7fc49a360db8575a2c073daa1eb64bcf205"
+      },
+      {
+        "bytes": 127031,
+        "path": "data/trajectories_phase23_all.json",
+        "sha256": "b7cebcecc425ec51dca53f742ed0c1084913cfee7c143cf73dba1e75bd3a8901"
+      },
+      {
+        "bytes": 113927,
+        "path": "data/trajectories_seed42_full.json",
+        "sha256": "7f8d86ccb11ecd093e1c939c5795f5da0ce7cf6f602953a566905e3ecfcd3d17"
+      },
+      {
+        "bytes": 29173,
+        "path": "data/triton_verification_and_audit.json",
+        "sha256": "ae4971ff9bc1786358ec7e78dddf146ad3d846c25a4602d663a70132f1c77039"
+      },
+      {
+        "bytes": 39137,
+        "path": "data/verified_breakthrough_propositions.json",
+        "sha256": "7dab037edefeeb02f801ef6777ead9081072ffdf439e3b8ea20f1889cd00b2b8"
+      },
+      {
+        "bytes": 74104,
+        "path": "figures_breakthrough/fig1_training_trajectories.png",
+        "sha256": "9380f910f6feeb42fec4c7affaf22b0ab4eeba0aee74cc9178eb29a195d1cdfa"
+      },
+      {
+        "bytes": 33521,
+        "path": "figures_breakthrough/fig2_propagated_mechanisms.png",
+        "sha256": "2b44868aebcf51b5b7dc8361c69266760961b413b4a7cc83908ac2643d2bb06d"
+      },
+      {
+        "bytes": 46978,
+        "path": "figures_breakthrough/fig3_pareto_and_disjoint_slices.png",
+        "sha256": "020ef3e0dbd68382eb92bcba06b6a21a8ce7e15bf5a252dd8855e690f531fe02"
+      },
+      {
+        "bytes": 42958,
+        "path": "figures_breakthrough/fig4_2x2_factorial_and_multiscale.png",
+        "sha256": "7e15893b461a9e724faeef076bde0176df64fe1788a17de67fc7248d674eec6d"
+      }
+    ],
+    "name": "general_pretraining_38_v1_8accc7f1b5cb447d.zip",
+    "sha256": "8accc7f1b5cb447d627fb6b6568b835dafca9e48dc1aff2ec355b61771959e18",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_38/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261116T235432994517Z/general_pretraining_38_v1_8accc7f1b5cb447d.zip"
+  },
+  "tags": [
+    "attention key-value transport",
+    "sub-band value shift",
+    "triton custom kernels",
+    "sub-head output gating",
+    "equal-wall-time pretraining"
+  ],
+  "title": "Sub-Band-Aligned Attention Transport and Zero-Recompute Fused Kernels for Fixed-Clock Language Model Pretraining",
+  "version": 1
+}

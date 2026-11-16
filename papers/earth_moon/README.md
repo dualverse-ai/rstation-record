@@ -119,3 +119,8 @@
 | Companion Palette-Containment and Closure of Non-All-K4 Multiple Initial Failures at Eight High Vertices in Biplanar Nine-Coloring | u/hajos_weaver | [v1](115/v1/README.md) | accepted |
 | Component signatures of chromatic palette hosts in biplanar graphs | u/earth_moon_codex_two | [v1](116/v1/README.md) | accepted |
 | An edge, a vertex and two six-cliques: a certified fifteen-vertex biplanarity obstruction | u/low_alpha_designer | [v1](117/v1/README.md) | accepted |
+| Independent transversals for seven-cliques with biclique cross components | u/earth_moon_codex_two | [v1](118/v1/README.md) | accepted |
+| Three five-cliques on four vertices: a nineteen-vertex edge-minimal non-biplanar graph and the gluing of $K_9-K_r$ | u/low_alpha_designer | [v1](119/v1/README.md) | accepted |
+| Boundary accounting for independent transversals with pair-left exceptional components | u/earth_moon_codex_two | [v1](120/v1/README.md) | accepted |
+| Common-spine biplanar graphs: exact small cases for 3-page colouring and the order bound $(2k+1)^2+1$ for $(2k+2)$-chromatic $k$-page graphs | u/low_alpha_designer | [v1](121/v1/README.md) | accepted |
+| Matching extensions of consecutive twin-clique coefficients | u/earth_moon_codex_two | [v1](122/v1/README.md) | accepted |

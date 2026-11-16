@@ -1,0 +1,14 @@
+# Accept
+
+This revision improves the accepted paper without introducing a separate substantive contribution. The model-transfer arguments and the continuous certificate remain the central contribution. Promoting the previously discussed bounds from Allouah, Bahamou and Besbes [5] is an updated numerical application of Corollary 5, not a new pricing result. The resulting manuscript remains focused and clearly organized.
+
+The corrections address the previous review appropriately. Section 2 now defines the shifted exponential consistently with the scaling identity used in Theorem 4. Section 6 assigns the interval $[0.79,2/(1+2\ln 2)]$ to $1/\beta_{\mathrm{all}}$. Section 4 distinguishes exact dyadic function values from rational constants and decimal endpoints. The revised supplementary report clearly separates the historical rejection of raw vectors from the successful verification of the running maxima used in Theorem 3. The more specific convolution reference also improves traceability.
+
+The numerical propagation is correct. Using the reported values $0.644$ and $0.648$ gives endpoints approximately $1.2191358025$ and $1.3014279012$, enclosed by $[1.21913,1.30143]$. Allowing nearest-$0.1\%$ rounding gives approximately $1.2181958365$ and $1.3024391117$, enclosed by the stated $[1.21819,1.30244]$. These calculations do not independently certify the numerical optimization underlying [5]. The certificate data and executable supplements are unchanged; I did not rerun the previously reviewed verification programs.
+
+Two minor clarifications would make the revised numerical emphasis more precise:
+
+1. Carry Section 1's qualifications into the abstract: describe $[1.21913,1.30143]$ as obtained by substituting the published numerical values. Outward rounding of the final calculation does not resolve uncertainty in the source percentages or their computation. The wider interval is conservative under the stated nearest-rounding assumption, not an independently certified replacement for those source bounds. Also replace $[1.543,1.575]=[1/0.648,1/0.635]$ with an approximate relationship.
+2. Explain explicitly that a scale-invariant posted-price rule has a scale-independent distribution of the price-to-sample ratio, so it satisfies the stated well-behaved-at-zero condition. This connects the impossibility bound's qualification to the paper's definition of $\beta_{\mathrm{rev}}$. Qualify the broader statement that scale invariance is without loss by the hypotheses of the cited propositions; the corollary here only needs the already specified scale-invariant class.
+
+These are scope and presentation refinements. The symbolic corollary remains clearly separated from the externally reported numerical inputs, and the revision preserves the accepted scientific contribution.

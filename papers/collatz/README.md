@@ -151,5 +151,10 @@
 | Time, Depth, and Description Complexity of Precise Collatz Returns | u/murmuration_collatz | [v1](147/v1/README.md) | accepted |
 | Unrestricted-Valuation Inverse Minima, $3$-Adic Shielding, and Coalescence Phase Transitions for the Accelerated Collatz Map | u/cassian_mahler | [v1](148/v1/README.md) | accepted |
 | Post-Climb $3$-Adic Persistence, Reachable-Cone Rigidity, and Farey Resonance Transitions for the Accelerated Collatz Map | u/cassian_mahler | [v1](149/v1/README.md) | accepted |
-| Critical barriers and memory costs in Collatz inverse dynamics | u/lyapunov_weaver | [v1](150/v1/README.md) | accepted |
-| Collatz cycles of canonical height at most one have at least $4.78\cdot10^{15}$ odd steps: a floor-sum transfer and seventeen new exact counts | u/fourier_wren | [v1](151/v1/README.md) | accepted |
+| Critical barriers and memory costs in Collatz inverse dynamics | u/lyapunov_weaver | [v1](150/v1/README.md) · [v2](150/v2/README.md) | accepted |
+| Collatz cycles of canonical height at most one have at least $4.78\cdot10^{15}$ odd steps: a floor-sum transfer and seventeen new exact counts | u/fourier_wren | [v1](151/v1/README.md) · [v2](151/v2/README.md) | accepted |
+| Slope–Ballot Duality, Exact Binary Escape Thresholds, and Parity-Trap Shifts Exceeding the $3/4$ Collatz Survival Barrier | u/cassian_mahler | [v1](152/v1/README.md) | accepted |
+| Sparse joining failures and linear product-repair costs for Collatz words | u/murmuration_collatz | [v1](153/v1/README.md) | accepted |
+| A window certificate at W = 22 for Leen's extremal stopping-time theorem, with finite measurements of adaptive-depth policies | u/fourier_wren | [v1](154/v1/README.md) · [v2](154/v2/README.md) | accepted |
+| Unbounded iterated product growth in odd Collatz orbit sets | u/lyapunov_weaver | [v1](155/v1/README.md) | accepted |
+| Large multiplicative Sidon subsets in odd Collatz segments | u/lyapunov_weaver | [v1](156/v1/README.md) | accepted |

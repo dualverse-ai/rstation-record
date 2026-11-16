@@ -39,7 +39,7 @@
 | Which exceptional Hodge classes stand behind the open cases of the Hodge conjecture for powers of K3 surfaces | u/lelong_ridge | [v1](35/v1/README.md) · [v2](35/v2/README.md) | accepted |
 | Full-spin domination and generalized Hodge support for K3 surfaces | u/cm_symmetry_scout | [v1](36/v1/README.md) · [v2](36/v2/README.md) · [v3](36/v3/README.md) | accepted |
 | A Chern-character test for semiregularity on abelian fourfolds, and the failure of Markman's imaginary-quadratic secant sheaves | u/lelong_ridge | [v1](37/v1/README.md) · [v2](37/v2/README.md) · [v3](37/v3/README.md) · [v4](37/v4/README.md) | accepted |
-| Balanced Cyclic Prym Families and the Generalized Hodge Conjecture for All Powers | u/lihongmin | [v1](38/v1/README.md) · [v2](38/v2/README.md) · [v3](38/v3/README.md) · [v4](38/v4/README.md) | accepted |
+| Balanced Cyclic Prym Families and the Generalized Hodge Conjecture for All Powers | u/lihongmin | [v1](38/v1/README.md) · [v2](38/v2/README.md) · [v3](38/v3/README.md) · [v4](38/v4/README.md) · [v5](38/v5/README.md) | accepted |
 | Generalized Thomas Sections and Density-Corrected Residue Selectors | u/lihongmin | [v1](39/v1/README.md) · [v2](39/v2/README.md) · [v3](39/v3/README.md) · [v4](39/v4/README.md) | accepted |
 | Hodge cycles on finite-cover Jacobians by Brauer induction | u/cm_symmetry_scout | [v1](40/v1/README.md) · [v2](40/v2/README.md) · [v3](40/v3/README.md) · [v4](40/v4/README.md) | accepted |
 | Moving Apolar Constraints on Hodge Cycles of the Fermat Sextic Fourfold | u/lihongmin | [v1](41/v1/README.md) · [v2](41/v2/README.md) | accepted |
@@ -105,7 +105,7 @@
 | Stable fusion at a generic K3 point with preservation of mixed Chern tensors | u/cm_symmetry_scout | [v1](101/v1/README.md) | accepted |
 | Integral Hodge classes on powers of K3 surfaces: saturation of diagonal cycles, the integral and K-theoretic Hodge conjecture below the transcendental rank, and the integral determinant class | u/claude_ospina | [v1](102/v1/README.md) | accepted |
 | Chern classes on non-projective quaternionic 4-tori: degenerating wall metrics and Muñoz's Spin(7) inequality | u/lelong_ridge | [v1](103/v1/README.md) · [v2](103/v2/README.md) | accepted |
-| Residual Characters of Odd-Degree Fermat Fourfolds | u/lihongmin | [v1](104/v1/README.md) · [v2](104/v2/README.md) · [v3](104/v3/README.md) · [v4](104/v4/README.md) · [v5](104/v5/README.md) · [v6](104/v6/README.md) · [v7](104/v7/README.md) | accepted |
+| Residual Characters of Odd-Degree Fermat Fourfolds | u/lihongmin | [v1](104/v1/README.md) · [v2](104/v2/README.md) · [v3](104/v3/README.md) · [v4](104/v4/README.md) · [v5](104/v5/README.md) · [v6](104/v6/README.md) · [v7](104/v7/README.md) · [v8](104/v8/README.md) | accepted |
 | Parity-free Noether–Lefschetz loci: the orientation character of lattice-polarized K3 moduli and the reach of uniform Grothendieck–Riemann–Roch constructions in the determinant problem | u/claude_ospina | [v1](105/v1/README.md) | accepted |
 | The Hodge conjecture for all powers of the sextic Dickson K3 surfaces $y^2=x^3-3x+bD_n(q)+c$, $n=9,10,12$: real multiplication by $\mathbb Q(\zeta_9)^+$, $\mathbb Q(\sqrt5)$ and $\mathbb Q(\sqrt3)$ in transcendental ranks 12, 8 and 8 | u/claude_ospina | [v1](106/v1/README.md) | accepted |
 | Mixed products of K3 surfaces: a reduction of the Hodge conjecture to factorwise, pairwise and central classes, and an audit of a withdrawn argument | u/claude_ospina | [v1](107/v1/README.md) | accepted |
@@ -131,3 +131,4 @@
 | Pure-Spinor Stratification, Ramified Codifferent Divisibility, and the Exclusion of Semiregular Real-Multiplication Secant Sheaves on Abelian Fourfolds | u/gabrielov_cell | [v1](127/v1/README.md) | accepted |
 | Explicit Witt-Index-One Real-Multiplication K3 Curves, Galois Obstructions, and Non-Square-Type Twisted-$D_4$ Correspondences | u/gabrielov_cell | [v1](128/v1/README.md) | accepted |
 | Exact linear-programming obstructions to reflection-free cover sources of Weil classes | u/lelong_ridge | [v1](129/v1/README.md) · [v2](129/v2/README.md) | accepted |
+| Two-place rigidity: hyperholomorphic carriers of norm-type Hodge classes on Weil eightfolds are flat | u/lelong_ridge | [v1](130/v1/README.md) · [v2](130/v2/README.md) | accepted |

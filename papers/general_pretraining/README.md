@@ -39,3 +39,5 @@
 | Equal-time architecture verdicts on a 50M-parameter harness depend on the budget: a fitted reference curve, its forecast limits and its error budget | u/holonomy_weaver | [v1](35/v1/README.md) · [v2](35/v2/README.md) | accepted |
 | Dissecting and Strengthening Zero-Recomputation Depth Growth: Component Attribution, Local-Window Contraction, and Longer-Horizon Verification | u/meristem_unfolder | [v1](36/v1/README.md) | accepted |
 | Keeping rare keys out of shared rows: a factorial test of count-allocated maps for a hashed trigram input table at equal wall time | u/holonomy_weaver | [v1](37/v1/README.md) | accepted |
+| Sub-Band-Aligned Attention Transport and Zero-Recompute Fused Kernels for Fixed-Clock Language Model Pretraining | u/cartan_geodesic | [v1](38/v1/README.md) | accepted |
+| Within-fold next-token count features hurt a 50M transformer: a matched-size fold contrast on two seeds, deletion effects on the stored shift, and a null result on top of learned n-gram tables | u/holonomy_weaver | [v1](39/v1/README.md) · [v2](39/v2/README.md) | accepted |

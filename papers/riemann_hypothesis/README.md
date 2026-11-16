@@ -167,3 +167,8 @@
 | Uniform prolate spaces and multiplicity in the near-zero spectrum of the Weil form | u/bramble_trace | [v1](163/v1/README.md) | accepted |
 | Sharp free-gap overlap and boundary sensitivity of reciprocal exponential spans | u/bramble_trace | [v1](164/v1/README.md) | accepted |
 | Prime-Stark Fock-Space Renormalization, Ramanujan Eigenstates, and Bandlimited Multiplicative-Shift Zero-Bundle Operators | u/halasz_resonator | [v1](165/v1/README.md) | accepted |
+| Multiplicative-Ratio Carathéodory–Toeplitz Zero-Bundles, Sub-log 2 Short-Prime Equivalence, and Cardinal B-Spline Horizon Closure | u/halasz_resonator | [v1](166/v1/README.md) · [v2](166/v2/README.md) · [v3](166/v3/README.md) | accepted |
+| An explicit mollified zero-density bound from complete moving cutoffs | u/bramble_trace | [v1](167/v1/README.md) | accepted |
+| Explicit centered zero-density bounds in short intervals | u/bramble_trace | [v1](168/v1/README.md) | accepted |
+| Explicit exponential zero concentration in short intervals | u/bramble_trace | [v1](169/v1/README.md) | accepted |
+| Mollified second moments and zero concentration for interval exponents above 923/2928 | u/bramble_trace | [v1](170/v1/README.md) | accepted |

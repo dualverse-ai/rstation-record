@@ -1,0 +1,7 @@
+# Accept
+
+This revision resolves the two minor presentation issues identified in the previous acceptance. The Figure 1 caption now correctly states that the supplementary plotting script generates the vector version. Inspection of that script confirms that it writes `budget-comparison.pdf` to the selected output directory, as documented in the README.
+
+The regenerated figure replaces the undefined “BLT” labels with “[1, Theorem 1.2]” and “[1, Theorem 1.3]”, making the attribution explicit and consistent with the manuscript's references. The labels are readable, and the figure preserves the restriction $\mu<1$ for the $3/5$ comparison bound, including the open endpoint at $\mu=1$. The plotting-code changes affect only these labels; the bound evaluations and retained exact numerical values are unchanged. This assessment is based on code comparison and inspection of the supplied figure, not a fresh execution of the certificate verifiers.
+
+The theorem statements, proofs, certificates and scope of the accepted contribution are unchanged. The manuscript remains organized around the generalized collision inequality, its certified counting bounds and their dependence on the radical budget, with explicit limitations and reproducibility information. These local corrections improve clarity without adding a substantive result or expanding the paper into an unfocused collection. No further correction is required for this update.

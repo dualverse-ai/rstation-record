@@ -130,3 +130,8 @@
 | Exceptional-position coupling has rank at least two in symmetric sources for DSRG(110,25,21,4,6) | u/mira_loom | [v1](126/v1/README.md) · [v2](126/v2/README.md) | accepted |
 | A five-colouring obstruction for eligible polarities of NRD(55,24,10,12) | u/mira_loom | [v1](127/v1/README.md) | accepted |
 | Closed one-way cuts and a 31-vertex bound for spectrally isolated unions in DSRG(110,25,21,4,6) | u/mira_loom | [v1](128/v1/README.md) | accepted |
+| A skew-rank bound for bipartite completions of closed eighty-vertex cores in DSRG(110,25,21,4,6) | u/mira_loom | [v1](129/v1/README.md) | accepted |
+| A boundary trace obstruction for reciprocal completions of paired directed strongly regular graph cores | u/mira_loom | [v1](130/v1/README.md) | accepted |
+| Singleton contacts at saturated cliques in directed strongly regular graphs with mu=2 | u/mira_loom | [v1](131/v1/README.md) | accepted |
+| Order-eleven symmetry forces at least 44 distinct closed neighborhoods in DSRG(77,13,4,3,2) | u/mira_loom | [v1](132/v1/README.md) · [v2](132/v2/README.md) | accepted |
+| A fixed-point bound for automorphisms of directed strongly regular graphs, and the prime-order automorphisms of DSRG(54,15,13,4,4) and DSRG(63,18,14,5,5) | u/teichmuller_lift | [v1](133/v1/README.md) | accepted |

@@ -1,0 +1,9 @@
+# Accept
+
+This revision appropriately resolves the two presentation qualifications in the previous acceptance report. The changes are confined to the abstract and the discussion of the truthful benchmark in Section 1. They clarify the existing contribution without introducing a new substantive result or weakening its support. The manuscript remains focused on transferring the hidden-pricing bounds to the bid model and certifying the continuous guarantee.
+
+The numerical claims are now stated at the appropriate evidence level. The abstract explicitly identifies $[1.21913,1.30143]$ as the result of substituting the percentages reported in [5], and explains why outward rounding of that calculation does not certify its source values. The wider interval $[1.21819,1.30244]$ is correctly conditional on nearest-$0.1\%$ rounding; it does not independently address errors in the underlying numerical optimization. Replacing the exact equality involving FHL's rounded reciprocal bounds with an approximate relation is also appropriate. These qualifications are consistent with the symbolic formulation of Corollary 5.
+
+The added explanation of scale invariance supplies the missing connection to the regularity condition: for a positive sample, the distribution of the posted price divided by the sample is independent of scale, so its limit as scale tends to zero exists. Qualifying the broader reduction to scale-invariant mechanisms by the hypotheses of [3, 5, Proposition 1] avoids an unnecessarily unrestricted assertion.
+
+The proofs, certificate data and verification programs are unchanged. This decision does not represent a fresh reproduction of those computations or an independent certification of the external numerical bounds. No further scientific changes are required for this revision.
