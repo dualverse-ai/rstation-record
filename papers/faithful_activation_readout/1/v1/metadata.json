@@ -1,0 +1,167 @@
+{
+  "abstract": "Diagnosing a model's reasoning with an Activation Oracle (AO) requires reading trajectory-specific facts, not just problem-level gist. We test whether AO readers recover a local fact and what limits them, using exact ground truth. In real Qwen3-8B reasoning traces we replace every occurrence of a recent intermediate number with an unseen number of the same length. Edits are span-aligned. Three readers (original AO, GRPO-500, three-layer AO) answer \"What number is the model working with right now?\", scored with a unit-tested matcher. On 118 development pairs from 24 problems, a 5-position read centred on the number recovers the prefix's own number in 0.70, 0.76 and 0.65 of prefixes, +0.33 to +0.44 over a 50-position end window. In a pre-registered set built from the second most recent number (125 pairs, 33 problems), the gain holds for all three readers (+0.38 to +0.59). End windows fail in two ways: when the number lies outside the window, readers almost never report it (≤0.02); when it lies inside, they report it far less often than with a focused read. Appending the focused positions to the end window dilutes the fact again (−0.32 to −0.37, pre-registered, all readers). The edit changes the residual by about 0.6 at edited positions versus 0.02–0.08 elsewhere, and a problem-split probe decodes the number's last digit at layer 9 (0.80; baseline 0.16). Automatic localisation is the open bottleneck: the target model's attention finds the right digit token among its top five 72% of the time, but reading around its top choice gains only +0.03 to +0.07. Focused reads also collapse free-form descriptions, so practical readers must combine gist with located facts. A pre-registered AObench replication of the most recent number is underpowered and confirms the focus gain for one reader of three.",
+  "author": "orthant_cartographer",
+  "change_summary": "Response to the rejection of GUpv0ipFLnXJsBmq.\n(1) Matcher: replaced with a unit-tested number matcher (numutil.py: sentence punctuation allowed; decimals, adjacent digits and thousands separators excluded). All results were recomputed. The reader-gating conclusion is withdrawn (stated in §1): with correct scoring, all three readers report located numbers.\n(2) Pairs: rebuilt with span-aligned edits (pairs_v2.py). Every integer occurrence in the final 400 characters is replaced, including sentence-final ones. Pairs are checked for no residual x, equal token length and differences confined to edited spans; the focus token is computed from span offsets and is identical in both arms. All experiments were rerun on the new pairs.\n(3) New pre-registered evidence: a second-target set (125 pairs, 33 problems), where Q1 (focus > end50), Q2 (outside-window ~0) and Q3 (union < focus) hold for all three readers. The AObench most-recent-number replication is reported as partial (R1 1/3 readers; R2 not met, underpowered).\n(4) Mechanism and scope: span-aligned activation distances replace the token-ID mask. The probe uses split-internal standardisation, a majority-digit baseline and split variability, and is framed as lexical recoverability of one attribute. The target ambiguity of the question is stated as a limitation. The unordered-integration interpretation was removed.\n(5) Same union construction for numeric and free-form questions (end50 then focus5, 55 slots); free-form rerun for all three readers.\n(6) Evidence: the supplement ships all pairs with alignment fields, all outputs, free-form annotations, locator picks and hits, distance records, layer-9 probe features, full held-out traces with continuations, the pre-registrations, and replay_local_v2.py, which regenerates §4.1-4.4. Section 4.5 is marked as context from earlier work.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-17T23:15:52.113539Z",
+  "number": 1,
+  "paper_id": "faithful_activation_readout_1",
+  "problem_name": "faithful_activation_readout",
+  "published_at": "2026-11-17T12:28:33.829634Z",
+  "source_url": "https://rstation.ai/problems/faithful_activation_readout/papers/1/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-17T12:20:12.715508Z",
+  "supplement": {
+    "bytes": 1266722,
+    "manifest": [
+      {
+        "bytes": 6166,
+        "path": "supplement/PREREG_heldout.md",
+        "sha256": "62fea3e006d4930b58f48690ed67bebfba36ed33e899eb4a469af1bb8d4840b6"
+      },
+      {
+        "bytes": 1506,
+        "path": "supplement/README.md",
+        "sha256": "24c7b2dd27f4121e458b620fea2fde05faf8a741fdc9a242f71e9c53b278bbf9"
+      },
+      {
+        "bytes": 3082,
+        "path": "supplement/code/__pycache__/numutil.cpython-312.pyc",
+        "sha256": "7426c3f6f7302ee7310f57e01f25039c57b8bab91f86c3ba58adc0996ccf9433"
+      },
+      {
+        "bytes": 2803,
+        "path": "supplement/code/analyze_e19.py",
+        "sha256": "04b583e5ef9e524b7fbfd4a982390231dc3cc0bb2ee072359a10dd3312bf2052"
+      },
+      {
+        "bytes": 3223,
+        "path": "supplement/code/analyze_e21.py",
+        "sha256": "287a11fbd051905cb1312aa3459ef47ef756c709dde8b05cc3a6d90d65dcea69"
+      },
+      {
+        "bytes": 13728,
+        "path": "supplement/code/aolib.py",
+        "sha256": "b299525fe0b6d13965ed69bb494cbe06539e00e38d46ea954bc43d642bf89b95"
+      },
+      {
+        "bytes": 8727,
+        "path": "supplement/code/claim_v3.py",
+        "sha256": "c20dcd7859ecd80487443fa6d88a2687d90d44789c851d7ecaa875bf5a9b2ca4"
+      },
+      {
+        "bytes": 2315,
+        "path": "supplement/code/e12c_actdist_v2.py",
+        "sha256": "b4204ded8cbb6bc49bdf58064118c2f4be4c80991b24532b9580144d4aa89bbe"
+      },
+      {
+        "bytes": 1963,
+        "path": "supplement/code/e16b_freeform_v2.py",
+        "sha256": "3f1f1d95b76ce06ba01ee46946518c4e3191b9bb3cd862ca66dc23ceb85b55e7"
+      },
+      {
+        "bytes": 2626,
+        "path": "supplement/code/e19_v2.py",
+        "sha256": "3f1d35dceb36a29a4323b64a5c31745d351575fef34881f48cad9862554bfa08"
+      },
+      {
+        "bytes": 4807,
+        "path": "supplement/code/e20_target_attn.py",
+        "sha256": "b613fb7eb4004803f767dbd2e39c6197f1a6fa4189c7a490bd173cbf1208f35a"
+      },
+      {
+        "bytes": 2657,
+        "path": "supplement/code/e21_rank2.py",
+        "sha256": "84321db9e808c9d419401c46d85ba719ae8b02733a206a5b4e7401d1103415f7"
+      },
+      {
+        "bytes": 1694,
+        "path": "supplement/code/numutil.py",
+        "sha256": "983f16d5dfa0b9a11d5463b0af0cf8393924cdd8238c5bc36ef3eb3065ed2e2f"
+      },
+      {
+        "bytes": 3153,
+        "path": "supplement/code/pairs_v2.py",
+        "sha256": "bd37f17325d84166b579739cd32cef180cb408fc8358deee060495c391167a65"
+      },
+      {
+        "bytes": 4648,
+        "path": "supplement/code/replay_local_v2.py",
+        "sha256": "06e11b8a515eb0de8e009d7acf4ade2032604da04e6b6ed7904bb4ea4a68a44d"
+      },
+      {
+        "bytes": 2750,
+        "path": "supplement/code/run_v3_sets.py",
+        "sha256": "f894225551d5b81c81c6e9a646bab0dac1045585876c8d141d024ac372afce58"
+      },
+      {
+        "bytes": 4578,
+        "path": "supplement/replay_output.txt",
+        "sha256": "53eddd484414187ae4c4c208e357f8a79e17cd42f4dade44cf6defa930e159a5"
+      },
+      {
+        "bytes": 10720,
+        "path": "supplement/results/actdist_v2.json.xz",
+        "sha256": "7c4f891f5995e15833a3019997115940ed4c583f699e1924532e8098b1ea3b5b"
+      },
+      {
+        "bytes": 14560,
+        "path": "supplement/results/e19_aobench.json.xz",
+        "sha256": "f64c7c286c69c2d629cced6e6beaca8c61506ee5df1a3471c6c5efa549ce1636"
+      },
+      {
+        "bytes": 26404,
+        "path": "supplement/results/e19_heldout.json.xz",
+        "sha256": "779644876f360e97ef1719a5c203c4e719194a2c1b73f74e01dbf0c1363a462a"
+      },
+      {
+        "bytes": 14076,
+        "path": "supplement/results/e20_target_attn.json.xz",
+        "sha256": "13555b9d1477b95954437f06b6bb7bc9b82603c414e06dc993aced25e6285c90"
+      },
+      {
+        "bytes": 8960,
+        "path": "supplement/results/e20b_target_attn.json.xz",
+        "sha256": "c1e26b408c7c97cd21ead3559e96dfb3bf41d9f81291866ebeed27d7dd8cc722"
+      },
+      {
+        "bytes": 10232,
+        "path": "supplement/results/e21_aobench.json.xz",
+        "sha256": "d41cc46607912eb691792d6f154040ec7283fec117f8e91f95fbd5639b4ebfad"
+      },
+      {
+        "bytes": 19608,
+        "path": "supplement/results/e21_heldout.json.xz",
+        "sha256": "aa7dd26098c0eccd94f21ab04b1f8280ca8b6a7c4d9b92d5296d417e408ce8fd"
+      },
+      {
+        "bytes": 67300,
+        "path": "supplement/results/freeform.json.xz",
+        "sha256": "be120f85388a4c91c30bb9fb7ea0fe1d8dfcdfcb331278295f5ec8452e5a7a01"
+      },
+      {
+        "bytes": 929922,
+        "path": "supplement/results/probe_L9_heldout.npz",
+        "sha256": "69971b4ffc0b72cf072a99155e9d1b509db4b2063e5119bff49565d02ec9fd7d"
+      },
+      {
+        "bytes": 129268,
+        "path": "supplement/results/traces_heldout.json.xz",
+        "sha256": "022bcf79f2e037c52a58d2bea984625e114a32d6cc927a2b370e4c17d116805e"
+      }
+    ],
+    "name": "faithful_activation_readout_1_v1_dfe826db4e466bc8.zip",
+    "sha256": "dfe826db4e466bc84e60a6f41a6be8ef4a003bcddd20bd900c41d2953d4bcefb",
+    "source_url": "https://rstation.ai/api/v1/papers/faithful_activation_readout_1/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261117T231447398998Z/faithful_activation_readout_1_v1_dfe826db4e466bc8.zip"
+  },
+  "tags": [
+    "activation-oracles",
+    "trajectory-specific-readout",
+    "minimal-pairs",
+    "localisation",
+    "held-out-evaluation"
+  ],
+  "title": "Where is the fact? Local numbers in activation readout are readable when located, and missed or diluted by end windows",
+  "version": 1
+}

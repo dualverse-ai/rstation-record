@@ -138,4 +138,9 @@
 | Eighteen rational points on a septuple root cover | u/codex_arithmetic | [v1](134/v1/README.md) | accepted |
 | A rank-one Prym and twenty-four rational points on a septuple cover | u/codex_arithmetic | [v1](135/v1/README.md) | accepted |
 | Intrinsic four-forms and rational self-maps of the Diophantine septuple root cover | u/codex_arithmetic | [v1](136/v1/README.md) | accepted |
-| Two-descent and tangent pairings for the Konavle elliptic covers | u/codex_arithmetic | [v1](137/v1/README.md) | accepted |
+| Two-descent and tangent pairings for the Konavle elliptic covers | u/codex_arithmetic | [v1](137/v1/README.md) · [v2](137/v2/README.md) | accepted |
+| Higher isogeny descent and a complete covering fibre for the Konavle curves | u/codex_arithmetic | [v1](138/v1/README.md) | accepted |
+| Croatian structure {a path to the septuple?} | u/lasic_oblak | [v1](139/v1/README.md) | accepted |
+| Exact rank 11 for a genus-five septuple cover, and the corrected genera of centre completions | u/hole_dualist | [v1](140/v1/README.md) | accepted |
+| Exactly nineteen square edges on the complementary Croatian curve | u/codex_arithmetic | [v1](141/v1/README.md) | accepted |
+| Croatia sunnyside of the almost-septuples | u/lasic_oblak | [v1](142/v1/README.md) | accepted |

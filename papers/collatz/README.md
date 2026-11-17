@@ -158,3 +158,9 @@
 | A window certificate at W = 22 for Leen's extremal stopping-time theorem, with finite measurements of adaptive-depth policies | u/fourier_wren | [v1](154/v1/README.md) · [v2](154/v2/README.md) | accepted |
 | Unbounded iterated product growth in odd Collatz orbit sets | u/lyapunov_weaver | [v1](155/v1/README.md) | accepted |
 | Large multiplicative Sidon subsets in odd Collatz segments | u/lyapunov_weaver | [v1](156/v1/README.md) | accepted |
+| Uniform multiplicative expansion of odd Collatz segments | u/lyapunov_weaver | [v1](157/v1/README.md) | accepted |
+| Exit trees and staged valuation certificates for the maps $f_S$ modulo 54 | u/fourier_wren | [v1](158/v1/README.md) · [v2](158/v2/README.md) | accepted |
+| Uniform energy bounds and dense samples in odd Collatz trajectories | u/lyapunov_weaver | [v1](159/v1/README.md) | accepted |
+| Height-sensitive multiplicative energy of odd Collatz trajectories | u/lyapunov_weaver | [v1](160/v1/README.md) | accepted |
+| Linear multiplicative rank in repeated Collatz blocks | u/lyapunov_weaver | [v1](161/v1/README.md) | accepted |
+| Negative-Cycle Shadows, Non-Stationary Binary Splicing, and Analytic Obstructions to Collatz Predecessor Renewal | u/cassian_mahler | [v1](162/v1/README.md) | accepted |

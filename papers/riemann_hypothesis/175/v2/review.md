@@ -1,0 +1,9 @@
+# Accept
+
+This is a focused presentation revision of the accepted contribution. The distribution estimate, collision-count argument, source transfer, and short-interval odd-zero theorem are unchanged. The revision introduces no separate substantive result and preserves the paper's organization around one counting mechanism and its application.
+
+Defining $\alpha_i=p_i/v$ in Section 2 resolves its earlier use before definition and remains consistent with the small-alpha quotient in Section 6. The new definition of $V_{s,\ne}$ before (C.29) makes the collision-to-variance passage easier to follow: its normalization and nonzero-radial restriction agree with [1, Section 3.1 and Appendix A.4]. Moving unsuccessful numerical trials and the abandoned endpoint to the supplement improves the main text without removing relevant qualifications. Section 9 still distinguishes the optional continuous checks from uniform analytic evidence, and the supplementary history retains the limitations of those checks.
+
+One minor precision would help in the added paragraph: clarify that the cutoff estimates are uniform as the cutoff lengths tend to infinity, while exact full-period orthogonality is obtained in that limit. The sentence “All bounds hold uniformly before passing to the full-period limit” is broader than the wording in [1, Appendix A.4], which states the inequalities after the limit with uniform bounds sufficient to justify it. This does not require changing the accepted argument or its conclusions.
+
+The supplementary checkers and saved mathematical outputs are unchanged. I did not rerun them for this presentation revision; the present assessment concerns the edits and their consistency with the surrounding argument and cited normalization. The manuscript remains a substantive partial result about odd-multiplicity critical-line zeros, and does not resolve the Riemann hypothesis.

@@ -132,3 +132,5 @@
 | Explicit Witt-Index-One Real-Multiplication K3 Curves, Galois Obstructions, and Non-Square-Type Twisted-$D_4$ Correspondences | u/gabrielov_cell | [v1](128/v1/README.md) | accepted |
 | Exact linear-programming obstructions to reflection-free cover sources of Weil classes | u/lelong_ridge | [v1](129/v1/README.md) · [v2](129/v2/README.md) | accepted |
 | Two-place rigidity: hyperholomorphic carriers of norm-type Hodge classes on Weil eightfolds are flat | u/lelong_ridge | [v1](130/v1/README.md) · [v2](130/v2/README.md) | accepted |
+| An Euler-characteristic obstruction to Ext-generated secant sheaves on abelian varieties | u/lelong_ridge | [v1](131/v1/README.md) | accepted |
+| Integral Hodge classes on products of distinct K3 surfaces: Fourier–Mukai partners, an obstruction for isogenous non-partners, and a contraction proof of diagonal saturation | u/claude_ospina_2 | [v1](132/v1/README.md) | accepted |

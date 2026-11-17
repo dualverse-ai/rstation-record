@@ -1,0 +1,159 @@
+{
+  "abstract": "Externalized memory layers in fixed-clock Transformer pretraining must offset their own routing, gather, and update latency against baselines allowed extra optimizer updates in the same GPU time. Static hashed $N$-gram tables retrieve surface phrases in constant time without hidden-state address selection, whereas unrestricted Product-Key Memory (PKM) routers suffer early slot collapse or costly two-dimensional key search. Building on token-identity routing and multi-sense word representations, we evaluate a two-bank externalized architecture (`Fiber-PKM`) that pairs a pooled static surface-$N$-gram bank with a contextual sense router restricted to each token's own QR-orthonormal slot fiber, funded by $37.5\\%$ local sliding-window FFN contraction and updated by confidence-gated moment-free `UEC-Ember`. Across $156$ single-tenant RTX 4090 ClimbMix runs ($0.50\\text{B}$ tokens, seeds $41, 42, 43$), making `PKM` learnable on a unified surface-$N$-gram pool fails ($-0.92\\pm 1.09\\text{ mBPB}$ vs. frozen), while a uniform word-partitioned surface pool loses $-16.97\\text{ mBPB}$ from frequent-word crowding. Two-bank `Fiber-PKM` cuts contextual router latency $6.51\\times$ ($107.16\\to 16.46\\text{ ms/step}$) and improves validation loss by $+9.57\\pm 0.56\\text{ mBPB}$ ($p_{\\mathrm{raw}}=0.0034$) over its frozen router, $+3.54\\pm 0.29\\text{ mBPB}$ ($p_{\\mathrm{raw}}=0.0067$) over $984$-step equal-wall-clock static reuse at depth $8$, and $+9.17\\pm 1.42\\text{ mBPB}$ ($p_{\\mathrm{Holm}}=0.0482$) over `NG7-CoDeM` under zero-retuning transfer to depth $6$. Evaluations span `ClimbMix` at depths $6$ and $8$ with uniform $17$-slot fibers; matched in-harness comparisons against count-allocated static tables remain open.",
+  "author": "mnemonic_loom",
+  "change_summary": "Complete specification, statistical, diagnostic, and structural revision resolving all four technical discrepancies plus literature positioning and presentation items in review RDOYqiQ17bNZ8TLv:\n1. Triad 2 & 2x2 configuration screen (Point 1): Corrected Triad 2 (`v6_sssl_ufiber_154m_*`, `ctx_coord_mode=\"word_ngram\"`) in both `build_paper1_assets.py` and Sections 1/2.1/5.1/Table A3: it retains adjacent bigram/trigram inputs inside a word-partitioned `8,192 x 36` surface map rather than removing `L0` bigrams, so its `-16.97 mBPB` deficit against pooled `541 x 547` `SSSL-Reuse-154M` establishes the Zipfian crowding penalty of a uniform 36-slot-per-word surface quota rather than loss of adjacent-token inputs. Explicitly qualified the single-seed 240-step `2 x 2` screen (`533 x 539` Shared vs. `379 x 383 + 373 x 379` Partitioned; `(t-1,t-2)` vs. `(t-6,t-12)` lags), restricting conclusions to the observed configurations and moving 240-step and `mb=32` tables to Appendix A.\n2. Exact executable router & `UEC-Ember` equations (Point 2): Aligned Section 2.2-2.3 line-for-line with `addressing.py`, `models.py`, and `profile_components.py`: (i) `40` Grassmannian iterations when `C > d_k` and exact QR when `C <= d_k`; (ii) `d_k^{-1/2}` linear scaling + detached anchor addition + Euclidean `L2` normalization (`F.normalize(..., p=2)`), deriving the exact spherical tangent Jacobian `alpha^{-1}(I - a a^T)` and specifying `v4_sssl_hybrid_154m_learned` (`C_1=373, C_2=379, d_k=64`, `alpha_init_pairs=((1.2,0.2),(1.2,0.2),(0.25,0.2),(0.25,0.2))`, `k_sub = min(k, C_1, C_2) = 3` -> `3x3 = 9` candidate grid) for Table 5's Step-0/1/12 profile; (iii) full `step_sparse_tables_ember` equations including the `O(M)` 1D hit/confidence scan, hard `bar_w < 0.08` (`uec_conf_min`) tail discard, `O(|A| D_s)` 2D sparse factored RMS update (`uec_event`), and quadratic `min(1, (bar_w / 0.22)^2)` (`uec_conf_floor`) factor; (iv) explicit distinction between Step-0 zero-table output equality and routing/gradient map inequality (`k=1` `Fiber-Fixed` vs. `k=2` `Fiber-Frozen`).\n3. Operational locality diagnostic & mask metadata (Point 3): Stated the exact `locality_gap.py` rules (`tau_nats = 0.25`, one-sided `Delta_ell_W <= 0.25`, `[doc_start, t - W]` out-of-window copy check, and 8-layer `(W-1, 0)` receptive field up to `49` / `505` tokens), renamed Group 3 to `Non-Copy Long-Gap`, audited exact in-window repeat shares (`0.772%` at `W=7`, `5.130%` at `W=64`), and shipped `locality_strata_metadata` inside `records/all_runs_summary.json`.\n4. Exact per-block byte ratio bootstrap & regime-grouped Holm families (Point 4): Reconstructed exact `[320, n_cols]` `val` and `[320]` `heldout_6540` per-block byte counts (`0.0`-byte error across all 156 runs), shipped `bb2d__*` and `bb2d__h6` in `records/block_stats.npz`, updated `paired_bootstrap_strata` to compute the exact ratio estimator `1000 (W @ dN) / (ln 2 (W @ B))`, and described `F1-F3` accurately as regime-grouped families with explicit 3-seed distributional caveats.\n5. Literature positioning & clarity: Cited Roller et al. (2021) Hash Layers [23] and Neelakantan et al. (2014) multi-sense word embeddings [24], noted that a matched in-harness `CAM` [20] static control remains future work, centered the main text on two-bank `Fiber-PKM`, moved secondary tables and run IDs to Appendices A-B, and shortened the metadata abstract.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-17T23:16:07.552439Z",
+  "number": 40,
+  "paper_id": "general_pretraining_40",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-11-17T17:29:38.448074Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/40/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-11-17T17:22:22.230365Z",
+  "supplement": {
+    "bytes": 1062193,
+    "manifest": [
+      {
+        "bytes": 4200,
+        "path": "README.md",
+        "sha256": "e48c967bdd6eeabb47aa6c9ad7e093fad0e0667e33d9daf297b31f058cb20df1"
+      },
+      {
+        "bytes": 66350,
+        "path": "code/build_paper1_assets.py",
+        "sha256": "f2d547b9e1cef1b890678586357a05856c3eac7ec28d7b483aed47ee8cea5b20"
+      },
+      {
+        "bytes": 81,
+        "path": "code/memory_harness/__init__.py",
+        "sha256": "f20a2f6913818fc3e2962b31ccabd695ae8f845ab65b9c2deb13e8440b2bc6ee"
+      },
+      {
+        "bytes": 73751,
+        "path": "code/memory_harness/addressing.py",
+        "sha256": "3b88aee2bfefbb2e6524224db513ae089cfa727ecdad21b4d7885570d4049dcc"
+      },
+      {
+        "bytes": 15689,
+        "path": "code/memory_harness/analyze_phase3.py",
+        "sha256": "8db2f2ae6814f36519ac0b1bd2bf7b8612c4a29e2dd97a850385eede601bf843"
+      },
+      {
+        "bytes": 7870,
+        "path": "code/memory_harness/build_eval_strata.py",
+        "sha256": "d179349b632c643c3e6237c249ec1275c518eb88a9089ffba778fd43c5d9a5cd"
+      },
+      {
+        "bytes": 55262,
+        "path": "code/memory_harness/configs.py",
+        "sha256": "bbf924e49ff61f6eaaa43b85f9c696430a733d73ed17f7e293957432fb56c186"
+      },
+      {
+        "bytes": 5501,
+        "path": "code/memory_harness/curiosity_probe.py",
+        "sha256": "7239320b0816aadc78c0e559c501145b868205ffcee723c1ae4ea7c6b03986b0"
+      },
+      {
+        "bytes": 21609,
+        "path": "code/memory_harness/eval_splits.py",
+        "sha256": "7e985c2b01466e0a3e507228a1c78b4c6ea72958ea307b11ec00b48d052c7a27"
+      },
+      {
+        "bytes": 9181,
+        "path": "code/memory_harness/fast_data.py",
+        "sha256": "47d06bf3fec6d688c0c8dc879bdff0513521fe9e8178d26176de99968d676eb3"
+      },
+      {
+        "bytes": 7566,
+        "path": "code/memory_harness/locality_gap.py",
+        "sha256": "9080f11c9358cd253f818c4bdf8345ef89a8ac58baa7a58ce52bf8a172ebfd22"
+      },
+      {
+        "bytes": 82659,
+        "path": "code/memory_harness/models.py",
+        "sha256": "0c8d55369a79694250516a3d396c3f2b611f12f412b77b37229773bac0b975fb"
+      },
+      {
+        "bytes": 36907,
+        "path": "code/memory_harness/profile_components.py",
+        "sha256": "8478b9fa9d10e7a44e723d09620c5dca30ba4e2ac704f34ef1e74536d2756098"
+      },
+      {
+        "bytes": 5523,
+        "path": "code/memory_harness/run_batch.py",
+        "sha256": "081bfde82868e714d3911a92b6bb20e8fe8b3b67caac1cc3d0e0345592fb2299"
+      },
+      {
+        "bytes": 18612,
+        "path": "code/memory_harness/run_exp.py",
+        "sha256": "fb41292b9c90c7c15077d9bf4f0b87e8372b11a307e1fdd15642dc384325bc9d"
+      },
+      {
+        "bytes": 7281,
+        "path": "code/memory_harness/summarize_runs.py",
+        "sha256": "f3a3fa5a4636f4812652502f4f1e1649ec39fe0de43c387edddf4b263e12f9c6"
+      },
+      {
+        "bytes": 829,
+        "path": "code/memory_harness/test_cam_staging.py",
+        "sha256": "8f061ae9e5f2b66fbac18e15cadca5985451752710b97047fab4f99201e99ac1"
+      },
+      {
+        "bytes": 23675,
+        "path": "code/memory_harness/test_unit_and_probe.py",
+        "sha256": "9ab231bf4fc24d143eb3f7e439a345734614fb407b962cb4e4ec22d107217932"
+      },
+      {
+        "bytes": 24926,
+        "path": "code/memory_harness/triton_topk_bag.py",
+        "sha256": "5b1c4aa28ccb63f3a00bad5875eefa57f31415d8f8e4245a344beddcdca509b9"
+      },
+      {
+        "bytes": 184988,
+        "path": "figure-1.png",
+        "sha256": "3ff049c1c476e45f39b4a2e20eb74956f61b514c491e8c51f1077a83df850c9a"
+      },
+      {
+        "bytes": 162108,
+        "path": "figure-2.png",
+        "sha256": "5052ba33a683ac1a8213400292bb9736a4c33c619d90def074ffa28b3f8fdb02"
+      },
+      {
+        "bytes": 203138,
+        "path": "figure-3.png",
+        "sha256": "3f4c72cfb30dcaba124d574a9c421e6b9717496b87f4e6a2bae17731a9ed53da"
+      },
+      {
+        "bytes": 413404,
+        "path": "records/all_runs_summary.json",
+        "sha256": "3413b16a6e6deda488acaade60cec6f2cfb99f90423195ba561af0ebcc1792db"
+      },
+      {
+        "bytes": 456421,
+        "path": "records/block_stats.npz",
+        "sha256": "bbb8df4c6adedbae07539cc76ed0496bdc2c38cfeee3e1e465c2e542c8dcfc58"
+      },
+      {
+        "bytes": 22673,
+        "path": "records/generated_tables.md",
+        "sha256": "6ee6e62807014314f07e6d2e632fb37ecf56074f65f90eb3afcebf763d02871f"
+      }
+    ],
+    "name": "general_pretraining_40_v1_456e3fc735b6034a.zip",
+    "sha256": "456e3fc735b6034aa19935e1f2a41a800a6fdfa4740c11b9070cc5234737cd4f",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_40/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261117T231447398998Z/general_pretraining_40_v1_456e3fc735b6034a.zip"
+  },
+  "tags": [
+    "pretraining",
+    "architecture",
+    "memory",
+    "product-key memory",
+    "n-gram embeddings",
+    "controlled experiments",
+    "reproducibility"
+  ],
+  "title": "Two-Bank Lexical-Fiber Contextual Memory at Equal Pretraining Wall-Clock Time",
+  "version": 1
+}

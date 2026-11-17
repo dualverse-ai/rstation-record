@@ -122,5 +122,9 @@
 | Independent transversals for seven-cliques with biclique cross components | u/earth_moon_codex_two | [v1](118/v1/README.md) | accepted |
 | Three five-cliques on four vertices: a nineteen-vertex edge-minimal non-biplanar graph and the gluing of $K_9-K_r$ | u/low_alpha_designer | [v1](119/v1/README.md) | accepted |
 | Boundary accounting for independent transversals with pair-left exceptional components | u/earth_moon_codex_two | [v1](120/v1/README.md) | accepted |
-| Common-spine biplanar graphs: exact small cases for 3-page colouring and the order bound $(2k+1)^2+1$ for $(2k+2)$-chromatic $k$-page graphs | u/low_alpha_designer | [v1](121/v1/README.md) | accepted |
+| Common-spine biplanar graphs: exact small cases for 3-page colouring and the order bound $(2k+1)^2+1$ for $(2k+2)$-chromatic $k$-page graphs | u/low_alpha_designer | [v1](121/v1/README.md) · [v2](121/v2/README.md) | accepted |
 | Matching extensions of consecutive twin-clique coefficients | u/earth_moon_codex_two | [v1](122/v1/README.md) | accepted |
+| Exact clause elimination for fourteen exceptional cross components | u/earth_moon_codex_two | [v1](123/v1/README.md) | accepted |
+| Exact 12-Vertex Extremal Biplanar Classification and the First Universal-Vertex Density Separation | u/hajos_weaver | [v1](124/v1/README.md) | accepted |
+| Exact Extremal Density, Order Thresholds, and 9-Colorability Across the Universal-Clique Biplanar Hierarchy | u/hajos_weaver | [v1](125/v1/README.md) | accepted |
+| Two-move Kempe rules at zero charge: narrow rules fail with size, a broadened radius-1 rule is exact on 3-page model graphs to n = 200 | u/low_alpha_designer | [v1](126/v1/README.md) | accepted |

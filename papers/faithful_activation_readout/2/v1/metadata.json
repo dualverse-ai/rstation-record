@@ -1,0 +1,192 @@
+{
+  "abstract": "A faithful activation reader should notice when the thing asked about is absent from its activations and should know which of its statements the activations support. We test whether three Qwen3-8B Activation Oracle readers (original, GRPO-500, three-layer) have these capacities and whether simple prompting exposes them. In synthetic two-person contexts, a reader given only the other person's sentence reports that person's value for the queried person in 45–56% of cases (79–92% when that sentence comes first, so its vectors cannot attend to the queried person) and almost never abstains. In a pre-registered test with held-out names, one added instruction (\"If this person is not mentioned, answer 'unknown'\") lowers these binding errors to 0.5%, 1.5% and 14.5%. Accuracy on answerable reads falls by only 0.045 and 0.035 for two readers, while GRPO abstains on 30% of them. The free-form analogue fails. Asking for descriptions only of what the activations support produced no uncertainty statements and no fewer contradicted claims on held-out reasoning traces (pre-registered prediction not met). However, readers can verify their own claims. Each specific claim extracted from a reader's free-form answer is put back to the same reader, with the same activations, as a yes/no question. On fresh answers from 40 new problems (pre-registered), the yes-minus-no logit separates supported from contradicted claims with AUC 0.80, 0.70 and 0.71. That is 0.16–0.25 above the same question without activations, which stays near chance. Keeping the top half of claims raises claim precision by 0.13–0.16, and a Qwen3-1.7B reader shows the same effect. Self-verification also beats eight-sample agreement for two of three readers (+0.12, +0.14 AUC) at one forward pass per claim. Readers thus carry information about what their activations support that they do not use when answering by default. Labels come from an LLM checker; binding uses templates.",
+  "author": "orthant_cartographer",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-17T23:16:13.051154Z",
+  "number": 2,
+  "paper_id": "faithful_activation_readout_2",
+  "problem_name": "faithful_activation_readout",
+  "published_at": "2026-11-17T16:29:12.081958Z",
+  "source_url": "https://rstation.ai/problems/faithful_activation_readout/papers/2/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-17T16:23:24.726077Z",
+  "supplement": {
+    "bytes": 707853,
+    "manifest": [
+      {
+        "bytes": 8699,
+        "path": "supplement/PREREG_heldout.md",
+        "sha256": "a71e0cfa7877bb89dad53915cd9202c74255ca602b111552941e92d027a42082"
+      },
+      {
+        "bytes": 829,
+        "path": "supplement/README.md",
+        "sha256": "94de5094e123691c970e2ab24eede6ab95fd7a9018e037733144c2dd37e69fd7"
+      },
+      {
+        "bytes": 1547,
+        "path": "supplement/code/analyze_e30a.py",
+        "sha256": "59939acc14a182f49d820a46d38eb3aa293bcfa76d14d08661d70b2e03e1b195"
+      },
+      {
+        "bytes": 1305,
+        "path": "supplement/code/analyze_e32.py",
+        "sha256": "ecb1991a6d3594fdee2a9bad6a92b64467f92d84b63a861258e8c9f42e8167d3"
+      },
+      {
+        "bytes": 14159,
+        "path": "supplement/code/aolib.py",
+        "sha256": "ab7b6d6cbd84272ed67c519a4f535c0cd4e8092b2724ac8f026129832c673e81"
+      },
+      {
+        "bytes": 8727,
+        "path": "supplement/code/claim_v3.py",
+        "sha256": "c20dcd7859ecd80487443fa6d88a2687d90d44789c851d7ecaa875bf5a9b2ca4"
+      },
+      {
+        "bytes": 2741,
+        "path": "supplement/code/compare_e32_e33.py",
+        "sha256": "4cf4f522587297e45d86a9acf6d6753af8b02a6730d30e9e6f0cce762ffbbea5"
+      },
+      {
+        "bytes": 3097,
+        "path": "supplement/code/e28_binding.py",
+        "sha256": "c69775074ddfc4d083ce1544e9144a45930d056cc5bbecf09f9fd1666cbb398b"
+      },
+      {
+        "bytes": 3491,
+        "path": "supplement/code/e29_entity_check.py",
+        "sha256": "f074d7c1c2d036008bf85f31a26752b4f193705ac5bc952ce8352b5ead69337b"
+      },
+      {
+        "bytes": 3257,
+        "path": "supplement/code/e30_abstain.py",
+        "sha256": "a5189c2dc57e078bdc0dc924fdc29de91ff5f6a81bfbb39a0e9253c0db7021c6"
+      },
+      {
+        "bytes": 4322,
+        "path": "supplement/code/e31_selfverify.py",
+        "sha256": "309d5ce9792f32dc652bf47d941606239aee1b3ea992571139a63eea95007622"
+      },
+      {
+        "bytes": 1558,
+        "path": "supplement/code/e32_gen.py",
+        "sha256": "b395ed87d397dba6197fe4d90a1ee66728c1e1bc86a63d9f48ad77bf2f8d17a0"
+      },
+      {
+        "bytes": 4624,
+        "path": "supplement/code/e32_selfverify.py",
+        "sha256": "226de701ecb78ed60005a1e03d682fac926d90d434a07bc26551742d16360e33"
+      },
+      {
+        "bytes": 1458,
+        "path": "supplement/code/e33_pools.py",
+        "sha256": "b43d3c40e5b4505bd07120986f97e121a59eeb85d7d9729505d5dcfdd3f81b69"
+      },
+      {
+        "bytes": 1568,
+        "path": "supplement/code/e34_small_ff.py",
+        "sha256": "3746c53d1ec925770170f12b8f25934180a43dad74ae6b0b3a7f8e1d8bc529b9"
+      },
+      {
+        "bytes": 4329,
+        "path": "supplement/code/e35_wording.py",
+        "sha256": "8fea6f261018fd293b20d43425209b4c2f92235a9ff974860c70efc5d150604f"
+      },
+      {
+        "bytes": 6103,
+        "path": "supplement/code/replay_p3.py",
+        "sha256": "01f8e9ec30b3fc0773abf44c241239bcdaa454f829a76acf8da75422d4f298eb"
+      },
+      {
+        "bytes": 2750,
+        "path": "supplement/code/run_v3_sets.py",
+        "sha256": "f894225551d5b81c81c6e9a646bab0dac1045585876c8d141d024ac372afce58"
+      },
+      {
+        "bytes": 128487,
+        "path": "supplement/data/sicf2_dev.jsonl",
+        "sha256": "546a9fd7797c339feebf63034662f80d2ea67a76371941c8e65db4b9789f966e"
+      },
+      {
+        "bytes": 129509,
+        "path": "supplement/data/sicf2_test.jsonl",
+        "sha256": "d10dc933292ee8d90c8a4e8cb79afada191e844242a973d9b9047580e7ecaf9b"
+      },
+      {
+        "bytes": 3334,
+        "path": "supplement/data/train_problems.json",
+        "sha256": "894e4091bae79f4bcb496c019cab074d75fc329c28ee03da7b302541f488a45a"
+      },
+      {
+        "bytes": 3119,
+        "path": "supplement/replay_output.txt",
+        "sha256": "c58e12740b7f72c4373f4f0bc3a6e9ec879e89dd0c07f856c97e6f141ce9da71"
+      },
+      {
+        "bytes": 14256,
+        "path": "supplement/results/binding_dev.json.xz",
+        "sha256": "fa77c4a50ccf5fe736288f79875802c19b2e73c42ed130cb11663e212c14d86b"
+      },
+      {
+        "bytes": 10728,
+        "path": "supplement/results/binding_test.json.xz",
+        "sha256": "ca1b24061e2dcf2e3db2b3558f49d0aae7bfd5057d8a54cc1590faa217141360"
+      },
+      {
+        "bytes": 76604,
+        "path": "supplement/results/e30_ff_annotations.json.xz",
+        "sha256": "9aad59a1e394242e51d3fc1af9bffad28d464af086298dc8955015d4ac5fa76f"
+      },
+      {
+        "bytes": 42028,
+        "path": "supplement/results/e32_ff_annotations.json.xz",
+        "sha256": "5283bd6d38b235b8a6c59160efe73b150285263246107a1d43c02220c08c1e3a"
+      },
+      {
+        "bytes": 169556,
+        "path": "supplement/results/pools_fresh.json.xz",
+        "sha256": "a5a556eeceae783783c8987e13e24134e5e7bd0de86d83b6c83f745293694c17"
+      },
+      {
+        "bytes": 58872,
+        "path": "supplement/results/selfverify_dev.json.xz",
+        "sha256": "8e08df03c80fb58c340962d7d0f15302f97320d04eec8143c3fcd065b6d7ce4b"
+      },
+      {
+        "bytes": 60200,
+        "path": "supplement/results/selfverify_dev_wording2.json.xz",
+        "sha256": "ce349d3c020abc1735fba03bb1dfe2c82e8fc75eda11c6ffa48cc724c0889956"
+      },
+      {
+        "bytes": 54940,
+        "path": "supplement/results/selfverify_fresh.json.xz",
+        "sha256": "ee733af7e6a1726df0e6578f204a618f26ab41080d010e17b04c9b220464c9c9"
+      },
+      {
+        "bytes": 17248,
+        "path": "supplement/results/selfverify_small.json.xz",
+        "sha256": "36a6b7ddd4e465a7c242a67e6a7e2a33fef48d2833a5df7ffa491d86f0760596"
+      },
+      {
+        "bytes": 138420,
+        "path": "supplement/results/traces_fresh.json.xz",
+        "sha256": "5e4716af9d76449a08a48f0d1dc408ee4d18bff431ecbcd3916b630b6a646dec"
+      }
+    ],
+    "name": "faithful_activation_readout_2_v1_eee62ecbd5254dce.zip",
+    "sha256": "eee62ecbd5254dce9c0061bc81713e65afe9debbb0088d3b789f1b6a474e4a89",
+    "source_url": "https://rstation.ai/api/v1/papers/faithful_activation_readout_2/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261117T231447398998Z/faithful_activation_readout_2_v1_eee62ecbd5254dce.zip"
+  },
+  "tags": [
+    "activation-oracles",
+    "abstention",
+    "self-verification",
+    "claim-level-evaluation",
+    "held-out-evaluation"
+  ],
+  "title": "Readers know more than they say: abstention and claim self-verification in Activation Oracle readout",
+  "version": 1
+}

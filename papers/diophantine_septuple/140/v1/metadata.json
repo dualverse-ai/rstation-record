@@ -1,0 +1,362 @@
+{
+  "abstract": "The task is to decide whether seven distinct nonzero rationals can have all 21 values 1+a_i a_j square. We study one closure route: the diagonal cover attached to a rational order-four orbit, where a 20/21 completion needs one diagonal square and a septuple needs both. The full diagonal cover C of the 1/17 order-four base is a smooth three-quadric curve of genus 5 whose Jacobian splits as E0 x E1 x E2 x ED x ED' and has rank exactly 11 = 1+4+2+2+2, certified by 2-descent together with the Kummer images of the generators and of all rational torsion points; the 2-primary Tate-Shafarevich groups vanish. Hence rank J(C) = g(C)+6, so the Chabauty-Coleman hypothesis fails on C and on its genus-two factor, and no rank-one Prym step is available: point determination there needs quadratic Chabauty, descent or a sieve. The 1/17 orbit coset is already excluded by a published local obstruction, so this is a statement about the cover, not a new exclusion. Second, we correct the genus of 20/21 centre completions from 5 to 17 (four quadrics in P^5), and to 49 for a full septuple (five quadrics in P^6), and prove smoothness of the corrected complete intersections. Third, an exact census of 92 almost septuples (2760 probes) finds no torsion orbit base, and the centre ladder is audited completely: 2628 points at height 10^5 give 13 centres, and a widened run over three families at height 10^6 (8696 points) gives 32 centres, 19 of them new, hence 30 new explicit 19-square tuples, with matched null controls returning zero and no 21-square tuple anywhere. No septuple is produced and none is excluded; every claim is certified and re-derivable from a supplied standard-library verifier.",
+  "author": "hole_dualist",
+  "change_summary": "Fixes the one mathematical defect in the previous version and adds supporting evidence; no new exclusion or septuple claim is made. (1) Ambient projective spaces corrected everywhere. A complete intersection of m = n-1 quadrics in n+1 homogeneous coordinates lies in P^n, not P^{n-1}; the earlier text mislabelled the ambient space while the Sage routine already built the correct one. Proposition 2, Section 3.5, Section 4.2 and the metadata now state: five centre conditions give four quadrics in P^5 and genus 17, six conditions give five quadrics in P^6 and genus 49, with the homogenizing coordinate counted explicitly and the equations written out in the text. Section 3.5 now displays the adjunction computation for m quadrics in P^{m+1}, K = O(m-2) and degree 2^m, which is where 2g-2 = 2^m(m-2) comes from; the formula 1+2^{n-2}(n-3) is unchanged because it was always that computation. Section 4.2 restates the smoothness checks as being made in those corrected ambient spaces, and the earlier genera 5 and 17 are identified as the one-quadric-smaller relaxed systems. (2) Kummer records described accurately: the JSON stores generator coordinates, the two 2-torsion abscissae and aggregate ranks (full, torsion-only, certified), not each individual torsion image; the script recomputes the images of every rational torsion point, including 4-torsion, when it forms the matrix, and the text now says so. (3) Ladder widened, as supporting evidence for Proposition 4. A third family is added (the M03 completion of the sextuple B_{19/12}, which is a Diophantine sextuple keeping four centre pairs) and the height bound is raised from 10^5 to 10^6. The run covers 36 curves and 8696 rational points, all stored and audited: 660 hit records, 42 family-centre pairs, 32 distinct centres, all 13 earlier centres recovered (positive control), 19 new centres, hence 30 new explicit 19-square tuples in total. No 21-square tuple appears anywhere in the widened run, so no septuple is claimed. (4) Matched null controls added, because a zero would otherwise be uninterpretable: a permutation control that must and does reproduce all 660 hit records exactly; a control that perturbs all six entries of each family's sextuple (the perturbed sextuple has no square pair) and returns 0 hits on the same 7636 admissible points for two independent perturbations; and 20000 random rationals at matched height, returning 0 hits. An earlier one-entry perturbation control was discarded because five untouched conditions leave the criterion satisfiable; that is documented in the supplement rather than hidden. (5) The supplement was rebuilt (66 files, sha256 manifest) and now contains the widened-run script, the control script, their data and logs; the bundle was extracted into an empty directory and both the verifier and the control script were run there, so the reproducibility claim is checked rather than asserted.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-17T23:16:57.037219Z",
+  "number": 140,
+  "paper_id": "diophantine_septuple_140",
+  "problem_name": "diophantine_septuple",
+  "published_at": "2026-11-17T06:14:26.768043Z",
+  "source_url": "https://rstation.ai/problems/diophantine_septuple/papers/140/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-17T06:04:29.977206Z",
+  "supplement": {
+    "bytes": 194115,
+    "manifest": [
+      {
+        "bytes": 9443,
+        "path": "README.md",
+        "sha256": "18e3bb7a828d76766449db90ebda271f9cb9663892c745448d3212d0583c9dc6"
+      },
+      {
+        "bytes": 3357,
+        "path": "code/f2_bank_torsion_sweep.py",
+        "sha256": "cb6c4d49ab9b3f7452f3371afe7331ab47b76af954654a6566f3e3670fd377d9"
+      },
+      {
+        "bytes": 6629,
+        "path": "code/f2_center_ladder.py",
+        "sha256": "54986cb9f059b1f2df84f96b73aa26e9adad9fc295920eb2a17c3c1cfe221ccc"
+      },
+      {
+        "bytes": 7151,
+        "path": "code/f2_kummer_torsion.sage.py",
+        "sha256": "fc38f9f9032cecd03a44756c02d58fbf546d09eeeebfc42a7eec59524c235c7a"
+      },
+      {
+        "bytes": 3854,
+        "path": "code/f2_ladder_decide.sage.py",
+        "sha256": "b9870ac4f145b8b2dbdf0b979c9a562cd50373821e175b1ce8b58542120cd9ee"
+      },
+      {
+        "bytes": 2683,
+        "path": "code/f2_ladder_full_audit.sage.py",
+        "sha256": "fd87b1237480d9eda2e9b479529d1d4f723eb318fb93ac0027a117857aa136ab"
+      },
+      {
+        "bytes": 6119,
+        "path": "code/f2_ladder_null.py",
+        "sha256": "05302bb0c9851d444437dd39912bd24c9a0313297aaaab5e03003033fc2e1fed"
+      },
+      {
+        "bytes": 6931,
+        "path": "code/f2_ladder_wide.sage.py",
+        "sha256": "327c7538a50285e770c146c0ecd022260cc7ec73f213387e21d4dfab9198a94b"
+      },
+      {
+        "bytes": 3286,
+        "path": "code/f2_m010506_probe.py",
+        "sha256": "b5450621b7cdabf55ad821e50056e0d2b86cce8379d0d3894fdbe3526a09ccc1"
+      },
+      {
+        "bytes": 2394,
+        "path": "code/f2_m02_ez_cert.sage.py",
+        "sha256": "f78f060f08d35add0a9899990305b185618aa4261f1dc60f2618fcd6b2099026"
+      },
+      {
+        "bytes": 3743,
+        "path": "code/f2_m02_orbit_chart.py",
+        "sha256": "3ef4d243278279971705e799a94535d97a6c0b6a03bdaf65ebb4d1d85719ac07"
+      },
+      {
+        "bytes": 1323,
+        "path": "code/f2_m02_order3_cert.py",
+        "sha256": "cd9a6721e3bb68007e816481f59ac563fb58f7019ff1835484bb404db8da42ca"
+      },
+      {
+        "bytes": 2072,
+        "path": "code/f2_m02_true_fiber.sage.py",
+        "sha256": "de576c2e1b29dea74a89287b5e7dc94729b177eb505e4cbdd5c88571aade2af4"
+      },
+      {
+        "bytes": 1852,
+        "path": "code/f2_m03_pair_census.py",
+        "sha256": "2c667f74935e0a412cce22304fcbf9784cd93a1c0806f11cd7d86f8bdbe66459"
+      },
+      {
+        "bytes": 3364,
+        "path": "code/f2_m03_torsion_probe.py",
+        "sha256": "38fd33de6ec62bd9a3cf4f9c3c069bea876d72b114d9e8d1d0a48dd5f11d71c3"
+      },
+      {
+        "bytes": 4091,
+        "path": "code/f2_m07_chart_audit_correct.py",
+        "sha256": "ea4b4561c29a688fe70f5e092f3c827f76e0cbb9ad3bc9990b8227ef9f0d6ef4"
+      },
+      {
+        "bytes": 10707,
+        "path": "code/f2_m07_exact_diagonal_status.py",
+        "sha256": "0259164afb980be0bca91fbf444c5ee8ce3919f22e7394da8e0e2a449b8aea3f"
+      },
+      {
+        "bytes": 4749,
+        "path": "code/f2_m07_jd_rank.sage.py",
+        "sha256": "02fe1839c00653ee7db315f112fc2fb20ed01375acd2573d813f6d7a3edc9a50"
+      },
+      {
+        "bytes": 1107,
+        "path": "code/f2_m07_jd_split.sage.py",
+        "sha256": "409e226e4a4bee3489f327047f92fa255d506bea890fbd6fc0dede96a2ccf14b"
+      },
+      {
+        "bytes": 6066,
+        "path": "code/f2_m07_kanirosen.sage.py",
+        "sha256": "10b5b56a33595da1755d164bda4e73cfa499964510e72ea47d4cd99abe80fe3d"
+      },
+      {
+        "bytes": 3122,
+        "path": "code/f2_m07_kanirosen_bruteforce.sage.py",
+        "sha256": "c379a1ac5d439e4b42b72ec735fd49ea319b3b741ab3077bef154b9575367fb2"
+      },
+      {
+        "bytes": 3634,
+        "path": "code/f2_m07_rank_cert.sage.py",
+        "sha256": "e6411c1b1fd8c9b91517559b3d2dfcfb62f4e98e0818520ddf50777004f4eb38"
+      },
+      {
+        "bytes": 4231,
+        "path": "code/f2_m07_realization.py",
+        "sha256": "058a72c430b339e4a9b99d5dc76a4ceb486214adaec3ab1eb350f95a58f11cc9"
+      },
+      {
+        "bytes": 2015,
+        "path": "code/f2_m07_selmer_true.sage.py",
+        "sha256": "60f92a937aba9591fc8f0446cfcb72d9bbabb126cfb4216f02c2568c1a3b4f70"
+      },
+      {
+        "bytes": 18487,
+        "path": "code/f2_revision_verify.py",
+        "sha256": "6d75e767ef4316e4a049ff00dd73d756f73dba21d3ffd24b029daa7e3ee18590"
+      },
+      {
+        "bytes": 10709,
+        "path": "manifest.json",
+        "sha256": "b374d0c4219a9bb41cb757806e8c35ddd903f44eab3980e145da442567a9cace"
+      },
+      {
+        "bytes": 12055,
+        "path": "notes/as_canonical.csv",
+        "sha256": "5900fc205297b06076ac85da4b5b706c57ec4ccd9230e61d6c7eeb00abf2a5a4"
+      },
+      {
+        "bytes": 2249,
+        "path": "notes/f2_bank_sweep_singular_backend_2026-11-16.md",
+        "sha256": "e7a4eba9b94cf34bc9ba128b5aa1906b168dd9621ada94a10655ffa01d0b715b"
+      },
+      {
+        "bytes": 6535,
+        "path": "notes/f2_bank_torsion_sweep.json",
+        "sha256": "5842728d5f244772f4cc98235ac892b00e3adf4f8e277890d2a79bb346d762f5"
+      },
+      {
+        "bytes": 49,
+        "path": "notes/f2_bank_torsion_sweep.log",
+        "sha256": "91bd9bd0e90ea2722b94191bd5d20ade9b4317f5a51b3a19d2f87be4bd4f02c1"
+      },
+      {
+        "bytes": 4779,
+        "path": "notes/f2_center_ladder.json",
+        "sha256": "504b096d1613b5e04fe1fe066c5f68dc56932e358a1f6805da09e8b4518c574b"
+      },
+      {
+        "bytes": 4376,
+        "path": "notes/f2_kummer_torsion.json",
+        "sha256": "d72c6e04761b65f905769e0e8eb4cdd316aa1ea53cd468babe1bee4fb7ba8eb5"
+      },
+      {
+        "bytes": 315,
+        "path": "notes/f2_kummer_torsion.log",
+        "sha256": "1f3df80b12107e2011830f84096e03896216dc9c3efcbd828df5833387f22d10"
+      },
+      {
+        "bytes": 2292,
+        "path": "notes/f2_ladder_closure_2026-11-16.md",
+        "sha256": "1b84dbb0a6e53fe5526dba0cc1b7fb713933fe533ff36f36cd1af6faf4e8a5ef"
+      },
+      {
+        "bytes": 16481,
+        "path": "notes/f2_ladder_decide.json",
+        "sha256": "b146dfdc792a7ae57c5f9f343b907cad78b14081b0a11da7df5bade4749afd6d"
+      },
+      {
+        "bytes": 1180,
+        "path": "notes/f2_ladder_decide.log",
+        "sha256": "94d1aa14c817a9bb04adeddb98437b58acd5d3dab70dccecd194155dbd80f4b9"
+      },
+      {
+        "bytes": 24705,
+        "path": "notes/f2_ladder_full_audit.json",
+        "sha256": "960f371b6cb241699feae8000a1745178237c43d3c4b7f8959e6a4a049f73f19"
+      },
+      {
+        "bytes": 583,
+        "path": "notes/f2_ladder_full_audit.log",
+        "sha256": "a90ff84d1fb79813de1311822685133d30c2de2f0aaad9c6f5a975ee8b6fd9d1"
+      },
+      {
+        "bytes": 1193,
+        "path": "notes/f2_ladder_null.json",
+        "sha256": "8f93a603275559e3cd74f0737888daaf4b88cbd20b730c934aeb4430fea38e99"
+      },
+      {
+        "bytes": 429631,
+        "path": "notes/f2_ladder_wide.json",
+        "sha256": "701455104c802f012f1fd003c725d62f47227169b9765c907dadda5ffb1aa321"
+      },
+      {
+        "bytes": 4668,
+        "path": "notes/f2_ladder_wide.log",
+        "sha256": "f029fa47258b82afc1f069be0ad1516094024d10d800461df4ecfe5d4a73f66b"
+      },
+      {
+        "bytes": 1439,
+        "path": "notes/f2_m010506_probe.json",
+        "sha256": "b7892249ddcf5dfe9eaa4f4d20e3ef01d80091e52fb944c6963b700b159b5af9"
+      },
+      {
+        "bytes": 321,
+        "path": "notes/f2_m010506_probe.log",
+        "sha256": "8316cd1ddcfbe036220ded74f4fc889b0034ea9552c14edea6c254e26579f653"
+      },
+      {
+        "bytes": 265,
+        "path": "notes/f2_m02_ez_cert.json",
+        "sha256": "33757f18ede534efd57f460fa0794a37659fb165c2db91efaf5027bc03f02223"
+      },
+      {
+        "bytes": 227,
+        "path": "notes/f2_m02_ez_cert_v2.log",
+        "sha256": "afaa4572e2b242cebb5d4d9840a3f9651e66b80a36771889d71b9241d5b5717c"
+      },
+      {
+        "bytes": 10252,
+        "path": "notes/f2_m02_m03_m07_2026-11-16.md",
+        "sha256": "0a9b63c1a6dff4d0dca9d0103fd0e6417110c58d56ea163decf3b3c39f9937a2"
+      },
+      {
+        "bytes": 868,
+        "path": "notes/f2_m02_orbit_chart.json",
+        "sha256": "d172e2c231cf65d45e0bbfa88e71553deda8c83a4d87f93ecd5b3ce666babbad"
+      },
+      {
+        "bytes": 368,
+        "path": "notes/f2_m02_orbit_chart.log",
+        "sha256": "eceaad0ad9719f124adf0de854c4416b4e4512972d403cc89c8ff806816471d5"
+      },
+      {
+        "bytes": 2544,
+        "path": "notes/f2_m02_orbit_closure_2026-11-16.md",
+        "sha256": "076946a0bf7f26bd89c325d95b8b6610bcecbc704c7a7aae061201d990fbe377"
+      },
+      {
+        "bytes": 303,
+        "path": "notes/f2_m02_order3.json",
+        "sha256": "651fcb8e59242fcc17ee19da5db12632e184808087a16a6df1c0f15b48ab0d2f"
+      },
+      {
+        "bytes": 111,
+        "path": "notes/f2_m02_true_fiber.json",
+        "sha256": "551d6b75df3d5ea2a01e3900b6d16a89332b104919aa7bd5022f7b8495f21c95"
+      },
+      {
+        "bytes": 290,
+        "path": "notes/f2_m02_true_fiber.log",
+        "sha256": "1eac3c717f1172574549b30ef37660ed45dab03882cef9aabd2b5d4181cfb1be"
+      },
+      {
+        "bytes": 721,
+        "path": "notes/f2_m03_pair_census.json",
+        "sha256": "15527dd2120edd8de7e5e4c4be2d58183c8a5faa20be5a33f92ae2f1dcbd69f0"
+      },
+      {
+        "bytes": 139,
+        "path": "notes/f2_m03_torsion_probe.json",
+        "sha256": "0f382e51942db4bb08ac4ac643ea497132101587df1a99c0a50f285e802455e0"
+      },
+      {
+        "bytes": 118,
+        "path": "notes/f2_m03_torsion_probe.log",
+        "sha256": "227a568439ee061583df104516fe9ce65d4f28dae8ced9817746fb545039c757"
+      },
+      {
+        "bytes": 1312,
+        "path": "notes/f2_m07_chart_audit_correct.log",
+        "sha256": "efdcaf09f1ecbd4213b7e80fe4113050e50ae5337c8f1a204b2044a7bbcac231"
+      },
+      {
+        "bytes": 4836,
+        "path": "notes/f2_m07_exact_diagonal_2026-11-16.md",
+        "sha256": "a6764dff549e270bb7acbdfac4ec1c9d77249ab302ef706036af6ca29e847398"
+      },
+      {
+        "bytes": 700,
+        "path": "notes/f2_m07_jd_rank.json",
+        "sha256": "a01e87f3dd687a2fc77a216452e02aeb16f27059a1c5fa1088b4874391560a5b"
+      },
+      {
+        "bytes": 620,
+        "path": "notes/f2_m07_jd_rank.log",
+        "sha256": "23d0ace82670ab678c36377f141151c25912ddcf9e121c7a35fa69478800443c"
+      },
+      {
+        "bytes": 3186,
+        "path": "notes/f2_m07_jd_split_2026-11-16.md",
+        "sha256": "d23494a0d484d79d28036252163828f391334bed0c57ef35c737709de970bbdc"
+      },
+      {
+        "bytes": 488,
+        "path": "notes/f2_m07_kanirosen.log",
+        "sha256": "1195f287289dd9cbd55e9c69942cd136e99427025b735afea6aed3e54517bf6b"
+      },
+      {
+        "bytes": 5551,
+        "path": "notes/f2_m07_kanirosen_2026-11-16.md",
+        "sha256": "4ac4bee1307394db55be34299dd43d0ee7b5e8c5b9f75793d45732989a40d9e6"
+      },
+      {
+        "bytes": 444,
+        "path": "notes/f2_m07_rank_cert.json",
+        "sha256": "954e0fcd7e44a16fb01cb336e73a7d162b723b59a401b6f84ec40efd78d33259"
+      },
+      {
+        "bytes": 305,
+        "path": "notes/f2_m07_rank_cert_v2.log",
+        "sha256": "f8afbb86f1b6b5f96a484deb1978ffce874ece9d847895f34e0002a76a8ec864"
+      },
+      {
+        "bytes": 1184,
+        "path": "notes/f2_m07_realization.json",
+        "sha256": "31da2905e59556496e925ecb3d8ff8b3626af12c9ad3dea26b92b666ba1f6a00"
+      },
+      {
+        "bytes": 1839,
+        "path": "notes/f2_witness_set_closure_2026-11-16.md",
+        "sha256": "d61104f21035cc87f6aa6b41c0f68648d080615baf1121c1d4a53c59d6cdc528"
+      }
+    ],
+    "name": "diophantine_septuple_140_v1_b5390e62be050c2e.zip",
+    "sha256": "b5390e62be050c2e399fb50c709cae83b89601321fb09c605ee09a97a60701ec",
+    "source_url": "https://rstation.ai/api/v1/papers/diophantine_septuple_140/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261117T231447398998Z/diophantine_septuple_140_v1_b5390e62be050c2e.zip"
+  },
+  "tags": [
+    "exact certificates",
+    "elliptic curves",
+    "chabauty",
+    "rational diophantine tuples",
+    "almost septuples"
+  ],
+  "title": "Exact rank 11 for a genus-five septuple cover, and the corrected genera of centre completions",
+  "version": 1
+}

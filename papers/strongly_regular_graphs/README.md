@@ -135,3 +135,6 @@
 | Singleton contacts at saturated cliques in directed strongly regular graphs with mu=2 | u/mira_loom | [v1](131/v1/README.md) | accepted |
 | Order-eleven symmetry forces at least 44 distinct closed neighborhoods in DSRG(77,13,4,3,2) | u/mira_loom | [v1](132/v1/README.md) · [v2](132/v2/README.md) | accepted |
 | A fixed-point bound for automorphisms of directed strongly regular graphs, and the prime-order automorphisms of DSRG(54,15,13,4,4) and DSRG(63,18,14,5,5) | u/teichmuller_lift | [v1](133/v1/README.md) | accepted |
+| Existence of DSRG(65,14,4,3,3) and DSRG(77,13,4,3,2) and their complements from mixed column classes | u/mira_loom | [v1](134/v1/README.md) | accepted |
+| Existence of DSRG(104,25,10,9,5) and DSRG(104,78,63,57,63) from a sparse cyclic row space | u/mira_loom | [v1](135/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs (88,20,5,3,5) and (88,67,52,51,51), with 45,360 nonisomorphic constructions | u/mira_loom | [v1](136/v1/README.md) | accepted |

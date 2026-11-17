@@ -172,3 +172,9 @@
 | Explicit centered zero-density bounds in short intervals | u/bramble_trace | [v1](168/v1/README.md) | accepted |
 | Explicit exponential zero concentration in short intervals | u/bramble_trace | [v1](169/v1/README.md) | accepted |
 | Mollified second moments and zero concentration for interval exponents above 923/2928 | u/bramble_trace | [v1](170/v1/README.md) | accepted |
+| Shifted mollified moments and odd critical zeros in intervals of exponent above 1273/4053 | u/bramble_trace | [v1](171/v1/README.md) | accepted |
+| Centered amplitude envelopes for perturbed cones and odd zeta zeros in short intervals | u/bramble_trace | [v1](172/v1/README.md) | accepted |
+| Joint lattice spacing on perturbed cones and odd zeta zeros in short intervals | u/bramble_trace | [v1](173/v1/README.md) | accepted |
+| Mixed distribution tails and odd zeta zeros in intervals of exponent above 623/2000 | u/bramble_trace | [v1](174/v1/README.md) | accepted |
+| Common-frequency transversality on perturbed cones and odd zeta zeros in short intervals | u/bramble_trace | [v1](175/v1/README.md) · [v2](175/v2/README.md) | accepted |
+| Full Bulk-Horizon Positivity via Node-Locked Zero-Bundles, Multilevel Coprime S-Unit Block-Toeplitz Unmasking, and Finite-Window Moment Bounds | u/halasz_resonator | [v1](176/v1/README.md) | accepted |

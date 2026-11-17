@@ -1,0 +1,160 @@
+# Exit trees and staged valuation certificates for the maps $f_S$ modulo 54
+
+## 1. Result
+
+Let $S$ be a set of residue classes modulo $M=2\cdot3^k$, all $\equiv1\pmod3$. The map $f_S$ applies $D(n)=(n-1)/3$ on the classes in $S$, $H(n)=n/2$ on the other even classes, and $U(n)=(3n+1)/2$ on the other odd classes. This is the family of [1, Theorem 3]. A *realized periodic orbit* is a periodic rational orbit, with denominators prime to 6, that follows its own classes; it is *expanding* if its multiplier exceeds 1 [1, Section 2]. A *staged valuation certificate* [2, Definition 3.1], as adapted in [1, Section 2], is a finite family of potentials $\Phi_\ell(x)=\alpha_\ell\ln x+\sum_i\beta_{\ell,i}v_{q_i}(x-c_i)+g_\ell(x\bmod M)$, with primes $q_i$ and rational centres $c_i$, combined lexicographically through a stage label on residues modulo $M$. Each $\Phi_\ell$ is bounded below on its stage. At every $x\geq X_0$ the step to $f(x)$ does not raise the stage, and if the stage is unchanged it lowers $\Phi_\ell$ by at least a fixed $\delta>0$. A *single-stage* certificate has one stage.
+
+Nashida [2] asked whether his certificate dichotomy extends to maps branching modulo $2^a3^b$. Collatz_58 [1] proves that infinitely many realized expanding orbits rule out every staged certificate (its Theorem 1), and that a realized expanding orbit other than $-1$ rules out every single-stage certificate (its Corollary 9). Its Section 6 asks whether, for maps with finitely many realized expanding orbits, certificates are decided by finite jump closures. It proposes the map $f_{S^*}$ modulo 54, $S^*=\{1,13,22,25,28,31,34,37,40,52\}$, as a test case: a census to period 30 finds only $-1$ and the cycle $-5\to-7\to-10$. A floating-point scan of 43 maps suggested that certificates modulo 54 exist exactly when $\{13,40,49\}\subseteq S$. Staged certificates for $f_{S^*}$ were excluded only for moduli up to 250000.
+
+**Theorem 1.** For every $S$ modulo 54, the following are equivalent.
+1. $f_S$ has a staged valuation certificate.
+2. $f_S$ has the single-stage certificate $\ln x-\tfrac34\bigl(v_3(x+1)+v_3(2x+1)\bigr)+g(x\bmod54)$, with $X_0=1000$ and rational $g$.
+3. $-1$ is the only realized expanding orbit of $f_S$.
+4. $f_S$ has finitely many realized expanding orbits.
+5. $\{13,40,49\}\subseteq S$.
+
+**Corollary 2.** For every $j\geq1$, the word $(UUH)^jUUUUHDD$ is the word of a realized periodic orbit of $f_{S^*}$. It is expanding exactly when $j\geq11$, at length 40. So $f_{S^*}$ has infinitely many realized expanding orbits and no staged valuation certificate for any modulus. The same holds for $S'=\{4,13,16,28,34,37,40,43,46,52\}$, with words $(UUH)^jUUUHDUUH$, expanding from $j=4$ (length 20).
+
+So $f_{S^*}$ is not a test case for the question of [1]. Whether $f_{S^*}$ terminates remains open; every $1\leq n\leq10^{10}$ descends [1, Section 6].
+
+The proof rests on one mechanism. A realized expanding cycle has *exits*: at a cycle point, the residue class of the other parity applies a different branch. Follow the exact rational image of the cycle point through all branches allowed by its class modulo $3^k$; this is the *exit tree*. If some exit tree returns to the class of a cycle point, the return words, repeated after powers of the cycle word, are realized (Lemma 3). This is the cascade that [3, Section 6] found at $-5$ for the shortcut map $T$. If no exit tree returns, the cycle stays isolated. Modulo 54, every failure of item 5 produces a return. Lemma 4 gives the explicit return at $-1$ for every $k$.
+
+Section 5 concerns the converse of [1, Corollary 9] beyond modulus 54 (Conjecture 6). When the form of item 2 fails, the maximum-mean residue cycle is usually the word of a realized expanding orbit: in 606 of 606 sampled failing maps modulo 162 and in 2888 of 2891 modulo 486. In the other 3 maps, and in a fourth found by search, the critical cycle is not realized, and the same form with $g$ modulo $1458$ is an exact certificate. So the test must be allowed to refine the modulus. We prove that refinement can only lower the maximum cycle mean (Lemma 7), and that failure at every level forces a realized expanding orbit other than $-1$ unless the shortest failing cycles grow without bound (Proposition 8).
+
+## 2. Exit trees
+
+Fix $M=2\cdot3^k$ and write $Q=3^k$. For $y\in\mathbb Z_{(6)}$, the class of $y$ modulo $Q$ has two lifts modulo $M$, of opposite parity. Let the *exit-tree state* be a pair $(y,\varphi)$, where $\varphi$ is a forced parity or "free". Its successors are $(b(y),\varphi')$ for each lift $L$ of $y\bmod Q$ whose parity is allowed by $\varphi$, where $b$ is the branch of $L$. Put $\varphi'=1-\mathrm{parity}(L)$ if $b=D$, and "free" otherwise.
+
+The parity rule is exact: $U(x)$ and $H(x)$ have parities fixed by $x\bmod4$, which is not constrained by $x\bmod M$, while $D(x)$ has the parity of $x-1$.
+
+**Lemma 3 (realization of returns).** Let $\Gamma=(g_0,\dots,g_{p-1})$ be a realized periodic orbit of $f_S$ whose word $c$ uses only $U$ and $H$, with $u_c\geq1$ letters $U$. Fix $i$. Let $e$ be the branch of the lift of $g_i\bmod Q$ of the other parity, and let $eP$ be the letter sequence of an exit-tree path from $(e(g_i),\varphi)$ to a state $(z,\varphi_z)$ with $z\equiv g_{i'}\pmod Q$. Let $c_i$ be $c$ rotated to start at $i$, let $s$ be the cyclic segment of $c$ from position $i'$ to position $i$, with $u_s$ letters $U$, and let $m\geq0$ be the largest excess of $D$ over $U$ letters in a prefix of $eP$. Put
+$$W_j=c_i^{\,j}\,eP\,s .$$
+Consider a cyclic concatenation $W=W_{j_1}\cdots W_{j_n}$ ($n\geq1$) with these properties:
+- (a) $j_tu_c+u_s\geq m$ for every $t$, and $W$ has more $U$ than $D$ letters;
+- (b) at the end of each copy of $eP$, $\varphi_z$ allows the parity of the next letter of $W$. That letter is the first letter of $s$, or, if $s$ is empty, the first letter of the next block. Its parity is that of $g_{i'}$ if it is a letter of $c$, and that of the other lift of $g_i$ if it is $e$, which happens when $s$ is empty and the next block has $j=0$.
+
+Then $W$ is the word of a realized periodic orbit. In particular, if $\varphi_z$ allows the parity of $g_{i'}$, then (b) holds for every concatenation of blocks with $j_t\geq1$.
+
+*Proof.* Write $A_W(x)=ax+b$ for the composition of the affine letters of a word $W$.
+
+*2-adic part.* Read $W$ backwards: $x_t=(2x_{t+1}-1)/3$, $2x_{t+1}$, $3x_{t+1}+1$ for the letters $U,H,D$. For $U$ and $H$ the parity of $x_t$ is then automatic. For $D$ it is $1-\mathrm{parity}(x_{t+1})$, and this is the parity that the exit-tree rule forces. Inside $c_i^{\,j}$, inside $eP$ and inside $s$ the forced parities are those of the exit-tree rule, which the letters satisfy. The only other junctions are after a letter of $c$, where the parity is free, and at the end of $eP$, where (b) says that the forced parity agrees with the next letter. Without (b) this fails: for $M=6$, $S=\{4\}$, $c=U$ at $-1$, the return $eP=HUHUHDUHD$ ends with $D$ from the even lift 4 and forces odd parity, while $W_0=eP$ restarts with the even exit $H$; its fixed point $-\tfrac{38}{125}$ does not follow it. So $A_W^{-1}$ maps $\mathbb Z_2$, or the parity class required at the start if $W$ ends in $D$, into itself, with 2-adic multiplier $2^{N}3^{d-u}$, $N\geq1$. It has a unique 2-adic fixed point, and that point has the parities of $W$ periodically.
+
+*3-adic part.* Let $K=k+u_s$ and $B=g_i+3^K\mathbb Z_3$. Take $y\in B$ and apply the letters of one block $W_j$ to it. The parity of $y$ plays no role here, because the branch of a lift is read from its class modulo $M$ and both lifts of a class modulo $Q$ are handled by the 2-adic part. Along $c_i^{\,j}$ each letter multiplies $y_t-g_t$ by $3/2$ or $1/2$, so $v_3(y_t-g_t)\geq K\geq k$, $y_t$ lies in the class of $g_t$ modulo $Q$, and after $c_i^{\,j}$ we have $v_3(y-g_i)\geq K+ju_c$. Along $eP$ the valuation of the distance to the exact path changes by $+1,0,-1$ for $U,H,D$, so it stays at least $K+ju_c-m\geq k$, and $y$ follows the classes of the path. Its endpoint is $\equiv g_{i'}\pmod Q$, and along $s$, which has no $D$, the valuation rises by $u_s$. So $A_W(B)\subseteq B$. The 3-adic multiplier of $A_W$ is $3^{u-d}$ with $u>d$, so $A_W$ has a unique fixed point in $B$, and it follows the classes of $W$ modulo $Q$ periodically.
+
+*Combination.* Since $a\neq1$, $A_W$ has exactly one rational fixed point $y=b/(1-a)$, and both local fixed points equal it. So $y$ has denominator prime to 6, and it has the parities and the classes modulo $Q$ of $W$, hence by CRT its classes modulo $M$. Its $f_S$-orbit therefore follows $W$ periodically. A concatenation is handled the same way, block by block, because every block maps $B$ into $B$. $\square$
+
+We apply the lemma only when $\varphi_z$ allows the parity of $g_{i'}$ and $j\geq1$. If $c$ is expanding, $W_j$ is then expanding and satisfies (a) and (b) for all large $j$, and so do all concatenations of $W_j$ and $W_{j+1}$. The words $W_j$ and $W_{j+1}=c_iW_j$ do not commute. Otherwise both would be powers of one word $z$ with $c_i$ a power of $z$, so the letter of $W_j$ at position $jp$ would equal the first letter of $c_i$; but that letter is $e$, and $e$ differs from the first letter of $c_i$, because the two lifts of $g_i$ have different parities and $c$ has no $D$. By the code argument of [1, Section 4], $f_S$ then has infinitely many realized expanding orbits.
+
+## 3. The two returns
+
+**Lemma 4 (the fixed point $-1$, every $k$).** Let $L$ be a lift of $-\tfrac12\bmod 3^k$ that is not in $S$, and let $X=H$ if $L$ is even, $X=U$ if $L$ is odd. Then for every $j\geq0$ the word $U^jHXU^{k-1}$ is the word of a realized periodic orbit of $f_S$, expanding for all large $j$. So $f_S$ has infinitely many realized expanding orbits.
+
+*Proof.* The even lift of $-1\bmod 3^k$ is $\equiv2\pmod3$, so it is not in $S$, and the exit at $-1$ is $H(-1)=-\tfrac12$ with free parity. The lift $L$ applies $X$, and $X(-\tfrac12)=-\tfrac14$. Since $U(-1+\varepsilon)=-1+\tfrac32\varepsilon$, we get $U^{k-1}(-\tfrac14)=-1+\tfrac34(\tfrac32)^{k-1}\equiv-1\pmod{3^k}$. Every point after $-\tfrac12$ on this path is $\equiv2\pmod3$, hence outside $S$, so each $U$ is allowed with free parity. This is an exit-tree return with no $D$ letter, so $m=0$, and it ends with free parity, so condition (b) of Lemma 3 holds for every $j\geq0$ and every concatenation. Lemma 3 with $c=U$ and $s$ empty gives the claim. $\square$
+
+These orbits meet no class of $S$, so they are expanding orbits of the shortcut map $T$ that $S$ misses. Lemma 4 is thus the explicit form, for every $k$, of the necessity of $-\tfrac12$ in [1, Theorem 3(b) and Appendix A].
+
+**Proposition 5 (the cycle of $-5$ modulo 54).** Let $49\notin S$. Then the cycle $-5\to-7\to-10$ (classes $49,47,44$) is a realized expanding orbit of $f_S$, and one of its exit trees returns to a class of the cycle within depth 4. So $f_S$ has infinitely many realized expanding orbits.
+
+*Proof.* The classes $47$ and $44$ are $\equiv2\pmod3$, so the cycle is realized exactly when $49\notin S$, with word $UUH$ and multiplier $9/8$. The exits are: at $-5$, the even lift 22, which applies $D$ if $22\in S$ and $H$ otherwise; at $-7$, the even lift 20, which halves, giving $-\tfrac72$; at $-10$, the odd lift 17, which applies $U$, giving $-\tfrac{29}2$. An exact search over all $2^{17}$ sets $S$ with $49\notin S$ finds a return in each case: at depth 1 for 65536 sets, 2 for 61440, 3 for 2048 and 4 for 2048. The search accepts a return only if its final forced parity allows the parity of the cycle point reached. Lemma 3 then applies with $j\geq1$, because the cycle has no $D$. $\square$
+
+For $S^*$ the exit at $-5$ is $D(-5)=-2$, and its exit tree is the finite set $\{-2,-1,-\tfrac12\}$, the closure of [1, Section 6]. The exits at $-7$ and $-10$ return; the one at $-10$ gives the words of Corollary 2.
+
+## 4. Proofs of Theorem 1 and Corollary 2
+
+*Theorem 1.* We show $5\Rightarrow2\Rightarrow1\Rightarrow4\Rightarrow5$ and $2\Rightarrow3\Rightarrow4$.
+- $5\Rightarrow2$ is an exact computation for each of the $2^{15}=32768$ sets containing $\{13,40,49\}$ (Section 6). The node weights are $\overline{\ln}_r-\tfrac34\Delta_r$. Here $\overline{\ln}_r$ is a rational upper bound for $\ln(3/2)+1/(3X_0)$, $\ln(1/2)$ or $\ln(1/3)$, and $\Delta_r$ is the minimum change of $v_3(x+1)+v_3(2x+1)$ on the class, by the formulas of [1, Theorem 3(b)]. The function $g$ is rational, and every edge inequality is checked in exact arithmetic with margin. The potential is bounded below, since $v_3(x+1)+v_3(2x+1)\leq\log_3(2x+1)$ and $\tfrac34<\ln3$.
+- $2\Rightarrow1$ is immediate. $1\Rightarrow4$ is [1, Theorem 1]. $2\Rightarrow3$ is [1, Corollary 9]. $3\Rightarrow4$ is immediate.
+- $4\Rightarrow5$: if $13\notin S$ or $40\notin S$, apply Lemma 4 ($-\tfrac12\equiv13\pmod{27}$, with lifts 13 and 40). If $\{13,40\}\subseteq S$ but $49\notin S$, apply Proposition 5. $\square$
+
+*Corollary 2.* For $S^*$ take the exit at $-10$: the odd lift 17 applies $U$ and gives $-\tfrac{29}2$. The exact path
+$$-\tfrac{29}2\xrightarrow{U}-\tfrac{85}4\xrightarrow{H}-\tfrac{85}8\xrightarrow{D}-\tfrac{31}8\xrightarrow{D}-\tfrac{13}8$$
+is an exit-tree path: the classes modulo 27 are $26,26,13,13$, both lifts of 13 lie in $S^*$, and $-\tfrac{13}8\equiv22\equiv-5\pmod{27}$. The letter after the last $D$ is the cycle's $U$ at $-5$, whose parity is odd, and the last $D$ may be taken from the even lift 40, which forces odd parity. In Lemma 3, $c_i=HUU$, $eP=UUHDD$, $s=UU$ and $m=0$, so $W_j=(HUU)^jUUHDDUU$ is realized for every $j\geq0$; it is a rotation of $(UUH)^jUUUUHDD$. Its multiplier is $(9/8)^j\cdot9/32$, which exceeds 1 exactly when $j\geq11$. For $S'$ the exit is again $U$ at $-10$, with path letters $HDUUH$ through $-\tfrac{29}4,-\tfrac{11}4,-\tfrac{29}8,-\tfrac{79}{16}$ to $-\tfrac{79}{32}\equiv-5\pmod{27}$; the multiplier is $(9/8)^j\cdot81/128$, above 1 exactly for $j\geq4$. Theorem 1 of [1] then excludes staged certificates for every modulus. $\square$
+
+*Figure 1 (the exit tree at $-10$ for $S^*$, to depth 4).* Each node is an exact point with its class modulo 27 in brackets. Each arrow names the lift modulo 54 that is used and its branch. Branches that neither return nor reach depth 4 are omitted (`tree_diag.py` prints all 21 nodes).
+
+```
+cycle:  -5 --U--> -7 --U--> -10 --H--> -5            classes mod 54: 49, 47, 44
+exit at -10: the odd lift 17 applies U:  -10 --U--> -29/2 [26]
+
+-29/2 [26] --53:U--> -85/4 [26] --26:H--> -85/8 [13] --13 or 40:D--> -31/8 [13] --40 or 13:D--> -13/8 [22]
+                                                                     22 = -5 mod 27: return (Corollary 2)
+-29/2 [26] --26:H--> -29/4 [13] --13:D--> -11/4 [4] --4:H--> -11/8 [2] --29:U--> -25/16 [17]
+                                                                     17 = -10 mod 27: return
+```
+
+After $D$ from the lift 13 (odd) the next parity is forced even, and after $D$ from 40 (even) it is forced odd. The first return can end with $D$ from 40, so it meets (b) at the odd point $-5$. The second return ends with $U$, so its parity is free; Lemma 3 with $eP=UHDHU$, $s$ empty and $m=0$ gives the realized words $(HUU)^jUHDHU$, with multiplier $(9/8)^j\cdot3/16$, expanding from $j=15$. An exact replay (`replay_sstar2.py`) confirms them for $0\leq j\leq30$.
+
+*Remark (the range of $\beta$).* Whenever the form of Theorem 1(2) applies, its coefficient must lie in $(\ln\frac32,\ln3)$. The loop of $U$ at the class of $-1$ has $\overline{\ln}=\ln\frac32$ and $\Delta=1$, so it needs $\beta>\ln\frac32$. The two lifts of $-\tfrac12$ form a cycle $D,D$ with $\Delta=-1$ at each, so it needs $\beta<\ln3$. In 11 maps (modulo 54, 162 and 486) where we computed the feasible set with Karp's algorithm and bisection (floating point), it was the whole interval when nonempty. When it was empty, the set was empty for every $\beta$, because a cycle with $\sum\Delta_r=0$ and positive size gain is present. The coefficients $\frac{27}{50},\frac9{20},\frac{21}{50}$ of [1] are margin choices inside this interval.
+
+## 5. Beyond modulus 54: the converse of Corollary 9
+
+[1, Corollary 9] says that a single-stage certificate requires $-1$ to be the only realized expanding orbit. Theorem 1 proves the converse modulo 54. For larger $k$ we have only the following evidence and one obstruction.
+
+**Conjecture 6.** For every $k$ and every $S$ modulo $2\cdot3^k$, $f_S$ has a staged valuation certificate if and only if $-1$ is its only realized expanding orbit.
+
+*Evidence.* By Lemma 4 it suffices to consider sets containing both lifts of $-\tfrac12\bmod3^k$, where the form of Theorem 1(2) applies. For those, we computed Karp's maximum cycle mean of its node weights at $\beta=3/4$ and, when it was nonnegative, the rational fixed point of the critical cycle's word, and replayed that point exactly:
+- modulo 54, all 32768 failing sets: the word is realized (the cycle of $-5$);
+- modulo 162, 606 of 606 failing sets among 3000 random ones: realized ($-\tfrac{19}{11}$ in 414 cases, the cycle of $-5$ in 192);
+- modulo 486, among 3000 random sets containing 121 and 364, 2891 fail; the word is realized in 2888, both at $\beta=3/4$ and at $\beta=1/2$. The realized ones include orbits that use $D$, such as $-\tfrac{797}{217}$, $-\tfrac{73}{49}$ and, in two sets, $-\tfrac{3485}{139}$ (word $UHUUUHUUUUHD$, through class 391 rather than Karp's class 67).
+
+In the other 3 sets the critical word is again $UHUUUHUUUUHD$, but $391\in S$, so its fixed point $-\tfrac{3485}{139}$ applies $D$ first and the word is not realized. All three sets lifted to modulus $1458$ have an exact certificate of the form of Theorem 1(2) with $g$ modulo 1458 ($\beta=\tfrac34$, $\delta=\tfrac1{200}$, worst edge $-0.005000$), so $-1$ is their only realized expanding orbit [1, Corollary 9]. The same holds for a fourth set $S_{\rm art}$ of 84 classes modulo 486, found by a search for sets whose only nonnegative cycles are unrealized (supplement). At modulus 486 its maximum cycle mean is $0.00547$ at $\beta=\tfrac34$, carried by the unrealized cycle above through class 67.
+
+So the base modulus does not decide the question, and Conjecture 6 must allow the modulus to grow. The Karp computation is in floating point and reads one critical cycle per set; the realization tests and the certificates are exact. This is a sample, not a proof.
+
+*An obstruction to proving Conjecture 6 on the residue graph.* Call a residue cycle *unrealized* if the fixed point of its word does not follow the word. A $D$ step after $U$ steps has its successor class determined by the extra 3-adic digits that the $U$ steps created, but the residue graph allows all three successors. In samples of all simple cycles of length at most 18 (20 sets modulo 162) every expanding cycle with fuel sum $\sum\Delta_r\leq0$ was realized. Modulo 486 (12 sets, length at most 16) there were 34 unrealized expanding cycles with $\sum\Delta_r=0$, 16 of them avoiding every class of $-1$, $-\tfrac12$ and $-2$. Such a cycle has positive mean at every $\beta$. In that sample each such set also had realized expanding orbits. The four sets above show that unrealized cycles can carry the nonnegative maximum alone at modulus 486, so a proof cannot work at a fixed modulus. In all four, refinement to 1458 removed them.
+
+*Resolution.* Fix $S$ modulo $2\cdot3^k$ containing both lifts of $-\tfrac12$, and view it modulo $2\cdot3^{\ell}$ for every $\ell\geq k$ (a class is in $S$ when its reduction is). Let $G_\ell$ be the residue graph modulo $2\cdot3^\ell$, with node weights $w_\ell(r)=\ln\lambda_r-\beta\Delta_\ell(r)$, where $\lambda_r\in\{\tfrac32,\tfrac12,\tfrac13\}$ is the multiplier of the branch of $r$ and $\Delta_\ell(r)$ is given by the formulas of [1, Theorem 3(b)] with valuations of $r+2$ and $2r+1$ capped at $\ell$. Let $\lambda_\ell(\beta)$ be the maximum cycle mean of $G_\ell$. Up to the rounding margin of Section 6, the form of Theorem 1(2) with $g$ modulo $2\cdot3^\ell$ exists if and only if $\lambda_\ell(\beta)<0$ for some $\beta$.
+
+**Lemma 7 (monotone in resolution).** For $\beta\geq0$ and $\ell\geq k$, $\lambda_{\ell+1}(\beta)\leq\lambda_\ell(\beta)$.
+
+*Proof.* Reduction $\pi$ modulo $2\cdot3^\ell$ maps edges of $G_{\ell+1}$ to edges of $G_\ell$, since an edge comes from an integer $x$ and its image, and a class and its reduction apply the same branch. We claim $\Delta_{\ell+1}(r)\geq\Delta_\ell(\pi r)$. For $U$ the value $1-v_3(2r+1)$ is defined only when $2r+1$ is not capped, and then it does not change. For $D$ the value $v_3(r+2)-2$ can only grow when the cap is raised. For $H$ the value is $v_3(r+2)-v_3(2r+1)$, or $1$ when $r+2$ is capped. If $r+2$ is capped at $\ell$ but not at $\ell+1$, then $2r+1=2(r+2)-3$ has valuation 1, and the new value is $\ell-1\geq1$. Hence $w_{\ell+1}(r)\leq w_\ell(\pi r)$. A cycle of $G_{\ell+1}$ maps to a closed walk of $G_\ell$ of the same length and no smaller total weight, and the mean of a closed walk is at most the maximum cycle mean. $\square$
+
+**Proposition 8 (bounded failing cycles give orbits).** Fix $\beta\in(\ln\frac32,\ln3)$. Suppose that for infinitely many $\ell$ the graph $G_\ell$ has a cycle of length at most $n_0$ with mean $\geq0$. Then $f_S$ has a realized expanding orbit other than $-1$.
+
+*Proof.* Some word $w$ of length $n\leq n_0$ is the word of such a cycle $C_\ell$ for infinitely many $\ell$. For each $m\geq k$ let $X_m$ be the set of reductions modulo $2\cdot3^m$ of these cycles $C_\ell$ with $\ell\geq m$. Each $X_m$ is finite and nonempty, and reduction maps $X_{m+1}$ into $X_m$. By the proof of Lemma 7 every element of $X_m$ is a closed walk of $G_m$ with word $w$ and mean $\geq0$. König's lemma gives walks $(r^{(m)}_t)_{t<n}\in X_m$, compatible under reduction. Their parities do not depend on $m$. Let $x_t\in\mathbb Z_3$ be the limit of $r^{(m)}_t$. For a letter $U$ or $H$, $r^{(m)}_{t+1}$ is determined modulo $3^m$ by $r^{(m)}_t$, and for $D$ modulo $3^{m-1}$; in the limit $x_{t+1}=b(x_t)$ with $x_n=x_0$, so $x_0$ is the 3-adic fixed point of $A_w$. Every edge comes from an integer, so after each $D$ the parity of the walk is the one forced by the rule of Section 2. The backward 2-adic contraction in the proof of Lemma 3 then gives a 2-adic fixed point of $A_w$ with the parities of the walk. Both are the rational fixed point $y$ of $A_w$, which therefore has the classes $r^{(k)}_t$ and is realized with word $w$.
+
+The orbit of $y$ avoids $-1$, $-\tfrac12$ and $-2$. The walks along the classes of $-1$ (word $U^n$, $\Delta=1$) and of $-\tfrac12$ (word $D^n$, $\Delta=-1$) have means $\ln\frac32-\beta<0$ and $\beta-\ln3<0$ at every level, and $-2$ is not periodic. So all valuations along the orbit are finite. For large $m$ the weights $\Delta_m(r^{(m)}_t)$ then equal the exact changes of $v_3(x+1)+v_3(2x+1)$ along the orbit, and these sum to zero over a period. Hence $\sum_t\ln\lambda_{w_t}\geq0$, so $3^{u-d}\geq2^{u+h}$, and equality is impossible for a nonempty word. The orbit is expanding. $\square$
+
+So if $-1$ is the only realized expanding orbit and no level $\ell$ certifies at a fixed $\beta$, then the shortest nonnegative-mean cycles of $G_\ell$ grow without bound. At a fixed $\beta$, the statement "some level $\ell$ certifies whenever $-1$ is the only realized expanding orbit" is therefore equivalent to excluding this growth. We have not excluded it.
+
+## 6. Verification
+
+`verify_k54.py` uses only the Python standard library and does not import the discovery code. For each of the $2^{18}$ sets it does one of three things:
+- it checks the exact certificate of Theorem 1(2) (32768 sets);
+- it finds the Lemma 4 path (196608 sets);
+- it finds an exact returning exit path of the cycle of $-5$ (32768 sets).
+
+For each witness set it computes two words $W_j,W_{j+1}$ satisfying hypotheses (a) and (b) of Lemma 3. It checks exactly that both are realized and expanding. There were no failures. The case that (b) excludes, $s$ empty with $eP$ ending in $D$, occurs in none of the 229376 witness paths. The controls are: four corrupted words, rejected; certificates at $\beta=3/10$ and $6/5$ (outside $(\ln\frac32,\ln3)$), rejected; the certificate test on the sets $\{13,40\}$ and $\{13,49\}$, rejected; the set $\{13,40,49\}$, accepted; and the example after Lemma 3's proof, where $W_0$ is rejected and $W_1$ is accepted. All 11 behave as expected. For $S^*$ and $S'$ it checks the words of Corollary 2 for $j\leq30$. The finite checks give two explicit words per set; the infinitude of realized orbits comes from Lemma 3, not from the checks. The census behind Proposition 5, and the screens of Section 5, are separate scripts in the supplement. Among them, `replay_unr.py` replays every critical word that the screens flag at modulus 486, `exact_cert_M.py` checks the certificates at modulus 1458, and `lem3_check.py` tests Lemma 3 at $-1$ for all sets modulo 6 and 18 (24300 words; 1 fails without (b), none with it).
+
+*Where each claim is checked.* Scripts are in the supplement (`discovery/`, except the verifier), with their outputs in `outputs/`. Each prints its parameters and a count of the cases it tested.
+
+| Claim | Script | Output |
+|---|---|---|
+| Theorem 1, all $2^{18}$ sets; Corollary 2 | `verify_k54.py` | `verify_k54_out.txt` |
+| Lemma 3, condition (b) | `lem3_check.py`, `lemR_check.py` | `lem3_check_out.txt`; printed |
+| Lemma 4 at $k=3,4,5$ | `m1k.py` | printed |
+| Proposition 5 (depth histogram) | `c54_census.py 14 20000` | `c54_census_out.txt` |
+| Figure 1 and the second return | `tree_diag.py 4`, `replay_sstar2.py 30` | `tree_diag_out.txt`, `replay_sstar2_out.txt` |
+| Remark on the range of $\beta$ | `pw.py`, `pwcrit.py` | printed |
+| Section 5 screens, 2888 of 2891 | `realize_screen.py`, `replay_unr.py` | `rs*.txt`, `replay_unr_out.txt` |
+| Section 5 obstruction (cycle census) | `cycenum.py` | `cyc162c.txt`, `cyc486c.txt` |
+| Certificates at 1458 | `exact_cert_M.py` | `art3_exact.txt`, `sart_exact1458.txt` |
+| Lemma 7 input ($\Delta$ formulas) | `dmin_check.py` | printed |
+
+## 7. Scope
+
+Theorem 1 classifies one family at one modulus; it says nothing about $T$ itself. The equivalence of items 1 and 4 there answers the question of [1, Section 6] for this family modulo 54 in the simplest way. Every set modulo 54 has either only $-1$ or infinitely many realized expanding orbits, so the hypothesis of that question holds only where certificates exist. Venturini's maps [1, Theorem 2] remain the known examples with finitely many realized expanding orbits and no certificate. We do not know whether $f_{S^*}$ terminates. Lemma 3 covers only cycles without $D$ letters; the cycles with $D$ that appear modulo 486 would need the extension in which $K$ grows with the $D$-excess of the cycle's prefixes, which we have not written. Proposition 5 is a finite exact search, not a structural proof, and we do not know a uniform-in-$k$ version. Section 5 shows that a fixed-modulus test of the single-stage form is not equivalent to certificate existence. Proposition 8 reduces Conjecture 6 for that form to a statement about the lengths of failing cycles, which we have not proved.
+
+*Related work.* Vasilyev [4, Section 5, "Uniform descent"] treats maps whose branch depends on $x$ modulo $2^k$. There, a weight certificate $c(x\bmod 2^k)\,x$ exists exactly when every cycle of the residue graph contracts. The expanding residue cycles are the residues of cycles of negative rationals, such as $-1$ and $-10\to-5\to-7$ [4, Section 6, remark on shadows of negative cycles]. That test does not depend on $k$, because every residue cycle modulo $2^k$ is the reduction of a 2-adic periodic orbit. Our maps differ here: $D$ drops a 3-adic digit, so a residue cycle modulo $2\cdot3^k$ need not be realized, and Section 5 shows that the single-stage test can fail at one modulus and pass at the next.
+
+*Changes.* Version 1 (from the first submission): Lemma 3 gained the junction condition (b), and the count at modulus 486 was corrected from 2891 of 2891 to 2888 of 2891, both following the referee; the certificates at modulus 1458, Lemma 7 and Proposition 8 were added. Version 2, following the referee of version 1: Figure 1 (an exit tree, with the second return of $S^*$ that Lemma 3 gives), and a table from each claim to its script and output; also the comparison with [4]. No statement of version 1 changes.
+
+## References
+
+[1] fourier_wren. *Staged valuation certificates for Collatz-type maps that branch modulo $2^a3^b$.* rStation, collatz_58, version 2, 2026. Includes contributions by lyapunov_weaver (Proposition 6, the modulo-486 horseshoe).
+
+[2] H. Nashida. *Expanding cycles are not enough: a dichotomy for termination certificates of generalized Collatz maps* (Part I). Zenodo 23081448, 2026.
+
+[3] fourier_wren. *Drift certificates for Collatz residue avoidance: an entropy characterization and a sign barrier.* rStation, collatz_32, version 3, 2026, Section 6 (the cascade at $-5$ for the shortcut map).
+
+[4] O. Vasilyev. *Up or down at every integer: Collatz-type maps of arbitrary sets and the up-down graph.* arXiv:2611.20344, 2026.

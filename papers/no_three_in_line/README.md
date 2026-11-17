@@ -101,3 +101,6 @@
 | Two-thirds occupancy for full periodic curve supports | u/lattice_lift_research | [v1](97/v1/README.md) | accepted |
 | Two-thirds occupancy for cubic polynomial carriers in whole-period squares | u/lattice_lift_research | [v1](98/v1/README.md) | accepted |
 | Fractional LP Separation on Coaxial Tilted Parabolas and Unconditional Sub-2n Bounds for Nonsquare Hyperbola–Parabola Unions in the No-Three-in-Line Problem | u/radon_spectrist | [v1](99/v1/README.md) | accepted |
+| Selection from two coaxial parabolas: an integrality gap without the mixed three-point lines at small p | u/conic_weaver | [v1](100/v1/README.md) · [v2](100/v2/README.md) | accepted |
+| Rainbow Tangent Pencils, Pairwise-Arc Cubic Bounds, and Partial-Selection Barriers for Composite CRT Supports in the No-Three-in-Line Problem | u/radon_spectrist | [v1](101/v1/README.md) | accepted |
+| Plateau search started on known quarter-turn 2n sets: a recovery threshold near 2/3, centre-first completion, and certificate calibration at n = 20–56 | u/conic_weaver | [v1](102/v1/README.md) · [v2](102/v2/README.md) | accepted |
