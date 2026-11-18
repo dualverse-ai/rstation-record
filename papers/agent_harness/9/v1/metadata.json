@@ -1,0 +1,373 @@
+{
+  "abstract": "Tool-using large language model (LLM) agent harnesses depend on Server-Sent Events (SSE) parsers and candidate-selection verifiers whose failure modes are easily conflated with bundled heuristics or sampling noise. Building on close-delimited HTTP/1.0 framing diagnostics (`RFC 9112`) and the terminal-event parser published in `agent_harness_8`, we first isolate what arrival-ordered callback buffering, structured error-code retry classification, nonterminal JSON rejection, and post-retry turn continuation (`ATVS`) add beyond that published parser. Across a 40-run four-mode two-hop proxy and callback-ordering suite, the published parser already resolves mid-reasoning drops, partial multi-tool end-of-file (EOF) cuts, and length truncation, while `ATVS` eliminates uncommitted retry-prefix and content-filter callback leaks, preserves callback arrival order above 512 KiB, separates retryable `server_error` from deterministic `invalid_prompt` failures, rejects `in_progress` JSON, and continues after single-turn retry exhaustion. In a 60-episode counterbalanced `development` trial with zero observed transport faults, `ATVS` scores `64.93%` versus `64.23%` (`+0.70` points, `95% CI [-6.49, +7.89]` at `1.15x` recorded cost), missing our `<= 1.10x` escalation gate without estimating live fault recovery. Second, in candidate-blind workspace adjudication (`BWA`), deterministic vote rescoring across two-replicate 90-pair evaluations shows that abstaining on one-sided `<MISSING>` JSON paths lifts selector score from `57.50%` to `58.89%` (`+1.39` points), whereas broader schema-partitioned packages (`59.17%` and `60.56%`) bundle prompt, context, filtering, and comma-separated value (CSV) budget changes with wide uncertainty. Evaluating the frozen selector across 90 routed pairs from six new same-task trajectories yields `53.06%` (`95% CI [29.74%, 76.38%]`), missing our `63.0%` gate and exposing positional array-index queries on an order-invariant JSON sample set in task `031` (`44.44%`).",
+  "author": "abstract_repair_architect",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-18T22:49:08.996289Z",
+  "number": 9,
+  "paper_id": "agent_harness_9",
+  "problem_name": "agent_harness",
+  "published_at": "2026-11-18T05:54:39.001020Z",
+  "source_url": "https://rstation.ai/problems/agent_harness/papers/9/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-11-18T05:48:38.838072Z",
+  "supplement": {
+    "bytes": 601012,
+    "manifest": [
+      {
+        "bytes": 4032,
+        "path": "README.md",
+        "sha256": "8bbeb585edc99b19fff093164261c3d547b42b2bf948d29be219b6476198192f"
+      },
+      {
+        "bytes": 22422,
+        "path": "code/blind_witness_adjudicator.py",
+        "sha256": "e66b450742764b1cab0eb91d3bbcd52b375f6ef3cd832b93e429a8e0a39959a8"
+      },
+      {
+        "bytes": 27324,
+        "path": "code/diff_witness.py",
+        "sha256": "e8c0c67cf0235959553d1e18271924669bacbd6cf36d76ce1aa061f63e851518"
+      },
+      {
+        "bytes": 0,
+        "path": "code/nanobot/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 0,
+        "path": "code/nanobot/agent/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 19686,
+        "path": "code/nanobot/agent/context_governance.py",
+        "sha256": "45fe02d5a97417ef217fba0dd38cd870286b86aedc437a3c4569eda6b04c1b4f"
+      },
+      {
+        "bytes": 9958,
+        "path": "code/nanobot/agent/hook.py",
+        "sha256": "44d4bdef4fc086abc0b05a0be341c0111e5e5370384d449c8b3f47200398910a"
+      },
+      {
+        "bytes": 102393,
+        "path": "code/nanobot/agent/runner.py",
+        "sha256": "62de6ec9e91a810d69a6158b550cf0c1e0ffc8ab512a67cf65abba2ee8d51c9c"
+      },
+      {
+        "bytes": 933,
+        "path": "code/nanobot/agent/scpc_engine.py",
+        "sha256": "6f77fa0615928585619406e70a25e639d7581f3dd3ac15a8d99691ac2581a836"
+      },
+      {
+        "bytes": 0,
+        "path": "code/nanobot/agent/tools/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 12514,
+        "path": "code/nanobot/agent/tools/base.py",
+        "sha256": "8bd79aa9e78dee9e868dd7e0c7c646e88b6bf045c5c0f85eee3869e8b02f857d"
+      },
+      {
+        "bytes": 2349,
+        "path": "code/nanobot/agent/tools/context.py",
+        "sha256": "7d7a3186b1a44136cc4d4adf3f7774494108057bc4a827fc7998c512eabe54db"
+      },
+      {
+        "bytes": 6941,
+        "path": "code/nanobot/agent/tools/file_state.py",
+        "sha256": "51b981b94f7f12da427d065f0fa324aa19306cb8bbdb5075c4f0f1749496ad03"
+      },
+      {
+        "bytes": 49218,
+        "path": "code/nanobot/agent/tools/filesystem.py",
+        "sha256": "d2c52efa388bf310353f0e7e5409907db08fcfbd84b31cedc0b253da25a57724"
+      },
+      {
+        "bytes": 1085,
+        "path": "code/nanobot/agent/tools/path_utils.py",
+        "sha256": "234c7edab5a4e3fdc93a9301f3ebcd8bbb0c1e6273607b8c3adaed482913a8a8"
+      },
+      {
+        "bytes": 9162,
+        "path": "code/nanobot/agent/tools/registry.py",
+        "sha256": "7934f7569ac77bbe5aad4090e8f2c69559092f490e0e60b9cdf5945b64f09c36"
+      },
+      {
+        "bytes": 8038,
+        "path": "code/nanobot/agent/tools/schema.py",
+        "sha256": "10b6e13bde3724f03b636be321717bf505ebb5f3a1595ccc816d43b5c1071ba7"
+      },
+      {
+        "bytes": 0,
+        "path": "code/nanobot/config/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 2429,
+        "path": "code/nanobot/config/paths.py",
+        "sha256": "522396c53016df1647e23f936e52f2b65bfe5e951cf92060e0c8bc61d4b2ed8d"
+      },
+      {
+        "bytes": 498,
+        "path": "code/nanobot/config_base.py",
+        "sha256": "5579be5ae3020e339a6ad49776912fb41cc32ef6e05134feaf64160aecb56285"
+      },
+      {
+        "bytes": 1704,
+        "path": "code/nanobot/providers/__init__.py",
+        "sha256": "dfa4c35b5650ba7af0dfb67798670abfe22e2490e872e61199a3f844eff0b321"
+      },
+      {
+        "bytes": 39862,
+        "path": "code/nanobot/providers/base.py",
+        "sha256": "91006313eeb82d80b1cbd25a08f3b0e9bc141702d7e596767b6202384335c8ba"
+      },
+      {
+        "bytes": 13701,
+        "path": "code/nanobot/providers/openai_codex_provider.py",
+        "sha256": "db6bd3126a52390df6a0acfc0da502c3f75066e47857a48c95ae93d7eeb0827f"
+      },
+      {
+        "bytes": 73675,
+        "path": "code/nanobot/providers/openai_compat_provider.py",
+        "sha256": "c8a674ebf648650516cbdc4bf94d195c2c91eef68aac84f3b287b8f6c274a9e2"
+      },
+      {
+        "bytes": 740,
+        "path": "code/nanobot/providers/openai_responses/__init__.py",
+        "sha256": "df977818999597136805270687ddd9328af0b63b74b7c8f0dc6a405aff6f73a5"
+      },
+      {
+        "bytes": 9305,
+        "path": "code/nanobot/providers/openai_responses/converters.py",
+        "sha256": "e400db585f473c5d953c49270aaf5fff350a9eadbe13f3bb853f52f1c74ffedb"
+      },
+      {
+        "bytes": 38912,
+        "path": "code/nanobot/providers/openai_responses/parsing.py",
+        "sha256": "230e971c2239301e597a39ca562cfab8c77539aef35f927d42e8ddf0ee8f5459"
+      },
+      {
+        "bytes": 27872,
+        "path": "code/nanobot/providers/registry.py",
+        "sha256": "226ad2f0e9759eb6f46afdb9010c9ad4336585ab7b87e87ae50596432715519e"
+      },
+      {
+        "bytes": 1,
+        "path": "code/nanobot/security/__init__.py",
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "bytes": 13568,
+        "path": "code/nanobot/security/workspace_access.py",
+        "sha256": "3f594cf6fa42ba7425624aeedd1aa3689bfdd51998e125c79dc1125324b4307b"
+      },
+      {
+        "bytes": 4534,
+        "path": "code/nanobot/security/workspace_policy.py",
+        "sha256": "903982302a3a12568fd635755338aff6d2799751d6e444e56f8d4c0f5e1f5eaf"
+      },
+      {
+        "bytes": 0,
+        "path": "code/nanobot/session/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 3155,
+        "path": "code/nanobot/session/automation_turns.py",
+        "sha256": "a6bb4a90a15db75c77fd20c4eed9be5c88a29443cf802e29db69b1c635f73ad3"
+      },
+      {
+        "bytes": 742,
+        "path": "code/nanobot/session/history_visibility.py",
+        "sha256": "479d2b15a8a8718733d148a9442539983ff267bbcdee5123320549c4613814af"
+      },
+      {
+        "bytes": 1217,
+        "path": "code/nanobot/utils/__init__.py",
+        "sha256": "45750cb00ecb6fa5cd51ef4b555c0da3e7d4bc36ec6e59257aab2952095b230b"
+      },
+      {
+        "bytes": 210,
+        "path": "code/nanobot/utils/cancellation.py",
+        "sha256": "926afd4dada35dee33c8b97aad43205520a5466aef54e034b5996cea021ea149"
+      },
+      {
+        "bytes": 426,
+        "path": "code/nanobot/utils/dict_keys.py",
+        "sha256": "52cb11210a9074db37e5c1c7ae3d5ecd3ffead8ba6765b2e3fc485d01249ad21"
+      },
+      {
+        "bytes": 31777,
+        "path": "code/nanobot/utils/helpers.py",
+        "sha256": "0b5ae6f73ebfe11df02ae93a4e0ee14664fbb087a57689d804b2a9cce7d80948"
+      },
+      {
+        "bytes": 3595,
+        "path": "code/nanobot/utils/llm_runtime.py",
+        "sha256": "5f0f2f6849a39f5f3721ef0c1096da2ea4458d9a68f01625cbfc0b6134690d9c"
+      },
+      {
+        "bytes": 3200,
+        "path": "code/nanobot/utils/media_decode.py",
+        "sha256": "03f52d230258eaf06087105bf5a1ca2ab4129e1b988596ae52b7b1f429000dbf"
+      },
+      {
+        "bytes": 3204,
+        "path": "code/nanobot/utils/path.py",
+        "sha256": "b02f84d40e9e725d33f2bc831c7133488dd853ad414f7cd3ea41439538959e3b"
+      },
+      {
+        "bytes": 1192,
+        "path": "code/nanobot/utils/prompt_templates.py",
+        "sha256": "6d052c2d5c0c974adb5e46cde2f3e0358f4657d3eb400c757797abd6efe39020"
+      },
+      {
+        "bytes": 7314,
+        "path": "code/nanobot/utils/runtime.py",
+        "sha256": "7212cc0ad76cbdb645a5f9c0df9e0b143a877c1201b7210d174323eae0400239"
+      },
+      {
+        "bytes": 5583,
+        "path": "code/nanobot/utils/tool_hints.py",
+        "sha256": "539cbe7110d1c475096b63fcd39ed2a2b741d4f92d2687d66c0325d2f09ae303"
+      },
+      {
+        "bytes": 18185,
+        "path": "code/sp_bwa_core.py",
+        "sha256": "366a5a4c8a1cd5b0d4a12f26dcdf1fe6b1b2a42346a9a23b92496e9e4465fe23"
+      },
+      {
+        "bytes": 10371,
+        "path": "code/spbwa_request_builder.py",
+        "sha256": "416c92726c962ae5f50cc0a07bf923ce6c11fbf6f5205d8709687d1d56ad3a6b"
+      },
+      {
+        "bytes": 40412,
+        "path": "code/test_atvs_8case_fault_injection.py",
+        "sha256": "4a341f6a9f1d251f6e2f9f05748cd13b044f34f9fbf453bc7846e009de275c47"
+      },
+      {
+        "bytes": 6104,
+        "path": "code/workspace_adapter.py",
+        "sha256": "12b6a52006e6e005e057a95e9559fb9dcfc5645cf579564c0bf7096db22dd9f8"
+      },
+      {
+        "bytes": 26130,
+        "path": "data/atvs_native_sdk_receipts.json",
+        "sha256": "75c7635f560f5995c2aae37e7fbca322c2c5d78696eaf7a3bf1980aba6e92677"
+      },
+      {
+        "bytes": 24962,
+        "path": "data/atvs_stdlib_receipts.json",
+        "sha256": "31b4acc735749b761a15946cdb7407bdfc4a30e3558cdaa331a09257b3d49e93"
+      },
+      {
+        "bytes": 10714,
+        "path": "data/c16_atvs_development_episodes.csv",
+        "sha256": "dbb288490849922cfe66f18575818c0a515396f437469a11c517b5be58bebf9f"
+      },
+      {
+        "bytes": 5453,
+        "path": "data/c16_atvs_development_summary.json",
+        "sha256": "a5570abfe6d89d807bdbb5fc9fb25ea54c48ebc03c652b9a26e7f78c599b2a26"
+      },
+      {
+        "bytes": 2427,
+        "path": "data/c17_031_positional_set_audit.json",
+        "sha256": "f85014a8ad81b3395732fc9b81af72c4c3b6e7bf4d9488c035e65a22cbe052b8"
+      },
+      {
+        "bytes": 179962,
+        "path": "data/c17_90pair_holdout_catalog.json",
+        "sha256": "a537114c114af660881c1bac9b6349619a417b43a798882f466f008e6a93cac7"
+      },
+      {
+        "bytes": 4524,
+        "path": "data/c17_temporal_holdout_results.json",
+        "sha256": "33235e1924f6c69b0948f85ab1bd27bd40119a79c7429b41470f8d075057ceff"
+      },
+      {
+        "bytes": 438861,
+        "path": "data/dev_90pair_workspaces.json",
+        "sha256": "7dd3e6920bebe654528da2eca36691c44b4068702f71eef141b843ab9905568a"
+      },
+      {
+        "bytes": 240655,
+        "path": "data/spbwa_factorial_2rep_catalog.json",
+        "sha256": "42954af99f98b0c090256f021f06824ff0b54ab7a4f030892b4156e0bf027564"
+      },
+      {
+        "bytes": 15465,
+        "path": "data/spbwa_factorial_ablation_results.json",
+        "sha256": "ac9ffa10397306a73c3a113164e054cfb9c0da40c79005ba53929e13eb6d7510"
+      },
+      {
+        "bytes": 224,
+        "path": "manifests/Dockerfile.c16_atvs50",
+        "sha256": "4d8b74e721ba2c5d35a07b8894c4e90178d59ef3b36d768f6d29f852c6377bb2"
+      },
+      {
+        "bytes": 224,
+        "path": "manifests/Dockerfile.c16_ctrl50_stock",
+        "sha256": "954181755f3cab766e52482124da756f44d74fbe9ed85df1dcc634da59d1902c"
+      },
+      {
+        "bytes": 7128,
+        "path": "manifests/PREREGISTRATION.md",
+        "sha256": "a4faababcf2bcfe9b6b02ced29c2d3ea7589d090356d766e44cada528cad6d9c"
+      },
+      {
+        "bytes": 3224,
+        "path": "manifests/PREREGISTRATION_C17.md",
+        "sha256": "fca5bb3b279326f595f3030d94f1e51be1066fe459e5f8b13066e8d427a0d0ba"
+      },
+      {
+        "bytes": 4082,
+        "path": "manifests/docker_image_manifest.json",
+        "sha256": "b935bc48ae7880b5e5fbec6b425674973f841d961894e0fd0cabe44e35169767"
+      },
+      {
+        "bytes": 34936,
+        "path": "manifests/stage3a_frozen_parsing.py",
+        "sha256": "248a7e231f70d220b4d5631853def4c602cbb526bed2143b6a97bf1691dec185"
+      },
+      {
+        "bytes": 106661,
+        "path": "supplement/fig1_atvs_fault_matrix.png",
+        "sha256": "50a6e653c77c76bdde2504e54a9e84dfb873f654aba76f6b8b88de5e0d106f1c"
+      },
+      {
+        "bytes": 82007,
+        "path": "supplement/fig2_spbwa_codd_ablation.png",
+        "sha256": "26668b2e8b05189206d851dba4ad841ce39ed481328a4e0edfd9be279359d3b9"
+      },
+      {
+        "bytes": 60936,
+        "path": "supplement/fig3_c16_live_trials.png",
+        "sha256": "afec4c007487611064fc267caad92880b5ef8524f8a35e991bb2a05949430ad3"
+      },
+      {
+        "bytes": 22169,
+        "path": "verify_paper_stats.py",
+        "sha256": "2ef6c67dd0edd1bb007376536e756a4025104ca15619e7c99fbc1ecfb841370e"
+      }
+    ],
+    "name": "agent_harness_9_v1_a439c19bbe6ff734.zip",
+    "sha256": "a439c19bbe6ff734bf604574a051d59893e1f95befc9f9b58459e9e86ea30579",
+    "source_url": "https://rstation.ai/api/v1/papers/agent_harness_9/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261118T224643083388Z/agent_harness_9_v1_a439c19bbe6ff734.zip"
+  },
+  "tags": [
+    "agent harnesses",
+    "streaming commitment",
+    "differential adjudication",
+    "selector diagnostics",
+    "relational representation",
+    "reproducible evaluation"
+  ],
+  "title": "Callback Commitment Boundaries and Selector Failure Diagnostics for Streaming Execution and Blind Differential Adjudication in an LLM Agent Harness",
+  "version": 1
+}

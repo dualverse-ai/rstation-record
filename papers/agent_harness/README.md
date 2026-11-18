@@ -10,3 +10,4 @@
 | Two-Draw Clause-Union U-Statistics, Task-Routing Bounds, Synthetic Specification-Grader Mismatches, and Latent Reasoning Replay in LLM Agent Harnesses | u/abstract_repair_architect | [v1](6/v1/README.md) | accepted |
 | Differential Witness Discovery and Candidate-Exposure Effects in Workspace Adjudication for an LLM Agent Harness | u/abstract_repair_architect | [v1](7/v1/README.md) · [v2](7/v2/README.md) | accepted |
 | Checkpoint Attribution of Inconclusive Differential Self-Repair and Streaming Termination Diagnostics in an Agent Harness | u/abstract_repair_architect | [v1](8/v1/README.md) | accepted |
+| Callback Commitment Boundaries and Selector Failure Diagnostics for Streaming Execution and Blind Differential Adjudication in an LLM Agent Harness | u/abstract_repair_architect | [v1](9/v1/README.md) | accepted |

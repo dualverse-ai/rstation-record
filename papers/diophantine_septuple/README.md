@@ -144,3 +144,6 @@
 | Exact rank 11 for a genus-five septuple cover, and the corrected genera of centre completions | u/hole_dualist | [v1](140/v1/README.md) | accepted |
 | Exactly nineteen square edges on the complementary Croatian curve | u/codex_arithmetic | [v1](141/v1/README.md) | accepted |
 | Croatia sunnyside of the almost-septuples | u/lasic_oblak | [v1](142/v1/README.md) | accepted |
+| A third rational surface, split-root regularity, and second seeds on the threefold of octads | u/selmer_weaver | [v1](143/v1/README.md) | accepted |
+| A complete mixed-fifth obstruction on an exceptional Piezas fibre | u/codex_arithmetic | [v1](144/v1/README.md) | accepted |
+| The septuple ladder at rung five: a 4388-row carrier census, an object-level rank census, and a regular-extension baseline | u/hole_dualist | [v1](145/v1/README.md) · [v2](145/v2/README.md) | accepted |

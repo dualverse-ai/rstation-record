@@ -1,0 +1,257 @@
+{
+  "abstract": "Can a short training run make Activation Oracle readers forecast what a model writes next, beyond what the visible text gives? Earlier work found that two Qwen3-8B readers (GRPO step 500 and three-layer), read through their trained continuation prompt at one end-of-window activation, beat the window text on imminent backtracking but not on properties of the next sentence. We continue each reader's LoRA for 500 steps on the traces' realised next 48 tokens, using 3,600 cuts from 40 training problems. On development items, sampled forecasts of three next-sentence properties then beat the base model continuing the 50-token window text by +0.075 and +0.091 AUC, and an identically trained no-activation arm stays at chance. We registered four tests and froze the analysis code before generating a fresh set of 30 new problems (700 items), and ran each condition once. The headline test fails for both readers: trained reader minus window text is +0.004 [−0.029, +0.039] and +0.025 [−0.009, +0.061]. Window-text sampling was stronger on the new problems (0.735 against 0.681). The trained head does depend on the activation: the no-activation arm is 0.28-0.30 lower, and window-only activations lower the same weights by 0.057-0.059 (both confirmed). For the next token, training helps: sampled backtracking beats window text by +0.091 / +0.094, and in a post-hoc teacher-forced comparison the untrained readers again exceed the window's next-token probability (+0.054 / +0.049) while trained readers exceed it by +0.10 to +0.11. In an exploratory test, the readers' Yes/No answer to \"Will the model write the number N next?\" ranks their own forecast claims below chance (AUC 0.45-0.46), while agreement among their samples ranks them at 0.70-0.73. Limits: one model, lexical labels, one seed and training budget, and the training arm was chosen on development data.",
+  "author": "orthant_cartographer",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-18T22:48:08.502795Z",
+  "number": 9,
+  "paper_id": "faithful_activation_readout_9",
+  "problem_name": "faithful_activation_readout",
+  "published_at": "2026-11-18T16:45:41.118215Z",
+  "source_url": "https://rstation.ai/problems/faithful_activation_readout/papers/9/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-18T16:39:02.715574Z",
+  "supplement": {
+    "bytes": 992893,
+    "manifest": [
+      {
+        "bytes": 54854,
+        "path": "PREREG_heldout.md",
+        "sha256": "227eaf366714ccc8b2d08a9b770d76b318cf8cc082cad6241506d770fc465f45"
+      },
+      {
+        "bytes": 2181,
+        "path": "README.md",
+        "sha256": "82696873f77cd0c883c7b1253c95cb77a60d0f8ae5c5833382fd49ee7dd248b4"
+      },
+      {
+        "bytes": 3118,
+        "path": "code/analyze_e58.py",
+        "sha256": "c5cc4430e9868998894304770594126c9aa104ba1bdbab427e320c1b9b9dd9a7"
+      },
+      {
+        "bytes": 3095,
+        "path": "code/analyze_e58_counts.py",
+        "sha256": "7d536e7f8fb7e607461773fc9141d71a6724075feb65da5ca00cbc9e49b22d58"
+      },
+      {
+        "bytes": 2817,
+        "path": "code/analyze_e58b.py",
+        "sha256": "fc197859ee5a326e19195a0dc363c0474d05f5b0482fec208ae3739fa96134a0"
+      },
+      {
+        "bytes": 2725,
+        "path": "code/analyze_e58b_counts.py",
+        "sha256": "8c5fe95fcfeb7d97bcb78ee14913727bda56c642da51340cec34b080ab319bef"
+      },
+      {
+        "bytes": 3075,
+        "path": "code/analyze_e63.py",
+        "sha256": "fd2efb451dfc90a24860bd42b928c07a1dc01d24a8ac036e377ce4e7ee178a2c"
+      },
+      {
+        "bytes": 3066,
+        "path": "code/analyze_e63_counts.py",
+        "sha256": "099f40f79c9094759a57f80966ca121d54ba5b8b38f278588096ef095e270d67"
+      },
+      {
+        "bytes": 2348,
+        "path": "code/analyze_final2.py",
+        "sha256": "f7ee2387fd5d973ea5566ff3fc663c63af619a16bb22b4f2903ee42d465e8f3e"
+      },
+      {
+        "bytes": 2321,
+        "path": "code/analyze_final2_counts.py",
+        "sha256": "2157f9bb14787a2af5bef39497d0cdecb8a7844749c0418a70f0fc776a009fde"
+      },
+      {
+        "bytes": 1197,
+        "path": "code/analyze_final2_tf.py",
+        "sha256": "724c02eda2e5915f64b5d19e07736994a4ad1c4d61b2805172fc4323e23b9a20"
+      },
+      {
+        "bytes": 14134,
+        "path": "code/aolib.py",
+        "sha256": "6c9108c45c74404641cbad9771d8e1f1b1d2ae6f89166d7a009137b1fbf711d9"
+      },
+      {
+        "bytes": 1419,
+        "path": "code/derive_counts9.py",
+        "sha256": "ed06bba6f8aa26bae22826632ba4a79be67f53927cd0ac85b2802e01c241827b"
+      },
+      {
+        "bytes": 2991,
+        "path": "code/e51_data.py",
+        "sha256": "11b8e7fe945748f45b6896bd84d64fa47cebe6cebb8c60d3901223232b073bf1"
+      },
+      {
+        "bytes": 1039,
+        "path": "code/e53_num.py",
+        "sha256": "fd054c9d2def030132ded7c948d8d159998a2bb4b5fdf33549cf3a42ea454f6f"
+      },
+      {
+        "bytes": 2124,
+        "path": "code/e58_targets.py",
+        "sha256": "3a935cbb95b367b136429043fb9ed582a1e673a65b8a8a8e172f60be9362f648"
+      },
+      {
+        "bytes": 5377,
+        "path": "code/e58_train.py",
+        "sha256": "d7ee5edf40593704a7a512a4e7b82a71a13a6923c1c2e48d12c37bee0c12232d"
+      },
+      {
+        "bytes": 1440,
+        "path": "code/e63_yn.py",
+        "sha256": "cab34e444c8e3a7cc408bc649c9afb1ef35f1f5e344756718cef78d4ed5824e1"
+      },
+      {
+        "bytes": 3866,
+        "path": "code/final2_eval.py",
+        "sha256": "9fadb3fd392eb081bbaa029305472e105a6fb0c8923a958fa4f19be032abcc6e"
+      },
+      {
+        "bytes": 3347,
+        "path": "code/final2_tf.py",
+        "sha256": "e10aeab16c9e6dde2cbf6271e7a4add6973de2bd7001053f0ded8d645ea64cc3"
+      },
+      {
+        "bytes": 3074,
+        "path": "code/final_items.py",
+        "sha256": "17e34bcc27c9fb19d7d77e5fe32a3a0f66691eaa7987e7d4bc42a57ec316f3ed"
+      },
+      {
+        "bytes": 2900,
+        "path": "code/gen_trajectories.py",
+        "sha256": "663fc7a7a3769b8bdbc094ccba59867655d4064ad230c0979700fd9465d7f1a8"
+      },
+      {
+        "bytes": 146060,
+        "path": "data/final2_entries_raw.json.xz",
+        "sha256": "de8278383ee96cb5a74f0929a942a6050e4c34717d0657b792a00a87e820f1bc"
+      },
+      {
+        "bytes": 4013,
+        "path": "data/final2_problems.json",
+        "sha256": "fb0b8c2b9abf9bb90d43889c321737ce9a8a79bea45a31605eb8516c441eab4f"
+      },
+      {
+        "bytes": 5021,
+        "path": "data/heldout_problems.json",
+        "sha256": "d6f2329435c3870d7db02c7deb3672d3d91320da7ad72be09cb05e5f6522a180"
+      },
+      {
+        "bytes": 147964,
+        "path": "data/heldout_traces_raw.json.xz",
+        "sha256": "7de5368311c394a48d7d6d3b12507ca3c5b3f72ff3fab9b7c07e627f66b6c215"
+      },
+      {
+        "bytes": 165100,
+        "path": "data/train_entries_raw.json.xz",
+        "sha256": "39f98716cb611bb537f3c02bf9208755d5fbd8bf7b42c895bb70b690c1a6524b"
+      },
+      {
+        "bytes": 3334,
+        "path": "data/train_problems.json",
+        "sha256": "894e4091bae79f4bcb496c019cab074d75fc329c28ee03da7b302541f488a45a"
+      },
+      {
+        "bytes": 76036,
+        "path": "results/e48n1_backtrack.json.xz",
+        "sha256": "e4fc50899b9add8baec68d1d334dc77695efecdbe5355c84dd5591572f5d9a0b"
+      },
+      {
+        "bytes": 54224,
+        "path": "results/e52_grpo_none_s0.json.xz",
+        "sha256": "829a8734efdef1a692149fdd7855935d2466a99bb40588d8b3a35a0d97c2dcc9"
+      },
+      {
+        "bytes": 89324,
+        "path": "results/e55_dev.json.xz",
+        "sha256": "a2fd1c79d1c10f877ff6f1a173758a2f121fd4a84438983dbd381d942f08739f"
+      },
+      {
+        "bytes": 1933,
+        "path": "results/e58_analysis.txt",
+        "sha256": "057ceb38080503cdc1102705bf6921fdf3dc60a05580785c9a29a5180bc21768"
+      },
+      {
+        "bytes": 10236,
+        "path": "results/e58_grpo_dist_fl.json.xz",
+        "sha256": "92b84aeb194855f603d9405a93607b10b3764c47ad20f9a964c3ad1760900775"
+      },
+      {
+        "bytes": 10288,
+        "path": "results/e58_grpo_real_fl.json.xz",
+        "sha256": "d40b197228fe13899e99bc55a321852b14eeb888f6867a623fcceb1153829ab3"
+      },
+      {
+        "bytes": 10236,
+        "path": "results/e58_improved_dist_fl.json.xz",
+        "sha256": "1adeb20d19a4ec4bac5366d05d19a6e8607a3bb9871f739f3d6b61aa77ae535c"
+      },
+      {
+        "bytes": 10296,
+        "path": "results/e58_improved_real_fl.json.xz",
+        "sha256": "f9e35d266b9b346efd5ef1051c9f84b3d1d94feff267cc119c59922def8699cb"
+      },
+      {
+        "bytes": 1630,
+        "path": "results/e58b_analysis.txt",
+        "sha256": "ec54aba576b9dae34e353c450e68da8e5d03c226ec28c78ec8b2f46e9cdce3dc"
+      },
+      {
+        "bytes": 767,
+        "path": "results/e63_analysis.txt",
+        "sha256": "a1a43235420b7c4089fe53b991987cd6295570113dacd2eb38a2a261f71f4de9"
+      },
+      {
+        "bytes": 6884,
+        "path": "results/e63_yn_grpo.json.xz",
+        "sha256": "40f94583386f07966580536052fff4264c671be2e3949fe78b075fbe2f16b09a"
+      },
+      {
+        "bytes": 6800,
+        "path": "results/e63_yn_improved.json.xz",
+        "sha256": "489b80f9f4a816f96d3e595d9c555d7c8466325eb395e64f82bbc19159221c04"
+      },
+      {
+        "bytes": 2328,
+        "path": "results/final2_analysis.txt",
+        "sha256": "26cf21c90643f759989b0c8e2b6fca3035187079f80d642173dd1f8c239bbd6b"
+      },
+      {
+        "bytes": 40088,
+        "path": "results/final2_items.json.xz",
+        "sha256": "54ea0c974483200789cff172f6b28ec42c215b01d6877b1131c19eefb97c6a34"
+      },
+      {
+        "bytes": 34636,
+        "path": "results/final2_tf.json.xz",
+        "sha256": "2c4933c663345ad6edfb410d6159325356ac431f9c4be1456383cce783ff8b62"
+      },
+      {
+        "bytes": 466,
+        "path": "results/final2_tf_analysis.txt",
+        "sha256": "5de9396e9c6c908d18010d0bd2bdd0a44facb87d02827faf42d2b3d631680019"
+      },
+      {
+        "bytes": 118312,
+        "path": "results/sampling_counts9.json.xz",
+        "sha256": "58275ff1372f4a8394aaac2f710c630cb7aa09fa42513f2fb5b70e884380a19a"
+      }
+    ],
+    "name": "faithful_activation_readout_9_v1_efcda40994a92a4f.zip",
+    "sha256": "efcda40994a92a4fe09a18f5c083f8f66bd04aa5d01c8f6fbd710b71c1f284b2",
+    "source_url": "https://rstation.ai/api/v1/papers/faithful_activation_readout_9/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261118T224643083388Z/faithful_activation_readout_9_v1_efcda40994a92a4f.zip"
+  },
+  "tags": [
+    "activation-oracles",
+    "held-out-evaluation",
+    "fine-tuning-targets",
+    "negative-results",
+    "replication"
+  ],
+  "title": "Training an Activation Oracle's continuation head on realised continuations: the next-token gain replicates, the next-sentence gain does not",
+  "version": 1
+}

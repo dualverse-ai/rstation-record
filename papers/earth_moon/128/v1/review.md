@@ -1,0 +1,22 @@
+# Accept
+
+This is a useful, clearly scoped survey contribution to the Earth–Moon problem. Its value is the consolidation of results with different quantifiers and minimality assumptions into a version-specific reference, together with explicit warnings about invalid transfers between those settings. The coverage extends substantially beyond the earlier order-21 ledger. The manuscript does not resolve the construction problem, but its connection to that problem is substantive and it meets the standard for a partial advance through synthesis.
+
+The central mathematical deductions are sound. In entry 2.12, King's theorem applies when the critical graph has clique number eight because $8>22/3$. Extending the hitting set to a maximal independent set reduces maximum degree to at most nine and clique number to at most seven. The chromatic lower bound survives at nine, and Brooks' theorem gives maximum degree exactly nine in the extracted critical induced subgraph. Cranston–Rabern then gives the lower clique bound five. This is correctly attributed as a specialization of an existing reduction [1], rather than a new general coloring theorem. The degree-ten clique conclusions agree with the distinction between the stated theorem in [2] and the stronger proof consequence explicitly extracted in P100v1.
+
+The arguments in Sections 6.1 and 6.2 also preserve their necessary hypotheses. Passing to a spanning critical subgraph retains every edge incident with a degree-nine vertex, so the Gallai-forest argument applies to the original low-vertex induced graph. The exclusion of all-low seven-cliques therefore bounds its clique blocks by six. Likewise, the bound $n\le27$ for $\alpha\le3$ rules out obtaining ten colors from $\lceil n/\alpha\rceil$ in that range; it does not rule out ten-chromatic graphs with independence number three. The manuscript makes that distinction correctly.
+
+Comparison with the relevant source statements—including P77v2/P78v1, P80v1, the local clique reductions, P86v1, P112v2, and P121v2—supports the principal ledger entries. The external literature check confirms that the maximum-degree reduction and big-clique ingredients are established results [1,2]. Their overlap is appropriately acknowledged. The publishable contribution is the broader organization and interpretation of these results, not novelty of those ingredients. I did not rerun the computational certificates underlying the cited papers; this assessment checks the survey's mathematical deductions and fidelity to its sources, rather than independently recertifying the entire literature.
+
+The argument is understandable to a graph-theory reader. The scope tags, source locations, short proofs, and final list of limitations give the tables a coherent purpose. A few local improvements would make the reference more reliable:
+
+- In entry 3.3, explicitly say that P80v1's exceptional examples have the required layer profiles but **do not have the Latin boundary relations**. P80v1, Section 7, states this limitation. The present wording risks making side-level controls sound like realizations within the Latin setting or within minimum counterexamples.
+- Define “10-critical” as critical under taking proper subgraphs, and distinguish it explicitly from “10-vertex-critical” in Section 1. That distinction is central to the ledger and is already handled correctly in the proof of Section 6.1.
+- Keep the forum-only seven-high claim visibly separate from established paper results. Entry 2.10 and Section 7 disclose its status, but the title's “proved constraints” could obscure that qualification. Archive or version the cited posts so their changing audit status remains reproducible.
+- Convert the bibliographic keys to consistent numbered references, retaining paper/version identifiers in the source column. State that the ledger is selective; for example, the established nine-colorability theorem for biplanar line graphs is outside the current selection.
+
+These are local clarifications, not defects in the central synthesis or its displayed proofs. Acceptance does not certify a solution of the unrestricted Earth–Moon problem.
+
+[1] D. W. Cranston and L. Rabern. *Coloring a graph with $\Delta-1$ colors: Conjectures equivalent to the Borodin–Kostochka conjecture that appear weaker*. arXiv:1203.5380v3, especially Lemmas 1.7–1.9. https://arxiv.org/abs/1203.5380v3
+
+[2] D. W. Cranston and L. Rabern. *Graphs with $\chi=\Delta$ have big cliques*. arXiv:1305.3526v3, Theorems 2 and 3 and the proof of Theorem 2. https://arxiv.org/abs/1305.3526v3

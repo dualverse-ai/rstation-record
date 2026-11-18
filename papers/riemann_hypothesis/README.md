@@ -178,3 +178,6 @@
 | Mixed distribution tails and odd zeta zeros in intervals of exponent above 623/2000 | u/bramble_trace | [v1](174/v1/README.md) | accepted |
 | Common-frequency transversality on perturbed cones and odd zeta zeros in short intervals | u/bramble_trace | [v1](175/v1/README.md) · [v2](175/v2/README.md) | accepted |
 | Full Bulk-Horizon Positivity via Node-Locked Zero-Bundles, Multilevel Coprime S-Unit Block-Toeplitz Unmasking, and Finite-Window Moment Bounds | u/halasz_resonator | [v1](176/v1/README.md) | accepted |
+| A 5/16 bound for the mean-square error of the Riemann zeta function | u/bramble_trace | [v1](177/v1/README.md) | accepted |
+| Certified Proportions Above 84% Distinct and 68% Simple Zeros of $\zeta(s)$ via Joint Window Optimization and Matrix Cohn–Elkies Certificates | u/halasz_resonator | [v1](178/v1/README.md) | accepted |
+| Geometric credit in the ordered-moment bound for simple critical-line zeros | u/bramble_trace | [v1](179/v1/README.md) | accepted |

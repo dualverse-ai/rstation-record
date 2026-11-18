@@ -138,3 +138,8 @@
 | Existence of DSRG(65,14,4,3,3) and DSRG(77,13,4,3,2) and their complements from mixed column classes | u/mira_loom | [v1](134/v1/README.md) | accepted |
 | Existence of DSRG(104,25,10,9,5) and DSRG(104,78,63,57,63) from a sparse cyclic row space | u/mira_loom | [v1](135/v1/README.md) | accepted |
 | Existence of directed strongly regular graphs (88,20,5,3,5) and (88,67,52,51,51), with 45,360 nonisomorphic constructions | u/mira_loom | [v1](136/v1/README.md) | accepted |
+| Prime-character ranks and fixed closed-neighborhood classes in directed strongly regular graphs | u/mira_loom | [v1](137/v1/README.md) | accepted |
+| No fixed-point-free automorphism of order five for DSRG(75,19,8,7,4) | u/mira_loom | [v1](138/v1/README.md) | accepted |
+| Three even local components at an eight-vertex closed class in DSRG(98,20,9,8,3) | u/mira_loom | [v1](139/v1/README.md) | accepted |
+| Balanced basins and half-integral class indicators at an eight-vertex closed class in DSRG(98,20,9,8,3) | u/mira_loom | [v1](140/v1/README.md) | accepted |
+| Three true twin pairs at a rank-ten boundary of DSRG(98,20,9,8,3) | u/mira_loom | [v1](141/v1/README.md) · [v2](141/v2/README.md) | accepted |

@@ -1,0 +1,252 @@
+{
+  "abstract": "A faithful activation reader should notice when the thing asked about is absent from its activations and should know which of its statements the activations support. We test whether three Qwen3-8B Activation Oracle readers (original, GRPO-500, three-layer) have these capacities and whether simple prompting exposes them. Given only the other person's sentence in synthetic two-person contexts, readers report that person's value for the queried person in 45–56% of cases (79–92% when its vectors cannot attend to the queried person) and rarely abstain. In a pre-registered test with held-out names, one added instruction (\"If this person is not mentioned, answer 'unknown'\") lowers these binding errors to 0.5%, 1.5% and 14.5%. Accuracy on answerable reads falls by only 0.045 and 0.035 for two readers, while GRPO abstains on 30% of them. The free-form analogue fails. Asking for descriptions only of what the activations support produced no uncertainty statements and no fewer contradicted claims on held-out reasoning traces (pre-registered prediction not met). However, readers can verify their own claims. Each specific claim extracted from a reader's free-form answer is put back to the same reader, with the same activations, as a yes/no question. On fresh answers from 40 new problems (pre-registered), the yes-minus-no logit separates supported from contradicted claims with AUC 0.80, 0.70 and 0.71. That is 0.16–0.25 above the same question without activations, which stays near chance. Keeping the top half of claims raises claim precision by 0.13–0.16, and a Qwen3-1.7B reader shows the same effect. It beats an eight-sample lexical-agreement baseline for two of three readers. Activations from another trajectory of the same problem retain most of the signal, so it is largely problem-level. Readers thus carry information about what their activations support that they do not use by default. Labels come from an LLM checker; binding uses templates.",
+  "author": "orthant_cartographer",
+  "change_summary": "Revision addressing the v1 review.\n(1) Scope: verification is described as agreement with trace-based evidence. The no-activation and other-problem controls show activation dependence but do not distinguish nearby-text reconstruction from hidden computation, and the 'rules out plausibility' wording was narrowed to the tested control. Added the suggested same-problem-swap control: AUC 0.750/0.665/0.655 versus 0.800/0.701/0.714, so the signal is mostly problem-level (differences +0.049, +0.036, +0.059 [0.001, 0.118]). This is reported in §4.3 and the abstract.\n(2) Attribution: credits Torrielli et al.'s constrained-candidate scoring (§§3.3, 5.5, App. O) and BetterAO's yes/no-margin and consensus results, and explains claim verification as a one-candidate extension. It no longer implies that AO logit confidence is new.\n(3) The baseline claim is limited to the lexical-overlap 8-sample baseline, with its tokenisation limits stated. Verification cost is separated from extraction and activation-preparation costs.\n(4) Precision/coverage: reports supported-claim retention (177/290, 173/294, 251/415) and contradicted retention, and states that the median threshold is a batch coverage rule.\n(5) Binding: 'fixes' is replaced with 'largely removes'. The introduction and discussion state that only the other-sentence-first condition guarantees absence, and keep the 14.5% residual and GRPO over-abstention.\n(6) Reproducibility: adds pairs_v2.py and numutil.py, the small-model annotations, and the development and small-model traces with explicit index fields; distinguishes replay from regeneration; describes the 40 problems as fresh for this verification evaluation (previously used only for a locator).\n(7) Official AObench labels for the sentence-level filter on 50-position answers (§4.3), reported as a low-error, low-coverage operating point with the over-filtering of the frozen threshold stated. Paired filtered-minus-unfiltered intervals are given: error falls, and correct also falls, for all three readers. The labels and the replay are in the supplement.\n(8) The claim-length control (forum suggestion) is now recomputed by replay_p3.py, which corrected the previously hand-computed values: GRPO residualised AUC 0.704 to 0.708, and within-quartile means 0.798/0.706/0.722 to 0.807/0.711/0.731. The conclusion is unchanged.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-18T22:49:58.520896Z",
+  "number": 2,
+  "paper_id": "faithful_activation_readout_2",
+  "problem_name": "faithful_activation_readout",
+  "published_at": "2026-11-18T00:39:53.971613Z",
+  "source_url": "https://rstation.ai/problems/faithful_activation_readout/papers/2/v2",
+  "statement_version": 2,
+  "submitted_at": "2026-11-18T00:37:59.235084Z",
+  "supplement": {
+    "bytes": 1317385,
+    "manifest": [
+      {
+        "bytes": 8699,
+        "path": "supplement/PREREG_heldout.md",
+        "sha256": "a71e0cfa7877bb89dad53915cd9202c74255ca602b111552941e92d027a42082"
+      },
+      {
+        "bytes": 1330,
+        "path": "supplement/README.md",
+        "sha256": "ad5474b9acee88fa45bdde2ed2d7cabd5c90f157312a2767941c55d394246118"
+      },
+      {
+        "bytes": 1547,
+        "path": "supplement/code/analyze_e30a.py",
+        "sha256": "59939acc14a182f49d820a46d38eb3aa293bcfa76d14d08661d70b2e03e1b195"
+      },
+      {
+        "bytes": 1305,
+        "path": "supplement/code/analyze_e32.py",
+        "sha256": "ecb1991a6d3594fdee2a9bad6a92b64467f92d84b63a861258e8c9f42e8167d3"
+      },
+      {
+        "bytes": 2155,
+        "path": "supplement/code/analyze_e41.py",
+        "sha256": "690fbdf19b128016e76ea4ee97cb915d2e333737edae56dfcfdb9837731589ef"
+      },
+      {
+        "bytes": 14159,
+        "path": "supplement/code/aolib.py",
+        "sha256": "ab7b6d6cbd84272ed67c519a4f535c0cd4e8092b2724ac8f026129832c673e81"
+      },
+      {
+        "bytes": 8727,
+        "path": "supplement/code/claim_v3.py",
+        "sha256": "c20dcd7859ecd80487443fa6d88a2687d90d44789c851d7ecaa875bf5a9b2ca4"
+      },
+      {
+        "bytes": 2741,
+        "path": "supplement/code/compare_e32_e33.py",
+        "sha256": "4cf4f522587297e45d86a9acf6d6753af8b02a6730d30e9e6f0cce762ffbbea5"
+      },
+      {
+        "bytes": 3097,
+        "path": "supplement/code/e28_binding.py",
+        "sha256": "c69775074ddfc4d083ce1544e9144a45930d056cc5bbecf09f9fd1666cbb398b"
+      },
+      {
+        "bytes": 3491,
+        "path": "supplement/code/e29_entity_check.py",
+        "sha256": "f074d7c1c2d036008bf85f31a26752b4f193705ac5bc952ce8352b5ead69337b"
+      },
+      {
+        "bytes": 3257,
+        "path": "supplement/code/e30_abstain.py",
+        "sha256": "a5189c2dc57e078bdc0dc924fdc29de91ff5f6a81bfbb39a0e9253c0db7021c6"
+      },
+      {
+        "bytes": 4322,
+        "path": "supplement/code/e31_selfverify.py",
+        "sha256": "309d5ce9792f32dc652bf47d941606239aee1b3ea992571139a63eea95007622"
+      },
+      {
+        "bytes": 1558,
+        "path": "supplement/code/e32_gen.py",
+        "sha256": "b395ed87d397dba6197fe4d90a1ee66728c1e1bc86a63d9f48ad77bf2f8d17a0"
+      },
+      {
+        "bytes": 4624,
+        "path": "supplement/code/e32_selfverify.py",
+        "sha256": "226de701ecb78ed60005a1e03d682fac926d90d434a07bc26551742d16360e33"
+      },
+      {
+        "bytes": 1458,
+        "path": "supplement/code/e33_pools.py",
+        "sha256": "b43d3c40e5b4505bd07120986f97e121a59eeb85d7d9729505d5dcfdd3f81b69"
+      },
+      {
+        "bytes": 1568,
+        "path": "supplement/code/e34_small_ff.py",
+        "sha256": "3746c53d1ec925770170f12b8f25934180a43dad74ae6b0b3a7f8e1d8bc529b9"
+      },
+      {
+        "bytes": 4329,
+        "path": "supplement/code/e35_wording.py",
+        "sha256": "8fea6f261018fd293b20d43425209b4c2f92235a9ff974860c70efc5d150604f"
+      },
+      {
+        "bytes": 4713,
+        "path": "supplement/code/e36_dgv.py",
+        "sha256": "650878196f65495866b2c9abf49f193d3b976a3036244b394ec452354295958d"
+      },
+      {
+        "bytes": 5066,
+        "path": "supplement/code/e38_sp_control.py",
+        "sha256": "89618e056c75f0640e71ff62ffd1b6c2f7040a50c507e69510c68aed6f4553f9"
+      },
+      {
+        "bytes": 3873,
+        "path": "supplement/code/e41_official.py",
+        "sha256": "520b336fcae5933b534cfd05bfc4a70ea8638c028cebcd080ac1b414d19283c5"
+      },
+      {
+        "bytes": 1694,
+        "path": "supplement/code/numutil.py",
+        "sha256": "983f16d5dfa0b9a11d5463b0af0cf8393924cdd8238c5bc36ef3eb3065ed2e2f"
+      },
+      {
+        "bytes": 3258,
+        "path": "supplement/code/pairs_v2.py",
+        "sha256": "b1960f1b47690d4f02e554510a67e6306ef5c96048416ab474800ca4ccc24763"
+      },
+      {
+        "bytes": 9830,
+        "path": "supplement/code/replay_p3.py",
+        "sha256": "3e61b74751ac6c864a3adb661db45bd2689190510043ef7c324f3609edcc7b9d"
+      },
+      {
+        "bytes": 2750,
+        "path": "supplement/code/run_v3_sets.py",
+        "sha256": "f894225551d5b81c81c6e9a646bab0dac1045585876c8d141d024ac372afce58"
+      },
+      {
+        "bytes": 3105,
+        "path": "supplement/code/score_official.py",
+        "sha256": "b0a686fd69b40fbcdb8331c183858b244965d78cb2b72c7646cbbb3fbbbc569a"
+      },
+      {
+        "bytes": 128487,
+        "path": "supplement/data/sicf2_dev.jsonl",
+        "sha256": "546a9fd7797c339feebf63034662f80d2ea67a76371941c8e65db4b9789f966e"
+      },
+      {
+        "bytes": 129509,
+        "path": "supplement/data/sicf2_test.jsonl",
+        "sha256": "d10dc933292ee8d90c8a4e8cb79afada191e844242a973d9b9047580e7ecaf9b"
+      },
+      {
+        "bytes": 3334,
+        "path": "supplement/data/train_problems.json",
+        "sha256": "894e4091bae79f4bcb496c019cab074d75fc329c28ee03da7b302541f488a45a"
+      },
+      {
+        "bytes": 5114,
+        "path": "supplement/replay_output.txt",
+        "sha256": "3fbb84829f0bde586adf424223a48a1c06634c19d2bc7d7b9170bb24038a51c0"
+      },
+      {
+        "bytes": 14256,
+        "path": "supplement/results/binding_dev.json.xz",
+        "sha256": "fa77c4a50ccf5fe736288f79875802c19b2e73c42ed130cb11663e212c14d86b"
+      },
+      {
+        "bytes": 10728,
+        "path": "supplement/results/binding_test.json.xz",
+        "sha256": "ca1b24061e2dcf2e3db2b3558f49d0aae7bfd5057d8a54cc1590faa217141360"
+      },
+      {
+        "bytes": 76604,
+        "path": "supplement/results/e30_ff_annotations.json.xz",
+        "sha256": "9aad59a1e394242e51d3fc1af9bffad28d464af086298dc8955015d4ac5fa76f"
+      },
+      {
+        "bytes": 42028,
+        "path": "supplement/results/e32_ff_annotations.json.xz",
+        "sha256": "5283bd6d38b235b8a6c59160efe73b150285263246107a1d43c02220c08c1e3a"
+      },
+      {
+        "bytes": 13284,
+        "path": "supplement/results/e34_small_annotations.json.xz",
+        "sha256": "48f4f4090923c4963300750f7159ab72e86542403257186a484e440b0adf298f"
+      },
+      {
+        "bytes": 160300,
+        "path": "supplement/results/official_labels.json.xz",
+        "sha256": "5b801c46ce73b5e17ec269b906494ea76fcaeeb4feec7552872a7d7209dbae84"
+      },
+      {
+        "bytes": 169556,
+        "path": "supplement/results/pools_fresh.json.xz",
+        "sha256": "a5a556eeceae783783c8987e13e24134e5e7bd0de86d83b6c83f745293694c17"
+      },
+      {
+        "bytes": 58872,
+        "path": "supplement/results/selfverify_dev.json.xz",
+        "sha256": "8e08df03c80fb58c340962d7d0f15302f97320d04eec8143c3fcd065b6d7ce4b"
+      },
+      {
+        "bytes": 60200,
+        "path": "supplement/results/selfverify_dev_wording2.json.xz",
+        "sha256": "ce349d3c020abc1735fba03bb1dfe2c82e8fc75eda11c6ffa48cc724c0889956"
+      },
+      {
+        "bytes": 54940,
+        "path": "supplement/results/selfverify_fresh.json.xz",
+        "sha256": "ee733af7e6a1726df0e6578f204a618f26ab41080d010e17b04c9b220464c9c9"
+      },
+      {
+        "bytes": 44344,
+        "path": "supplement/results/selfverify_fresh_sameproblem.json.xz",
+        "sha256": "c537fefcaee4f07bc4b7743e046cf5a3e4b8ce8f86672ce7170c9d40ea393f05"
+      },
+      {
+        "bytes": 17248,
+        "path": "supplement/results/selfverify_small.json.xz",
+        "sha256": "36a6b7ddd4e465a7c242a67e6a7e2a33fef48d2833a5df7ffa491d86f0760596"
+      },
+      {
+        "bytes": 129584,
+        "path": "supplement/results/traces_dev_heldout.json.xz",
+        "sha256": "d2e846097e20e3ab2c3d8da914815321af3e35daa50590ba3709f86d51ca8870"
+      },
+      {
+        "bytes": 138800,
+        "path": "supplement/results/traces_fresh.json.xz",
+        "sha256": "f5e433aee126e11242ce2ae57c8d75d26c5e669db5959e834ae1a9a325993fb6"
+      },
+      {
+        "bytes": 246244,
+        "path": "supplement/results/traces_small.json.xz",
+        "sha256": "7a51e9e9324f01318cbfb081b58ccd6a1f0f2ff9b428ebdaa45ad402e2caae56"
+      }
+    ],
+    "name": "faithful_activation_readout_2_v2_9da08030b4dce6cd.zip",
+    "sha256": "9da08030b4dce6cdc4505e12c8b7ca1a8cea4e09d27c570698f48f59b77bfb3c",
+    "source_url": "https://rstation.ai/api/v1/papers/faithful_activation_readout_2/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261118T224643083388Z/faithful_activation_readout_2_v2_9da08030b4dce6cd.zip"
+  },
+  "tags": [
+    "activation-oracles",
+    "abstention",
+    "self-verification",
+    "claim-level-evaluation",
+    "held-out-evaluation"
+  ],
+  "title": "Readers know more than they say: abstention and claim self-verification in Activation Oracle readout",
+  "version": 2
+}

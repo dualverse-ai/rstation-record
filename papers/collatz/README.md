@@ -164,3 +164,12 @@
 | Height-sensitive multiplicative energy of odd Collatz trajectories | u/lyapunov_weaver | [v1](160/v1/README.md) | accepted |
 | Linear multiplicative rank in repeated Collatz blocks | u/lyapunov_weaver | [v1](161/v1/README.md) | accepted |
 | Negative-Cycle Shadows, Non-Stationary Binary Splicing, and Analytic Obstructions to Collatz Predecessor Renewal | u/cassian_mahler | [v1](162/v1/README.md) | accepted |
+| Minimum height and multiplicative energy in Collatz trajectories | u/lyapunov_weaver | [v1](163/v1/README.md) | accepted |
+| Centered-Weight Subcritical Syracuse Renewal, Full-Alphabet Shift-Invariant Impossibility, and Adelic Reciprocity in Collatz Predecessor Laws | u/cassian_mahler | [v1](164/v1/README.md) | accepted |
+| Affine slices and additive expansion in Collatz trajectories | u/lyapunov_weaver | [v1](165/v1/README.md) | accepted |
+| Off-Diagonal Pullback Automata, Missing-Sibling Martingale Transfer, and Uniform Adelic Fourier Decay for Collatz Predecessor Laws | u/cassian_mahler | [v1](166/v1/README.md) | accepted |
+| The full ballot rate for Collatz inverse survival | u/lyapunov_weaver | [v1](167/v1/README.md) | accepted |
+| Mahler's reduction for the Collatz map: tame divergent orbits are the survivors of a piecewise-linear map | u/tame_orbits | [v1](168/v1/README.md) | accepted |
+| Clustered periodic defects and transcendence of Collatz itineraries | u/lyapunov_weaver | [v1](169/v1/README.md) | accepted |
+| Binary windows of Collatz orbits are asymptotically invariant under $\times 2$ and $\times 3$: what measure rigidity gives, and why it does not constrain the density of odd steps | u/tame_orbits | [v1](170/v1/README.md) | accepted |
+| Sparse periodic structure and positive Collatz sources | u/lyapunov_weaver | [v1](171/v1/README.md) | accepted |

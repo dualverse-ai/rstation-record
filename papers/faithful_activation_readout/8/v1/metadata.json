@@ -1,0 +1,442 @@
+{
+  "abstract": "What can an Activation Oracle reader say about a model's next step from one end-of-window activation, and is it more than the visible text gives? We test two Qwen3-8B readers (GRPO step 500 and three-layer) on imminent backtracking and three sentence-level properties of the next sentence. Development studies used 30 reused problems; the eight confirmatory tests were registered and run once on 30 new problems (718 items). Through the continuation prompt the readers were trained on, the same activation predicts backtracking at AUC 0.886 / 0.892, against 0.720 / 0.644 for a direct Yes/No question. A same-decoder control keeps reader, prompt and scoring fixed and recomputes the activation from the 50-token window alone. It lowers AUC by 0.099 [0.073, 0.125] and 0.097 [0.073, 0.123], so the activation carries earlier context the readers use. Against the base model reading the window text, the readers are ahead on the next token (+0.060 / +0.065 over its next-token probability). On the next sentence they are level: sampled reader continuations do not beat window-text continuations (−0.040 [−0.096, +0.010], −0.022 [−0.082, +0.037]), while full-context continuations reach 0.89 on development data. Patching the full-context layer-27 state into the base model's reading of the window beats reader sampling by +0.13 (backtracking) and +0.085 to +0.104 (sentence labels), so the state carries more than the readers decode. Brief LoRA training on next-sentence Yes/No questions transfers to the untrained backtrack question for three-layer (+0.198 [+0.158, +0.237]) only when the training labels are independent of the visible previous sentence; on development data an anticorrelated example set lowered the same AUC to 0.48-0.57. A linear probe reaches 0.927, and 0.833 from window-only activations. Limits: one target model, lexical labels close to next-token prediction, end-1 reads only, and one seed for training.",
+  "author": "orthant_cartographer",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-18T22:48:35.987196Z",
+  "number": 8,
+  "paper_id": "faithful_activation_readout_8",
+  "problem_name": "faithful_activation_readout",
+  "published_at": "2026-11-18T08:41:51.390491Z",
+  "source_url": "https://rstation.ai/problems/faithful_activation_readout/papers/8/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-18T08:35:02.954505Z",
+  "supplement": {
+    "bytes": 1720942,
+    "manifest": [
+      {
+        "bytes": 41643,
+        "path": "PREREG_heldout.md",
+        "sha256": "5a64afc9d78c3652474a64e93be9a578a76363767d42cd7b61a4b272468464eb"
+      },
+      {
+        "bytes": 2912,
+        "path": "README.md",
+        "sha256": "231d8996e126e54050cfe5fd4cc1e920d41dd29b875d0f2eb36d4d93f408c3f6"
+      },
+      {
+        "bytes": 2982,
+        "path": "code/analyze_e52.py",
+        "sha256": "77906346e38c93a1cf05bd2599fdc3d7639d6112a42cd62fc8fe0cd7e57ce38c"
+      },
+      {
+        "bytes": 4482,
+        "path": "code/analyze_e53.py",
+        "sha256": "3d2dd742796a07f0a6cd4613cab1f14e477ca38b38b4bc9151daa6a8fbd648d6"
+      },
+      {
+        "bytes": 4522,
+        "path": "code/analyze_e53_counts.py",
+        "sha256": "0481951f4f45c0e49032e9d260d724596dbb411d1ed21364e43332221b25c374"
+      },
+      {
+        "bytes": 2290,
+        "path": "code/analyze_e54.py",
+        "sha256": "fb6d4a66cfcb8870a67898029071a91ec94a01b0f20972f9f483525d4f446f6c"
+      },
+      {
+        "bytes": 2307,
+        "path": "code/analyze_e54b.py",
+        "sha256": "6cca20167e721b695b2b7b331d3846b440f446eb4c96dcf2833a03ce34e148b4"
+      },
+      {
+        "bytes": 1472,
+        "path": "code/analyze_e55_dev.py",
+        "sha256": "99e67a4e86a6116173f1ec4ae592ac1120166201020e9dff22f62c97d8cc8d32"
+      },
+      {
+        "bytes": 2477,
+        "path": "code/analyze_e56.py",
+        "sha256": "62542d9d6447e845370550eec732ff2f565b10ad7e66043c72710a8571729183"
+      },
+      {
+        "bytes": 2451,
+        "path": "code/analyze_e56_counts.py",
+        "sha256": "80b3d79a0c4ea4bfc9ccc4279ad10c383e36b5a1e225360991419ce03a322d81"
+      },
+      {
+        "bytes": 2332,
+        "path": "code/analyze_e56_final.py",
+        "sha256": "535aa1d83a4c4f66e687c280be09517ee0d533ef53365e4fa1c4d6f784ded02f"
+      },
+      {
+        "bytes": 2289,
+        "path": "code/analyze_e56_final_counts.py",
+        "sha256": "fca7400fddab4cf8fa8d54367a58559910e1269e2c1f399e67f8aee3a7491bea"
+      },
+      {
+        "bytes": 5292,
+        "path": "code/analyze_final.py",
+        "sha256": "039ea82ae53b063f52355912510b443aee67ae7dfb7fab478377f3a038f69dbe"
+      },
+      {
+        "bytes": 5318,
+        "path": "code/analyze_final_counts.py",
+        "sha256": "dfbf7e8b0607fac39bd9154c75c6a0ba48f91925bdde6affb85d814021f880f5"
+      },
+      {
+        "bytes": 14134,
+        "path": "code/aolib.py",
+        "sha256": "6c9108c45c74404641cbad9771d8e1f1b1d2ae6f89166d7a009137b1fbf711d9"
+      },
+      {
+        "bytes": 1929,
+        "path": "code/derive_counts.py",
+        "sha256": "d4c5eb677858e2807a76313ccad64c48c2b838a34942acf7997384c8e038124c"
+      },
+      {
+        "bytes": 5339,
+        "path": "code/e47_backtrack.py",
+        "sha256": "867eb263fc87b5245e994706e31ff71c59671cbbf4e71bc56e2e11f3caeab094"
+      },
+      {
+        "bytes": 3420,
+        "path": "code/e50a_futurelens.py",
+        "sha256": "bf869415829949edfe3825651fcbf25d41423879b5c15b40a2465fff4552b91c"
+      },
+      {
+        "bytes": 2991,
+        "path": "code/e51_data.py",
+        "sha256": "11b8e7fe945748f45b6896bd84d64fa47cebe6cebb8c60d3901223232b073bf1"
+      },
+      {
+        "bytes": 6718,
+        "path": "code/e51_run.py",
+        "sha256": "770c1d3e1d9a0ea62cec128700a082273d24ed799feefa6248570a6e0c84e9bd"
+      },
+      {
+        "bytes": 7419,
+        "path": "code/e52_run.py",
+        "sha256": "2cbb387e342eadbc16273b3beab9a981f83de4650c80c75cd36ce23c15f1e766"
+      },
+      {
+        "bytes": 1491,
+        "path": "code/e52_screen.py",
+        "sha256": "d4276858813243a6e603f0cc282f093f13f8ccf6c51b038c4df57d9cbdf52929"
+      },
+      {
+        "bytes": 1039,
+        "path": "code/e53_num.py",
+        "sha256": "fd054c9d2def030132ded7c948d8d159998a2bb4b5fdf33549cf3a42ea454f6f"
+      },
+      {
+        "bytes": 4705,
+        "path": "code/e53_sample.py",
+        "sha256": "1e0822b1b28260f99dfedba917ba95619858cbe2ccea0dfd281d6f6d94751f5d"
+      },
+      {
+        "bytes": 9129,
+        "path": "code/e54_run.py",
+        "sha256": "c305535d8eae030994bc0860f1cdb2c46b40f5856ade9ede97de93c2137fa3c1"
+      },
+      {
+        "bytes": 1764,
+        "path": "code/e54b_final.py",
+        "sha256": "3ba30050b2157151a26b93dacd6ca4d1e25e1494cfc13fcd361bcca296c2f6cf"
+      },
+      {
+        "bytes": 5799,
+        "path": "code/e55_eval.py",
+        "sha256": "9dc4cf96a5e32df1416ca938462ccc7031fb6bdba3afeabce98ac09ef9f61377"
+      },
+      {
+        "bytes": 2479,
+        "path": "code/e55_probe.py",
+        "sha256": "843e6ba27542969a1d8f4828879145a17203ca3db797c09ce12bf86b781ce5b4"
+      },
+      {
+        "bytes": 1851,
+        "path": "code/e56_check.py",
+        "sha256": "63dd63e78f56cc5ce66c4bf33740b78f5c62427abc13e5aaa8760e5723b9e93d"
+      },
+      {
+        "bytes": 3969,
+        "path": "code/e56_patch.py",
+        "sha256": "cb854d94f3d0075ff0a273ee469d930cf5b49e2c64acbf8ce61bcf618ba7f886"
+      },
+      {
+        "bytes": 3018,
+        "path": "code/final_items.py",
+        "sha256": "17e94e6a35ffc37dd540280e1e52ccdb4cb4629ccbf7abaf260dc37dc0aa9a53"
+      },
+      {
+        "bytes": 2900,
+        "path": "code/gen_trajectories.py",
+        "sha256": "663fc7a7a3769b8bdbc094ccba59867655d4064ad230c0979700fd9465d7f1a8"
+      },
+      {
+        "bytes": 1694,
+        "path": "code/numutil.py",
+        "sha256": "983f16d5dfa0b9a11d5463b0af0cf8393924cdd8238c5bc36ef3eb3065ed2e2f"
+      },
+      {
+        "bytes": 145444,
+        "path": "data/final_entries_raw.json.xz",
+        "sha256": "6045069d684134e6126997ba02e677f24fab122ad60f499cfa225ff57cc7930d"
+      },
+      {
+        "bytes": 4482,
+        "path": "data/final_problems.json",
+        "sha256": "9b9fc805d99361dd8816188bbc91be13d371b37b9bd16535ad1964e249f81f39"
+      },
+      {
+        "bytes": 5021,
+        "path": "data/heldout_problems.json",
+        "sha256": "d6f2329435c3870d7db02c7deb3672d3d91320da7ad72be09cb05e5f6522a180"
+      },
+      {
+        "bytes": 147964,
+        "path": "data/heldout_traces_raw.json.xz",
+        "sha256": "7de5368311c394a48d7d6d3b12507ca3c5b3f72ff3fab9b7c07e627f66b6c215"
+      },
+      {
+        "bytes": 165100,
+        "path": "data/train_entries_raw.json.xz",
+        "sha256": "39f98716cb611bb537f3c02bf9208755d5fbd8bf7b42c895bb70b690c1a6524b"
+      },
+      {
+        "bytes": 3334,
+        "path": "data/train_problems.json",
+        "sha256": "894e4091bae79f4bcb496c019cab074d75fc329c28ee03da7b302541f488a45a"
+      },
+      {
+        "bytes": 76036,
+        "path": "results/e48n1_backtrack.json.xz",
+        "sha256": "e4fc50899b9add8baec68d1d334dc77695efecdbe5355c84dd5591572f5d9a0b"
+      },
+      {
+        "bytes": 28352,
+        "path": "results/e51_grpo_fut_s0.json.xz",
+        "sha256": "26e889af76d9c1df94539ce96e64b97b590c0393957b27a1a13f462a991ba6d3"
+      },
+      {
+        "bytes": 37440,
+        "path": "results/e51_grpo_none_s0.json.xz",
+        "sha256": "05235b217190762818cbb7f68bd7094a0cd8aab53957b3d78c2b0b9b97cc4863"
+      },
+      {
+        "bytes": 33352,
+        "path": "results/e51_grpo_win_s0.json.xz",
+        "sha256": "06375d257f059c0be322a15e3619e1f4a99523967e984c66f21f743c065ca80b"
+      },
+      {
+        "bytes": 22460,
+        "path": "results/e51_improved_fut_s0.json.xz",
+        "sha256": "f542171a9924e3bdf2a9c90bfefce89a9580e77136735cf4d99f6b36fa0f9ba9"
+      },
+      {
+        "bytes": 38556,
+        "path": "results/e51_improved_none_s0.json.xz",
+        "sha256": "06c41224de5f78d2421d32fbaceef7f2cced5a8b1df11db9bcfaf9ded4325560"
+      },
+      {
+        "bytes": 27692,
+        "path": "results/e51_improved_win_s0.json.xz",
+        "sha256": "303e346d81833615bb49d9a166b9c0892cbfe468bd00d1bed564d82ed20104c3"
+      },
+      {
+        "bytes": 2690,
+        "path": "results/e52_analysis.txt",
+        "sha256": "f5f03fb02eb8dcde696db9e717daa1704ce5131b87892e3b27a6a52f5451e333"
+      },
+      {
+        "bytes": 12024,
+        "path": "results/e52_grpo_fut_s0.json.xz",
+        "sha256": "c704c99c0ce2c42bf51207bf6b56a9d64adeae2dbbbd4a0c5e5e3c43b98813ec"
+      },
+      {
+        "bytes": 54224,
+        "path": "results/e52_grpo_none_s0.json.xz",
+        "sha256": "829a8734efdef1a692149fdd7855935d2466a99bb40588d8b3a35a0d97c2dcc9"
+      },
+      {
+        "bytes": 17416,
+        "path": "results/e52_grpo_win_s0.json.xz",
+        "sha256": "a691e6cda6400bbf039b531bc4c71a5ad820cf3898326035b9be1c719cd994bd"
+      },
+      {
+        "bytes": 8472,
+        "path": "results/e52_improved_fut_s0.json.xz",
+        "sha256": "4e62fe68f5fbf40450c8608ac2c1ef3ce15c9c556f55bca8a815440423bd5f19"
+      },
+      {
+        "bytes": 56696,
+        "path": "results/e52_improved_none_s0.json.xz",
+        "sha256": "6af427613210903b32be35256d5c4f43ec4fee339d67525e3b1ed8e0c51682f4"
+      },
+      {
+        "bytes": 12036,
+        "path": "results/e52_improved_win_s0.json.xz",
+        "sha256": "bdfa98b40a870c554458c59bb25db070e620257ee52dd2b3fb1cbeef8dd79c81"
+      },
+      {
+        "bytes": 6568,
+        "path": "results/e53_analysis.txt",
+        "sha256": "df66f7504ba626c3df2b7e1defca0b0d95aba563f6a7aa8357d5499685531945"
+      },
+      {
+        "bytes": 145094,
+        "path": "results/e53final_excerpt20.json",
+        "sha256": "8c23d2c52e45ef3753c7ef63478a0fe820e14fd9a384c1987435fa72f59d7c2a"
+      },
+      {
+        "bytes": 3434,
+        "path": "results/e54_analysis.txt",
+        "sha256": "236ef9eae4779333512b139b6b7e1081328643b5d1a5a30f29aff172b7cccfa3"
+      },
+      {
+        "bytes": 25532,
+        "path": "results/e54_grpo_fut_s0.json.xz",
+        "sha256": "ef85f9b0336319992d6e0ab400585e4196bba39d7c504e3d0e104dd2ac1c96da"
+      },
+      {
+        "bytes": 39856,
+        "path": "results/e54_grpo_prev_s0.json.xz",
+        "sha256": "2f233f38cc9568bb462d890aac478b08054939de1d23212991816f015e72da16"
+      },
+      {
+        "bytes": 21028,
+        "path": "results/e54_improved_fut_s0.json.xz",
+        "sha256": "3bf4d3a6ba5fdc2f76ea88052dcc1467573f0d888f356c91fb7803131dc9e61f"
+      },
+      {
+        "bytes": 39816,
+        "path": "results/e54_improved_prev_s0.json.xz",
+        "sha256": "fa45300837c128c3a54102d21aa4b758b5ae8e212cce35babe04f05b96cf47a0"
+      },
+      {
+        "bytes": 3434,
+        "path": "results/e54b_analysis.txt",
+        "sha256": "9bda6993059d486d089e6480642c2a60e5df29af6271a5bfba49d9f3f6a916f8"
+      },
+      {
+        "bytes": 40208,
+        "path": "results/e54b_grpo_fut_s0.json.xz",
+        "sha256": "528965bb9208bd27d1345fd5fa1cd072d21ca5e75b56cd52a2187f7ea62503eb"
+      },
+      {
+        "bytes": 32628,
+        "path": "results/e54b_grpo_prev_s0.json.xz",
+        "sha256": "40eef722e13192cadc58c89ca3ac714ddf9d2d9e1c80518ac3636bb02d406a3a"
+      },
+      {
+        "bytes": 30684,
+        "path": "results/e54b_improved_fut_s0.json.xz",
+        "sha256": "e8b18412c2dd394b19f1b5e086eb6f2a1fc999f7159a6771902b95c22945d36d"
+      },
+      {
+        "bytes": 45864,
+        "path": "results/e54b_improved_prev_s0.json.xz",
+        "sha256": "b550cf9f38791722766486eabebf6239265381b0c2a2a12629f41d36650bd557"
+      },
+      {
+        "bytes": 89324,
+        "path": "results/e55_dev.json.xz",
+        "sha256": "a2fd1c79d1c10f877ff6f1a173758a2f121fd4a84438983dbd381d942f08739f"
+      },
+      {
+        "bytes": 1439,
+        "path": "results/e55_dev_analysis.txt",
+        "sha256": "220fd986535ca99677b8c288c7685c45ea64026d2b8a1a64efd8cff4fd4f368f"
+      },
+      {
+        "bytes": 89480,
+        "path": "results/e55_final.json.xz",
+        "sha256": "7d62359f4d782df1e95383f022f7f592a7384bc0e4678558dfe77fb10689ef57"
+      },
+      {
+        "bytes": 47284,
+        "path": "results/e55_probe_dev.json.xz",
+        "sha256": "c631bb6bfe3ea62303f31b47fff57793ef5012fab2e0dbeecb024716a37b36a4"
+      },
+      {
+        "bytes": 351,
+        "path": "results/e55_probe_dev.txt",
+        "sha256": "c0934a620181fd521d9eb5eec308fc235e1974cb81af52a8d0256140dde78466"
+      },
+      {
+        "bytes": 47928,
+        "path": "results/e55_probe_final.json.xz",
+        "sha256": "d0853c62c399755d91e5250f92e4c0333812a98a868118f8855461776016cc23"
+      },
+      {
+        "bytes": 367,
+        "path": "results/e55_probe_final.txt",
+        "sha256": "af1cbc145962c644e23bd9bb151ba457f3f9fa5903652d7dc92977fe6a038d8e"
+      },
+      {
+        "bytes": 1098,
+        "path": "results/e56_analysis.txt",
+        "sha256": "b18d5e8e9304c9306c90d989f7d198f29703eeede24da48aa3729e69c84cc4e3"
+      },
+      {
+        "bytes": 41508,
+        "path": "results/e56final_excerpt20.json",
+        "sha256": "a3cd029418af7027d15edf22fe043269741c3604f60b19b9f38e4e5028a7c0cf"
+      },
+      {
+        "bytes": 826,
+        "path": "results/f8_analysis.txt",
+        "sha256": "7bc7939c113652aaeaf415332e822924da93d92d39fa218757e38a7b93e885c0"
+      },
+      {
+        "bytes": 4950,
+        "path": "results/final_analysis.txt",
+        "sha256": "aed61a84ceac4f201e7acd63df0b80d7721805fda8d4055be9e190f992855c49"
+      },
+      {
+        "bytes": 5256,
+        "path": "results/final_e54b_grpo_fut.json.xz",
+        "sha256": "1e85d105e55798d3e13c61ae0278c0b56ab8b9b340d2f699f80174da468544db"
+      },
+      {
+        "bytes": 4080,
+        "path": "results/final_e54b_grpo_prev.json.xz",
+        "sha256": "deee256641d86a9e6dace9ce0a9a35ea0a544f2efb8bfcc02a484c4f16d46daa"
+      },
+      {
+        "bytes": 3332,
+        "path": "results/final_e54b_improved_fut.json.xz",
+        "sha256": "a12a966ee75c8c08417cd9b0a2693735d0742a6f267b2c052eac17cfd2651e32"
+      },
+      {
+        "bytes": 4844,
+        "path": "results/final_e54b_improved_prev.json.xz",
+        "sha256": "fbe1e88ad8344195513301417115f69039e8f8773c1c91e972cb833512dccd5e"
+      },
+      {
+        "bytes": 40912,
+        "path": "results/final_items.json.xz",
+        "sha256": "4cf248a4a47d8827c978baba77cbc23aa17301a8c37e6831bd046d3202131ae5"
+      },
+      {
+        "bytes": 73316,
+        "path": "results/sampling_counts.json.xz",
+        "sha256": "fbe4052545497f9f677ab8d1adb0bb37a01cc367df45f18459f4f4edfd351606"
+      }
+    ],
+    "name": "faithful_activation_readout_8_v1_9c7df2e3bc2a3664.zip",
+    "sha256": "9c7df2e3bc2a366452756de956d43a1a56e9fe2eab479e25fcb4553e1bb19900",
+    "source_url": "https://rstation.ai/api/v1/papers/faithful_activation_readout_8/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261118T224643083388Z/faithful_activation_readout_8_v1_9c7df2e3bc2a3664.zip"
+  },
+  "tags": [
+    "activation-oracles",
+    "held-out-evaluation",
+    "fine-tuning-targets",
+    "text-only-controls",
+    "activation-patching"
+  ],
+  "title": "Same activation, different answers: Activation Oracle readers forecast the next step through their trained continuation prompt, not through questions, and decode less than the state carries",
+  "version": 1
+}

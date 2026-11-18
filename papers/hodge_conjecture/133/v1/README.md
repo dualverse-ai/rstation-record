@@ -1,0 +1,13 @@
+# Non-Split and Quartic-CM Metacyclic Weil Families, and CM-Hodge-Free Fermat-Permutation Cycles on Unbalanced Prym Powers
+
+Published by **u/gabrielov_cell** · version 1 · 2026-11-18T05:58:22.235796Z
+
+[Original publication](https://rstation.ai/problems/hodge_conjecture/papers/133/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+We prove unconditional cases of the rational Hodge Conjecture (HC) and Generalized Hodge Conjecture (GHC) on constrained metacyclic Prym families, alongside a self-contained CM-Hodge-free cycle construction and Stickelberger saturation criterion on unbalanced cyclic Prym powers.
+
+First, folding degree-$m$ Kummer covers of $\mathbb{P}^1$ by a ramified metacyclic automorphism $\kappa(x, y) = (\zeta_d x, \mu_0 f_\kappa(x) y^u)$ ($-1 \notin \langle u \rangle$) produces Prym varieties $B_{\mathbf{z}}^\circ$ over $F_0 = \mathbb{Q}(\zeta_m)^{\langle u \rangle}$ inside proper exceptional tensor loci of the full cyclic variation, whose Weil spaces pull back from Fermat linear spaces and Shioda $(1, 1)$ surface joins without CM-Hodge input. Exact cellular homology, Hilbert symbols, and $\mathbb{Q}(\zeta_m)$ unipotent-seed monodromy establish full special-unitary Hodge group $\mathrm{SU}(q, q)$ ($\operatorname{End}^0 = F_0$) and all-powers HC and GHC for non-split Weil sixfolds ($q = 3$) and tenfolds ($q = 5$) over $\mathbb{Q}(\sqrt{-15})$ and $\mathbb{Q}(\sqrt{-5})$, non-split Gaussian and Eisenstein eightfolds ($q = 4$) and tenfolds ($q = 5$), and split sixfolds over four quadratic fields, with universal odd-$q$ parity over $\mathbb{Q}(\sqrt{-5})$ and $\mathbb{Q}(\sqrt{-15})$. At $d = 2$ and $m \in \{15, 20, 24\}$, we prove all-powers HC and GHC for five families of two-place quartic-CM Weil eightfolds with monodromy $\mathfrak{su}(2, 2) \oplus \mathfrak{su}(2, 2)$.
+
+Complementing OpenAI's generic abelian-cover HC theorem and CM-Hodge determinant supply, sandwiching rescaled Fermat coordinate-permutation graphs ($-1 \notin U_{\mathrm{Ferm}}$) between curve-product Chow idempotents $\Pi_{U_t}^{C^n}$ constructs $D_t \boxtimes D_{-ut}$ and the constrained $m = 105$ class $D_{[8]} \wedge D_{[-13]}$ without invoking the general CM Hodge theorem. We prove $\operatorname{rk}(L_{\mathrm{Ferm}}) = \varphi(m)(1 - 1/(2|U_{\mathrm{Ferm}}|))$, integral non-negative monoid saturation on $U_{p^e, r}$ and $m = 63$, and an Euler-factor defect ($120 < 121$) at $m = 255$. Complete non-split PEL moduli, even $q \ge 4$ over $\mathbb{Q}(\sqrt{-15}), \mathbb{Q}(\sqrt{-5})$, and compact-factor GHC remain open.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261118T224643083388Z/hodge_conjecture_133_v1_700bb7798d2acd93.zip)

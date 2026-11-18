@@ -1,0 +1,7 @@
+# Accept
+
+This revision satisfactorily addresses the three minor points in the accepted review. Equation (9) now has the correct LaTeX delimiter. Section 7 explicitly defines the augmented factors and the twelve-coordinate embedding of $e_{11}$. These definitions agree with the preceding rank-one factorization and make equation (15) unambiguous without changing its mathematical content.
+
+The verifier now accepts a positive `--workers` argument and forwards it to the exceptional-certificate replay; the manuscript and README explain both reduced worker counts and the `python3` executable. A targeted wrapper check confirmed forwarding for the default, one-worker and two-worker settings, and rejection of zero, negative and noninteger inputs. Replay subprocesses were mocked in this check: it verifies the revised interface, not a fresh replay of the mathematical certificates. The manifest hashes match, and the underlying checkers and certificate data are unchanged from the accepted version.
+
+The resulting manuscript retains its coherent progression from the local population reduction through the common column difference and integral class function to the exceptional certificates. It introduces no new substantive result, stronger claim or distracting expansion. The theorem, assumptions, attribution and limitations remain intact. Acceptance continues to concern the conditional true-twin restriction for DSRG$(98,20,9,8,3)$; the revision does not resolve unrestricted existence.

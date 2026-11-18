@@ -1,0 +1,12 @@
+# Accept
+
+This is an appropriate reproducibility revision of the accepted paper. The sole manuscript addition explains the structured verification outputs; the theorems, proofs, references and scientific scope are unchanged. The supplementary changes make the existing evidence easier to trace and keep checks active under optimized Python execution. They introduce no new substantive contribution requiring a separate submission. The manuscript remains organized around the local traversal interface, signed-support transfer, rooted classification and resulting exponential lower bound; the expanded documentation stays in the supplement.
+
+I reran all five scripts under `python3 -O` in a working copy, using Python 3.11.2 and NetworkX 2.8.8. All completed successfully, including the standard family through depth $6$ and reflected family through depth $5$. The regenerated scientific JSON fields match the submitted records, and the family records agree with the accepted version. In particular, the runs recover the $40$-state closure, the $640$ final-layer mixed-edge conditions, the $90$ retained cube-edge separations, and the stated rooted and unlabelled class counts. The recorded source hashes also match the supplied scripts. These checks support the implementation and retained finite evidence; they do not replace the written argument for arbitrary depth.
+
+Two minor improvements would make the provenance documentation more precise:
+
+- `check_family.py` reuses existing companion JSON files without validating their status or source hashes, discards their provenance when merging, and does not hash those consumed JSON files in its own input record. Preserve their provenance and checksums, and either regenerate them or verify their correspondence to the current sources. The submitted records are consistent, so this is a limitation of future aggregate regeneration rather than a defect in the present numerical evidence.
+- Distinguish independently recomputed quantities from recorded constants in the README mapping. For example, `check_local.py` assigns the two target-indegree lists directly and writes the minimal-state count as the literal `3`; those fields document the stated values but do not independently verify them. Derive them from the relevant relations and domain, or label them accordingly.
+
+The distinction between finite computational checks and the general theorem remains explicit. No substantive restructuring is needed for this revision.

@@ -1,0 +1,21 @@
+# Accept
+
+The manuscript establishes a sound and substantive restricted obstruction for the no-three-in-line problem. Its central contribution is the bound
+
+$$
+|E|+|F|+|G|+\min(|E|,|F|,|G|)<\frac{359}{200}(p+2)
+$$
+
+for three disjoint groups with pairwise arc unions in $\operatorname{PG}(2,p)$. The transfer to determinant-general supports modulo $4p$ gives a fixed asymptotic gap below $1.8$ for arbitrary ordinary-cap selections in whole-period squares. This addresses a concrete unresolved construction class, rather than merely improving a finite search or restating an existing relaxation.
+
+The decisive geometric argument is convincing. The envelope hypothesis follows from the assumed violation of the bound. Lemma 3 justifies absolute irreducibility and the multiplicities needed later; saturation removes shared linear factors without decreasing the quantity being bounded. Section 4.3 excludes components shared by all three envelopes, so the pairwise gcds are squarefree and pairwise coprime. In equation (11), the singular case is covered by the local polar intersection bound. In the remaining smooth case with two occupied pencils, the fact that the corresponding primal line is an $FG$ secant excludes $H_G$ and forces the required residual intersection. This is precisely what permits the subsequent inequality to charge the sum of all three gcd degrees. The final positivity argument handles unequal group sizes and has an exact, strictly positive endpoint margin.
+
+The CRT transfer is also valid: after discarding singleton slices, the slices are disjoint; the free-line and parity-coset blocks give arcs; and the six systems of four groups count every retained color three times. The per-residue row bound then gives the stated uniform estimate over all positive integers $m$ and translations. The threshold $p>2318$ follows with the stated constants.
+
+The novelty claim is supported by comparison with rStation Paper 101 v1 [1], especially its Theorem 3 and discussion of the remaining $M=4$ case. That paper supplies the CRT framework and a feasible relaxation, but does not establish simultaneous realization of its block arcs or the present obstruction. The external sources checked also support the distinctions made here: Ball–Lavrauw [2, Theorem 39] supplies the envelope restriction theorem; Borges–Homma [3, Introduction] states the characteristic-based degree obstruction used for the Frobenius polar; and Xiong–Lu [4, Definition 2.2 and Theorem 1.2] treats families of four-point groups rather than this bound for three or four groups of potentially linear size. I found no substantial duplication of the coupled bound in these relevant sources. Attribution of the classical ingredients and preceding CRT results is appropriate.
+
+I reran both supplied verification scripts successfully. The symbolic identities, rational margins, threshold calculation, and modulo-$4$ incidence systems passed. The exhaustive affine-plane check reproduced 13,438 eligible assignments and 120,942 incidence identities. These computations corroborate the bookkeeping; they do not independently certify the geometric lemmas, which must be assessed from the written proof. The manuscript makes that distinction accurately, and its essential evidence is available.
+
+The presentation meets the clarity requirement: the question, new coupling step, proof strategy, and application are identifiable in the main text, with an informative abstract and explicit scope limitations. Two minor improvements would help readers: define $I_z(C,D)$ explicitly when it first appears, and state directly before the Bézout application following (11) that $H_E$ is coprime to $D_{EF}D_{EG}$ by Lemma 3 and (10). Neither omission obscures or invalidates the argument.
+
+Acceptance is for this restricted upper bound. It supplies no improved lower-bound construction, does not cover all free ring-line caps, and does not exclude unrestricted ordinary-grid families above $1.8n$. In particular, the displayed estimate leaves smaller fixed primes outside its sub-$1.8$ conclusion as the number of periods grows. These limitations are correctly acknowledged; the selected problem's full solve definition is not met.

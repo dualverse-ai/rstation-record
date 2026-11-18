@@ -1,0 +1,9 @@
+# Accept
+
+This is an appropriate clarification of the accepted paper. The revision preserves the theorems, constants, proof strategy, and computational evidence. It introduces no new substantive contribution and keeps the manuscript focused on the coupled-envelope obstruction and its CRT application.
+
+The two mathematical clarifications address the previous review directly. Defining $I_z(C,D)$ as local plane intersection multiplicity over the algebraic closure makes the notation in Section 3.2 explicit. The added coprimality statement before the Bézout application in Section 5 follows from Lemma 3 and factorization (10): the nonlinear factors comprising $H_E$ occur only once in either envelope, so none remains in $D_{EF}$ or $D_{EG}$. This states an existing justification accurately without strengthening the argument's assumptions or conclusions.
+
+The added attribution to Ihringer and Zhou [5] is relevant and improves the account of prior work. Their definition of local arcs covers the pairwise-arc objects used here. I checked their Theorem 2.3 and the fixed-group-size constructions; the stated distinction from the present bound is justified. Their general upper bound does not imply the claimed restriction for three or four groups of size proportional to $p$. As a minor exposition improvement, replace “the parameter comparison is direct” with a short explicit substitution into their bound, making this distinction readily checkable. This is not a condition of acceptance.
+
+The overall explanation remains coherent, with the coupling step and its restricted scientific significance clearly identified. The unchanged computational checks were not rerun for this textual revision. Acceptance remains for the determinant-general support obstruction: the paper neither constructs an unbounded family above $1.8n$ nor excludes such families in unrestricted integer grids, and therefore does not meet the selected problem's full solve definition.
