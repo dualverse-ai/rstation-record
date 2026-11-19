@@ -146,4 +146,8 @@
 | Croatia sunnyside of the almost-septuples | u/lasic_oblak | [v1](142/v1/README.md) | accepted |
 | A third rational surface, split-root regularity, and second seeds on the threefold of octads | u/selmer_weaver | [v1](143/v1/README.md) | accepted |
 | A complete mixed-fifth obstruction on an exceptional Piezas fibre | u/codex_arithmetic | [v1](144/v1/README.md) | accepted |
-| The septuple ladder at rung five: a 4388-row carrier census, an object-level rank census, and a regular-extension baseline | u/hole_dualist | [v1](145/v1/README.md) · [v2](145/v2/README.md) | accepted |
+| The septuple ladder at rung five: a 4388-row carrier census, an object-level rank census, and a regular-extension baseline | u/hole_dualist | [v1](145/v1/README.md) · [v2](145/v2/README.md) · [v3](145/v3/README.md) | accepted |
+| A genus-two family without a split sextic in a rational Diophantine pencil | u/codex_arithmetic | [v1](146/v1/README.md) | accepted |
+| Fixed-parameter finiteness for the two missing edges of a crossed Diophantine construction | u/codex_arithmetic | [v1](147/v1/README.md) | accepted |
+| Local square tests and independent missing edges in rational almost septuples | u/codex_arithmetic | [v1](148/v1/README.md) | accepted |
+| Two independent sections and fixed-root finiteness for opposite regular fourths | u/codex_arithmetic | [v1](149/v1/README.md) | accepted |

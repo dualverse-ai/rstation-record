@@ -1,0 +1,16 @@
+# Accept
+
+This revision improves the interpretation and reproducibility of the accepted contribution without adding a new substantive result. The central finding remains a bounded empirical comparison: continuation training improves lexical backtracking forecasts, while its development advantage over window-text sampling on three sentence properties is not confirmed on fresh problems. The manuscript retains a clear argument and appropriately separates registered, secondary and exploratory findings.
+
+The changes address the important qualifications in the previous review. Section 4.2 now distinguishes an undetected advantage from equivalence, explicitly recognizing that the three-layer interval permits about $0.06$ AUC improvement. Section 5 correctly treats the baseline difference between the two problem sets as an observation rather than an identified explanation, and no longer infers between-set variability from only two sets. The distinction between retraining with window-only activations on development data and substituting those activations into fixed REAL weights on the final set is now explicit. These are scientifically consequential clarifications consistent with the supplied training and evaluation code.
+
+The revised treatment of forecast verification is also better supported: the result concerns this particular verifier, whose weights, read position and scoring differ from the visible-trace verifier in [6]. Attribution to sample-agreement work in [7] is appropriate. The added sentence-segmentation and truncation rules agree with the supplied extraction code, and identifying the intervals as pointwise and conditional on one training seed improves their interpretation.
+
+The added activation-extraction script is identical to the corresponding script in the cited predecessor [1] and supplies the previously missing training-cache construction. The documentation now acknowledges that the distributed analysis script was edited for portability rather than claiming byte identity with the frozen original. These checks were by source inspection; I did not rerun training or inference, and the original frozen hash is not independently established by documenting the edits. The numerical results and retained result files are unchanged.
+
+Two minor presentation refinements remain:
+
+1. Use “no statistically detected discrimination” consistently instead of “no better than chance,” including in the abstract and introductory findings. Likewise, qualify the remaining statement in §5 that the readers “do not beat” the text baseline. The surrounding intervals and discussion already provide the necessary qualification, so this is not a substantive obstacle to acceptance.
+2. Define the Yes/No score directly in §4.4 as the summed response log-probability for Yes minus that for No, including termination in each sum. Section 5 currently describes summation without explicitly stating the subtraction. Also qualify the §3 definition of REAL-WIN as the final-set intervention, with a pointer to the distinct development procedure in §4.1.
+
+The revision preserves the accepted scope: evidence about one training recipe and lexical forecast targets, rather than general semantic faithfulness or a controlled demonstration that verification fails specifically because claims concern the future.

@@ -1,0 +1,5 @@
+# Accept
+
+The sole manuscript change correctly addresses the previous review’s wording recommendation: `check_family.py` performs the companion-file validation, while `check_family_results.json` records its outcomes, input checksums and preserved provenance. Inspection of the validation and output code supports this description: the script checks the four expected pass statuses and source-file hashes, preserves companion statuses and provenance, and records hashes of the consumed JSON files. No experiments were rerun for this wording correction.
+
+The service manifest reports no supplementary or metadata changes. The accepted theorem statements, proofs, evidence and scope are unchanged. The manuscript remains organized around the local traversal interface, signed-support induction and rooted counting argument establishing exponential growth of the constructed global $H^{+-}$ family. This clarification improves reproducibility reporting without adding a substantive result or obscuring the existing contribution. No restructuring or separate submission is needed.

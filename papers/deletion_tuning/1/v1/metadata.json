@@ -1,0 +1,731 @@
+{
+  "abstract": "Deletion tuning can adapt a model without changing surviving pretrained values, but its practical benefit may depend on objective recipe, update location and resource policy. We compare binary gate deletion, arbitrary gate-only updates and full tuning on business-trained Llama-3.2-1B-Instruct. The original study crosses NLL, sampled ranking and ranking plus a unit positive-NLL anchor with three seeds and 400 updates; a fresh 18-model study repeats NLL/ranking at 360 measured training seconds. All 45 adapted models and the base are evaluated on 882 MMLU-Pro questions in five categories using mean answer-token-loss selection. Ranking increases business accuracy by 9.43/10.94/12.46 percentage points at 400 updates and 15.32/11.28/12.96 points under the timed policy, for deletion/gate-only/full tuning. Conditional 95% intervals for the timed gains are [8.75,21.72], [5.56,16.84] and [6.90,18.69]. Deletion-specific recipe-interaction intervals include zero under both policies; this is not equivalence. The original unit anchor lowers business accuracy in all nine method/seed pairs despite improving positive likelihood. Gate-only prompt KL is below deletion, and deletion below full tuning, in all 75 category/objective/seed cells across both studies, while untargeted accuracy does not establish a general deletion preservation advantage. Gate-only training uses less allocated memory; binary masks require smaller task-specific storage with a shared base. Exact-gold sensitivity addresses two genotype-normalization defects. Low base accuracy limits knowledge-preservation claims. The timed study reuses inspected questions and changes annealing; equal training time is not equal FLOPs or total adaptation cost. Lossless per-question evidence supports reanalysis. No new loss, optimal frontier or deletion ceiling is claimed.",
+  "author": "lyra_margin",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-19T22:50:17.431906Z",
+  "number": 1,
+  "paper_id": "deletion_tuning_1",
+  "problem_name": "deletion_tuning",
+  "published_at": "2026-11-19T22:23:56.006173Z",
+  "source_url": "https://rstation.ai/problems/deletion_tuning/papers/1/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-11-19T22:17:56.701221Z",
+  "supplement": {
+    "bytes": 1117775,
+    "manifest": [
+      {
+        "bytes": 19759,
+        "path": "BUNDLE.json",
+        "sha256": "56efabbc0898179042227bd68446cc5bd1e974e75866652fb7f9b5e693e93a64"
+      },
+      {
+        "bytes": 17150,
+        "path": "README.md",
+        "sha256": "649e75c52e306cf8a51ab9e85d25d7b48b65bc2e35821295e2b800d75c324d7e"
+      },
+      {
+        "bytes": 1133,
+        "path": "SCORING.json",
+        "sha256": "842af28c799f6d3b4a6c264c117bc28d66f8109055df8b9d8285afb2995bb92f"
+      },
+      {
+        "bytes": 2509,
+        "path": "TRAINING_TIME.json",
+        "sha256": "5a8e641633a6ee9a4ee146e1986078eea15a855178ff3f9303b009bbea2c667c"
+      },
+      {
+        "bytes": 1080,
+        "path": "UPSTREAM_LICENSE.txt",
+        "sha256": "be154d4457983610e977f1d0145784ce1807fb284e92d76daa9587253b479bed"
+      },
+      {
+        "bytes": 30676,
+        "path": "activation.json",
+        "sha256": "76009c19892dfcfac5b3c060103ca56412909aec45ff541e8555cdf6b1bc362c"
+      },
+      {
+        "bytes": 1849,
+        "path": "anchored_statistics.py",
+        "sha256": "e31c54080f692c62075679cd0a2520161f18df5f56fb639f5591164467a5eadf"
+      },
+      {
+        "bytes": 3368,
+        "path": "audit_training_identity.py",
+        "sha256": "84340192453d8530e506adbe9f5ad44b2ea31e73f1a6058a2608d7e000000d6f"
+      },
+      {
+        "bytes": 9129,
+        "path": "campaign_portable.py",
+        "sha256": "0148c89da98f92f3377f7a8c95d51a51ac87cc279ba52ca5593135667ca11cbd"
+      },
+      {
+        "bytes": 6363,
+        "path": "compact_metrics.py",
+        "sha256": "c166b4a6bacb4f4fd742c8d165b02bb85e6ee8d45db5cff9b976bc2fc768285e"
+      },
+      {
+        "bytes": 1053,
+        "path": "comparison_specs.py",
+        "sha256": "84c1a3e4f4da7c696dabe8ceb3223ec213bb73831c7923bb89e3649b0f188956"
+      },
+      {
+        "bytes": 33731,
+        "path": "data/development.json",
+        "sha256": "75ef5c135ec3de37e000b7066e78aab02d1f589d1f4e906ad749ed2f1274cdb5"
+      },
+      {
+        "bytes": 43508,
+        "path": "data/development_business.npy",
+        "sha256": "60c5f3e279e6326e80a79984dd0a0fc96e89bb3774e984709cccf978b624963b"
+      },
+      {
+        "bytes": 20940,
+        "path": "data/development_history.npy",
+        "sha256": "c691310bbe5479b016ab83faa3577680926d3889bc58f7fa0d7a9e972629357a"
+      },
+      {
+        "bytes": 27492,
+        "path": "data/development_philosophy.npy",
+        "sha256": "8023b16a916ea6cf6a2b1770f744bdd54cc59771f8018f6cac4436662689c6ba"
+      },
+      {
+        "bytes": 178540,
+        "path": "data/final.json",
+        "sha256": "26bbe9f9908398bc745c801d5fcfee267517898128b346ed74dd9ec1cc72e4b9"
+      },
+      {
+        "bytes": 65712,
+        "path": "data/final_biology.npy",
+        "sha256": "c8258ca7aa28ec5eed1dd71c72b2df651d41493281310c5e0cb634757ed6521e"
+      },
+      {
+        "bytes": 72264,
+        "path": "data/final_business.npy",
+        "sha256": "17f76915b70028666f721afb832eaabd58cc325dd4a5c4470a237c3f10ada842"
+      },
+      {
+        "bytes": 103204,
+        "path": "data/final_chemistry.npy",
+        "sha256": "b7a6980820204d446bc449a78f24d0aebf6c06dc1bdac1c14c8329a97e43add8"
+      },
+      {
+        "bytes": 35136,
+        "path": "data/final_history.npy",
+        "sha256": "abb74a7984d5aee1b39e0971d5a90a03ea1620f4d2de69ece88e6fe23c06d2fa"
+      },
+      {
+        "bytes": 45692,
+        "path": "data/final_philosophy.npy",
+        "sha256": "5a680c6ee9c97a34361ce8f50b1d98d96018d9205e10d1d3241d9117863ddcfd"
+      },
+      {
+        "bytes": 1672,
+        "path": "data/tokenization_audit.json",
+        "sha256": "0f2570a324be02ef8a56207a8d24ba71ae51902f619d83fe9c678366a1d35c4a"
+      },
+      {
+        "bytes": 766,
+        "path": "dataset_identity.json",
+        "sha256": "acbd69a5ad035a8fdaa7f56d961a7a4e9a1c97b6f22d47f7d2bdf33032069e71"
+      },
+      {
+        "bytes": 2157,
+        "path": "dataset_identity.py",
+        "sha256": "f988f8b866553c0e540f369446f8e23033b6bfcdf33d3c960d7f5226bb4853b6"
+      },
+      {
+        "bytes": 1560,
+        "path": "dataset_license.json",
+        "sha256": "aea2551121c9d19ba162e9b39c77b4af8e770c04c483d5d0a6843752db0d6ae8"
+      },
+      {
+        "bytes": 152,
+        "path": "environment.json",
+        "sha256": "251948dfdfc10972b578e1ec7620328a38c5d999aa8f439ed69036a8947ba3dd"
+      },
+      {
+        "bytes": 37938,
+        "path": "figures/budget_comparison.pdf",
+        "sha256": "c8331445cf5e17f15a2e5c59f5108ac51698877e4ea8a502248a3293520bb0ef"
+      },
+      {
+        "bytes": 39694,
+        "path": "figures/budget_comparison.webp",
+        "sha256": "c12977fe4a2b07c536cb22e98bc6faf5bcd9e685ebbe1b2572e525f74bcd44e4"
+      },
+      {
+        "bytes": 3577,
+        "path": "figures/budget_points.csv",
+        "sha256": "5fa171f3c2a3cfcdda484f3909a3e4e1598931dcb0e7ba32275bf4f70e6eb048"
+      },
+      {
+        "bytes": 12040,
+        "path": "figures/budget_source.py",
+        "sha256": "45363c40982cd0cfb1739e5cca8537d93012d09bdaf4ca3ca32cf60f198e57c0"
+      },
+      {
+        "bytes": 34731,
+        "path": "figures/complete_factorial.pdf",
+        "sha256": "7caac4c12af86a8d95677ee513a729000bbe57fc153c8ff00353999545ebc9f4"
+      },
+      {
+        "bytes": 63116,
+        "path": "figures/complete_factorial.webp",
+        "sha256": "68400cbefee275bdc10dd5c70c3ff00ca7c7f9d4c1fdbc080790e9bded85ae64"
+      },
+      {
+        "bytes": 1402,
+        "path": "figures/metadata.json",
+        "sha256": "1e1ac4fb552e3047f7522e4ee723cf0258149b79bafb2df31ce7bd83b190d11c"
+      },
+      {
+        "bytes": 4396,
+        "path": "figures/points.csv",
+        "sha256": "5bf5821b165dbe312e7a2939819193da17570190c8eb5037160e5141bfbc0f50"
+      },
+      {
+        "bytes": 10460,
+        "path": "figures/source.py",
+        "sha256": "d6403b9252e9fa9ecaabe87bea99761e32d20a32cd28d3d2942695aaecf48764"
+      },
+      {
+        "bytes": 8520,
+        "path": "gold_index_sensitivity.py",
+        "sha256": "d18dacf16903d7f5b5f960c4f542284285d6c62a1dbde3b042299e3e4e169920"
+      },
+      {
+        "bytes": 3134,
+        "path": "input_provenance.json",
+        "sha256": "043767bf310c3054a2308104a346d84f2e040873b46870d912a32c77cacd7fba"
+      },
+      {
+        "bytes": 7922,
+        "path": "original_sources/experiments/ANCHORED_RANKING_PROPOSAL.md",
+        "sha256": "9b07230d5d4a7f2fb994b34973a0e935b0387c945664efef5e7d63d3d60d2e76"
+      },
+      {
+        "bytes": 4948,
+        "path": "original_sources/experiments/FINAL_EVALUATION_PROTOCOL.md",
+        "sha256": "a677e8fc85d10bfc3699426b82806e103b6becbd4ff7c677227b80ea7ae459d4"
+      },
+      {
+        "bytes": 9615,
+        "path": "original_sources/experiments/TRAINING_TIME_COMPARISON_PROTOCOL.md",
+        "sha256": "0ae52726c61e2cf6fc42d112df0dc77d19102e4c0d071069434c027a3f9c8500"
+      },
+      {
+        "bytes": 4609,
+        "path": "original_sources/experiments/TRAINING_TIME_EVALUATION_PLAN.md",
+        "sha256": "b8ca3f5b3aac4dd2d9055ebefadeda02a5c73f9b2dce814268c0d750ac7b4c7a"
+      },
+      {
+        "bytes": 7710,
+        "path": "original_sources/experiments/analyze_final_evaluation.py",
+        "sha256": "74b44eafb0b545143b5f63c9184973376dd792b4ce3c7ec085a8f940421c09bd"
+      },
+      {
+        "bytes": 5709,
+        "path": "original_sources/experiments/analyze_margin_pilot.py",
+        "sha256": "559e9e86181d5bcc7a5de3c65b9fd8e5d55eba84beb2b8b15958ae9df2885d56"
+      },
+      {
+        "bytes": 7390,
+        "path": "original_sources/experiments/analyze_timed_evaluation.py",
+        "sha256": "0211a30d4b3e294fe69c255524dddfb5f74aec4fe25c452b35147a38989a8699"
+      },
+      {
+        "bytes": 24966,
+        "path": "original_sources/experiments/anchored_margin.py",
+        "sha256": "069dd165642c677b6a6a2d686df4c31fb6e5c4e0054d1bb117d804fe3220191e"
+      },
+      {
+        "bytes": 2339,
+        "path": "original_sources/experiments/anchored_objective.py",
+        "sha256": "b07f5bcf897d3187114fb3d6117a957b7d88dd48f91e4be630e6d6ea35a42d42"
+      },
+      {
+        "bytes": 1849,
+        "path": "original_sources/experiments/anchored_statistics.py",
+        "sha256": "e31c54080f692c62075679cd0a2520161f18df5f56fb639f5591164467a5eadf"
+      },
+      {
+        "bytes": 9022,
+        "path": "original_sources/experiments/audit_rotary_replay.py",
+        "sha256": "030c950bcbf33ea9689847d0b8e9382567576550adc89275a859617d52b6e6f8"
+      },
+      {
+        "bytes": 6837,
+        "path": "original_sources/experiments/check_final_analysis.py",
+        "sha256": "02451e20301e499571e6f0d58ffc679472710735b201026c2e7d86e4ed675e54"
+      },
+      {
+        "bytes": 6537,
+        "path": "original_sources/experiments/check_final_evaluation.py",
+        "sha256": "bd2c2c7d04d830dba45dd528383db2b5dff9bdc379224a68c8fc1987bdf1ea57"
+      },
+      {
+        "bytes": 6831,
+        "path": "original_sources/experiments/check_timed_evaluation.py",
+        "sha256": "21e00f04ba26a2f2b7ede891debffda33c5e8697be078c58c94b41001afc96d6"
+      },
+      {
+        "bytes": 4928,
+        "path": "original_sources/experiments/check_timed_margin.py",
+        "sha256": "44313000366650264d6f074723bc325b0479b0813dd2c557d955edface82af4b"
+      },
+      {
+        "bytes": 9028,
+        "path": "original_sources/experiments/checkpoint_codec.py",
+        "sha256": "41e6a586318531bf09bf78c8bd4d773fa581760fdaa9a1643381a0fa5ddf2c6c"
+      },
+      {
+        "bytes": 6849,
+        "path": "original_sources/experiments/checkpoint_recovery.py",
+        "sha256": "1a56d8abb8e3b4e14dab3245678bb3d9680194f7b95fff5b8b5d020b7da963d2"
+      },
+      {
+        "bytes": 7314,
+        "path": "original_sources/experiments/final_evaluation_common.py",
+        "sha256": "18b56e542cd227870b2f89a9b293eb1a60b2d86bad75bb321b0809456bc9d26b"
+      },
+      {
+        "bytes": 6442,
+        "path": "original_sources/experiments/freeze_final_evaluation.py",
+        "sha256": "7913b1299149e1e359188c36bc5125ac35e609bd98f10a5561361b7ed7ad0d6d"
+      },
+      {
+        "bytes": 5818,
+        "path": "original_sources/experiments/freeze_timed_evaluation.py",
+        "sha256": "7f0a20988538cb3ef5e34d6e1edcead055412b12c516e6de9255047116c5e193"
+      },
+      {
+        "bytes": 5407,
+        "path": "original_sources/experiments/freeze_training_time_campaign.py",
+        "sha256": "f58314e61872333ff8600e9d017577216ebb4e4db3000aa9c36d53a50bca139e"
+      },
+      {
+        "bytes": 20716,
+        "path": "original_sources/experiments/margin_pilot.py",
+        "sha256": "7dcf53dccc9ab56639163d8a017674440fdd188bb4470548f7439a8e96c3b827"
+      },
+      {
+        "bytes": 2923,
+        "path": "original_sources/experiments/prepare_final_evaluation.py",
+        "sha256": "fced02b17a7ff2328265b6a44cc22246642cf93dc317def655db0962ac0e0c56"
+      },
+      {
+        "bytes": 5945,
+        "path": "original_sources/experiments/prepare_margin_data.py",
+        "sha256": "8fb35c143a035a2d8a4325bce47934acd845ba8e0e4fc31e141d824e29e051ec"
+      },
+      {
+        "bytes": 1928,
+        "path": "original_sources/experiments/prepare_timed_evaluation.py",
+        "sha256": "e1423a2f5cfacdf58a489f9435e1586ca9034ac119ca1ce927b8df3ce8347989"
+      },
+      {
+        "bytes": 8270,
+        "path": "original_sources/experiments/replay_anchored.py",
+        "sha256": "3e83346e018c31252f1685fbbdf17436a3d80ff48be75f02f40b8baad66cab8f"
+      },
+      {
+        "bytes": 13549,
+        "path": "original_sources/experiments/replay_canonical.py",
+        "sha256": "0a299da69f4ca7f259e01792704cd916c2ec844e0b7a0f028d993721b23dab0d"
+      },
+      {
+        "bytes": 6604,
+        "path": "original_sources/experiments/replay_final_evaluation.py",
+        "sha256": "5032343e62697d0cbfbfb488c0d3eff49d87553a94c023d3a9b3e144f1e0cc0c"
+      },
+      {
+        "bytes": 8017,
+        "path": "original_sources/experiments/replay_timed_model.py",
+        "sha256": "a52d0150922d5abfc7a924ec087a1bb70cb86bfe2cd4bde5cc7709a938b58d08"
+      },
+      {
+        "bytes": 4271,
+        "path": "original_sources/experiments/run_final_evaluation.py",
+        "sha256": "c6ec7307030d1ce0fb3040083f0577a85872c4e58ffcaa52310c87e83a430b90"
+      },
+      {
+        "bytes": 5784,
+        "path": "original_sources/experiments/run_timed_evaluation.py",
+        "sha256": "ae9a79e32fd3a6707a978a679103e29d596beaa2a3136db64c2dc0df7e94c73a"
+      },
+      {
+        "bytes": 8304,
+        "path": "original_sources/experiments/run_training_time_campaign.py",
+        "sha256": "e99f79bb4e4e618f060bfd698af2950e231057c7d8f9b2d5d83eda9c7658d01e"
+      },
+      {
+        "bytes": 5333,
+        "path": "original_sources/experiments/run_training_time_smokes.py",
+        "sha256": "571545e6014db4cab7324b16b44edfca8e3c749c8d8cbfe4a97aee1c19eb2b43"
+      },
+      {
+        "bytes": 5824,
+        "path": "original_sources/experiments/timed_evaluation_common.py",
+        "sha256": "a6708ba3e4e5322af14362724d39c255025db7218630afe2514dd3849987e720"
+      },
+      {
+        "bytes": 16114,
+        "path": "original_sources/experiments/timed_margin.py",
+        "sha256": "36964c96f494ceddbd89ea9d6628047538c50017a32d30cf5221bb69a6c0238a"
+      },
+      {
+        "bytes": 1762,
+        "path": "original_sources/experiments/training_time_budget.py",
+        "sha256": "3fe42e3f6017fda41be237af7cec61aef6e10a8b2623b64e63089872176cccb7"
+      },
+      {
+        "bytes": 2095,
+        "path": "plot.py",
+        "sha256": "646bc2f27a3635bc0c2a1dadfdea77aa7e3913198dc84a29713218c6d86f9576"
+      },
+      {
+        "bytes": 2648,
+        "path": "plot_budgets.py",
+        "sha256": "b42657cea89578738c3d798d93d00bfe35525969e0eb2a32081e340a53a1b24c"
+      },
+      {
+        "bytes": 17501,
+        "path": "portable.py",
+        "sha256": "5e326fce82e7822c8e71936ac67b10991d1bc5a1e8bff05ae2ecc1153a2918e7"
+      },
+      {
+        "bytes": 3709,
+        "path": "protocols/gold_index_sensitivity.md",
+        "sha256": "bd3b3109abb158e4ca83ecd1011b60e5dc53b38d12b3c8a7e8b37f35fe05d82e"
+      },
+      {
+        "bytes": 2568,
+        "path": "public_input_access.json",
+        "sha256": "db9c71bb6b362df65e07a0b63334e070720a44d814bcf2d164f78f6359112b1c"
+      },
+      {
+        "bytes": 502,
+        "path": "publication_terms_review.json",
+        "sha256": "50e23277c68fedd80ec53ca781cb10e850f94dffea0f84e72d7fa61ef523d4ee"
+      },
+      {
+        "bytes": 5651,
+        "path": "reanalyze.py",
+        "sha256": "d84bfb9c31001449fe3469e4072db6973d60fe4abdbc422dfbf30efa6dcd0fe7"
+      },
+      {
+        "bytes": 5652,
+        "path": "reanalyze_campaign.py",
+        "sha256": "1592af425310747fd468f4a1570340555ad823875a4deca8fea24746f6bc2bf8"
+      },
+      {
+        "bytes": 15937,
+        "path": "score_campaign.py",
+        "sha256": "4cf632b06ecb6deb37a7207a2b97979116e00760337feadf41c06cb70e826c38"
+      },
+      {
+        "bytes": 103099,
+        "path": "split_manifest.json",
+        "sha256": "f20ac689f1762d1fe9d9d8730a3d149d555f0c58b59767c726589e1cd17bb304"
+      },
+      {
+        "bytes": 2719,
+        "path": "storage_control/PROTOCOL.md",
+        "sha256": "1fe597eaeedd34749dc03dd1c479bf2092daac336572e16d2b5029292911610c"
+      },
+      {
+        "bytes": 2015,
+        "path": "storage_control/REPORT.md",
+        "sha256": "6b21a26c54c10bae3f47546fec8e04a7d011f646cda40ff74818439eeedfc33e"
+      },
+      {
+        "bytes": 9028,
+        "path": "storage_control/checkpoint_codec.py",
+        "sha256": "41e6a586318531bf09bf78c8bd4d773fa581760fdaa9a1643381a0fa5ddf2c6c"
+      },
+      {
+        "bytes": 6593,
+        "path": "storage_control/receipts.json",
+        "sha256": "90f690a8a28a9740df54f789c3241a83081cfd89566653b85c4f993030beec2a"
+      },
+      {
+        "bytes": 35193,
+        "path": "timed_activation.json",
+        "sha256": "d9de6e20b362b09b1954749a95e4c8ca7fd800d3b2396c0167e8bb3451d65961"
+      },
+      {
+        "bytes": 1333,
+        "path": "timed_archive_costs.json",
+        "sha256": "db782ed7fba0e8153792877ec3fb033825e9cc6bb5a3d0a2ab6ab8c7ba726e0c"
+      },
+      {
+        "bytes": 2877,
+        "path": "timed_data/development.json",
+        "sha256": "1e39a5f5b194968179f8660775df492e009ca9a74c85dfe102990490af474a4e"
+      },
+      {
+        "bytes": 28038,
+        "path": "timed_data/development_business.npy",
+        "sha256": "266183c7efb077c30254244a7676768b5944577ebf7e5e2557109b96890f812d"
+      },
+      {
+        "bytes": 13530,
+        "path": "timed_data/development_history.npy",
+        "sha256": "e81a31ca7a06c868362977e4ec8e23e1bbb2e1db13327d51156b45da7ffd3012"
+      },
+      {
+        "bytes": 17742,
+        "path": "timed_data/development_philosophy.npy",
+        "sha256": "fccb7160aa9f17b04dc7d9da198e2ff75862bfc9cb49c9375d41deea3c5d2ff0"
+      },
+      {
+        "bytes": 6117,
+        "path": "timed_data/final.json",
+        "sha256": "cfcddd17fb53f773c25d1a2f05da73f725f5468ab0a1bbc4ebfc14f8c11ab7fe"
+      },
+      {
+        "bytes": 42312,
+        "path": "timed_data/final_biology.npy",
+        "sha256": "34b9ed18344235429828da2937b4e85e0cec151b42d2985e649d856f254dfcd8"
+      },
+      {
+        "bytes": 46524,
+        "path": "timed_data/final_business.npy",
+        "sha256": "785bc5bf4e509a177c58cefa682ebd235ae5b5be1d89a5844dee216d0bdf5e3d"
+      },
+      {
+        "bytes": 66414,
+        "path": "timed_data/final_chemistry.npy",
+        "sha256": "6621c6a732e5d990be8a032b6fee7a8d0e2190a0696a9b69e2d2f1532663a38c"
+      },
+      {
+        "bytes": 22656,
+        "path": "timed_data/final_history.npy",
+        "sha256": "6bd3e2f3a7e45a4878256edccd27c6028f3f7fcacfa11732f84fba9d81d12648"
+      },
+      {
+        "bytes": 29442,
+        "path": "timed_data/final_philosophy.npy",
+        "sha256": "764cf250d950a3da108913d182a463d5687a4e9655b3a3ce401549f12a64fb6f"
+      },
+      {
+        "bytes": 26882,
+        "path": "timed_evaluation_costs.json",
+        "sha256": "e2800d0caf39044ad103592be5950e38884931e94b9ef9486fa8430c3725a8e7"
+      },
+      {
+        "bytes": 59612,
+        "path": "timed_raw_hashes.json",
+        "sha256": "48ab3f4b54e6b17d20563cb79de778323103cdd86bf5365460913db354acbbf8"
+      },
+      {
+        "bytes": 38874,
+        "path": "timed_resources.json",
+        "sha256": "93e8a70ac7a7172879500bccc3f44a6c28c00060719c16382cb89deace31850d"
+      },
+      {
+        "bytes": 2259,
+        "path": "timed_statistics.py",
+        "sha256": "e406a672bc3019e6911e39541b258364bbcef05bc8535a237436f1f01d06b5eb"
+      },
+      {
+        "bytes": 51193,
+        "path": "training_costs.json",
+        "sha256": "1233f3aa84a4127ae699286e0ac1f400cb2a85a622627c057432b08b8387cf07"
+      },
+      {
+        "bytes": 6755,
+        "path": "upstream_provenance.json",
+        "sha256": "6574e7daf2d4609856224be43c662325ee2f66d9f6e581fa1568ef172904235a"
+      },
+      {
+        "bytes": 1297,
+        "path": "validation/README.md",
+        "sha256": "4fb7e36e057cf818802f95e3d39bb7f5b84c667cccba4a173971819ed4a846e1"
+      },
+      {
+        "bytes": 597,
+        "path": "validation/actual_budget_portable_parity.json",
+        "sha256": "bb3a179de8be983f2e8d7201d548b2e9baa9ffc57efcea893b384efcffe2fe07"
+      },
+      {
+        "bytes": 515,
+        "path": "validation/actual_budget_visual_review.json",
+        "sha256": "5f18c0102a71f2f56e98e72763606c5bb0fbeec4447804f7cad3c41a391f0131"
+      },
+      {
+        "bytes": 460,
+        "path": "validation/actual_fixed_development_parity.json",
+        "sha256": "73d8babb4fe5301d8613feacfdccb463dbc6e5598ad9a23e2370b9856bbf2b34"
+      },
+      {
+        "bytes": 455,
+        "path": "validation/actual_fixed_final_parity.json",
+        "sha256": "56b2130d8df0fadbd28f141944f937fa1a8d3e8f6d37e5ef8d81e830e77a66e2"
+      },
+      {
+        "bytes": 499,
+        "path": "validation/actual_timed_development_parity.json",
+        "sha256": "8bd7f6a35161a8cad5f043a01482a0616067632c6d3df1e4a432261d2af12f86"
+      },
+      {
+        "bytes": 493,
+        "path": "validation/actual_timed_final_parity.json",
+        "sha256": "ff5979c00308b57bbb126c9a3f2caa124d2b8448361e5ebe4593a86107376c6f"
+      },
+      {
+        "bytes": 1466,
+        "path": "validation/budget_figure.json",
+        "sha256": "a739f9d6f12e84557e2364c208335353224d6a32876bd1697bb61bd65b5f0483"
+      },
+      {
+        "bytes": 709,
+        "path": "validation/business_training_identity.json",
+        "sha256": "b526027cd52af585c6d2a49d0fdece75fbe9dab052a8305ec010fe370b7294cd"
+      },
+      {
+        "bytes": 2184,
+        "path": "validation/campaign_preparation.json",
+        "sha256": "2e18a25d57d41b4beffc5b91dfc902a280ce64c8449be45a3674e8290209876b"
+      },
+      {
+        "bytes": 455,
+        "path": "validation/combined_analysis_cpu_v1_original_final_parity.json",
+        "sha256": "cd494c4af678f04ed9da0bfe7049a4774e355e580f6b2c9515296a2eac4b4207"
+      },
+      {
+        "bytes": 1152,
+        "path": "validation/combined_analysis_cpu_v1_validation.json",
+        "sha256": "7d589805146608e317f2b6eb52d3de3ed8c57f9fb253b031d605b08db97ef1cf"
+      },
+      {
+        "bytes": 2892,
+        "path": "validation/combined_analysis_preparation.json",
+        "sha256": "b1d4568b85cbacdbd9027e7c20b6f3c1dd906ae4cf9e81dc6db52cee971774c7"
+      },
+      {
+        "bytes": 5248,
+        "path": "validation/compact_storage.json",
+        "sha256": "b47479be9ae947520604001385a29ebe176e0729b6af928844b99aaaaba68874"
+      },
+      {
+        "bytes": 8123,
+        "path": "validation/complete_timed_packer_preparation.json",
+        "sha256": "6ba86c497b77d4ecc21c15a96f3ceb395a82430eda5b726d717373650bea41f2"
+      },
+      {
+        "bytes": 4239,
+        "path": "validation/complete_timed_packing.json",
+        "sha256": "7cb3b33ab0013c45e960354f98b2cefa02cfd7505325aa9ba95d504f489378fa"
+      },
+      {
+        "bytes": 5029,
+        "path": "validation/continuity.json",
+        "sha256": "6b4abef476b9767b00f0a5fd76d317b5bc8d8b6bf8f536ea3f0ebe49a7d0a514"
+      },
+      {
+        "bytes": 1091,
+        "path": "validation/dataset_identity.json",
+        "sha256": "d2f5b3c8fb7ca5a68d551bf1c411875386a5d06c3cb556bc0fb45eab57ba7968"
+      },
+      {
+        "bytes": 557,
+        "path": "validation/development_parity.json",
+        "sha256": "ac43a25a04cfdc9e0a00a566fcd815a6d5173568d3ee729b9153d19c47d9d42d"
+      },
+      {
+        "bytes": 865,
+        "path": "validation/development_preparation.json",
+        "sha256": "199d3c65ec734e4a8b35e6b3aa36b928c61463c552a831b9a46689c5a7ca3ef3"
+      },
+      {
+        "bytes": 552,
+        "path": "validation/final_parity.json",
+        "sha256": "a93feda7c1b37f7e764fa4c6fe18f51493f0ee2c8909defb0e4452c7d22e908c"
+      },
+      {
+        "bytes": 812,
+        "path": "validation/final_preparation.json",
+        "sha256": "0e8f42bbf1f0509507eef3811377c70ec7f3adfa213a5e14d5f4a02688969bb3"
+      },
+      {
+        "bytes": 1171,
+        "path": "validation/final_review.json",
+        "sha256": "734339fcc179923dd37746c9703b98fdafd8f5b85952d7333257d37e90176170"
+      },
+      {
+        "bytes": 610,
+        "path": "validation/gold_index_original.json",
+        "sha256": "8fecd106249ac02b92861754582905fdc97d2fd6249374c18f754a0060f380c0"
+      },
+      {
+        "bytes": 786,
+        "path": "validation/gold_index_timed.json",
+        "sha256": "88d233b8da90b4d724683fc403a0ec8d1a86560c52e175adac117da5cf17501a"
+      },
+      {
+        "bytes": 815,
+        "path": "validation/manuscript_claims.json",
+        "sha256": "87f623274e73ee2a8ad1c5c60eaaef706849e6f7b231c48b0b6a408aaeee33e5"
+      },
+      {
+        "bytes": 945,
+        "path": "validation/original_figure_webp.json",
+        "sha256": "47bc70b5898a2a8aa5764473e25be6a0aa4a8e912f30823c707f14cadc5ddb14"
+      },
+      {
+        "bytes": 1237,
+        "path": "validation/portable_campaign_cpu_v2_validation.json",
+        "sha256": "8e58d0ae55c763fa792f3931dee164ea16bdd41c943dc7947bda0ed5d6fa40ef"
+      },
+      {
+        "bytes": 485,
+        "path": "validation/portable_figure.json",
+        "sha256": "5e61316ab488263e34a9eb717ba6aaa9657219deac99b4560941dba6e2547802"
+      },
+      {
+        "bytes": 41019,
+        "path": "validation/portable_inference.json",
+        "sha256": "3d4653bc6141849a66c51a05e749ee0c6c120a1d78193e1ffbf610e15352a5cb"
+      },
+      {
+        "bytes": 3989,
+        "path": "validation/portable_scoring_cpu_v1_validation.json",
+        "sha256": "5e990f5c07c7820ea94687321d657abdc1f6352e47b063b40793864fbd9367e5"
+      },
+      {
+        "bytes": 4462,
+        "path": "validation/portable_staging_validation_v1_validation.json",
+        "sha256": "d5fd9b7ed30f3c28f5f85b848e45e117b6427122742f7fb9bc60efc96e5f7186"
+      },
+      {
+        "bytes": 1085,
+        "path": "validation/preparation_cpu.json",
+        "sha256": "7f37e4fe30a991913deba1034cb7a7d1cfa32151618e03e47f7a83d03aea99ab"
+      },
+      {
+        "bytes": 1368,
+        "path": "validation/release_finalization.json",
+        "sha256": "e4325f27039cef78fa1c8b1484de4077f52a02009ae249b2f467951d10dbd048"
+      },
+      {
+        "bytes": 7611,
+        "path": "validation/training_arguments.json",
+        "sha256": "f2361da1c0a77118212957472a8043efca3c58152c1b3426540594a89bf2027e"
+      }
+    ],
+    "name": "deletion_tuning_1_v1_316ce6f080dd80b7.zip",
+    "sha256": "316ce6f080dd80b7eb88ff3e970d11105259ea7e426437d54f217ddc8ab19f2d",
+    "source_url": "https://rstation.ai/api/v1/papers/deletion_tuning_1/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261119T224924499177Z/deletion_tuning_1_v1_316ce6f080dd80b7.zip"
+  },
+  "tags": [
+    "deletion tuning",
+    "ranking objectives",
+    "gate-only tuning",
+    "training budgets"
+  ],
+  "title": "Objective recipe, update location, and training budget in deletion tuning",
+  "version": 1
+}

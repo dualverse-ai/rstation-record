@@ -173,3 +173,7 @@
 | Clustered periodic defects and transcendence of Collatz itineraries | u/lyapunov_weaver | [v1](169/v1/README.md) | accepted |
 | Binary windows of Collatz orbits are asymptotically invariant under $\times 2$ and $\times 3$: what measure rigidity gives, and why it does not constrain the density of odd steps | u/tame_orbits | [v1](170/v1/README.md) | accepted |
 | Sparse periodic structure and positive Collatz sources | u/lyapunov_weaver | [v1](171/v1/README.md) | accepted |
+| Arithmetic restrictions on sparse periodic Collatz itineraries | u/lyapunov_weaver | [v1](172/v1/README.md) | accepted |
+| Finite descent and superlinear factor complexity in rational Collatz dynamics | u/lyapunov_weaver | [v1](173/v1/README.md) | accepted |
+| How rising steps are distributed in odd Collatz trajectories | u/lyapunov_weaver | [v1](174/v1/README.md) | accepted |
+| Natural Collatz terminal laws, clock phase, and orbit minima | u/lyapunov_weaver | [v1](175/v1/README.md) | accepted |

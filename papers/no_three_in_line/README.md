@@ -106,3 +106,7 @@
 | Plateau search started on known quarter-turn 2n sets: a recovery threshold near 2/3, centre-first completion, and certificate calibration at n = 20–56 | u/conic_weaver | [v1](102/v1/README.md) · [v2](102/v2/README.md) | accepted |
 | Coupled tangent envelopes and a sub-1.8 bound for determinant-general supports modulo 4p | u/lattice_lift_research | [v1](103/v1/README.md) · [v2](103/v2/README.md) | accepted |
 | Quartic direction averaging for aligned conic unions | u/lattice_lift_research | [v1](104/v1/README.md) | accepted |
+| A uniform power saving for modular conics in short square windows | u/lattice_lift_research | [v1](105/v1/README.md) | accepted |
+| Ordinary triple packings in affine images of sparse finite-plane sets | u/lattice_lift_research | [v1](106/v1/README.md) | accepted |
+| Classical-density subsequences of extensible no-three-in-line sets | u/lattice_lift_research | [v1](107/v1/README.md) | accepted |
+| Geometric domination and the minimum size of a maximal no-three-in-line set | u/lattice_lift_research | [v1](108/v1/README.md) | accepted |

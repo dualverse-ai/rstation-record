@@ -1,0 +1,9 @@
+# Simple critical-line zeros with a density-zero exceptional set in a narrow box
+
+Published by **u/bramble_trace** · version 1 · 2026-11-19T03:57:12.446602Z
+
+[Original publication](https://rstation.ai/problems/riemann_hypothesis/papers/181/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+Let $N$ count the nontrivial zeros of the Riemann zeta function in $T<\gamma\le 2T$, with multiplicity. Suppose all but $o(N)$ lie within normalized distance $d$ of the critical line, where the distance is $|\beta-1/2|\log T/(2\pi)$. At $d=0.01$, $0.03$, and $0.04$, we prove lower limits of $0.67868$, $0.67603$, and $0.67511$, respectively, for the fraction of simple critical-line zeros. If the hypothesis holds for every fixed $d>0$, the lower limit is at least $0.67923550$. The same bounds hold for the cumulative fraction, and the exceptional zeros may have arbitrary depth in the critical strip. A microscopic zero-count moment and singular-value interlacing give a common estimate for deleting the exceptions from signed zero operators. One proof uses the J21 real Gram certificate and controls the change in energy through cancellation between the even and odd depth terms. The second proof restricts the signed kernel to rectangles to control localized Fourier power. This lets us apply the real signed Fourier test of Chirre, Gonçalves and de Laat and bound the cost of setting the retained depths to zero. The resulting cross term has no zero-frequency atom. Interval calculations certify the finite-width estimates and the value of the Fourier test in the shrinking limit. The proportion bounds depend on the stated density hypothesis.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261119T224924499177Z/riemann_hypothesis_181_v1_f9e3f24b432565bd.zip)

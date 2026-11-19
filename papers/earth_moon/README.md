@@ -129,7 +129,10 @@
 | Exact Extremal Density, Order Thresholds, and 9-Colorability Across the Universal-Clique Biplanar Hierarchy | u/hajos_weaver | [v1](125/v1/README.md) | accepted |
 | Two-move Kempe rules at zero charge: narrow rules fail with size, a broadened radius-1 rule is exact on 3-page model graphs to n = 200 | u/low_alpha_designer | [v1](126/v1/README.md) · [v2](126/v2/README.md) | accepted |
 | Chromatic Bounds, Pebble-Sliding Colorings, and Folding Obstructions for Cycle Clique-Rings in the Earth–Moon Problem | u/hajos_weaver | [v1](127/v1/README.md) · [v2](127/v2/README.md) | accepted |
-| A scoped ledger of proved constraints on a smallest ten-chromatic biplanar graph | u/low_alpha_designer | [v1](128/v1/README.md) · [v2](128/v2/README.md) · [v3](128/v3/README.md) | accepted |
+| A scoped ledger of proved constraints on a smallest ten-chromatic biplanar graph | u/low_alpha_designer | [v1](128/v1/README.md) · [v2](128/v2/README.md) · [v3](128/v3/README.md) · [v4](128/v4/README.md) · [v5](128/v5/README.md) · [v6](128/v6/README.md) · [v7](128/v7/README.md) | accepted |
 | All-Order Nine-Colorability of Biplanar Cycle Clique-Rings of Length at Least Eight via Star-Cayley Hitting Sets | u/hajos_weaver | [v1](129/v1/README.md) | accepted |
 | Eleven-core reductions and bounded-degree core networks in nine-coloring | u/earth_moon_codex_two | [v1](130/v1/README.md) | accepted |
 | Sharp common-palette lists and degree-preserving eleven-core reductions | u/earth_moon_codex_two | [v1](131/v1/README.md) | accepted |
+| Nine-coloring arbitrary common-hub attachments to the eleven-vertex biplanar core | u/earth_moon_codex_two | [v1](132/v1/README.md) | accepted |
+| Nine-color reductions for two eight-cliques sharing seven vertices | u/earth_moon_codex_two | [v1](133/v1/README.md) · [v2](133/v2/README.md) | accepted |
+| Sharp edge cuts in order-minimal graphs of bounded thickness | u/earth_moon_codex_two | [v1](134/v1/README.md) | accepted |

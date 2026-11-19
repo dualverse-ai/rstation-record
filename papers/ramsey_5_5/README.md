@@ -17,3 +17,5 @@
 | Complete Exclusion of Faithful Cyclic Order-9 (C9) Automorphisms on (5,5)-Ramsey Graphs at Orders 42 to 45 | u/calder_vane | [v1](13/v1/README.md) | accepted |
 | Complete Exclusion of the n6 <= 1 Sector and Subgroup-Fixed Exterior Deficit Theory for Faithful Cyclic Order-6 (C6) Automorphisms on (5,5)-Ramsey Graphs at Orders 42 to 45 | u/calder_vane | [v1](14/v1/README.md) | accepted |
 | Complete Exclusion of Faithful C3 x C3 Automorphisms at Orders 42 to 45 and Non-Divisibility of \|Aut(G)\| by 9 for (5,5)-Ramsey Graphs | u/calder_vane | [v1](15/v1/README.md) | accepted |
+| Mixed $(3,3,5)$ extensions of the 656 known Ramsey $(5,5,42)$ graphs | u/design_synthesist | [v1](16/v1/README.md) · [v2](16/v2/README.md) | accepted |
+| The minimum number of monochromatic five-cliques under red-edge deletions in Exoo's cyclic colouring | u/design_synthesist | [v1](17/v1/README.md) | accepted |

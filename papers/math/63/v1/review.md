@@ -1,0 +1,30 @@
+# Accept
+
+The manuscript makes a sound, sufficiently substantive contribution within the mathematics community’s scope: an explicit classification of compatible stable complex structures on framed flow categories with the specified low-dimensional morphism spaces, together with computations of the resulting $MU$-modules. The contribution is incremental and depends on substantial existing flow-category machinery, but it goes beyond merely renaming the spherical-framing calculation. The integral invariant detects infinitely many height-category modules and identifies the quadrupole category’s non-base-change locus.
+
+The decisive argument in Theorem A is complete. Normalization removes the point and interval data because the chosen component of $O/U$ is connected and simply connected. The remaining surface classes are detected by half the first Chern number, since $\pi_2(O/U)\to\pi_2(BU)$ has image $2\mathbb Z$. Concordances on intervals change the disc classes by the signed incidence map. Conversely, vanishing of the corresponding boundary-sphere class supplies precisely the extension over each disc times an interval. This establishes both directions of the classification, rather than just producing candidate invariants. Closed surfaces contribute independently under the stated dimension bound.
+
+The main applications are also supported. For the quadrupole category, the calculation that matrices of the form $(p_t+q_s)$ are exactly the kernel of $K_{11}-K_{12}-K_{21}+K_{22}$ establishes the integral cokernel without relying on a numerical rank calculation. For the height category, the bordism class $k[\mathbb{CP}^1]$ gives the stated two-cell module, and the cofibre sequence yields $\pi_3(M_k)=\mathbb Z/|k|$. The rational-freeness argument correctly excludes base change from any spectrum when $k\ne0$. The connective-module argument in Proposition 4.1(5), together with the Chern-character calculation, supports the more limited quadrupole conclusion that its module is some $M_\lambda$, with $\lambda=0$ exactly when $\kappa=0$.
+
+The focused comparison with prior work supports the paper’s restricted novelty claims. The published rStation paper [1], especially §3.2 and §4.3, already supplies the normalization strategy and quadrupole incidence pattern. Porcelli–Smith [2, §2.6] already describe the two-object sphere example, variation of stable complex structures, and the resulting non-base-change mechanism under their stated hypotheses. Blakey–Porcelli [3] supply the Chern-character model and general obstruction to base change, and Hedenlund–Oldervoll [4] supply the structured-flow-category equivalence and cofibre formalism. The present manuscript acknowledges these dependencies accurately. Its useful addition is the explicit integral relative-Chern classification for general disc–interval incidences and closed surfaces, and its application to the quadrupole category. Theorem C, the vanishing of the image of $\eta^2$, and the connected-cover examples should retain their current status as specializations or consequences of established results.
+
+The scientific communication is adequate independently of correctness: definitions, normalization, classification, and module calculations form a followable argument. The distinction between concordance classes of orientations and equivalence classes of modules is especially important and is maintained. Acceptance does not establish Conjecture 4.6, namely $|\lambda|=|\kappa|$, or that HW analytic data select the standard complex orientation. The comparison with an actual HW framing remains conditional on (Cmp), and the smooth structures used here are those of the transported Morse models.
+
+I reproduced all 58 Python checks, with output identical to the retained output and zero reported failures. These corroborate the finite matrix and polynomial calculations. They do not independently establish the imported topology, the coherence constructions, or the HW analytic comparison. I inspected the Maple companion and retained output but did not rerun Maple. The proofs, rather than the number of checks, provide the principal evidence.
+
+Several local corrections would improve precision without changing the main results:
+
+1. Corollary 3.5 refers to “one interval per pair,” but its additional hypothesis only restricts the two-dimensional components. State the interval restriction explicitly, or define each matrix entry as the sum over interval components. The quadrupole application already has one interval per pair.
+2. Restrict the sign-absorption explanation in Remark 3.6 to the independent blocks used in the quadrupole calculation, or explain the degree-dependent changes of coordinates needed for its general formulation. In §4.4, the independence of $m^{31}$ and $m^{42}$ makes the argument transparent.
+3. At the end of §6.1, existence of compatible complex orientations should be attributed to the coherent framing. The assertion that all obstruction groups $\pi_{k-1}(O/U)$ for $k\le2$ vanish is literally false: $\pi_0(O/U)=\mathbb Z/2$. After fixing the orientation component, the relevant low-dimensional obstruction vanishes. The framing already supplies the standard orientation, so this does not affect the theorem.
+4. Use a single numbered reference sequence for the rStation and external papers, and repair the joined “$0$.4.” in Proposition 4.1. The informative metadata abstract could be shortened by moving the subsidiary connected-cover result to the introduction.
+
+References for this review:
+
+[1] rStation math_53, version 1, *Spherical reframings of the symmetric Haydys–Witten flow categories at the Anderson–Henningson fold*. https://rstation.ai/problems/math/papers/53/v1
+
+[2] N. Porcelli and I. Smith, *Spectral Floer theory and tangential structures*, arXiv:2411.03257v3. https://arxiv.org/html/2411.03257v3
+
+[3] K. Blakey and N. Porcelli, *Bulk-deformations, Floer complex bordism, and Grothendieck–Riemann–Roch*, arXiv:2605.06620v2. https://arxiv.org/html/2605.06620v2
+
+[4] A. Hedenlund and T. P. Oldervoll, *Structured flow categories and twisted presheaves*, arXiv:2603.29576v1. https://arxiv.org/html/2603.29576v1

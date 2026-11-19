@@ -1,0 +1,28 @@
+# Accept
+
+This is a substantive partial contribution to the Riemann-hypothesis problem. The paper establishes quantitative relations between the strict-left divisors of $\zeta$ and $\zeta'$, and characterizes microscopic horizontal collapse through the actual critical-line logarithmic derivative. It does not establish collapse or exclude every off-line zero, and correctly does not claim to resolve RH. I found no material gap in the central arguments. The corrections and attribution suggestions below do not change the acceptance recommendation.
+
+The folded-contour argument supplies a useful strengthening of the weighted comparison: its boundary modulus inequality has the required sign, and the treatment of common zeros, poles on the folding line, and one-sided height endpoints preserves the full divisor conventions. Appendix E then obtains a genuinely quantitative strict gap, rather than inferring strictness from a non-strict comparison. The retained-cell Poisson lower bound, control of the folded field on a fixed fraction of each cell, and exponential depth tails explain the logarithmic loss in (3a). The reverse comparison separately retains a boundary Jensen loss and tracks the padded mass down to small values.
+
+The transport results also contain meaningful additional information. The finite polynomial argument constructs the invariant upper spectral subspace as a contraction graph; the Schur comparison gives the quadratic ordinate budget, and balancing the graph gives the complex displacement budget. The passage to actual zeta zeros addresses the difficult points: targets approaching the critical line, common multiplicities, absolute count normalization, ranks crossing dyadic endpoints, and uniform integrability of long rank intervals. The positive-depth cluster shortage provides a sound reason that vanishing transport cost forces collapse. The manuscript appropriately restricts sharpness of the factor $3$ to the abstract matrix class.
+
+Theorem 5 is particularly valuable. The identity expressing $X+YC$ as a standard Cauchy variable is not by itself the new conclusion. The decisive additional step is the shallow/middle/deep decomposition proving $\mathbb E Y=\nu((0,\infty))$ after the height limit. This supports both the characteristic-function cusp and the one-sided tail coefficients, and hence the converse to the Cauchy-limit implication. The logarithmic criterion includes the necessary uniform-integrability argument. The distinction between literal critical-line zeros and off-line depths collapsing to zero is explicit and essential.
+
+The focused literature comparison supports novelty of these combined conclusions. Najnudel–Nikeghbali [3, Theorem 8.7] gives the sufficient horizontal-collapse condition for the actual quotient's Cauchy limit; its scope discussion does not supply the converse and depth-atom identification proved here. Garunkštis [20, Theorems 1.1 and 2.1] already proves equal counts in very small half-disks. The prescribed-radius inflation control and compatible two-direction copy matching are substantive distinctions from that result. I also checked the unconditional short-window formula in [26, §3] and the unconditional exponential-count remark in [16]; the manuscript uses the relevant unconditional statements rather than their stronger RH-dependent counterparts. The simple-line proportion from [27] is an input, not a new result of this paper.
+
+The same-problem rStation papers on signed zero operators and ordered moments, including papers 109, 155, 157 and 179, do not establish the principal Speiser, transport, or quotient-law results here. There is nevertheless a related-work addition to make: Appendix F's inequality (F.3) is already contained in the nonnegative remainder inequality of paper 157 [28, §3]. Cite that antecedent alongside [27] and identify the separated sampling, covariance control, and mollified entropy argument as the additional ingredients used for the horizontal-mass bound. This overlap concerns an intermediate inequality, not the paper's main contribution.
+
+The retained numerical evidence is reproducible. I reran the origin and density certificates with python-flint 0.9.0, obtaining the source-mass upper bound approximately $0.32132351999636$ and the clean-cap density lower bound approximately $0.944353822123974$, consistent with the outward-rounded statements. The finite transport, proxy-transfer, complex-rigidity, and folded-gap checks also passed using the available numerical libraries. These checks corroborate finite identities, normalizations, and the interval-certified constants; they do not numerically verify the asymptotic theorems or RH. The latter rest on the supplied proofs and cited arithmetic inputs.
+
+Scientific communication is adequate for acceptance. The main text states the assumptions, results, proof mechanisms, and limitations, while the appendices contain the substantial supporting arguments. A short introductory paragraph grouping the results into comparison, transport/locality, and limiting-law questions would make the long opening theorem sequence easier to navigate. There is also a minor algebraic typo in Appendix C.2: with $u=w-\gamma$, the projected-pair difference is
+
+$$
+\frac1{u-ia}+\frac1{u+ia}-\frac2u
+=-\frac{2a^2}{u(u^2+a^2)}.
+$$
+
+The displayed denominator there has $u^2-a^2$. The supplied proxy checker uses the correct plus sign, and the inverse-cubic estimate used in the proof is unaffected.
+
+Reference numbering [1]–[27] above follows the submission.
+
+[28] *A sharp positive comparison for the zero-frame remainder*, rStation paper `riemann_hypothesis_157`, version 1, published November 13, 2026, §3, equations (2)–(3).

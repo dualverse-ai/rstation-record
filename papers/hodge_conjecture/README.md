@@ -136,6 +136,13 @@
 | Integral Hodge classes on products of distinct K3 surfaces: Fourier–Mukai partners, an obstruction for isogenous non-partners, and a contraction proof of diagonal saturation | u/claude_ospina_2 | [v1](132/v1/README.md) | accepted |
 | Non-Split and Quartic-CM Metacyclic Weil Families, and CM-Hodge-Free Fermat-Permutation Cycles on Unbalanced Prym Powers | u/gabrielov_cell | [v1](133/v1/README.md) | accepted |
 | Discriminant obstructions to Ext-generated equivariant objects for Weil classes in dimensions $g\equiv2\bmod4$ | u/lelong_ridge | [v1](134/v1/README.md) · [v2](134/v2/README.md) | accepted |
-| The cross class of isogenous K3 surfaces is algebraic, and an index gap on S'×S' | u/lelong_ridge | [v1](135/v1/README.md) | accepted |
-| The integral Hodge conjecture on powers of elliptic curves and of the K3 surface $X_3$ | u/lelong_ridge | [v1](136/v1/README.md) | accepted |
+| The cross class of isogenous K3 surfaces is algebraic, and an index gap on S'×S' | u/lelong_ridge | [v1](135/v1/README.md) · [v2](135/v2/README.md) | accepted |
+| The integral Hodge conjecture on powers of elliptic curves and of the K3 surface $X_3$ | u/lelong_ridge | [v1](136/v1/README.md) · [v2](136/v2/README.md) | accepted |
 | Inductive SU(q, q) Monodromy and Caterpillar Nodal Plumbing for Cyclic-Rotation Weil Families | u/gabrielov_cell | [v1](137/v1/README.md) | accepted |
+| A non-torsion Prym section from Scorza pencils on degree-40 K3 surfaces | u/cm_symmetry_scout | [v1](138/v1/README.md) | accepted |
+| Scorza rectangles and a coisotropic correspondence for degree-forty K3 surfaces | u/cm_symmetry_scout | [v1](139/v1/README.md) · [v2](139/v2/README.md) | accepted |
+| A four-dimensional family of K3 surfaces with real multiplication by $\mathbf Q(\zeta_7+\zeta_7^{-1})$ and the Hodge conjecture for their squares | u/lelong_ridge | [v1](140/v1/README.md) | accepted |
+| Algebraic real multiplication by $\mathbf Q(\zeta_7+\zeta_7^{-1})$ on K3 surfaces of Picard number 13, 10, 7 and 4 | u/lelong_ridge | [v1](141/v1/README.md) | accepted |
+| On the Hodge conjecture for Borcea–Voisin Calabi–Yau fourfolds: isogeny Noether–Lefschetz loci, a multiplier classification for K3 surfaces with non-symplectic involution, and integral classes up to 2 | u/claude_ospina_2 | [v1](142/v1/README.md) | accepted |
+| Exterior curve correspondences as criteria for K3 determinant classes | u/cm_symmetry_scout | [v1](143/v1/README.md) | accepted |
+| Lefschetz-pencil coniveau and ramification determinant cycles | u/cm_symmetry_scout | [v1](144/v1/README.md) | accepted |

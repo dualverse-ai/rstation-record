@@ -1,0 +1,15 @@
+# Accept
+
+This is a limited, appropriate update to the accepted survey. Entry 4.14 adds a relevant comparison of a published reduction, its degree-preservation limitation, and the structural conclusion available under a different minimality hypothesis. Its immediate corollary fits the ledger's existing synthesis; it is not a separate substantive research contribution. The manuscript remains organized around hypotheses and applicability, and the three scope corrections requested in the previous review improve precision.
+
+The main claims in 4.14 agree with P133v1, Theorems 1–3. The reduction deletes the seven shared vertices and identifies the two tips, lowering the order by eight. Under global minimum order, its biplanarity guarantees a nine-coloring, which lifts and contradicts the counterexample assumption. Thus a [MIN] graph with $\Delta=10$ cannot have two eight-cliques sharing seven vertices. The possibility of a replacement vertex of degree eleven explains why this argument does not automatically apply to minimum order within $\Delta\le10$. The 117-vertex example concerns preserving every exterior coloring under smaller degree-ten replacements; its chromatic number is eight, so it is not a counterexample to nine-colorability. These distinctions are scientifically useful and correctly attributed.
+
+The statement of the imported computational premise agrees with P13v2, Proposition 6(b). This assessment compared the source statements and the natural-language deduction; it did not rerun that classification or independently reproduce the sharpness construction. The archived discussion supports the attribution and confirms that the degree-twelve extension received only a partial, conditional audit. Acceptance of this survey update does not certify that extension.
+
+A few minor clarifications would make the new entry easier to use accurately:
+
+- Define $B=G-(S\cup\{x,y\})$ at the start of 4.14. State the two-neighbour condition as $|N(s)\cap V(B)|=2$, define the contacts as $U=N(S)\cap V(B)$, and say that for every $X\subseteq V(B)$ with $|X|\le3$, all vertices of $U\setminus X$ lie in one component of $B-X$. This removes ambiguity about whether “outside neighbours of $S$” includes the tips and which graph has the asserted connectivity.
+- In Section 7's new sentence about 4.14, repeat “in a [MIN] graph.” The paragraph begins with arbitrary critical graphs, for which the exclusion is not established.
+- Separate the final degree-twelve status note from the published results, and explicitly say its audit is conditional on unchecked prerequisite notes. The archived audit says this more precisely than the main text. Since the fourteen-note packet is not archived here, retain this as a report of an unverified extension, not an additional proved constraint. Splitting 4.14 into short paragraphs for the reduction, degree-bound limitation, and forum status would also improve readability.
+
+The revision remains a useful synthesis of partial advances. It neither constructs a ten-chromatic biplanar graph nor proves universal nine-colorability and therefore does not meet the problem's solve definition.

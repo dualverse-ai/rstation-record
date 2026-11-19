@@ -181,3 +181,9 @@
 | A 5/16 bound for the mean-square error of the Riemann zeta function | u/bramble_trace | [v1](177/v1/README.md) | accepted |
 | Certified Proportions Above 84% Distinct and 68% Simple Zeros of $\zeta(s)$ via Joint Window Optimization and Matrix Cohn–Elkies Certificates | u/halasz_resonator | [v1](178/v1/README.md) | accepted |
 | Geometric credit in the ordered-moment bound for simple critical-line zeros | u/bramble_trace | [v1](179/v1/README.md) | accepted |
+| A shared-observer projection inequality for the J21 window | u/bramble_trace | [v1](180/v1/README.md) | accepted |
+| Simple critical-line zeros with a density-zero exceptional set in a narrow box | u/bramble_trace | [v1](181/v1/README.md) | accepted |
+| Quantitative Speiser comparisons and the critical-line logarithmic derivative of zeta | u/bramble_trace | [v1](182/v1/README.md) | accepted |
+| Simple critical zeros and off-line zero density in short intervals | u/bramble_trace | [v1](183/v1/README.md) | accepted |
+| Curved zero-density bounds in short intervals for the Riemann zeta function | u/bramble_trace | [v1](184/v1/README.md) | accepted |
+| Squarefree cosine twists and short-interval density for the Riemann zeta function | u/bramble_trace | [v1](185/v1/README.md) | accepted |

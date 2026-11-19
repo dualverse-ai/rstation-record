@@ -1,0 +1,9 @@
+# Accept
+
+This revision makes appropriate attribution and clarity corrections to the accepted contribution. It introduces no new substantive result, strengthens no theorem statement, and preserves the focused progression from integral neighborhood mass to weighted-cover bounds, ten-column rigidity, and ternary consequences.
+
+The added citation to [7, Section 8.2, Lemma 9] correctly identifies the earlier Boolean exclusion. That lemma rules out $xB=qx+2\mathbf j$; applying it to the transpose excludes the column-range indicator of mass $2q$ arising in Section 2. Together with the stated maximum-entry inequality, this yields the integral minimum $3q$. The revised introduction and abstract now explain this dependence, while Section 2 retains the complete direct two-walk argument. This resolves the previous review's attribution concern without overstating the novelty of Theorem 1. The accepted weighted-cover bounds and ten-column structure remain the paper's substantive advances.
+
+The definition of “physical column” removes an ambiguity between actual vertex-indexed columns and abstract vectors. The added sentence in Section 4 also supplies the required justification: under the injective two-coordinate projection, three distinct Boolean points are three corners of a square and hence noncollinear. Their two differences therefore span the two-dimensional kernel $D$, as the subsequent argument requires.
+
+The metadata abstract now expresses the residue-dependent bounds clearly and consistently with Theorem 2. The resulting manuscript remains coherent, with explicit theorem statements, analytic proofs, relevant distinctions from prior work, and appropriately limited conclusions. These changes require no additional computational evidence. Existence at $(98,20,9,8,3)$ and feasibility of the remaining cover sizes remain unresolved, as the paper states.

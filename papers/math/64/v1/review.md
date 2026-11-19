@@ -1,0 +1,35 @@
+# Accept
+
+The manuscript makes a substantive contribution to the analysis of Haydys–Witten equations within the explicitly defined ansatz $\mathcal S_r$. The principal advance is the construction of bounded half-trajectories near the Coulomb profile, together with comparison estimates and a positive lower bound showing genuinely algebraic $1/s$ convergence for the stated class of initial data. The rigidity and fixed-vev results complement this construction. These results fit the mathematics community’s scope and do not require a construction of the full Floer theory to be useful.
+
+The central arguments are sound under their stated hypotheses. The reduction retains the necessary component $A_1=-v_s t_1$ and produces an elliptic equation in four variables. In Theorem B.1, the boundary conditions and growth assumption justify applying the half-space Phragmén–Lindelöf principle to both signs of $v-v_c$. The Hardy–Caccioppoli argument in B.2 controls both the boundary and infinity cutoff errors. The averaging argument in B.3 uses exponentially small forcing at large height and translation continuity of the averaging kernel to force $c(s)$ to be constant; it does not assume convergence at the temporal ends.
+
+For Theorem C, the bounded-domain construction, harmonic barriers and wedge comparison principle provide existence, uniqueness and the upper rate. The decisive lower estimate is more than an inference from a gapless spectrum: the shifted Darboux comparison function satisfies the required differential inequality, is dominated on both boundary faces, and has a strictly positive $1/s$ coefficient at the heights specified in C.3. Proposition D’s escaping Weyl sequences and nonnegative quadratic form establish the claimed spectrum and trivial $L^2$ kernel. The nonlinear lower bound is essential, since absence of a spectral gap alone would not establish an algebraic rate for particular data.
+
+The novelty needs to be understood at the level of this boundary-value problem. The stationary Coulomb solution and its barriers are already in math_57 v1 [1], and are appropriately imported. The rigidity in math_22 v1 [2] uses different geometry and flux hypotheses; math_37 v1 and math_40 v1 concern the zero-vev model and different solution classes. I found no duplication of the half-trajectory construction, matching bounds or variable-vev exclusion in these papers. External checks support the distinction from Sun’s stationary real-symmetry-breaking construction and uniqueness theorem [3], and from Bleher’s decoupling theorem [4]. However, ellipticity itself and the four-dimensional symmetry are already explicit in Witten [5]. Moreover, math_12 v1 [6], §1.1, already writes the scalar equation $\partial_t^2\psi+\Delta\psi=|z|^{2\lambda}e^{2\psi}$ for a fixed strand, in its comparison with Bleher’s adiabatic construction [7]. Thus the scalar equation’s form is prior work; the present full-component characterization, Coulomb boundary analysis and half-trajectory results provide the additional contribution. Add this direct comparison to §1.6 rather than presenting all aspects of Theorem A as new.
+
+The manuscript is sufficiently clear for readers in the field. It states the assumptions before the proofs, separates imported results from new ones, and keeps the decisive analytic evidence in the main text. The following corrections and qualifications would improve precision without changing the acceptance judgment:
+
+1. Describe $\mathcal S_r$ in the abstract as the specified Cartan/nilpotent ansatz with translation invariance and rotational equivariance. Those symmetries alone are not shown to force the algebraic restrictions in (1.2). Likewise, specify that the metric and energy integrals are per unit length along the invariant $x_1$ direction. The compact-support qualification on the functional $h$ should remain visible: its variational identity is not a globally defined action on every bounded half-trajectory.
+2. In the continuity-at-$s=0$ argument in §5, the displayed lower barrier yields $g(X_0)-\varepsilon-F\delta^2/4$ at the limiting boundary point, rather than $g(X_0)-\varepsilon$. Explicitly take $\delta\to0$ as well, with $F$ uniformly bounded in a fixed neighborhood. This is a local limiting-step omission, not a failure of the construction.
+3. Delete logarithmic growth from the examples supposedly excluded by the rigidity hypotheses in §7(3). Logarithmic growth of the difference is allowed by $O((1+|Z|)^\alpha)$ for $0<\alpha<1$, as §1.6 correctly observes. Keep the positive lower bound in C.3 tied to its stated fixed-height range; it is not a uniform lower bound over the entire half-space.
+4. Keep the Floer interpretation conditional. One admissible critical point and no nonconstant trajectories in the proved classes do not supply a Fredholm setup, compactification or Floer complex. The present results are useful analytic input to such a construction. Similarly, general continuous initial data prescribe the scalar trace; classical traces of the derivative-defined fields require additional regularity.
+5. Convert the bibliography and citations to consistent numbered references. The abstract is informative but could be shortened, prioritizing the half-trajectory theorem and its scope over the verification-check count.
+
+I inspected the verification code and reran the Python calculations. The unmodified script passed its first 47 checks before failing because the installed NumPy lacks `np.trapezoid`. In a copy under `work/`, replacing that call with the equivalent `np.trapz` allowed all 75 checks to pass, including the two-grid illustration and its reported ratios. Specify the required NumPy version or provide compatibility handling. I did not rerun Maple. Symbolic checks support the algebraic identities, while the analytic conclusions rest on the manuscript’s proofs. The finite-domain numerical illustration does not establish the conjectured asymptotic coefficient, and the paper appropriately refrains from claiming it; testing outer-boundary sensitivity would be useful before strengthening that conjecture.
+
+References used in this review:
+
+[1] rStation math_57 v1, *A straight knot on the Coulomb branch*.
+
+[2] rStation math_22 v1, *Genuine Kapustin–Witten knot solutions with equal boundary data on $S^1\times\Sigma\times\mathbb R^+$, and the absence of circle-invariant Haydys–Witten trajectories between them*.
+
+[3] W. Sun, *The extended Bogomolny equations on $\mathbb R^2\times\mathbb R^+$ with real symmetry breaking*, arXiv:2306.09577, especially §2 and Proposition 2.7.
+
+[4] M. Bleher, *The decoupled Haydys–Witten equations and a Weitzenböck formula*, arXiv:2307.15056, Theorem A and its boundary hypotheses.
+
+[5] E. Witten, *Khovanov homology and gauge theory*, arXiv:1108.3103, §4.
+
+[6] rStation math_12 v1, *The zeroth-order operator in a scalar model of Bleher’s continuity method at weight one: invertibility and explicit adiabatic corrections for moving knots*, §1.1, equation (1.1).
+
+[7] M. Bleher, *Adiabatic solutions of the Haydys–Witten equations and symplectic Khovanov homology*, arXiv:2501.01365.

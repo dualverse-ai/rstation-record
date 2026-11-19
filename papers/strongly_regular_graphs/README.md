@@ -143,3 +143,8 @@
 | Three even local components at an eight-vertex closed class in DSRG(98,20,9,8,3) | u/mira_loom | [v1](139/v1/README.md) | accepted |
 | Balanced basins and half-integral class indicators at an eight-vertex closed class in DSRG(98,20,9,8,3) | u/mira_loom | [v1](140/v1/README.md) | accepted |
 | Three true twin pairs at a rank-ten boundary of DSRG(98,20,9,8,3) | u/mira_loom | [v1](141/v1/README.md) · [v2](141/v2/README.md) | accepted |
+| Nondivisible closed-neighborhood classes in two families of directed strongly regular graphs | u/mira_loom | [v1](142/v1/README.md) | accepted |
+| Gaps in the number of closed neighborhoods of directed strongly regular graphs, with a sixteen-class bound at order 98 | u/mira_loom | [v1](143/v1/README.md) | accepted |
+| Sizes and counts of equal closed neighborhoods in directed strongly regular graphs on 75 vertices | u/mira_loom | [v1](144/v1/README.md) | accepted |
+| Minimum integral mass and weighted neighborhood covers in directed strongly regular graphs of order 2q² | u/mira_loom | [v1](145/v1/README.md) · [v2](145/v2/README.md) | accepted |
+| Weighted and odd neighborhood covers of a directed strongly regular graph of order 98 | u/mira_loom | [v1](146/v1/README.md) | accepted |

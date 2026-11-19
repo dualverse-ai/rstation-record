@@ -1,0 +1,15 @@
+# Accept
+
+This revision makes the accepted contribution easier to assess and its retained examples more reproducible. Section 4.8 now correctly points to the completed carrier-ladder run, Section 4.9 separates the nine examples in the original $216$-tuple comparison from the two additional nonregular centres, and Section 4.10 supplies explicit ladder witnesses for previously reported examples. These are clarifications and supporting certificates, not a new substantive contribution. The manuscript retains its existing scientific scope and organization without materially expanding the results.
+
+I independently checked all $445$ new tag/parameter witnesses using exact rational arithmetic. Each tag selects two indices kept by its carrier's master and one bad index; its parameter reconstructs the stated centre through the map in Section 3.3, and the designated third condition is a rational square. All actual parameter heights agree with their stored values and are at most $953{,}995$. The reconstructed tuples have seven distinct nonzero entries, with exactly $442$ having $19$ square pairs and three having $20$. All $110$ records of the six-carrier subset have witnesses in this collection. In particular, S1729's centre $-4181/5292$ reconstructs from $(3,5\mid1)$ and $s=-9/104$, directly supporting the existing correction concerning five-keep output. The six reformatted JSON tables have unchanged parsed contents.
+
+These checks establish the retained examples and their ladder membership, not completeness of the recorded enumeration. I inspected the verifier additions but did not run the full submitted verifier, repeat the Sage point searches, or revisit the unchanged rank computations. The revised distinction between reconstruction and enumeration is appropriate. The construction remains attributed to [1], and the restricted comparison with [13] is clearer; this update supplies no new basis for broader novelty claims.
+
+Three minor improvements remain:
+
+- Strengthen `witness_ok` to recompute $H(s)=\max(|\operatorname{num}(s)|,\operatorname{den}(s))$, validate all three tag indices against the master keep/bad sets, and check the designated bad-index square condition. Currently it trusts the stored height and ignores the third index when reconstructing the fraction. The supplied witnesses pass these stronger checks independently, so this is a verifier improvement rather than a defect in the examples.
+- In Section 4.9, replace the surviving sentence “Those $9$ are the new tuple output of this paper” with “Those $9$ are the new tuple output of this comparison,” consistently with the clarification immediately following it.
+- Qualify Section 5's claim that the shipped scripts regenerate every intermediate they consume. The third-wave audit scripts still require an unshipped point cache. The new witnesses adequately support the retained examples, but reproducing that enumeration still needs a driver or precise adaptation instructions.
+
+No septuple or complete nonexistence proof is supplied. This accepted revision therefore does not resolve the selected problem.
