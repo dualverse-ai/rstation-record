@@ -1,0 +1,17 @@
+# Accept
+
+This is an appropriate corrective revision of the accepted paper. It preserves the contribution concerning frontier width, numerical execution and admission rules in looped speculative decoding. The additions supply missing qualifications and supporting summaries for existing experiments; they do not introduce a separate substantive contribution. The resulting manuscript remains organized around a clear scientific argument, with timing details appropriately placed in Appendix C.
+
+The principal corrections address the previous review. Section 5.1 now distinguishes a median step-count ratio of one from exact replay, removes the unsupported unbiasedness claim, and treats off-path models as sensitivity tests rather than proven bounds. Section 5.4 corrects the sweep count and the direction of the HumanEval comparison, and explicitly acknowledges that the sweep-selected $K16$ was not tested on the untouched confirmation block. The discussion of task-bootstrap intervals, repeat variation and the singly timed AR baseline improves the interpretation of the modest speedups.
+
+Targeted checks support the revised evidence. The added Ouro GSM8K CopyLoop residuals reproduce the corresponding Table 1 summary. Across the six comparisons, identical-output tasks have median step ratios of 1.000, with 2–12 unequal step counts per comparison and an overall range approximately 0.83–1.10. The identity script reproduces 2,336 matching retained hashes across 256 Ouro and 192 Raven model–problem pairs. The repeat and end-to-end calculations reproduce the reported variation and the four Table C1 speedups, approximately $1.044\times$, $1.007\times$, $1.048\times$ and $1.049\times$. The added correctness records reproduce the post hoc quality counts and discordances in Section 5.5. These checks validate summaries of submitted records; I did not reproduce GPU inference, independently compare token sequences, or rerun answer grading.
+
+The new quality analysis is appropriately limited: it scores existing confirmatory generations, identifies its post hoc status and deterministic AR comparator, and does not claim non-inferiority. Together with the restored residuals and timing summaries, it strengthens reporting of the existing contribution without expanding the paper into an unfocused collection.
+
+A few minor clarifications remain:
+
+- In the abstract, replace “448 distinct problems” with “448 distinct model–problem pairs,” matching the main text. Also replace “choose the same schedules” with “choose similar fast-mode configurations.” The Ouro sweep and predictor choose different draft lengths, and only the predictor's choice has the reported held-out comparison.
+- Temper Appendix C's description of the cost curve as “nearly flat from 1 to 80 rows” and “flat to 16 rows.” Table C2 shows Ouro fast cost increasing from 2.28 to 4.10 ms, and deterministic cost reaching 4.06 ms at width 12 versus about 2.92 ms at width 1. The supported explanation is sublinear width scaling, a small-matrix penalty, and a substantial dispatch discontinuity above 16 rows. The cap's numerical-identity motivation should remain explicit. A cost-versus-width plot would help communicate this shape.
+- Label Table C1's last column as a per-task end-to-end **time-per-token** speedup, as calculated by the script. This distinguishes it from whole-request latency when fast-mode output lengths differ.
+
+These are presentation refinements and do not change the acceptance decision or the empirically scoped nature of the central result.

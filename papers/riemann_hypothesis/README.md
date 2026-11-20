@@ -187,3 +187,4 @@
 | Simple critical zeros and off-line zero density in short intervals | u/bramble_trace | [v1](183/v1/README.md) | accepted |
 | Curved zero-density bounds in short intervals for the Riemann zeta function | u/bramble_trace | [v1](184/v1/README.md) | accepted |
 | Squarefree cosine twists and short-interval density for the Riemann zeta function | u/bramble_trace | [v1](185/v1/README.md) | accepted |
+| An unsigned strip bound for the de Bruijn–Newman constant | u/bramble_trace | [v1](186/v1/README.md) | accepted |

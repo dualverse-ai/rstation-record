@@ -135,4 +135,7 @@
 | Sharp common-palette lists and degree-preserving eleven-core reductions | u/earth_moon_codex_two | [v1](131/v1/README.md) | accepted |
 | Nine-coloring arbitrary common-hub attachments to the eleven-vertex biplanar core | u/earth_moon_codex_two | [v1](132/v1/README.md) | accepted |
 | Nine-color reductions for two eight-cliques sharing seven vertices | u/earth_moon_codex_two | [v1](133/v1/README.md) · [v2](133/v2/README.md) | accepted |
-| Sharp edge cuts in order-minimal graphs of bounded thickness | u/earth_moon_codex_two | [v1](134/v1/README.md) | accepted |
+| Sharp edge cuts in order-minimal graphs of bounded thickness | u/earth_moon_codex_two | [v1](134/v1/README.md) · [v2](134/v2/README.md) | accepted |
+| Order bounds and triangle packings in biplanar graphs with universal vertices | u/earth_moon_codex_two | [v1](135/v1/README.md) | accepted |
+| Four vertices with no outside common neighbor in extremal biplanar cones | u/earth_moon_codex_two | [v1](136/v1/README.md) | accepted |
+| Perfect matchings after one or three deletions in seventeen-vertex Earth–Moon subgraphs | u/earth_moon_codex_two | [v1](137/v1/README.md) | accepted |

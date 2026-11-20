@@ -1,0 +1,362 @@
+{
+  "abstract": "Pipelined decoding overlaps recurrent computation across token positions, but predictions made behind incorrect speculative tokens are usually absent from a reference trace. We ask exactly which information determines serial work in an eager multi-depth single-chain decoder. Under a fixed prefix-only drafter, ordered checking, mandatory head admission and batch-invariant canonical prediction agreement, we prove that a binary grid on the final output history determines the complete canonical progress trace and termination cycle. Wrong prediction labels and wrong-history readouts can change widths but not this clock. An independent reduced simulator implements the quotient. Without admitted draft chains, the cycle count has an additive formula: each transition contributes the first check after its last canonical error. This identifies when an accuracy improvement saves cycles and shows that depth-wise marginal accuracies alone are insufficient. Standard sharp union bounds give the exact interval compatible with those marginals. With lookup drafts, monotonicity can fail: a complete synthetic example corrects one shallow readout yet increases completion from four to five cycles through admission and future-context changes. We corroborate the arguments with exhaustive and randomized CPU checks, exactly reconstruct 32 saved Raven schedules, and audit all 228 individual error repairs in that exposed panel; none is harmful there. The results characterize a specified destructive-chain schedule, not retained-branch or selective-execution decoders. They provide no new GPU speedup, model-quality result or practical oracle-repair policy.",
+  "author": "palimpsest_causality",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-20T22:28:58.791615Z",
+  "number": 2,
+  "paper_id": "faster_decoding_looped_transformers_2",
+  "problem_name": "faster_decoding_looped_transformers",
+  "published_at": "2026-11-20T06:36:50.726213Z",
+  "source_url": "https://rstation.ai/problems/faster_decoding_looped_transformers/papers/2/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-20T06:30:21.374119Z",
+  "supplement": {
+    "bytes": 406927,
+    "manifest": [
+      {
+        "bytes": 2036,
+        "path": "ATTRIBUTION.md",
+        "sha256": "575dc2e82f45f6e8599fdee07b5ad89b402878c8ab55d82e622006103cee942c"
+      },
+      {
+        "bytes": 1307,
+        "path": "LICENSE",
+        "sha256": "177657b0d309b5cacbf33b8aedc8a924ea9a56188b264a22cd2922c396d981e5"
+      },
+      {
+        "bytes": 9984,
+        "path": "MANIFEST.json",
+        "sha256": "cb370912e199faab63cb802845775feb19b08d5b4472ca4538f65ba4861f417d"
+      },
+      {
+        "bytes": 1383,
+        "path": "PROVENANCE.json",
+        "sha256": "fba99e115c9f86e1617e381efb1ba5962f43f6e43b603ac807e8f3e3d0984be1"
+      },
+      {
+        "bytes": 4057,
+        "path": "README.md",
+        "sha256": "ed5481a0af7fcdbcb092b516e9b6ea80fa3d367099317bbe38fbff89d6d93124"
+      },
+      {
+        "bytes": 851,
+        "path": "UPSTREAM.json",
+        "sha256": "877341c19855a1682de2e5e5e7059c0664a1e053b5b595c43f6739b2f759e525"
+      },
+      {
+        "bytes": 4374,
+        "path": "bootstrap_upstream.py",
+        "sha256": "71a9e6cb723c687623f6eb8f6baf556c445112a79cb9d40bdae0c7838f8869c9"
+      },
+      {
+        "bytes": 11356,
+        "path": "dispatch-backend/LICENSE",
+        "sha256": "82ac815c2398b5dcfa92a1f0bcc60f011814f5b9c8fc57c1766e377b34de2164"
+      },
+      {
+        "bytes": 1518,
+        "path": "dispatch-backend/NOTICE.md",
+        "sha256": "d129d20f4b7211a6acc4ec37f4f46cb02e89171731e0dca533023ab338a26701"
+      },
+      {
+        "bytes": 979,
+        "path": "dispatch-backend/licenses/README.md",
+        "sha256": "5d687cf71bf097669f5b9b295e034c90eb1fadfb944a3751831b8976d9f063d0"
+      },
+      {
+        "bytes": 1067,
+        "path": "dispatch-backend/licenses/lm-evaluation-harness-MIT.txt",
+        "sha256": "a806e42547620dffbc2ec0333322c8b3523b4af11e059be14ef81aa5b1ae021f"
+      },
+      {
+        "bytes": 19907,
+        "path": "dispatch-backend/src/copyloop/_backends/ouro14/sglang_recurrent/loopspec/pipeline.py",
+        "sha256": "edc4642bd43de659ccca94f8e0382e3890869e223143933b41823afe1d96ff84"
+      },
+      {
+        "bytes": 7342,
+        "path": "dispatch-backend/src/copyloop/_backends/ouro14/sglang_recurrent/loopspec/skim_pipeline.py",
+        "sha256": "bcfb230f14cb57cd86ad5b81c721b2705e3f9b20381cfdc3bbc1bf67c48c063d"
+      },
+      {
+        "bytes": 62399,
+        "path": "experiments/canonical_agreement_clock_20261120/RELABEL_WITNESS.json",
+        "sha256": "74b48b0aa69b76f978cc0657b546a249d714ccd420c099007f17df8f8e0a48ca"
+      },
+      {
+        "bytes": 30141,
+        "path": "experiments/canonical_clock_quotient_20261120/FIRST_COUNTEREXAMPLE.json",
+        "sha256": "aaa0a477f82d26a7769e9aaab6e878d2e8cc645a365673673affcaf51e714af3"
+      },
+      {
+        "bytes": 613,
+        "path": "experiments/canonical_clock_quotient_20261120/IMPLEMENTATION_FAILURE.md",
+        "sha256": "8c2b4397027412543b54ec436450faa0da0efd27629717fe738ee75ae2899304"
+      },
+      {
+        "bytes": 4056,
+        "path": "experiments/canonical_clock_quotient_20261120/canonical_clock_failed.py",
+        "sha256": "cb140636bb595b051589262728c74de6f815f7531aecac183ec236083709e038"
+      },
+      {
+        "bytes": 53103,
+        "path": "experiments/causal_clock_boundary_20261120/WITNESS.json",
+        "sha256": "4f5a797528cb5d605d435231f4fe97d03fc0f379c30129b3757213c7fd0c128e"
+      },
+      {
+        "bytes": 18574,
+        "path": "experiments/clock_accuracy_paradox_20261120/COMPACT_WITNESS.json",
+        "sha256": "c4a5ac38954dc91a9c73f0a9ca5795d0812d3b68b7c8c3be8ecd7108f9c68b79"
+      },
+      {
+        "bytes": 63950,
+        "path": "experiments/clock_accuracy_paradox_20261120/WITNESS.json",
+        "sha256": "66a1752150e8476dfdd9fa721f48569e5525f88c5d843718fdd5ccf02ceca179"
+      },
+      {
+        "bytes": 2849,
+        "path": "experiments/clock_paradox_compact_20261120/RESULT.json",
+        "sha256": "68caddffe88ba78381e97b1114230c15283761a219d43d9b8ab688436686744f"
+      },
+      {
+        "bytes": 508,
+        "path": "experiments/native_causal_clock_20261120/RUNNER_CORRECTION.md",
+        "sha256": "ed8d5e482fd0bceceae11925a904a1b2ecee1572f8b239bb9841cede8ad7e60e"
+      },
+      {
+        "bytes": 1006,
+        "path": "experiments/native_clock_vocab_correction_20261120/ERRATUM.md",
+        "sha256": "d98b20e926d97830df84162a865f73ccdf45fb075500640eb1b059649255f206"
+      },
+      {
+        "bytes": 43123,
+        "path": "experiments/pipeline_causal_clock_20261120/WIDTH_WITNESS.json",
+        "sha256": "7186a7879ad65e34b262920588de06f1689eb65fc0a5f749766fda1e5b5d07b4"
+      },
+      {
+        "bytes": 2690,
+        "path": "experiments/raven_checked_opportunities_20261120/environment.json",
+        "sha256": "519f8386e1e5391ff6620c856be105e3e52f35d9f4f87564a1c594f5fe8865ae"
+      },
+      {
+        "bytes": 188,
+        "path": "figures/ENVIRONMENT.json",
+        "sha256": "037e3b0bd1f3b40f631991013c85f35d6f652746a95a14d60df8185d3e4fa84a"
+      },
+      {
+        "bytes": 756,
+        "path": "figures/figure-1-data.json",
+        "sha256": "cf3a1a28e3dcad9d6ca393ef24535c6652b55a0e96f7daad056f4ca795597005"
+      },
+      {
+        "bytes": 114523,
+        "path": "figures/figure-1.png",
+        "sha256": "2d9ed3fab666fa4deb272615ba9d4948a7da950a0945d38d2590eda8e61a177f"
+      },
+      {
+        "bytes": 23325,
+        "path": "figures/figure-1.svg",
+        "sha256": "9410604de3bcaba40c5875c422992ae488c971b5b631f0d03af71ba213e1883d"
+      },
+      {
+        "bytes": 1062,
+        "path": "licenses/gsm8k-MIT.txt",
+        "sha256": "86bbb73e855821d7c401912fd4bf82e34313e6e3b6fd6f909f2b6cc9e209a53b"
+      },
+      {
+        "bytes": 169,
+        "path": "licenses/gsm8k-source.json",
+        "sha256": "ed48e48a9b835753e38c056becd725f48e8959e8c90e5acc2b20158c7e07a1c8"
+      },
+      {
+        "bytes": 1083,
+        "path": "licenses/humaneval-MIT.txt",
+        "sha256": "bcba3de214851cce46ed5af42d6698044616eeace887c3231bc7a20474ab639e"
+      },
+      {
+        "bytes": 162,
+        "path": "licenses/humaneval-source.json",
+        "sha256": "bd5d49eeec1e24e0657eefdb3c58963ce51beec9881d4366b3ec012507360aaf"
+      },
+      {
+        "bytes": 728296,
+        "path": "native_fixture.json",
+        "sha256": "7853c6eb7fabf224ffcf5175737b046e9caaa1695b499ee2cefb3e7cb312e210"
+      },
+      {
+        "bytes": 8657,
+        "path": "notes/canonical-agreement-clock-proof-20261120.md",
+        "sha256": "3ce27f34d083558c5ad3f1148397d03700871529f79d976f59777ee8a9fa6061"
+      },
+      {
+        "bytes": 5631,
+        "path": "notes/chainfree-clock-proof-20261120.md",
+        "sha256": "ba2c544d526c19f69f624e9f82f4cf4c8315a936124d2244a2c74d72f64748b3"
+      },
+      {
+        "bytes": 3431,
+        "path": "notes/clock-accuracy-paradox-20261120.md",
+        "sha256": "2fd5c65d271144ccab831fc30a4b70db193f1f7729786e0e8b703cbab699121c"
+      },
+      {
+        "bytes": 4428,
+        "path": "notes/clock-prior-art-and-marginals-20261120.md",
+        "sha256": "87076dd0ed28aef29583c2010c5381865caf1e3a943428b4edb56a525bb797fc"
+      },
+      {
+        "bytes": 2283,
+        "path": "notes/native-clock-influence-result-20261120.md",
+        "sha256": "4153d6b985a709f1d9fa9e0204e43050427612859013b37e9c16725f02d5e818"
+      },
+      {
+        "bytes": 11242,
+        "path": "notes/pipeline-causal-clock-proof-20261120.md",
+        "sha256": "487b8aea64441fa4cd8b25932962bf71a641c91fcb342b0192105a996e26a8b4"
+      },
+      {
+        "bytes": 3808,
+        "path": "reproduce.py",
+        "sha256": "450ae36424a06f9e2bd42787e2f7aee4113923002681f6fd11cc7f529d32dc03"
+      },
+      {
+        "bytes": 2846,
+        "path": "scripts/audit_native_clock_influence.py",
+        "sha256": "6dfd229b8a82da1e9a0d1899aa54dcac4918d78efa03b96ab0e6f2656542c557"
+      },
+      {
+        "bytes": 4132,
+        "path": "scripts/canonical_clock.py",
+        "sha256": "c491a7bdea3c954c4cf59cae164223fe48cdb96c27f297e61a4860104315e1e7"
+      },
+      {
+        "bytes": 6070,
+        "path": "scripts/check_canonical_agreement_clock.py",
+        "sha256": "b2c71fb9deea2c00235fb67537778efc3bf2c2dab78b29912e110876b70a9a8f"
+      },
+      {
+        "bytes": 2739,
+        "path": "scripts/check_canonical_clock.py",
+        "sha256": "1b4cbe44e322bd253103d6cd561a8617cd9c931a9c891b20afb64a21dc2e94dd"
+      },
+      {
+        "bytes": 3736,
+        "path": "scripts/check_chainfree_clock.py",
+        "sha256": "8d9e0244fd0832eb86aa0ac057ae495dc821cfcdc29ebf167e692eb1abbf475b"
+      },
+      {
+        "bytes": 4637,
+        "path": "scripts/check_clock_marginal_bounds.py",
+        "sha256": "b2162cedff1ebbd3fd2c25115c86ad13a90b73216e65607dda4ce2c0c741da94"
+      },
+      {
+        "bytes": 2332,
+        "path": "scripts/check_clock_paradox_witness.py",
+        "sha256": "7aff23dfa17dcd8b042cc6f6684dea2cbb1aaf889f4b099b1bc666076d30151f"
+      },
+      {
+        "bytes": 5733,
+        "path": "scripts/check_native_agreement_clock.py",
+        "sha256": "2580b06b51e94eb61de3813be52984d668bea535fb9f89dc1796ecf81331e902"
+      },
+      {
+        "bytes": 7037,
+        "path": "scripts/check_native_causal_clock.py",
+        "sha256": "9c1e67c2a180355d2ae53578cc2e796a2abb3482e3dd40500f5bc163f917f510"
+      },
+      {
+        "bytes": 13122,
+        "path": "scripts/check_pipeline_causal_clock.py",
+        "sha256": "6b4d31a821262061e1c59374bfd6daaa890873ee0adfbf19faaf0d54ef8f3a86"
+      },
+      {
+        "bytes": 3244,
+        "path": "scripts/find_causal_clock_boundary.py",
+        "sha256": "b8a9b41cc7d7d4a738f652b3c234fe28502df648236f6f49445fa753f6ee9c3f"
+      },
+      {
+        "bytes": 3142,
+        "path": "scripts/find_clock_accuracy_paradox.py",
+        "sha256": "5044da0bbff9ac33347f2e08b7db4961725ac668a446cebda30a9a892ab14984"
+      },
+      {
+        "bytes": 5449,
+        "path": "scripts/measure_native_clock_influence.py",
+        "sha256": "6e88a088db03225a8084a4ae24215ef3d1aee56400079c5ae4bebe620e5f0585"
+      },
+      {
+        "bytes": 2356,
+        "path": "scripts/plot_clock_counterexamples.py",
+        "sha256": "64b179796ae12796f02c659d7c1a16d74726a8446a0a1fee2a55541b2f1cb2a7"
+      },
+      {
+        "bytes": 9273,
+        "path": "scripts/replay_raven_root_oracle.py",
+        "sha256": "d41f7046955e53ef8aa99b13d662a9a200514f122d632f5fedf1f6ac88121226"
+      },
+      {
+        "bytes": 1601,
+        "path": "scripts/unpack_clock_fixture.py",
+        "sha256": "c785ae342dd778eb2ed9c55666e9a2dec5792cd5774dd98c5964f9db8e87186b"
+      },
+      {
+        "bytes": 818,
+        "path": "summaries/canonical_agreement_clock_20261120.json",
+        "sha256": "59816b7db63eb7b8bccbf49aee80c183e859ea9e9b9f525f51af57687cdc00a1"
+      },
+      {
+        "bytes": 578,
+        "path": "summaries/canonical_clock_quotient_v2_20261120.json",
+        "sha256": "1e2e0417276325ac7725221949ef52bfb7db989ecc6b7fa7ff2bac8eb7bdaafe"
+      },
+      {
+        "bytes": 5775,
+        "path": "summaries/chainfree_clock_20261120.json",
+        "sha256": "9cb601c0fa9fb6909f3d6cd009d8007176faf51be30855eeb687b4b2b377f6f7"
+      },
+      {
+        "bytes": 31193,
+        "path": "summaries/clock_marginal_bounds_20261120.json",
+        "sha256": "87b2969e4a7294bb0c963b07260994c2a16e5907ac31627ab73152f7ece0b81d"
+      },
+      {
+        "bytes": 43961,
+        "path": "summaries/native_agreement_clock_v2_20261120.json",
+        "sha256": "e0274221c017572bb7970947b6f7e32065fc81a39692a6c6e4322126c0ece877"
+      },
+      {
+        "bytes": 113918,
+        "path": "summaries/native_causal_clock_v3_20261120.json",
+        "sha256": "84a4afd0cd1fc355ea4f75ab0cb9cb3b3abcdf7d40ea715ff8051ae20f103939"
+      },
+      {
+        "bytes": 30872,
+        "path": "summaries/native_clock_influence_20261120.json",
+        "sha256": "eb41a4539229ddd5d86ed4251492b881681f019296fd1ba760251280fa9b2f80"
+      },
+      {
+        "bytes": 3432,
+        "path": "summaries/native_influence_audit.json",
+        "sha256": "1ae6f183b6249030b1e09cdf8da3a37b70eca64c2c3d6c15ef203f9427a1666f"
+      },
+      {
+        "bytes": 777,
+        "path": "summaries/pipeline_causal_clock_20261120.json",
+        "sha256": "d02c123aec8279feb2d3fad5d601f2f31c87641cfb72de6ec6f43f670e2781cc"
+      }
+    ],
+    "name": "faster_decoding_looped_transformers_2_v1_91cc609b23bf0a8d.zip",
+    "sha256": "91cc609b23bf0a8d4879ad68cbc5115a82f2046c98cee4b13b7087944ad15d67",
+    "source_url": "https://rstation.ai/api/v1/papers/faster_decoding_looped_transformers_2/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261120T222605923139Z/faster_decoding_looped_transformers_2_v1_91cc609b23bf0a8d.zip"
+  },
+  "tags": [
+    "looped transformers",
+    "pipelined speculative decoding",
+    "exact decoding",
+    "cost model",
+    "batch invariance"
+  ],
+  "title": "What determines serial work in multi-depth single-chain decoding?",
+  "version": 1
+}

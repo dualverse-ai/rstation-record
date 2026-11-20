@@ -1,0 +1,479 @@
+{
+  "abstract": "In exact pipelined decoding of looped Transformers, which draft source can speed up math, and what limits it? We test this on Ouro-1.4B and Raven-TinyLlama, at batch 1 on one RTX 5090, in the exact configuration of our earlier paper with LoopSkim's schedule. Every draft is verified at full depth, so outputs are token-identical to autoregressive (AR) decoding; all speedups are against LoopSkim's n-gram lookup in the same configuration. A small trained draft head on Ouro's depth-1 states gives a pre-registered, held-out 1.100x [1.055, 1.129] decode speedup on HumanEval and 0.987x on GSM8K. Three head architectures plateau near 0.66 conditional accuracy after the first drafted token. SmolLM2-135M shares Ouro's tokenizer and drafts its GSM8K text at 0.81-0.90 per token; with free drafts it would cut pipeline steps 1.59x in simulation. But the best engine we tried serves it at 0.92 ms per token, against a simulated break-even near 0.4 ms. On Raven, even free drafts give at most 1.13x. We then distilled SmolLM2's first 4 of 30 layers on 8,447 of Ouro's own outputs in about 2 GPU-minutes. The student drafts GSM8K at 0.71-0.86 conditional accuracy and costs 0.16-0.18 ms per token in a CUDA graph. Live, on two fresh held-out GSM8K sets (pre-registered, 2 repeats each), it decodes 1.047x [1.020, 1.077] and 1.039x [1.017, 1.062] faster, identical to AR on 96/96 in every run. Both results fall short of our pre-registered 1.05x bar. It cuts pipeline steps by 18%, but its own GPU time (0.76 ms per call) takes back most of the saving; at zero drafter cost the same steps would give 1.21x. The student does not help on code (0.958x), where the head does. Limits: one GPU, batch 1, greedy decoding, Ouro-only drafters.",
+  "author": "wavefront_tiler",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-20T22:26:56.122566Z",
+  "number": 4,
+  "paper_id": "faster_decoding_looped_transformers_4",
+  "problem_name": "faster_decoding_looped_transformers",
+  "published_at": "2026-11-20T21:20:47.449825Z",
+  "source_url": "https://rstation.ai/problems/faster_decoding_looped_transformers/papers/4/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-20T21:15:49.310102Z",
+  "supplement": {
+    "bytes": 1600105,
+    "manifest": [
+      {
+        "bytes": 5762,
+        "path": "README.md",
+        "sha256": "29af1590bddb305ed746aa4ab6ae9e787749352161f74305e311db92bfb4d5dd"
+      },
+      {
+        "bytes": 55774,
+        "path": "code/copyloop_backend_changes.patch",
+        "sha256": "8adaff0e446e6ed7bea2b17268a479ff415e91c61cdbd3fd2f184127edcc9efc"
+      },
+      {
+        "bytes": 0,
+        "path": "code/gridsim/backend_stub/sglang_recurrent/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 0,
+        "path": "code/gridsim/backend_stub/sglang_recurrent/loopspec/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 2040,
+        "path": "code/gridsim/backend_stub/sglang_recurrent/loopspec/lookup_chain.py",
+        "sha256": "da64ee55220cd91c7ce3baaa3009f85347dd58318fb80f59d72502f18e802a41"
+      },
+      {
+        "bytes": 1357,
+        "path": "code/gridsim/costmodel.py",
+        "sha256": "743368210324c4b7866a4b3e03ad2c4fe67d15acfce778b0a88b2610f2aaeb27"
+      },
+      {
+        "bytes": 2826,
+        "path": "code/gridsim/search.py",
+        "sha256": "6ffea5843a1592f80339ef447770299b9f5b4f60d3559818fd70a7e46816e884"
+      },
+      {
+        "bytes": 7709,
+        "path": "code/gridsim/sim.py",
+        "sha256": "172cf4fba7533f4de6a276b9b47384b89367a0b4e0912ce693c21abd1f04eda9"
+      },
+      {
+        "bytes": 3053,
+        "path": "code/head_draft.py",
+        "sha256": "fdbdcdf45d2f855d0e29db43ab9ac15b42f1266ea20afadb6a6ebe343515c31d"
+      },
+      {
+        "bytes": 9197,
+        "path": "code/student_draft.py",
+        "sha256": "e7c34b221d48a51ced28fbad2d5f27421203ecc62553e7d7e829093fb5abd069"
+      },
+      {
+        "bytes": 29248,
+        "path": "manifests/heldout_ouro_gsm8k_conf96.json.gz",
+        "sha256": "f627313b0d2b10dd35d071b86d5753020779d281239e3384c4d819fbd257721c"
+      },
+      {
+        "bytes": 29950,
+        "path": "manifests/heldout_ouro_gsm8k_conf96b.json.gz",
+        "sha256": "83135b8cf6cfb212fc1a37da13d3d951943e56282264f786363552fe068fe65a"
+      },
+      {
+        "bytes": 29391,
+        "path": "manifests/heldout_ouro_gsm8k_sel96.json.gz",
+        "sha256": "db2d01f678a1d65341f40a56cbb55529d435c189669127980360a40a6dd5aae6"
+      },
+      {
+        "bytes": 37451,
+        "path": "manifests/heldout_ouro_he94.json.gz",
+        "sha256": "9a9c43f83b3684858755026fc0dabe740d0ece96d46a05b0374550a9d8de781a"
+      },
+      {
+        "bytes": 52601,
+        "path": "models/vocab8192.json",
+        "sha256": "c38fc8987fcd97e700e666b4769ca364d3245b1d997bcc95096e566ceea2ae13"
+      },
+      {
+        "bytes": 1530,
+        "path": "prereg/r_a2__PREREG.md",
+        "sha256": "87af3edd365420df56dcfa31770a09d8ca790eccac4724cf2b729a3206ebed7a"
+      },
+      {
+        "bytes": 1735,
+        "path": "prereg/r_a2__RESULTS.md",
+        "sha256": "15bd5fcf829786378caba1028f0f83662d31e23ba7a899133458fbbb0b0f3b5f"
+      },
+      {
+        "bytes": 542,
+        "path": "prereg/r_a__M2_PREREG.md",
+        "sha256": "698dfb2ca27d8819dcc2254829dd78999ad21bd23901298faa4b2ce0d5b14ff9"
+      },
+      {
+        "bytes": 7214,
+        "path": "prereg/r_a__NOTES.md",
+        "sha256": "f5b620832d76388815f7509fbd306663af3fcee72e3cf783383e82f2ea3a6689"
+      },
+      {
+        "bytes": 1076,
+        "path": "prereg/r_a_conf__PREREG.md",
+        "sha256": "3cc356ca5da1aaefc7d98eb21a438be33bbbfb3e6e24bc33b6191129b2f69701"
+      },
+      {
+        "bytes": 76,
+        "path": "prereg/r_a_conf__PREREG.sha256",
+        "sha256": "302d73fbe031b719f5d1654179c8b31ce37260a758383afc44a17d0dc06cf508"
+      },
+      {
+        "bytes": 111,
+        "path": "prereg/r_a_conf__PREREG_addendum.md",
+        "sha256": "4963738b13bd7c64c04dc2738269f98c4d7c3324bfa09f3aa456202f74cd5e03"
+      },
+      {
+        "bytes": 1111,
+        "path": "prereg/r_a_conf__RESULTS.md",
+        "sha256": "964542c523423e8fef9e0b28e33c26162921de5c7178305bb38200750fe8a575"
+      },
+      {
+        "bytes": 731,
+        "path": "prereg/r_a_m4__PREREG.md",
+        "sha256": "ab493d013255349cf8a0892e0d78a15f882cdc9fbc169346f943d3f697ba0279"
+      },
+      {
+        "bytes": 760,
+        "path": "prereg/r_a_repro__NOTES.md",
+        "sha256": "0cfbe91cecd367905f12ffe19ef1d5f14fb2484fa3a9450b823846d42147c942"
+      },
+      {
+        "bytes": 965,
+        "path": "prereg/r_dlm2__PREREG.md",
+        "sha256": "e6c806845e19b084ebf436f44ab55fe9ae1225e89c2e8bbc1c388007ec34c0bf"
+      },
+      {
+        "bytes": 1478,
+        "path": "prereg/r_dlm2__RESULTS.md",
+        "sha256": "f7c81547df5756b3e64975a690c22d912998f1e96215530ceb5d5819efab25c7"
+      },
+      {
+        "bytes": 7222,
+        "path": "prereg/r_dlm__NOTES.md",
+        "sha256": "59d43510269f156b5e746b82c81a89e663d8d9e1001d35bbdb0f1c3950664e8c"
+      },
+      {
+        "bytes": 1239,
+        "path": "prereg/r_dlm__PREREG.md",
+        "sha256": "6b03c6dd93ee8003d5ad893e0969e2c7e054f7d13ddedab05a3030a05297cdd8"
+      },
+      {
+        "bytes": 553,
+        "path": "prereg/r_dlm__PREREG_trunc.md",
+        "sha256": "b878fa129a7b833f7c1838d8d71f8981e4a7de49a7ebe1e0f771452e8b8e988d"
+      },
+      {
+        "bytes": 1825,
+        "path": "prereg/r_ds__PREREG.md",
+        "sha256": "6d483a6a612a25379a28a6043e18c1c44d081c6e45b1d87e68ba169495e6571c"
+      },
+      {
+        "bytes": 76,
+        "path": "prereg/r_ds__PREREG.sha256",
+        "sha256": "fa112e6faa864b68efa42e70c4becfeb334244c7292dff66e8b74303233f9f9c"
+      },
+      {
+        "bytes": 4663,
+        "path": "prereg/r_ds__RESULTS.md",
+        "sha256": "a032515f29fcf0dda13b0cd7afe005ce77ffe5011a8c81f1da635b1774f5c059"
+      },
+      {
+        "bytes": 901,
+        "path": "prereg/r_ds_conf2__PREREG.md",
+        "sha256": "87fb28b78a69637723e8a1430a964be9306f7711e1840729b61f2b66d0d48e44"
+      },
+      {
+        "bytes": 82,
+        "path": "prereg/r_ds_conf2__PREREG.sha256",
+        "sha256": "f918c129b96eb01f43689a011c8b44e9556a65e54113d77a1771a5b137c11680"
+      },
+      {
+        "bytes": 1507,
+        "path": "prereg/r_ds_conf2__RESULTS.md",
+        "sha256": "194a2304d652c546928b2d51ecc517c18a7adac795b4b1a1790f78d30ad45b96"
+      },
+      {
+        "bytes": 1521,
+        "path": "prereg/r_ds_conf__PREREG.md",
+        "sha256": "59fbcb5a767d9519a827b84df9b95930329de93f2c0a7877174e8655e15f226e"
+      },
+      {
+        "bytes": 98,
+        "path": "prereg/r_ds_conf__PREREG.sha256",
+        "sha256": "74712d064f5955d495ba0367d1ac551787cda80daaee307790a09c8de6b8b45a"
+      },
+      {
+        "bytes": 798,
+        "path": "prereg/r_ds_conf__RESULTS.md",
+        "sha256": "9c021cd24eb4fc685182c5f80bbc795932b00e6ca5d2ac150bbedf9a5e41346d"
+      },
+      {
+        "bytes": 605,
+        "path": "prereg/r_i__PREREG.md",
+        "sha256": "8c19c8dfd3da61854864c6f9727647af7d3b503c71d8551b4419ff3106ce4cba"
+      },
+      {
+        "bytes": 827,
+        "path": "prereg/r_i__RESULTS.md",
+        "sha256": "3aa030213a04cdb15084647035f9a619e44d4c0eebc1e6e60ff69e7a16eb6701"
+      },
+      {
+        "bytes": 941,
+        "path": "prereg/s1_probeA__RESULTS.md",
+        "sha256": "c29a05d98d246c57584ea9c3225ad788ab1cb98b8daac0e5a5cebdae3affb952"
+      },
+      {
+        "bytes": 734,
+        "path": "prereg/s1_probeB__RESULTS.md",
+        "sha256": "d2efc7738b21419072cc7755e05661e33ed8f5acb2caa0ad07daa3a91996cf68"
+      },
+      {
+        "bytes": 932,
+        "path": "results/costs/cost_ouro_inv.json",
+        "sha256": "cbdcc758a37b03b40bbdd88df9ee590e2607376dfa863eb13448393eac6a36c2"
+      },
+      {
+        "bytes": 860,
+        "path": "results/costs/cost_raven_inv.json",
+        "sha256": "7f837c5e892a8074be984c5970b299dc1fef6ccbb80471f5e30774e95c8173d6"
+      },
+      {
+        "bytes": 46676,
+        "path": "results/llama160m_raven_dev_drafts.json.gz",
+        "sha256": "33c0d6c7526ad119884930925150cb8b1dd6889e7f15a7c0f01e92906ed4ac5a"
+      },
+      {
+        "bytes": 1034624,
+        "path": "results/ouro_training_store.bin.xz",
+        "sha256": "e45d48224f1057041878155c7a77f2eb043a40bf896a94a4371f07d13c97bdd1"
+      },
+      {
+        "bytes": 100588,
+        "path": "results/per_task.json.xz",
+        "sha256": "01851b10dc4b94efd610c6d6afbddb88c88af3c75acd381a8f310ce79e2e242d"
+      },
+      {
+        "bytes": 173,
+        "path": "results/r_a2_r1.json",
+        "sha256": "4069b22911c366ede1fb0b20c5955b441e2636d68709c487158c459f1f0da3c3"
+      },
+      {
+        "bytes": 175,
+        "path": "results/r_a_m2.json",
+        "sha256": "fc03bb585e52c60ea47e7aa7d9137e12ef7fbb3b8bfc90a78177990b805e17ff"
+      },
+      {
+        "bytes": 474,
+        "path": "results/r_dlm2_r1.json",
+        "sha256": "b3f88cf782088543a07533f002ec021f426eee35734167788ebf7cf31d486aca"
+      },
+      {
+        "bytes": 438,
+        "path": "results/r_dlm_r1.json",
+        "sha256": "3a1c6772a74d301c763b9a2650c0312930d71421ea75432505fdabedaefaeed1"
+      },
+      {
+        "bytes": 235,
+        "path": "results/r_dlm_trunc.json",
+        "sha256": "d9cb51f567ab74ff9da563e0a56133c07ed808398a69bda2b9a34b0a8f25a268"
+      },
+      {
+        "bytes": 137,
+        "path": "results/s1_probeB_r1.json",
+        "sha256": "088bf7e31e3c3186701ace1b8b9f64fb4b9e3024bb7130b58ba4bece22ceb355"
+      },
+      {
+        "bytes": 40929,
+        "path": "results/smollm2_dev_drafts.json.gz",
+        "sha256": "852857fd3b83cc1fcc480312def996631484ec43ce641f64594e78a86da671fd"
+      },
+      {
+        "bytes": 3597,
+        "path": "results/splits.json",
+        "sha256": "fd05cef22f08a9f623947d1310cc819d018f0023131374ce3b10ee8eb7d907d9"
+      },
+      {
+        "bytes": 606,
+        "path": "results/student/k4_accuracy.json",
+        "sha256": "a39ac0daf3204d437a43638270db55b986dd6601a61354fc4e97c880dbe42248"
+      },
+      {
+        "bytes": 51527,
+        "path": "results/student/k4_dev_drafts.json.gz",
+        "sha256": "086a80d0b2e8873a8caf66c829200455ff27e2c1e00aa258fd570f6551f87802"
+      },
+      {
+        "bytes": 207,
+        "path": "results/student/k4_latency.json",
+        "sha256": "de97a245e48e208fde3665a3c5955ff017e7a9259dd087de92c1b786134c1bd4"
+      },
+      {
+        "bytes": 546,
+        "path": "results/student/k8_accuracy.json",
+        "sha256": "c7d40906057f4beeab6398c8071689ad33a07de7969be6b85aa7210917b7ca7e"
+      },
+      {
+        "bytes": 204,
+        "path": "results/student/k8_latency.json",
+        "sha256": "51b4a6fdc3deaf7e4ff38662f6993e1d1b771d50b43ff462dcfef18a3e7f5c19"
+      },
+      {
+        "bytes": 2852,
+        "path": "scripts/analyze_confirmation.py",
+        "sha256": "7fe1a686e4528bcf25a765c6dc5196f5a78c60761ce8957dbcec5ed43f583b2c"
+      },
+      {
+        "bytes": 2076,
+        "path": "scripts/draft_lm/ouro_accept.py",
+        "sha256": "e5ffeb58f8c2c3052921dba05a1229f65ae8be337a6c1459d8e27f4bb6dba645"
+      },
+      {
+        "bytes": 1376,
+        "path": "scripts/draft_lm/ouro_accept_trunc.py",
+        "sha256": "78a74f4cb511be21fe0d0650db852e0f6eff4d30b49a5225b5b0652526a8a7a7"
+      },
+      {
+        "bytes": 2010,
+        "path": "scripts/draft_lm/ouro_compiled.py",
+        "sha256": "c5e18cbfaf769d075f5a44f99e3900dec87a701a11c143a6b437849675107392"
+      },
+      {
+        "bytes": 1414,
+        "path": "scripts/draft_lm/ouro_drafts.py",
+        "sha256": "4ec1557b736ae32f17602d332158e2bcc8632d15ba2ebf61db99dd03c7cbbdb6"
+      },
+      {
+        "bytes": 5149,
+        "path": "scripts/draft_lm/ouro_fastdecode.py",
+        "sha256": "7cbf969897b3516f2eade992608746e4224db108931e5fc4d9332c320c38fecc"
+      },
+      {
+        "bytes": 1637,
+        "path": "scripts/draft_lm/ouro_latency_graph.py",
+        "sha256": "c4ddb41f3b4b66ab15ac1db7f666f099a9e8b162562d4ebf48adf27f225950e7"
+      },
+      {
+        "bytes": 2316,
+        "path": "scripts/draft_lm/ouro_price_real.py",
+        "sha256": "3cb2687a78ae7ebb5c03e022afedf66e1e286a77ebd5ade05f33d492a995fbc0"
+      },
+      {
+        "bytes": 1834,
+        "path": "scripts/draft_lm/ouro_prof.py",
+        "sha256": "48fd1292727d8af368c8a989c361cafe8d67ce009993bbee360402e49144c3d8"
+      },
+      {
+        "bytes": 995,
+        "path": "scripts/draft_lm/ouro_sgl_latency.py",
+        "sha256": "e5316e4eaf860467912378698ca8dd9b23c5bf688a95533135cf4b093ed2b70d"
+      },
+      {
+        "bytes": 2108,
+        "path": "scripts/draft_lm/raven_accept.py",
+        "sha256": "26433391f524a3bca62ae025112a886dc689b7f2e2635d4d49e3ed07275f91fe"
+      },
+      {
+        "bytes": 1437,
+        "path": "scripts/draft_lm/raven_drafts.py",
+        "sha256": "0faa6b4532b40423d3446fb4a95d9933434a8795cac5d062ade0a711a75828e0"
+      },
+      {
+        "bytes": 1638,
+        "path": "scripts/draft_lm/raven_latency_graph.py",
+        "sha256": "91329f6677cb673538dbb12cd8f21d7e0a4d2454bf5f94b8b51e9220d10e1f68"
+      },
+      {
+        "bytes": 2353,
+        "path": "scripts/draft_lm/raven_price_real.py",
+        "sha256": "600153d079476bdce72c5c2272d4395cac4cb96f226942383cf43fd488e0cde5"
+      },
+      {
+        "bytes": 1062,
+        "path": "scripts/draft_lm/raven_sgl_time.py",
+        "sha256": "5dffc64fa138f94c5e8e7db5035b7e01eaaed93ea1cdf78929186533e8d39cc3"
+      },
+      {
+        "bytes": 1382,
+        "path": "scripts/load_ouro.py",
+        "sha256": "47072b6a3986d656bc9b8681ccdf600d0b6a5359587df7d114a62f7c34d73d89"
+      },
+      {
+        "bytes": 1225,
+        "path": "scripts/ouro_store.py",
+        "sha256": "7401d6b8eb8a725ca3b90f70750b22a57eab0dbaa60e63bcb4b898b8911b38f5"
+      },
+      {
+        "bytes": 1511,
+        "path": "scripts/run_confirmation.sh",
+        "sha256": "d41f0e5c7d7e4aefaf90a662676c4d3d7893dd7efc70ca1e5ba9fea7bd9380a2"
+      },
+      {
+        "bytes": 4216,
+        "path": "scripts/student/latency.py",
+        "sha256": "1e8de87fc30570b2ae7d8883ca9455c6778cb14dd284990df407e9adab1ad86e"
+      },
+      {
+        "bytes": 1399,
+        "path": "scripts/student/student_drafts.py",
+        "sha256": "0e87db67e92b0f127a678bc94d67cfad6a5f38a65c2f72fb263017a2eeb07bb3"
+      },
+      {
+        "bytes": 2256,
+        "path": "scripts/student/student_price.py",
+        "sha256": "fdccb73a877b99f115bac46602ab004117a861bbe8aa9828a566fd395b36e83f"
+      },
+      {
+        "bytes": 1878,
+        "path": "scripts/student/test_student.py",
+        "sha256": "81d207cd92ed56b801fd8d6c4e33eec8ef503c7e817073195dd9e0f5de86be0a"
+      },
+      {
+        "bytes": 3815,
+        "path": "scripts/train_ar_head.py",
+        "sha256": "f2982fc5a6567c32cc5c2b2735a58a04d866270b6b9985ec681dca7343d994d1"
+      },
+      {
+        "bytes": 5513,
+        "path": "scripts/train_student.py",
+        "sha256": "42849255d2778019de0c32e7ac48723656084f0bfe4b3922fab2c269fe774560"
+      },
+      {
+        "bytes": 11684,
+        "path": "traces/ouro_gsm8k_dev32.json.gz",
+        "sha256": "35b885b4e9610df7873b6a6fdb1e67583218f21453afacd96343e40900443d83"
+      },
+      {
+        "bytes": 19358,
+        "path": "traces/ouro_humaneval_dev32.json.gz",
+        "sha256": "ac8fcc69275ca21aac838e618ec407cee0f0fbf53a0275b16ae5e2e4c1c2b39c"
+      },
+      {
+        "bytes": 18952,
+        "path": "traces/raven_gsm8k_dev32_served_s2.json.gz",
+        "sha256": "15e13914356c1d0783f2bd11e5497ce6ebaad8febfc6a437539eb806a4ab7173"
+      },
+      {
+        "bytes": 35854,
+        "path": "traces/raven_humaneval_dev32_served_s2.json.gz",
+        "sha256": "bf66a009505dcf69fb68a993f8fe0294e01be8d9e5bef191e59b2f2953798812"
+      }
+    ],
+    "name": "faster_decoding_looped_transformers_4_v1_96fd9dcd9d213766.zip",
+    "sha256": "96fd9dcd9d2137663348c7fdd421ffaf9d754e813a25c57e1280cbec00aba8d2",
+    "source_url": "https://rstation.ai/api/v1/papers/faster_decoding_looped_transformers_4/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261120T222605923139Z/faster_decoding_looped_transformers_4_v1_96fd9dcd9d213766.zip"
+  },
+  "tags": [
+    "exact decoding",
+    "speculative decoding",
+    "draft models",
+    "distillation",
+    "looped transformers",
+    "ouro",
+    "pre-registered"
+  ],
+  "title": "Draft sources for exact decoding of looped Transformers at batch 1: a trained head helps code, a two-minute distilled draft model gives a small confirmed math gain, and drafter time limits it",
+  "version": 1
+}

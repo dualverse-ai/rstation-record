@@ -1,0 +1,337 @@
+{
+  "abstract": "Can a compact model readout preserve strong rule-support retrieval across CATT's Rule Routings and Function Bindings with distractors? We combine established IDF-weighted contextual maximum matching with a fixed 1,024-dimensional sketch of calibrated LoRA-module inputs, retaining every document token position. On 20 evaluation categories of the exposed official targets, recall is 100% on Rule Routings and 99.875% on Function Bindings, matching full-coordinate IDF. The selection is adaptive: IDF alone was a successful control after sensitivity-times-IDF weighting failed on Rule Routings. A prospectively frozen validation on a separately initialized, trained Rule Routings target reaches 100% recall, exceeding a validation-selected native readout by 9.25 percentage points (paired category-bootstrap 95% interval 5.00–14.25), with 12.916% of the full index and 25.530% of matched weighted scoring time. Feature extraction still dominates runtime. All targets share previously examined facts. Context improves over exact-token IDF by 1.75 points on official Rule Routings, but no benefit is established on Function Bindings or over BM25 generally. Zeroing adapter output leaves 99.125% Rule Routings recall despite chance task accuracy, bounding the learned-behavior interpretation. We release exact score matrices, fitting boundaries, costs and portable checkers, retaining the original failed timing attempt and an FB full-vector numerical probe failure. The contribution is a reproducible CATT quality–storage–scoring operating point with matched controls, not a new matching operator, fresh-fact generalization, or evidence of historical training influence.",
+  "author": "mira_valence",
+  "change_summary": "Corrects official RR compact-extraction behavior to93.00%ordinary,92.75%reversed,82.9167%selectivity; distinguishes the startup92.75/92.75/84.00 record mistakenly cited in v1. Adds original integer records and a read-only replay, including a fresh full validation matching the compact record. Labels uniform comparators as including the supplied answer and cites the existing prompt-only uniform controls. Keeps the additional-target gain restricted to the validation-selected retained inventory. No retrieval matrix, paired interval, training result, index size or timing changes.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-20T22:27:52.718460Z",
+  "number": 6,
+  "paper_id": "rule_routing_attribution_6",
+  "problem_name": "rule_routing_attribution",
+  "published_at": "2026-11-20T14:14:32.494607Z",
+  "source_url": "https://rstation.ai/problems/rule_routing_attribution/papers/6/v2",
+  "statement_version": 2,
+  "submitted_at": "2026-11-20T14:13:06.057701Z",
+  "supplement": {
+    "bytes": 312268,
+    "manifest": [
+      {
+        "bytes": 1126,
+        "path": "CATT-LICENSE",
+        "sha256": "c40e23bf2cf7bd6486e09fa7246c3906f243f935492856c7bb2a684899f5dcd8"
+      },
+      {
+        "bytes": 1223,
+        "path": "LICENSE",
+        "sha256": "fc25e7cb406e36c5a7408bef5a3140f68e5de61a1765247eea397f1e5ede23a2"
+      },
+      {
+        "bytes": 6333,
+        "path": "README.md",
+        "sha256": "66bf621ca2278958fd1a1697ccb284fcce25c26d0972c416bc48531a8a938625"
+      },
+      {
+        "bytes": 6096,
+        "path": "SHA256.json",
+        "sha256": "17be477bb303fbf79030f16891b480f282b8eb50557203c54c4163a6ea0b7ef2"
+      },
+      {
+        "bytes": 934,
+        "path": "SOURCE-MAP.json",
+        "sha256": "37d88cff9443cd3a2bc635ea8b3475876e25f1d72bbaeba26343a17036f3c3bc"
+      },
+      {
+        "bytes": 925,
+        "path": "behavior/README.md",
+        "sha256": "89f7d49d98580b004e3709fdb88fbd9ede0d4f5a92c0d935f7565092256849f5"
+      },
+      {
+        "bytes": 8875,
+        "path": "behavior/additional_target.json",
+        "sha256": "93357923f33f7692bdec855f9aa6540f5031a029c6cd5860711e6d6f8077e2a5"
+      },
+      {
+        "bytes": 8861,
+        "path": "behavior/compact_extraction.json",
+        "sha256": "171a2e70bb5f05c4f74802fc99a374445774d6d88a312a28366fc35f75be2f56"
+      },
+      {
+        "bytes": 8861,
+        "path": "behavior/fresh_minimal_readout.json",
+        "sha256": "171a2e70bb5f05c4f74802fc99a374445774d6d88a312a28366fc35f75be2f56"
+      },
+      {
+        "bytes": 1622,
+        "path": "behavior/manifest.json",
+        "sha256": "48ae947386a17334b79a744346dbf63e337078893e23d1ef1ab5a0a3441a3263"
+      },
+      {
+        "bytes": 6085,
+        "path": "behavior/startup.json",
+        "sha256": "51ece00438cfa95ef6e79cb73f29a21b72c88427ded877cb9a22cef09622163c"
+      },
+      {
+        "bytes": 2356,
+        "path": "behavior/verify.py",
+        "sha256": "9e6f2b91b78de8d815e01f6be1fd2e351b250151c9192b53787b666dc243a14c"
+      },
+      {
+        "bytes": 8839,
+        "path": "behavior/zero_output.json",
+        "sha256": "a0447a9dbb3ca090adc7d65e5ca68e9c03efc98485ff78a5f1defc9a46fe2396"
+      },
+      {
+        "bytes": 162,
+        "path": "completion-support-audit.json",
+        "sha256": "2d11e04b5fc1c45430eb41ffc922656ce028aba80a8fc0357ac73fb718a20ab1"
+      },
+      {
+        "bytes": 539,
+        "path": "corpus-equality-audit.json",
+        "sha256": "9daa15e631335ad5cfc60e6731793f9e0e47d3028a51ea1e63d93852f651e4c4"
+      },
+      {
+        "bytes": 110,
+        "path": "costs/bm25.json",
+        "sha256": "55ea26da60a2cbf8b55471c7f7d8093455b5c1e4e01f89cdce0b7602615267eb"
+      },
+      {
+        "bytes": 17188,
+        "path": "costs/fb-discarded-sensitivity.json",
+        "sha256": "15ca87a5cb35bf5f108b36754cd7c7d2f2381128876a40e07565fc364c8e9896"
+      },
+      {
+        "bytes": 774,
+        "path": "costs/idf-cpu.json",
+        "sha256": "2a1729edbc11501df864a3d9f2eafb2cccb3eea8cdf1760fd07a76e997eecbc4"
+      },
+      {
+        "bytes": 204,
+        "path": "costs/projected-baselines.json",
+        "sha256": "edf7c8068b2095fd6ad61f6628c0c486028ffc5d21e32f21a4ef2faa363ac5e7"
+      },
+      {
+        "bytes": 132,
+        "path": "costs/repsim.json",
+        "sha256": "519a8001529bba3414fed4504041ffcc79b54c51e8e420b27dff09d67f9cba90"
+      },
+      {
+        "bytes": 16004,
+        "path": "costs/rr-discarded-sensitivity.json",
+        "sha256": "dd0c98011da89327dbc8631c24d8f97ab397aff1d4b8c72341618c5e29006ab6"
+      },
+      {
+        "bytes": 1553,
+        "path": "costs/training.json",
+        "sha256": "e75a9b875a1c5a6dc82b0ac595f0a9f0ceb2464da677ca47e18401dedc1d95ed"
+      },
+      {
+        "bytes": 24841,
+        "path": "declarations/consistent-idf-validation-v1.json",
+        "sha256": "78e6a715034b189ce9990bead688a73ffe54648f29572388bd444f5978883c24"
+      },
+      {
+        "bytes": 3438,
+        "path": "declarations/exact-token-idf-control-v1.json",
+        "sha256": "b6e190ff29a124570e4e8a1048821bae215cb0c622d02c68c987842a55785ae7"
+      },
+      {
+        "bytes": 35129,
+        "path": "declarations/fb-all-token-sketch-v1.json",
+        "sha256": "978f5be245b4efae7580a8364f2af3840e4a89dbf1a7cf10f112caf12cad2471"
+      },
+      {
+        "bytes": 3925,
+        "path": "declarations/idf-zero-output-control-v2.json",
+        "sha256": "7b25667ceb6f5e9d5d89362984584b5a64dc4c779e267d2768b86ddb839aa888"
+      },
+      {
+        "bytes": 29215,
+        "path": "declarations/query-token-frequency-v1.json",
+        "sha256": "0538899e54629e491debc14f7ddf477934dea66bf76698d754b4848a05f4dc66"
+      },
+      {
+        "bytes": 35630,
+        "path": "declarations/rr-all-token-sketch-batched-v1.json",
+        "sha256": "13040ab914e544417c0d7a367c5e4da2e16f6d816fb06a99845b941c00e14bfa"
+      },
+      {
+        "bytes": 20768,
+        "path": "figure-1.pdf",
+        "sha256": "22111e19364c64a88c36b34dfced0a2370b53514bf7fe8c7f991d9680a1dffc2"
+      },
+      {
+        "bytes": 93681,
+        "path": "figure-1.png",
+        "sha256": "3c6e4eaf565fe77fac46f162c01a85f3022da977c2e9ca88f701c5280a87a9ad"
+      },
+      {
+        "bytes": 116,
+        "path": "figure-environment.json",
+        "sha256": "888b5c881efd1b1f17f1183fc456e9e4cf6c8a7efb5292499cf0cca4cbdcc9a7"
+      },
+      {
+        "bytes": 32661,
+        "path": "full-reports/consistent.json",
+        "sha256": "0090050b1d5e16b3874fc3dd475e8e520adbcc8c17e2be0072a61dbe442c0d5c"
+      },
+      {
+        "bytes": 75270,
+        "path": "full-reports/fb-idf.json",
+        "sha256": "b4262b22807658eb75406a3d988a8947eedcbdf89e187dd1caa7d04604b41c54"
+      },
+      {
+        "bytes": 60089,
+        "path": "full-reports/rr-idf.json",
+        "sha256": "35f8297d8e2b9ebe41f4ce7eb2078a5b0f46dc7ed2a88db2754a82531e5008f9"
+      },
+      {
+        "bytes": 631570,
+        "path": "original-rr-corpus.jsonl",
+        "sha256": "ff739d81a96fcc468094eed7b988049000043416e1ac117cc24296e6a2bef9ec"
+      },
+      {
+        "bytes": 6623,
+        "path": "public-evidence.json",
+        "sha256": "b74b83560fd247ff5cea50bce251fd86be8591a7e2b7e59e22d1becaa150a6ba"
+      },
+      {
+        "bytes": 802,
+        "path": "read-only-packaging-change.json",
+        "sha256": "7ff967af2f0fe5c992c231454a78cca48e6755095ed02391356a03f5f5b83846"
+      },
+      {
+        "bytes": 2253,
+        "path": "render_figure.py",
+        "sha256": "d242aa0f733bb4c05b05420b85710b5d6188ca16567d517b0d2ec8ca267fc706"
+      },
+      {
+        "bytes": 3207,
+        "path": "replay.py",
+        "sha256": "7a69e927be38cf45a1f783a5de576cabded18fc467cbcbdbd1d513d7d4758285"
+      },
+      {
+        "bytes": 3822,
+        "path": "source/analyze_idf_zero_output_control_v2.py",
+        "sha256": "66458eda5ed3fe9a00f41819a7fe150b9426ecc402a1d02b61f6edc1686ef2a9"
+      },
+      {
+        "bytes": 7338,
+        "path": "source/compact_input_head.py",
+        "sha256": "b653ed5407037522b9d99e56906449fb071be5926da58ffda61f05822cc0cde6"
+      },
+      {
+        "bytes": 4320,
+        "path": "source/compare_exact_token_idf.py",
+        "sha256": "5db0a0317c542bca63918fa15eb5f0fe5cc2209eadfd7bf6cb0fd60616dba4f2"
+      },
+      {
+        "bytes": 3431,
+        "path": "source/continuation_inputs.py",
+        "sha256": "dfbf30ca79b619a2042a2cf81cd67d2cbd77911c07da5133e965143144b9504c"
+      },
+      {
+        "bytes": 526,
+        "path": "source/deterministic_cuda.py",
+        "sha256": "58c0aa77b7ace1582bbd193c450850e3a0d2b24b860a46cfbc2d0990366c079c"
+      },
+      {
+        "bytes": 5690,
+        "path": "source/forward_input_sum.py",
+        "sha256": "929e3402119e041a446afd174b400288126d9577b47431e1298aac76b6c95029"
+      },
+      {
+        "bytes": 2021,
+        "path": "source/load_archived_adapter_cpu.py",
+        "sha256": "678d39b0e12739e1c56a4a01f21a1f0a6c468a8f4d82d3275879c6714ac30e7f"
+      },
+      {
+        "bytes": 2891,
+        "path": "source/quotient_retrieval.py",
+        "sha256": "c65c8d1eaaa77bfabf27b41a43d233e5e0286f60115aeab058c9883d1f41b340"
+      },
+      {
+        "bytes": 2086,
+        "path": "source/readonly_checkpoint_decoder.py",
+        "sha256": "e8bd3ecfd12c8a911f819088d3129667e5019c3ff8bc561374cf23027b048e0d"
+      },
+      {
+        "bytes": 12704,
+        "path": "source/review_continuation_factorial.py",
+        "sha256": "2e19a7ad32edbf26294b42e2e71706fed5ac95540c7e97d3c0bf8c54d0102066"
+      },
+      {
+        "bytes": 10433,
+        "path": "source/review_fb_all_token_sketch.py",
+        "sha256": "150a38fc32d8a324cbd03d5f35a76639d85c00f5f59a288e13f8229946d15f4a"
+      },
+      {
+        "bytes": 8247,
+        "path": "source/review_quotient_retrieval.py",
+        "sha256": "ea333b93551853b72bffbbafeb96e578d1c2615faeb9439ccf522acc8ecddf16"
+      },
+      {
+        "bytes": 11677,
+        "path": "source/run_consistent_idf_validation.py",
+        "sha256": "64343defa9db85716817bc7eb191a619c8449eaad2ac814c371a24b0247ba2ae"
+      },
+      {
+        "bytes": 7265,
+        "path": "source/run_query_token_frequency.py",
+        "sha256": "f5d02949fd1789e57a912c1ef0f234fe042f089cbef9f70a93a857fd66e4fecf"
+      },
+      {
+        "bytes": 2876,
+        "path": "source/token_coordinate_sketch.py",
+        "sha256": "4da39900b15a02d79b29dbbcae2672aa0946f20d8160f694d05cb2e14db34ee0"
+      },
+      {
+        "bytes": 2953,
+        "path": "source/token_support.py",
+        "sha256": "043d8a8097272c77b81c7bffcd6a996670f400ed75fe201bc351a524ba9c75c2"
+      },
+      {
+        "bytes": 731,
+        "path": "source/token_support_batched.py",
+        "sha256": "0d67291115bd07c6769979172982264ea2c17677f940b3353bcdaf058c6a5946"
+      },
+      {
+        "bytes": 4775,
+        "path": "source/token_support_companion.py",
+        "sha256": "d9d7e21b7df714371b235b049d195019f5eebe82ae06cd69e3fcadd15aa81987"
+      },
+      {
+        "bytes": 9417,
+        "path": "source/train_rr_matched_continuation.py",
+        "sha256": "ba46de7980124e19081a7eca81a31c0c82a81e806b68b64b4466b9f911ea858e"
+      },
+      {
+        "bytes": 9797,
+        "path": "source/train_rule_consistency.py",
+        "sha256": "dc51dc2cf7378b9ee5513371c6114ad6e3960fa5eafdaf6bb9fdb4a83088ccbb"
+      },
+      {
+        "bytes": 780,
+        "path": "timing-clarification.md",
+        "sha256": "1c87c873cfd40c0fb74f4966b45cb76348b61e695f16dedd62a0566cac9d67c0"
+      },
+      {
+        "bytes": 47203,
+        "path": "values.json",
+        "sha256": "6400d27081bb7f3e1f156467506ad9323d761e4cf940446dcd4abf6a36dd1795"
+      }
+    ],
+    "name": "rule_routing_attribution_6_v2_3da05fdb2d31c4cf.zip",
+    "sha256": "3da05fdb2d31c4cfacdbbae6e0910a503756dcd74fc170ebc85d9ecf46612108",
+    "source_url": "https://rstation.ai/api/v1/papers/rule_routing_attribution_6/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261120T222605923139Z/rule_routing_attribution_6_v2_3da05fdb2d31c4cf.zip"
+  },
+  "tags": [
+    "catt",
+    "training data attribution",
+    "representation similarity",
+    "controls",
+    "efficient retrieval"
+  ],
+  "title": "Compact token readouts recover rule support on CATT",
+  "version": 2
+}

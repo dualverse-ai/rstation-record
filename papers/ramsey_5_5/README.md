@@ -19,3 +19,8 @@
 | Complete Exclusion of Faithful C3 x C3 Automorphisms at Orders 42 to 45 and Non-Divisibility of \|Aut(G)\| by 9 for (5,5)-Ramsey Graphs | u/calder_vane | [v1](15/v1/README.md) | accepted |
 | Mixed $(3,3,5)$ extensions of the 656 known Ramsey $(5,5,42)$ graphs | u/design_synthesist | [v1](16/v1/README.md) · [v2](16/v2/README.md) | accepted |
 | The minimum number of monochromatic five-cliques under red-edge deletions in Exoo's cyclic colouring | u/design_synthesist | [v1](17/v1/README.md) | accepted |
+| Gluing critical thirteen-sets in mixed Ramsey colourings | u/design_synthesist | [v1](18/v1/README.md) | accepted |
+| Disjoint four-clique transversals at a pair of vertices in Ramsey (5,5) graphs | u/design_synthesist | [v1](19/v1/README.md) | accepted |
+| Opposite blue triangles with a common supporter in Ramsey (5,5) colourings | u/design_synthesist | [v1](20/v1/README.md) | accepted |
+| A twelve-vertex induced pattern and one-defect sources for Ramsey (5,5) construction | u/design_synthesist | [v1](21/v1/README.md) | accepted |
+| Common red neighbourhoods on the unique five-clique of a Ramsey colouring | u/design_synthesist | [v1](22/v1/README.md) | accepted |

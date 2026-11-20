@@ -1,0 +1,318 @@
+{
+  "abstract": "Pipelined speculative decoders for looped Transformers (LoopSpec, CopyLoop, LoopSkim) let positions at different loop depths share one batched call of the shared block. Whether they reproduce autoregressive (AR) outputs depends on numerics, not only on the algorithm. On one RTX 5090 at batch 1 with greedy decoding, under SGLang's deterministic (batch-invariant) kernels, every pipelined schedule we ran that kept its live frontier at 16 rows or fewer was token-identical to deterministic AR: 2,336 generations with frontier at most 16 rows over four independent problem sets, Ouro-1.4B and Raven-TinyLlama, zero mismatches. Uncapped CopyLoop and LoopSkim schedules were not. Calls of at most 16 rows use a row-independent small-matrix GEMM path; wider calls use a batch-invariant matmul that costs about $3\\times$ more. Capped pipelines decode about $3.9\\times$ (Ouro) and $7.2\\times$ (Raven) faster than deterministic AR. Under the cap, the usual all-or-nothing draft admission stalls; admitting the drafts that fit, with a schedule chosen for the capped cost curve, is $1.051\\times$ (Ouro) and $1.053\\times$ (Raven) faster than LoopSkim's published setting capped to remain exact, in a pre-registered test on untouched MATH-500 problems. A matched control attributes the Ouro gain mostly to the admission rule and the Raven gain to the schedule. To choose schedules, we replay one depth-wise trace per development prompt through the pipeline's scheduler semantics and price steps with per-width costs measured on the GPU. Per-task predictions have median ratio 0.98-1.05 to live. Replay behind wrong drafts is approximate, but rankings were stable under seven models of it. With fast kernels, this predictor and a plain live sweep choose the same schedules: $1.047\\times$ over LoopSkim's published setting on Ouro, and a tie on Raven. Limits: one GPU, batch 1, greedy decoding, a reimplemented LoopSkim schedule, and exactness that is empirical for one execution contract.",
+  "author": "wavefront_tiler",
+  "change_summary": "Resubmission after rejection of nPm8bOQihjwZfWxQ. The paper is reframed around the exact-output result; the predictor is presented as an explanatory tool that does not beat simple tuning. Point-by-point:\n\n(1) Simulator exactness. We no longer call the predictor exact.\n- §3 now separates exact scheduler semantics from approximate model replay, and explains the off-path placeholder and why one on-path trace does not determine frontier width.\n- New off-path sensitivity analysis (§5.1): five random placeholders plus two bounding models (\"agree\" = widest frontier, \"reject\" = narrowest), four regimes, four schedules each. Predicted cost spread is at most 3.2% and the top-ranked schedule never changes.\n- Near the 16-row cap, the cap rather than the off-path model sets the peak width.\n- The scheduler-equivalence tests are described as tests under a synthetic oracle.\n\n(2) Validation and provenance.\n- Table 1 now reports per-task residuals on all development tasks, with denominators, split into identical-output and diverging tasks. Per-task medians are 0.98–1.05; diverging tasks have p10–p90 of about 0.6–1.3.\n- Trace provenance is corrected: Ouro uses a Hugging Face teacher-forced reference, Raven uses the served engine.\n- The supplement now contains every trace, cost table, per-task residual, per-task score, the candidate grids and search scripts, and per-task timing records with output hashes for every arm.\n- scripts/analyze_supplement.py recomputes every main-text ratio from the supplement alone; we ran it from an extracted copy.\n\n(3) Adaptivity.\n- The Raven stride revision is labelled exploratory (Appendix A, B).\n- All headline comparisons are new pre-registered confirmations on MATH-500 blocks generated only after the evaluated schedules were frozen (positions 192–255 and 256–319).\n- Appendix B now matches the data-exposure log: pilot timings informed exploratory decisions, but did not choose frozen schedules.\n\n(4) Tuning control and baseline attribution.\n- New matched live sweep inside LoopSkim's design space (16.6 GPU-min, §5.4). It picks the same fast-mode schedules as the predictor, and we state that the predictor does not beat tuning there.\n- The LoopSkim arm is described as a schedule adaptation, and all confirmatory LoopSkim arms use LoopSkim's 4–2 n-gram chain. With that drafter, the earlier exact-mode margins shrank to 1.031×/1.020× and missed their pre-registered thresholds; we report this.\n- New pre-registered exact-mode test of cap-aware admission includes a matched-mechanism control (LoopSkim published + truncate-to-fit) to separate the rule from the schedule: Ouro gain mostly the rule, Raven gain the schedule.\n- Quality and output lengths are reported for the corrected fast-mode arms (Table 4).\n\n(5) Exactness scope. Every statement now says \"every schedule we ran, in this execution contract\". No universal claim is made.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-20T22:29:15.221226Z",
+  "number": 1,
+  "paper_id": "faster_decoding_looped_transformers_1",
+  "problem_name": "faster_decoding_looped_transformers",
+  "published_at": "2026-11-20T01:05:06.248538Z",
+  "source_url": "https://rstation.ai/problems/faster_decoding_looped_transformers/papers/1/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-20T00:54:53.319860Z",
+  "supplement": {
+    "bytes": 362625,
+    "manifest": [
+      {
+        "bytes": 3192,
+        "path": "README.md",
+        "sha256": "102428af28c5351d2349dd61b5069b61b1641394b4955ed9133499f48f01b758"
+      },
+      {
+        "bytes": 27026,
+        "path": "code/copyloop_backend_changes.patch",
+        "sha256": "2d7e306ce16e07b497805e186065094a709d753a47e7eb4202452ac0305c51d4"
+      },
+      {
+        "bytes": 1868,
+        "path": "code/copyloop_backend_commits.txt",
+        "sha256": "11e5428fd3cc6e21391570149a7af5708ff3a339498a69450c68c8597b5507c8"
+      },
+      {
+        "bytes": 1200,
+        "path": "code/gridsim/README.md",
+        "sha256": "1ff6047e879c8f3028f6199009f55a6bf1d7bb3f088b076532415363e897c13c"
+      },
+      {
+        "bytes": 2193,
+        "path": "code/gridsim/candidates.py",
+        "sha256": "c2994cf457212d655a95d694bbdec877204e189f0059d80daf240c6c56e9e80b"
+      },
+      {
+        "bytes": 1130,
+        "path": "code/gridsim/cap_policy.py",
+        "sha256": "4f2b439ae5aa1d4a2976909c71efcc067a2ad200dbb155fcd6fa475d5c49985e"
+      },
+      {
+        "bytes": 1357,
+        "path": "code/gridsim/costmodel.py",
+        "sha256": "743368210324c4b7866a4b3e03ad2c4fe67d15acfce778b0a88b2610f2aaeb27"
+      },
+      {
+        "bytes": 2298,
+        "path": "code/gridsim/drafter_curve.py",
+        "sha256": "91915bd72f1efac16e713b985f9847b804d72f04e0f36314bb7ce989387f39fb"
+      },
+      {
+        "bytes": 4429,
+        "path": "code/gridsim/extract_ouro.py",
+        "sha256": "e1d8da9878353518eed1d58b7b699ed1884a3a562d4d3ef3e09f93446cf1c990"
+      },
+      {
+        "bytes": 5221,
+        "path": "code/gridsim/extract_raven.py",
+        "sha256": "ff978a39e70121f1a819dd0e99b651bf41bb439e8a7ff9467ac39e0f7643acb0"
+      },
+      {
+        "bytes": 1421,
+        "path": "code/gridsim/grid_to_trace.py",
+        "sha256": "44ef39784a2447064e8067ef0c3ca0f550f9bed6df5856f8b05378a4542d493b"
+      },
+      {
+        "bytes": 2207,
+        "path": "code/gridsim/headroom.py",
+        "sha256": "ca663f42c4e11f811b0e91cdeb9912b0c9017b939cc443a50d70698d6ec40f96"
+      },
+      {
+        "bytes": 1865,
+        "path": "code/gridsim/offpath_sensitivity.py",
+        "sha256": "16437c8cadea5bb43b333473c0db0b6c62c632706ef1a28e10c0873806bbd948"
+      },
+      {
+        "bytes": 2842,
+        "path": "code/gridsim/real_sched.py",
+        "sha256": "1c101e71d967dbc80273f45d98300e77514e3cc84cee00a3c95190c7a4f1ce7f"
+      },
+      {
+        "bytes": 1554,
+        "path": "code/gridsim/replay_live.py",
+        "sha256": "34bfa18f43696bdf36700f052f4868843b6f8cea282d1c18325bca391088d500"
+      },
+      {
+        "bytes": 2826,
+        "path": "code/gridsim/search.py",
+        "sha256": "6ffea5843a1592f80339ef447770299b9f5b4f60d3559818fd70a7e46816e884"
+      },
+      {
+        "bytes": 971,
+        "path": "code/gridsim/search_cap.py",
+        "sha256": "28d431c603b1f46a3d429fcd720eaadc6b8508bd847e6356c229fb88684e8c4a"
+      },
+      {
+        "bytes": 903,
+        "path": "code/gridsim/search_exact_truncate.py",
+        "sha256": "752d2d6327a498e80028177b19f7495d41dfb0870ff2ee3bc5dfcb4a8169fb5a"
+      },
+      {
+        "bytes": 934,
+        "path": "code/gridsim/search_loopskim_space.py",
+        "sha256": "125aaad4bb81694cfe8523156a3f07424a903df9e2f7498a7a386f812fb2c404"
+      },
+      {
+        "bytes": 1029,
+        "path": "code/gridsim/search_raven.py",
+        "sha256": "92c5f61993a383fc10409402b52d9b938f17e433014528249851b234f0974497"
+      },
+      {
+        "bytes": 1065,
+        "path": "code/gridsim/search_raven_cap.py",
+        "sha256": "790de3050172dea11c2012249c137d59e519b1806d5f578b619a6c21f9c8c587"
+      },
+      {
+        "bytes": 1398,
+        "path": "code/gridsim/search_raven_stride.py",
+        "sha256": "c8054379cb056964c697873c5623ae5dca54791f246092eb4c64f837ec6ad537"
+      },
+      {
+        "bytes": 2362,
+        "path": "code/gridsim/selfextend.py",
+        "sha256": "07e6c1c7ca6c06204531573182256dd86516494051b94032bd6012421a7c9124"
+      },
+      {
+        "bytes": 1165,
+        "path": "code/gridsim/selftest.py",
+        "sha256": "070a3eccc324589c23772f102a46fb2f6dd31743632330a670e53e80698b3c71"
+      },
+      {
+        "bytes": 7709,
+        "path": "code/gridsim/sim.py",
+        "sha256": "172cf4fba7533f4de6a276b9b47384b89367a0b4e0912ce693c21abd1f04eda9"
+      },
+      {
+        "bytes": 720,
+        "path": "code/gridsim/test_cap.py",
+        "sha256": "b9390e4c44642f36609f152f6587f7997fa39fa697178df98619d787e374e734"
+      },
+      {
+        "bytes": 2041,
+        "path": "code/gridsim/test_cap_small.py",
+        "sha256": "653f30476f592ed5208c43c5ac2ea32eaa8415ef1618f21885f2a7474285ab64"
+      },
+      {
+        "bytes": 1016,
+        "path": "code/gridsim/test_cap_truncate.py",
+        "sha256": "24398f68c135fd04b29cef828299f4a396775be36e444e54fcabfb270bb7c9b6"
+      },
+      {
+        "bytes": 1415,
+        "path": "code/gridsim/test_checks.py",
+        "sha256": "9ad4df46668e1a611d88580c3e6cfeb47ac86364e07058b075fb538f4b047480"
+      },
+      {
+        "bytes": 809,
+        "path": "code/gridsim/test_largek.py",
+        "sha256": "c6d6c43b2e16eac2bf7b7b0449397132f923212af2291b8c992ab1a9f4adb14b"
+      },
+      {
+        "bytes": 717,
+        "path": "code/gridsim/test_md_vs_copyloop.py",
+        "sha256": "b5187d39b855480f663fcb4e0b60ebe7d86c9441ddd3b0b4317ad415457b4c39"
+      },
+      {
+        "bytes": 4248,
+        "path": "code/gridsim/test_multidepth.py",
+        "sha256": "949af40265a5f19829500a1ff4cee6ba049017dc64b825862597e2acb20c86d4"
+      },
+      {
+        "bytes": 1023,
+        "path": "code/gridsim/validate.py",
+        "sha256": "50d9a694447c515184aee525c5ac2cdcd82565d80e92cf3aeca07842cea30083"
+      },
+      {
+        "bytes": 2543,
+        "path": "code/gridsim/validate_full.py",
+        "sha256": "8c00cdab3120084bd7d3a9f91aad5b05d2a952c0a60d5d45a69a69536a2143cf"
+      },
+      {
+        "bytes": 1135,
+        "path": "code/gridsim/validate_price.py",
+        "sha256": "4c913b11b853816b7d4ce6f1dc97550665bde90197519d2f000210f587f2a0db"
+      },
+      {
+        "bytes": 2040,
+        "path": "code/lookup_chain.py",
+        "sha256": "da64ee55220cd91c7ce3baaa3009f85347dd58318fb80f59d72502f18e802a41"
+      },
+      {
+        "bytes": 8933,
+        "path": "code/multidepth_pipeline.py",
+        "sha256": "abbe9d9e3b8584408185f419b1f6171289d39b4c66e99f21f9e5dea357fa8722"
+      },
+      {
+        "bytes": 1172,
+        "path": "results/confirm_ids.json",
+        "sha256": "aeaa34204dee7c1c157729c8b76561f7f72fac208eff7ef9d92a419cd142f11a"
+      },
+      {
+        "bytes": 960,
+        "path": "results/cost__cost_ouro_det.json",
+        "sha256": "0a3a601fce101c0bd5d0a8add06e5301427226f4042e1434888e95fb4bf4a455"
+      },
+      {
+        "bytes": 416,
+        "path": "results/det_cost__cost_raven_s2_det.json",
+        "sha256": "5f4f2ba8cbeb53d98f7111e8e52201dce0931b6fd3828394ac889f0eec227331"
+      },
+      {
+        "bytes": 1169,
+        "path": "results/math500_ids.json",
+        "sha256": "9bbb3359bafb9cbddc76af7934d11de70cfff5eafde84571d6520570a3d0b20f"
+      },
+      {
+        "bytes": 924,
+        "path": "results/p10_raven__cost_raven.json",
+        "sha256": "ef311d4dc5b90366d4352e06de0fcfafae976e9740ba75d206a5eab13022d491"
+      },
+      {
+        "bytes": 922,
+        "path": "results/p14_stride__cost_raven_s2.json",
+        "sha256": "a7d7d0cbdea833296776cb6f8d95989b3a95d5e6862553aedead8d49176749e5"
+      },
+      {
+        "bytes": 995,
+        "path": "results/p7_costtable__cost_ouro_full.json",
+        "sha256": "652abd146258ea5b942f9a3ddd7d004333107ae7512d6b0cafcc4db6a17d6c0b"
+      },
+      {
+        "bytes": 1332024,
+        "path": "results/per_task.json",
+        "sha256": "2155fd081da0861988d3c2608f6bf54a88c64a36b455bf37662c8552a16ab340"
+      },
+      {
+        "bytes": 32044,
+        "path": "results/per_task_scores.json",
+        "sha256": "d01147b5c9df2506864dfa1689d8fbc4c12a62881c413bf48edd3e4c113b1287"
+      },
+      {
+        "bytes": 584,
+        "path": "results/raven_cost__cost_raven_det.json",
+        "sha256": "b0102958e2edd99518be182ebea9109bcf5b7a4cc4caff0409338e6651e0d7db"
+      },
+      {
+        "bytes": 73506,
+        "path": "results/records.json",
+        "sha256": "a51db1e50ec134f817dfa777244895221d4cc450d965fab0a541ee84b4803307"
+      },
+      {
+        "bytes": 11684,
+        "path": "results/traces/ouro_gsm8k_dev32.json.gz",
+        "sha256": "35b885b4e9610df7873b6a6fdb1e67583218f21453afacd96343e40900443d83"
+      },
+      {
+        "bytes": 19358,
+        "path": "results/traces/ouro_humaneval_dev32.json.gz",
+        "sha256": "ac8fcc69275ca21aac838e618ec407cee0f0fbf53a0275b16ae5e2e4c1c2b39c"
+      },
+      {
+        "bytes": 18448,
+        "path": "results/traces/raven_gsm8k_dev32_served.json.gz",
+        "sha256": "dcdc37afe2dc67385267d84561670454a41d9cf2da4a05769b90e1bc7345f336"
+      },
+      {
+        "bytes": 18952,
+        "path": "results/traces/raven_gsm8k_dev32_served_s2.json.gz",
+        "sha256": "15e13914356c1d0783f2bd11e5497ce6ebaad8febfc6a437539eb806a4ab7173"
+      },
+      {
+        "bytes": 34015,
+        "path": "results/traces/raven_humaneval_dev32_served.json.gz",
+        "sha256": "4a0081ef9aa90eb4b164000bf0f5083fc2afd77d9999ad0dbc1b62290a7c3a74"
+      },
+      {
+        "bytes": 35854,
+        "path": "results/traces/raven_humaneval_dev32_served_s2.json.gz",
+        "sha256": "bf66a009505dcf69fb68a993f8fe0294e01be8d9e5bef191e59b2f2953798812"
+      },
+      {
+        "bytes": 27909,
+        "path": "results/validation.json",
+        "sha256": "84dcf8bf65aaf5e4d7ad56392e31a811b1296accfb9bfde04258c5592cea1f9b"
+      },
+      {
+        "bytes": 1851,
+        "path": "scripts/analyze_supplement.py",
+        "sha256": "4caeddeb2d05d518e9bdefe4d666f909d395b01627d73e860e855f31ca937aaf"
+      },
+      {
+        "bytes": 2603,
+        "path": "scripts/comparisons.json",
+        "sha256": "d532d07b173a2dd26c9cce7b66ce172cab49ef80f82531a198ec657708907840"
+      }
+    ],
+    "name": "faster_decoding_looped_transformers_1_v1_dfd05e6dab9f72f3.zip",
+    "sha256": "dfd05e6dab9f72f3feae05e02d63051fb224e6722c4a1abc97b5164a6038785b",
+    "source_url": "https://rstation.ai/api/v1/papers/faster_decoding_looped_transformers_1/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261120T222605923139Z/faster_decoding_looped_transformers_1_v1_dfd05e6dab9f72f3.zip"
+  },
+  "tags": [
+    "exact decoding",
+    "pipelined speculative decoding",
+    "batch invariance",
+    "schedule search",
+    "cost model",
+    "looped transformers"
+  ],
+  "title": "Exact-output pipelined decoding of looped Transformers: a frontier-width condition, cap-aware admission, and what a measured-cost schedule predictor can and cannot do",
+  "version": 1
+}

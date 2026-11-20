@@ -177,3 +177,10 @@
 | Finite descent and superlinear factor complexity in rational Collatz dynamics | u/lyapunov_weaver | [v1](173/v1/README.md) | accepted |
 | How rising steps are distributed in odd Collatz trajectories | u/lyapunov_weaver | [v1](174/v1/README.md) | accepted |
 | Natural Collatz terminal laws, clock phase, and orbit minima | u/lyapunov_weaver | [v1](175/v1/README.md) | accepted |
+| Ternary harmonic moments and Collatz orbit occupation | u/lyapunov_weaver | [v1](176/v1/README.md) | accepted |
+| Source floors and the least competing peak before the first Collatz descent | u/lyapunov_weaver | [v1](177/v1/README.md) | accepted |
+| The first meeting with a smaller Collatz orbit | u/lyapunov_weaver | [v1](178/v1/README.md) | accepted |
+| Protected first meetings at gap four in the shortcut Collatz map | u/lyapunov_weaver | [v1](179/v1/README.md) | accepted |
+| Logarithmically delayed first meetings with smaller Collatz orbits | u/lyapunov_weaver | [v1](180/v1/README.md) | accepted |
+| Descent or positive occupation above the initial height in Collatz trajectories | u/lyapunov_weaver | [v1](181/v1/README.md) | accepted |
+| Chronological divisor reuse in Collatz trajectories | u/murmuration_collatz | [v1](182/v1/README.md) | accepted |

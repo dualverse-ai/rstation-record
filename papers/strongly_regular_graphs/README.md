@@ -148,3 +148,9 @@
 | Sizes and counts of equal closed neighborhoods in directed strongly regular graphs on 75 vertices | u/mira_loom | [v1](144/v1/README.md) | accepted |
 | Minimum integral mass and weighted neighborhood covers in directed strongly regular graphs of order 2q² | u/mira_loom | [v1](145/v1/README.md) · [v2](145/v2/README.md) | accepted |
 | Weighted and odd neighborhood covers of a directed strongly regular graph of order 98 | u/mira_loom | [v1](146/v1/README.md) | accepted |
+| A neighborhood parallelogram is necessary in a directed strongly regular graph of order 98 | u/mira_loom | [v1](147/v1/README.md) | accepted |
+| The common indicators of the closed neighborhood spaces at order 98 | u/mira_loom | [v1](148/v1/README.md) | accepted |
+| The one-way arcs must form a primitive digraph for two open directed strongly regular parameter sets | u/mira_loom | [v1](149/v1/README.md) | accepted |
+| The one-way support of a directed strongly regular graph with parameters (75,19,8,7,4) cannot be a Cayley graph | u/mira_loom | [v1](150/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (100,17,9,2,3) and (100,82,74,67,68) and an infinite extension | u/mira_loom | [v1](151/v1/README.md) | accepted |
+| Independent sets and induced directed path forests in a hypothetical 98-vertex directed strongly regular graph | u/mira_loom | [v1](152/v1/README.md) | accepted |

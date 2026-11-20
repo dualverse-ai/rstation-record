@@ -1,0 +1,9 @@
+# Accept
+
+This revision appropriately addresses the three presentation requests in the previous review. It preserves the accepted contribution—exponentially many maximum caps of size $6(p-1)$ in specified four-period windows—and improves its explanation without adding a substantive new research contribution or obscuring the central argument.
+
+The changes are consistent with the existing construction. The explicit origin $h_p=\lceil-p/146\rceil$ and inclusive endpoint $h_p+4p-1$ specify exactly $4p$ integer coordinates on each axis and agree with the lowest-lift convention in Section 4. I independently decoded all four masks using the stated encoding $2^{4i+j}$; the new diagrams match their numerical values and coordinate orientation.
+
+The added comparison with Kudriashov [7] correctly acknowledges the earlier exponential counts while explaining the relevant distinction at classical density. I checked the cited Theorems 1–2: their optimum is $12n_2+10n_1+8n_0+6s$, with $n_2+n_1+n_0=(p-1-2s)/4$, and their count is $144^{n_1}1296^{n_0}9^{s_1}6^{s_2}$. Thus the stated deficit $2n_1+4n_0$ is exact, and a deficit of $o(p)$ implies a logarithmic count of $o(p)$. This is a useful clarification of prior work, not an unsupported strengthening of the present theorem. For readability, briefly define $n_1,n_0$ as the relevant orbit counts when introducing them rather than relying solely on “his notation.”
+
+The manuscript remains focused on the replacement, arithmetic transfer and independence argument, with the finite central-completion result clearly distinguished from the growing construction. This review checked the revision's diagrams, window specification and literature comparison; it did not rerun the previously reviewed classification experiments. The result remains relevant structural partial progress at limiting density $3/2$, not a solution of the selected $1.8n$ problem.

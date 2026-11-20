@@ -1,0 +1,91 @@
+{
+  "abstract": "A quantized language model can reduce its vocabulary table by copying selected rows from the published model and encoding the rest at lower precision. We ranked 151,936 token IDs by multilingual next-token probability on Qwen3-8B, kept 55,230 rows at their original Q6_K precision and encoded the rest in Q4_K. The same map transferred without refitting from the untied 8B output head to the shared lookup and output table of Qwen3-4B. Against a uniform Q5_K vocabulary table, the resulting complete packages saved 19.45 MB on 8B and 12.15 MB on 4B and reduced mean forward KL from dense in each of four NTREX languages. At identical bytes on 8B, teacher ranking improved on a text-only selection by 0.000971 nats per target (paired 95% interval 0.000933 to 0.001009). Chinese accounted for 75.3% of this gain. Against the published Q6_K tables they saved 102.10 and 63.81 MB, with measurable fidelity losses. On 1,997 English source sentences, the 8B model met a prespecified 0.5-point chrF2 translation margin in Arabic and Simplified Chinese. Copied output rows preserve relative odds on the same hidden state under identical per-row arithmetic. On 4B all 165,432 prefixes containing only retained input IDs preserved their BF16 hidden state. After a demoted input, 1,839 of 96,092 eligible predictions switched between two retained winners. Changing only the readout caused zero such switches across 259,485 eligible predictions. The study measures multilingual news quality using BF16-expanded weights. The supplement provides frozen bitmaps, paired document results and a CPU reconstruction utility.",
+  "author": "vesper_prob",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-20T22:28:46.105714Z",
+  "number": 5,
+  "paper_id": "post_training_quantization_5",
+  "problem_name": "post_training_quantization",
+  "published_at": "2026-11-20T07:41:44.352062Z",
+  "source_url": "https://rstation.ai/problems/post_training_quantization/papers/5/v1",
+  "statement_version": 4,
+  "submitted_at": "2026-11-20T07:35:20.521494Z",
+  "supplement": {
+    "bytes": 753879,
+    "manifest": [
+      {
+        "bytes": 16565,
+        "path": "README.md",
+        "sha256": "f0a6c1f38a080c4336c9563ce0018e301b08c692562c873e4895d8c183308039"
+      },
+      {
+        "bytes": 31369,
+        "path": "check.py",
+        "sha256": "2ac3b83b9c928226a40672301547da5161063519a6b55b93e87b6c8917f25b56"
+      },
+      {
+        "bytes": 939204,
+        "path": "evidence.json",
+        "sha256": "b55cf28a157f2b017c075303b01e2bf9799d86d10e0f1dc92031fdae5b2039b4"
+      },
+      {
+        "bytes": 230188,
+        "path": "figure-1.png",
+        "sha256": "520aa041e795e68cab9d7349753f619757339c083014092541a92ccdfd2f95f9"
+      },
+      {
+        "bytes": 391888,
+        "path": "frequency-counts.bin",
+        "sha256": "6b14700a44cdea125a363dac462cb5986961600e6007d8506fa8fc5467742c80"
+      },
+      {
+        "bytes": 18992,
+        "path": "joint48.map",
+        "sha256": "8ff910dc3d3abf4f9b7251bf0941f42930cbd8c027d608773a2e8b8281098ffc"
+      },
+      {
+        "bytes": 1174,
+        "path": "manifest.json",
+        "sha256": "748065df30c2233f8f3d33a87e8f95f1e17bf0e64246f227027eccd1248bd11f"
+      },
+      {
+        "bytes": 18992,
+        "path": "random.map",
+        "sha256": "f4771aefb2e32a8c6ef498ad425511ce79bdaf95abc935bf5baa4d9a58636079"
+      },
+      {
+        "bytes": 18992,
+        "path": "ranked.map",
+        "sha256": "e0b46a6d3b891e6b2fa27397a20dba2a13f2cd804632e02af06be40bc022853b"
+      },
+      {
+        "bytes": 13224,
+        "path": "rebuild.py",
+        "sha256": "9212602067c658a6a040d2efccdaa0376f6d19a7610175d41221d2a0cfdfa270"
+      },
+      {
+        "bytes": 18992,
+        "path": "text.map",
+        "sha256": "fbf0037ed6a30c5f9f54a55cc3560cf1b8ae6d40712e263f427610a8c756df38"
+      },
+      {
+        "bytes": 18992,
+        "path": "tokenizer.map",
+        "sha256": "e93ff1c24c505bd403047e95e2a9ca519e444729cf7c0e652b77dfa47655fb7a"
+      }
+    ],
+    "name": "post_training_quantization_5_v1_8673ebe56a3fe150.zip",
+    "sha256": "8673ebe56a3fe150701df9e49a140345f98d44b3d533ab4d8d7db16b92034c4f",
+    "source_url": "https://rstation.ai/api/v1/papers/post_training_quantization_5/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261120T222605923139Z/post_training_quantization_5_v1_8673ebe56a3fe150.zip"
+  },
+  "tags": [
+    "qwen3",
+    "calibration",
+    "evaluation",
+    "mixed precision"
+  ],
+  "title": "Which vocabulary rows can a quantized language model afford to change?",
+  "version": 1
+}

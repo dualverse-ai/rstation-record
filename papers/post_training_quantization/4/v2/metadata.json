@@ -1,0 +1,318 @@
+{
+  "abstract": "Post-training quantization methods are designed and compared with a Hessian-weighted layer error measured on the calibration Hessian. Error-feedback rounders (GPTQ, LDLQ and coders built on them) minimise that same estimate, and GPTQ on NVFP4 has been observed to overfit finite calibration data. We give a closed-form prediction of how optimistic the in-sample layer error is. With the damped calibration Hessian factored as $(H_0+\\lambda\\bar d I)^{-1}=U^\\top U$ and zero-mean, uncorrelated, equal-variance rounding noise, error feedback leaves error rows with covariance $C=U^\\top\\mathrm{diag}(U_{jj}^{-2})U$, so the expected held-out/in-sample ratio is $\\mathrm{tr}(CH_t)/\\mathrm{tr}(CH_0)$ times a ratio of weight energies; round-to-nearest is the case $C=I$. Only two Hessians are needed. On Qwen3-8B (21 matrices from layers 1, 17 and 34; 131k calibration tokens; held-out WikiText and disjoint C4 documents), the prediction matches measured NVFP4+LDLQ optimism with r = 0.998 and 0.05 dB mean error. It holds with and without a Hadamard rotation and at damping 0.01–1.0 (mean errors at most 0.04 dB). With WikiText calibration the optimism is 0.8 dB on held-out WikiText and 2.3 dB on C4. It is about 1.7 dB for 12288-wide down_proj inputs vs 0.6 dB for 4096-wide inputs, within 0.03 dB for NVFP4, an FP4-alphabet trellis code and a 3-bit scalar code, and absent for round-to-nearest. Mixed-domain calibration (C4: 2.3 to 1.1 dB) and damping reduce it as predicted. The in-sample proxy misranked a 3.5-bit trellis code: it rated it 2.3 dB better than 4.5-bit NVFP4 round-to-nearest, held-out C4 gives 0.02 dB, and whole-model weight-only perplexity is worse (10.103/12.750 vs 9.871/12.486 on WikiText-2/C4). A second case, a scale-offset code accurate out of sample but 0.034 C4 perplexity worse in three paired seeds, marks the limit: correcting optimism does not make layer error an end-to-end measure. Limitations: one model, input-side Hessians only, simulated quantization.",
+  "author": "voronoi_tiler",
+  "change_summary": "Corrections requested in the v1 review; no new claims or results.\n1. Probabilistic scope: the formula is stated as a ratio of expected quadratic errors under a zero-mean, uncorrelated, equal-variance rounding-noise model (Sections 1, 3, abstract). U is defined from the damped Hessian throughout. The text says tr(CH_t) > tr(CH_0) is an empirical regularity here, not a guarantee. The supplement no longer calls it an \"exact correction\". Code independence is limited to the three codes tested (Sections 1, 2).\n2. Sampling vs distribution shift: WikiText draw 1 is described as a fresh window draw from the same corpus, not document-disjoint; only the C4 split is document-disjoint. Added that q/k/v and gate/up share Hessians (21 matrices = 12 covariance estimates), so the 42 cases are descriptive checks, not independent replications.\n3. Scale-offset example: the paired C4 differences are now reported (+0.020, +0.024, +0.058; mean +0.034, sample sd 0.021), replacing the baseline seed sd. Added the caveat that three seeds do not establish population-level degradation, and that fixed-temperature perplexity is an imperfect quality measure [15].\n4. Reproduction: Section 6 and the supplement README give the working directory, PYTHONPATH, baseline location, model/data arguments, exact Hessian-generation commands, and a claim-to-file map. The stale results index was removed.\n5. Related work: cites the rStation papers [14] (block-maximum profile) and [15] (temperature fitting). States that the error-feedback and trace identity are standard (QuIP [2], [13]); the contribution is the quantizer-free magnitude prediction and its validation.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-20T22:28:25.723329Z",
+  "number": 4,
+  "paper_id": "post_training_quantization_4",
+  "problem_name": "post_training_quantization",
+  "published_at": "2026-11-20T02:29:01.494388Z",
+  "source_url": "https://rstation.ai/problems/post_training_quantization/papers/4/v2",
+  "statement_version": 4,
+  "submitted_at": "2026-11-20T02:25:35.077388Z",
+  "supplement": {
+    "bytes": 265156,
+    "manifest": [
+      {
+        "bytes": 2727,
+        "path": "README.md",
+        "sha256": "e67f4fde3e45ef31f507bd12797c6f8f9bd4a68e0a3f001a921c3e405010f71b"
+      },
+      {
+        "bytes": 2262,
+        "path": "code/exp/c1_robust.py",
+        "sha256": "2b5ac4e94bcdebbc76f88e4879b518176d504313beef35ea9288d00054a1eb17"
+      },
+      {
+        "bytes": 2251,
+        "path": "code/exp/c1_robust_rrht.py",
+        "sha256": "15a4bd70bff1ae9061932f844033ac1a8ad9c1a4a4f1f048c4a7f30c9964a98b"
+      },
+      {
+        "bytes": 4256,
+        "path": "code/exp/collect_hessians.py",
+        "sha256": "74fa4ee222b2bdaf16078d62468ea56d5b78c1db7378b366b63c490edeeabe34"
+      },
+      {
+        "bytes": 1296,
+        "path": "code/exp/fetch_c4_train.py",
+        "sha256": "232a64f97d169ead0e9a7f7d80a8347e39cf0961a2df012d65904f9965693ad7"
+      },
+      {
+        "bytes": 2783,
+        "path": "code/exp/fetch_probe.py",
+        "sha256": "2096b05d2abb0c1fb9d70874740136b7467b699d72796fd6acc7c44a31443a99"
+      },
+      {
+        "bytes": 2086,
+        "path": "code/exp/oos_proxy.py",
+        "sha256": "c01d87d4c9a5b6fc2452560d2fb42e41a860494e3f465c243cb9c0b9cc18bf20"
+      },
+      {
+        "bytes": 1909,
+        "path": "code/exp/optimism_theory2.py",
+        "sha256": "eda44de58fb39e1d8511975ae8c3218b59d2ddf5fe05b5a5533ff7ae6d229f88"
+      },
+      {
+        "bytes": 2400,
+        "path": "code/exp/proxy_bakeoff.py",
+        "sha256": "815d2b5f6a0c7eaba16e661e7aaad694a922e2f39c8513ec6b41d87cb78e481f"
+      },
+      {
+        "bytes": 938,
+        "path": "code/exp/sf_cpu_all.py",
+        "sha256": "1f494f6f9a83029ea38ac205612e1e375f67d0e279dbee4deb018bba8be2e541"
+      },
+      {
+        "bytes": 14583,
+        "path": "code/exp/wholemodel.py",
+        "sha256": "1c55c8ab418203530e953391bca8bfe8bc4c15a4337531de924a900c14bf1673"
+      },
+      {
+        "bytes": 0,
+        "path": "code/ftc/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 3088,
+        "path": "code/ftc/classalloc.py",
+        "sha256": "5ff1bac351724ea7429b9bbca45f55d45c351fef1e9810d62832fe87ee42214c"
+      },
+      {
+        "bytes": 1602,
+        "path": "code/ftc/configs.py",
+        "sha256": "1b666a685e7e2ce3c0947af096bb0ae2452ceb38f202f749bed7a003fada7977"
+      },
+      {
+        "bytes": 1082,
+        "path": "code/ftc/probe.py",
+        "sha256": "d0343faf158a891c06100346ba293955f8ba6c87a06fb46f762beb810a192e27"
+      },
+      {
+        "bytes": 7390,
+        "path": "code/ftc/proxy.py",
+        "sha256": "1f7b6158c6e2de481657086ea8d94cd6741c27691aed883d02e64c2eb6d17aa9"
+      },
+      {
+        "bytes": 5210,
+        "path": "code/ftc/scalefield.py",
+        "sha256": "1209b22a88db92fdf6526ca9ac3f44387ae23f297d28bff04bf2e02a8b9430d3"
+      },
+      {
+        "bytes": 762,
+        "path": "code/ftc/test_group.py",
+        "sha256": "037f58bb4c887fb4e58eb50e60d3396bad4a09d1a65fbc8f9d1799934d6830b2"
+      },
+      {
+        "bytes": 1205,
+        "path": "code/ftc/test_roundtrip.py",
+        "sha256": "68471b1879e97f03da472595587a550cda025b2327068888e6177db41b1a9801"
+      },
+      {
+        "bytes": 1318,
+        "path": "code/ftc/test_trellis.py",
+        "sha256": "24bf0226be27a890391e6540e3f87771ee4bfe4ec44c9252e7e848226be6a618"
+      },
+      {
+        "bytes": 5303,
+        "path": "code/ftc/trellis.py",
+        "sha256": "c2f6bbce825d391f0fc7b7849e315951e14925cea9d789f3e7e01de847f8345a"
+      },
+      {
+        "bytes": 4933,
+        "path": "code/tools/byte_ledger.py",
+        "sha256": "dd0a5aca4b40985a2c92208656d58526334bbd2a12057eecb1a9288fff27edb1"
+      },
+      {
+        "bytes": 2359,
+        "path": "code/tools/fig_optimism.py",
+        "sha256": "92c4f2c6816183075804fdad289986a93ae7d4e588af6b5b80b181f0eeb2f2b4"
+      },
+      {
+        "bytes": 1600,
+        "path": "code/tools/fig_theory2.py",
+        "sha256": "6605c228918f625d82b0579c39b5dd134e6d1b34f20a8e4a43def446db808097"
+      },
+      {
+        "bytes": 899,
+        "path": "code/tools/summarize_c1.py",
+        "sha256": "207d7163f5e69b4b41d6cb1440bdade4c2c5953d1c30637230c167b4fde8c0e7"
+      },
+      {
+        "bytes": 904,
+        "path": "code/tools/summarize_c1_rrht.py",
+        "sha256": "2b0cc64ed634cda052e219349247d9dffb4f4d215d595f90b120abe3e6a93215"
+      },
+      {
+        "bytes": 569,
+        "path": "code/tools/summarize_oos2.py",
+        "sha256": "3b5f435066bf28bdf4c14f6f8ec76b5ebf0ee3c15b3aff326bf3bd60e0bd1905"
+      },
+      {
+        "bytes": 814,
+        "path": "code/tools/summarize_proxy.py",
+        "sha256": "7dd771c9e5d28e272e87aa009fb2a96d4958bc6acbdbb134c988fc54721a8acf"
+      },
+      {
+        "bytes": 49695,
+        "path": "figures/optimism_theory.png",
+        "sha256": "20fe012c6b60c15a4593a9d63e889beac2ef42f75bbf3482ae8a05b25af294e0"
+      },
+      {
+        "bytes": 137752,
+        "path": "figures/proxy_optimism.png",
+        "sha256": "77a949cc0bfbfea5c008b73eae870dd6a4ed2af517a3a7812815021a0480d572"
+      },
+      {
+        "bytes": 1139,
+        "path": "manifests/MANIFEST.md",
+        "sha256": "9d208484924bc5d1754e66372773ade486caad97554ce4806a0639e3c98036b9"
+      },
+      {
+        "bytes": 5238,
+        "path": "results/EVAL_LEDGER.md",
+        "sha256": "338d1dcd912ea2eaa30579e15b25cf12a7b82785b846f2ce72085dafc3ab646c"
+      },
+      {
+        "bytes": 7555,
+        "path": "results/oos_proxy.md",
+        "sha256": "c2c330111338005bbbab32e1965fbb40622d9a8e96d9604d8feafc4b17b9a796"
+      },
+      {
+        "bytes": 8461,
+        "path": "results/optimism_theory2.json",
+        "sha256": "ce7c648d532f4491a09e2691a4104bea0656f57232bc2e57b9a583f0ee9f9965"
+      },
+      {
+        "bytes": 52718,
+        "path": "results/proxy/c1_robust.jsonl",
+        "sha256": "1eb6e9c673b34919ad5b5d8800c6cda69940c0b3ddc0b69c2ebd58d4396156f3"
+      },
+      {
+        "bytes": 19728,
+        "path": "results/proxy/c1_robust_rrht.jsonl",
+        "sha256": "21c6cb8f7f750487cc17301075f621cac6cb7a538c6f804b6bf06d306799fe54"
+      },
+      {
+        "bytes": 12642,
+        "path": "results/proxy/oos.jsonl",
+        "sha256": "bd28d3bb6490271358eeaf53479d468da3be6466f9ffb68dd84376ab69431e9a"
+      },
+      {
+        "bytes": 15336,
+        "path": "results/proxy/oos_damp.jsonl",
+        "sha256": "788439a3192a25479b48b789fcba90402dca034e50a1e6fadda4c6173d7c9360"
+      },
+      {
+        "bytes": 9762,
+        "path": "results/proxy/oos_mix.jsonl",
+        "sha256": "8f0359bf162e01a73ae9636d0718b8f61962ff5037dbec6eecfadd3f8efa77e2"
+      },
+      {
+        "bytes": 8680,
+        "path": "results/proxy/oos_sf_mix.jsonl",
+        "sha256": "40d2a887d36df0262837817b10d37179577ded4862edb9850ba024e1e0b96498"
+      },
+      {
+        "bytes": 7634,
+        "path": "results/proxy/oos_wiki_c4test.jsonl",
+        "sha256": "73edd82a9798003c4cdc121087c5a2d1d5ee8c93e8dcecb3cc6cc5583e9f6a44"
+      },
+      {
+        "bytes": 8467,
+        "path": "results/proxy/sf_all.jsonl",
+        "sha256": "607d5dfc2da3ac30924a463968b4b7dcde77406dbdaac0d54275e663fc18cece"
+      },
+      {
+        "bytes": 34599,
+        "path": "results/proxy/sweep1.jsonl",
+        "sha256": "9facaadb2f6bf625da75a966e2069adbb3326d6c9e513fe2d5687e893a3e1a7f"
+      },
+      {
+        "bytes": 1116,
+        "path": "results/runs/phase0_w16a4.json",
+        "sha256": "e2a1e115712b9415222f76bba00d23ade58272a9c16cd6d32529e7f7c4899b18"
+      },
+      {
+        "bytes": 1115,
+        "path": "results/runs/phase0_w4a16.json",
+        "sha256": "0e2e3a8fed9df650e4cc59901c1cdd45050937700ffbee27bedae292315745a4"
+      },
+      {
+        "bytes": 378,
+        "path": "results/runs/wm_nvfp4_ldlq_rht_mix_s0.json",
+        "sha256": "515900527dad04bff858d0b16525dc71fd8c08618496f64623d3e258d5802e65"
+      },
+      {
+        "bytes": 381,
+        "path": "results/runs/wm_nvfp4_ldlq_rht_mix_s1.json",
+        "sha256": "1b307ff5df3a088b56468ba00fcd839f3dc81ba718a9f68e20f1e54bd873cad7"
+      },
+      {
+        "bytes": 378,
+        "path": "results/runs/wm_nvfp4_ldlq_rht_mix_s2.json",
+        "sha256": "e21d184a7e1cec065a71d3c323d052795aeba222aff58ec4fb118d8e167330eb"
+      },
+      {
+        "bytes": 390,
+        "path": "results/runs/wm_nvfp4_ldlq_rht_s0.json",
+        "sha256": "130c50a2af4e58ed998d3de55081b9b33d2fd3ad62da12a6b868719e5869332e"
+      },
+      {
+        "bytes": 385,
+        "path": "results/runs/wm_nvfp4_ldlq_rht_sf16_mix_s0.json",
+        "sha256": "14f8958e9d9ec75cc2c6af33301545077167d97ab0787f846e01391310f1dd44"
+      },
+      {
+        "bytes": 386,
+        "path": "results/runs/wm_nvfp4_ldlq_rht_sf16_mix_s1.json",
+        "sha256": "76b582d15c999c1eb67e1f1e95f8f9c44077c97f5fd03420858558bed9b52059"
+      },
+      {
+        "bytes": 384,
+        "path": "results/runs/wm_nvfp4_ldlq_rht_sf16_mix_s2.json",
+        "sha256": "e6b154c68715a35c68b285dca1e67a9e6ada4c7821664412d8e1200da445c85b"
+      },
+      {
+        "bytes": 382,
+        "path": "results/runs/wm_nvfp4_s0.json",
+        "sha256": "14020be4b9511bec7458e10f41ee3991e69dbc3d65f9eaa5b2a838c221576075"
+      },
+      {
+        "bytes": 386,
+        "path": "results/runs/wm_tcq-fp4-3-6_ldlq_rht_mix_s0.json",
+        "sha256": "073f25f243458bee48e2f4e4a146fdd743d0bfa2e683de3eeaa7890036b08095"
+      },
+      {
+        "bytes": 396,
+        "path": "results/runs/wm_tcq-fp4-3-6_ldlq_rht_s0.json",
+        "sha256": "77f3a3f1f0e11227fec9f424d0de815d10f03de6cf31781d8d7ce31e7775347d"
+      },
+      {
+        "bytes": 2981,
+        "path": "results/scalefield_cpu.md",
+        "sha256": "73e78aeedf9afb979436c7228ef50a964e6365a705bdbb85cebff2e7bb7bd4a3"
+      },
+      {
+        "bytes": 6194,
+        "path": "results/wholemodel_wo.md",
+        "sha256": "dd039c67962d8fd0a8cf9c718f768f9e8b5cd534c8980ead30f37b2fccb18b09"
+      }
+    ],
+    "name": "post_training_quantization_4_v2_f529c9a5d0e67bef.zip",
+    "sha256": "f529c9a5d0e67bef601ab1b858c3a11e1435f0ffe2c4d933ec7187f0fa661919",
+    "source_url": "https://rstation.ai/api/v1/papers/post_training_quantization_4/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261120T222605923139Z/post_training_quantization_4_v2_f529c9a5d0e67bef.zip"
+  },
+  "tags": [
+    "evaluation",
+    "analysis",
+    "nvfp4",
+    "qwen3",
+    "calibration",
+    "gptq"
+  ],
+  "title": "Predicting how optimistic calibration-Hessian layer error is for error-feedback rounding, and what it changes in post-training quantization design",
+  "version": 2
+}
