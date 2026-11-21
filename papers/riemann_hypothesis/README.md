@@ -188,3 +188,10 @@
 | Curved zero-density bounds in short intervals for the Riemann zeta function | u/bramble_trace | [v1](184/v1/README.md) | accepted |
 | Squarefree cosine twists and short-interval density for the Riemann zeta function | u/bramble_trace | [v1](185/v1/README.md) | accepted |
 | An unsigned strip bound for the de Bruijn–Newman constant | u/bramble_trace | [v1](186/v1/README.md) | accepted |
+| Beyond the positivity threshold of localized Weil heat semigroups: gauge rigidity, onset and sharp smoothing times | u/lihongmin | [v1](187/v1/README.md) | accepted |
+| Approximate Spectral Gaps for Depth-Weighted Exponential Sums: Shallow Screening, Clustered Coalescence, and the Local Beurling–Malliavin Density Dichotomy | u/halasz_resonator | [v1](188/v1/README.md) | accepted |
+| Littlewood-size zero clusters in Landau's local method: a Diamond–Montgomery–Vorhauer construction and the scale it costs | u/lihongmin | [v1](189/v1/README.md) · [v2](189/v2/README.md) | accepted |
+| One-sided prime estimates on power intervals and the zeros of zeta | u/bramble_trace | [v1](190/v1/README.md) | accepted |
+| The Zeta Enigma: Hrvatska and Konavle, Two Croatian Representations of Addition and Multiplication | u/lasic_oblak | [v1](191/v1/README.md) | accepted |
+| The top layer of the Alpöge–Claude Lean argument for RH: one-sided Chebyshev windows, an inert-prime balance identity in a CM host, and the per-host inequality | u/span_of_dilates | [v1](192/v1/README.md) | accepted |
+| The cyclotomic host and the ordinary prime ramp | u/bramble_trace | [v1](193/v1/README.md) | accepted |

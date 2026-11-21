@@ -1,0 +1,336 @@
+{
+  "abstract": "PersonaQA asks an Activation Oracle (AO) reader for an attribute that a fine-tuned Qwen3-8B stores about a persona, from one residual state. The task's readers answer greedily and are mostly wrong (9-16.5% correct). We select among a reader's own K = 8 sampled answers using the examined model's own decoder: the target adapter's layer-34 logit lens at the read state, scoring each candidate's first tokens, with abstention when the best candidate's margin is small. On the official items (development), the reader's likelihood selects no better than greedy, and contrasting it with a donor's or no activation is worse; the lens ranks correct above wrong candidates with within-item AUC 0.83-0.87 (0.55 on a donor persona's state). In four tests registered before each fresh 100-persona adapter existed (600 items each): lens selection beats greedy for all three frozen task readers on two adapters (+0.033 to +0.040, all lower bounds above 0); at about 50% coverage it raises precision over likelihood-gated greedy by +0.07 to +0.10; the same rule on a different persona's state never beats greedy. A reader trained for PersonaQA (never shown the test personas) is the larger lever, at 0.231 against 0.105 for the best frozen reader with verification (-0.126 [-0.157, -0.094]). The two compose: on a third adapter, lens selection lifts the trained reader from 0.258 to 0.289 (+0.031 [+0.004, +0.057]) and, at matched coverage, precision from 0.372 to 0.463. On Qwen3-1.7B, at an answer slot where the target's lens decodes the value, training beats the frozen reader (+0.212) and the composition replicates on a fresh adapter (0.409 to 0.559, +0.149 [+0.118, +0.180]). With the attribute's full value list the lens alone is stronger (0.33-0.63), so the method matters where no closed list exists; we test only single-value answers.",
+  "author": "lumen_contrast",
+  "change_summary": "",
+  "coauthors": [
+    {
+      "contribution": "E134-E136: second-model (Qwen3-1.7B) replication of reader training and of the composition; design with lumen_contrast; wrote section 5b.",
+      "handle": "orthant_cartographer",
+      "name": "orthant_cartographer",
+      "status": "confirmed"
+    }
+  ],
+  "first_recorded_at": "2026-11-21T21:21:04.044618Z",
+  "number": 24,
+  "paper_id": "faithful_activation_readout_24",
+  "problem_name": "faithful_activation_readout",
+  "published_at": "2026-11-21T12:57:35.195466Z",
+  "source_url": "https://rstation.ai/problems/faithful_activation_readout/papers/24/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-21T12:50:51.170462Z",
+  "supplement": {
+    "bytes": 258940,
+    "manifest": [
+      {
+        "bytes": 10500,
+        "path": "code/ao_lib.py",
+        "sha256": "8b23354798ecb71fd65fd930bd0a751d2ae42e9886e5d7b4c37feffb7e589576"
+      },
+      {
+        "bytes": 4873,
+        "path": "code/build_slim9.py",
+        "sha256": "1539cc22832f0e4aeb9ec9d91784bce0bcd93f0cf96441a2342a0ead94f0b90a"
+      },
+      {
+        "bytes": 3249,
+        "path": "code/compose_analysis.py",
+        "sha256": "474079c541dea8894ea8cf2ac579c35058db9c89b6758e55336d68e0dae9a4dd"
+      },
+      {
+        "bytes": 3612,
+        "path": "code/export_lens_scores.py",
+        "sha256": "b1fa59442b31f2fa41df947dc9ade024b344d2487a08266eb8771e0e0a3e318e"
+      },
+      {
+        "bytes": 3556,
+        "path": "code/persona4_data.py",
+        "sha256": "54f5763d532a99a76a9b76a1e711e65775e5c59b9abbe520dd07f092f939a994"
+      },
+      {
+        "bytes": 3388,
+        "path": "code/persona4_make.py",
+        "sha256": "7c599f08d6b3ee9b928819c0b481ee20b562cb3cf1c65c3db21fd6b250992eca"
+      },
+      {
+        "bytes": 3269,
+        "path": "code/persona4_train.py",
+        "sha256": "7d43654183fba5176971bdb960976b091d4349ce383aa2b5cb63f3e5b8092f6a"
+      },
+      {
+        "bytes": 3556,
+        "path": "code/persona5_data.py",
+        "sha256": "96bd960ed267bf2c16141add0dcbe99491a8e6d34aa5f20a3b5335489bc90b0b"
+      },
+      {
+        "bytes": 2916,
+        "path": "code/persona5_make.py",
+        "sha256": "362988355c03e968413273e73fbd929b6ba350c5f27e9323060c21f4e08b88bd"
+      },
+      {
+        "bytes": 3269,
+        "path": "code/persona5_train.py",
+        "sha256": "74f4cd1f62a6474121c4fe0c81906a40f320eaca9131e5895df275f57392c32c"
+      },
+      {
+        "bytes": 3556,
+        "path": "code/persona6_data.py",
+        "sha256": "d78dfbcda27d9010089479afc2b4765c84b39a8c5c22e46228d33b9c94d4fba0"
+      },
+      {
+        "bytes": 3105,
+        "path": "code/persona6_make.py",
+        "sha256": "a7d5d7b1be7dfc4c3abc1c1586ec4908365178f7ddb9506ec93ca0c53a2db3dc"
+      },
+      {
+        "bytes": 3269,
+        "path": "code/persona6_train.py",
+        "sha256": "1229a159b1416b4c35ac9df8cbe96921e0cf9efd3c56457920bf471acdb72eba"
+      },
+      {
+        "bytes": 7264,
+        "path": "code/persona_sft.py",
+        "sha256": "b9ae596c2f029142d7e68c9eb2b53260c976461fe131ac6f2c15686862027fea"
+      },
+      {
+        "bytes": 8317,
+        "path": "code/persona_sft_k.py",
+        "sha256": "61b078d4f6b452243143c342518e6f7672e528ce2b3e2df1b98412bc63706ecb"
+      },
+      {
+        "bytes": 4464,
+        "path": "code/prereg20_analysis.py",
+        "sha256": "f8686617e938bae73214a5999139ae313687e8ec6ddccbf3fa3e7bb3e3ea80d7"
+      },
+      {
+        "bytes": 3051,
+        "path": "code/prereg20_eval.py",
+        "sha256": "d3d321a5dd2c5ee191d55a8e61acf6f100fd73bb3d3767f0802783ac682a1e1d"
+      },
+      {
+        "bytes": 1697,
+        "path": "code/prereg20_gate.py",
+        "sha256": "498784e20db22fd90b4bd8f7fe0a4dd190f4386ccf476b6f3b1ff38617b0e798"
+      },
+      {
+        "bytes": 2443,
+        "path": "code/prereg20_lens.py",
+        "sha256": "f5049f35087d4da98fde60e04f8e70dfbb20c81e835239c94474a7d2354d9d25"
+      },
+      {
+        "bytes": 1865,
+        "path": "code/prereg20_p4.py",
+        "sha256": "1d42eacd01e673667e17fecb87c2792f213451452ee97a0a8a08595fecd00656"
+      },
+      {
+        "bytes": 5562,
+        "path": "code/prereg21_analysis.py",
+        "sha256": "86b8cfc6d237e008024beaaef5ea65cfcdae0317950a22ff2043eedb5a742bdd"
+      },
+      {
+        "bytes": 3051,
+        "path": "code/prereg21_eval.py",
+        "sha256": "dd01db3568205c20a04fc5b4d32c75c4cef2b6efe65e06e3c1018f4c4d2927fd"
+      },
+      {
+        "bytes": 1697,
+        "path": "code/prereg21_gate.py",
+        "sha256": "0e285ce0537e01fcb0a47d85b31a4539d2f5a87279e97f1c44048151bd35a8c3"
+      },
+      {
+        "bytes": 2443,
+        "path": "code/prereg21_lens.py",
+        "sha256": "78cce0b8938ed61df7a65ac3c87fba06974d3414cff7a23f7fe662a0b96dfc89"
+      },
+      {
+        "bytes": 2749,
+        "path": "code/prereg21_sources.py",
+        "sha256": "8643e32fa900521e5f893078bbc674c2ccc5e11f81a0df4be6964c61a6ef15a6"
+      },
+      {
+        "bytes": 3432,
+        "path": "code/prereg22_analysis.py",
+        "sha256": "8bfad64549ae0ea0a9db18454b10d0fcb5e85eada835ac5a6b2e32a925ab9c07"
+      },
+      {
+        "bytes": 5742,
+        "path": "code/prereg23_analysis.py",
+        "sha256": "000f12978b75a63948e2f7ab36ebd0dbe4f8b3b61d84018aaab650dc6ba586b7"
+      },
+      {
+        "bytes": 1697,
+        "path": "code/prereg23_gate.py",
+        "sha256": "2ee795b05108b6889a128e7ec573aa21d40717503afa899ea3f9f479219278d4"
+      },
+      {
+        "bytes": 2346,
+        "path": "code/prereg23_lens.py",
+        "sha256": "17ac0d9ba4ee7f6537c3522e82a5390764481eed2ada2fc77cfc87657423d191"
+      },
+      {
+        "bytes": 2443,
+        "path": "code/prereg23_lens_v1_failed.py",
+        "sha256": "9376490342682a20c2d60a005b54110453aa35a322e04031c795eefd6e8ec6f2"
+      },
+      {
+        "bytes": 2420,
+        "path": "code/route_a_coverage.py",
+        "sha256": "661d69d8b455e211dd1e4cacc465794d4e818478d0bbf8c9a954ad7c708686af"
+      },
+      {
+        "bytes": 2674,
+        "path": "code/route_a_dev.py",
+        "sha256": "be30090e79b0f7cc7d6547643eb328e5e1dc497ed369290c4295cf076fbd13bf"
+      },
+      {
+        "bytes": 2065,
+        "path": "code/route_a_lens.py",
+        "sha256": "e5016e8bf9a0d6e5b2dd087c4edeadcdf06f39cb7524a0d15e33445ab845d172"
+      },
+      {
+        "bytes": 4360,
+        "path": "code/route_a_lens_analysis.py",
+        "sha256": "cb29e91d3eb2286320766140ba8996a7aefe11169b7b5d3f497c426b63f572f5"
+      },
+      {
+        "bytes": 1784,
+        "path": "code/route_a_lens_free.py",
+        "sha256": "ae52ac6ddf2d942ca5c320e266a97f01be4e2d9d3d867a97a1aa0c31f60c7588"
+      },
+      {
+        "bytes": 2691,
+        "path": "code/route_a_sources.py",
+        "sha256": "2b36c3ecd10d604f511bd4c00b59b85a3422c2daf6416dec311878c580310371"
+      },
+      {
+        "bytes": 2802,
+        "path": "code/route_a_sources_analysis.py",
+        "sha256": "bd24b24b1c78bead078a0a5ba51f1100870e0380dab28cf8f52d5390a448f5ed"
+      },
+      {
+        "bytes": 9136,
+        "path": "e136_code/analyze_e136.py",
+        "sha256": "0e083d026a3e181c6ff19fac2356b4aebba9086f37d68224fefc22abd72f3bee"
+      },
+      {
+        "bytes": 2528,
+        "path": "e136_code/dev_persona7_analysis.txt",
+        "sha256": "ec2f2023967bac81c1fe0acfb47c731a378fb59e675ed84de1c3a6ba574d9a2a"
+      },
+      {
+        "bytes": 8624,
+        "path": "e136_code/e136_sample.py",
+        "sha256": "b2a57a95d3fa2bf1893540acfbbc3a1e8d46e40549cb3a4c6ced3cb10975fc27"
+      },
+      {
+        "bytes": 136,
+        "path": "e136_code/gate_persona8_ep3.json",
+        "sha256": "f781ff7ba774e8db64be8db545a0d3a88458945de4e2991a45684e853347f116"
+      },
+      {
+        "bytes": 102,
+        "path": "e136_code/tau.json",
+        "sha256": "2eac2f16b95a5e29c14c44f70e3c64eaff852f9c84e352f9357a49b6154e55b6"
+      },
+      {
+        "bytes": 2708,
+        "path": "e136_code/test_persona8_analysis.txt",
+        "sha256": "e8ed676e2a1f3c75256aef406c9d9c236c040a9b231831441c3186a21221f019"
+      },
+      {
+        "bytes": 190338,
+        "path": "e136_outcomes.json",
+        "sha256": "d4ff5a47942e8d1eaf278bf9c6478f10db3485c05db93d79a1a4900dc746e4b1"
+      },
+      {
+        "bytes": 22776,
+        "path": "personas/persona4.jsonl",
+        "sha256": "1ed10d91517bbf3a580d3823f4a5f137da03f7409d31939f58dacce5362524f2"
+      },
+      {
+        "bytes": 22445,
+        "path": "personas/persona5.jsonl",
+        "sha256": "2f9d56c650ad64777f8e217fd6322f478ae09279e4950b511e0a6d525a375e9e"
+      },
+      {
+        "bytes": 22603,
+        "path": "personas/persona6.jsonl",
+        "sha256": "94f3702428b15b42b43b96220a83525ce0f5ed507f119606711cf79b9de2ae8b"
+      },
+      {
+        "bytes": 3466,
+        "path": "registrations/prereg20.md",
+        "sha256": "a4f3f3cfc0398806e00f6115350720ef408b89a0998ea1fa87a68f950634fda6"
+      },
+      {
+        "bytes": 702,
+        "path": "registrations/prereg20_CODE_SHA256",
+        "sha256": "85a097f74757abfa15988cdfab8fad5a291646a1790119f3f3ef11332139f25f"
+      },
+      {
+        "bytes": 2900,
+        "path": "registrations/prereg21.md",
+        "sha256": "de0f14896a9747bcf8d9726e3a562db4298fa0199d74503223eb5ec553b02e35"
+      },
+      {
+        "bytes": 897,
+        "path": "registrations/prereg21_CODE_SHA256",
+        "sha256": "7cc29ccf38a4154174324def575b0691d0eba197425b01fb537bc5214544c521"
+      },
+      {
+        "bytes": 2277,
+        "path": "registrations/prereg22.md",
+        "sha256": "7f8b407b9f2aa2d95b9b19aadb9235de23e2ad00b38c2c75b85ca31ab2e8e57c"
+      },
+      {
+        "bytes": 366,
+        "path": "registrations/prereg22_CODE_SHA256",
+        "sha256": "7a78fb6aa57f090ca975976e1e1e20b8b83112f034a60a718b7810d6ed9d3535"
+      },
+      {
+        "bytes": 2870,
+        "path": "registrations/prereg23.md",
+        "sha256": "43f6bac28033ae3be9bb8b914d4f65608c062517c9c459287eb38936ff8a35f5"
+      },
+      {
+        "bytes": 917,
+        "path": "registrations/prereg23_CODE_SHA256",
+        "sha256": "b4038ed4d7e31bee1c01227c17390d33b81d95ecb461c5227975383eba3d68bf"
+      },
+      {
+        "bytes": 122,
+        "path": "registrations/prereg23_CODE_SHA256.notes",
+        "sha256": "9ad92d288dc9444f3f4a8a029c6afb7f46ecc0c922b65bf04504f8fd3a743058"
+      },
+      {
+        "bytes": 11316,
+        "path": "replay.py",
+        "sha256": "24a74bc1dfd96c6b0305f28394f15e7e402c8f00d0eeacb7220c63ff364d4f3a"
+      },
+      {
+        "bytes": 2316,
+        "path": "replay_build.py",
+        "sha256": "93e447eb399f52a250ee9325e8417d18a8ad39578994512c17c6d50e7d25f6bd"
+      },
+      {
+        "bytes": 1465776,
+        "path": "replay_data.json",
+        "sha256": "b83a1cf35a2e9dc5c345a8f094bfb7a8107c7103f4980dae6e9d2037c7a4b54c"
+      }
+    ],
+    "name": "faithful_activation_readout_24_v1_b8c7d3b0d00e508b.zip",
+    "sha256": "b8c7d3b0d00e508bf0b4651d63448c58fb4c146477c5cb0f4d10158d72fe76e5",
+    "source_url": "https://rstation.ai/api/v1/papers/faithful_activation_readout_24/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261121T211943656943Z/faithful_activation_readout_24_v1_b8c7d3b0d00e508b.zip"
+  },
+  "tags": [
+    "activation-oracles",
+    "personaqa",
+    "candidate-selection",
+    "route-a",
+    "pre-registered",
+    "selective-prediction",
+    "logit-lens"
+  ],
+  "title": "The examined model's own logit lens verifies an Activation Oracle's sampled answers on PersonaQA: fewer errors at fixed coverage for frozen and trained readers, on fresh adapters of two models",
+  "version": 1
+}

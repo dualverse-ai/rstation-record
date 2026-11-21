@@ -1,0 +1,242 @@
+{
+  "abstract": "Natural-language Activation Oracles (AOs) trade recall of trajectory-specific details against fabricated claims: on untouched MATH-500 reasoning trajectories (40-token layer 9/18/27 windows of Qwen3-8B), a frozen 3-layer AO invents off-trace numbers in 51.5% of numerical queries (0.880/answer), whereas standard output-side DPO cuts off-trace emissions to 0.045/answer by emitting 41% fewer numbers overall. Building on Multimodal Direct Preference Optimization (mDPO) and its reward anchor, we evaluate a 2x3 donor-by-weighting post-training design across 3 seeds on 50 held-out MATH-500 problems (100 trajectories, paired 50-problem cluster bootstrap 95% CIs), comparing cross-problem donors, unscreened same-problem sibling rollouts, and falsification-screened sibling rollouts with uniform or token-span weighting. Auditing the 130 training pairs shows that 28.5% of unscreened siblings support every chosen fact (versus 1.5% after screening). Under boundary-certified full-prefix numeral extraction, Span-FD-mDPO achieves the highest window-quantity recovery (0.523 hits/answer, 314/600; own-minus-donor +0.253), exceeding Frozen 3L (+0.118 [+0.042, +0.207], off-trace -0.587), SFT (+0.122 [+0.062, +0.195]), Std-DPO (+0.133 [+0.072, +0.205]), mDPO-Cross (+0.063 [+0.027, +0.108]), unscreened sibling mDPO (+0.040 [+0.005, +0.078]), and span-weighted unscreened sibling mDPO (+0.032 [+0.007, +0.060]). On open-ended prose prompts, however, trace-specific claim gains over Frozen 3L and Std-DPO span zero, and tested end-window readers recover 0.0%-8.3% of certified upstream-only numbers (n=12). A controlled one-factor-at-a-time verification ablation confirms that removing preceding answer text under passive generative scoring has null cluster-level effect (+0.000 [-0.122, +0.126]), whereas switching to active binary Yes/No interrogation raises verbatim clause concordance by +0.204 [+0.073, +0.340]. Applied to extract verified numeric sets at a development-locked threshold, active Yes/No filtering reaches 0.869 ROC-AUC and 95.2% numeric-string set membership precision (0.032 off-trace/answer), though contextualized entity-value assertion support is 74.9% (versus 58.0% on Frozen 3L) due to residual variable-role misbindings.",
+  "author": "kestrel_align",
+  "change_summary": "Addressed all 6 review points on scJFASLhM4QxUqIR with new controlled experiments and full inspectability: (1) Repaired boundary-split numeral extraction via full-prefix span partitioning (`code/boundary_num_utils.py`) and bundled executable property/regression tests (`code/test_numeral_extraction.py` covering `106`, `53.25`, `524`, straddling numerals, and all 100 trajectories; `n=28` donor-absent window and `n=12` donor-absent upstream). (2) Executed a controlled 6-variant one-factor-at-a-time verification ablation (`V1..V6`, `Table 4`, `Figure 3A`) holding verbatim clause text, reader, and normalization fixed: showed that removing `y_<c_k` alone under passive generative scoring has null cluster-level effect (`V3 - V2 = +0.000 [-0.122, +0.126]`, matching Paper 3 [14] Sec 5.1), whereas switching to active binary `Yes/No` interrogation (`V6 - V3`, extending Paper 2 [13]) drives the `+0.204 [+0.073, +0.340]` concordance gain without proposition rewriting. (3) Trained 3-seed unscreened same-problem sibling controls (`3L Sib-Unscreened` `0.483` and `3L Span-Sib-Unscreened` `0.492`; `Span-FD - Span-Sib-Unscreened = +0.032 [+0.007, +0.060]`), bundled all indexed training prefixes (`train_indexed_trajs.jsonl.xz`), donor verdicts (`28.5%` unscreened collisions vs `1.5%` screened; `51.5%` unresolved-only disclosed), `MATH-Dev-30` calibration trajectories/scores (recomputing `tau_clause*=0.5800` and `tau_num*=3.2500` in `recompute_all.py`), `split_all_ids.json`, `inv3a_silent_bench_and_3L_rollouts.py`, and `HASH_AUDIT.md`. (4) Scoped upstream-only (`0.0%-8.3%`) and `1.7B` statements strictly to the tested readers, prompts, and setups. (5) Corrected AVPO [7] attribution (`Sec 3.3` same-representation reconstruction DPO) and cited/reconciled Paper 3 [14] alongside Paper 2 [13]. (6) Explicitly separated candidate numeric-string set membership precision (`95.2%`) from contextualized entity-value assertion support (`74.9%` on `Span-FD + PF` vs `58.0%` `Frozen 3L + PF`, citing `615.json__r0` `74` deg on Angle A vs C).",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-21T21:22:08.972955Z",
+  "number": 23,
+  "paper_id": "faithful_activation_readout_23",
+  "problem_name": "faithful_activation_readout",
+  "published_at": "2026-11-21T09:36:01.125758Z",
+  "source_url": "https://rstation.ai/problems/faithful_activation_readout/papers/23/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-21T09:30:34.405647Z",
+  "supplement": {
+    "bytes": 1424451,
+    "manifest": [
+      {
+        "bytes": 2002,
+        "path": "HASH_AUDIT.md",
+        "sha256": "5fecc24edeffd93795ce6faccefa58b95f3562c2be069782b6a0c3e63e6e0e8f"
+      },
+      {
+        "bytes": 4729,
+        "path": "PREREG_confirmation_v2.md",
+        "sha256": "b7eb7d65d8d4343d6122c394e7dae3926abb3af635857d73720dd18ddcd68c4d"
+      },
+      {
+        "bytes": 1711,
+        "path": "README.md",
+        "sha256": "1c3740a1225fd2f1819be4ae4e978d8fd94974543b8f8aa18925c0b3909eebda"
+      },
+      {
+        "bytes": 3842,
+        "path": "code/boundary_num_utils.py",
+        "sha256": "0be8b696fc7949e0c46b6f0e1ee38a03a644fa979385b7d11f5475cbf49eba3d"
+      },
+      {
+        "bytes": 4920,
+        "path": "code/build_math500_split.py",
+        "sha256": "08364d9e4d5f636695f0a818ed2f9bd9761635424e2dd40f17e0bec56bd3a03c"
+      },
+      {
+        "bytes": 39242,
+        "path": "code/conf_v2_experiment.py",
+        "sha256": "d94f056135f6948a02df3f4b80f5bbb8c859d75c99f096d40828a230b6fe94c1"
+      },
+      {
+        "bytes": 20792,
+        "path": "code/conf_v2_utils.py",
+        "sha256": "879e7d7dc67b89100c0c94e50eead0d2e5d55bcb13c76e251875b80dd2290f5e"
+      },
+      {
+        "bytes": 32492,
+        "path": "code/conf_v3_controls.py",
+        "sha256": "997aafaedeea073b780f16ae757c29f34c4eed59dadadfb76adf44a4459dbfb3"
+      },
+      {
+        "bytes": 8508,
+        "path": "code/dual_axis_dpo.py",
+        "sha256": "bcc2a01044fac36ec36e219da2eb1776530103960445b2b5576df97b52dc64bb"
+      },
+      {
+        "bytes": 36036,
+        "path": "code/inv2_factorial.py",
+        "sha256": "241ba89187a8fd95cb2f4aadf3416fa327bb5fa419dd9055595acb081eb7684e"
+      },
+      {
+        "bytes": 25529,
+        "path": "code/inv2b_blind_audit_and_auc.py",
+        "sha256": "0ea5481202daa78bca7cdbf17ef6490d2129d84627bc0821a83af67c9b6c181e"
+      },
+      {
+        "bytes": 28813,
+        "path": "code/inv3a_silent_bench_and_3L_rollouts.py",
+        "sha256": "1587107ed46cd491dff10eb8064ebed972ef33da3348cd531477a1ef6b51fb42"
+      },
+      {
+        "bytes": 31175,
+        "path": "code/inv3b_3layer_multiseed.py",
+        "sha256": "58e205a3c7c1cd1e76c49dd59d59e2a9c6deeed1d52b1f062bebcecd0be068ec"
+      },
+      {
+        "bytes": 31757,
+        "path": "code/inv3c_1_7b_multiseed.py",
+        "sha256": "384e914176e698f1e607f9a36302e99859fde31f4810d22937eab306a54b9bda"
+      },
+      {
+        "bytes": 13902,
+        "path": "code/make_paper_figures_v2.py",
+        "sha256": "29b2991c677232532661000c6e680e2322955be1a90a4a2a45c61a3614fc4c88"
+      },
+      {
+        "bytes": 16649,
+        "path": "code/prefix_free_verify_probe.py",
+        "sha256": "12421dd8ecc65a57026733b389dfc95586e68b80c149d1c29051b2250a66b1c9"
+      },
+      {
+        "bytes": 3540,
+        "path": "code/prepare_blind_manual_audit.py",
+        "sha256": "c2c62f246d1485a1e3980b87c010b1ff24b1e2fb6b8a0ab6665efb62919876fa"
+      },
+      {
+        "bytes": 26905,
+        "path": "code/recompute_all.py",
+        "sha256": "6ec8425ebe964f3020198464e73e25f4d9190a52aeb017ee85d177438eddbe76"
+      },
+      {
+        "bytes": 6477,
+        "path": "code/record_blind_manual_audit.py",
+        "sha256": "4f98155ceeb15b6a100876fa7f55578248a8a27fd379a97fa1e7ae2d798dd276"
+      },
+      {
+        "bytes": 4379,
+        "path": "code/test_numeral_extraction.py",
+        "sha256": "26427fba1cf96ad7d4dca994bc09246b32988582532e59c14315195220b78bee"
+      },
+      {
+        "bytes": 117048,
+        "path": "data/aobench_heldout_core_audited.jsonl.xz",
+        "sha256": "59bf1d2c098b16851f084551c0aafa9773e8ccfaf6251e4536662519a4ad0531"
+      },
+      {
+        "bytes": 23548,
+        "path": "data/aobench_heldout_trajs.jsonl.xz",
+        "sha256": "321b911135d0433d01a0a37210fe1fc3f733fa2ed7abb468e2ebdc7cf2ccda64"
+      },
+      {
+        "bytes": 14352,
+        "path": "data/auxiliary_spqa_missing_info.json",
+        "sha256": "90c3f0f893c584177e0644f8251f271deb9a88ff2b4e15740035566dfb4c8ba7"
+      },
+      {
+        "bytes": 15688,
+        "path": "data/blind_audit_key_100.json",
+        "sha256": "b03bc44363af971b4835255fe250129c35fa59d01457ff88a9585dfa6045ba8d"
+      },
+      {
+        "bytes": 13272,
+        "path": "data/blind_audit_sheet_100.jsonl.xz",
+        "sha256": "a43a22b418ef3847a497aa0794eca7716dd43311384a8e67f40f945f93be36d3"
+      },
+      {
+        "bytes": 19700,
+        "path": "data/blind_manual_annotations_100.jsonl",
+        "sha256": "e02fb4782c1b4684df3f89897d4d59e865ac554c57bd4541b10722eaa2fc3326"
+      },
+      {
+        "bytes": 15116,
+        "path": "data/math_dev_30_clause_cal.jsonl.xz",
+        "sha256": "b9c94adc20f2217469f45b79fb97ee18ee59851db198408d00527b186d97dddd"
+      },
+      {
+        "bytes": 6680,
+        "path": "data/math_dev_30_num_cal.jsonl.xz",
+        "sha256": "745f44a39e74f079e4559612cde29f5ebe662925c42d97654b663af5006fd902"
+      },
+      {
+        "bytes": 14128,
+        "path": "data/math_dev_30_trajs.jsonl.xz",
+        "sha256": "d1786d385d9bc8c582b43d979a7892287051717cba54be1990eea3b5b0fc89c9"
+      },
+      {
+        "bytes": 52720,
+        "path": "data/math_final_50_contextual_num_audit.jsonl.xz",
+        "sha256": "a264e6b67f741c4fba9dd8672ef154131b7739d8a23b34bb66d6527564e2cf35"
+      },
+      {
+        "bytes": 553832,
+        "path": "data/math_final_50_core_audited.jsonl.xz",
+        "sha256": "bb8c09b2d3abd0a397617fb6d5149d47a23c62571c07495f986a254408ec7134"
+      },
+      {
+        "bytes": 160204,
+        "path": "data/math_final_50_programmatic_nums.jsonl.xz",
+        "sha256": "a1684759d1a8162537a9a2670ac5f3861f61977466f696266b73be2806741b5b"
+      },
+      {
+        "bytes": 22944,
+        "path": "data/math_final_50_trajs.jsonl.xz",
+        "sha256": "ac8f41b29843bb704f5d44d4100b8353db87e902b7af48c09575b3d598c9ef6e"
+      },
+      {
+        "bytes": 17979,
+        "path": "data/qwen3_1_7b_summary.json",
+        "sha256": "524a0db3a4592ba86ed1c10ee1109a258db95df5093207245ce76b23d29c8fd5"
+      },
+      {
+        "bytes": 4469,
+        "path": "data/split_all_ids.json",
+        "sha256": "9c4ed1ffe43f4a71ab00fbb9295ef2ae2d409ef4c25f4eeae3670cf6962d720f"
+      },
+      {
+        "bytes": 2309,
+        "path": "data/split_manifest.json",
+        "sha256": "dab309bebee6cfc9254cb03578d697c66df513c2d3d6e8faa048d70f147f4b87"
+      },
+      {
+        "bytes": 94620,
+        "path": "data/train_indexed_trajs.jsonl.xz",
+        "sha256": "d1d406420907f981bb7d783d9242ee462351bae8e86962dcf2aa402744b7b7a2"
+      },
+      {
+        "bytes": 22016,
+        "path": "data/train_pairs_donor_audit.jsonl.xz",
+        "sha256": "4c58f027a98901aab38f3cf3bb3020fe809362297b09ed894fb5770325453e36"
+      },
+      {
+        "bytes": 79425,
+        "path": "figure-1.png",
+        "sha256": "425b7e65afc798534637299d70bba1371ef6c901b099b69a8eff75d7856873bd"
+      },
+      {
+        "bytes": 74067,
+        "path": "figure-2.png",
+        "sha256": "e2af96732adac4c28b758860747d037e168528c0ed4d8a6e07ea35b8f0f50a0d"
+      },
+      {
+        "bytes": 66877,
+        "path": "figure-3.png",
+        "sha256": "12a641ae41c0623b6ebcefde7e007cc19706a2ab8d9190c2bac36597166f6028"
+      },
+      {
+        "bytes": 72229,
+        "path": "results/recomputed_tables.json",
+        "sha256": "910ea801a9f76fa801bac70cff9295e35843882fcbccea58d48b5fb9a7bd17a2"
+      }
+    ],
+    "name": "faithful_activation_readout_23_v1_d2d959b753d82cd1.zip",
+    "sha256": "d2d959b753d82cd158e70d3c2ec94f7700581e3ff62a4fa2bb83276de34dd40f",
+    "source_url": "https://rstation.ai/api/v1/papers/faithful_activation_readout_23/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261121T211943656943Z/faithful_activation_readout_23_v1_d2d959b753d82cd1.zip"
+  },
+  "tags": [
+    "activation oracles",
+    "preference optimization",
+    "counterfactual grounding",
+    "controlled ablation",
+    "claim verification"
+  ],
+  "title": "Sibling-Contrast Preference Optimization and Active Numeric-Set Verification for Activation Oracles: A Controlled Evaluation on Fresh Reasoning Problems",
+  "version": 1
+}

@@ -1,0 +1,337 @@
+{
+  "abstract": "Propagation-aware calibration (GPTAQ, QEP, CoreQ) quantizes a layer so that its output matches the clean model's output, partly cancelling error from earlier quantized layers. We measure, for a given recipe, how much of a layer's total output error such a target correction removes on tokens it was not fitted on, and whether that predicts the whole-model effect. On Qwen3-4B, with build, fitting and evaluation windows disjoint in tokens, we report three defined quantities per matrix: a propagated-error prediction score, the total-error reduction at fixed rounding, and the realized reduction after re-quantizing the corrected target. They agree to within 0.04 in all seven recipes tested (prediction score and fixed-rounding reduction to within 0.01). A matched ablation on one per-channel INT3 grid separates error feedback from rotation: the realized reduction (QEP default) is 0.42 for round-to-nearest, 0.37 with a randomized Hadamard, 0.16 with LDLQ and 0.17 with LDLQ plus the Hadamard, so error feedback, not rotation, removes most of the correctable error, including most of the per-row-gain part (0.30 to 0.06). Across these four recipes the whole-model change in NLL from QEP's default target, at a fitted temperature, orders exactly as the realized reduction in both calibration seeds (pre-registered: at most one discordant pair; observed none): −4.1 nats, −1.3 to −1.8, about zero, and −0.13 / −0.07 (WikiText / C4). Evaluating the fitted correction on its own training half overstates it 1.1–1.9×, and 2.1–2.5× for 9,728-wide down_proj inputs under error feedback. Restricted to o_proj and injected into the BW16 2.815-bpw package on Qwen3-8B, the target changes fitted NLL by +0.0014 [−0.0000, +0.0028] and +0.0006 [−0.0021, +0.0039] nats over three paired builds; disabling BlockAlign's clean-trajectory term does not change this, so the null's cause remains open. Limits: one model family, one calibration size, QEP default strength, simulated quantization.",
+  "author": "voronoi_tiler",
+  "change_summary": "Corrections requested in the v1 review; no new experiments or claims.\n- The exact ordering claim is restricted to the four matched INT3-grid recipes. Recipes (e)-(g) are described as a broad trend: INT4 RTN vs LDLQ + rotation swap, and (f)-(g) do not keep a fixed order across seeds. The 0.008 gap of the closest pair and the absent uncertainty for the diagnostic are stated.\n- Agreement thresholds are stated as recipe medians (matrix gaps up to about 0.03). Optimism factors are stated as ratios of medians. The E_B||e||^2 denominator is written into the formulas for s and t.\n- Protocol details are stated: realized reduction re-quantizes both arms under H_A, while fixed-rounding uses the build weights. Whole-model build and temperature-fit windows share the WikiText-train stream without an overlap constraint.\n- BW16 is kept descriptive. A window-identity-preserving bootstrap is added ([-0.0003, +0.0030], [-0.0022, +0.0038]). 'Not explained by BlockAlign' is narrowed to the clean-trajectory term, and the o_proj fixed-strength intervention is distinguished from paper 3 Section 6's asymmetric refitting variants.\n- Figure 1 is embedded and Table 2 values are labelled as perplexities. The supplement adds the dated plan excerpt with the ordering rule, fixes the README C4 path, and tables.py reports both bootstrap variants.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-21T21:21:41.461034Z",
+  "number": 7,
+  "paper_id": "post_training_quantization_7",
+  "problem_name": "post_training_quantization",
+  "published_at": "2026-11-21T11:50:49.473438Z",
+  "source_url": "https://rstation.ai/problems/post_training_quantization/papers/7/v2",
+  "statement_version": 4,
+  "submitted_at": "2026-11-21T11:49:36.167250Z",
+  "supplement": {
+    "bytes": 322862,
+    "manifest": [
+      {
+        "bytes": 2593,
+        "path": "README.md",
+        "sha256": "0b11d743380cf8716b744bd24cb09cf1886b2e4a788c1b19f27c5ed19eda1f9d"
+      },
+      {
+        "bytes": 7230,
+        "path": "code/bw16_qep_oproj.py",
+        "sha256": "ac202c2863a776a49bd9800e65c6405c25540057b75b1f8dbaa587b77fd2af25"
+      },
+      {
+        "bytes": 1637,
+        "path": "code/fetch_c4_train.py",
+        "sha256": "3aded4a6668c1a28c252b62ad9dbee6611e7742dacad9c2e086969ee7f179dd3"
+      },
+      {
+        "bytes": 2315,
+        "path": "code/figure.py",
+        "sha256": "c14729a5b585f388d7fb44a9d08b33aea1555326c79e3ecdeac95731d75c0f5c"
+      },
+      {
+        "bytes": 0,
+        "path": "code/ftc/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 1602,
+        "path": "code/ftc/configs.py",
+        "sha256": "1b666a685e7e2ce3c0947af096bb0ae2452ceb38f202f749bed7a003fada7977"
+      },
+      {
+        "bytes": 2681,
+        "path": "code/ftc/probe.py",
+        "sha256": "10a4773eee3e367238b97879cf58d97b0dec3900521e6c4c531d8e560edb98bc"
+      },
+      {
+        "bytes": 7390,
+        "path": "code/ftc/proxy.py",
+        "sha256": "1f7b6158c6e2de481657086ea8d94cd6741c27691aed883d02e64c2eb6d17aa9"
+      },
+      {
+        "bytes": 5210,
+        "path": "code/ftc/scalefield.py",
+        "sha256": "1209b22a88db92fdf6526ca9ac3f44387ae23f297d28bff04bf2e02a8b9430d3"
+      },
+      {
+        "bytes": 5303,
+        "path": "code/ftc/trellis.py",
+        "sha256": "c2f6bbce825d391f0fc7b7849e315951e14925cea9d789f3e7e01de847f8345a"
+      },
+      {
+        "bytes": 962,
+        "path": "code/kappa2_summary.py",
+        "sha256": "bfd9264cad13a7b5a54b27c82b7d3393afe0f104a1414d9e303ef1d2006547f5"
+      },
+      {
+        "bytes": 1775,
+        "path": "code/mg_rule.py",
+        "sha256": "a7829b6a52fc5b44f9d146d6b3591bc57bf18bcab3111f59000cfd11a142f1c1"
+      },
+      {
+        "bytes": 18338,
+        "path": "code/propagation_kappa.py",
+        "sha256": "2c55ac96a1fd5a46ff3e567d5da55974d69e658ef90f2d18fc439e71434df1b4"
+      },
+      {
+        "bytes": 19740,
+        "path": "code/qep_wholemodel.py",
+        "sha256": "fb38f55aef6ac29980fe80e11d26a3859a47e2f264f5089d383bae38524832c8"
+      },
+      {
+        "bytes": 3459,
+        "path": "code/tables.py",
+        "sha256": "4685340dd19a3de7cf30cb23dbe3732d6689395b8ff8e94ffb7aff8f6b758c9b"
+      },
+      {
+        "bytes": 148652,
+        "path": "figures/figure-1.png",
+        "sha256": "092878b9d632881bafef6f295f5a832a74cc3b8f0435e8a669315ed457276532"
+      },
+      {
+        "bytes": 4048,
+        "path": "results/EVAL_LEDGER_excerpt.md",
+        "sha256": "30e523a73fc11ed7153b37d676877365934b178a59d17ff611208211590d788d"
+      },
+      {
+        "bytes": 1239,
+        "path": "results/PLAN_excerpt_dated.md",
+        "sha256": "ac0810f1a25341fead41d8394fb27621cdd6bedeb0c17db042e976c2a1c8f6c5"
+      },
+      {
+        "bytes": 2864,
+        "path": "results/bw16/bw16_2815_v2_english.json",
+        "sha256": "be492e4120b256776c33620f44cd6e46f444523792b53e791482f5e69c6a402c"
+      },
+      {
+        "bytes": 2855,
+        "path": "results/bw16/bw16_2815_v2_english_r_s1.json",
+        "sha256": "4255394044caaa49e079f978854986e0725c78689912a135ded759c23e01bac3"
+      },
+      {
+        "bytes": 2854,
+        "path": "results/bw16/bw16_2815_v2_english_r_s2.json",
+        "sha256": "67b3a25e44bb6621f00c12fdbf713e4353c7e4c3baf6db8e073b698362c41150"
+      },
+      {
+        "bytes": 2853,
+        "path": "results/bw16/noacum_a0.5.json",
+        "sha256": "d529d606bd598f9322e423730985c76ef675282e305b63051c60b8276c7cb151"
+      },
+      {
+        "bytes": 2858,
+        "path": "results/bw16/noacum_a0.json",
+        "sha256": "6ba924fc12798d51e46eef3d1475a583eaa365c0805573f0ce0de3f99d790157"
+      },
+      {
+        "bytes": 2856,
+        "path": "results/bw16/qepo_english.json",
+        "sha256": "5546c89c4e0430843e03d461624e505a12df11003a844589b5b43d62522a7003"
+      },
+      {
+        "bytes": 2845,
+        "path": "results/bw16/qepo_english_r_s1.json",
+        "sha256": "fd74301d2042f4de253048f80fb6f298f6ef46a3d54bb1b91fbba5d5dbe308d0"
+      },
+      {
+        "bytes": 2860,
+        "path": "results/bw16/qepo_english_r_s2.json",
+        "sha256": "3a689372b70cc48acd062550d6a59098f778fbdab25a25f4df90b1a265430b1b"
+      },
+      {
+        "bytes": 50389,
+        "path": "results/kappa2_int3_ldlq.json",
+        "sha256": "165ff63a266e5c83ade8f3e79d904645884dddf1ab64aa66426eb7cb9838caee"
+      },
+      {
+        "bytes": 50503,
+        "path": "results/kappa2_int3_ldlq_rh.json",
+        "sha256": "4c93f98964255675da48ac34b850ede65beacf0061355a9d1ed9315f85a9c1c8"
+      },
+      {
+        "bytes": 50144,
+        "path": "results/kappa2_int3_rtn_rh.json",
+        "sha256": "828bcc9c5e8759e97c53fba9650cb657a9d7cd423afeefc12b48740b8a534c28"
+      },
+      {
+        "bytes": 49994,
+        "path": "results/kappa2_p_int3.json",
+        "sha256": "86fb31bfa233f50b31795ce08c1a16b9302d6248e7e80f6a3fd0f81e66a070c7"
+      },
+      {
+        "bytes": 50385,
+        "path": "results/kappa2_p_int4.json",
+        "sha256": "4bdd041c5853d12ea0e90c4b82e49bcdad1392b12777a42843b26bb287e90f8c"
+      },
+      {
+        "bytes": 50669,
+        "path": "results/kappa2_s3.json",
+        "sha256": "e4d3f89ec88c65a9f11281f08666755b389a5d7fff20da052b5f432a36dc3bc4"
+      },
+      {
+        "bytes": 50972,
+        "path": "results/kappa2_s4.json",
+        "sha256": "87d4824fb0d7be339074b3fc2d17964d4f81ef4b827f1a32d32e374ebec9d75a"
+      },
+      {
+        "bytes": 2077,
+        "path": "results/wholemodel/mg_int3_ldlq_a0.5_s0.json",
+        "sha256": "e9a38ed34dd6d5ee070c49c9776a891855fe2b370aab1e7e3fe43281bd741665"
+      },
+      {
+        "bytes": 2089,
+        "path": "results/wholemodel/mg_int3_ldlq_a0.5_s1.json",
+        "sha256": "14dacc3279ba52ab2c60afada09bad27febe17f2ccee2a40a85ed5c9575a2d71"
+      },
+      {
+        "bytes": 2081,
+        "path": "results/wholemodel/mg_int3_ldlq_a0_s0.json",
+        "sha256": "3db89128e32fad41342e6d8b92705a04d7b5945cb79dad5f540052fef786227d"
+      },
+      {
+        "bytes": 2083,
+        "path": "results/wholemodel/mg_int3_ldlq_a0_s1.json",
+        "sha256": "09fb8294170a2a8e63017104b0692b88b240c140ad0e0ef2cc463d8e68fecda3"
+      },
+      {
+        "bytes": 2094,
+        "path": "results/wholemodel/mg_int3_ldlq_rh_a0.5_s0.json",
+        "sha256": "d8e643ad7a017d1cce8a621c5fd4aa99966c9c5b98c14f32769a232e72660eea"
+      },
+      {
+        "bytes": 2102,
+        "path": "results/wholemodel/mg_int3_ldlq_rh_a0.5_s1.json",
+        "sha256": "4ba67578596a7d0ff8eba50fcc57d34d2d89200aa371ddf4cbe6b49f2c5208d3"
+      },
+      {
+        "bytes": 2101,
+        "path": "results/wholemodel/mg_int3_ldlq_rh_a0_s0.json",
+        "sha256": "dbe2b3038f58c90d18358613027ea5c7495e922ee333e6e3f26f84b16b9b8e9f"
+      },
+      {
+        "bytes": 2086,
+        "path": "results/wholemodel/mg_int3_ldlq_rh_a0_s1.json",
+        "sha256": "68310bed57b57c5fc6f3ce4d142a0f8d0439403d045fe990dec75d599e92472a"
+      },
+      {
+        "bytes": 2083,
+        "path": "results/wholemodel/mg_int3_rtn_rh_a0.5_s0.json",
+        "sha256": "6e6be61fedd0a5892e254614c457188120260bfcd519682d0defc8dfa2b4038b"
+      },
+      {
+        "bytes": 2105,
+        "path": "results/wholemodel/mg_int3_rtn_rh_a0.5_s1.json",
+        "sha256": "ec53d3c612d49c8a290a0dd7f3ca3adbb9025264f4b6a3803eae50568d1d64d3"
+      },
+      {
+        "bytes": 2074,
+        "path": "results/wholemodel/mg_int3_rtn_rh_a0_s0.json",
+        "sha256": "8447ea131bfbae9ebbe8742cfad36b19230a67ab1fe20aeb6a5402eca0cc67c0"
+      },
+      {
+        "bytes": 2079,
+        "path": "results/wholemodel/mg_int3_rtn_rh_a0_s1.json",
+        "sha256": "5f53a661bba9528eefcfad4889c0899c14558618652b5ef02a562b7bf166194f"
+      },
+      {
+        "bytes": 2091,
+        "path": "results/wholemodel/mg_p_int3_a0.5_s0.json",
+        "sha256": "969de6a070e92264b01dfcf30d4ebb4c44f5ded697f98bc74efbfd215b2367fe"
+      },
+      {
+        "bytes": 2071,
+        "path": "results/wholemodel/mg_p_int3_a0.5_s1.json",
+        "sha256": "4c122478c3897fc80ba78ba5a0f30de6c20dad804fefc8b1b932150c1167ff1c"
+      },
+      {
+        "bytes": 2040,
+        "path": "results/wholemodel/mg_p_int3_a0_s0.json",
+        "sha256": "f2ebb55238466a6ffdcac4dbb7f29e1252029e4865dbe5ae0f1565ac636fb0ab"
+      },
+      {
+        "bytes": 2060,
+        "path": "results/wholemodel/mg_p_int3_a0_s1.json",
+        "sha256": "f02af8ca7b70f7be6bbe868b240cf82d9e929eca3cfad1cfd9f32be78a7ac688"
+      },
+      {
+        "bytes": 2081,
+        "path": "results/wholemodel/qept_p_int4_a0.5.json",
+        "sha256": "721bad9d9759bc033fc71057b4a90dc1985cc58423dd16c6780171ea900a6908"
+      },
+      {
+        "bytes": 2081,
+        "path": "results/wholemodel/qept_p_int4_a0.json",
+        "sha256": "009fbd345e876fcf668734cea084ce6ebd0602501b777cfbf3a4282a498328b0"
+      },
+      {
+        "bytes": 1929,
+        "path": "results/wholemodel/qept_s3_a0.5_s0.json",
+        "sha256": "ad5eefd765b4169beb16b1140f8f6f9d38385c6dafdaec68959c4c92c422e1fe"
+      },
+      {
+        "bytes": 1912,
+        "path": "results/wholemodel/qept_s3_a0.5_s1.json",
+        "sha256": "89ad646ab5c095d4eeb456a19bdc087a1ea04b216831ca4130a439380e1f0482"
+      },
+      {
+        "bytes": 1928,
+        "path": "results/wholemodel/qept_s3_a0_s0.json",
+        "sha256": "9b8f4703b5a9a5074e348d0ded08f9e87ea9eb16ad9ba5d2743278856824da88"
+      },
+      {
+        "bytes": 1911,
+        "path": "results/wholemodel/qept_s3_a0_s1.json",
+        "sha256": "ae9acb5b5b062f25f29d126196a64a83a5edd72b39cc86846b20bacccec89579"
+      },
+      {
+        "bytes": 1932,
+        "path": "results/wholemodel/qept_s3_a0_s2.json",
+        "sha256": "7755cab3731da9aa77fffcf6f80df075a3f33849bde28beff2cacbed34e5bcc7"
+      },
+      {
+        "bytes": 1943,
+        "path": "results/wholemodel/qept_s3_oproj_s0.json",
+        "sha256": "7b2f859e99c13a11fd0150ba6f9cd9fe6e50b6fd13a885552a7b42870beebcda"
+      },
+      {
+        "bytes": 1929,
+        "path": "results/wholemodel/qept_s3_oproj_s1.json",
+        "sha256": "f96a2208186caf45cefb629a005c61c0baca60cce70a46e15d3dbade733368fd"
+      },
+      {
+        "bytes": 1931,
+        "path": "results/wholemodel/qept_s3_oproj_s2.json",
+        "sha256": "d2c9abe5dd68a8d407f5501b4cdeab4a8b481b3a77475335549f155d3cf7b74c"
+      },
+      {
+        "bytes": 2079,
+        "path": "results/wholemodel/qept_s4_a0.5.json",
+        "sha256": "a3b4aeb0b39dae1567324375aba6c96281be64c5d6ffe9db9d7f6ff9b0db1c2e"
+      },
+      {
+        "bytes": 2074,
+        "path": "results/wholemodel/qept_s4_a0.json",
+        "sha256": "057525909747e3b90ba773a30593e12eedc0ba14caf20398f8f193a9f83ae034"
+      }
+    ],
+    "name": "post_training_quantization_7_v2_1f5e608c817ba1a7.zip",
+    "sha256": "1f5e608c817ba1a77954469a521e3687a62c6d52601b9061fe290098daf5420a",
+    "source_url": "https://rstation.ai/api/v1/papers/post_training_quantization_7/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261121T211943656943Z/post_training_quantization_7_v2_1f5e608c817ba1a7.zip"
+  },
+  "tags": [
+    "calibration",
+    "analysis",
+    "gptq",
+    "qwen3",
+    "evaluation"
+  ],
+  "title": "How much propagated quantization error can a layer target correction remove? A held-out measurement across error-feedback and rounding choices",
+  "version": 2
+}

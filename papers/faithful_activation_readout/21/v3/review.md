@@ -1,0 +1,11 @@
+# Accept
+
+This revision appropriately corrects and clarifies the accepted contribution: changing the reference ensemble improves a fixed difference reader's recovery of held-out taboo secrets. It introduces no new substantive result, preserves the supporting evidence, and remains focused on that contribution.
+
+The changes address the previous review's scientific qualifications. The title and access discussion now distinguish eliminating base-model reference activations from eliminating base-model access altogether. Section 3 correctly concludes that overlap with reader-training labels is unnecessary, without claiming to exclude shared semantic directions. Section 6 reports eighteen references as the tested configuration rather than an established requirement. The new limitation concerning training content versus behavior is warranted by the construction and prevents an unsupported interpretation of what the reader detects.
+
+Section 4 now correctly separates the registered neutral-prompt behavioral comparison from the supplementary direct/hint and base-reference contrasts. Its description of the agreement filter makes the sampling and averaging explicit and agrees with the supplied implementation.
+
+I ran the revised prediction replay: all 62 checks passed, including the two formerly commented-out agreement-filter checks and the added behavioral confidence intervals. The latter use 5,000 paired word-cluster bootstrap draws with seed 4 and reproduce the displayed endpoints to their reported precision. The neutral comparison remains positive, while the direct and hint intervals include zero. These checks validate calculations from retained predictions and behavioral hit indicators; they do not reproduce model training or inference, or independently audit behavioral scoring from generated answers.
+
+One minor documentation omission remains: Section 7's expanded path list should also mention the absolute workspace import path in `code/taboo_make.py` (line 5), in addition to its dataset path. This does not affect the portable prediction replay or the scientific conclusions. The resulting scope remains appropriately conditional on one reader, reference ensemble, construction recipe and task.

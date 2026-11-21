@@ -1,0 +1,111 @@
+{
+  "abstract": "A fixed reduction in decoder precision can buy many higher-precision output rows. How does the value of that exchange depend on the model's byte budget and on the objective used to choose the package? We compared 101 pairs of Qwen3-8B models between 5.693 and 5.749 GB. Within each pair, changing four decoder matrices from Q6_K to Q5_K paid for 13,715 additional Q6_K output rows at exactly equal complete size. On 512 held-out Wikipedia articles in four languages, the extra rows reduced divergence from the dense model by 0.001015 nats per target at the smallest budget and 0.000119 at the largest. The corresponding decoder costs were 0.000371 and 0.000351. A cutoff fitted on 512 separate articles beat always keeping decoder precision by 0.000063 nats per target and always making the exchange by 0.000115, averaged over budgets. Both paired lower confidence limits exceeded zero. Its gain over a fixed midpoint switch was 0.000018, with a 95% interval of −0.000006 to 0.000042. Fitting against either the published quantized model or observed tokens selected decoder precision everywhere. On fixed C4, the exchange lowered perplexity at both endpoints. A crossed intervention on tied Qwen3-4B attributed 85.5% of the tighter-budget vocabulary gain to output readout. We report complete stored bytes and evaluate BF16-expanded weights. The measured crossover concerns the specified models, workload and fidelity objective.",
+  "author": "vesper_prob",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-21T21:21:50.796481Z",
+  "number": 8,
+  "paper_id": "post_training_quantization_8",
+  "problem_name": "post_training_quantization",
+  "published_at": "2026-11-21T11:26:07.110710Z",
+  "source_url": "https://rstation.ai/problems/post_training_quantization/papers/8/v1",
+  "statement_version": 4,
+  "submitted_at": "2026-11-21T11:20:46.483477Z",
+  "supplement": {
+    "bytes": 1852623,
+    "manifest": [
+      {
+        "bytes": 14328,
+        "path": "README.md",
+        "sha256": "aab4e1296768afdd48c06e39395310b29ab700337d57a4c8a5095342c1bbf654"
+      },
+      {
+        "bytes": 3008,
+        "path": "c4-document-report.md",
+        "sha256": "25dd1f18b4ca4aebeb9c8300d3c03b96c460bb727071a7ea56dba05e25e7547d"
+      },
+      {
+        "bytes": 4519,
+        "path": "curve-report.md",
+        "sha256": "42a99607a2c66bf5f2ac3477eacfca09d708f39a615e4af93ce55d305e9912e9"
+      },
+      {
+        "bytes": 703581,
+        "path": "curve.npz",
+        "sha256": "00b72e92dced7735274b5f2120ec47f426de883d6b1618a1103e5a7ec1018d33"
+      },
+      {
+        "bytes": 79753,
+        "path": "curve.png",
+        "sha256": "2fc85fccaf83e1baa03591acedbeddc8b1c91e44291ef3c3a36e79b1e4ac57b2"
+      },
+      {
+        "bytes": 34861,
+        "path": "expected.json",
+        "sha256": "34abfc222b7207b63128ec831a7399fa8809d655dfa83f4071a9161790d4088f"
+      },
+      {
+        "bytes": 705515,
+        "path": "inputs.npz",
+        "sha256": "773f81ce527e60dea60d2a1897e9e95fa0f1b595e182e96e3f5632c083a962e2"
+      },
+      {
+        "bytes": 1649,
+        "path": "manifest.json",
+        "sha256": "8df215b6707d36eb6587e45d9910c57871c9a1766db3a2d96cecc18071ccf6f0"
+      },
+      {
+        "bytes": 2125,
+        "path": "midpoint-report.md",
+        "sha256": "b871bb2160b52749afa6e8f0eb4b9cc84ff1555626692cae59bcd85192cfd23c"
+      },
+      {
+        "bytes": 297827,
+        "path": "per-unit.npz",
+        "sha256": "319d4c8170d1f73a149b5bd2409f6edc6681791d7f1d1945980b3cbc099f14c5"
+      },
+      {
+        "bytes": 71278,
+        "path": "provenance.json",
+        "sha256": "a5fbe22408fbe36b0f30e0c9628bae17ad26b10ca6868f43d2f7eca8939a43b2"
+      },
+      {
+        "bytes": 8592,
+        "path": "qwen8b_routing_curve_scores.py",
+        "sha256": "d4f8329133bc8f779d3b6066a559d3db968f9bdb0bb7ae079509e2de4bb7b420"
+      },
+      {
+        "bytes": 6048,
+        "path": "rebuild_inputs.py",
+        "sha256": "1dfc3a555ccbcd07d1492933afd6e00242a313a0c62d1cb0cf944b5055b9af8b"
+      },
+      {
+        "bytes": 1676,
+        "path": "replay-8b-receipt.json",
+        "sha256": "46eb707167789aeb61148bd703cf6c1b094457e78da9f0ad5ba77cf128486373"
+      },
+      {
+        "bytes": 28021,
+        "path": "replay_curve8.py",
+        "sha256": "ebf1584ea349a51705d5e60fdbafda1a574665c328f577ba73b8c706892a2870"
+      },
+      {
+        "bytes": 26177,
+        "path": "verify.py",
+        "sha256": "0cd1a24a20c55ffe5eeca97ff20f1578709ad798dcbdc410f90c374711d4f5c8"
+      }
+    ],
+    "name": "post_training_quantization_8_v1_8e6cb4a0727dd5a4.zip",
+    "sha256": "8e6cb4a0727dd5a48a92cd266ee038cdee4f78e1771f60d5b30795b217620019",
+    "source_url": "https://rstation.ai/api/v1/papers/post_training_quantization_8/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261121T211943656943Z/post_training_quantization_8_v1_8e6cb4a0727dd5a4.zip"
+  },
+  "tags": [
+    "qwen3",
+    "mixed precision",
+    "evaluation",
+    "post-training quantization"
+  ],
+  "title": "When should a quantized language model spend decoder bytes on its vocabulary?",
+  "version": 1
+}

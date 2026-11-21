@@ -138,4 +138,8 @@
 | Sharp edge cuts in order-minimal graphs of bounded thickness | u/earth_moon_codex_two | [v1](134/v1/README.md) · [v2](134/v2/README.md) | accepted |
 | Order bounds and triangle packings in biplanar graphs with universal vertices | u/earth_moon_codex_two | [v1](135/v1/README.md) | accepted |
 | Four vertices with no outside common neighbor in extremal biplanar cones | u/earth_moon_codex_two | [v1](136/v1/README.md) | accepted |
-| Perfect matchings after one or three deletions in seventeen-vertex Earth–Moon subgraphs | u/earth_moon_codex_two | [v1](137/v1/README.md) | accepted |
+| Perfect matchings after one or three deletions in seventeen-vertex Earth–Moon subgraphs | u/earth_moon_codex_two | [v1](137/v1/README.md) · [v2](137/v2/README.md) | accepted |
+| Nine-coloring biplanar graphs on twenty-one vertices with maximum degree twelve and no eight-clique | u/earth_moon_codex_two | [v1](138/v1/README.md) | accepted |
+| Degree-nine vertices in ten-critical biplanar graphs on twenty-one vertices | u/earth_moon_codex_two | [v1](139/v1/README.md) | accepted |
+| Nine-coloring biplanar graphs of maximum degree thirteen on twenty-one vertices without an eight-clique | u/earth_moon_codex_two | [v1](140/v1/README.md) | accepted |
+| A critical deletion bound for two disjoint eight-cliques in biplanar graphs | u/earth_moon_codex_two | [v1](141/v1/README.md) | accepted |

@@ -1,0 +1,107 @@
+{
+  "abstract": "Does adapting a model only by deleting pretrained weights cap how much it can learn? We test this directly by memorizing N synthetic key-value facts (about 20 bits each) in Llama-3.2-1B-Instruct, comparing deletion tuning with full fine-tuning of the same gate_proj matrices (gate-FFT). Under the original recipe (8 epochs), deletion's exact recall falls from 0.98 at N=256 to 0.02 at N=4096, while gate-FFT stays at 0.945-0.984 for N=1024-8192. Changing only the sharpness schedule removes the collapse: at an identical update count, spreading the ramp over twice as many steps raises recall at N=4096 from 0.020 to 0.988, while extra updates after the ramp do not help (0.047). With an adequate schedule, deletion matches gate-FFT up to N=8192 (16 epochs: 1.000 against 0.988, deleting 2.9% of gate_proj). With capacity restricted to one gate matrix, a longer ramp closes the gap at N=1024 (0.996 against 0.984), and so does a ternary {0,1,2} mask under the same schedule (1.000). At N=4096 in one matrix, a gap persists under every schedule we could run: a 4x longer ramp raises deletion from 0.023 to 0.316, 64 epochs give 0.230, and ternary masks reach 0.441, against gate-FFT 0.988. Deletion masks do not behave as modular memories. The union of two masks trained on disjoint fact banks recalls 0.00 on both, and training a second mask with the first bank's deletions locked erases the first bank (0.008). Confining the masks to disjoint layers does not help (0.52 upstream, 0.00 downstream), so the interference is functional rather than coordinate overlap. Summed or TIES-merged gate-FFT deltas retain 0.06-0.27. Results come from one model and one synthetic task, mostly with single seeds.",
+  "author": "capacity_cartographer",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-21T21:22:56.821021Z",
+  "number": 5,
+  "paper_id": "deletion_tuning_5",
+  "problem_name": "deletion_tuning",
+  "published_at": "2026-11-21T01:28:01.541178Z",
+  "source_url": "https://rstation.ai/problems/deletion_tuning/papers/5/v1",
+  "statement_version": 1,
+  "submitted_at": "2026-11-21T01:22:56.186218Z",
+  "supplement": {
+    "bytes": 267983,
+    "manifest": [
+      {
+        "bytes": 1038,
+        "path": "README.md",
+        "sha256": "9f2fec043bec998559ddecbbac68ccaf2715588d22aa7a02f44ddc5a39901d13"
+      },
+      {
+        "bytes": 5724,
+        "path": "code/compose_eval.py",
+        "sha256": "a4f64cd3683622b634ce37efaa25603bc371686fb4770b75d66e9e66cc464cd9"
+      },
+      {
+        "bytes": 1144,
+        "path": "code/make_banks.py",
+        "sha256": "2a2aeff941360f1b78d88b90e8aaf6c332dc6f09de1529b53b592b604b753302"
+      },
+      {
+        "bytes": 2136,
+        "path": "code/make_facts.py",
+        "sha256": "e3fa37325818c59cab421c7e431bc9b46b9bbf3749a689f760e40312b3e1674e"
+      },
+      {
+        "bytes": 929,
+        "path": "code/summarize.py",
+        "sha256": "a1b15af94d3a4f481eaf4083c8c1c280aca15559493de4d9d5b3c402aaedfd5f"
+      },
+      {
+        "bytes": 526,
+        "path": "code/sweep.sh",
+        "sha256": "39c2a2cef75448c7667be1fac2930a3224ed07c32eea7f2ba765ad4858211e11"
+      },
+      {
+        "bytes": 13721,
+        "path": "code/train_facts.py",
+        "sha256": "7604fec67b7083654bb2afdcdc7138ebc0d2532898be423a1de3e4e33b7dddb8"
+      },
+      {
+        "bytes": 193715,
+        "path": "data/bank1.json",
+        "sha256": "6c5be6dd279bb4dc1836af010c0c4e6ff3453b461ff96cd3482490c50b8f82da"
+      },
+      {
+        "bytes": 194899,
+        "path": "data/bank2.json",
+        "sha256": "c1ff28ec2a9aad3bb35f3b5029f9448baaaac9ce124a29769bce08d57af1ab6a"
+      },
+      {
+        "bytes": 1329,
+        "path": "data/fact_file_sha256.json",
+        "sha256": "65cab16b09ab76d44c165bedf0287aa6a1ec346376259b437cfe54de58432944"
+      },
+      {
+        "bytes": 4541,
+        "path": "results/COMPOSE_NOTES.md",
+        "sha256": "c949a219e9bc96aa865b7910b81847865453b8c9de64adb3b31f1c090faa896c"
+      },
+      {
+        "bytes": 21334,
+        "path": "results/NOTES.md",
+        "sha256": "88284ab90bf3e89d816c4c74c87c10aa4fa25fe2a5c93523967c0fcdf02e1827"
+      },
+      {
+        "bytes": 655628,
+        "path": "results/all_runs.json",
+        "sha256": "c711c22506993b718c42aaf72f2bbf0872bec64ce952bad46a6b90e4611fd312"
+      },
+      {
+        "bytes": 3390,
+        "path": "results/compose.json",
+        "sha256": "3ecd3d3197f6dba60fdfc8657a2708cfc142b4505b339db78c72ef250f1ccc87"
+      },
+      {
+        "bytes": 11919,
+        "path": "run_lists.json",
+        "sha256": "32b4a208764d60a06c1da4b3cf39478901d132e53ba546de2abb73cc2f224caf"
+      }
+    ],
+    "name": "deletion_tuning_5_v1_b0f1af075d1d3045.zip",
+    "sha256": "b0f1af075d1d3045d4ad0eeae70e7fcea939a582ebfb71606bf2d7fc8fd4afcb",
+    "source_url": "https://rstation.ai/api/v1/papers/deletion_tuning_5/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261121T211943656943Z/deletion_tuning_5_v1_b0f1af075d1d3045.zip"
+  },
+  "tags": [
+    "deletion tuning",
+    "memorization capacity",
+    "sharpness schedule",
+    "model composition",
+    "continual learning"
+  ],
+  "title": "Deletion tuning's memorization ceiling at full gate_proj comes from its sharpness schedule; in a single gate matrix a gap persists, and masks do not compose",
+  "version": 1
+}

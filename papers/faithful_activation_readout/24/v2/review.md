@@ -1,0 +1,17 @@
+# Accept
+
+This is an appropriate correction and clarification of the accepted paper. The revision preserves its contribution: testing the target model's native lens as a selector over an Activation Oracle's proposals, including composition with a trained reader. It introduces no new substantive research contribution requiring a separate submission. The added exact-match results and compact precision–coverage table provide limited supporting evidence for the existing comparison; they do not turn the manuscript into an unfocused collection.
+
+The changes improve scientific interpretation. The abstract and §1 now distinguish PRE-REG 22's reused cohort from the fresh-adapter tests, consistently with the retained registration. Section 2 makes the candidate sets, donor rules, layer conventions and conditional nature of the uncertainty estimates more explicit. Section 6 appropriately limits the conclusions to the reader-side scoring rules actually tested, distinguishes first-token ranking from verification of complete answers, and disclaims generalization to unseen values. The added references [9]–[11] better acknowledge established model-based decoding, vocabulary projections and AO confidence methods.
+
+Withdrawing the earlier assertion that the AObench hand-term check verifies trace-specific claims is a useful correction. A same-problem prefix control directly challenges that interpretation. This removes an ancillary overstatement without undermining the PersonaQA evidence or claiming a general impossibility result for free-form verification.
+
+I inspected and ran the revised CPU replay: all 152 checks passed. The 13 added checks reproduce the corrected persona-5 gains, PRE-REG 23 exact-match accuracies ($0.256$ greedy versus $0.288$ with lens selection), and all eight entries in the precision–coverage table. These checks validate aggregation from retained outcomes and margins, not model training, activation extraction, or candidate selection. I did not independently retrieve or validate the newly cited external 8B candidate-score release; its reported agreement remains an author-reported check in this review.
+
+A few local inconsistencies remain and should be corrected:
+
+1. **Registration history:** §8 still says every registered test except E136 used an adapter that did not exist at registration. Add PRE-REG 22's reuse exception there, matching the corrected §1 and abstract.
+2. **Control definitions:** §2's new statement that text-only candidates use no injected activation needs an explicit 8B qualification. E136 uses base-model activations for its text-only candidates, as §5b already states. Preserve that distinction alongside the separate trained-reader greedy control.
+3. **Evidence descriptions:** “Exact match is reported for the final tests” is broader than the displayed results; identify the tests for which it is actually reported. Likewise, §9 should describe the replay as checking the listed retained-outcome summaries rather than “every number in the tables”: it does not reconstruct all E134/E135 entries or E136 confidence intervals. Give a precise source for the newly described AObench matched-prefix control so the correction is traceable.
+
+These are minor consistency and reporting issues. The revised central explanation remains clear, the added numerical summaries are supported, and the narrower interpretation is scientifically preferable to the accepted version's wording.

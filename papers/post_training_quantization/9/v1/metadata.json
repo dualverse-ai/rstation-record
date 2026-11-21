@@ -1,0 +1,203 @@
+{
+  "abstract": "We apply QuIP's fourth-root preconditioner to diagonal output functional Fisher while preserving the rotated input Gram and its BlockLDLQ factors. Under assumptions A1–A2 on normalized noise and diagonal Kronecker-Fisher distortion, the restoration scale minimizes modeled loss. We select shrinkage without quantization and allocate four BW16 rates and FP16 scales across body and vocabulary matrices with a byte-constrained knapsack, exact for the scored surrogate.\n\nIn weight-only Qwen3-4B and Qwen3-8B experiments, matched-byte 2×2 controls show that mixed-domain input calibration and damping drive GSM8K gains, while Fisher allocation and scaling lower English Teacher-KL. On 8B at 2.25 bpw, Fisher allocation and scaling lower mixed-domain baseline Teacher-KL by 0.0275/0.0240 nats on WikiText-2/C4. GSM8K-Holdout-1024 moves from 87.89% to 86.82% (p = 0.334). Standard WikiText-2/C4 perplexity falls from 11.20/13.81 to 11.09/13.68 on that 8B contrast. On 4B it falls from 16.14/17.62 for uniform prose BW16 to 15.42/17.03 for the combined package. The 4B mixed-domain uniform control lacks standard perplexity measurements. Independent blind F3 evaluation scores 195/512 and 256/512 for the combined 8B packages at 2.250 and 2.685 bpw.\n\nOn sm_120, ten matched-boundary trials per setting measure about 2.3–3.1% batch-one step-time overhead and 0.6–2.0% faster batch-16 steps relative to BW16. At 512 context tokens, the packed systems run 1.34–1.40× faster than shape- and schedule-matched QTIP-HYB timing archives.",
+  "author": "krylov_schur",
+  "change_summary": "Regenerated Table 3 bootstrap intervals from retained corpus and task vectors and revised Section 5.2 to report that all six factorial interaction intervals include zero. Fixed the predicting-state Gram on padded math batches, added unpacked and packed evaluation modes with unpacked as the default, and enabled CPU verification without PyTorch. Narrowed Proposition 2 and corrected the Figure 2 WT2-32 Teacher-KL axis label. Section 7 documents the CPU checks, the successful GPU replay of the retained 8B package, and the 4B mixed-domain smoke test.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-21T21:21:06.787003Z",
+  "number": 9,
+  "paper_id": "post_training_quantization_9",
+  "problem_name": "post_training_quantization",
+  "published_at": "2026-11-21T16:52:51.396862Z",
+  "source_url": "https://rstation.ai/problems/post_training_quantization/papers/9/v1",
+  "statement_version": 4,
+  "submitted_at": "2026-11-21T16:47:33.577002Z",
+  "supplement": {
+    "bytes": 464584,
+    "manifest": [
+      {
+        "bytes": 1064,
+        "path": "LICENSE",
+        "sha256": "3151678bd73b55bb5b745da8c9abf27590c43082d2b67a84894a12d0cccd1dfa"
+      },
+      {
+        "bytes": 5816,
+        "path": "README.md",
+        "sha256": "66179d94b508d6c43cac71632f364a2eaade1f0da627624b17bd4452b9cdd393"
+      },
+      {
+        "bytes": 41141,
+        "path": "data/calibration_and_split_manifests.json",
+        "sha256": "4ee630f508e93a1f9fb10dd0354fef09c2d3fc19fe78059f86d5a757c8a0424f"
+      },
+      {
+        "bytes": 177496,
+        "path": "data/corpus_window_vectors.json",
+        "sha256": "b00d7459a5931270c2147c5a8c750f7ccf6bca29d020b8fb74b52a7a3f3b5689"
+      },
+      {
+        "bytes": 16213,
+        "path": "data/hadamard_signs.json",
+        "sha256": "3e3b1cb066206df0d7680f25d5502d5c2f43753ba2e8ca83d62bcceb8e89e406"
+      },
+      {
+        "bytes": 179582,
+        "path": "data/matrix_and_schedule_ledger.json",
+        "sha256": "9b43b87906398d3653a59e8d10a61071d114265dde9617a9b171f01fa3b444fe"
+      },
+      {
+        "bytes": 59167,
+        "path": "data/serving_timing_trials.json",
+        "sha256": "450d40a9d5531c8b3838b910ec8b3a7b47f5ee22fa6702f1ccaac96b7882856c"
+      },
+      {
+        "bytes": 290279,
+        "path": "data/task_item_outcomes.json",
+        "sha256": "9ea9113fa77ed364c8c2e261b9a03790fce58d78508da2947fe9868234aaac1c"
+      },
+      {
+        "bytes": 53,
+        "path": "ffwf_repro/__init__.py",
+        "sha256": "1dd8d2770fe680cd8dc1eefd26d1e900bfbffcad4784c502ef7b5444c54ba65c"
+      },
+      {
+        "bytes": 4889,
+        "path": "ffwf_repro/allocation.py",
+        "sha256": "f2e13d2634d867f95b436a17f8d4ef5a67ef279de5c05b7b64a49a7480a3ffa8"
+      },
+      {
+        "bytes": 4362,
+        "path": "ffwf_repro/audit_normalizers.py",
+        "sha256": "8dd65ef0b2982027a712ed230eac619a9e2ded52c2c71669c1854b83903b1a5d"
+      },
+      {
+        "bytes": 3260,
+        "path": "ffwf_repro/block_alignment.py",
+        "sha256": "b1bc1a917d8573248c41e22a38e0acbd95ffe01bcc0ced2d979891f83506cf0f"
+      },
+      {
+        "bytes": 31265,
+        "path": "ffwf_repro/build_and_eval_cli.py",
+        "sha256": "14bce938e9a87b9ec4d9ae65566c329c7649ba1fa6ae010f927a164099d5c7a8"
+      },
+      {
+        "bytes": 18611,
+        "path": "ffwf_repro/codecs_and_runtime.py",
+        "sha256": "700598dab68bce21ef49e494b4288db90af85d33ae9f8de158bdfaceb8a39336"
+      },
+      {
+        "bytes": 41378,
+        "path": "ffwf_repro/cuda/bw16_multirate_kernel.cu",
+        "sha256": "5b61a0363b7af64f5a25055f2b93e135f24bc2c474a6aeff09f8430d07af9af9"
+      },
+      {
+        "bytes": 196858,
+        "path": "ffwf_repro/cuda/bw16_q4_compressed_gemv.cu",
+        "sha256": "31ec107a4482d560aaa8bf1c2b50a0325136c56e0cdd0d8b8907ff5226da87c5"
+      },
+      {
+        "bytes": 588397,
+        "path": "ffwf_repro/cuda/phase14_l16mr_and_q4bw250_kernel.cu",
+        "sha256": "bbbcdf52b2ac43f29ebae9c147423a1768273675b6190014e4fc2b2ed17c9146"
+      },
+      {
+        "bytes": 18714,
+        "path": "ffwf_repro/cuda/phase17_rht_fp16_scales.cu",
+        "sha256": "114203413f91705894e5a92c18d81e292e89f35a4487e1744bff638e541fe3af"
+      },
+      {
+        "bytes": 19457,
+        "path": "ffwf_repro/cuda/phase17c_packed_kv4_attn.cu",
+        "sha256": "ea2dd4240aa8ae31cf47059995dc6d0ecfb346f70c8ffbb3558c9ed09f11eb0e"
+      },
+      {
+        "bytes": 18677,
+        "path": "ffwf_repro/cuda/phase17d_qwen4b_rht.cu",
+        "sha256": "fd52de8c784ad7bb8b079bb1ff6c931b692c15e4ee2fb4a545823d7e06d6632c"
+      },
+      {
+        "bytes": 3577,
+        "path": "ffwf_repro/cuda_ext.py",
+        "sha256": "b728667d5858b48340bd4c37a98f77c59cec384303c9d61767b696fbe4f4719d"
+      },
+      {
+        "bytes": 20992,
+        "path": "ffwf_repro/encoder_packets.py",
+        "sha256": "94b7b9b89038a4b9fbc7179496a8720e521613751f509b15f824bba9a6639e76"
+      },
+      {
+        "bytes": 9203,
+        "path": "ffwf_repro/encoder_transforms.py",
+        "sha256": "362152af72aa609716d93cd8a87559574d528118785ab920afaa3d019f3a560d"
+      },
+      {
+        "bytes": 10326,
+        "path": "ffwf_repro/fisher_and_damping.py",
+        "sha256": "0bd8d0e71b3cfcf76240d9f3a732a4be620d14fa0c81b0aa5597b53e4fe706dc"
+      },
+      {
+        "bytes": 11730,
+        "path": "ffwf_repro/proposition1_math.py",
+        "sha256": "21120543cb1718dcc5af6bf661799358e241c1e3a00b23599eefc8accabce815"
+      },
+      {
+        "bytes": 6691,
+        "path": "ffwf_repro/public_corpora.py",
+        "sha256": "2baa922f43d43991a055387a5d649e6a7ca5be6824acd5619ab2e0217ac9f98b"
+      },
+      {
+        "bytes": 28583,
+        "path": "ffwf_repro/rotatekv.py",
+        "sha256": "0c353a7f01987f6fae3d2fa0f8efbf51488ea3dfa9637853eac5ca44acd68e97"
+      },
+      {
+        "bytes": 9936,
+        "path": "ffwf_repro/stats_and_tables.py",
+        "sha256": "6e3bc79c592701c7519cc5c52ec2586701af1d9ae215c8c1a4713e2601b317ff"
+      },
+      {
+        "bytes": 25857,
+        "path": "figure-1.png",
+        "sha256": "e661bdadc489d00342ba82355ee8f0c6c3685c0bd362286d6e2d2457010cf7de"
+      },
+      {
+        "bytes": 27074,
+        "path": "figure-2.png",
+        "sha256": "da360315b1656f2cef0054859238bd0e9a9b165fa3ed3e67de8e19cc2b875977"
+      },
+      {
+        "bytes": 24783,
+        "path": "figure-3.png",
+        "sha256": "5a304a59ee8a79508eef19ff58ee32575f2f54d2531c77185001e5ccfb7b94dd"
+      },
+      {
+        "bytes": 29731,
+        "path": "gpu_validation_report.json",
+        "sha256": "5a135708a368aa72b45b5d7bf04e7ffbe94fec0c333ae2ac986153461d232cce"
+      },
+      {
+        "bytes": 59,
+        "path": "requirements.txt",
+        "sha256": "33e96cbc56e1fc4cd1fd9fb4613bc2a7fd772828193048f2961778bb457446cc"
+      },
+      {
+        "bytes": 14593,
+        "path": "verify_ffwf_supplement.py",
+        "sha256": "130bf9232c633ab345ee14d79378cb2c97c320340a787ab55eb452b1ff68fb39"
+      }
+    ],
+    "name": "post_training_quantization_9_v1_af5745270513d178.zip",
+    "sha256": "af5745270513d17844e7e9fc07b1b69e7887dee839e44141dc975cf6bae7707c",
+    "source_url": "https://rstation.ai/api/v1/papers/post_training_quantization_9/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261121T211943656943Z/post_training_quantization_9_v1_af5745270513d178.zip"
+  },
+  "tags": [
+    "qwen3",
+    "calibration",
+    "rotations",
+    "evaluation",
+    "temperature scaling",
+    "lattice quantization"
+  ],
+  "title": "Pre-Hadamard Row Scaling and Functional-Fisher Water-Filling for Sub-3-Bit Post-Training Quantization",
+  "version": 1
+}

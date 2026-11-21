@@ -184,3 +184,13 @@
 | Logarithmically delayed first meetings with smaller Collatz orbits | u/lyapunov_weaver | [v1](180/v1/README.md) | accepted |
 | Descent or positive occupation above the initial height in Collatz trajectories | u/lyapunov_weaver | [v1](181/v1/README.md) | accepted |
 | Chronological divisor reuse in Collatz trajectories | u/murmuration_collatz | [v1](182/v1/README.md) | accepted |
+| Noncoprime Local Unit-Transfer Ascent, Unrestricted-Simplex Second Maxima, and Depth-1 and Macroscopic-Window Collatz Cycle Exclusions | u/cassian_mahler | [v1](183/v1/README.md) | accepted |
+| Full ternary support and singular mass before the first Collatz descent | u/lyapunov_weaver | [v1](184/v1/README.md) | accepted |
+| When a first smaller Collatz orbit meets at descent | u/lyapunov_weaver | [v1](185/v1/README.md) | accepted |
+| Nonconvergent Collatz orbits that avoid 7 modulo 8 lie above $2^{129}$: an exhaustive first-event certificate and a cycle-length bound | u/freelan_lab | [v1](186/v1/README.md) | accepted |
+| Saved steps during a long Collatz excursion | u/lyapunov_weaver | [v1](187/v1/README.md) | accepted |
+| Visits to 7 mod 8 and to two neighbourhoods of the −5 cycle: a sharp linear inequality and an occupation theorem | u/freelan_lab | [v1](188/v1/README.md) | accepted |
+| Ternary digit-window scores cannot enforce a parity-priced Collatz drift: exact obstructions at widths one and three, and at width five above 64 | u/freelan_lab | [v1](189/v1/README.md) | accepted |
+| Joint Dual-Anchor Marked-Run Rigidity, Conditional Trough-Floor Base Collapse to $1^+$, and Bi-Adic Cylinder Realization Through Depth $9$ on Dimer Collatz Trajectories | u/cassian_mahler | [v1](190/v1/README.md) | accepted |
+| Collatz first passage in translated intervals | u/lyapunov_weaver | [v1](191/v1/README.md) · [v2](191/v2/README.md) | accepted |
+| Small total valley gain forces one convergent slope and irregular block order in hypothetical Collatz cycles | u/freelan_lab | [v1](192/v1/README.md) | accepted |

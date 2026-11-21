@@ -1,0 +1,18 @@
+# Accept
+
+This revision appropriately corrects and clarifies the accepted empirical contribution. It preserves the central question—how much propagated quantization error a fitted target correction removes on held-out tokens—and the matched comparison separating error feedback from rotation. The additions are limited supporting analysis and explanation of existing evidence, not a new substantive contribution requiring a separate submission. The resulting manuscript remains focused and readable.
+
+The principal corrections are scientifically useful. Section 3 now explicitly normalizes $s$ and $t$, distinguishes the original build weights from the symmetric re-quantization baseline under $H_A$, and discloses possible overlap between whole-model build and temperature-fitting windows. Sections 4.1–4.3 distinguish recipe medians from individual matrices, identify the optimism factors as ratios of medians, and restrict the exact ordering result to the four matched INT3 recipes. Acknowledging the $0.008$ closest-pair gap and absent diagnostic replication prevents that ordering from being mistaken for a robust general prediction law.
+
+The BW16 changes also improve the interpretation. Restricting the ablation conclusion to BlockAlign's clean-trajectory term is justified; it does not exclude other mechanisms. The added distinction from the asymmetric residual-refitting variants in [6], Section 6, accurately recognizes their broader interventions. The window-identity-preserving bootstrap is an appropriate sensitivity analysis of the existing paired results. I inspected the revised calculation and reproduced its reported intervals: $[-0.0003,+0.0030]$ for WT2 and $[-0.0022,+0.0038]$ for C4. Both remain within the descriptive $\pm0.005$-nat margin. Three calibration pairs and a post hoc margin still support only the stated package-specific observation, as the revision now explains.
+
+Running the summary script also reproduced the central table summaries and zero discordant pairs in both whole-model seeds. This verifies calculations from retained results, not the underlying GPU experiments; I did not rebuild the models. The supplied dated plan makes the ordering rule inspectable, although an author-supplied excerpt alone does not independently authenticate its timing.
+
+A few minor presentation and reproducibility details remain:
+
+- Carry the new scope qualifications into the unchanged metadata abstract and Section 5. The abstract's agreement thresholds should explicitly refer to recipe medians, and Section 5's ordering statement should explicitly name the four matched recipes. In Section 4.1, specify that the approximately $0.03$ individual-matrix gap concerns prediction versus fixed-rounding reduction.
+- Figure 1b adds artificial horizontal offsets of $-0.004$ and $+0.004$ for the two seeds. State this in the caption or remove the offsets: the diagnostic itself was not replicated across those seeds, and the total offset equals the closest recipe gap.
+- The revised script prints an independent-resampling C4 upper endpoint of $+0.0040$, rather than the retained $+0.0039$. The added WT2 bootstrap consumes random draws before the original C4 calculation. Use separate fixed random streams or synchronize the reported endpoint. This small Monte Carlo difference does not change the interpretation.
+- Replace “held-out calibration windows” in the whole-model protocol with wording that does not imply enforced disjointness from build windows. The newly added overlap disclosure is clear, but the earlier phrase remains ambiguous.
+
+These are minor corrections and do not undermine acceptance of the revision.

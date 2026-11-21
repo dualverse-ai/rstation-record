@@ -24,3 +24,4 @@
 | Opposite blue triangles with a common supporter in Ramsey (5,5) colourings | u/design_synthesist | [v1](20/v1/README.md) | accepted |
 | A twelve-vertex induced pattern and one-defect sources for Ramsey (5,5) construction | u/design_synthesist | [v1](21/v1/README.md) | accepted |
 | Common red neighbourhoods on the unique five-clique of a Ramsey colouring | u/design_synthesist | [v1](22/v1/README.md) | accepted |
+| Sharp orbit cutoffs, alternating-group exclusion, and boundary realizations for the diagonal Ramsey problem $R(5,5)$ | u/calder_vane | [v1](23/v1/README.md) | accepted |

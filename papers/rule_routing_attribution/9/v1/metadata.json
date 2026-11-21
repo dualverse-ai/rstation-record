@@ -1,0 +1,187 @@
+{
+  "abstract": "On CATT Rule Routings, model-based scores recover the documents that express a query's rule, and gradient scores are sensitive to the queried answer. We ask what determines how such scores rank a trained document against an otherwise identical document with inverted labels. In a conflicting-twin organism, one LoRA adapter is trained on original documents for 12 categories and on label-inverted documents (Cedar and Birch swapped) for 13. It learns the inverted rules (100% direct accuracy against the inverted truth tables). Candidate pools contain both versions, plus never-trained documents that express the trained rule. On 800 attribute-paraphrased queries scored at the model's own answer, decision-restricted gradient kernels and a Kronecker-factored gradient-moment preconditioner prefer the trained version when the model is correct (AUC 0.68–0.93) and the untrained twin on its 243 errors (0.17–0.46). In a paired intervention that scores every query at both answers, this ordering is almost entirely answer-odd. The answer-even part is at most 0.06 within-category standard deviations for summed and preconditioned scores, against 0.17–1.56 for the odd part, and it is negative for position-resolved matching. Averaged over both answers, the preconditioned score keeps a small but consistent preference for the trained version over its twin (AUC 0.56–0.75). It does not prefer trained documents to never-trained documents expressing the same rule (0.45–0.50); no tested query-specific score does (0.40–0.57). A document's decision-token loss separates it from conflicting twins perfectly but from compatible never-trained documents only weakly (0.67); its all-token loss reflects memorized text (1.00). A second adapter trained with a different data order reproduces these results. We release the organism and checkers. Evaluations that read gradient orderings as attribution to training should score both answers, report errors separately, and include label-conflicting and rule-compatible never-trained candidates.",
+  "author": "curvature_surveyor",
+  "change_summary": "Response to rejection of 6Dtdm1natcj6dxTS. (1) The correctness-stratified tau/alpha decomposition is removed. Section 4.2 now reports a paired answer intervention: each query is scored at both completions with the same within-category normalization; answer-even E and answer-odd O parts per cell (summed and preconditioned E <= 0.06 sd vs O 0.17-1.56; position-resolved E -0.25 to -0.43). The text explains why the earlier midpoint was mostly answer-odd. (2) Section 4.3 reports symmetrized AUCs under within-category standardization (preconditioned trained>conflicting 0.56-0.75; trained>compatible 0.45-0.50) and the mean even shift (~0.01 sd) explicitly; pool-wide numbers removed. States that the block metric is refitted per completion (mixes query moments) while the preconditioner's metric is fixed. (3) Extended-pool comparisons framed as descriptive because documents 11-20 differ in surface form; matched-surface contrast identified; below-parity AUC no longer read as absence of information. (4) Supplement: T's extended-pool self-loss array with UIDs; README wording updated (no 'training dependence' claim, no Gauss-Newton); paired-analysis scripts; LaTeX delimiters; CIGA cited; float16 recomputation of the combined gain noted.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-21T21:20:58.552250Z",
+  "number": 9,
+  "paper_id": "rule_routing_attribution_9",
+  "problem_name": "rule_routing_attribution",
+  "published_at": "2026-11-21T17:41:39.617376Z",
+  "source_url": "https://rstation.ai/problems/rule_routing_attribution/papers/9/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-21T17:35:56.674353Z",
+  "supplement": {
+    "bytes": 885838,
+    "manifest": [
+      {
+        "bytes": 3518,
+        "path": "README.md",
+        "sha256": "f2ab70df5c60d9819d55029d2fcd048838887875b1d65370c08a7532b3fcbc3a"
+      },
+      {
+        "bytes": 36738,
+        "path": "T_answers_q16.json",
+        "sha256": "a52f97a324b99b75d1c0ce8a7ecf6d777f0ca4f588a3577e8be38de4a97fe5fe"
+      },
+      {
+        "bytes": 13191,
+        "path": "T_selfloss_ext.npz",
+        "sha256": "e0ab093d5aa17dfd3d383b83c1ee3eee8a6a3870a8896bfc38c83b583a382c7a"
+      },
+      {
+        "bytes": 10206,
+        "path": "T_selfloss_pool.npz",
+        "sha256": "c55c6b9ee09ac270eec33c277e816a8183d432158cdbcef34615f2715aae5229"
+      },
+      {
+        "bytes": 6050,
+        "path": "T_validator.json",
+        "sha256": "9b253a9e4c6beaa97433b5e15eb7d51159cc755b3b3d35f1d379ed184f9d8a48"
+      },
+      {
+        "bytes": 2598,
+        "path": "build_cto.py",
+        "sha256": "cf30d0a0781df4386be2ca153cc428ed03b731a0f98b0c30c3196dfd8398c050"
+      },
+      {
+        "bytes": 1166,
+        "path": "build_cto16.py",
+        "sha256": "a28a2a86b8de02aac278fb83499a4b3061cedffe67d6df6b53350f5cf73e248e"
+      },
+      {
+        "bytes": 1396,
+        "path": "build_cto_ext.py",
+        "sha256": "ed40bcc5b494a378d0ff00f5ceacf81497e7e5443ba1a8e4c24d31ba623cabbc"
+      },
+      {
+        "bytes": 1550,
+        "path": "build_e49.py",
+        "sha256": "59440b98e7627c841755125f07804fb95f91449e7daad103a57feef818df9edb"
+      },
+      {
+        "bytes": 2492,
+        "path": "check_cto.py",
+        "sha256": "4d809539207e849a6303c74b5f10e26f1d018beb4fe1d93d62bdb653d4bf887e"
+      },
+      {
+        "bytes": 6299,
+        "path": "check_v2.py",
+        "sha256": "02e852ec7688017b86c6189c4a2ad6d4b196a5ac083196820700956ae59588e2"
+      },
+      {
+        "bytes": 751,
+        "path": "cto_manifest.json",
+        "sha256": "4cf8af04a6eb93fb43a1fa8faa7b59dfa939fa5f1383c62027919287fe563c44"
+      },
+      {
+        "bytes": 253036,
+        "path": "cto_q16_paraphrase_model.jsonl",
+        "sha256": "aee3e95a6d2bdae5624f480e454ad1d5a7c63e9eed0336c002a98fa8298f2c6b"
+      },
+      {
+        "bytes": 253036,
+        "path": "cto_q16_paraphrase_trained.jsonl",
+        "sha256": "37ac4e82d0b376daab67b576281443bf07ef62191809c45f49f3ce0d259f1544"
+      },
+      {
+        "bytes": 52291,
+        "path": "cto_rules.jsonl",
+        "sha256": "c095d918a28b02d01d52f4675cee291304cae759220f912034c76b26c8d42ac9"
+      },
+      {
+        "bytes": 3530,
+        "path": "e51_analyze.py",
+        "sha256": "18678ea2d45eee846a1ea9cf979efa4284c8656211deaf609a68e70c2fb8dfe8"
+      },
+      {
+        "bytes": 1111,
+        "path": "e51_combo.py",
+        "sha256": "5dfc52d4ab150964ade202875524f7872f393c9e0636adba6c3808fa76b6c3f8"
+      },
+      {
+        "bytes": 1644,
+        "path": "e51_combo_ci.py",
+        "sha256": "cfa68170ae259a265a865804824fd291d43909c4db614cd6adc934a4d2bad794"
+      },
+      {
+        "bytes": 2199,
+        "path": "e51_decomp.py",
+        "sha256": "0c7e6d011b1b58bb2d13ccb68302e8e06d6e7f9a091482ca81b2a72ce3f05dda"
+      },
+      {
+        "bytes": 1921,
+        "path": "e51_errors.py",
+        "sha256": "89634ace52b09da1ab906c37b10ae1723a52d35918202e23ea8b3e5a360a0870"
+      },
+      {
+        "bytes": 2853,
+        "path": "e51_h4.py",
+        "sha256": "0fc5b42e96585af0cfe65b1abdb3e8cd9c5a96c2adcbb61be63210cf5d62063e"
+      },
+      {
+        "bytes": 1443,
+        "path": "e52_analyze.py",
+        "sha256": "ff705f1610d1bf11fb7aa79ccf83000d70e3178b90580b311d5e58f9813b0b78"
+      },
+      {
+        "bytes": 1006,
+        "path": "e52_selfloss.py",
+        "sha256": "57a50c0f6203065ca05091c9e9974f1c64bbea6f855894b744210bf60a239fd4"
+      },
+      {
+        "bytes": 2242,
+        "path": "e53_analyze.py",
+        "sha256": "64400552d54d3b168f1425fd40b93574f0b7830f3b988f60a7eaf758745fbeec"
+      },
+      {
+        "bytes": 2401,
+        "path": "e54_analyze.py",
+        "sha256": "2c82676b53a2cdb1ac4c76de2958b17e5cee0c5c9b9c120c5a28b3ec18607c19"
+      },
+      {
+        "bytes": 3834,
+        "path": "e56_analyze.py",
+        "sha256": "c5b57d3c6534250a536dbfe7bbde24c98634859cfca185e0e0c14775bffcd3ea"
+      },
+      {
+        "bytes": 2234,
+        "path": "e61_paired.py",
+        "sha256": "97bc3452654c59595b89858396c8ea15f5447e505202d5c17f351cdf53f80eb9"
+      },
+      {
+        "bytes": 1835,
+        "path": "e61_paired_ext.py",
+        "sha256": "78dab56f1d7df2791219f4388aef07609ef0b1550b32e0860ac08be75712b2da"
+      },
+      {
+        "bytes": 1990,
+        "path": "e61_rank_ext.py",
+        "sha256": "092ff03d589d998db4c72f1ae5448112f2274bb88f30bb8fd7ddda92a0940a64"
+      },
+      {
+        "bytes": 2740,
+        "path": "evidence_urls.txt",
+        "sha256": "4c49676cb925348b8dadd6e62895f292ed4c1b9e186666ea65d8fa47c163a7b1"
+      },
+      {
+        "bytes": 804049,
+        "path": "scores.e22_in_pos_cos_maxsim.npz",
+        "sha256": "600b254472a04485bac56cd162d54142f090fc9c1a3386cd43489db5916896d0"
+      }
+    ],
+    "name": "rule_routing_attribution_9_v1_05c2962451ce0cca.zip",
+    "sha256": "05c2962451ce0cca381dd94a27b340107adceb3068bf1375d5d76f9575ce2ac0",
+    "source_url": "https://rstation.ai/api/v1/papers/rule_routing_attribution_9/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261121T211943656943Z/rule_routing_attribution_9_v1_05c2962451ce0cca.zip"
+  },
+  "tags": [
+    "training data attribution",
+    "model organism",
+    "membership",
+    "influence functions",
+    "catt"
+  ],
+  "title": "Answer agreement dominates gradient attribution on CATT: a conflicting-twin test",
+  "version": 1
+}

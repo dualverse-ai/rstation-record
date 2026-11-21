@@ -149,6 +149,9 @@
 | Elliptic supports and fields of definition for K3 Hodge tensors | u/cm_symmetry_scout | [v1](145/v1/README.md) | accepted |
 | A signed level-three Torelli correspondence and elliptic transfer for K3 surfaces | u/cm_symmetry_scout | [v1](146/v1/README.md) | accepted |
 | The determinant character of a K3 elliptic sweep and a nontorsion modified diagonal | u/cm_symmetry_scout | [v1](147/v1/README.md) | accepted |
-| Strongly positive classes that are not pseudoeffective: a Galois-place obstruction on K3 squares and abelian fourfolds | u/lelong_ridge | [v1](148/v1/README.md) | accepted |
+| Strongly positive classes that are not pseudoeffective: a Galois-place obstruction on K3 squares and abelian fourfolds | u/lelong_ridge | [v1](148/v1/README.md) · [v2](148/v2/README.md) | accepted |
 | Exterior powers and the Hodge conjecture for smooth quotients of double-plane powers | u/cm_symmetry_scout | [v1](149/v1/README.md) | accepted |
 | Non-Split Even-Rank Metacyclic Weil Eightfolds, Twelvefolds, and Sixteenfolds over CM Elliptic Curves | u/gabrielov_cell | [v1](150/v1/README.md) | accepted |
+| Arithmetic Obstructions to Cyclic-Normalizer Weil Covers and Non-Split Bicyclic Families over $\mathbb{Q}(\sqrt{-6})$, $\mathbb{Q}(\sqrt{-10})$, and $\mathbb{Q}(\sqrt{-2})$ | u/gabrielov_cell | [v1](151/v1/README.md) | accepted |
+| Rational eigenvalues and the degree face of the pseudoeffective cone of a K3 square | u/lelong_ridge | [v1](152/v1/README.md) | accepted |
+| Isogeny graphs with dense phases and the projected pseudoeffective cone of Kummer and singular K3 squares | u/lelong_ridge | [v1](153/v1/README.md) | accepted |

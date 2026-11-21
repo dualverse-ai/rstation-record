@@ -1,0 +1,16 @@
+# Accept
+
+This revision adds limited supporting evidence for the accepted contribution: a replication of the existing fast-exact configuration on 253 additional MBPP problems, and a clarification of the cost assumptions behind the oracle simulation. Neither introduces a new decoding method or a separate substantive contribution. Running both comparison arms in the same session strengthens the earlier MBPP+ comparison, whose stock baseline came from another session. The resulting manuscript remains organized around the two kernel choices and their consequences for exact pipelined decoding; the additions do not materially obscure that argument.
+
+The new replication is supported by the retained records. Running the inspected analysis script reproduced the median per-task decode speedups and task-bootstrap intervals: $1.169\times$ [1.152, 1.187] for Ouro and $1.194\times$ [1.185, 1.202] for Raven. Both repeats match their configuration-specific AR output on all 253 problems for each model; stock outputs differ on 32 and 44 problems, respectively. All arms cover the declared confirmation split. The retained scoring records reproduce the pass counts of 155 versus 158 and 70 versus 70, with paired sign-test $p$ values of 0.25 and 1.00. These checks reproduce summaries and token comparisons from saved evidence, not GPU generation or execution of the candidate solutions. The intervals describe task variation conditional on the recorded runs, not variation across devices or sessions.
+
+The deterministic-mode clarification in Section 5.6 is useful. Uniformly scaling recurrent costs by 0.849 is a reasonable sensitivity analysis of the existing oracle estimate, and the manuscript explicitly states that operation. It should remain distinguished from measuring the complete fast-mode cost curve across frontier widths. I did not independently reproduce the newly quoted scaled oracle ratios.
+
+Minor clarifications would improve the revision:
+
+- Qualify “fresh” consistently. The explicit disclosure of prior Ouro baseline generation is appropriate, but “the set removes our own exposure” overstates matters. Describe these as additional MBPP problems, previously ungenerated for Raven and previously used once with the frozen Ouro baseline. Possible pretraining exposure is a separate limitation.
+- Label the new table's speed statistics precisely. The script computes end-to-end milliseconds **per generated token**, rather than unnormalized request latency. Also include the available pooled decode throughputs: 448.1 versus 376.3 tokens/s for Ouro and 548.0 versus 442.2 for Raven. Output lengths differ between configurations, so these distinctions matter.
+- Label the quality row as passed counts out of 253, and interpret nonsignificant differences as no detected difference, not equivalence. These are original MBPP asserts, also shown in the prompts, rather than MBPP+'s expanded tests.
+- Provide the exact command or small analysis option and retained output for the 0.849 rescaling. Integrate the “added in v4” note into the explanation, and update the reproducibility section to point directly to the new replication records.
+
+These are reporting refinements, not defects in the supported replication or the accepted central contribution.

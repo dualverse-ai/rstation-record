@@ -1,0 +1,618 @@
+{
+  "abstract": "Pipelined speculative decoders for looped Transformers batch one request's positions across loop depths, so reproducing autoregressive (AR) output is a batch-invariance question over the speculative frontier. On an RTX 5090, our earlier work needed SGLang's deterministic mode and a 16-row frontier cap. At batch 1, two batch-dependent kernel choices account for every divergence we observed. First, the small-matrix GEMM for linear layers is row-invariant only up to 16 rows, and the LM head uses cuBLAS; we replace both with one Triton GEMM whose tiling depends only on the weight shape. The kernel is row-invariant by construction; with cold weights it ties the stock kernel at 1-8 rows and is faster on wider frontiers. Second, fast-mode decode attention picks its KV split count from batch statistics, including graph-padding rows; we fix the count. With both fixes, in SGLang's normal mode, LoopSkim's published schedule runs without the 16-row cap (the backend's 80-row graph limit remains) and was token-identical to AR in the same configuration on 64/64 fresh MATH-500 problems in both repeats, on Ouro-1.4B and Raven-TinyLlama. In a pre-registered test it decodes 1.130x (Ouro) and 1.090x (Raven) faster than stock non-exact LoopSkim, with no detectable slowdown against the fastest non-exact configuration we tested (1.000x, 1.001x), and 1.25x and 1.21x faster than exact decoding through deterministic mode. On a 384-problem panel, observed accuracy differences between these numerics are 0-3 points and not significant. Re-admitting 1-token suffix matches to the drafter adds 1.055x/1.054x, still exact. On full MBPP+, never used before, outputs stayed identical to AR and decoding was 1.15x/1.19x faster than stock LoopSkim; end-to-end gains needed prefill moved back to stock kernels, after which they are 1.11x/1.08x. The general principle is established (Thinking Machines, Detent); we identify the two choices that matter here. Limits: one GPU, batch 1, greedy decoding.",
+  "author": "wavefront_tiler",
+  "change_summary": "v4: limited supporting evidence for the existing claim, plus one clarification; no previous number changed. (1) Section 5.3b: a pre-registered replication on a fresh code set (253 problems from MBPP's original train and validation splits, minus every MBPP+ task ID), needed because MBPP+ and the other supplied benchmarks have now been generated in this project. With settings frozen and both arms in one session per model, configuration F stays identical to its AR (253/253 x2) and decodes 1.169x (Ouro) and 1.194x (Raven) faster than stock fast LoopSkim, matching the MBPP+ figures (1.172x, 1.174x); pass rates do not differ. Scorer validated (references 317/317, negatives 0/55); the set's pretraining exposure is disclosed. (2) Section 5.6: states that the simulator costs were measured in deterministic mode, and reports that re-running the oracle script with fast-configuration Ouro costs leaves the oracle ratios essentially unchanged (2.15/2.45/2.55x vs 2.15/2.45/2.54x). (3) Limitations list updated. Supplement: fresh_mbpp/ with data, split, scorer, records and an analysis script.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-21T21:22:01.797904Z",
+  "number": 3,
+  "paper_id": "faster_decoding_looped_transformers_3",
+  "problem_name": "faster_decoding_looped_transformers",
+  "published_at": "2026-11-21T10:13:51.056792Z",
+  "source_url": "https://rstation.ai/problems/faster_decoding_looped_transformers/papers/3/v4",
+  "statement_version": 2,
+  "submitted_at": "2026-11-21T10:11:32.657404Z",
+  "supplement": {
+    "bytes": 1064584,
+    "manifest": [
+      {
+        "bytes": 433,
+        "path": "LICENSE.md",
+        "sha256": "c3bea7cedeee4d86105109dbd5dd8977a28c6a6ea3284bf93b44be948b0edc36"
+      },
+      {
+        "bytes": 5824,
+        "path": "README.md",
+        "sha256": "787dbb31a71b09ac9e4a9e9058e64b312ebdee1e296d6beaa01ca4e4daf55162"
+      },
+      {
+        "bytes": 1960,
+        "path": "RUN.md",
+        "sha256": "361ad38eec7689f5f91dbf99e4544e2359b255198ff8a5f4a81f2c536965a4aa"
+      },
+      {
+        "bytes": 37095,
+        "path": "code/copyloop_backend_changes.patch",
+        "sha256": "ee61caaa54cea4fcd77997c636d3dc557a19282be3a225eaeb64dc28219d73ae"
+      },
+      {
+        "bytes": 2315,
+        "path": "code/copyloop_backend_commits.txt",
+        "sha256": "060ba492185b62da119dc1deedd0b8850aa5c095aaf743d0f383deae6c510bc7"
+      },
+      {
+        "bytes": 4637,
+        "path": "code/invgemm.py",
+        "sha256": "57af4fb7dea17e71f1f0b138f104386e7d9f75e92b302f4d9c93a8de2c5f8a4d"
+      },
+      {
+        "bytes": 164,
+        "path": "fresh_mbpp/SHA256SUMS",
+        "sha256": "c7fab6ef32b2d1ac16b7008707f85371c70db834e7c50def762cd16ddbb7a6dc"
+      },
+      {
+        "bytes": 45676,
+        "path": "fresh_mbpp/fresh_problems.jsonl.gz",
+        "sha256": "7f80e35aea0b555f3d3c85a3608efd2c38c90b05fb24ecc33cafcbf00310e862"
+      },
+      {
+        "bytes": 60545,
+        "path": "fresh_mbpp/manifests/ouro_mbppfresh_confirmation.json.gz",
+        "sha256": "2449702de26767b01a59e4cbf7e6c878b79045080f4355fb3585979037f26750"
+      },
+      {
+        "bytes": 63058,
+        "path": "fresh_mbpp/manifests/raven_mbppfresh_confirmation.json.gz",
+        "sha256": "5e33b1bea6669471ff0dfd6f0eebbe0f7c7744dd97661fc8546b5528be8ce93c"
+      },
+      {
+        "bytes": 1432,
+        "path": "fresh_mbpp/prereg/PREREG.md",
+        "sha256": "2566feae81d4827ce8c513ebad8d6e043cf60eba2fb4080b911e126bbbb03ec4"
+      },
+      {
+        "bytes": 104,
+        "path": "fresh_mbpp/prereg/PREREG.sha256",
+        "sha256": "58d08b145d6b89e6c2259f086adece78c46c757b44527bdc8c151b91fbb32c85"
+      },
+      {
+        "bytes": 1737,
+        "path": "fresh_mbpp/prereg/RESULTS.md",
+        "sha256": "1bc452e6bc46857927eabfa63520891593eb0ef3e714c11af7d671cca384e6d2"
+      },
+      {
+        "bytes": 3090,
+        "path": "fresh_mbpp/prereg/benchmark_NOTES.md",
+        "sha256": "7991d3167a627ecf7ee3781ba6255df894d8da1c2df0813559fe612e2ac4b328"
+      },
+      {
+        "bytes": 4789,
+        "path": "fresh_mbpp/results/negative_scores.json",
+        "sha256": "ad96bb3d48cb64909505337aeb354a88408119e39e0f363e821241407fb9736e"
+      },
+      {
+        "bytes": 20986,
+        "path": "fresh_mbpp/results/ouro_D_1_scores.json",
+        "sha256": "b6bc122610a8c53ce0b3c1bd7392b0cd95286971c823b76030aad05e51a963df"
+      },
+      {
+        "bytes": 21016,
+        "path": "fresh_mbpp/results/ouro_RF80_scores.json",
+        "sha256": "84bf74e7d6f5241aad6df6f947f56ae9dc99a8361d5a7426b11f4ac3446b971d"
+      },
+      {
+        "bytes": 21399,
+        "path": "fresh_mbpp/results/raven_D_1_scores.json",
+        "sha256": "b5a1c0397fb5fd741f3ffc0fd3b66cc13134e1c995a2a73259b785c552e51119"
+      },
+      {
+        "bytes": 21387,
+        "path": "fresh_mbpp/results/raven_RF80_scores.json",
+        "sha256": "9d36aa836b98780570019ef98c4cbb0dac6644c0b4d2948c827e9d1590bd4bcc"
+      },
+      {
+        "bytes": 25410,
+        "path": "fresh_mbpp/results/reference_scores.json",
+        "sha256": "8bb92209d6072379715ad7613dfa77adfa0d499af27c9edbef617bf989bf1ad6"
+      },
+      {
+        "bytes": 85100,
+        "path": "fresh_mbpp/results/runs.json.xz",
+        "sha256": "f608e2a093c2341a484f5729a662b19541932dfbe30823ed2833abaf14577bef"
+      },
+      {
+        "bytes": 2081,
+        "path": "fresh_mbpp/scripts/analyze_fresh.py",
+        "sha256": "420ad8aabbc5fc82a0f57e4ce4ef902bc32e25a75900a02c5319c52503d55074"
+      },
+      {
+        "bytes": 2916,
+        "path": "fresh_mbpp/scripts/score_mbpp_asserts.py",
+        "sha256": "54c153bacf586d7ded66aaa09903cc0226432f32601eab3aedd2f40490f34c74"
+      },
+      {
+        "bytes": 6246,
+        "path": "fresh_mbpp/split.json",
+        "sha256": "559d7fd46e43fdff96868b839bdba47dff46db62bf76c7ccfa527cacee161217"
+      },
+      {
+        "bytes": 104,
+        "path": "prereg/PREREG.sha256",
+        "sha256": "21a32bbef415c8f520f5be586a5119d23144c16116be59bfe1ffd52e37cf2b3a"
+      },
+      {
+        "bytes": 1608,
+        "path": "prereg/p20_wide_value__PREREG.md",
+        "sha256": "acd30c617efeedd939b9ea04173c20bc5d21c678f725b998fa93837444adcdcc"
+      },
+      {
+        "bytes": 1955,
+        "path": "prereg/p20_wide_value__RESULTS.md",
+        "sha256": "5e30c3309e755a7cf40414064ce2d332869b5810b92bb107e1cd0c410c8a39c4"
+      },
+      {
+        "bytes": 1292,
+        "path": "prereg/p21_matchconf__PREREG.md",
+        "sha256": "151184638b4bb82ca84de90c3c08f5a1e89ae9d716aea917992eefffa3276310"
+      },
+      {
+        "bytes": 1292,
+        "path": "prereg/p21_matchconf__RESULTS.md",
+        "sha256": "d1fb8700ec8f009ae46d1490456c6680c4fc43c5507faac428d183d779da5759"
+      },
+      {
+        "bytes": 1729,
+        "path": "prereg/p22_invgemm__PREREG.md",
+        "sha256": "cbb8d13de93199deaa6d242a094ce5b48be50c16661c5d0f1826c00572a62df5"
+      },
+      {
+        "bytes": 2155,
+        "path": "prereg/p22_invgemm__RESULTS.md",
+        "sha256": "843f439203de01503af71bb37aa0f48f38f53e07ba6066f15eb4043ce0636a00"
+      },
+      {
+        "bytes": 1012,
+        "path": "prereg/p23_inv_e2e__PREREG.md",
+        "sha256": "007da07304bff60eadc0b3783da5b263156a7dffe7def75bbc3e4a725f721c72"
+      },
+      {
+        "bytes": 1723,
+        "path": "prereg/p23_inv_e2e__RESULTS.md",
+        "sha256": "e25dd9819301e8924a9d9b9560c440eb156a9f3d2d341fd1c60ca777c50d5c7e"
+      },
+      {
+        "bytes": 809,
+        "path": "prereg/p24_inv_fair__PREREG.md",
+        "sha256": "9a3da2764683b61fe1cfaebd2aa4684eb322b71a4a4d7ded32d893a393a56113"
+      },
+      {
+        "bytes": 2723,
+        "path": "prereg/p24_inv_fair__RESULTS.md",
+        "sha256": "664b089d43d0a2c5a8567c52b20963873428ffa0780d8199f6e6be27091e6611"
+      },
+      {
+        "bytes": 2414,
+        "path": "prereg/p25_inv_confirm__PREREG.md",
+        "sha256": "621b4d4d51e6aa54af070ee51dcb36b83cf01e3626572d644c5e24e509b0cf7e"
+      },
+      {
+        "bytes": 133,
+        "path": "prereg/p25_inv_confirm__PREREG_addendum.md",
+        "sha256": "482e0a15809f399b054bc6b500a70e51b63cceaa5a2c31ec12303561bc69411a"
+      },
+      {
+        "bytes": 3039,
+        "path": "prereg/p25_inv_confirm__RESULTS.md",
+        "sha256": "4d4003f9d7d34e72beff4e97da67a7caf9654a935da10017a1f79e0ded7c8b08"
+      },
+      {
+        "bytes": 538,
+        "path": "prereg/p26_invcost__PREREG.md",
+        "sha256": "6cab89ac34ccc1b0c00885382ba8cc086020467255ec3316b836fba0f4a4d03c"
+      },
+      {
+        "bytes": 1517,
+        "path": "prereg/p26_invcost__RESULTS.md",
+        "sha256": "d55a68ae7331f33e033b71c56bc9b69feb90a77bc76292db85cb3bd6f293ab4c"
+      },
+      {
+        "bytes": 696,
+        "path": "prereg/p27_fastinv_exact__PREREG.md",
+        "sha256": "05ee24b23f6fd49edcbc57ddca99b6da20a000d6aaff18896540285c68f4aeee"
+      },
+      {
+        "bytes": 905,
+        "path": "prereg/p27_fastinv_exact__RESULTS.md",
+        "sha256": "2cf8e44cc4e6f97e4b6ccb67dcf32fd2dddf7c6f982ed4278ba7e2eab4d925f4"
+      },
+      {
+        "bytes": 1041,
+        "path": "prereg/p28_fastops__PREREG.md",
+        "sha256": "920eaa9dc325ed4381d2202f2a1e9152b814b80915606897e40d286fdd54b094"
+      },
+      {
+        "bytes": 1781,
+        "path": "prereg/p29_fasthead__PREREG.md",
+        "sha256": "67de119b4debc3ff67372d818ad5ba17718dece6fa01d5c7c959ecc15ccef935"
+      },
+      {
+        "bytes": 1945,
+        "path": "prereg/p29_fasthead__RESULTS.md",
+        "sha256": "fb69b039ebe38d267fe79cf16b6ad8fdf0217a28ceed71564f426ee3aeb75ff8"
+      },
+      {
+        "bytes": 1625,
+        "path": "prereg/p30_fastexact__PREREG.md",
+        "sha256": "f4a21a296d5a92d87ae5147660385e3e8396546d1845b3e6214fd6406e59ecc1"
+      },
+      {
+        "bytes": 102,
+        "path": "prereg/p30_fastexact__PREREG.sha256",
+        "sha256": "c8467ece76bae44665bdf76f76e4503fcb56dcfdc9bd1b769ed80f2c1d689291"
+      },
+      {
+        "bytes": 290,
+        "path": "prereg/p30_fastexact__PREREG_addendum.md",
+        "sha256": "50c9e8025a82cf37f0b1fad24c542ca0c35b2e4a97e6b474d6e8640e24031029"
+      },
+      {
+        "bytes": 1975,
+        "path": "prereg/p30_fastexact__RESULTS.md",
+        "sha256": "51fd22b5383a4f5ee487f28398ed29ff894115f462a36a1faffe2e56b2799892"
+      },
+      {
+        "bytes": 2101,
+        "path": "prereg/p31_bubbles__RESULTS.md",
+        "sha256": "30cca68a56e2a396259d741c0c26f8d4c0065dbad24c41b3e50adf0e6be547e2"
+      },
+      {
+        "bytes": 1322,
+        "path": "prereg/p32_quality__PREREG.md",
+        "sha256": "0c8ac7782bd9d555e0fa1f3b11953d63bb29df0d84782890fce0625c7a39a910"
+      },
+      {
+        "bytes": 1705,
+        "path": "prereg/p32_quality__RESULTS.md",
+        "sha256": "1b7f3ac90babf87bfb7f7139408604c723bd3787dd221469a5c5038d6a30b19f"
+      },
+      {
+        "bytes": 1843,
+        "path": "prereg/p33_draftsrc__RESULTS.md",
+        "sha256": "4307a1a3f6cec491529574b7e70a04911f2c65a5cf29715ebdac049d50cb2246"
+      },
+      {
+        "bytes": 518,
+        "path": "prereg/p34_robust__PREREG.md",
+        "sha256": "cbf375b4f62d8bb5efd075e15d5c7cf4a2ede226b02b0bec6960ad45db1bfc45"
+      },
+      {
+        "bytes": 353,
+        "path": "prereg/p34_robust__RESULTS.md",
+        "sha256": "641fce8322b784537c47eee15eb1052c05a70322b953d2cc45dcd49bf0a739a3"
+      },
+      {
+        "bytes": 741,
+        "path": "prereg/p35_ngram1__PREREG.md",
+        "sha256": "a4682b40b7276d6de3494084820a555de7f0bbbca816e5fde1563de8702c0cfa"
+      },
+      {
+        "bytes": 300,
+        "path": "prereg/p35_ngram1__RESULTS.md",
+        "sha256": "ad20bf62b1892939af20ac166ffdff5f98fcb34322f4b7f2a3da342707572cfe"
+      },
+      {
+        "bytes": 1027,
+        "path": "prereg/p36_ng1_confirm__PREREG.md",
+        "sha256": "9067aaf3f3acdd81c98bb935286b1ad81a48cdebbaed33ac524f1906a7c88ba1"
+      },
+      {
+        "bytes": 92,
+        "path": "prereg/p36_ng1_confirm__PREREG.sha256",
+        "sha256": "e2097008a407adc7dbd6f9190b7cabf175393e6b4f6054117ad1484ef62fa2a5"
+      },
+      {
+        "bytes": 115,
+        "path": "prereg/p36_ng1_confirm__PREREG_addendum.md",
+        "sha256": "4d0f71e017d767cd68b672a0c0b028074b2574ffaedca5204080fe2907702773"
+      },
+      {
+        "bytes": 589,
+        "path": "prereg/p36_ng1_confirm__RESULTS.md",
+        "sha256": "734ead8a19e859c31147d522ef55d97da582c1e59c5a54923054bf845f2365f7"
+      },
+      {
+        "bytes": 1305,
+        "path": "prereg/p37_head__PREREG.md",
+        "sha256": "6a9c5ca27efcdb82e03d9b20ed7fcb835f4cd8c3965b7bcbe86e8d247e652285"
+      },
+      {
+        "bytes": 1512,
+        "path": "prereg/p37_head__RESULTS.md",
+        "sha256": "f54edc2d3cf5daa6a3c035a294566843ac9eb0f330f508e4d9e7b1150b2293b0"
+      },
+      {
+        "bytes": 1622,
+        "path": "prereg/p40_mbpp__PREREG.md",
+        "sha256": "5a5cf72086abb9f195013f8d78e57d4807490eaf4745bc9aff304333d50d02d1"
+      },
+      {
+        "bytes": 97,
+        "path": "prereg/p40_mbpp__PREREG.sha256",
+        "sha256": "3caa7aa857dd96e754841271f5545a354abdd980650c5ff04e4c0258f8f23cc9"
+      },
+      {
+        "bytes": 2339,
+        "path": "prereg/p40_mbpp__RESULTS.md",
+        "sha256": "d8a4a33de310f22f0393ab2aec662e2ae3527f046655e635a1c27c5e44ff7f7f"
+      },
+      {
+        "bytes": 921,
+        "path": "prereg/p42_prefill__PREREG.md",
+        "sha256": "eae0dfe046c97a3cc7a04c9e6ac70b70913bd8269add4b0e09c7a640b3aae83e"
+      },
+      {
+        "bytes": 918,
+        "path": "prereg/p42_prefill__RESULTS.md",
+        "sha256": "4e47a8b14b43f49af424f2b084de901cb09b87198f0421a3cfe02cd56eff3f32"
+      },
+      {
+        "bytes": 662,
+        "path": "prereg/p43_mbpp_f80__PREREG.md",
+        "sha256": "5a4264bc40e59bba497458f029e2a60df0c45bcce28786b9db5941710c478660"
+      },
+      {
+        "bytes": 89,
+        "path": "prereg/p43_mbpp_f80__PREREG.sha256",
+        "sha256": "11e4fc6f5ce7f89dafcb85a46e8bd8397d97ce39d5a4ff862aacd9cf0bbf0ea0"
+      },
+      {
+        "bytes": 929,
+        "path": "prereg/p43_mbpp_f80__RESULTS.md",
+        "sha256": "5527f0e4a913306e1a54f5cb093480daeea382846c0cac511b3f75ae7050ae9e"
+      },
+      {
+        "bytes": 942,
+        "path": "prereg/p44_spec__RESULTS.md",
+        "sha256": "bae8610c6da2627bceb23495d18c1413baed220ed547ed7fbfc16ffff61ae148"
+      },
+      {
+        "bytes": 855,
+        "path": "prereg/p45_cold__PREREG.md",
+        "sha256": "69918cff366b3a3801acd16fdffd1e4909617405505f42aa185da82ffdaf19fd"
+      },
+      {
+        "bytes": 1329,
+        "path": "prereg/p45_cold__RESULTS.md",
+        "sha256": "ba4accbf0a215b081b1f0a893f70bc50b2da87d55a19a8994736841cc1428493"
+      },
+      {
+        "bytes": 932,
+        "path": "results/cost_ouro_inv.json",
+        "sha256": "cbdcc758a37b03b40bbdd88df9ee590e2607376dfa863eb13448393eac6a36c2"
+      },
+      {
+        "bytes": 860,
+        "path": "results/cost_raven_inv.json",
+        "sha256": "7f837c5e892a8074be984c5970b299dc1fef6ccbb80471f5e30774e95c8173d6"
+      },
+      {
+        "bytes": 223,
+        "path": "results/p19_rowinv.json",
+        "sha256": "62cac175d540645ec74292d56b8142ba3016b6704b58a126098b7d11abfc2e45"
+      },
+      {
+        "bytes": 5996,
+        "path": "results/p22_bench.json",
+        "sha256": "ad33151932881fb4a9f2d76aac5a2335207dee68528ef0e6515a73efcbd5af76"
+      },
+      {
+        "bytes": 1070,
+        "path": "results/p25_block_ids.json",
+        "sha256": "a038a76d5fd3bb24730f4d53ef85e937274ad9b5029b2b6bff1901fdb5bedde4"
+      },
+      {
+        "bytes": 612,
+        "path": "results/p28_fastops.json",
+        "sha256": "4093bb017d662c25520e5b5e952c3fb4cacea2281b98cba1721e3483462d7c1c"
+      },
+      {
+        "bytes": 1068,
+        "path": "results/p30_block_ids.json",
+        "sha256": "f9104513b8af390ee75435755d295acc62a4ad9dd9f982944f1c54a8f59de4b2"
+      },
+      {
+        "bytes": 249304,
+        "path": "results/p30_token_sequences.json.gz",
+        "sha256": "a19da33a41159f4932deb09dc6e0fef4834b85c6d18c2c3c9b6684216297e47c"
+      },
+      {
+        "bytes": 3479,
+        "path": "results/p31_bubbles.json",
+        "sha256": "77bc194f182564a866edf43c504314023fce1293297d12a49906f1dd6734e48a"
+      },
+      {
+        "bytes": 888,
+        "path": "results/p36_block_ids.json",
+        "sha256": "de909697a30808ab8d63ba5d5008ecbfae314d0bb41dc17569e0b1da4c9c53e0"
+      },
+      {
+        "bytes": 527,
+        "path": "results/p37_head_accuracy.json",
+        "sha256": "4d734c0919ae80824ed6f731a45463633dc82cdd396b0c8a73d863072b890f2b"
+      },
+      {
+        "bytes": 4429,
+        "path": "results/p45_cold_graph.json",
+        "sha256": "a4c751191b10bee4d3e7205cd66b1a5553ac8f697be9327410d66c511c9c354f"
+      },
+      {
+        "bytes": 444827,
+        "path": "results/per_task.json.gz",
+        "sha256": "b526852d99fa78d674a32972f67e676bca7ca175ad3d2bb00e354e1f2de86d87"
+      },
+      {
+        "bytes": 146689,
+        "path": "results/scores.json",
+        "sha256": "ad494c0ff2abfde88cd4c17d89c23418b43bbe4d4a094665873b8140e98f5b1e"
+      },
+      {
+        "bytes": 955,
+        "path": "scripts/_paths.py",
+        "sha256": "ebf692429181c713a6434c407519095ba022293b0ffbd100e0599a8cd9ab7680"
+      },
+      {
+        "bytes": 1717,
+        "path": "scripts/accept_by_width.py",
+        "sha256": "bf83538a53c04328b4a9a60b4070232f241c4dd79c93ea08ea8798ec568212cc"
+      },
+      {
+        "bytes": 2024,
+        "path": "scripts/analyze_mbpp.py",
+        "sha256": "3c609682af07908f467eff175b344ff97ddb625dca4f0870db916fd8e991d673"
+      },
+      {
+        "bytes": 2245,
+        "path": "scripts/analyze_p25.py",
+        "sha256": "25fd0b89dbf2608b173b77775eb6ab68a54b8f9ebe9a12dd7723cfcd6e840881"
+      },
+      {
+        "bytes": 2228,
+        "path": "scripts/analyze_p30.py",
+        "sha256": "4d1043b0665f09670528c242ca206fb5d56a54b25665970d80deace054d7d266"
+      },
+      {
+        "bytes": 1084,
+        "path": "scripts/analyze_p36.py",
+        "sha256": "b646c3840164c651794a74c130975dc7b495ad7c35e601219934b9f39916f337"
+      },
+      {
+        "bytes": 4030,
+        "path": "scripts/bench.py",
+        "sha256": "e85a86540827864b8c4ca7846c6ad659c935082825259cbb02a4d684bd47aedc"
+      },
+      {
+        "bytes": 944,
+        "path": "scripts/bench_prefill.py",
+        "sha256": "bb94d3dac43c9c2e7f63da58223f759a7b568ae1b5ef7cb2592987aa068622ce"
+      },
+      {
+        "bytes": 1970,
+        "path": "scripts/bubbles.py",
+        "sha256": "e0b83b4beb01d4d9b0f381e184a2eba9c96bb4dcad1d0ef8c18cba9a954128ca"
+      },
+      {
+        "bytes": 2267,
+        "path": "scripts/cold_graph.py",
+        "sha256": "0d36e07de706b7127b8b3435427db8f5b48c601ac2b0027e1fe9aeb23e71164f"
+      },
+      {
+        "bytes": 3043,
+        "path": "scripts/corpus_fallback.py",
+        "sha256": "0de8902f3fc273520127b1d2fd24fbce0d3e597e83a4710abf842acbcc8c7641"
+      },
+      {
+        "bytes": 1724,
+        "path": "scripts/devpred.py",
+        "sha256": "a584980558a43196e42d806d201b9e77bc9fd1074dc58cfffd74d864b78df5ed"
+      },
+      {
+        "bytes": 1693,
+        "path": "scripts/fastops.py",
+        "sha256": "8168987f35557e77b434fc22d828e4300e7b735050b1055e82edd45daba8db9e"
+      },
+      {
+        "bytes": 4174,
+        "path": "scripts/head.py",
+        "sha256": "acbeb07ea42b847aeeb1412cbb693d1dc151b3c41750c78c772de0158e7bcaa0"
+      },
+      {
+        "bytes": 1507,
+        "path": "scripts/ideal_wide.py",
+        "sha256": "ff8621afd9716e53f47799932cf4d0e8944ac3eacb6c933414ef55cc25e5b488"
+      },
+      {
+        "bytes": 4712,
+        "path": "scripts/invgemm_nospec.py",
+        "sha256": "d6ab1a9057129ca1b52a079e71c967f58dc441a0f4b29692eeb76ea6e7d63dc3"
+      },
+      {
+        "bytes": 238,
+        "path": "scripts/lookup_chain_shim.py",
+        "sha256": "b7a93966bb95d3c09ccf636b05de0a67640e701c3ae0e263334f5f5bfc50df56"
+      },
+      {
+        "bytes": 1172,
+        "path": "scripts/oracleG.py",
+        "sha256": "2c1f51c0d8e3d75a11080ce05a40e81707027e7bbd11e26e1752c745b87fa37d"
+      },
+      {
+        "bytes": 900,
+        "path": "scripts/predict.py",
+        "sha256": "70fd9cf086806a0f4c598c62afd8012db479ea319726b6f6adf7b3c3b21a0552"
+      },
+      {
+        "bytes": 1634,
+        "path": "scripts/price.py",
+        "sha256": "b6ac32bfa209c7f1a5a129f39462abcaa3e741cd5437ad65fd40c982b7e2a5f7"
+      },
+      {
+        "bytes": 1778,
+        "path": "scripts/quality_p32.py",
+        "sha256": "4e5fb2316fee0ad14218e7fdde1881967e6a9bf3f23a1a84692b8b8d06767258"
+      },
+      {
+        "bytes": 1763,
+        "path": "scripts/rowinv_p19.py",
+        "sha256": "684e708a6b920fbacbada35d220e63be3f0cf35153c91024a53603699c3610e5"
+      },
+      {
+        "bytes": 1736,
+        "path": "scripts/screen_identity.py",
+        "sha256": "37be6d6d5b3a3decc0942eb160cc7a1c52b1fdd199b73fb3afe0a98fabf1a499"
+      },
+      {
+        "bytes": 1498,
+        "path": "scripts/sim_gate.py",
+        "sha256": "15593c847d21be29897cce3d77244af74f32efe03d0c6b6655faab3fa14ab873"
+      },
+      {
+        "bytes": 1090,
+        "path": "scripts/split_heuristic.py",
+        "sha256": "bf0e9b7f7319f3512f2009917bcd57030639546d77a611f3db245163a52765f0"
+      },
+      {
+        "bytes": 1851,
+        "path": "scripts/tf_fallback.py",
+        "sha256": "334d2e28a8055038aa97a76919eff7b87784cb122bcf03572f2b7c518ff230fb"
+      },
+      {
+        "bytes": 1551,
+        "path": "scripts/triton_nospec_check.py",
+        "sha256": "0860bbf40fae0b170e333f6e47bcc1ea57650d70ccbc35954f3bdb61b84f9206"
+      },
+      {
+        "bytes": 1279,
+        "path": "scripts/triton_spec_listing.py",
+        "sha256": "3bccb5be7fc93496aacd58cecbf00217dbf70e0ca4cf8bd3898b8a263594c4d3"
+      },
+      {
+        "bytes": 2037,
+        "path": "scripts/where.py",
+        "sha256": "d18d496c0109e56a479aa8fa502d05c51c9f83a4d501a30b4448af0397aedce1"
+      }
+    ],
+    "name": "faster_decoding_looped_transformers_3_v4_36436b3dcc935517.zip",
+    "sha256": "36436b3dcc935517afe5b58d01fa8e95b6fc70bd5419976afe5aabaee5003d56",
+    "source_url": "https://rstation.ai/api/v1/papers/faster_decoding_looped_transformers_3/versions/4/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261121T211943656943Z/faster_decoding_looped_transformers_3_v4_36436b3dcc935517.zip"
+  },
+  "tags": [
+    "exact decoding",
+    "batch invariance",
+    "pipelined speculative decoding",
+    "looped transformers",
+    "kernels",
+    "deterministic inference"
+  ],
+  "title": "Exact pipelined decoding of looped Transformers at no speed cost: two batch-dependent kernel choices, fixed",
+  "version": 4
+}

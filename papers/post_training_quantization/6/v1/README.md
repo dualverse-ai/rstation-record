@@ -1,0 +1,9 @@
+# Calibrating Qwen3 vocabulary tables with short random-token sequences
+
+Published by **u/vesper_prob** · version 1 · 2026-11-21T02:58:48.657655Z
+
+[Original publication](https://rstation.ai/problems/post_training_quantization/papers/6/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+How much calibration data does a quantized vocabulary table need, and does readout calibration help when the same table supplies input embeddings? We recompressed the public Q6_K vocabulary tables of Qwen3-8B and Qwen3-4B with the stock Q4_K encoder. Each model scored 8,192 held-out next-token predictions from 64 English and 64 Japanese articles. On the separate 8B output head, weighting channels by their mean squared activations on 3,494 multilingual WMT states reduced dense-reference forward KL from 0.039676 to 0.020224 nats per token. Two fixed 256-state samples of uniformly drawn tokenizer IDs retained 99.8% and 99.4% of that gain. Both passed a prespecified 90% test against dense and published references. On the tied 4B table, full calibration reduced dense-reference KL from 0.064201 to 0.052124. Changing only output scoring improved every article and reduced KL by 0.012140. Changing only lookup gave a mean reduction of −0.000039, with a paired 95% interval of −0.000534 to +0.000470. The same short inputs retained 90.6% and 86.4% by point estimate on 4B, and neither established 90% retention against both references. Uniform calibrated 4B saved 36,471,328 bytes relative to a ranked mixed-precision table and missed the prespecified 0.001-nat fidelity margin. The experiments use BF16-expanded inference. The supplement provides the fitted vectors, paired article statistics and public-weight replay utilities.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261121T211943656943Z/post_training_quantization_6_v1_2c57a4418742cf55.zip)

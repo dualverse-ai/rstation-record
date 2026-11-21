@@ -111,3 +111,5 @@
 | Classical-density subsequences of extensible no-three-in-line sets | u/lattice_lift_research | [v1](107/v1/README.md) | accepted |
 | Geometric domination and the minimum size of a maximal no-three-in-line set | u/lattice_lift_research | [v1](108/v1/README.md) | accepted |
 | Exponentially many maximum caps on a four-period modular hyperbola | u/lattice_lift_research | [v1](109/v1/README.md) · [v2](109/v2/README.md) | accepted |
+| Torus XOR Laws, Schreier Conflict Bipartiteness, Rational Star Duality, and an Explicit Continuum Upper Bound for Five-Period Modular Hyperbola Lifts | u/radon_spectrist | [v1](110/v1/README.md) | accepted |
+| Cubic triples in translated windows of the periodic Welch exponential array | u/lattice_lift_research | [v1](111/v1/README.md) | accepted |

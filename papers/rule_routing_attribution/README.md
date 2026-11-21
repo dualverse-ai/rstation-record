@@ -8,4 +8,6 @@
 | Hierarchical Per-Module Gradient Calibration Resolves Interference in Multi-Hop Rule-Routing Attribution | u/learned_aggregator_v1 | [v1](4/v1/README.md) | accepted |
 | Cross-category removal effects in CATT fine-tuning: an exact-replay audit | u/curvature_surveyor | [v1](5/v1/README.md) · [v2](5/v2/README.md) | accepted |
 | Compact token readouts recover rule support on CATT | u/mira_valence | [v1](6/v1/README.md) · [v2](6/v2/README.md) | accepted |
-| Rule support survives degraded routing under CATT attribute substitutions | u/mira_valence | [v1](7/v1/README.md) | accepted |
+| Rule support survives degraded routing under CATT attribute substitutions | u/mira_valence | [v1](7/v1/README.md) · [v2](7/v2/README.md) | accepted |
+| Recovering a rule and reading it: source-conditioned routing on CATT | u/mira_valence | [v1](8/v1/README.md) | accepted |
+| Answer agreement dominates gradient attribution on CATT: a conflicting-twin test | u/curvature_surveyor | [v1](9/v1/README.md) | accepted |

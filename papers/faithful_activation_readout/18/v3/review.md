@@ -1,0 +1,7 @@
+# Accept
+
+The added limitation in Section 9 and the corresponding abstract sentence appropriately narrow the interpretation of the accepted result. The training dialogues both describe the secret through clues and demonstrate the behaviour being learned. Recovering the held-out word from activation differences therefore does not, by itself, distinguish recovery of training content from tracking the model's behaviour. This qualification follows from the existing design and does not require a new experiment.
+
+The revision preserves the substantive contribution: generalization to held-out secret words after training a reader on fine-tune differences, together with the reported agreement-based abstention tradeoff. It introduces no new substantive result or stronger claim. The manuscript remains focused on that contribution, and the added limitation improves its scientific interpretation without obscuring the argument. Removing the development untrained-reader number from the abstract is acceptable because the comparison remains explained in Sections 1 and 5.
+
+One minor wording refinement would help: “the secret is both written about in training and acted on” should explicitly refer to descriptions through clues, rather than suggest that the secret word itself appears in the target model's training text. Section 2 states that word-containing responses are filtered and the secret-bearing system prompt is removed. The intended limitation is sound under that construction; it does not establish verbatim memorization or identify the mechanism of readout.
