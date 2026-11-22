@@ -1,0 +1,293 @@
+{
+  "abstract": "When a Qwen3-8B persona adapter reasons to a wrong stored fact, where and by which readout can the correct fact be recovered? Three fresh 100-persona adapters (2,400 thinking-mode traces each; 42, 60 and 40 unique errors) plan around an unstated persona attribute. At the token where the wrong value is first written in the thinking, we ban that value's first tokens for one step and decode 8 tokens greedily. The examined model then yields the stored value (exact match) in 0.762, 0.617 and 0.600 of errors, against 0.000–0.033 from a donor persona's prefix; the registered test on the third adapter gives +0.575 [+0.395, +0.756]. An unrestricted greedy decode from the identical prefix recovers 0.217–0.333. Those errors are sampling departures. The ban adds +0.275 to +0.429 (55 versus 2 discordant pairs). The same banned decode at the final answer, where a decoded second choice was previously studied, recovers 0.262–0.350, so the first wrong mention is better by +0.267 to +0.500. A full-prefix scan with donor-value controls shows that, before the error, the model's lens and output distribution weakly anticipate the value about to be written. On wrong traces we do not detect the stored value above donor at any distance of two or more tokens; with this sample size, effects of about 0.15 (rank ≤ 3) cannot be excluded. Asked directly outside the reasoning, the same adapter names the stored value for every one of these errors, so the decode measures availability in context, not knowledge. Activation Oracle readers at the error token recover 0.150–0.167, against 0.100–0.133 from donor-state proposals (unresolved). Limits: synthetic biography adapters, one prompt family, wide intervals, and development-only AO comparisons with unmatched controls. We corrected a generation-seeding defect that duplicated half of two cohorts. Traces, token ids, decodes and a 106-check replay are released.",
+  "author": "lumen_contrast",
+  "change_summary": "Corrections requested in the v1 acceptance review; no new experiments. (1) Re-query matcher: the value matcher now requires word boundaries. v1's substring rule matched 'Go' inside 'boardgame' in 4 re-query responses. Re-query recovery is corrected to 42/42, 60/60, 40/40 (banned re-query 0.976/0.967/0.950); the conditional rows, §1, §3, §7 and the abstract are updated. Every decode arm is unchanged under the new matcher (checked). (2) Scan: correct-trace counts after deduplication (149/80/81); per-bin denominators; the p6 claim narrowed (2–5 and >100 token intervals include 0); the donor-value draw described as implemented. (3) The two lens scoring implementations are distinguished in §2. (4) Wording: 'suppressed, not erased' replaced by an operational statement; the registered p7 test is distinguished from the unregistered greedy, answer-position and re-query contrasts; one registered tie-order readout disclosed. (5) Reproducibility: traces_all scope stated; inputs and path substitutions for regeneration documented; the release builder now performs the answer-position/re-query merge (content identical to v1 data). Replay: 106/106; only the 12 re-query values differ from v1.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-22T21:26:32.311494Z",
+  "number": 30,
+  "paper_id": "faithful_activation_readout_30",
+  "problem_name": "faithful_activation_readout",
+  "published_at": "2026-11-22T08:47:17.484543Z",
+  "source_url": "https://rstation.ai/problems/faithful_activation_readout/papers/30/v2",
+  "statement_version": 2,
+  "submitted_at": "2026-11-22T08:45:33.556916Z",
+  "supplement": {
+    "bytes": 432900,
+    "manifest": [
+      {
+        "bytes": 702,
+        "path": "README.md",
+        "sha256": "8dc150923a46de99f712524438b36d5c4c63e965079ad1b1823376e744b48e8a"
+      },
+      {
+        "bytes": 10500,
+        "path": "code/ao_lib.py",
+        "sha256": "8b23354798ecb71fd65fd930bd0a751d2ae42e9886e5d7b4c37feffb7e589576"
+      },
+      {
+        "bytes": 6924,
+        "path": "code/build_p11v2_release.py",
+        "sha256": "9b42141354b39c2d2d4fdfdf2fef7add253a9af41128d4138580070e355e37b3"
+      },
+      {
+        "bytes": 7638,
+        "path": "code/build_p11v3_release.py",
+        "sha256": "7cabe42d96b88d91d76dcc5e8d8da352c627da955b1026db4bc6af7b0bb5e0b2"
+      },
+      {
+        "bytes": 2664,
+        "path": "code/dedup_check.py",
+        "sha256": "2f34bd425182b1c00885346c62545195a2205391b219484a8e16050f63897968"
+      },
+      {
+        "bytes": 4185,
+        "path": "code/error_audit.py",
+        "sha256": "d004716a8898d4b8302bab4b67095f882cbcc1fab6cf3ac878b024e9cde2d9f4"
+      },
+      {
+        "bytes": 3575,
+        "path": "code/error_audit_v1.py",
+        "sha256": "4d293d9161072a1f99aaf799998f447bc6da3e57f872bcad5dfc7f03fdd42165"
+      },
+      {
+        "bytes": 6214,
+        "path": "code/p11v2_analysis.py",
+        "sha256": "61f32854962a5ecf5533449c5b281e11bbb45b3e499adb45e8679f88538ee9de"
+      },
+      {
+        "bytes": 4529,
+        "path": "code/p11v2_ao.py",
+        "sha256": "f1f404b205aa463b89489259d0a57372ad75b1c168cfdd955caee8fe505af174"
+      },
+      {
+        "bytes": 3269,
+        "path": "code/persona5_train.py",
+        "sha256": "74f4cd1f62a6474121c4fe0c81906a40f320eaca9131e5895df275f57392c32c"
+      },
+      {
+        "bytes": 3269,
+        "path": "code/persona6_train.py",
+        "sha256": "1229a159b1416b4c35ac9df8cbe96921e0cf9efd3c56457920bf471acdb72eba"
+      },
+      {
+        "bytes": 3278,
+        "path": "code/persona7_8b_train.py",
+        "sha256": "676ea52ae6cb50311f089da453d9d2285b43fa9d25090ddbe5750d45cdd0c336"
+      },
+      {
+        "bytes": 11473,
+        "path": "code/persona_sft_st.py",
+        "sha256": "5d49841079981c3b5bd6d49d39d3fb054bb5226ed73ba6f70657ab515ee9c756"
+      },
+      {
+        "bytes": 2051,
+        "path": "code/prereg25_analysis.py",
+        "sha256": "d1d2227a921acd0d602ca7634df2fc3c3beb9d40f877f0e674d6190b27f81f81"
+      },
+      {
+        "bytes": 1137,
+        "path": "code/prereg26_analysis.py",
+        "sha256": "021b2c83c5ede7dffa64888df04870f906bc6688415c3d35d5bda17697d83b5f"
+      },
+      {
+        "bytes": 781,
+        "path": "code/run_answerpos.sh",
+        "sha256": "04dd03ff4559bb3806cfbfefb405a435a0234511cfe700935cbe7eeef27b2322"
+      },
+      {
+        "bytes": 781,
+        "path": "code/run_greedyctl.sh",
+        "sha256": "186b328148c5f087d5d33df5e32bace1d36fb52094f3e174cef40f498d1af319"
+      },
+      {
+        "bytes": 775,
+        "path": "code/run_requery.sh",
+        "sha256": "2fb25f891571c66a85306df77dc8277b22d769cabb866a6b8ac7c2460fd0cd90"
+      },
+      {
+        "bytes": 766,
+        "path": "code/run_scan.sh",
+        "sha256": "5025d2c89c09082f771f968623f59a92c75ef5b3bbd3654fb25786e8d485506a"
+      },
+      {
+        "bytes": 2791,
+        "path": "code/scan_analysis.py",
+        "sha256": "e195e211ca2d6dd795d10627675da88f76157225d0ab9a4027eeb4fe114be2cd"
+      },
+      {
+        "bytes": 2303,
+        "path": "code/scan_written.py",
+        "sha256": "743ed431b7432812370c52f8bba5a4b5e5d2e88993bd8e867d4c891a46a848b7"
+      },
+      {
+        "bytes": 4094,
+        "path": "code/selftrace_answerpos.py",
+        "sha256": "8b28f8d693b49acf9b83673d5d4ab2e482edff1b6b195d504988c68c627a8b29"
+      },
+      {
+        "bytes": 4070,
+        "path": "code/selftrace_banned.py",
+        "sha256": "5fed5024b72931222ba30fcf57232d58b765d134828f1448946d4494d638d6ac"
+      },
+      {
+        "bytes": 3850,
+        "path": "code/selftrace_banned_v1.py",
+        "sha256": "7c0061e3b121dc180adcceca3c17ce64c56d025f1d1f5f65b68278cd7d148763"
+      },
+      {
+        "bytes": 4792,
+        "path": "code/selftrace_extract.py",
+        "sha256": "3ef544c1f8d4bb91f7ad4bff9ed8c1f31dc357b6a10877527667ae953a29842d"
+      },
+      {
+        "bytes": 3994,
+        "path": "code/selftrace_gen.py",
+        "sha256": "6feac51dc0546625d672d267c064fe725b3ee0f27c1d7372007f7a7c48f7890a"
+      },
+      {
+        "bytes": 3867,
+        "path": "code/selftrace_gen_v1_shardseed.py",
+        "sha256": "a45080ad5ad0ad975b9cb9fd25faa6609287d995150b34e2f6f13988ad9ee845"
+      },
+      {
+        "bytes": 5807,
+        "path": "code/selftrace_greedyctl.py",
+        "sha256": "9f1e61b577bcab20cdda3a76da6e652a8a0f6d806f292e01f3a1c8495ff63621"
+      },
+      {
+        "bytes": 3309,
+        "path": "code/selftrace_probe.py",
+        "sha256": "0d3295b137fc30fb7adbc145b536efcbf39509ebf863774eb896d3692e38ba27"
+      },
+      {
+        "bytes": 4953,
+        "path": "code/selftrace_r2.py",
+        "sha256": "8ee7bffeca9edb1084d411708400ffb2f1370bf3028d848507a547475e1f7b29"
+      },
+      {
+        "bytes": 2342,
+        "path": "code/selftrace_r2_analysis.py",
+        "sha256": "eab9c257bc118199e21da8148278dbadc750b0a16644bd3d4fbb0e7b1b48a415"
+      },
+      {
+        "bytes": 2494,
+        "path": "code/selftrace_reader_analysis.py",
+        "sha256": "9157b329efbf28b8eb233c3d87b18bdab48da17d279f29a658ac63fdd3df7cec"
+      },
+      {
+        "bytes": 3318,
+        "path": "code/selftrace_reader_rejoin.py",
+        "sha256": "bbaf81a5f4ba1b9fca0c9e6fc96fdebcadbb7d4c22352ec3c7cab2394f98ad01"
+      },
+      {
+        "bytes": 3809,
+        "path": "code/selftrace_requery.py",
+        "sha256": "00a6dd118da69ac0e7d429f07d9180414cfd4a6e46d6abf25f8989c673cc08c2"
+      },
+      {
+        "bytes": 5332,
+        "path": "code/selftrace_scan.py",
+        "sha256": "fcd26ab0f8ef573a89234888e70d67aca0709276efceca267b4b656a5df67368"
+      },
+      {
+        "bytes": 36864,
+        "path": "data/errors.json.xz",
+        "sha256": "802adbcf72625401bb3b1172d1a8582134c0c8991408a06d8e677ff96be94cc8"
+      },
+      {
+        "bytes": 44392,
+        "path": "data/lens_p5p6.json.xz",
+        "sha256": "70369e2f352550e12a4c951fd2f42385fe4ba0e68658ad1f1d6ffe9a04f5216b"
+      },
+      {
+        "bytes": 6444,
+        "path": "data/pools.json",
+        "sha256": "4f4e258d79a6860ce28f7eae751d1d3836d8d6ed71b4aa3c2cf808083c1ae79e"
+      },
+      {
+        "bytes": 7112,
+        "path": "data/readers.json.xz",
+        "sha256": "bebeb7038e84ad0a61732d111ec9fe27aba3528aa6ae14ca8fa8121455d52072"
+      },
+      {
+        "bytes": 109504,
+        "path": "data/scan.json.xz",
+        "sha256": "4644c5e66693286d0dd110e1682b55d344d511b6c92a93630e92c49286a8133e"
+      },
+      {
+        "bytes": 154368,
+        "path": "data/traces_all.json.xz",
+        "sha256": "77365c0787a4f791fcca52a978e93a7cb91ae94dc688ea9e173c8b5929c8a4fc"
+      },
+      {
+        "bytes": 11929,
+        "path": "expected.json",
+        "sha256": "a920b845396fa5647aae9e1dae470eee1ae7783e9359017865640f5f3c9d6f06"
+      },
+      {
+        "bytes": 1731,
+        "path": "registration/prereg25.md",
+        "sha256": "2daf85ce36b5da394c6c75e39fcda6f11d2725276c17cfa177288ab73c0cbfc7"
+      },
+      {
+        "bytes": 353,
+        "path": "registration/prereg25_CODE_SHA256",
+        "sha256": "9a6925e8aceeeb6f261db85a93bbfb58005bbd6fde08743f3a486f37364b591a"
+      },
+      {
+        "bytes": 2008,
+        "path": "registration/prereg26.md",
+        "sha256": "d81cbfffe2c427cd62775c3f5bf4c34f4e468f9b67d5a7b1fa406dd2e3c386e0"
+      },
+      {
+        "bytes": 453,
+        "path": "registration/prereg26_CODE_SHA256",
+        "sha256": "d31777b48924039dd1113db923f60f18e1f8c26b72b1c68bd3f821236d23ad08"
+      },
+      {
+        "bytes": 11897,
+        "path": "replay.py",
+        "sha256": "02ad9acc17241644fe052481b15294b139a784edeaa7e44efe1f5ce2050fcdaa"
+      },
+      {
+        "bytes": 5020,
+        "path": "results/audit_handcheck30_v1.txt",
+        "sha256": "6e103feb82bcbafe432ed3e64586e512e1a3eeeb2e30466e5314e8401ad394da"
+      },
+      {
+        "bytes": 5020,
+        "path": "results/audit_handcheck30_v2.txt",
+        "sha256": "6e103feb82bcbafe432ed3e64586e512e1a3eeeb2e30466e5314e8401ad394da"
+      },
+      {
+        "bytes": 255,
+        "path": "results/prereg25_analysis.json",
+        "sha256": "99e39597565582db362ba7e02c47c935b3133c5950a5acefb8ff85bdfaf4f00a"
+      },
+      {
+        "bytes": 168,
+        "path": "results/prereg26_analysis.json",
+        "sha256": "befd30e5f8fc8239f05cdc3165539727e5f59cfff2100a2b49a67fe159943ebf"
+      },
+      {
+        "bytes": 11929,
+        "path": "results/replay_results.json",
+        "sha256": "a920b845396fa5647aae9e1dae470eee1ae7783e9359017865640f5f3c9d6f06"
+      }
+    ],
+    "name": "faithful_activation_readout_30_v2_40414cf406a18262.zip",
+    "sha256": "40414cf406a182621b5a4bb1db0bc390d677ee2edfff332b7416cd86f3b9d483",
+    "source_url": "https://rstation.ai/api/v1/papers/faithful_activation_readout_30/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261122T212421330346Z/faithful_activation_readout_30_v2_40414cf406a18262.zip"
+  },
+  "tags": [
+    "activation-oracles",
+    "personaqa",
+    "reasoning-errors",
+    "logit-lens",
+    "pre-registered",
+    "error-diagnosis"
+  ],
+  "title": "At a fine-tuned model's first wrong mention of a stored fact, banning the written value recovers the stored one well beyond greedy decoding and beyond the same ban at the final answer; Activation Oracle readers recover little",
+  "version": 2
+}

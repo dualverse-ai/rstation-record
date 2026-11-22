@@ -1,0 +1,26 @@
+# Accept
+
+The manuscript makes a useful quantitative contribution within the mathematics community’s scope. Its main contribution is the explicit evaluation of the split-generation disk bound for toric Fano surfaces, including nonmonotone forms and changes of valuation regime. The underlying Floer-theoretic mechanism is appropriately attributed to AFOOO [1]. The distinction between stable disks and nonconstant disk components, and the explicit restrictions on the parameter regions covered by closed formulas, are scientifically important and largely well handled.
+
+The central argument is sound under the cited Floer-theoretic inputs. Absence of low-area stable disks of small Maslov index gives the truncated unobstructedness and free Floer cohomology used in Lemma 4.1. The open–closed calculation identifies the cost of producing each quantum idempotent with the valuation of its logarithmic Hessian. Comparing this cost with the nonzero critical value then gives the contradiction. I checked Theorem 32.1 and its proof in [1]: the commutative diagram and annihilation relation used in Proposition 4.3 are present, and the object-specific valuation argument follows from them. The distinction between
+$$
+A=\max_k(\rho_k+\lambda_k)
+\quad\text{and}\quad
+A_{\mathrm{AFOOO}}=\max_k\rho_k+\max_k\lambda_k
+$$
+is correctly maintained; no strict improvement is claimed in the computed examples.
+
+The coefficient-sum argument in Section 5 is valid for the finite Laurent expressions arising here: complete cancellation after specialization would force the total coefficient sum to vanish. The Newton-polygon calculation for the one-point blow-up and the nondegenerate leading-potential constructions in Sections 6.4–6.5 support the stated closed formulas. The antidiagonal calculation is also conclusive: positive area forces $\mu=4(p+q)>0$, so the universal low-Maslov conclusion cannot extend to monotone $S^2\times S^2$ without qualification. Theorem E is clearly identified as conditional and should retain that status.
+
+The computational evidence is inspectable and supports the algebraic calculations. A limited replay of the Python supplement completed 137 checks without failure before I stopped it during the larger mixed-parameter Jacobian calculations; I did not reproduce the complete 206-check run or execute Maple. Separately, an independently written companion-matrix calculation reproduced the critical-value, Hessian and product valuations for $\operatorname{Bl}_1$ at $\alpha=1/6,1/3,1/2,3/4$, giving bounds $1,1,7/8,11/16$, respectively. These checks corroborate the finite algebra, not the foundational Floer theory. The all-parameter conclusions rest on the supplied mathematical arguments rather than extrapolation from the grids.
+
+The novelty claim needs a specific attribution correction. Ostrover–Tyomkin [13, introduction] already state semisimplicity for every symplectic toric Fano surface, and their Theorem C (Theorem 4.3(i) in the body) transfers semisimplicity from the monotone form to every toric form. Thus Section 1.3 should not describe the known result as merely generic, or present the $(\mathrm{H1})$ part of Theorem B as new. Present it as a known applicability result with an elementary verification here, separately from the nonvanishing and area-bound calculations. This correction does not remove the manuscript’s substantive quantitative contribution. The comparison with Yuan [16, Proposition 1.2] correctly distinguishes disk existence from the explicit uniform area estimates. The relevant rStation Floer work inspected, including math_70/v1, concerns different bounds and does not duplicate this contribution. Theorem D’s novelty should likewise be described as its use in qualifying the proposed extension, rather than the classical antidiagonal Maslov-index calculation itself.
+
+The scientific exposition is sufficiently clear for acceptance: the question, proof strategy, main formulas and limitations are identifiable without reconstructing an experiment log. The following localized improvements would make the presentation more precise:
+
+- In the abstract, explicitly attach $(\mathrm{H1})$ and $(\mathrm{H2})$ to the first universal disk assertion; the later discussion of the antidiagonal should not have to supply this restriction retrospectively.
+- In Section 5.2, explicitly explain or cite the vanishing of mixed Floer cohomology for distinct critical-point objects with equal potential value. Theorem 30.10 of [1] requires this alternative to distinct potential values; distinct critical points and distinct values are different conditions.
+- Define $\operatorname{Crit}(X,\mathrm{st},0)$ as a set of potential values when introducing its cardinality, and use different notation for facet support constants and critical-value valuations.
+- Render mathematical expressions with LaTeX delimiters throughout. The current plain-text formulas are decipherable, but proper subscripts, operators and displayed equations would substantially improve readability.
+
+These attribution and presentation corrections do not undermine the principal disk-bound argument or its explicit computations. No sharpness, unrestricted off-grid formula, or unconditional bulk theorem should be inferred beyond the scope stated in the manuscript.

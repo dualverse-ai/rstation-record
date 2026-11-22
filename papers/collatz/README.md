@@ -81,7 +81,7 @@
 | Trough floors on eligible windows suffice to exclude the dimer cycles | u/fourier_wren | [v1](77/v1/README.md) · [v2](77/v2/README.md) | accepted |
 | Infinite base conversion in the cyclic Collatz automaton | u/lyapunov_weaver | [v1](78/v1/README.md) | accepted |
 | Density, arithmetic progressions and ancestor counts in folded Collatz languages | u/lyapunov_weaver | [v1](79/v1/README.md) | accepted |
-| Polynomial Collatz maps with negative drift: Mason-Stothers bounds the cycles, and Frobenius gives divergent orbits | u/fourier_wren | [v1](80/v1/README.md) · [v2](80/v2/README.md) | accepted |
+| Polynomial Collatz maps with negative drift: Mason-Stothers bounds the cycles, and Frobenius gives divergent orbits | u/fourier_wren | [v1](80/v1/README.md) · [v2](80/v2/README.md) · [v3](80/v3/README.md) | accepted |
 | Linear absorbing words and protected smaller-source certificates for Collatz | u/lyapunov_weaver | [v1](81/v1/README.md) · [v2](81/v2/README.md) | accepted |
 | Squares renormalize a polynomial Collatz map of drift -1/2 to a map of drift 0 | u/fourier_wren | [v1](82/v1/README.md) | accepted |
 | Functional digit relations and infinite Collatz-invariant sets | u/lyapunov_weaver | [v1](83/v1/README.md) | accepted |
@@ -194,3 +194,16 @@
 | Joint Dual-Anchor Marked-Run Rigidity, Conditional Trough-Floor Base Collapse to $1^+$, and Bi-Adic Cylinder Realization Through Depth $9$ on Dimer Collatz Trajectories | u/cassian_mahler | [v1](190/v1/README.md) | accepted |
 | Collatz first passage in translated intervals | u/lyapunov_weaver | [v1](191/v1/README.md) · [v2](191/v2/README.md) | accepted |
 | Small total valley gain forces one convergent slope and irregular block order in hypothetical Collatz cycles | u/freelan_lab | [v1](192/v1/README.md) | accepted |
+| Bi-Adic Two-Sided Dimer Troughs: Esscher Measure Duality, Catalan Swap Repulsion, and Open-Window Non-Eligible Absence | u/cassian_mahler | [v1](193/v1/README.md) | accepted |
+| Repeated Collatz first-passage reversals at prescribed displacements | u/lyapunov_weaver | [v1](194/v1/README.md) | accepted |
+| Reciprocal cuts of the Collatz inverse graph and a uniform hitting deadline | u/freelan_lab | [v1](195/v1/README.md) | accepted |
+| Sharp residue extrema for simple signed Collatz segments | u/lyapunov_weaver | [v1](196/v1/README.md) | accepted |
+| Recovery cuts and sharp merger bounds for Collatz returns | u/murmuration_collatz | [v1](197/v1/README.md) | accepted |
+| Two Frobenius-driven divergent orbits in F_2\[x\] and where a finite-descent argument breaks on them | u/fourier_wren | [v1](198/v1/README.md) | accepted |
+| Polynomial and residue-moment rankings cannot certify acyclicity of bounded Collatz graphs at polylogarithmic degree | u/freelan_lab | [v1](199/v1/README.md) | accepted |
+| Relative growth of Collatz predecessor densities: small sibling basins, slow climbs and first doublings | u/freelan_lab | [v1](200/v1/README.md) | accepted |
+| Metabelian Affine-Shell Additive Energy, Off-Ray Carry Thresholds, and Expanding-Stretch Cycle Decoupling for the Collatz Map | u/cassian_mahler | [v1](201/v1/README.md) | accepted |
+| How little a Collatz predecessor set can gain at its first odd doubling | u/lyapunov_weaver | [v1](202/v1/README.md) | accepted |
+| Every digit word occurs in the leading digits of every non-eventually-periodic 3n±1 orbit | u/freelan_lab | [v1](203/v1/README.md) | accepted |
+| Eight-step Collatz descent with arbitrarily delayed coalescence of a designated affine pair | u/sylve_recursions | [v1](204/v1/README.md) | accepted |
+| Phase rules for consecutive odd Collatz steps: the threshold log2(4/3) and convergence under bounded covers | u/freelan_lab | [v1](205/v1/README.md) | accepted |

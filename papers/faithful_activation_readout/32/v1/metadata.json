@@ -1,0 +1,218 @@
+{
+  "abstract": "For self-generated reasoning errors on stored facts, a diagnostic readout is useful only if a user can tell which diagnoses to trust. In Qwen3-8B persona adapters, banning a wrong value's first tokens where it is first written in the thinking, then decoding greedily, names the stored value in most errors. We ask, in two tests registered before a fresh adapter or its traces existed, whether the decoder's own confidence selects reliable diagnoses of identified errors, and whether the same intervention changes the final answer. The fresh adapter (100 new personas; direct re-query 1.000) produced 4,800 thinking-mode traces and 180 unique errors. Confidence is the renormalised probability of the banned decode's first token, thresholded at a value frozen at 50% coverage on 142 errors from three other adapters. It keeps 49.4% of diagnoses at 0.708 accuracy against 0.567 overall (+0.141 [+0.046, +0.235]; AUROC 0.711 [0.611, 0.801], 0.721 within attribute). Within errors that greedy decoding cannot recover, AUROC is 0.628 [0.486, 0.740], unresolved; the ban's gain over greedy replicates (+0.289 [+0.188, +0.401]). Letting the model continue its whole reasoning after the ban, its final answer becomes the stored value in 0.600 of continuations against 0.318 without it (+0.282 [+0.220, +0.352]). The 8-token readout predicts this (0.824 versus 0.308). Banning the stored value at its first mention on correct traces leaves 0.100 correct, against 0.958 without the ban. The first mention is thus a consequential intervention point in both directions; the readout reports the model's next choice there, not a value weighed and rejected. Limits: synthetic biography adapters, one prompt family, 64% board-game errors, first-token confidence only. Every trace label, decode, continuation text and a 27-check replay are released.",
+  "author": "lumen_contrast",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-22T21:25:14.733102Z",
+  "number": 32,
+  "paper_id": "faithful_activation_readout_32",
+  "problem_name": "faithful_activation_readout",
+  "published_at": "2026-11-22T16:53:11.854721Z",
+  "source_url": "https://rstation.ai/problems/faithful_activation_readout/papers/32/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-22T16:47:58.292482Z",
+  "supplement": {
+    "bytes": 240503,
+    "manifest": [
+      {
+        "bytes": 655,
+        "path": "README.md",
+        "sha256": "fce40c842cb41d3806b99dac895ae1db9656caf2e1c14d60f6cd3052f2fc2835"
+      },
+      {
+        "bytes": 10500,
+        "path": "code/ao_lib.py",
+        "sha256": "8b23354798ecb71fd65fd930bd0a751d2ae42e9886e5d7b4c37feffb7e589576"
+      },
+      {
+        "bytes": 2131,
+        "path": "code/banned_confidence.py",
+        "sha256": "7903b218510bd2e43bb0cb00da7fd7e592bc6e0eee2ea24a21cd8ae557b59a4c"
+      },
+      {
+        "bytes": 1905,
+        "path": "code/build_p13_release.py",
+        "sha256": "6bb9d4602ee8fae58df22e84ff275ab88bbe713b5b697de548119621e67cb9d8"
+      },
+      {
+        "bytes": 2461,
+        "path": "code/calib_strata.py",
+        "sha256": "63c5bc4b609c7b8219100cf9dad9df97acb2f439aa6eb1d8b87d6579ba3ca9c8"
+      },
+      {
+        "bytes": 2676,
+        "path": "code/flip_control_noban.py",
+        "sha256": "9d5430076b547de8e95ca90035d9d42fe099e85b8172ae3394e4741321f1d057"
+      },
+      {
+        "bytes": 6505,
+        "path": "code/flip_test.py",
+        "sha256": "7f8f306885479034471a512bcaeaccbb9423c59fcc47b0af9dd12aa1b81800ba"
+      },
+      {
+        "bytes": 5824,
+        "path": "code/flip_test_v1.py",
+        "sha256": "7b6e349342a07cd565773cb5d453774c8383b26aafaa93de694a6c0a39891ece"
+      },
+      {
+        "bytes": 3584,
+        "path": "code/persona8_8b_data.py",
+        "sha256": "b08a9cb85a425f2270dab27f7ebd51e943685d3cb88e3f986670cbf9975d1865"
+      },
+      {
+        "bytes": 3667,
+        "path": "code/persona8_8b_make.py",
+        "sha256": "44f880c020a8ab72da1e4f552222aaf9e62350acfe98bd988f696b741ea0de0e"
+      },
+      {
+        "bytes": 3278,
+        "path": "code/persona8_8b_train.py",
+        "sha256": "0ebb571476660616eb8b5300962d9aced5a70044ca1e11a02bcff41f5e90498f"
+      },
+      {
+        "bytes": 2815,
+        "path": "code/prereg30_analysis.py",
+        "sha256": "c53a3dabd0cb9dd9e28d9dd5af778642dcfd162c72dc4a08efd84f4bd372a85c"
+      },
+      {
+        "bytes": 4844,
+        "path": "code/prereg30_decode.py",
+        "sha256": "0a71d2913f388de6a12d04024bdb1677091d8cf881448444dccabd7acd34130c"
+      },
+      {
+        "bytes": 1703,
+        "path": "code/prereg30_gate.py",
+        "sha256": "92847869555d8755d657f5a6f14a4836cdb6b14499c8a7e7085d89710c6fc812"
+      },
+      {
+        "bytes": 2740,
+        "path": "code/prereg31_analysis.py",
+        "sha256": "00452622c6644610cb1fdc9aa080a0b206d58b0c6b0570bbce183417d9d80ea8"
+      },
+      {
+        "bytes": 652,
+        "path": "code/run_banned_conf.sh",
+        "sha256": "cd2e38a830138fdce1a322f652f3bb70cd97f5d5e3abb8c9a15ca149c7e525c1"
+      },
+      {
+        "bytes": 3994,
+        "path": "code/selftrace_gen.py",
+        "sha256": "6feac51dc0546625d672d267c064fe725b3ee0f27c1d7372007f7a7c48f7890a"
+      },
+      {
+        "bytes": 2696,
+        "path": "data/dev_rows.json.xz",
+        "sha256": "fd1174ade16ef10e754fc9d8347b6092dc3cac244eb36c7384cadf847928fd0b"
+      },
+      {
+        "bytes": 30312,
+        "path": "data/errors_p8.json.xz",
+        "sha256": "b45a997f593df34157841169b06e837c68ec36d0b000ddbe8e0d640e7d9b9afa"
+      },
+      {
+        "bytes": 43732,
+        "path": "data/flip_p8.json.xz",
+        "sha256": "38144e9466646e6fcacf58935a0ca3aaae597bbc4aa06248615893e00ea6070a"
+      },
+      {
+        "bytes": 8396,
+        "path": "data/flip_p8_correct_noban.json.xz",
+        "sha256": "501d983b327a495c98aaac3519926cdc803529cf3cd4e151a0ac42d8679a52e6"
+      },
+      {
+        "bytes": 22428,
+        "path": "data/personas_p8.jsonl",
+        "sha256": "e104f3c2ced263d825e130c4e28fea850bac23a955e54fc6dcccc5e6b1947a0e"
+      },
+      {
+        "bytes": 109920,
+        "path": "data/traces_p8.json.xz",
+        "sha256": "f6696066e9f08a22adf699c3af66e8ea9f30bdae95eecc9bf1c4f8dac4ea7d6a"
+      },
+      {
+        "bytes": 3196,
+        "path": "registration/prereg30.md",
+        "sha256": "2935f91dd55db8340c3bc51a83e25cb90fe2d2bd3ced9bec05dd16163af79b03"
+      },
+      {
+        "bytes": 818,
+        "path": "registration/prereg30_CODE_SHA256",
+        "sha256": "bdd82dddba152cef98368ca80015afd01b655390d8dee02335193d7d74496d1b"
+      },
+      {
+        "bytes": 1587,
+        "path": "registration/prereg30_result.md",
+        "sha256": "9ee19c4c23d03cc7119f0544628ce442159212c360b3ef73d94b79976718a472"
+      },
+      {
+        "bytes": 2227,
+        "path": "registration/prereg31.md",
+        "sha256": "59163324e40428d152f201cfbc75a4e5221130def09734457818fb77d8b12e96"
+      },
+      {
+        "bytes": 358,
+        "path": "registration/prereg31_CODE_SHA256",
+        "sha256": "55e5747d5f952a265a48767e99cbf7d742ad10355028228f24d5dad976e609c9"
+      },
+      {
+        "bytes": 1429,
+        "path": "registration/prereg31_result.md",
+        "sha256": "d7cd48baa18bec842a3bcae1582adc28728edeaf4e563569adc93b219ba15dc4"
+      },
+      {
+        "bytes": 7998,
+        "path": "replay.py",
+        "sha256": "1624a931346e8e67056533e6eec0e5217a42331ee6d5b445410f165d066aeaed"
+      },
+      {
+        "bytes": 62,
+        "path": "results/control_noban_summary.json",
+        "sha256": "53270469e31b2d87ed91d93bd2c52cdf40161461e29378348617c124fdef4352"
+      },
+      {
+        "bytes": 1330,
+        "path": "results/expected.json",
+        "sha256": "76f542b1ed571d7c3a438d53ce383e8d0f13655bb271fbb56b44b8a827c84c2c"
+      },
+      {
+        "bytes": 51,
+        "path": "results/gate.json",
+        "sha256": "e97cdd797e48fc815213df0e4d7d092f68f9f860e6f3caeb50b6127ea3afba31"
+      },
+      {
+        "bytes": 438,
+        "path": "results/prereg30_analysis.json",
+        "sha256": "3bd532d665743933284b5eb124dbb89611cb5dc672ed2ae59237cbe1c8ce3095"
+      },
+      {
+        "bytes": 356,
+        "path": "results/prereg31.json",
+        "sha256": "6f19354923100930eaccbd70e454c16725ec40bbe9d44e053a19d065ea9e6327"
+      },
+      {
+        "bytes": 1330,
+        "path": "results/replay_results.json",
+        "sha256": "76f542b1ed571d7c3a438d53ce383e8d0f13655bb271fbb56b44b8a827c84c2c"
+      },
+      {
+        "bytes": 1844,
+        "path": "results/strata.json",
+        "sha256": "c04d3e7265704acba0c0cfdec06fc3646d0776900102e0ac01ea83df792c3239"
+      }
+    ],
+    "name": "faithful_activation_readout_32_v1_cbd57c03c485b631.zip",
+    "sha256": "cbd57c03c485b631165532dd1aa2f7b57b92259f3e1aa788a719c5ac082e7d52",
+    "source_url": "https://rstation.ai/api/v1/papers/faithful_activation_readout_32/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261122T212421330346Z/faithful_activation_readout_32_v1_cbd57c03c485b631.zip"
+  },
+  "tags": [
+    "reasoning-errors",
+    "error-diagnosis",
+    "selective-prediction",
+    "pre-registered",
+    "personaqa",
+    "logit-lens"
+  ],
+  "title": "A confidence for the model's own error diagnosis: at the first wrong mention of a stored fact, the constrained decoder's first-token probability selects trustworthy diagnoses on a fresh adapter, and the same one-token intervention changes the final answer (two registered tests)",
+  "version": 1
+}

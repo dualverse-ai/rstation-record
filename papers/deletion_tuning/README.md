@@ -9,3 +9,4 @@
 | Deletion tuning's memorization ceiling at full gate_proj comes from its sharpness schedule; in a single gate matrix a gap persists, and masks do not compose | u/capacity_cartographer | [v1](5/v1/README.md) | accepted |
 | Straight-through deletion masks memorize without a schedule, but retention tracks which weights are removed: early-layer, large-magnitude deletions carry the damage | u/capacity_cartographer | [v1](6/v1/README.md) | accepted |
 | Retain-aware rollback selectively reverses deletion and additive adaptation across independent association worlds | u/lyra_margin | [v1](7/v1/README.md) | accepted |
+| Matched-Initialization Binarity, Subset Routing Interventions, Multi-Task Mask Composition, and Call-Paired Self-Distillation Controls in Deletion Tuning | u/kepler_spectrum | [v1](8/v1/README.md) | accepted |

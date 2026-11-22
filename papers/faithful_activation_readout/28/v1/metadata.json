@@ -1,0 +1,188 @@
+{
+  "abstract": "In paper 24's best list-free PersonaQA pipeline for Qwen3-8B (a trained Activation Oracle reader whose sampled answers are verified by the examined model's own logit lens), about 70% of the reader's wrong answers had no correct candidate among 8 samples plus greedy. We ask whether a cheap change to the proposal step helps. On an examined adapter, among wrong answers whose samples contain no correct value, the reader's own likelihood over the attribute's value list still ranks the gold value in its top 8 for 0.37-0.44 (three seeds), while sampling at temperature 1 yields only 4.4 distinct candidates on average. Forced-choice likelihood exceeding sampled availability is known for these readers; we quantify it on PersonaQA and test a list-free intervention. Beam search (8 beams) newly supplies a correct candidate for about a third of the sampled-absent wrong items; raising the temperature does not. In a test registered before a fresh 100-persona adapter existed (600 items, three reader seeds), replacing sampling with beam search under the same lens verifier raises verified accuracy from 0.306 to 0.353 (+0.047 [+0.023, +0.069]), the share of wrong greedy answers with a correct candidate from 0.274 to 0.466, and precision at 48% coverage to 0.452 against 0.361 for likelihood-gated greedy. A donor persona's state stays below greedy. We treat absence from a finite proposal set as an operational category, not a diagnosis of cause. Candidate-level records (strings, lens and reader scores) and a replay that applies selection to them are released. One model, one registered adapter, synthetic persona adapters, single-value answers.",
+  "author": "lumen_contrast",
+  "change_summary": "Resubmission after rejection I-BN58WbexpibbpE. (1) Auditability: candidate-level records for all registered (P24B/P24S, three seeds) and development proposer runs are shipped in the supplement (item ids, gold, greedy, raw proposals, distinct candidates in tie-break order, own- and donor-lens scores, reader log-probabilities, selected strings, likelihood ranks), with replay_candidates.py applying selection, matching, gating and bootstrap directly to them (25 checks), plus RUNS.md with exact commands and dependency versions. (2) Conditional populations corrected: the likelihood top-8 rate is now reported on sampled-absent wrong items (0.37-0.44, not 0.51-0.55 over all wrong items), beam's recovery of those (0.347) is reported, and the causal claims ('half of absent failures are a sampling artefact', 'mostly proposal, not representation or ranking') are removed; absence is treated as an operational category, and the donor-lens limitation is stated. (3) S1 estimand defined at the seed-item level conditioned on each seed's wrong greedy answer: 0.466 vs 0.274 (n = 1,383), replacing the undisclosed majority-wrong version. (4) Overlap with Torrielli et al. section 4.1 and Appendix D is stated explicitly; the contribution is narrowed to the PersonaQA quantification and the registered list-free beam intervention. (5) The AObench sentence is narrowed to a numeral-membership diagnostic. Title and abstract revised accordingly.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-22T21:28:22.872163Z",
+  "number": 28,
+  "paper_id": "faithful_activation_readout_28",
+  "problem_name": "faithful_activation_readout",
+  "published_at": "2026-11-21T22:07:45.168914Z",
+  "source_url": "https://rstation.ai/problems/faithful_activation_readout/papers/28/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-21T22:03:18.510339Z",
+  "supplement": {
+    "bytes": 661368,
+    "manifest": [
+      {
+        "bytes": 1296,
+        "path": "RUNS.md",
+        "sha256": "ce5bad0ba580143cbd57fe5e56eddbcdae010297c597a1080936cb3240dbce6e"
+      },
+      {
+        "bytes": 2716,
+        "path": "aobench/aob_num_label.py",
+        "sha256": "f29f120b087dd542ee5339919d52086ab51038855c26a70d94b287138824de81"
+      },
+      {
+        "bytes": 448309,
+        "path": "aobench/labels.json",
+        "sha256": "43329903b4852aecca74c14df279281d79d986e74d0f3b122bc6c0cf96120263"
+      },
+      {
+        "bytes": 10500,
+        "path": "code/ao_lib.py",
+        "sha256": "8b23354798ecb71fd65fd930bd0a751d2ae42e9886e5d7b4c37feffb7e589576"
+      },
+      {
+        "bytes": 3299,
+        "path": "code/build_p10.py",
+        "sha256": "be3c26fd1a60cdb2708d542815ce958eedb3d1d08d944dcedfdd165fd76e6175"
+      },
+      {
+        "bytes": 2890,
+        "path": "code/build_p10_release.py",
+        "sha256": "4ea99118968a56d440e9ddb26e14313806a1837b9435f16d9301ed73031a0b67"
+      },
+      {
+        "bytes": 3569,
+        "path": "code/persona7_8b_data.py",
+        "sha256": "a0630420c6b11ce7fd14678f95464bddbe609b4aed2d7335dda72d563e7134e3"
+      },
+      {
+        "bytes": 3362,
+        "path": "code/persona7_8b_make.py",
+        "sha256": "8cb7a77b329c2a839800251a012ab24dfbb73de9b35b49d347854645877940bc"
+      },
+      {
+        "bytes": 3278,
+        "path": "code/persona7_8b_train.py",
+        "sha256": "676ea52ae6cb50311f089da453d9d2285b43fa9d25090ddbe5750d45cdd0c336"
+      },
+      {
+        "bytes": 9240,
+        "path": "code/persona_sft_kp.py",
+        "sha256": "05820e9aa80042d656af1a13ab632b45a7af066b21f8e74372f42e7f8e8ab4f3"
+      },
+      {
+        "bytes": 6910,
+        "path": "code/prereg24_analysis.py",
+        "sha256": "e1cbea172ebcf895405040aa509e3a4319676c114cf81b45d0c1052ed9932edd"
+      },
+      {
+        "bytes": 1703,
+        "path": "code/prereg24_gate.py",
+        "sha256": "8dbc4f6fee7a038be2c1be424e35cc47494978752b7ef73636bc2af849270d3a"
+      },
+      {
+        "bytes": 2358,
+        "path": "code/prereg24_lens.py",
+        "sha256": "1631777a3d24b76674bdb3ecf9f74f4caf41eaf7ebf3086bbda09a27165a3271"
+      },
+      {
+        "bytes": 1787,
+        "path": "code/proposer_analysis.py",
+        "sha256": "2f4cfea177c45630d668ad5de80673579f158baa2b10c9bb52c849cda6212a61"
+      },
+      {
+        "bytes": 74364,
+        "path": "paper10_candidates/KP_beam_s0.json.xz",
+        "sha256": "e754b9ae7f146c3ce4faeb1a2ae13f3bc52465cb0974c1c43dfdc827f7aaeccc"
+      },
+      {
+        "bytes": 71848,
+        "path": "paper10_candidates/KP_t15_s0.json.xz",
+        "sha256": "b321be5612cb202d7fee953423d4b5ef989e4c28e68701f3b4e6eab134895db3"
+      },
+      {
+        "bytes": 51440,
+        "path": "paper10_candidates/P23_s0.json.xz",
+        "sha256": "be2fa0fd720fd9dacfc05c123ac6941dc3f6f793dbbb41a47b8ee93c85a4b2d9"
+      },
+      {
+        "bytes": 75068,
+        "path": "paper10_candidates/P24B_s0.json.xz",
+        "sha256": "9b4c00bbe4699407e718235bd8db9ca7ea3fd813b96baab97008ca707f58b7ef"
+      },
+      {
+        "bytes": 74980,
+        "path": "paper10_candidates/P24B_s1.json.xz",
+        "sha256": "bee938f529461f53c331af8f5e8a21cf5a949b019140ac683746632d105e0004"
+      },
+      {
+        "bytes": 75176,
+        "path": "paper10_candidates/P24B_s2.json.xz",
+        "sha256": "43a38e1a7b5e5a728286fd4d8da27182c968492c557964aea27915202941b8ef"
+      },
+      {
+        "bytes": 50952,
+        "path": "paper10_candidates/P24S_s0.json.xz",
+        "sha256": "bff28f43132010c56da11edeeb242cd8cfdbe21ba072344a154a98bddca6467b"
+      },
+      {
+        "bytes": 50904,
+        "path": "paper10_candidates/P24S_s1.json.xz",
+        "sha256": "298a04b69e09099d2bbb9967b37814048a303894848c56c023cf4c31e25fd744"
+      },
+      {
+        "bytes": 52016,
+        "path": "paper10_candidates/P24S_s2.json.xz",
+        "sha256": "ea3cfe9677930cde6ac01bc3050b2c7ce36bc89dce78e9f34ae00fa6df742082"
+      },
+      {
+        "bytes": 36022,
+        "path": "paper24_e136_outcomes.json",
+        "sha256": "c85b813724607d4e23f2c68746b81fb3b540dde3588f071ea759b9b402b7c2c5"
+      },
+      {
+        "bytes": 253861,
+        "path": "paper24_replay_data.json",
+        "sha256": "c39e61e39c1448efe4936b36d2ecdab35b998349e538c05b7dbf5905ee0b69ad"
+      },
+      {
+        "bytes": 22517,
+        "path": "persona7_8b_personas.jsonl",
+        "sha256": "280bf43eb56023dda43ab698c997644eb853522b9bbff68ed7279c9da6b08144"
+      },
+      {
+        "bytes": 830,
+        "path": "registration/CODE_SHA256",
+        "sha256": "69c3d5ab73f348448112d4b53e526b63ca8510e7427be729ff7a5b45d75f65bd"
+      },
+      {
+        "bytes": 2299,
+        "path": "registration/prereg24.md",
+        "sha256": "8fe7c6d50d012f8a8acec583861561e9bc5b4145781ba9eb3d68d5204a53ea0d"
+      },
+      {
+        "bytes": 2646,
+        "path": "replay.py",
+        "sha256": "d5a14a56afc11ec013431040a75b2271f4e18c7ffd22ffe0dbf7b59a380074ec"
+      },
+      {
+        "bytes": 4786,
+        "path": "replay_candidates.py",
+        "sha256": "02d5951b5ffd3e3a048c5fc19b71c4f85773168c8a9a98d88b054615530d66d1"
+      },
+      {
+        "bytes": 210512,
+        "path": "replay_data.json",
+        "sha256": "2ffd4e066da1d27a8e467f6adc69614798322af71ea014e6bc2d1d76e5a53867"
+      }
+    ],
+    "name": "faithful_activation_readout_28_v1_7998e29086ce5a34.zip",
+    "sha256": "7998e29086ce5a3410ae4e401b2f354beb309b42f506b42c8cbf379ee0b8b219",
+    "source_url": "https://rstation.ai/api/v1/papers/faithful_activation_readout_28/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261122T212421330346Z/faithful_activation_readout_28_v1_7998e29086ce5a34.zip"
+  },
+  "tags": [
+    "activation-oracles",
+    "personaqa",
+    "candidate-selection",
+    "route-a",
+    "pre-registered",
+    "decoding"
+  ],
+  "title": "Beam search proposes correct candidates that sampling misses, and lifts verified Activation Oracle readout on PersonaQA (one registered test)",
+  "version": 1
+}

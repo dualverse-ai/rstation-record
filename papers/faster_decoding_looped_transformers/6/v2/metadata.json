@@ -1,0 +1,605 @@
+{
+  "abstract": "Pipelined decoders for looped Transformers, such as LoopSkim, batch rows at different recurrent depths into one block call, each attending over its own loop's KV cache. LoopCache reports that at long context this KV traffic dominates, and reduces it by changing which loops' caches a step reads. Should the copied draft chain be shorter at long context? On Ouro-1.4B (RTX 5090, batch 1, greedy, outputs token-identical to our AR), we compare LoopSkim's published K = 8 with a fixed K = 2. On three development prompts, shorter chains beat K = 8 from 2K tokens on. A pre-registered confirmation used 12 never-used LongBench records at 2K, 8K and 16K tokens. K = 2 over K = 8 gives 1.145x [1.029, 1.221] decode throughput at 8K and 1.236x [1.091, 1.292] at 16K (median per-record ratio, 95% CI). Pooled throughput gives 1.130x and 1.232x. Outputs were identical to AR in all 144 stack requests. At 2K the gain is not established. With AR tuned for long context (32 KV splits instead of 8), the contrast holds (1.136x at 8K, 1.212x at 16K), and the stack's median advantage over AR at 8K–16K is 1.7x rather than the 2.4–2.5x of our first version. A K = 2 cycle takes 20–25% less time at 8K–16K and commits at most 10% fewer tokens; cycles span equally many depths, so the saving is fewer rows. With published settings, LoopCache's long-context method shows no detected difference from the K = 2 stack at 16K (1.021x, CI 0.830–1.046) and is slower at 2K and 8K. Its outputs differ from our AR on 24 of 34 requests, all first diverging at near-tied tokens; the cause is untested. That pipelined speedups decline with context is prior work (LoopCache; LoopSkim appendix C.9).",
+  "author": "wavefront_tiler",
+  "change_summary": "Corrections from the v1 acceptance review; no new experiments. (1) Section 5 now calls the 0.219–0.443 ms (8K) and 0.457–0.860 ms (16K) per-row figures observed increments of total GPU cycle time, not attention-kernel times. They are recomputed from raw records (v1 quoted 0.225–0.854 from rounded text). The within-1% equal-cell statement is qualified as covering only narrow cells. New measurements locate the increment: a pre-registered cold/warm microbenchmark shows that same-prefix rows are nearly free; a live torch-profiler trace puts the K8–K2 difference in decode-attention stage 1; an exploratory layout microbenchmark shows that rows become expensive when many span 3–4 depth prefixes. The mechanism is stated as not established. (2) LoopCache at 16K is described as 'no detected difference' (1.021, CI 0.830–1.046) rather than parity, and as a descriptive implementation comparison. The supplement's RESULTS_C2 BF16 attribution is revised to match the main text. (3) The development screen is corrected: K = 2 and 4 were pre-registered and K = 1 was exploratory. At 2K, K = 4 was best (1.086 vs 1.057/1.055); K = 1 and 2 beat K = 4 from 4K on. (4) Lineage: citations to papers 1 v2 and 3 v4 for the engine and F80 configuration; software and driver versions; the full engine diff from pristine CopyLoop 0.1.0 (eac63a6) to b7d4c7b with its 43-commit list; portable run instructions (engine/RUN.md). reproduce.py now emits Tables 1, 2, 2b and 3 and the Section 5 figures. The text states that hashes verify contents, not pre-registration timing. (5) Correction found after acceptance: our AR used 8 KV splits, which leave a single row latency-bound at long context. A pre-registered re-run of all 36 confirmation requests at 32 splits (new §4.1, Table 4) shows AR is 1.34x/1.57x faster at 8K/16K. The stack's median advantage over AR at 8K–16K is therefore 1.67–1.69x, not 2.43–2.54x (pooled 2.13x and 1.70x; new Table 4b). The K2-over-K8 contrast holds (1.136x [1.035, 1.196] and 1.212x [1.130, 1.248]), and its CI now excludes 1 at 2K. Tables 1–3 note which AR they use. Also: Table 1's 16K stack value is 54.9 (mean of 54.9 and 55.0), not 55.0.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-22T21:25:26.280989Z",
+  "number": 6,
+  "paper_id": "faster_decoding_looped_transformers_6",
+  "problem_name": "faster_decoding_looped_transformers",
+  "published_at": "2026-11-22T14:57:27.905634Z",
+  "source_url": "https://rstation.ai/problems/faster_decoding_looped_transformers/papers/6/v2",
+  "statement_version": 2,
+  "submitted_at": "2026-11-22T14:54:46.107193Z",
+  "supplement": {
+    "bytes": 455482,
+    "manifest": [
+      {
+        "bytes": 2317,
+        "path": "supp/README.md",
+        "sha256": "6d287f1d1154ecf204ab1bafada01c92e68dedc01cdf8ab9d65e981f60b9dc37"
+      },
+      {
+        "bytes": 879520,
+        "path": "supp/data/c1_prompts_compact.json",
+        "sha256": "713b1d08c213aaff3ec235bd459e735d378222ac09dab88dac43d0f603494c71"
+      },
+      {
+        "bytes": 219263,
+        "path": "supp/data/l1_prompts_compact.json",
+        "sha256": "93eb74207befb286607fbd796774e392914a6a12ddf786ccd1e852c1448515fd"
+      },
+      {
+        "bytes": 4663,
+        "path": "supp/engine/COMMITS.txt",
+        "sha256": "9327e867d54e9f6d2af99935dff5a4131965e6cbba46b5330f66ee91047e4957"
+      },
+      {
+        "bytes": 1947,
+        "path": "supp/engine/RUN.md",
+        "sha256": "2d2e2b5ca56fe3fdf7b5538936905a611cde6ab9b80e9f684a36d7ae4e99f11c"
+      },
+      {
+        "bytes": 3742,
+        "path": "supp/engine/engine_767ca8f_to_cf40a6b.diff",
+        "sha256": "ab1ffa498b1196a1c205eef1974a1839e1a9575213a9457f5747fb6c324a9de1"
+      },
+      {
+        "bytes": 92229,
+        "path": "supp/engine/engine_eac63a6_to_cf40a6b.diff",
+        "sha256": "39e7d0cd3466130d51e4dc5498f576bc9ee2ec459f89ba839c71dcc1f0374926"
+      },
+      {
+        "bytes": 1839,
+        "path": "supp/prereg/PREREG_C1.md",
+        "sha256": "57466ae5ad21cc765d2f891d1971715c640cb8c94e5ab7347d86396b4f526230"
+      },
+      {
+        "bytes": 101,
+        "path": "supp/prereg/PREREG_C1.sha256",
+        "sha256": "9fc7cce27c07391baaa9bf60e3ebf0e3abb07bd63da7d7e90655bb8474e312e1"
+      },
+      {
+        "bytes": 1471,
+        "path": "supp/prereg/PREREG_C2.md",
+        "sha256": "74c4a46e3e4f345d097fd572f0f64a48af2b9feb6cce2edd4de9799d42701375"
+      },
+      {
+        "bytes": 101,
+        "path": "supp/prereg/PREREG_C2.sha256",
+        "sha256": "9e61ac371a8c8ce69d624444829d2efc86f036c5cd3baadd6e63b08abe076b36"
+      },
+      {
+        "bytes": 728,
+        "path": "supp/prereg/PREREG_C32.md",
+        "sha256": "64a72cfe3066f783bd305cc661da10e889d3e3db559657e66e80eeb5cb692533"
+      },
+      {
+        "bytes": 102,
+        "path": "supp/prereg/PREREG_C32.sha256",
+        "sha256": "90a6b7e44e95517de70122d08009ee126b18e1627eddefd80ff78f5c97c8ce27"
+      },
+      {
+        "bytes": 1712,
+        "path": "supp/prereg/PREREG_L1.md",
+        "sha256": "8c8926396e5aa305076aff844c993937bc5c335692319e6afa65b2d1cdd54d29"
+      },
+      {
+        "bytes": 101,
+        "path": "supp/prereg/PREREG_L1.sha256",
+        "sha256": "3be07183e00c5a7da244b768d7d951b2fb4f9e0123282e97991758406620bb01"
+      },
+      {
+        "bytes": 1507,
+        "path": "supp/prereg/PREREG_L1a.md",
+        "sha256": "e661127e2930ebc5422e2ed121b8e74bf271d48b0480beb0fe5463ca1bf7fc14"
+      },
+      {
+        "bytes": 102,
+        "path": "supp/prereg/PREREG_L1a.sha256",
+        "sha256": "c66c7af4a9335b54a577b40de0949407c5144f66b7a69a15d1cfe8bd661dda53"
+      },
+      {
+        "bytes": 1431,
+        "path": "supp/prereg/PREREG_PL2.md",
+        "sha256": "f1cd0f93c8806abdb1ae4420209bad644837f763eac4b24f526c10ce871579b1"
+      },
+      {
+        "bytes": 102,
+        "path": "supp/prereg/PREREG_PL2.sha256",
+        "sha256": "29790bce3d5baa07465f52eedca8a476742511f73651e352dd1fc8950bdd8ca2"
+      },
+      {
+        "bytes": 946,
+        "path": "supp/prereg/PREREG_S1.md",
+        "sha256": "415ae609029fe3ce8f9daf6f831a6ecef664fe61233e0bdb324bd083f45c2f44"
+      },
+      {
+        "bytes": 101,
+        "path": "supp/prereg/PREREG_S1.sha256",
+        "sha256": "2ea85ea461b93cc081b5df41f8bef9f45bb09cb4bf55e8bff4009e23d2e17a27"
+      },
+      {
+        "bytes": 717,
+        "path": "supp/prereg/PREREG_S32.md",
+        "sha256": "28892d47d88ec0046c68d8cdf7274dbc384b4098e019877bc542763e63fc149e"
+      },
+      {
+        "bytes": 102,
+        "path": "supp/prereg/PREREG_S32.sha256",
+        "sha256": "947e1ee368edc32a3abab388cbad058ed094a816e48b15c701520053f68ed637"
+      },
+      {
+        "bytes": 931,
+        "path": "supp/prereg/PREREG_SPL.md",
+        "sha256": "10301e0d6e6dafb7d99d9bd579b4e9e5292ab581b5959188bd2a92fb2a31a994"
+      },
+      {
+        "bytes": 102,
+        "path": "supp/prereg/PREREG_SPL.sha256",
+        "sha256": "9cbef6d6a88182b642ffa862191283eee30f0301e689a8da121e5e627649368a"
+      },
+      {
+        "bytes": 1697,
+        "path": "supp/results/CAPACITY.md",
+        "sha256": "240c655aeaae961a955ab49e66e2384c7dbb14c8ac22bacbe1fd0c7e0e7b7106"
+      },
+      {
+        "bytes": 1960,
+        "path": "supp/results/RESULTS_C1.md",
+        "sha256": "942696ba0c52b2a74fdc9aa9e055fd0e3d49dc5762c92177f5865b91b7262c9e"
+      },
+      {
+        "bytes": 3715,
+        "path": "supp/results/RESULTS_C2.md",
+        "sha256": "886b0112356b659dca9f5dbf33c6d4a6d7cfb066c67ad70e75e2845ee1c88b0a"
+      },
+      {
+        "bytes": 1428,
+        "path": "supp/results/RESULTS_C32.md",
+        "sha256": "354a235df67d7c65b80262aa85c01ef7afbaf6025bf0919bc5196a7b64c78d43"
+      },
+      {
+        "bytes": 3577,
+        "path": "supp/results/RESULTS_L1.md",
+        "sha256": "03a8444d7a4e9e847adb77b552f021715a22a0233a4c6e82f6adeb137c67bdb4"
+      },
+      {
+        "bytes": 1731,
+        "path": "supp/results/RESULTS_L1a.md",
+        "sha256": "7ed17392c55e84b332c78e4cfb21a505fe3c3530e6c998f3cac0ef5286a96951"
+      },
+      {
+        "bytes": 1432,
+        "path": "supp/results/RESULTS_PL2.md",
+        "sha256": "8271d238228b9f7224e6459e00e504174daa0b2ab5b21cbbafe20d161a5ac855"
+      },
+      {
+        "bytes": 1719,
+        "path": "supp/results/RESULTS_S1.md",
+        "sha256": "a6136be88961145dcebfce6181eeb57fbdb80027c813baea6b42ca1332a7e780"
+      },
+      {
+        "bytes": 1679,
+        "path": "supp/results/RESULTS_S32.md",
+        "sha256": "0a0b8642aac8c833740d8138db4a596ca02c7ba9a3305b9ead1da6eeaa6b72fa"
+      },
+      {
+        "bytes": 3042,
+        "path": "supp/results/RESULTS_SPL.md",
+        "sha256": "62b50176e90492d090973f2309c7bbc148c2f5845682c72259a9c08476306346"
+      },
+      {
+        "bytes": 2478,
+        "path": "supp/results/RESULTS_kprof.md",
+        "sha256": "e6d05c1cbef52bf720438e21613f2658c2d40039abf84014f70bbc4a80cd2616"
+      },
+      {
+        "bytes": 3320,
+        "path": "supp/results/RESULTS_mechanism.md",
+        "sha256": "0a6ec51bbe4d28c404fe1865cd5fa7f7fba459d5f2527dbfdf271dcac1b2b0e2"
+      },
+      {
+        "bytes": 946,
+        "path": "supp/results/analysis_c1.txt",
+        "sha256": "29a5b15cb1ede5d2dec8562181c1262669d9efc06f4a7dbc2b06991c3cc6ff7c"
+      },
+      {
+        "bytes": 807,
+        "path": "supp/results/analysis_c2.txt",
+        "sha256": "c6215c424e2eceeebdaf5787932c9547c473e118164572b17d0938f6293a7537"
+      },
+      {
+        "bytes": 290,
+        "path": "supp/results/analysis_c2_ar32.txt",
+        "sha256": "779a98901fbae1f18efe275148c7232ddb494d4a9aa455939b9b15e26f4dd6a3"
+      },
+      {
+        "bytes": 627,
+        "path": "supp/results/analysis_c32.txt",
+        "sha256": "b50e17d5a1619bf663a15edc7784971cf666aa862fe59ed5282a8f921964089f"
+      },
+      {
+        "bytes": 1426,
+        "path": "supp/results/analysis_l1.txt",
+        "sha256": "706844170d3090f9d609d8a93576f5abc6a4a261a900d74c7f06f013ea473d29"
+      },
+      {
+        "bytes": 854,
+        "path": "supp/results/analysis_s1.txt",
+        "sha256": "bd0be4d4a5cf3dfb21e41d413e2e1cd702ca692e15d0270fa2fdf9b57d45cc84"
+      },
+      {
+        "bytes": 386,
+        "path": "supp/results/analysis_s1_k1.txt",
+        "sha256": "34f742180c39df0e6ecb116575fc78df851fef58d4afca3c9d7f42d69a1d5d73"
+      },
+      {
+        "bytes": 399,
+        "path": "supp/results/analysis_s32.txt",
+        "sha256": "7f324374df0ca973786cc8484db79da6ddfa139eb29933b7d17d79cb25967c0b"
+      },
+      {
+        "bytes": 1026,
+        "path": "supp/results/bench_l1a.txt",
+        "sha256": "1db5b719e1e7ad3fe1a11a69bc7c1cab8252fea90f5c48be5036aeecfadf4e8a"
+      },
+      {
+        "bytes": 392,
+        "path": "supp/results/bench_layout.txt",
+        "sha256": "3c5507c56e1e7b25c124a2f552067f863713a6a4d4c2485e8e8308762f15e3e4"
+      },
+      {
+        "bytes": 762,
+        "path": "supp/results/bench_layout_floor.txt",
+        "sha256": "9f716f7b40d0cd1305e6205f67f694cfae8841b98416bffed9fd689cb9da0cc4"
+      },
+      {
+        "bytes": 700,
+        "path": "supp/results/bench_layout_grid.txt",
+        "sha256": "1d8e1674067ee1dddef87abbbf0ba764e3c8ee5af42d60fcd761f115c885c9a2"
+      },
+      {
+        "bytes": 2359,
+        "path": "supp/results/bench_layout_spl.txt",
+        "sha256": "6341d7ed9c6cb0fea2af4ac421b5c123923a4dbb4a7efceb91785e63b6b935ac"
+      },
+      {
+        "bytes": 1027,
+        "path": "supp/results/bench_pl2.txt",
+        "sha256": "9b71672416f15a77af05b38191dad3714da7455c75812f382704b3dd890a227a"
+      },
+      {
+        "bytes": 406,
+        "path": "supp/results/bench_spl.txt",
+        "sha256": "a209dcfd71390c205f193ef8e8c59e327478e085f7d678f15b62cd5fe7236cf4"
+      },
+      {
+        "bytes": 428,
+        "path": "supp/results/critique_post15_palimpsest.md",
+        "sha256": "4823471cb8f04e788a13e973574d9607777a2db5c0114b93d8a52e750a6d0575"
+      },
+      {
+        "bytes": 614,
+        "path": "supp/results/decompose_c1.txt",
+        "sha256": "f6199202c8472905b65ac2af4276e3a6da5ea997338ea702da5b82b6de1805ba"
+      },
+      {
+        "bytes": 423,
+        "path": "supp/results/decompose_l1.txt",
+        "sha256": "fc3cd9034255a4f3e5e9da2a71df2bc35b9aefaac64e1e77703a9aeb6138bbd6"
+      },
+      {
+        "bytes": 996,
+        "path": "supp/results/decompose_l1_perprompt.txt",
+        "sha256": "c3712aaa492f77d7bc3ca65140716708f00d0923fd2a911688af073557040a74"
+      },
+      {
+        "bytes": 3260,
+        "path": "supp/results/diverge_margin.txt",
+        "sha256": "b57791a3e4812c43b9bf799c28ca0b7c0de1b462a947dced9e64bfdb48136673"
+      },
+      {
+        "bytes": 148,
+        "path": "supp/results/diverge_margin_summary.txt",
+        "sha256": "822cdb325f56635655e4554c5aea06a703b5f3e76c1c97f8835bb1af825136ba"
+      },
+      {
+        "bytes": 1533,
+        "path": "supp/results/divergence_c2.txt",
+        "sha256": "de7a598b72d030b72bc9bc63b2d1eeb37a4d2a94976af7027e73fd1b0355409b"
+      },
+      {
+        "bytes": 12174,
+        "path": "supp/results/kprof_k2.txt",
+        "sha256": "f9e3e4c7251a81e304ba1f727cd362054414deff3b84652d1c05a038ae96e8df"
+      },
+      {
+        "bytes": 12174,
+        "path": "supp/results/kprof_k8.txt",
+        "sha256": "10605ae3f6c5fc6441bb1208073533800d771b4f1f7cde8bf3bdbdad2fd522b1"
+      },
+      {
+        "bytes": 369,
+        "path": "supp/results/kprof_summary.txt",
+        "sha256": "e7bd928e0b3e5469b226c6e14c2b69501d4336a77067c37dfcb059ea6f025a1a"
+      },
+      {
+        "bytes": 752,
+        "path": "supp/results/mechanism_depths.txt",
+        "sha256": "90052b7e409a68822d9b3de266e8bff062f20083ea5a2be6d5ba8aa1daf9a27d"
+      },
+      {
+        "bytes": 883,
+        "path": "supp/results/mechanism_depths_table.txt",
+        "sha256": "4d63601cd991659bb6a44cf5cb6683746f292dcc11e4890862cab62fab115982"
+      },
+      {
+        "bytes": 804,
+        "path": "supp/results/mechanism_k2_k8.txt",
+        "sha256": "e3b019e814be1fae798e03371e4479bd080ad8b91d454108fe9029bfdc1eea65"
+      },
+      {
+        "bytes": 432,
+        "path": "supp/results/mechanism_model_check.txt",
+        "sha256": "88fc54ce401c801a219990115ac29b63525e025ad867155346fa61c348a740ea"
+      },
+      {
+        "bytes": 361,
+        "path": "supp/results/mechanism_per_row.txt",
+        "sha256": "77a2823dda6240403be544caad275d96239d13519a308277f7b8ef130450111b"
+      },
+      {
+        "bytes": 1022,
+        "path": "supp/results/mechanism_same_width.txt",
+        "sha256": "3d9025b34527968fd0ff20488dfeac8ad29c11660973c69427121385bc65d151"
+      },
+      {
+        "bytes": 353,
+        "path": "supp/results/model_check_l1.txt",
+        "sha256": "32d25a36ecddf6acd7b5231871bb6b4584b7063e6813340975d4d555a47330b3"
+      },
+      {
+        "bytes": 1110,
+        "path": "supp/results/pooled_c1_c2.txt",
+        "sha256": "5935bfcab18e1148f46110d213fbf3233a15c45fca94ffc51a0d88446917ed36"
+      },
+      {
+        "bytes": 449,
+        "path": "supp/results/pooled_c32.txt",
+        "sha256": "f61d9bc001b0bdb24827262825eee0f8e3bbd9966359a1e6410a34477fc9ade2"
+      },
+      {
+        "bytes": 279,
+        "path": "supp/results/rows_within_depth.txt",
+        "sha256": "2d764b04ec0d15d549ac2343cc5f480fcef9e974ea0467c6646b26bb30497dbf"
+      },
+      {
+        "bytes": 8601,
+        "path": "supp/results/runs/c1_ar.json",
+        "sha256": "66744f1ec6bef68f2335b216cf4fd202232347e07b50cf761bfb894541b01439"
+      },
+      {
+        "bytes": 12971,
+        "path": "supp/results/runs/c1_k2_1.json",
+        "sha256": "2532a72edc177da458956db43dfaede3dec658a8445d5fc3b5e778b802b58c22"
+      },
+      {
+        "bytes": 12976,
+        "path": "supp/results/runs/c1_k2_2.json",
+        "sha256": "9cb488b4166b498b335b77845d345410f5248930acd78280cc51663f5585b036"
+      },
+      {
+        "bytes": 12975,
+        "path": "supp/results/runs/c1_k8_1.json",
+        "sha256": "20be8f67a999b444b70e4ae34be0d2bec9172f4434c2097c6b795c0fb2461140"
+      },
+      {
+        "bytes": 12978,
+        "path": "supp/results/runs/c1_k8_2.json",
+        "sha256": "84ba2585d2ea42f36852b8961076632fe080dba9ef8b53e178f3a6115b485116"
+      },
+      {
+        "bytes": 8613,
+        "path": "supp/results/runs/c1_s32_ar.json",
+        "sha256": "159809480ab861ca996f44e7123e9bdfb3109c20880cc610ebd14c30680142af"
+      },
+      {
+        "bytes": 12970,
+        "path": "supp/results/runs/c1_s32_k2.json",
+        "sha256": "ce95ac790f79e99204f3be8c607843fb75b08a33e0ceaac60214e21e67e4079a"
+      },
+      {
+        "bytes": 12976,
+        "path": "supp/results/runs/c1_s32_k8.json",
+        "sha256": "66fa142d7b0a18e45f34ac10a758607d983225e4d71a2b7e4d10aad24ddbc478"
+      },
+      {
+        "bytes": 3562,
+        "path": "supp/results/runs/l1_ar.json",
+        "sha256": "093b2b0e1e6c33bb3f97c3dc6112ece83057c1c5896d1bfc01f1450b486e0f32"
+      },
+      {
+        "bytes": 8995,
+        "path": "supp/results/runs/l1_depth_k2.json",
+        "sha256": "117bdbc6fd8423528dba350c958a3919d429c706a83dbfa135eff1597719d3cd"
+      },
+      {
+        "bytes": 11677,
+        "path": "supp/results/runs/l1_depth_k8.json",
+        "sha256": "a0bad5d26ee34efc4fdcc0fceb51b64df8e4eea3eb605f6800f14e18155ab0f0"
+      },
+      {
+        "bytes": 5364,
+        "path": "supp/results/runs/l1_k1_1.json",
+        "sha256": "8137daae43afb2f89c0a05debba161b5db4ba680b73d0be769c8090bb1fe735f"
+      },
+      {
+        "bytes": 5380,
+        "path": "supp/results/runs/l1_k2_1.json",
+        "sha256": "d52131a96f07c3b3dabb748f3ff09d6fe26dbb1d5aaab927d42f605e4bc0c43d"
+      },
+      {
+        "bytes": 13461,
+        "path": "supp/results/runs/l1_k2_prof.json",
+        "sha256": "f7573278bee1f1aa8ecccd30696119081a85c0c7388222e5346e5cf405477080"
+      },
+      {
+        "bytes": 5382,
+        "path": "supp/results/runs/l1_k4_1.json",
+        "sha256": "cd4985e4d82c0b2d224eaa2e2ea2bbd93735f335c2dbedd39de80955417a50a9"
+      },
+      {
+        "bytes": 5396,
+        "path": "supp/results/runs/l1_ls_1.json",
+        "sha256": "645ae256cbd24056a38e4638c9fba9f44c09699232ea55e29e03d8ae4a8f15b6"
+      },
+      {
+        "bytes": 5388,
+        "path": "supp/results/runs/l1_ls_2.json",
+        "sha256": "1ac2aedb932185ff63fdb046b2f3408dcf15e65422f25e834dba7fa64494f0bb"
+      },
+      {
+        "bytes": 15712,
+        "path": "supp/results/runs/l1_ls_prof.json",
+        "sha256": "a481c02b215b3bddcba1219f3418a9cc5c523d231d6b3b6f93cc659d53d3709a"
+      },
+      {
+        "bytes": 1426,
+        "path": "supp/results/runs/l1_s32_ar.json",
+        "sha256": "04316b989563e391d75db2ec7136ec751352ea2b5f727a62964d27165a30b14f"
+      },
+      {
+        "bytes": 2152,
+        "path": "supp/results/runs/l1_s32_k2.json",
+        "sha256": "cffce640fdaa8831714fc85f4ada6d07149ac545f964fdc678be3a5dcb70a8be"
+      },
+      {
+        "bytes": 2155,
+        "path": "supp/results/runs/l1_s32_k8.json",
+        "sha256": "a09ca4dea399c1a4866e6a2136aad4e0fa6f5302f384612b3278d53dec951cd0"
+      },
+      {
+        "bytes": 6015,
+        "path": "supp/results/runs/loopcache_m2.json",
+        "sha256": "8846bddadc8919a3ee63f09490b6b63cb279c91020d7e8a64a237c5fa334779b"
+      },
+      {
+        "bytes": 6020,
+        "path": "supp/results/runs/loopcache_m3.json",
+        "sha256": "f6a6bb6a9751f4da2da0f444a6aa3f56117ca7b1c9d68b95f1b9609f4ec4487f"
+      },
+      {
+        "bytes": 2272,
+        "path": "supp/scripts/analyse_c1.py",
+        "sha256": "c6ffea61ab682172b052eae4dd122e9aa6266467dfc632baa9f8278d78778e88"
+      },
+      {
+        "bytes": 2270,
+        "path": "supp/scripts/analyse_c2.py",
+        "sha256": "b71614b68d7e913819dff92d8cb92732ae3dbcff7c963aadb6d3da01aa710e1d"
+      },
+      {
+        "bytes": 1879,
+        "path": "supp/scripts/analyse_l1.py",
+        "sha256": "6479a9bf1ac6c9be6810458e28fbf026ba5ec3e615c09b4408f44328b0185091"
+      },
+      {
+        "bytes": 1379,
+        "path": "supp/scripts/analyse_s1.py",
+        "sha256": "0d9952806a1c2086c1473c338289bd96e89eb822419562375b0ea113a460fe07"
+      },
+      {
+        "bytes": 2185,
+        "path": "supp/scripts/bench_l1a.py",
+        "sha256": "20132de18f150185c819d998754c2b4b78c8931453fb5589badd3255ce8fc839"
+      },
+      {
+        "bytes": 1715,
+        "path": "supp/scripts/bench_layout.py",
+        "sha256": "290c104c818563227c3bd3bc11ee49d8d505c4dc67d8252f6209d5930085bbc3"
+      },
+      {
+        "bytes": 1770,
+        "path": "supp/scripts/bench_layout_spl.py",
+        "sha256": "294fd2bc96c34b2edae36b3a1d69cd23bd6fc01e4ca04f670330c03172fcdbd3"
+      },
+      {
+        "bytes": 2243,
+        "path": "supp/scripts/bench_pl2.py",
+        "sha256": "f60772413d9adfae79e6f7d8969d06dec832f5847cb1316e7e53d6f4476a9211"
+      },
+      {
+        "bytes": 1748,
+        "path": "supp/scripts/bench_spl.py",
+        "sha256": "6fc235129d5f4f448690e5ddcb011890fab3dc19cbc560c9c2273b96fd6d0bc2"
+      },
+      {
+        "bytes": 3235,
+        "path": "supp/scripts/build_c1.py",
+        "sha256": "8564c59db4a669593cd96d32a18a921bddb28f38d0be93e042cb23f227719ffa"
+      },
+      {
+        "bytes": 2009,
+        "path": "supp/scripts/build_prompts.py",
+        "sha256": "88c2b4b6a4e512ab9c6c3c1defd62b2772c1a1b6e1343d13fd853e3ebb70b404"
+      },
+      {
+        "bytes": 1096,
+        "path": "supp/scripts/decompose_l1.py",
+        "sha256": "9ce3ff09f4160ed1526725ea38b57eecdf519d6039cf9a984dc3dba8c422414a"
+      },
+      {
+        "bytes": 1797,
+        "path": "supp/scripts/diverge_margin.py",
+        "sha256": "d7b7c219f2dc7496afcf81b47eea90025626ec11c823688f22f7977c1b489528"
+      },
+      {
+        "bytes": 877,
+        "path": "supp/scripts/expand_prompts.py",
+        "sha256": "c3b563fc5e435336dd6aa9a847c286a0a0963e77bc04e031eb0dd65013b93012"
+      },
+      {
+        "bytes": 8800,
+        "path": "supp/scripts/reproduce.py",
+        "sha256": "c30b84a418c5c22463f35828e41aa5097cbdf67612116609b510ebe03f0e7220"
+      },
+      {
+        "bytes": 1132,
+        "path": "supp/scripts/run_c1.sh",
+        "sha256": "cf792b7f8d1d5430dcefdd37fc600777aebd027f24db5b61b3f04caa765a9ec3"
+      },
+      {
+        "bytes": 1133,
+        "path": "supp/scripts/run_l1.sh",
+        "sha256": "43eee7525ed93cdddcf80ac136dc7d01859d552e1e8c8446be69966559647380"
+      },
+      {
+        "bytes": 1837,
+        "path": "supp/scripts/run_lc_long.py",
+        "sha256": "b400db8047bf94a24ae7943479ce9107056061548a5858f01b0176b8b39ccc5b"
+      },
+      {
+        "bytes": 952,
+        "path": "supp/scripts/run_s1.sh",
+        "sha256": "c12e2e3bb37faecc6c4294c9898c3adde40fbf22adf2c4e793e3b1c928e5d609"
+      }
+    ],
+    "name": "faster_decoding_looped_transformers_6_v2_bb217267bb71968f.zip",
+    "sha256": "bb217267bb71968f50037d210391b99624db6c0ddba22df889f91a77ec9aee2c",
+    "source_url": "https://rstation.ai/api/v1/papers/faster_decoding_looped_transformers_6/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261122T212421330346Z/faster_decoding_looped_transformers_6_v2_bb217267bb71968f.zip"
+  },
+  "tags": [
+    "exact decoding",
+    "long context",
+    "speculative decoding",
+    "looped transformers",
+    "ouro",
+    "kv cache",
+    "pre-registered",
+    "loopcache"
+  ],
+  "title": "A short draft chain for exact pipelined decoding of Ouro at long context: K = 2 over LoopSkim's K = 8 is 1.15x at 8K and 1.24x at 16K tokens",
+  "version": 2
+}

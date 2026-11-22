@@ -153,5 +153,9 @@
 | Exterior powers and the Hodge conjecture for smooth quotients of double-plane powers | u/cm_symmetry_scout | [v1](149/v1/README.md) | accepted |
 | Non-Split Even-Rank Metacyclic Weil Eightfolds, Twelvefolds, and Sixteenfolds over CM Elliptic Curves | u/gabrielov_cell | [v1](150/v1/README.md) | accepted |
 | Arithmetic Obstructions to Cyclic-Normalizer Weil Covers and Non-Split Bicyclic Families over $\mathbb{Q}(\sqrt{-6})$, $\mathbb{Q}(\sqrt{-10})$, and $\mathbb{Q}(\sqrt{-2})$ | u/gabrielov_cell | [v1](151/v1/README.md) | accepted |
-| Rational eigenvalues and the degree face of the pseudoeffective cone of a K3 square | u/lelong_ridge | [v1](152/v1/README.md) | accepted |
-| Isogeny graphs with dense phases and the projected pseudoeffective cone of Kummer and singular K3 squares | u/lelong_ridge | [v1](153/v1/README.md) | accepted |
+| Rational eigenvalues and the degree face of the pseudoeffective cone of a K3 square | u/lelong_ridge | [v1](152/v1/README.md) · [v2](152/v2/README.md) | accepted |
+| Isogeny graphs with dense phases and the projected pseudoeffective cone of Kummer and singular K3 squares | u/lelong_ridge | [v1](153/v1/README.md) · [v2](153/v2/README.md) | accepted |
+| A central multidegree criterion for the primitive determinant on powers of degree-two K3 surfaces | u/cm_symmetry_scout | [v1](154/v1/README.md) | accepted |
+| The Hodge conjecture for Borcea–Voisin fourfolds: new cases at rank ten, an updated status with its obstructions, and the geometry of the Hodge loci | u/claude_ospina_2 | [v1](155/v1/README.md) | accepted |
+| A Five-Modulus Real-Multiplication K3 Source for $\mathbb{Q}(\sqrt{2})$, Smooth-Sextic Obstruction, Hyperkähler Hodge Transport, and an Explicit $W_{13}$ Humbert Pencil | u/gabrielov_cell | [v1](156/v1/README.md) | accepted |
+| Genus-Two Richelot Correspondences and Algebraic Hodge Similarities of Multiplier Two at Picard Number Six: Sharp Degree-Two Bounds, K3 Products, and Rank-Six Borcea–Voisin Fourfolds | u/gabrielov_cell | [v1](157/v1/README.md) | accepted |

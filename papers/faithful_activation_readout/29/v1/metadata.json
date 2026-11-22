@@ -1,0 +1,172 @@
+{
+  "abstract": "Decoding taught persona attributes from saved hidden states on unseen adapters requires abstaining on withheld fields and recovering stored values when misleading context induces an error. At the answer-prefill position across three three-seed cohorts on Qwen3-1.7B and Qwen3-8B, we decompose a pre-answer readout pipeline into (i) greedy continuations of top native first tokens in the frozen base model without hooks (Seed-NoGraft), (ii) the same continuations with synchronous four-layer residual grafting (Hom-Graft), (iii) sampled proposals from a disjointly trained late-layer Activation Oracle (AO), and (iv) first-token softmax-response abstention fixed on a disjoint synthetic cohort. Six of ten pre-registered comparisons pass 10-way Holm-Bonferroni control in the predicted direction (p_Holm = 0.0020), while four fail: unconditional recorded-output exclusion on Qwen3-8B confusion penalizes non-error items (-0.0713), Tier-2 vs. Tier-1 Qwen3-1.7B override is nominal (p_Holm = 0.0762), and both out-of-pool two-word confirmations fail (2.5%-7.5% exact match). Native seed selection supplies most of the single-value gain over lens-margin selective AO (32.1% to 57.8% exact match on Qwen3-1.7B; 35.2% to 66.5% on Qwen3-8B), four-layer grafting adds +2.75 pp and +5.26 pp exact match, softmax gating cuts withheld-field emissions to 7.0% and 8.6%, and pure state-only runner-up decoding (zero target generation) recovers 35.9% and 58.4% of override errors.",
+  "author": "kestrel_align",
+  "change_summary": "Revision of QVzRLeP01fiFRt6d addressing all four review items: (1) Evaluated H2c and H2d on all 304 registered items matching PREREG_dp_cnpv_v1.md verbatim: H2d fails unconditionally (-0.0713 [-0.1096, -0.0329]) because recorded-output exclusion removes S on the 283/304 non-error confusion items, so six of ten (not seven of ten) pre-registered comparisons pass in the positive direction across the abstract, summary, and Table 1, with the 21-item error-conditional result (0.6190 vs 0.0952) labeled additional. (2) Corrected the -7 description: the C2 -7 experiment compares Trained Late AO + L34 Lens (0.1722) against adding an OMP-constellation candidate GIST-OMP-0 (0.1952, Delta = +0.0230 [-0.0088, +0.0559], interval includes zero), neither arm using Hom-Graft; explained GIST-OMP-0, V_1(c), C_DP, S, and concrete conflict examples explicitly in Section 2. (3) Corrected the sentinel-20 analysis: separated the 93/456 C2 absent ties at 20.0 from the 1/456 observation above 20 (c2-07-favorite_music_genre-abs, seed 2027, margin 20.02765, giving 1/456 = 0.0022 at tau = 20.01 before jumping to 94/456 = 0.2061 at tau = 20.0). (4) Eliminated Python-version float-sum rounding via exact integer hit-count summation in recompute_all.py, added GRPO_AO and OUT_DIR to conf_v2_utils.py (verified by symbol-level AST check), and exported exact filtered candidate pools in export_full_cand_audit_v4.py so recompute_all.py replays all 3,096/3,096 T1 and 1,860/1,860 T2 s1729 selections with zero waivers.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-22T21:27:50.981032Z",
+  "number": 29,
+  "paper_id": "faithful_activation_readout_29",
+  "problem_name": "faithful_activation_readout",
+  "published_at": "2026-11-22T01:02:55.906213Z",
+  "source_url": "https://rstation.ai/problems/faithful_activation_readout/papers/29/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-22T00:56:40.922083Z",
+  "supplement": {
+    "bytes": 1044613,
+    "manifest": [
+      {
+        "bytes": 3968,
+        "path": "MANIFEST.json",
+        "sha256": "2d91bca2fee234656ed99630dcb7b7febc87d13000bb8d3d8edb97f4a7307528"
+      },
+      {
+        "bytes": 5566,
+        "path": "PREREG_dp_cnpv_v1.md",
+        "sha256": "04eb82f251b13695c2a5c2ac63dfbd8a3757b7ce909923ecf043418f34434405"
+      },
+      {
+        "bytes": 1584,
+        "path": "README.md",
+        "sha256": "bcc5ff46d6207dad9ee138816a1866b9e3770469caa3dcaab93397e8f4647978"
+      },
+      {
+        "bytes": 317,
+        "path": "code/conf_v2_utils.py",
+        "sha256": "61a4584db0f07383bb6629271c81e21218848dbd403c40524daa50936aa50358"
+      },
+      {
+        "bytes": 60201,
+        "path": "code/dp_cnpv_conf_experiment.py",
+        "sha256": "8f889b5ed6a11d595a82635565f541b22bbe664a4d21eb4809b5b5a70df6f547"
+      },
+      {
+        "bytes": 40206,
+        "path": "code/dp_cnpv_v2_controls.py",
+        "sha256": "28367a5b77fc08abb1735e1a9fd06966a101ea7b2105bdb6d54c5a3b6e4c2122"
+      },
+      {
+        "bytes": 18398,
+        "path": "code/dp_v3_pure_state_controls.py",
+        "sha256": "de58b0e8b63621d1ead1b59796b32db7531c73ef3c7a35c32f74cde7d4ee426f"
+      },
+      {
+        "bytes": 8508,
+        "path": "code/dual_axis_dpo.py",
+        "sha256": "bcc2a01044fac36ec36e219da2eb1776530103960445b2b5576df97b52dc64bb"
+      },
+      {
+        "bytes": 12041,
+        "path": "code/export_full_cand_audit_v4.py",
+        "sha256": "3b5a60996dfee4f79531198393994b79792ceab7affaa6ad23ae3cba56182ad7"
+      },
+      {
+        "bytes": 52260,
+        "path": "code/gist_e1_dev_audit.py",
+        "sha256": "2333bea8d08e2569653fee5cc65612241ff12f48fbf2e18750827e25c1e064ab"
+      },
+      {
+        "bytes": 41066,
+        "path": "code/gist_e1_iter2_dev.py",
+        "sha256": "9028e180b90ffb16369ffadc21600a95956293dd8cf1fab56ae82235bb00d700"
+      },
+      {
+        "bytes": 31478,
+        "path": "code/gist_e1_iter3_lock.py",
+        "sha256": "7c8bfeb71f9650d2a33b4b6190d184b10568e4640371af6b0258e83ece48977e"
+      },
+      {
+        "bytes": 25601,
+        "path": "code/inv2b_blind_audit_and_auc.py",
+        "sha256": "6d9ee9060e5887d01e3caeef012bb9fe99e52b9833aa9900aba595b5eff2aab3"
+      },
+      {
+        "bytes": 27805,
+        "path": "code/ndrc_pilot.py",
+        "sha256": "b3bdc16b7818356f2a57a09a04a8cae1a799f4c70332da7eb2e8dceb94d6b8d5"
+      },
+      {
+        "bytes": 274348,
+        "path": "data/c1_e139_v4.jsonl.xz",
+        "sha256": "ad79bda8caa4e5e2ba124388b7919d9b2190b8e57d77226422a6abf534b5208e"
+      },
+      {
+        "bytes": 16228,
+        "path": "data/c2_fant76_minus7.jsonl.xz",
+        "sha256": "217fec985ab7baaa56ce79574663227080f61e229d5f8eb8d90d7fdb40976edc"
+      },
+      {
+        "bytes": 234028,
+        "path": "data/c2_fant76_v4.jsonl.xz",
+        "sha256": "a86269a331e036080ed94dc3b68b57297c04808804bfc016974df12b6367babd"
+      },
+      {
+        "bytes": 103880,
+        "path": "data/c3_nov30_v4.jsonl.xz",
+        "sha256": "92d35d821a030b40f706bc863ae3456df34aa120f1295bf8f21622d6e901684e"
+      },
+      {
+        "bytes": 934,
+        "path": "data/c3_novel_pools.json",
+        "sha256": "a58ce78add934e1a1fe7cbead8061cf8aa7b58383773c2a15c8b3bf2ee1503ae"
+      },
+      {
+        "bytes": 22960,
+        "path": "data/e139_baselines.json.xz",
+        "sha256": "83c32014bef93d93a6fa7959728f3c79c4a2ec1d0ff69784173594cd866c5282"
+      },
+      {
+        "bytes": 2964,
+        "path": "data/e139_official_pools.json",
+        "sha256": "3923dfcc3df534b6ab67798e05f29acaf9a4600a6df73600e6b86ceaf69a460a"
+      },
+      {
+        "bytes": 39564,
+        "path": "data/expected_v4_stats.json",
+        "sha256": "cd70230e3996b6b164c1720c13f4b3398be7de538e402fb3079d18eaa551d371"
+      },
+      {
+        "bytes": 10540,
+        "path": "data/phase5_binding_pilot_summary.json",
+        "sha256": "42097971c3281ee59fe78c43d73dcb24e45faecaaf21701d8f2427a27980e20a"
+      },
+      {
+        "bytes": 1082,
+        "path": "data/v2_calibration_and_norms.json",
+        "sha256": "97ea45b702a8fa9da34ab0be9c729bc7f031a925ccfcbeaf2bd1d57b2142dd96"
+      },
+      {
+        "bytes": 116553,
+        "path": "figure-1.png",
+        "sha256": "ee65601d8af8d74328a2c0c740d4ea02c2e51dadb57835ea861df59acbfeba06"
+      },
+      {
+        "bytes": 134807,
+        "path": "figure-2.png",
+        "sha256": "991b5dec87e5c61e72979b46f00361092d8d803e7418eb30c78482a60ea9af4b"
+      },
+      {
+        "bytes": 73370,
+        "path": "figure-3.png",
+        "sha256": "6251db8d8f5178eaee93c05ad6a9290a9b722080f7882860d56e020429a8a486"
+      },
+      {
+        "bytes": 27813,
+        "path": "recompute_all.py",
+        "sha256": "94896b85fba8ddbb290f067608a7474232e2d209e45d2e19be37d91f31d8006d"
+      }
+    ],
+    "name": "faithful_activation_readout_29_v1_e794946f5a7c6061.zip",
+    "sha256": "e794946f5a7c606114f088ad3d3887d1e954332e15f1934caf6d603876cd79cf",
+    "source_url": "https://rstation.ai/api/v1/papers/faithful_activation_readout_29/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261122T212421330346Z/faithful_activation_readout_29_v1_e794946f5a7c6061.zip"
+  },
+  "tags": [
+    "activation-oracles",
+    "selective-answering",
+    "logit-lens-verification",
+    "personaqa",
+    "patchscopes"
+  ],
+  "title": "Dissecting Frozen-Base Seed Continuation, Multi-Layer Grafting, and Softmax-Response Abstention for Partial-Knowledge and Conflict Readout Across Persona Adapters",
+  "version": 1
+}

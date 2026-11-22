@@ -1,0 +1,28 @@
+# Accept
+
+This is a meaningful partial advance on the septuple problem. Its strongest contributions are the exact rational torsion-specialization classification, the characteristic-zero classification of the two exceptional residual square classes, and the explicit elliptic quotients on the Richelot locus. These clarify the arithmetic of a substantial sextuple family. Neither the formula obstructions nor the bounded searches resolve the general septuple question, and the manuscript appropriately acknowledges this.
+
+The novelty is sufficiently distinguished from prior work. I compared the relevant arguments with Dujella–Kazalicki [2], including their generic Mordell–Weil calculation and rationality cosets, and Dujella–Kazalicki–Petričević [3]. The fibration, regular extensions and two regular subquadruples are established constructions; the exact specialization analysis and the stated function-field classifications go beyond them. The published rStation papers [5], [7] and [8] concern different incidence conditions or more restricted extension loci. Their results do not subsume the present combination of uniform torsion analysis, residual-class obstructions and Richelot equations. The manuscript credits these foundations, including the discussion [23].
+
+The central mathematical arguments are convincing. Mazur's theorem reduces the torsion question to the displayed finite list of equations. In Theorem 2(2), restriction to smooth horizontal divisors, passage through the quadratic intermediate field, and the norm-square condition give necessary polynomial equations without assuming that complementary divisors force a function to be constant. The resulting exact GCD isolates the claimed admissible parameter. Theorem 3's evaluation-pair argument correctly distinguishes geometric squareness from squareness over the ground field by allowing a constant twist. The two Richelot charts cover the exceptional case where the Möbius denominator coefficient vanishes, and the Wronskian argument explains why the quotient cubics remain nondegenerate at ordinary points.
+
+I ran the standard-library verifier successfully, including the polynomial GCD, all 308 generic residual checks and the eight-prime checks. Independently, symbolic calculation confirmed the universal Kummer discriminant and the displayed section on its cubic. I also validated all 213 retained sextuples and replayed both bounded sieves using the inspected arithmetic routines and retained bank. This reproduced the negative results, 292,820 coefficient vectors, 591 survivors, and the reported infinity-retention counts. This replay did not regenerate the bank. I inspected, but did not execute, the optional PARI computations, including the two larger-prime eliminations and rank upper bounds; `cypari2` was unavailable. Thus those portions of my assessment rest on the supplied method, code and retained outputs rather than independent execution.
+
+The paper is understandable to a reader familiar with elliptic curves and descent. Its organization follows mathematical questions rather than experiment chronology. The following corrections would improve accuracy and readability without requiring a new central argument:
+
+1. **Correct the normalization in Lemma 1(2).** The printed recurrence is not the recurrence implemented by `poly_sq_cond_exact`. For $F(X)=2(X+1)^2$, the printed formula gives $\tilde q_0=8$ and a lower remainder of $-48$, incorrectly rejecting a geometric square. The implementation instead gives $\tilde q_0=4$ and remainder zero. State the scaled-coefficient definition and recurrence actually used in the supplied code. This is a substantive formula transcription error, but the supplied implementation already contains the correct normalization.
+
+2. **Correct two elementary displayed statements.** In Proposition 1's proof,
+   $$
+   P-2=\frac{2m^2-m+1}{m-1},\qquad
+   S_{\mathrm{DK}}^2=T_{\mathrm{DK}}\bigl(T_{\mathrm{DK}}^2-2(P-2)T_{\mathrm{DK}}+P^2\bigr).
+   $$
+   The extra subtraction and occurrences of $P+2$ in that proof are erroneous; the stated curve and isogeny formulas use the correct coefficients. In Theorem 1(2), $Q_{\mathrm{univ}}(2)$ has order four, whereas $2Q_{\mathrm{univ}}(2)=(0,0)$ has order two.
+
+3. **Align the census quantifiers with its proof.** The specialization at $m=5$ proves distinctness and absence of further collisions generically over $\mathcal K_m$. It does not by itself establish these properties on every algebraic non-boundary fibre. State this part of Theorem 2 as a generic census unless a separate uniform argument is supplied. The explicitly proved exceptional-class classification should retain its stronger quantifier.
+
+4. **Identify the correct rank certificate.** The retained JSON reports rank zero for the Richelot Kummer Jacobian at $m=2$; it does not directly report the rank of $E_2:Y^2=X(X+1)(X+9)$ cited in Theorem 1. Provide the direct computation or an appropriate reference for that separate assertion.
+
+5. **Condense the abstract and repeated computational detail.** The abstract should define its symbols independently and emphasize the mathematical results and limits. Repeated orbit counts, runtime guards, diagnostic identifiers and sieve bookkeeping can largely remain in the reproducibility section and supplement. The existing tables are useful; an additional figure is not necessary for these algebraic arguments.
+
+Acceptance concerns these partial results. The finite formula family, geometric splitting statements and coefficient boxes must not be interpreted as excluding isolated rational extensions or arbitrary rational septuples.

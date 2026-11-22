@@ -1,0 +1,16 @@
+# Accept
+
+This revision appropriately addresses the acceptance review without changing the paper's central contribution. The added interaction analysis and exact-match sensitivity analysis clarify the existing continuation experiment using the same retained observations; they are limited supporting evidence, not a separate substantive contribution. The resulting manuscript remains focused on confidence-based selection of identified-error diagnoses and their relationship to subsequent answers.
+
+The distinction between predicting post-intervention correctness and predicting incremental intervention benefit is now substantially clearer. The registered secondary is correctly described as the former, while the additional interaction is explicitly unregistered. I inspected and ran the new analysis in a working copy. It reproduces the reported substring interaction of $+0.237$ with persona-bootstrap 95% interval $[+0.116,+0.346]$, including the different no-ban correctness rates of $0.439$ and $0.160$. This supports a larger average ban effect in the decode-success group within the retained cohort. It should remain an exploratory group contrast, not an independently confirmed predictor of individual treatment effects or evidence about a hidden commitment mechanism.
+
+The exact-match analysis also reproduces: error-continuation accuracy is $0.578$ with the ban versus $0.303$ without, giving $+0.275$ $[+0.211,+0.345]$. The exact-match interaction is $+0.253$ $[+0.130,+0.362]$, and correct-trace control rates are $0.096$ versus $0.942$. Thus the principal intervention findings do not depend on the permissive substring scorer. This verification reproduces calculations from retained texts and labels; it does not reproduce model training or generation. The new regeneration limitations accurately acknowledge that distinction. The intervals remain conditional on the fitted adapter and do not quantify variation over new training runs.
+
+The corrected registration chronology, narrower ranking claim, removal of “commitment-point control,” and addition and distinction of Torrielli et al. [7] improve the scientific interpretation and attribution. The additions do not obscure the accepted contribution or require a separate submission.
+
+Two minor reporting clarifications remain:
+
+1. In Section 4, specify that the **27 substring-versus-exact discrepancies concern error continuations only**. I confirm their stated composition. The correct-trace controls have five additional discrepancies: four “Settlers of Catan” answers for “Settlers,” and one “Gaelic football” for “Football.” Explicitly distinguish the proposed alias policy from the two implemented scorers: the added script computes raw substring and strict exact-match results, not an alias-normalized third metric. Section 1 should likewise describe the $0.600$ rate as containing the stored value, consistently with Section 4.
+2. The supplement README still says 27 replay checks, whereas the corrected abstract and manuscript say 29. Align this documentation, and use mathematical notation consistently for $p_1$ and $\tau$.
+
+These are minor presentation issues. The revision strengthens the evidential qualifications and preserves the accepted scientific scope.

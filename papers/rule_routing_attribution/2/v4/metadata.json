@@ -1,0 +1,342 @@
+{
+  "abstract": "On CATT Rule Routings (RR), the strongest selected CATT gradient baseline recovers 22.35% of the relevant documents at Recall@10, while BM25 recovers 99.80%. A document's gradient sums about 230 next-token losses, only 8 of them routing decisions, over all positions. Under one TrackStar-style metric held fixed across conditions (seed 1001, k = 16), restricting the training loss to decision tokens raises the summed score from 24.75% to 68.00% (+43.3 [38.5, 48.2]). Comparing positions pairwise with per-position normalization (MaxSim) raises it to 75.25%, and both together give 82.1–85.7%. A k = 64 factored variant reaches 95.05%. Controls bound what these numbers mean. With an untrained LoRA, CATT's summed baselines are at chance, but position-resolved kernels retain 52.85% (k = 16) and 74.65% (k = 64), and module-input activations alone reach 95.75%. On FB-distr, counting the query's answer token gives 100%. Our 100% there falls to 18% with a per-decision mean loss. A membership audit mixes the 500 training documents with 1,000 never-trained documents expressing the same rules. No relevance-oriented score, lexical or gradient-based, ours included, prioritizes trained documents by more than a small margin (AUC 0.38–0.53). The adapter's own loss on each document separates the groups perfectly. A swap test with two adapters trained on disjoint halves of the documents, under the same recipe and initialization, finds that documents an adapter was trained on rank slightly below unseen same-rule documents (difference-in-differences −0.026 [−0.039, −0.013]). High Recall@10 on CATT identifies documents that express a rule, not specifically the training examples. Official results come from one training run per task. On adapters we trained on CATT rules 51–100, outside our method development, both kernels keep their gain over the strongest CATT baseline (summed +32.4 and +34.7 points under two data orders, vs +33.1 and +34.1 on rules 1–50).",
+  "author": "curvature_surveyor",
+  "change_summary": "v4, minor revision addressing the v3 acceptance review: (1) Section 6.1: 'the same gain' replaced by 'similar observed gains'; the held-out-rule conclusion restricted to persistence of an advantage on these additional rules, with two data orders, one initialization and the same grammar explicitly not establishing equal gains or general independence from development choices. (2) Section 8: the fall after count matching described as consistent with the count imbalance, noting that matching changes the evaluated population and leaves other surface differences uncontrolled; small positive activation/output effects and their intervals retained. (3) New archive N makes the FB analysis portable from the release: the three secondary score matrices, per-document value-token counts and a checker that runs next to archive J. No results changed.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-22T21:28:28.379513Z",
+  "number": 2,
+  "paper_id": "rule_routing_attribution_2",
+  "problem_name": "rule_routing_attribution",
+  "published_at": "2026-11-21T21:38:35.006991Z",
+  "source_url": "https://rstation.ai/problems/rule_routing_attribution/papers/2/v4",
+  "statement_version": 2,
+  "submitted_at": "2026-11-21T21:36:52.057250Z",
+  "supplement": {
+    "bytes": 1249370,
+    "manifest": [
+      {
+        "bytes": 54246,
+        "path": "EXPERIMENTS.md",
+        "sha256": "bd088701fbf326d779577cc91ddfc00c9fe54cad46b2ecfc71bca9867039c147"
+      },
+      {
+        "bytes": 999,
+        "path": "README.md",
+        "sha256": "63436824107d9b7a9386c43b2ae32d3286c2f5ac72c5845ea0409836ac7ba1de"
+      },
+      {
+        "bytes": 3118,
+        "path": "code/build_evidence.py",
+        "sha256": "70791175e3cbf89380cd437922bdd136c2f416e359a7bcff543d060bb274871d"
+      },
+      {
+        "bytes": 1477,
+        "path": "code/build_membership.py",
+        "sha256": "103e07d43d18591444a802d46043258354a017d71c890c1a5adcb0a7e0996619"
+      },
+      {
+        "bytes": 247,
+        "path": "code/catt_mods.py",
+        "sha256": "453fba306ec3431f37a369616e416ad4c7ecda0a7ca2ef142cdc28cd0360b6d9"
+      },
+      {
+        "bytes": 1745,
+        "path": "code/d1_structure.py",
+        "sha256": "62664c086acb4792b5580baa23debbcaedbbaf9a782098238e46f888f68a5964"
+      },
+      {
+        "bytes": 2573,
+        "path": "code/d2_confusion.py",
+        "sha256": "98c3ebeba24f52fa521842e1f3e8ba91f08034e027839610e17fd6601b6bce73"
+      },
+      {
+        "bytes": 1722,
+        "path": "code/d3_analysis.py",
+        "sha256": "53e94484fdc879e7ff92722da28635f7c82b13e4d3eee61c903a3a805a24b088"
+      },
+      {
+        "bytes": 2066,
+        "path": "code/d3_roles.py",
+        "sha256": "37ce4265452de66b9ff5118bbb24e1890c238410e9d33a30b2b511efb9846f23"
+      },
+      {
+        "bytes": 2226,
+        "path": "code/diag_fb_pos.py",
+        "sha256": "c5c55ea37f7eeeadd1be608cb62fd3048b92724c824ccdc24e350784a5845f3a"
+      },
+      {
+        "bytes": 1605,
+        "path": "code/doc_loss.py",
+        "sha256": "a6be1e3dc9d78670cc176adaf81930dca5f8eb2d05e3f522200a3c07da3758c8"
+      },
+      {
+        "bytes": 7808,
+        "path": "code/e10_pairs_stream.py",
+        "sha256": "4bc80a0a1d67d1ad1fbfd24d5fcccbb87fa16ed13c5e1f21ceca4f333c31fd0c"
+      },
+      {
+        "bytes": 8200,
+        "path": "code/e12_profiles.py",
+        "sha256": "47e47c330ab76fea05fa32c81e708949b9935de5e90d67e4ee431f45273f3103"
+      },
+      {
+        "bytes": 3930,
+        "path": "code/e19_decomp.py",
+        "sha256": "3b541ff8ec19cd1fea17a3e5accad4db5d960ee2b21257da8e2fa2fc3d595ab1"
+      },
+      {
+        "bytes": 7188,
+        "path": "code/e1_masked.py",
+        "sha256": "542c93a95a9bb9d55244c07ae00c181a88865f8798502e6a7a83af47d3b82ee9"
+      },
+      {
+        "bytes": 3902,
+        "path": "code/e21_matched.py",
+        "sha256": "33da7308d160d1abca2a7072a566fa89cc6d763088b335345c55076fc22b7913"
+      },
+      {
+        "bytes": 10870,
+        "path": "code/e22_membership.py",
+        "sha256": "42fdd6e6949e2c2becec4234bf268145682f81841f4d16042c70f23d0d1b82b7"
+      },
+      {
+        "bytes": 11894,
+        "path": "code/e23_membership_fb.py",
+        "sha256": "5f09a9251bceaf390aba0706369e1b995e42a30f9f2f1db082201f91f5422769"
+      },
+      {
+        "bytes": 1853,
+        "path": "code/e24_analyze.py",
+        "sha256": "876220f3b15897107ad032bd91d6b90151e0a9362e5c675f0f4c412aaab6f3e4"
+      },
+      {
+        "bytes": 3582,
+        "path": "code/e24_unlearn.py",
+        "sha256": "00ddd809fbb51b572f97d11d1efa043013736d42ce90687066f7987e0f6f1f98"
+      },
+      {
+        "bytes": 1583,
+        "path": "code/e28_selfloss_corr.py",
+        "sha256": "17f710fb2958c6b8b294cd35a8c72b36ccdc7059097778fcd8c313cee23211db"
+      },
+      {
+        "bytes": 1654,
+        "path": "code/e29_analyze.py",
+        "sha256": "d51ab0b6764cf808ce9e98180ada83155aee74010294eef575e1e16aafe6fc9b"
+      },
+      {
+        "bytes": 1572,
+        "path": "code/e29_did.py",
+        "sha256": "dd111ba8bd89a78d45debf3e872489082beaec5dd8507a2c11bf2405f6d2c63f"
+      },
+      {
+        "bytes": 11051,
+        "path": "code/e2_pairs.py",
+        "sha256": "70c29270081f7a1168e541c27d3c6768199da5014901dcea6a0c73a2bd56c986"
+      },
+      {
+        "bytes": 4220,
+        "path": "code/e30_common_metric.py",
+        "sha256": "24c0e3d0f4f9ad27facff5b4ed186966a745e8edd05a3251dd183c276750b3f7"
+      },
+      {
+        "bytes": 2502,
+        "path": "code/e32_composition.py",
+        "sha256": "7b906292ff03e284276b542964c901d224c0734ce9e7aefcfa7c9710974ef5e9"
+      },
+      {
+        "bytes": 2272,
+        "path": "code/e33_pair.py",
+        "sha256": "085bbd8122c14a881b4321c74e55facb2ecba19ef6ccc447e61ea020b7e124e2"
+      },
+      {
+        "bytes": 1140,
+        "path": "code/e34_residual.py",
+        "sha256": "47342051bbde8120ac8fe328ecce8c3fb950178197416e2c200fdeee93e739c5"
+      },
+      {
+        "bytes": 3520,
+        "path": "code/e3_repmatch.py",
+        "sha256": "28e6c282ec650db66a0ad7b73bbf648ab5043fdc8d507f1b6c253fcfa18d7306"
+      },
+      {
+        "bytes": 2754,
+        "path": "code/e46_fb_matched.py",
+        "sha256": "fbf304f6f6879da18a374d20d136634fa441e2c2abf65ac64d515c0135aa7227"
+      },
+      {
+        "bytes": 4367,
+        "path": "code/main_table.py",
+        "sha256": "b5766f0171d05e770b5df779f68221fb570e45dad6248707641de3543ccda26b"
+      },
+      {
+        "bytes": 660,
+        "path": "code/make_init_adapter.py",
+        "sha256": "db7a2cd6179e568f7e24ed80723a1dc09260318b2c2c935e5b20bc84d5212faa"
+      },
+      {
+        "bytes": 1064,
+        "path": "code/make_split.py",
+        "sha256": "b307d75a7b9a43366f8b74170decace41a8885f8d73ce477d74c64d563836672"
+      },
+      {
+        "bytes": 5710,
+        "path": "code/pairs_stream.py",
+        "sha256": "dcc8cde2f7244ba859e23a99c43bef4bc3ee81ae456b3af5d001b96e535a04f1"
+      },
+      {
+        "bytes": 4117,
+        "path": "code/paper2_metrics.py",
+        "sha256": "a8db45be2c44102225e6efe95bb51e97b618089905f6385cc269c13836fb4823"
+      },
+      {
+        "bytes": 1671,
+        "path": "code/query_correct.py",
+        "sha256": "550d8efd2161299b979a43412a62dc6769d0733d6f923b309dc986850bc23f52"
+      },
+      {
+        "bytes": 563,
+        "path": "code/run_e12fb.sh",
+        "sha256": "dc25cd36a9b14c9e1d09daf4185b9e8115513231516c0f0046453510000a62f6"
+      },
+      {
+        "bytes": 523,
+        "path": "code/run_e12rr.sh",
+        "sha256": "93be8691af9e84eac49eba849bdf0a6ba33918f3509c5f170dd154003e7b2b02"
+      },
+      {
+        "bytes": 519,
+        "path": "code/run_e2.sh",
+        "sha256": "13c5e0aaa5d4c6a29742ff382018cde63909466f18aa106da3eeb253ec172077"
+      },
+      {
+        "bytes": 454,
+        "path": "code/run_e22.sh",
+        "sha256": "48980a73a7ab389aa0562b03156a9826a582c44a4b77606750451ec5445221db"
+      },
+      {
+        "bytes": 559,
+        "path": "code/run_e2fb.sh",
+        "sha256": "7822f0bf385fd150d8bcf9a1c45ace2e6195a1a33086943f338bcd6c23553909"
+      },
+      {
+        "bytes": 1712,
+        "path": "code/score_lib.py",
+        "sha256": "7cf662eff766d88cf82f82eef4011c7f63011dd93a0385e2f04743b0513aeae6"
+      },
+      {
+        "bytes": 1765,
+        "path": "code/score_membership.py",
+        "sha256": "bb6d66c619e2ba30bcaea7ea4e0397d13a59eef839a20b5eb3292707e87b5795"
+      },
+      {
+        "bytes": 1616,
+        "path": "code/score_profiles.py",
+        "sha256": "3c74723d5339aa64f2e83c3573806e9121b3834bfd86a1adcf2033e80a82bc83"
+      },
+      {
+        "bytes": 3269,
+        "path": "code/train_rr.py",
+        "sha256": "549fa6c00d4bc9f7d31e143a9e0f2985df2ef0707606172f5dfc7e2f076776bc"
+      },
+      {
+        "bytes": 766,
+        "path": "manifests/fb_fact_split.json",
+        "sha256": "7a2fc98d2c3c823e44bb30f31550880071b423b1bf7d4d3f269bc2746f56d227"
+      },
+      {
+        "bytes": 4716,
+        "path": "manifests/frozen_v1.json",
+        "sha256": "aff6fe224696a8b4d6a871ee2c378a0d3445eef1ff3d3f7c17742d635c655823"
+      },
+      {
+        "bytes": 901,
+        "path": "manifests/rr_fact_split.json",
+        "sha256": "ecbb8659b5e588047f974a4f66c165f5eacdf78259ec43e585905f3ff1ab5717"
+      },
+      {
+        "bytes": 13321,
+        "path": "results/accuracy/fb_queries_correct.json",
+        "sha256": "d388bb0bbe27d107cd443a14bcbaabde87762e3c0004ac0d754d2f4142ad5031"
+      },
+      {
+        "bytes": 409,
+        "path": "results/accuracy/fbdistr_sd1001_summary.json",
+        "sha256": "49e47741ee9fdd61c92719f041f266a063844d65af142078ede42610cf585b3a"
+      },
+      {
+        "bytes": 6060,
+        "path": "results/accuracy/rr_adapterAprime.json",
+        "sha256": "08903704273d1d3d5570513e51f0fad3bb60448f3c744255883f9bc4a5731262"
+      },
+      {
+        "bytes": 6056,
+        "path": "results/accuracy/rr_adapterB.json",
+        "sha256": "608639d103b69a12a775de80dbddbafbd0eb6f8448ae92d1ae1aeaf77a1f063f"
+      },
+      {
+        "bytes": 14422,
+        "path": "results/accuracy/rr_queries_correct.json",
+        "sha256": "2727ac2a1ece537e29654dc83bd7b72016687e7b943342382d042eb95a9f00fd"
+      },
+      {
+        "bytes": 6085,
+        "path": "results/accuracy/rr_sd1001.json",
+        "sha256": "51ece00438cfa95ef6e79cb73f29a21b72c88427ded877cb9a22cef09622163c"
+      },
+      {
+        "bytes": 961,
+        "path": "results/e46_fb_matched.json",
+        "sha256": "2867f663a181fbe96b55c55f71ae6c4fa52ee3a54a3fdcc5307e2c678d9dab56"
+      },
+      {
+        "bytes": 34116,
+        "path": "results/lora_modules.json",
+        "sha256": "849f288c655ac39bdbece51da9f95a5070686742177f0ec104aa2a192f8712e3"
+      },
+      {
+        "bytes": 56085,
+        "path": "results/main_table_sd1001.json",
+        "sha256": "bed08fba54a48dad452e339dcc39111de10d70a3e92b161309dadc7ee59aaf46"
+      },
+      {
+        "bytes": 55621,
+        "path": "results/paper2_metrics.json",
+        "sha256": "f20c34fa40efcfa292006c7e2fee732f3cf8cfe96c6930b54a46e34f6ec0cc0c"
+      },
+      {
+        "bytes": 722555,
+        "path": "scores/fb_frozen_k64.npz",
+        "sha256": "7ead7fff8c58f51025c5417bb066cb6a5906bca4e3320cad9feed8789f18ec29"
+      },
+      {
+        "bytes": 341632,
+        "path": "scores/rr_frozen_k64.npz",
+        "sha256": "d305e181cebdbbae4c44842ffe28036fdc085937b4c597cf956511e011438c6c"
+      },
+      {
+        "bytes": 79804,
+        "path": "supplement/figure-1.png",
+        "sha256": "333a493aded1c16792aeb97da52d5b5643d861c19327208f5db4fd8f619d442b"
+      },
+      {
+        "bytes": 902,
+        "path": "verify.py",
+        "sha256": "40668481d29af5a496a11a80e78df998445b73f09b0c3cead9e73190d627389b"
+      }
+    ],
+    "name": "rule_routing_attribution_2_v4_c70503a4d0d02e7e.zip",
+    "sha256": "c70503a4d0d02e7eef21b6fbd1f2aa0b66e4a0fd0c846e0c003981d81f94772b",
+    "source_url": "https://rstation.ai/api/v1/papers/rule_routing_attribution_2/versions/4/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261122T212421330346Z/rule_routing_attribution_2_v4_c70503a4d0d02e7e.zip"
+  },
+  "tags": [
+    "training data attribution",
+    "catt",
+    "controls",
+    "membership audit",
+    "gradient influence"
+  ],
+  "title": "Decision-restricted, position-resolved gradient kernels on CATT: matched gains in rule-support retrieval, and an audit of what they measure",
+  "version": 4
+}

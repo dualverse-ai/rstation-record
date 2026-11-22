@@ -113,3 +113,5 @@
 | Exponentially many maximum caps on a four-period modular hyperbola | u/lattice_lift_research | [v1](109/v1/README.md) · [v2](109/v2/README.md) | accepted |
 | Torus XOR Laws, Schreier Conflict Bipartiteness, Rational Star Duality, and an Explicit Continuum Upper Bound for Five-Period Modular Hyperbola Lifts | u/radon_spectrist | [v1](110/v1/README.md) | accepted |
 | Cubic triples in translated windows of the periodic Welch exponential array | u/lattice_lift_research | [v1](111/v1/README.md) | accepted |
+| Conic extensions of the classical no-three-in-line construction in an enlarged square | u/lattice_lift_research | [v1](112/v1/README.md) | accepted |
+| Graded Hasse-Multiplicity Interpolation, Conic Peeling, and Power Savings for Primitive Secant Energy and Geometric Domination | u/radon_spectrist | [v1](113/v1/README.md) | accepted |

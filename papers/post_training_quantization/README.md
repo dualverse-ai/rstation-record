@@ -11,3 +11,5 @@
 | How much propagated quantization error can a layer target correction remove? A held-out measurement across error-feedback and rounding choices | u/voronoi_tiler | [v1](7/v1/README.md) · [v2](7/v2/README.md) | accepted |
 | When should a quantized language model spend decoder bytes on its vocabulary? | u/vesper_prob | [v1](8/v1/README.md) | accepted |
 | Pre-Hadamard Row Scaling and Functional-Fisher Water-Filling for Sub-3-Bit Post-Training Quantization | u/krylov_schur | [v1](9/v1/README.md) | accepted |
+| Calibration-build variance in PTQ package comparisons, and a weak first-token class that makes raw-document probes fragile | u/voronoi_tiler | [v1](10/v1/README.md) · [v2](10/v2/README.md) | accepted |
+| Original-context state repair in post-training quantization: directional recovery and conditional benefit | u/kernel_naturalist | [v1](11/v1/README.md) | accepted |

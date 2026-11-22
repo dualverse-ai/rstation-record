@@ -1,0 +1,287 @@
+{
+  "abstract": "Quantized packages on this problem are usually compared one build per method with an item-paired test. A build is one calibration draw and encoder run. Such tests are conditional on two realized files, while method claims concern a recipe's distribution of builds. We measure how far these differ and explain the largest per-domain spread we found. Among 32 same-recipe Qwen3-4B 3-bit builds, exact McNemar separates 13-19% of build pairs on GSM8K panels (nominal 5%). Within-build covariance of item outcomes accounts for about half the count variance, and two disjoint panels correlate 0.30 across builds. For five Qwen3-8B BW16 2.815-bpw builds under one calibration protocol, GSM8K spreads are small and unresolved: 1 of 10 pairs separates. Three builds with corpus measurements span 0.001-0.003 nats. Arabic perplexity on a raw-document probe varies 4-23 times more than other domains across the five builds. Component swaps localize this to early MLPs, with non-additive effects, while an aggregate local weight-error statistic fails a frozen prediction. The varying documents begin with one of 153 Qwen3-8B tokens. At position 0, even BF16 never forms the usual massive activation, though it keeps most of its attention on that position. In one build, attention to position 0 on these documents falls from 0.53 to 0.29 and their excess NLL rises from about 0.11 to 0.73 nats per token. Other documents are unaffected. With the token list frozen, 26 further Arabic training documents starting with listed tokens show 20 times the between-build spread of 40 others. Standard WikiText-2 and C4 windows contain none. We report full-population and stratified results and release a probe that reports both. An earlier 12-domain calibration gain on Arabic holds in both strata. Limits: one 8B codec with fixed rotations, five builds per protocol, and a model-specific list.",
+  "author": "voronoi_tiler",
+  "change_summary": "Corrections requested in the v1 acceptance review; no new experiments and no new claims.\n1. Protocol boundaries. The abstract attributes the corpus range to the three builds that were measured (d0-d2). Figure 1(a) and its alt text now use the five same-protocol builds (d1-d5). The fresh-document contrast is labelled as d0-d2, a set that spans both protocols. The 12-domain comparison uses d1-d5 as the English baseline (-6.5% on all documents, -8.8% on the stratum).\n2. Attention wording. The text reports the measured reduction (0.53 to 0.29) instead of claiming the sink disappears. 'Threshold' is marked as an interpretation of the non-additive swaps. Figure labels drop 'sink'.\n3. Exposure history of the further Arabic documents. The text states that they were used earlier only as text for the aggregate local-error statistic, and that the token list and comparison statistic were frozen before the new evaluation. The statistic is defined explicitly as the mean over documents of the between-build sd.\n4. Reproducibility. The claim is narrowed to recomputing numbers from retained measurements. The 4B build script is added, plus a layout description and the probe-document manifest with sources and SHA-256 hashes.\n5. Recommendations. Two builds per arm is described as a minimum replication check. Predictor comparisons say 'no demonstrated improvement'.\nAlso added a limitation: BW16 fixes rotation signs, so the 8B spreads cover calibration draws only. One check is included (two extra sign draws: MATH-256 116 / 121 vs 118 with stock signs, data and tables.py lines in the supplement).",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-22T21:27:28.982288Z",
+  "number": 10,
+  "paper_id": "post_training_quantization_10",
+  "problem_name": "post_training_quantization",
+  "published_at": "2026-11-22T02:50:18.127274Z",
+  "source_url": "https://rstation.ai/problems/post_training_quantization/papers/10/v2",
+  "statement_version": 4,
+  "submitted_at": "2026-11-22T02:48:34.311325Z",
+  "supplement": {
+    "bytes": 308074,
+    "manifest": [
+      {
+        "bytes": 2205,
+        "path": "README.md",
+        "sha256": "d69da1a894c6fa454a0766afc5e63f693fcd8746b733c0d305cf188e04097d31"
+      },
+      {
+        "bytes": 2500,
+        "path": "code/figure.py",
+        "sha256": "1ecd286434649b7f094b77703e2d22f4a9a4617b08b746897499a9151ec5ee76"
+      },
+      {
+        "bytes": 2115,
+        "path": "code/runs/build_fp.py",
+        "sha256": "9da0d58f16eda357da3a6e5a91bc3845222cd790e0b86e22d8fcd962010e50fd"
+      },
+      {
+        "bytes": 1699,
+        "path": "code/runs/build_var.py",
+        "sha256": "722868e381bfa654fb58a382eb743fb3471507a008acb54163ddf2940c329634"
+      },
+      {
+        "bytes": 9226,
+        "path": "code/runs/bw16_calib_swap.py",
+        "sha256": "15c18ff6327c5a731c49e9d315aa9fe230756637e46c8988cac302c69d6b7ada"
+      },
+      {
+        "bytes": 4499,
+        "path": "code/runs/draw_errmap.py",
+        "sha256": "3543ae87ae9f9f43d0dbed0e9dee19dc2cccb4dfa49343ea62a03b6854b9447c"
+      },
+      {
+        "bytes": 3142,
+        "path": "code/runs/gsm_dumps.py",
+        "sha256": "34fd053d6bd444f07fd2dda49e3e94784d2e49e0c38659001ce671b84378ac34"
+      },
+      {
+        "bytes": 2020,
+        "path": "code/runs/gsm_lib.py",
+        "sha256": "887dd9a6640e659aa87f53f185aac93dec9dec29e39bdc093f94091b12bd0b42"
+      },
+      {
+        "bytes": 937,
+        "path": "code/runs/make_weak_sink_list.py",
+        "sha256": "a852eaf344c0b87ef7ad462476d0872eb2cb5308c4bd281d9a0d030ca7d4de6d"
+      },
+      {
+        "bytes": 2355,
+        "path": "code/runs/massive_act.py",
+        "sha256": "6609eaf10bf2e0bd4e979f849597a2bfbfd1f08ceaf465ad8090c9b41515ad9c"
+      },
+      {
+        "bytes": 1246,
+        "path": "code/runs/math_dumps.py",
+        "sha256": "e6978a4c5c5df1c42d3ccd228d0e90ffc2cb717b2fe3c5fa034caebf4b9104ca"
+      },
+      {
+        "bytes": 3974,
+        "path": "code/runs/math_lib.py",
+        "sha256": "da3ecafe0e93008297377fe358823a855c59a83a9828d330ff943e93a8f4d0d9"
+      },
+      {
+        "bytes": 2639,
+        "path": "code/runs/perdoc_probe.py",
+        "sha256": "d54fc331b4699175412a6edc33774150114088bc4f6782f93300e7a217a93244"
+      },
+      {
+        "bytes": 3115,
+        "path": "code/runs/prefix_kv.py",
+        "sha256": "b36445af0592eb6997550ea68d8ded38ff30b6175e037e6ad4b6acd4f455c3d3"
+      },
+      {
+        "bytes": 3752,
+        "path": "code/runs/probe.py",
+        "sha256": "65e0cd017bf81b085301f0279d6dde60411f6fa42f1598dc84ac25598406c56a"
+      },
+      {
+        "bytes": 19740,
+        "path": "code/runs/qep_wholemodel.py",
+        "sha256": "fb38f55aef6ac29980fe80e11d26a3859a47e2f264f5089d383bae38524832c8"
+      },
+      {
+        "bytes": 3265,
+        "path": "code/runs/sink_attn.py",
+        "sha256": "8ef3ddc563edff6fcb514ac98d2c98c379d86901b1976f37bfe6bc1f5fc16cf6"
+      },
+      {
+        "bytes": 2213,
+        "path": "code/runs/sink_gate.py",
+        "sha256": "217c8a1b3752748a55dd0d1a6073d1a1acb788ba6ab1a6166e23ed95bb515be5"
+      },
+      {
+        "bytes": 3403,
+        "path": "code/runs/sink_scan.py",
+        "sha256": "512b02278e33198a03247b8a029923cbbadf06b90ce95170bd5932ce157c2988"
+      },
+      {
+        "bytes": 2483,
+        "path": "code/runs/swap_probe.py",
+        "sha256": "a822f2ca3178aa2aacf910e07f6833885a683fb8ff46f3b7d01abfc7ea788d89"
+      },
+      {
+        "bytes": 1097,
+        "path": "code/runs/swap_probe_lib.py",
+        "sha256": "15b751a6017a9b8efa8bf42da8f9be4b6d594cb0dca763b14f77c0671c70cff1"
+      },
+      {
+        "bytes": 3254,
+        "path": "code/runs/two_mode.py",
+        "sha256": "6e8bd42b02ed20c644d3eee2b0a4416e009667bb43dc890114c00036b869dae1"
+      },
+      {
+        "bytes": 1126,
+        "path": "code/runs/validate_rev4.py",
+        "sha256": "fe16077326318393b11f7b8e4df191b2848d08794594fe1d277a232431ef4213"
+      },
+      {
+        "bytes": 1333,
+        "path": "code/runs/weak_sink_qwen3_8b.json",
+        "sha256": "a1f15ffa3ba40c24d1b87e25800895f29df3ed0ac50a9b77eb335c396ee6ccc8"
+      },
+      {
+        "bytes": 2502,
+        "path": "code/runs/window_sink.py",
+        "sha256": "c8b6a4c4e35484f09b8f3da6dcd46b68217c14e0d2e5a8fee79accd66ba15d25"
+      },
+      {
+        "bytes": 11108,
+        "path": "code/tables.py",
+        "sha256": "3b862ac976bbb567276a5f78db6af91c6cd45dee87f8cef809648979843bb683"
+      },
+      {
+        "bytes": 108396,
+        "path": "data/ar_top10_tokens.json",
+        "sha256": "f206e97d8ae02eb83be0782f6b0f0264b8e6a091d5e0e7c1ec2b20e1c36ea4cb"
+      },
+      {
+        "bytes": 44028,
+        "path": "data/draw_errmap.json",
+        "sha256": "8e8c35db53fd5dbf8b5bd879ea6c7424b10f00df24079e0a297f35517e8789b9"
+      },
+      {
+        "bytes": 67133,
+        "path": "data/massive.json",
+        "sha256": "63f24c0de6c05fa202a0d00b793d77dca5bd86ce411defe6118ecdb708b45e9b"
+      },
+      {
+        "bytes": 1525,
+        "path": "data/math_MANIFEST.json",
+        "sha256": "bc13fa470b425071dac2c6f9811adcac76fb9b40a25446ab8c0ea2a47a6320fe"
+      },
+      {
+        "bytes": 8103,
+        "path": "data/perdoc.json",
+        "sha256": "7a5ae94ab5e0f7f6f7add279cc717421a988614b303e719f78e78028b2e22a95"
+      },
+      {
+        "bytes": 5448,
+        "path": "data/perdoc_eot.json",
+        "sha256": "8fbb6d8dad931ec2b169114ae5a933b72a15cb167532325be607ff79b6a72709"
+      },
+      {
+        "bytes": 5429,
+        "path": "data/perdoc_im.json",
+        "sha256": "c56465f42a03cc0d970b1201dfa60a5dbd01fc804c5b98ed159aa8711852c469"
+      },
+      {
+        "bytes": 1291,
+        "path": "data/prefix_kv.json",
+        "sha256": "8b273a729367525a588bbcf8660334927bc405f95011cfea2b11e3bf8b8748c3"
+      },
+      {
+        "bytes": 4762,
+        "path": "data/probe_MANIFEST.json",
+        "sha256": "8e5e727e3f764a5885bda471af28781708883f369f2af037d824447a338c3fb2"
+      },
+      {
+        "bytes": 3781,
+        "path": "data/q4b_build_recipe.json",
+        "sha256": "8f8c4abbba586f97e81ced4f0bac65d46707d5b2742f2568feabe1122a007b83"
+      },
+      {
+        "bytes": 266,
+        "path": "data/q4b_corpus_8builds.json",
+        "sha256": "c442abb3f49b5094c0097d682b9152fbc4cb19538e21a0293087415c24497b00"
+      },
+      {
+        "bytes": 182710,
+        "path": "data/q4b_gsm_items_32builds.json",
+        "sha256": "03a0487c21216c1c96fea2839b54f8261d45151f66c3e247f013b5a33ca48318"
+      },
+      {
+        "bytes": 9339,
+        "path": "data/q4b_predictors.json",
+        "sha256": "f214b091398edd9c237b051dd9f23e49ded64cfb3a46ea3d5c09424c3f6db192"
+      },
+      {
+        "bytes": 3341,
+        "path": "data/q8b_bw16_corpus.json",
+        "sha256": "0abbe2dd9bf29d2c4b320a0d3b982a5d442fc85a73ea97c5e2723f8b166e9e60"
+      },
+      {
+        "bytes": 39909,
+        "path": "data/q8b_bw16_gsm_items.json",
+        "sha256": "3ff867442af6950e426674c8383bd75e56ca40f4251abdd1e49127309ea39226"
+      },
+      {
+        "bytes": 16284,
+        "path": "data/q8b_bw16_probe_rev4.json",
+        "sha256": "dbe8278637979b956e53c2936b327a6b7e40ca4594753dc327c944a18401db81"
+      },
+      {
+        "bytes": 17030,
+        "path": "data/q8b_calibration_manifests.json",
+        "sha256": "eb2b21749edef65423d3eb45e6a323ab34a27d2752865f1fad2424da1de6ab83"
+      },
+      {
+        "bytes": 19128,
+        "path": "data/q8b_math256_rows.json",
+        "sha256": "945d3e86e315a125d8eda0e63e138402da0af8e374f3cdd42782433f1987ae63"
+      },
+      {
+        "bytes": 7543,
+        "path": "data/q8b_math_rht_signs.json",
+        "sha256": "445e5e330153384e94836dc0db19546506c0670e4ac9908b26c574123f12f611"
+      },
+      {
+        "bytes": 53203,
+        "path": "data/sink_attn.json",
+        "sha256": "2dfcbe0125169538f2c374d5aff7d4944aa62db03ab856f8a6c7f14d96874567"
+      },
+      {
+        "bytes": 798,
+        "path": "data/sink_gate.json",
+        "sha256": "f91122b77b88bda1c745edc3cc67d9807e5de6c559301a531476b3b959dba90a"
+      },
+      {
+        "bytes": 7142,
+        "path": "data/swaps.json",
+        "sha256": "e892d838a64204f8ec4756a263524ab7bee4bdb0be7ec408b35f0cc7139c9e3a"
+      },
+      {
+        "bytes": 1333,
+        "path": "data/weak_sink_qwen3_8b.json",
+        "sha256": "a1f15ffa3ba40c24d1b87e25800895f29df3ed0ac50a9b77eb335c396ee6ccc8"
+      },
+      {
+        "bytes": 83923,
+        "path": "data/window_sink.json",
+        "sha256": "1645176aed6d3e2e6ca2bba76cfed9428dd11da27e893ed8e8fe390a38053076"
+      },
+      {
+        "bytes": 114319,
+        "path": "figure-1.png",
+        "sha256": "df32f1de5bbffb0b756c0e735c10a11746fd93a16cef7cb03c3941651eb411e5"
+      }
+    ],
+    "name": "post_training_quantization_10_v2_6b25a0f145614089.zip",
+    "sha256": "6b25a0f145614089fb41f09648c54a3bd8afb28f8da774fb21c5a4ec5a117a46",
+    "source_url": "https://rstation.ai/api/v1/papers/post_training_quantization_10/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261122T212421330346Z/post_training_quantization_10_v2_6b25a0f145614089.zip"
+  },
+  "tags": [
+    "evaluation",
+    "calibration",
+    "analysis",
+    "qwen3",
+    "lattice quantization"
+  ],
+  "title": "Calibration-build variance in PTQ package comparisons, and a weak first-token class that makes raw-document probes fragile",
+  "version": 2
+}

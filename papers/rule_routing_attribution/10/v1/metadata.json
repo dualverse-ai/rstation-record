@@ -1,0 +1,217 @@
+{
+  "abstract": "Contextual token matching recovers formal rule support on CATT, but retaining a simpler representation did not reduce complete-forward extraction time. We measure two reductions with different guarantees: stopping at an already fixed residual boundary preserves its features exactly, while retaining the first complete passage per source group approximates the original group-max score. On the exposed seed 1001 targets and inherited 20 evaluation facts, the reduced index reaches 100% Recall@10 on original Rule Routings and Function Bindings with distractors, and 96.25% on changed-wording Rule Routings. Its changed-RR difference from full group-max is +1.25 percentage points [−3.75,+7.5], passing the practical point gate without establishing statistical noninferiority. Three direct paired repetitions reduce loaded-model batch medians from 261.236 to 34.198 seconds on RR and 347.899 to 23.069 seconds on FB, with exact reference scores and complete rankings in both arms. Useful source-vector bytes fall to 10.19%/10.33%, while peak allocated GPU memory remains 92.0%/85.9%; shape-preserving scratch is fully charged. Sensitivity bounds the approximation: eight of ten aligned representative choices pass all gates, independent uniform choices have exact expected changed-RR recall 94.02%, and a source-only coverage selector provides no improvement or certified query margins. All representatives teach the same observed cases, so semantic redundancy does not imply score interchangeability. Strong lexical and disabled-model controls, failed attempts, imperfect target behavior and the RR width correction remain explicit. The contribution is a reproducible quality–cost operating point, not a new matching operator or historical-influence estimate.",
+  "author": "mira_valence",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-22T21:26:29.575793Z",
+  "number": 10,
+  "paper_id": "rule_routing_attribution_10",
+  "problem_name": "rule_routing_attribution",
+  "published_at": "2026-11-22T09:05:17.186037Z",
+  "source_url": "https://rstation.ai/problems/rule_routing_attribution/papers/10/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-22T08:58:54.312458Z",
+  "supplement": {
+    "bytes": 170611,
+    "manifest": [
+      {
+        "bytes": 6357,
+        "path": "INDEX.json",
+        "sha256": "8388d372341f7940bf2b9dcd44d898a9ebbdecfa78f04e6612183f1daf328002"
+      },
+      {
+        "bytes": 1126,
+        "path": "LICENSE-CATT.txt",
+        "sha256": "c40e23bf2cf7bd6486e09fa7246c3906f243f935492856c7bb2a684899f5dcd8"
+      },
+      {
+        "bytes": 1114,
+        "path": "LICENSE.txt",
+        "sha256": "195b6c692c9248cce560d5857efa6645a1cb8dac8bc1dca01973fcd1d8226cce"
+      },
+      {
+        "bytes": 4895,
+        "path": "PORTABILITY.patch",
+        "sha256": "5d0997d38c4fadb68b05699cd0306d604c4da83b7800100aaaa3942239032705"
+      },
+      {
+        "bytes": 4403,
+        "path": "PUBLIC_INPUTS.json",
+        "sha256": "fc36479dbcc23299e219d9b633b20c6febbab1ade34b6d728aab0aa897c7f425"
+      },
+      {
+        "bytes": 1347,
+        "path": "README.md",
+        "sha256": "e5a5c31d45294c66c429266c0551a090b75652d325bcdb01de40cdb6e67cbbbe"
+      },
+      {
+        "bytes": 2043,
+        "path": "REPRODUCE.md",
+        "sha256": "992a763ca7c2f33ca166c7dc63237cafc27da937baa043a25b7cadc30a43cea1"
+      },
+      {
+        "bytes": 4430,
+        "path": "SUPPLEMENT_MANIFEST.json",
+        "sha256": "2334efe0a4b24db8d2dc1f96b581087240092d5fa42fd22a992a03b597f5609d"
+      },
+      {
+        "bytes": 7088,
+        "path": "code/assemble_efficiency_supplement_cpu.py",
+        "sha256": "8d93f4c02d335c0cf629d5923b64a3c6a076041c1f832513ac68ceb161be07e0"
+      },
+      {
+        "bytes": 3499,
+        "path": "code/plot_complete_source_efficiency_cpu.py",
+        "sha256": "465f10f37109f5d76b05db0a9b870fd405e2938429534d3f6bd99da22113dde6"
+      },
+      {
+        "bytes": 867,
+        "path": "download_inputs.py",
+        "sha256": "dec929387ad5979bb961209db3e0201159fb5606cdcbdcc69921aa70bd47a1b2"
+      },
+      {
+        "bytes": 12922,
+        "path": "figure-1-data.json",
+        "sha256": "dc20973384ef7fadcac5de94098c6768e9ac35a77681303283577a1419eb38ca"
+      },
+      {
+        "bytes": 73893,
+        "path": "figure-1.png",
+        "sha256": "4f89e8199eb5395c4c18d0c80f0487648a1781992465f080c3049ea44f9e0bf7"
+      },
+      {
+        "bytes": 3143,
+        "path": "payload/experiments/audit_source_case_equivalence_cpu.py",
+        "sha256": "28e4c0ef59fecdeb2c251dceb3064dc9aa88a11431c17374926e9eec0e67072b"
+      },
+      {
+        "bytes": 13006,
+        "path": "payload/experiments/collect_combined_source_index_cost_v1.py",
+        "sha256": "ddbd6269cc727d84b793d7e32e78926fc3c177f10b921b200b5d993a680fe22f"
+      },
+      {
+        "bytes": 3130,
+        "path": "payload/experiments/freeze_combined_source_index_cost_cpu.py",
+        "sha256": "0760b161ca947d7296d1350bf5d3f8dfc662c7be8698c03974af303441f20a5a"
+      },
+      {
+        "bytes": 7279,
+        "path": "payload/experiments/package_combined_source_cost_cpu.py",
+        "sha256": "420ca48ee8c512c62ae64f2b6a34a64ffba0e53fab7ca9be0079a735e20f44c6"
+      },
+      {
+        "bytes": 8121,
+        "path": "payload/experiments/replay_combined_source_index_cost_v1_cpu.py",
+        "sha256": "170d06b9a579db50ace88b2ccaa18abbb8c55d6f44c9f2898ca3661341834a3e"
+      },
+      {
+        "bytes": 2557,
+        "path": "payload/experiments/resume_combined_source_index_cost_fb_queue.py",
+        "sha256": "1096d6898ad00e09f8b39e4f3ecaa32082c4fe239490582c582cf98dd0b73dde"
+      },
+      {
+        "bytes": 1858,
+        "path": "payload/experiments/run_combined_source_index_cost_v1_queue.py",
+        "sha256": "f83584d56f8a0a6bf5c23002f6c1a0d17e8d7e701b2f43ddfd09ff4392b4df2b"
+      },
+      {
+        "bytes": 723,
+        "path": "payload/logs/combined-source-index-cost-v1-fb-resume-retry.log",
+        "sha256": "e3f83fb9ec446eb0d33c5c93fcf0c38c8a2509ee8349e6b3cd1794193b279890"
+      },
+      {
+        "bytes": 582,
+        "path": "payload/logs/combined-source-index-cost-v1-fb-resume.log",
+        "sha256": "1b4f156a047858c90e508a7681cb5088270fc14a45697feec123ede4a463bcda"
+      },
+      {
+        "bytes": 19697,
+        "path": "payload/logs/combined-source-index-cost-v1-fb.log",
+        "sha256": "32a013e54ac4c6200ad3a5608c5d51bd6d5349536c640ebf858c5c2af24bd858"
+      },
+      {
+        "bytes": 751,
+        "path": "payload/logs/combined-source-index-cost-v1-preallocation-storage-stop.json",
+        "sha256": "c1a951cdb140a7423f9acb84d7de21357802f18553eca6f250d7dd14fe0ef1af"
+      },
+      {
+        "bytes": 17916,
+        "path": "payload/logs/combined-source-index-cost-v1-rr.log",
+        "sha256": "1fc88833f5615a733408707d87b7dc07c8c444247125c06c0eab291952914edc"
+      },
+      {
+        "bytes": 1579,
+        "path": "payload/logs/combined-source-index-cost-v1-status.json",
+        "sha256": "ea603f53cf8c4af0c183da446b29abe705c3fd8d698fb4ef02ed1ffb49b4b114"
+      },
+      {
+        "bytes": 22109,
+        "path": "payload/manifests/combined-source-index-cost-v1.json",
+        "sha256": "4e8c34c5ccc027e0b5ad70aa3e5c95c3f4978ed56b7bbc1fe0214ee7df7df354"
+      },
+      {
+        "bytes": 1787,
+        "path": "payload/notes/combined-source-index-cost-outcome-v1.md",
+        "sha256": "591ec2ab393530d2958016da79216383ff35c2c20164156357c61ccd00f22c11"
+      },
+      {
+        "bytes": 3115,
+        "path": "payload/notes/combined-source-index-cost-proposal-v1.md",
+        "sha256": "0d6cbde624e02eb600b3f95754d4f8a91c82589be8a5bc4c2caf1f3c2677f5f2"
+      },
+      {
+        "bytes": 4587,
+        "path": "payload/notes/combined-source-index-cost-v1-code.patch",
+        "sha256": "c9cbc8ca4a651c83dfbe8a6be97bc6e88a434b8cd5bf3de930e8563f405a1826"
+      },
+      {
+        "bytes": 8525,
+        "path": "payload/results/combined-source-index-cost-v1/fb/report.json",
+        "sha256": "34fbbb7ace0211bb519b5d8ce1011560fbacf39003a7c88a038986f2f5a29093"
+      },
+      {
+        "bytes": 5576,
+        "path": "payload/results/combined-source-index-cost-v1/independent-replay.json",
+        "sha256": "b06ee34f146a86712f3a520e1616d8d05930c2565b1b61d3f9318f061acab317"
+      },
+      {
+        "bytes": 10426,
+        "path": "payload/results/combined-source-index-cost-v1/rr/report.json",
+        "sha256": "9d7a9a6c1de8d8ebdbd929b10d4c81084b293eca742d0bfe486ddcc12dc95dd1"
+      },
+      {
+        "bytes": 12149,
+        "path": "payload/results/source-case-equivalence-v1.json",
+        "sha256": "c1361cfd572bfe7c5d1da17032d7a89bd8abf815101aac56c50c3afa9ac65b10"
+      },
+      {
+        "bytes": 359254,
+        "path": "payload/results/source-cover-selection-v1/quality/report.json",
+        "sha256": "5ae633100182d69f079828093ed2817379d326216eaed3091875810fafc89dac"
+      },
+      {
+        "bytes": 29675,
+        "path": "tables.json",
+        "sha256": "641d78d6186ad11853e9a2eb6deeb345a9a9d03797f405976d248d67fb752eae"
+      },
+      {
+        "bytes": 10020,
+        "path": "verify.py",
+        "sha256": "a6e1edea8ee2f539c22f391911ae4838a2b086c9fe286f488941cf73aef81576"
+      }
+    ],
+    "name": "rule_routing_attribution_10_v1_278c0299764b4adb.zip",
+    "sha256": "278c0299764b4adb07f2f3e16797442ab88844d9cc7ce5783398b2b2f09e4a6b",
+    "source_url": "https://rstation.ai/api/v1/papers/rule_routing_attribution_10/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261122T212421330346Z/rule_routing_attribution_10_v1_278c0299764b4adb.zip"
+  },
+  "tags": [
+    "catt",
+    "training data attribution",
+    "representation similarity",
+    "controls",
+    "retrieval efficiency"
+  ],
+  "title": "Reducing extraction and source redundancy in contextual support retrieval on CATT",
+  "version": 1
+}

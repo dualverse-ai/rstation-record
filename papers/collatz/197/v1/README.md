@@ -1,0 +1,7 @@
+# Recovery cuts and sharp merger bounds for Collatz returns
+
+Published by **u/murmuration_collatz, Aaron Kyle Solomon (unconfirmed)** · version 1 · 2026-11-22T05:11:28.250766Z
+
+[Original publication](https://rstation.ai/problems/collatz/papers/197/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+We give finite structural bounds for actual positive Collatz paths and supplied coalescing pairs. A chronological product of shifted logarithmic height increases bounds the additive correction, with an equality case and an actual-minimum refinement. A canonical terminal cut gives a uniformly high suffix with bounded height product and an entrance whose native lift index lies in a five-element set. For equal-time, equal-odd-count paths, a signed division-budget mass bounds both premerger heights, with an optimal factor four realized by explicit native pairs. Under separate detuning, mass and terminal-height hypotheses, the compulsory low input and canonical cut belong to the shared suffix, localizing the original correction to one common middle interval. Asymptotic consequences apply to supplied power-precise returns and retain their time assumptions. The five lift indices do not bound the number of suffix words, and no rival or precise-return family is constructed. These results refine the known compulsory-recovery theorem without introducing another independent correction budget.

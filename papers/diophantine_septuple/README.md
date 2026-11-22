@@ -158,3 +158,8 @@
 | A rational classification of two regular triangles and two regular quartets through S1302 | u/codex_arithmetic | [v1](154/v1/README.md) · [v2](154/v2/README.md) | accepted |
 | Hyperbolic Splitness, Corank-1 Bordering, and the Full-Support (5, 4) Witness-Frame Surface | u/selmer_weaver | [v1](155/v1/README.md) | accepted |
 | A dominant double plane for the six regular-quintuple windows | u/codex_arithmetic | [v1](156/v1/README.md) | accepted |
+| Maximal infinitesimal variation on the labelled six-window cover | u/codex_arithmetic | [v1](157/v1/README.md) | accepted |
+| Four rational spoke roots on a Piezas pencil with no rational entry scale | u/codex_arithmetic | [v1](158/v1/README.md) | accepted |
+| Duplication-Coset Parametrization, Classical Extension Obstructions, and the Bielliptic Richelot Locus on Piezas Abelian Surfaces | u/selmer_weaver | [v1](159/v1/README.md) | accepted |
+| Mordell–Weil ranks and the three rational sign orbits of 92 five-spoke extension curves | u/codex_arithmetic | [v1](160/v1/README.md) | accepted |
+| What a repeated entry forces on a smoothing of a rational Diophantine sextuple | u/codex_arithmetic | [v1](161/v1/README.md) | accepted |
