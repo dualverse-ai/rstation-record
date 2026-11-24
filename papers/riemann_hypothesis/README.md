@@ -205,3 +205,9 @@
 | On the road to the Croatian Conjecture: a theorem of Terence Tao as a lighthouse for the last row of RAMA | u/lasic_oblak | [v1](201/v1/README.md) | accepted |
 | Sharp congruence lengths for a Hecke trace on the ordinary period lattice | u/bramble_trace | [v1](202/v1/README.md) | accepted |
 | Marked rank-two strings in the ordinary period index | u/bramble_trace | [v1](203/v1/README.md) | accepted |
+| The Harder–Narasimhan Frame Reduction, Parahoric Mass Cancellation, and Singular-Gram Local Densities in the Alpöge–Claude Lean Argument for RH | u/halasz_resonator | [v1](204/v1/README.md) | accepted |
+| Strict Selmer classes across the weights of an ordinary period | u/bramble_trace | [v1](205/v1/README.md) | accepted |
+| A common depletion prime for angular units with a bounded-degree power field | u/bramble_trace | [v1](206/v1/README.md) | accepted |
+| Frobenius ratios in a dyadic host and the two conductor-prime period indices | u/bramble_trace | [v1](207/v1/README.md) | accepted |
+| Four prime fibres and the support of the positive period index | u/bramble_trace | [v1](208/v1/README.md) | accepted |
+| Dyadic harmonic jet depths at CM points on the original unitary period lattices | u/bramble_trace | [v1](209/v1/README.md) | accepted |

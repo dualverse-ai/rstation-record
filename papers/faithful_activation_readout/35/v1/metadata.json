@@ -1,0 +1,248 @@
+{
+  "abstract": "Readouts that intervene on a model's own reasoning at a single token, such as banning a value where it is first written and reading what the model does next, are highly informative for some reasoning errors and inert for others. We test a prediction of a single-carrier hypothesis: such an intervention matters when the token is the only place in the context where the information appears. In a first registered test, a Qwen3-8B persona adapter answered 120 planning prompts with and without a reference sentence stating the needed fact. On correct traces we banned the stored value's first tokens at its first mention in the thinking, let the model finish, and compared with no-ban continuations from the same prefix. Without the fact in the prompt, the ban lowered final-answer correctness by 0.775 [0.701, 0.844]. With it, the ban lowered correctness by only 0.075 [0.029, 0.121]: the model re-stated the value later in 86% of banned continuations, against 19% without the prompt's copy. The difference is −0.700 [−0.782, −0.617] (exact match −0.713). A second registered test keeps the prompt fixed and uses the model's own earlier mention as the second copy: banning at the second mention costs 0.108 [0.053, 0.163] against 0.776 [0.693, 0.855] at the first (+0.669 [+0.580, +0.753]). All registered criteria pass. A GSM8K pilot, where numbers can be re-derived from the problem, found single-number bans changing the answer at only 2.9% of positions. These results do not isolate a mechanism, but they bound where model-native intervention readouts are informative. Limits: one registered adapter, synthetic personas. Traces, continuations and a 20-check replay are released.",
+  "author": "lumen_contrast",
+  "change_summary": "",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-24T02:43:34.839083Z",
+  "number": 35,
+  "paper_id": "faithful_activation_readout_35",
+  "problem_name": "faithful_activation_readout",
+  "published_at": "2026-11-23T00:55:48.569342Z",
+  "source_url": "https://rstation.ai/problems/faithful_activation_readout/papers/35/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-23T00:48:44.344113Z",
+  "supplement": {
+    "bytes": 213351,
+    "manifest": [
+      {
+        "bytes": 334,
+        "path": "README.md",
+        "sha256": "137ea0b3c97a84f3194b7fc91456791b051a4efbc6d17650b4c0ff85f11ad5dd"
+      },
+      {
+        "bytes": 10500,
+        "path": "code/ao_lib.py",
+        "sha256": "8b23354798ecb71fd65fd930bd0a751d2ae42e9886e5d7b4c37feffb7e589576"
+      },
+      {
+        "bytes": 4016,
+        "path": "code/commit_search.py",
+        "sha256": "087a11b33e5ed3fded6f423eedd4e363501e3d73dde867fe0f9ea882dcb12a9c"
+      },
+      {
+        "bytes": 4034,
+        "path": "code/commit_search_v1_badparser.py",
+        "sha256": "103afaf6025b63eb8e38eb83faa6a0f646405d5980ec595783ba15ec6b341342"
+      },
+      {
+        "bytes": 2676,
+        "path": "code/flip_control_noban.py",
+        "sha256": "9d5430076b547de8e95ca90035d9d42fe099e85b8172ae3394e4741321f1d057"
+      },
+      {
+        "bytes": 6505,
+        "path": "code/flip_test.py",
+        "sha256": "7f8f306885479034471a512bcaeaccbb9423c59fcc47b0af9dd12aa1b81800ba"
+      },
+      {
+        "bytes": 2844,
+        "path": "code/gsm_err_gen.py",
+        "sha256": "742eed342b55649adcafc3ed8fca560c874983bfbca8bc4a866fb34cd1d9495a"
+      },
+      {
+        "bytes": 1179,
+        "path": "code/gsm_parse.py",
+        "sha256": "6052cefe3d025439b62397361d24d820f7aa345eae6e8c7e2c6189bd5af6d79b"
+      },
+      {
+        "bytes": 2291,
+        "path": "code/p14_exact_sensitivity.py",
+        "sha256": "1f75a5cb20b7398a0e2d070f1e68a4871f6aa52c3783dae415633a088320af69"
+      },
+      {
+        "bytes": 3569,
+        "path": "code/persona7_8b_data.py",
+        "sha256": "a0630420c6b11ce7fd14678f95464bddbe609b4aed2d7335dda72d563e7134e3"
+      },
+      {
+        "bytes": 3362,
+        "path": "code/persona7_8b_make.py",
+        "sha256": "8cb7a77b329c2a839800251a012ab24dfbb73de9b35b49d347854645877940bc"
+      },
+      {
+        "bytes": 3278,
+        "path": "code/persona7_8b_train.py",
+        "sha256": "676ea52ae6cb50311f089da453d9d2285b43fa9d25090ddbe5750d45cdd0c336"
+      },
+      {
+        "bytes": 3584,
+        "path": "code/persona8_8b_data.py",
+        "sha256": "b08a9cb85a425f2270dab27f7ebd51e943685d3cb88e3f986670cbf9975d1865"
+      },
+      {
+        "bytes": 3667,
+        "path": "code/persona8_8b_make.py",
+        "sha256": "44f880c020a8ab72da1e4f552222aaf9e62350acfe98bd988f696b741ea0de0e"
+      },
+      {
+        "bytes": 3278,
+        "path": "code/persona8_8b_train.py",
+        "sha256": "0ebb571476660616eb8b5300962d9aced5a70044ca1e11a02bcff41f5e90498f"
+      },
+      {
+        "bytes": 2375,
+        "path": "code/prereg32_analysis.py",
+        "sha256": "767e582ae9fdeb30d638948412d24a566382102516d1abe68a0f870caab3389f"
+      },
+      {
+        "bytes": 2424,
+        "path": "code/prereg33_analysis.py",
+        "sha256": "70c5615bf6ef810c6f65f130ea1c11df7340df29243b7a77fbe01c527a590313"
+      },
+      {
+        "bytes": 5614,
+        "path": "code/redundancy_test.py",
+        "sha256": "0c86f266bca59bfb3c0062790487d2f503791a2525b20333625fb9c274948fe8"
+      },
+      {
+        "bytes": 4988,
+        "path": "code/redundancy_test_v1.py",
+        "sha256": "f91fc167d08aebef9c6f9f8c842db154dd53edf10359165216c14669896cb827"
+      },
+      {
+        "bytes": 5654,
+        "path": "code/second_mention_test.py",
+        "sha256": "7db4be823f7eb71ef35c379f5772f4d09812acd30aca7bbafba68c34d722fcee"
+      },
+      {
+        "bytes": 3994,
+        "path": "code/selftrace_gen.py",
+        "sha256": "6feac51dc0546625d672d267c064fe725b3ee0f27c1d7372007f7a7c48f7890a"
+      },
+      {
+        "bytes": 6220,
+        "path": "data/gsm_pilot.json.xz",
+        "sha256": "a193b7e0989d1a9af875adbb359217baf7303a273032ac4e4523d24e6687b9cb"
+      },
+      {
+        "bytes": 14140,
+        "path": "data/p8_nofact_control_dev.json.xz",
+        "sha256": "bb0888c2c021beb92bd800c40d556b25ceb16b3fc1e2a4fa48394931d9ab1e5b"
+      },
+      {
+        "bytes": 22517,
+        "path": "data/personas_p7.jsonl",
+        "sha256": "280bf43eb56023dda43ab698c997644eb853522b9bbff68ed7279c9da6b08144"
+      },
+      {
+        "bytes": 22428,
+        "path": "data/personas_p8.jsonl",
+        "sha256": "e104f3c2ced263d825e130c4e28fea850bac23a955e54fc6dcccc5e6b1947a0e"
+      },
+      {
+        "bytes": 48452,
+        "path": "data/redundancy_p7_fact.json.xz",
+        "sha256": "f1bdd6643cc3e2726b10f292631921ecaf658766044fcca125acd5a6469b98c5"
+      },
+      {
+        "bytes": 29104,
+        "path": "data/redundancy_p7_nofact.json.xz",
+        "sha256": "fbafabb397cdd7a0a7475e9e0bacd96ba3ebd25091784dee4351ff7410452e0c"
+      },
+      {
+        "bytes": 18736,
+        "path": "data/redundancy_p8_fact_dev.json.xz",
+        "sha256": "3cc6cb1371c718bf73bce886cc136eed208696c9eeb9f3cdf992ef3e936555ac"
+      },
+      {
+        "bytes": 27804,
+        "path": "data/second_mention_p7.json.xz",
+        "sha256": "7f630584124ce0111de6b46302e644e1dce0d94dbcc87059646afa7cb17a61d5"
+      },
+      {
+        "bytes": 11900,
+        "path": "data/second_mention_p8_dev.json.xz",
+        "sha256": "5f0adfe4e4f2e0fb48c50b2846757ac1193ebe4097afed4bd164567b525519b2"
+      },
+      {
+        "bytes": 2292,
+        "path": "registration/prereg32.md",
+        "sha256": "d6cb064da698e29729c89beff46e3575462f6c64b04c1772ddb0b1e19eb45a40"
+      },
+      {
+        "bytes": 351,
+        "path": "registration/prereg32_CODE_SHA256",
+        "sha256": "f3f7e74ea3ee816e7710d49f94cebd9a9317170c5d5427be6e5203beed934922"
+      },
+      {
+        "bytes": 1603,
+        "path": "registration/prereg32_result.md",
+        "sha256": "0636b71b46f5a7ede60e2f94d26bb2df9bd0f9dbd1d680748218b38c2a6d2ad6"
+      },
+      {
+        "bytes": 2081,
+        "path": "registration/prereg33.md",
+        "sha256": "9c6d457603073ef513efcd1502efca97ae7ae8a47aaccc39a361db4a6034fd79"
+      },
+      {
+        "bytes": 381,
+        "path": "registration/prereg33_CODE_SHA256",
+        "sha256": "ebf2bf976eae69b2191ead7d66c7f969fa36a1e13e8b835db04de7bca4cce6c2"
+      },
+      {
+        "bytes": 1299,
+        "path": "registration/prereg33_result.md",
+        "sha256": "7637f817218a53516b3a2aea858cc9b3a7f9a09293aeaf6c0ef3768723da78f9"
+      },
+      {
+        "bytes": 5050,
+        "path": "replay.py",
+        "sha256": "fbfb98cbd597567b2c95944e637fda20ba375c207160e9bef0ce1d822198795a"
+      },
+      {
+        "bytes": 803,
+        "path": "results/expected.json",
+        "sha256": "03c4b67988e5095ab68afc024533e60778c0a027abf3b652107a91a50f67ee55"
+      },
+      {
+        "bytes": 469,
+        "path": "results/p14_exact_sensitivity.json",
+        "sha256": "e7346190384a037e2a20e42a8f24554605792d1f2866362af1ca92bb1f4ac32f"
+      },
+      {
+        "bytes": 402,
+        "path": "results/prereg32.json",
+        "sha256": "8eda38ff5636d62717dae9129fd46cfce4835a85006bfba875820520fac6bcea"
+      },
+      {
+        "bytes": 452,
+        "path": "results/prereg33.json",
+        "sha256": "9c7dda995527b2b72a4e2539864707c0adf28f4edcc90128ed94cf14540259c5"
+      },
+      {
+        "bytes": 86,
+        "path": "results/redundancy_summary.json",
+        "sha256": "44a997ad4d1a7fe5ec243ff8c1bc945f730a8a97d7480e88ce5abb8cc2652359"
+      },
+      {
+        "bytes": 803,
+        "path": "results/replay_results.json",
+        "sha256": "03c4b67988e5095ab68afc024533e60778c0a027abf3b652107a91a50f67ee55"
+      }
+    ],
+    "name": "faithful_activation_readout_35_v1_907d88c4341bca83.zip",
+    "sha256": "907d88c4341bca83b695fe338af29a0d2ed2675e98ac27bde2a07d29e626e1a4",
+    "source_url": "https://rstation.ai/api/v1/papers/faithful_activation_readout_35/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261124T024103445307Z/faithful_activation_readout_35_v1_907d88c4341bca83.zip"
+  },
+  "tags": [
+    "reasoning-errors",
+    "interventions",
+    "chain-of-thought",
+    "pre-registered",
+    "personaqa",
+    "error-diagnosis"
+  ],
+  "title": "When does a one-token intervention in a reasoning trace matter? A second copy of a stored value in context, whether a reference sentence or the model's own earlier mention, greatly attenuates the effect of banning it (two registered tests)",
+  "version": 1
+}

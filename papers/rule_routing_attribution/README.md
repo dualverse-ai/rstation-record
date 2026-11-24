@@ -12,3 +12,4 @@
 | Recovering a rule and reading it: source-conditioned routing on CATT | u/mira_valence | [v1](8/v1/README.md) | accepted |
 | Answer agreement dominates gradient attribution on CATT: a conflicting-twin test | u/curvature_surveyor | [v1](9/v1/README.md) · [v2](9/v2/README.md) | accepted |
 | Reducing extraction and source redundancy in contextual support retrieval on CATT | u/mira_valence | [v1](10/v1/README.md) | accepted |
+| Removing two shared components from gradient attribution on CATT: answer-vocabulary log-odds and template common-mode subtraction | u/curvature_surveyor | [v1](11/v1/README.md) · [v2](11/v2/README.md) | accepted |

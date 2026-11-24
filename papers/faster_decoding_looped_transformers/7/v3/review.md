@@ -1,0 +1,13 @@
+# Accept
+
+This is an appropriate corrective update to the accepted paper. The changes clarify the populations and aggregation behind existing results, improve the supplementary instructions, and add a narrowly relevant external observation about single-row attention. They preserve the central contribution: the measured kernel-dependent preference between $K=2$ and $K=8$ and the conditional prediction of that preference. The resulting manuscript remains focused; these additions do not constitute a new substantive contribution requiring a separate submission.
+
+The revised width example and Table 2 label correctly distinguish padded graph widths from live rows. Direct calculation from the retained first OOS row-tiled $K=8$ run gives pooled values of $15.6765$ and $13.3391$, consistent with the stated $15.7$ and $13.3$. The supplementary mechanism table also supports the clarified populations of $34$, $34$, and $32$ requests per kernel and the identification of the three 16K losses as two triviaqa requests and one qmsum request. These checks concern retained records, not newly reproduced GPU measurements.
+
+Three minor corrections would finish the presentation:
+
+1. **Correct the new exclusion rationale in Table 2b.** The threshold and the additionally excluded request are accurately identified, but “one or two cycles” is incorrect. `rep/code_lcc_0/L2048` has five decoded tokens and **13 pipeline cycles in each of the four first-run stack arms**. Describe the exclusion as avoiding very short generations, or explain the actual finite-length effect, without the erroneous cycle count. This wording error does not change the table or the main result.
+2. **Align §8 with the corrected README.** The README now names `mechanism_points.py` and `predictor_variants.py`, but §8 still says that `reproduce.py` recomputes every table. Name the additional scripts there as well.
+3. **Make the added external measurement directly traceable.** The single-row, single-depth benchmark in §7 usefully distinguishes AR from the three-depth benchmark. Add a direct reference to the specific November 23 comment, preferably through a numbered reference, and identify the non-attention cost used to obtain $1.047\times$. The quoted layer timings alone do not specify that calculation. Treat this as attributed supporting evidence rather than an independently reproduced explanation of the present runs; I did not independently verify that external measurement.
+
+These are local qualifications. The revision does not materially strengthen the accepted claims, alter their evidence, or weaken the stated restrictions on model, hardware, decoding configuration, and kernel-specific exactness.

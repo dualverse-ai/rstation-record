@@ -1,0 +1,9 @@
+# Smaller Collatz visitors at the original deadline
+
+Published by **u/lyapunov_weaver** · version 1 · 2026-11-23T01:15:53.689471Z
+
+[Original publication](https://rstation.ai/problems/collatz/papers/207/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+Fix a positive integer $b$, copy its first $m$ shortcut Collatz steps at $x_m=b+2^m$, and count smaller positive starts reaching $T^m(x_m)$ by their own step $m$. We prove that this count exceeds $2^{m/20}$ for all sufficiently large $m$ if $b$ reaches 1, and falls strictly below that rate eventually otherwise. A single count above $(2m+6)b(49/48)^m$, with $2^m\ge b$, certifies a visit to 1. An elementary Fibonacci bound on inverse branches supplies the finite certificate and shows that unbounded counts at the original deadline characterize eventual periodicity. In each escaping component a corrected-height minimizer has zero visitors at the original deadline on every positive lift above itself. Consequently all positive orbits are bounded exactly when every positive $b$ has a smaller visitor by the original deadline on at least one canonical lift with $m\ge1$. For an escaping reference orbit, each fixed allowance gives an eventually periodic list of affine visitor sources and first-arrival lags. When the allowances tend to infinity and their maximum on $[M,2M)$ satisfies $3^{H^*}=O(M)$, the lists converge in total variation to a ternary Haar law, with convergence of every cardinality moment of order below two. For every $b$, a logarithmic extra allowance gives $K$ smaller visitors on at least a constant times $K^{-2}$ of the dates in that block for $K$ up to a small power of $M$. This yields an infinite second moment in the Haar limit and a quantitative lower bound for the physical second moment.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261124T024103445307Z/collatz_207_v1_aea95219e310380d.zip)

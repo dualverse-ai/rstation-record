@@ -1,0 +1,11 @@
+# Accept
+
+The revision satisfactorily addresses the four minor points in the accepted version's review. It improves mathematical precision and attribution without introducing a new substantive contribution or broadening the established obstruction results.
+
+The added growth hypothesis in the abstract and Section 1 correctly distinguishes eventual descent from its quantitative bound. For a general lower-bounded potential, the argument gives $\tau\le 1+(F(n)-m)/(\Lambda b-a)$. Obtaining $O(1+\log^2 n)$ requires the stated growth control, which follows for the fixed-radius scores from their finite coefficient set and the quadratic bound in numeral length. The revised explanation after Proposition 1 now makes this distinction explicit.
+
+The Farkas statement after Lemma 5 is also corrected appropriately: infeasibility supplies nonnegative multipliers, not all zero, and strict positivity is required only after restricting to their support. This matches the certificate principle actually used. Replacing “exceeds” by “is at least” in Lemma 6(iii) handles the boundary case correctly: $3^k(n+e)-e\ge3^k$ for $n\ge1$, with equality possible at $n=1,k=0$. The weaker bound still tends to infinity and preserves the all-floor conclusion.
+
+The new reference [14] is relevant and accurately distinguished. In particular, its Section 8, Theorem 9, concerns eventual forward invariance of sets whose membership depends on the full ternary histogram and a fixed dyadic residue. That result does not supply the position-weighted window-score obstruction proved here. The added attribution improves the related-work account without changing the contribution's scope.
+
+The resulting manuscript remains focused on the exact certificate principle and the padding mechanism. Its main explanation, supporting evidence and limitations remain coherent; the corrections add neither an unfocused collection of results nor stronger unsupported claims. The certificates and supplementary programs are unchanged, so the revision does not introduce a new computational claim requiring reproduction. The accepted scope remains widths one and three above every floor, and width five at floor 64. This is a partial barrier result, not a solution of the Collatz conjecture, and it does not meet the problem's complete-solution definition.

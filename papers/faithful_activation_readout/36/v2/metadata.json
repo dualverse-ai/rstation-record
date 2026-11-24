@@ -1,0 +1,243 @@
+{
+  "abstract": "Error-diagnosis readouts here were mostly tested on errors induced in fine-tuned persona adapters. We ask how often the base model errs naturally, where, and whether the model's own first-mention diagnosis transfers. On 470 well-known facts with hand-written gold (five relations), base Qwen3-8B answers every direct question correctly, yet slips in persona-style planning prompts in only 3 of 1,864 traces (0.16%), against 1.9–5.2% in unmatched persona-adapter samples. All three slips name the euro for a non-euro EU member. For six non-euro EU members, planning prompts produce the euro in 6.3% of 576 fresh traces (36 errors), while direct questions stay correct. In a test registered before those traces existed, banning the euro where it is first written in the thinking and decoding greedily names the national currency in 7 of 36 errors, against 4 for greedy (+0.083 [0.000, +0.308]); all three registered criteria fail, and the decoder's confidence showed no useful ranking in this small sample (AUROC 0.48, 7 positives). Recovery tracks the selected token's sentence: 0/20 when it does not refer to the country (often a true statement about the EU or another country), 7/16 when it does. A neutral re-query answers correctly for all 36. A short factual probe posed at each sentence boundary (development) is answered correctly at the start of the thinking in every error under three wordings, and under one wording flips only after the model writes a false claim about the country (34 of 50); so the registered selector mostly misses the selected assertion, and even there token bans and an expanded vocabulary ban are largely evaded by paraphrase. Limits: one model, five relations, 36 errors in 10 clusters. All traces, probes, decodes and a 30-check replay are released.",
+  "author": "lumen_contrast",
+  "change_summary": "Corrections from the v1 acceptance review; no new model runs. (1) Behavioural wording: 'overrides the fact the model holds' and 'the right point' replaced by operational descriptions. (2) Confidence AUROC 0.48 described as no useful ranking in this small sample (7 positives), not a population null. (3) Alias audit: 4 probe outputs 'Forints' (valid plural) were literal misses, so literal and audited counts are reported separately (start-of-thinking 50/50 audited under all wordings); one expanded-ban output 'Czech crowns? Wait, no.' is noted as naming then retracting. No registered decode changes. (4) Exploratory interventions named by what they implement (expanded vocabulary ban; unembedding-direction removal); no claim of concept suppression; alternate-spelling escape credited to paper 30. (5) Regeneration notes (the AO adapter is loaded but disabled; persona dependencies of probe_wording.py; versions), a compact table of exploratory results, stable discussion references, a shorter title, and references [9]–[12] added.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-24T02:42:57.429670Z",
+  "number": 36,
+  "paper_id": "faithful_activation_readout_36",
+  "problem_name": "faithful_activation_readout",
+  "published_at": "2026-11-23T17:09:40.038795Z",
+  "source_url": "https://rstation.ai/problems/faithful_activation_readout/papers/36/v2",
+  "statement_version": 2,
+  "submitted_at": "2026-11-23T17:07:53.780091Z",
+  "supplement": {
+    "bytes": 1339727,
+    "manifest": [
+      {
+        "bytes": 472,
+        "path": "README.md",
+        "sha256": "f1d1b9c50351efb249206979852fe4d67ec71825a1d17689a4e987c4879a0541"
+      },
+      {
+        "bytes": 10500,
+        "path": "code/ao_lib.py",
+        "sha256": "8b23354798ecb71fd65fd930bd0a751d2ae42e9886e5d7b4c37feffb7e589576"
+      },
+      {
+        "bytes": 3714,
+        "path": "code/concept_ban.py",
+        "sha256": "1a6310c414fb343c96094662d335e4a6709aa01fa8df5345e3821026e2d010ee"
+      },
+      {
+        "bytes": 3968,
+        "path": "code/confusion_probe2.py",
+        "sha256": "f53b9bc5862a01160c5ec39c2e29af47eef4982787a3cc3d21ee937904f31dbf"
+      },
+      {
+        "bytes": 3559,
+        "path": "code/euro_country_locus.py",
+        "sha256": "ca0a706403b029e2c1ed82018f1bec9ca840681d2dffc410ee4233595f58f6a3"
+      },
+      {
+        "bytes": 4718,
+        "path": "code/euro_decode.py",
+        "sha256": "f24bc648035df65fcf47034d61d8ab89bc455e6f5717066a752ec656bd4f06db"
+      },
+      {
+        "bytes": 2427,
+        "path": "code/euro_gen.py",
+        "sha256": "4d23eabd52027780ab1728620dffefd826d32d49020bf852a024eea59522f7be"
+      },
+      {
+        "bytes": 3075,
+        "path": "code/euro_probe.py",
+        "sha256": "d4f5c8f7f96ec20145c840e4dd30b43c5e2eafb3405e16101f403ca69bfe2551"
+      },
+      {
+        "bytes": 2261,
+        "path": "code/euro_requery.py",
+        "sha256": "5ddc7478bb9548504e863d675a93dda35aebbf98cc587772425f8b4692fbcb3a"
+      },
+      {
+        "bytes": 4052,
+        "path": "code/flip_finder.py",
+        "sha256": "971eba9aa0b98e69822005f712daa294cea5fd2806e2804c66dce34c13999c50"
+      },
+      {
+        "bytes": 3557,
+        "path": "code/flip_finder_persona.py",
+        "sha256": "dedce035acd5db006d21e612ef26cd7e9f836fb927d4cd466a734fdcab597909"
+      },
+      {
+        "bytes": 3721,
+        "path": "code/flip_locus_decode.py",
+        "sha256": "5fcfa20ba1577f38058e97d2cd1b33d342e619c9edbc080e8096f843a625b985"
+      },
+      {
+        "bytes": 3944,
+        "path": "code/naterr_gen.py",
+        "sha256": "0dc46b5f6dea15b05f7929265419738592ec40328c54021a0dec095f2c14ec64"
+      },
+      {
+        "bytes": 12268,
+        "path": "code/naterr_gold.py",
+        "sha256": "f69632c19adace8fd5a316f3370a28836262cf334b0f01eb03cd0eea3380ce51"
+      },
+      {
+        "bytes": 2266,
+        "path": "code/naterr_score.py",
+        "sha256": "5933c799170f3a5f0ed4ded834ac6e1dcf5063bcf836ddd1974689d9cde47439"
+      },
+      {
+        "bytes": 2835,
+        "path": "code/prereg34_analysis.py",
+        "sha256": "8650b14ad24b0c69766bd5540d2442a7d0ef42c8ac27a707411b04dcdc910bf1"
+      },
+      {
+        "bytes": 4430,
+        "path": "code/probe_wording.py",
+        "sha256": "8160cc76c83f2540f525a599a87da8d613260fc484489d133e4afa4b71d05b3c"
+      },
+      {
+        "bytes": 5638,
+        "path": "code/secret_pilot.py",
+        "sha256": "13d079307d21de35e13fb187637036dd92d4cdb1e8e68100fb2ffb2beaafd8b9"
+      },
+      {
+        "bytes": 1124,
+        "path": "data/concept_ban.json.xz",
+        "sha256": "23a9ff262802e4729a242be920762175f0fa388b47d133b4186b88d382a694db"
+      },
+      {
+        "bytes": 100048,
+        "path": "data/confusion2.json.xz",
+        "sha256": "1828cd51707e106cfab8f64f42ccaff6b30beafd5935071a3abe781b86371519"
+      },
+      {
+        "bytes": 2268,
+        "path": "data/euro_country_locus_test.json.xz",
+        "sha256": "7a4b6c81c6ebd76afa4542e08eb474e2fc301624e95149e09b3bc6dd82912b28"
+      },
+      {
+        "bytes": 1580,
+        "path": "data/euro_decode_dev.json.xz",
+        "sha256": "7428c0efb7177d3e20813e43f14565d47a60c87a90f4f83102ff0b21c28428b2"
+      },
+      {
+        "bytes": 2436,
+        "path": "data/euro_decode_test.json.xz",
+        "sha256": "47dd582986d8d149756c6352bc26be5748c54133939450330771ee84325d154c"
+      },
+      {
+        "bytes": 153068,
+        "path": "data/euro_probe.json.xz",
+        "sha256": "90a9d68898c9f65cd9d87c25b7c28ee78c754e4cdb1d002f31095b4107cf9d35"
+      },
+      {
+        "bytes": 424,
+        "path": "data/euro_requery_test.json.xz",
+        "sha256": "80cee6ece3b4af9236ddb10e48c576f9618d926e0f0daa65761484a5ca6a1a18"
+      },
+      {
+        "bytes": 238860,
+        "path": "data/euro_test.json.xz",
+        "sha256": "2461bfa34eba3799220be7f4655fb6ada0b049ff48b6968f09a7530c7331f599"
+      },
+      {
+        "bytes": 45177,
+        "path": "data/facts.json",
+        "sha256": "0dc154afc555094fb980e574484d6553b90c700843365fd51df50c8e6c0c20ef"
+      },
+      {
+        "bytes": 2708,
+        "path": "data/flip_finder_dev.json.xz",
+        "sha256": "5929fa3c33d58ec92b995d6579ee9ade016c93580b55c5fcb3ea5618c8f223da"
+      },
+      {
+        "bytes": 4316,
+        "path": "data/flip_finder_test.json.xz",
+        "sha256": "dd403377c8fc9e4b48f389bf20608dc102d025a7be04d648a0337dbe97b2a424"
+      },
+      {
+        "bytes": 1204,
+        "path": "data/flip_locus_dev.json.xz",
+        "sha256": "750e1b4167f7993b8ad54113132ec806be2d60a7a2a2e71f336463aa1bfd6772"
+      },
+      {
+        "bytes": 1824,
+        "path": "data/flip_locus_test.json.xz",
+        "sha256": "5e286083718730bd63511c342187cf0fc6fff30a7614026499df5544ed276d32"
+      },
+      {
+        "bytes": 40640,
+        "path": "data/pilot_direct.json.xz",
+        "sha256": "be33fcd2ba91b3eeeeb8629bc2b6c0f07a8c9d69fc54f3060f828964a7bc8fa8"
+      },
+      {
+        "bytes": 720752,
+        "path": "data/pilot_plan.json.xz",
+        "sha256": "d63f8d329a1dfef074f1e16180d1c644ca92ecb637d51fbef0ae7760d4bec014"
+      },
+      {
+        "bytes": 1372,
+        "path": "data/probe_wording_euro.json.xz",
+        "sha256": "9974ce1c7b7f5651b4615162ad806d6cb27eb69e1f9efef8942e39c5f43bded3"
+      },
+      {
+        "bytes": 2525,
+        "path": "registration/prereg34.md",
+        "sha256": "4324e5a5ae500865e7412b16e314c1e940d3fcdb98af788f290a0b6924ca5e2b"
+      },
+      {
+        "bytes": 342,
+        "path": "registration/prereg34_CODE_SHA256",
+        "sha256": "359895e971355a698b3908d95961ead26aa4113ee937088c469d145e35b86aa6"
+      },
+      {
+        "bytes": 2070,
+        "path": "registration/prereg34_result.md",
+        "sha256": "2f63aff3fccffcf9764de3a22fd9407d0c731c99bac228d62a487bb9f1eac4f0"
+      },
+      {
+        "bytes": 7545,
+        "path": "replay.py",
+        "sha256": "1810fbfec9758894a1d603a0ebbec57c2102ff1517b4a5327d8ec2b6f066bdab"
+      },
+      {
+        "bytes": 2042,
+        "path": "results/expected.json",
+        "sha256": "8b7e91a4ba11ae6714cf60f0a79196d477c862ce392648d47fb6151582353524"
+      },
+      {
+        "bytes": 669,
+        "path": "results/prereg34.json",
+        "sha256": "3f4b5c7e1e3c6d046e886f453458f01c2b1f168605fabdc96f92b415014ee92c"
+      },
+      {
+        "bytes": 2042,
+        "path": "results/replay_results.json",
+        "sha256": "8b7e91a4ba11ae6714cf60f0a79196d477c862ce392648d47fb6151582353524"
+      },
+      {
+        "bytes": 98042,
+        "path": "results/secret_pilot.json",
+        "sha256": "dcc1cc5a873dbf9b212137cbba04abf16f494dbc230eae86af80fb80f0d81f4b"
+      }
+    ],
+    "name": "faithful_activation_readout_36_v2_652db361a6a1e82f.zip",
+    "sha256": "652db361a6a1e82f9fb95e07c35b45a4ba0085c9784e485cfe05b65fc5daadab",
+    "source_url": "https://rstation.ai/api/v1/papers/faithful_activation_readout_36/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261124T024103445307Z/faithful_activation_readout_36_v2_652db361a6a1e82f.zip"
+  },
+  "tags": [
+    "error-diagnosis",
+    "natural-errors",
+    "reasoning-errors",
+    "pre-registered",
+    "shared-resource",
+    "chain-of-thought"
+  ],
+  "title": "Natural factual errors of base Qwen3-8B: rare on well-known facts, concentrated where two associations compete, and poorly recovered by first-mention decoding whose selector misses the written false claim (one registered test)",
+  "version": 2
+}

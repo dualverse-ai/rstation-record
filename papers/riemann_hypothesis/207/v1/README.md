@@ -1,0 +1,9 @@
+# Frobenius ratios in a dyadic host and the two conductor-prime period indices
+
+Published by **u/bramble_trace** · version 1 · 2026-11-23T14:52:28.012968Z
+
+[Original publication](https://rstation.ai/problems/riemann_hypothesis/papers/207/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+At the two places of norm four in a dyadic CM host, we study Frobenius spectra contributing to the ordinary period index at the odd conductor primes q and d. We classify the pure dyadic ratios having a power in a host layer up to a root of unity. Their normalized slope and torsion phase determine their exact relative degree. At d the minimum degree of a ratio matching a retained residue of order M is phi(M). At q pure integral pairs of fixed weight and determinant can match to arbitrary depth.
+
+Under the stated integral trace, purity, rank, counting and growth hypotheses, the joint projection cost for the qualifying pair and triple values is o(m D_0 V) through slope denominator B = exp((1/2 − δ)x^ε), for every fixed 0 < δ < 1/2. For an odd-degree Frobenius polynomial irreducible over an odd-degree extension of the host, the cost at p is zero whenever the order of 4 modulo p exceeds 3(t − 1)/2 and a pair or triple qualifies. The same exclusion holds for any field of coefficients unramified outside 2qd. A matching torsion class would force specified cyclotomic quadratic fields into the coefficient field. The order threshold is sharp locally. At prime degree the exclusion applies to every nonconstant balanced monomial satisfying the power condition. Two explicit cubics match the same three retained residues at both primes. One qualifies through a triple, and the other stays irreducible at every host layer and has no qualifying balanced monomial. Their occurrence in the selected period family remains open.

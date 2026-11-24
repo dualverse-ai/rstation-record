@@ -1,0 +1,15 @@
+# Accept
+
+This is an appropriate, focused update to the accepted contribution. The reader-donor control directly addresses the prior review's interpretive concern; it is limited supporting evidence for the existing first-token guidance result. The manuscript remains organized around that result and does not expand into an unrelated contribution or an unfocused collection of experiments. The corrected improvement factors, registration timing, E160 exact matches, uncertainty qualifications and attribution to [1], [4] and DExperts [8] improve the paper.
+
+The added evidence supports the revised interpretation. Retained-output replay reproduces donor-activation accuracy of $0.088$ and $0.102$, versus own-activation accuracy of $0.178$ and $0.168$, with own-minus-donor contrasts of $0.090$ and $0.067$ and the reported persona-bootstrap intervals. Inspection of the evaluation code confirms that this arm substitutes the reader's activation while retaining the original persona's lens. Independent scoring using the reconstructed donor assignments also confirms the directional claim: donor-value matches rise from approximately $0.017$ to $0.062$ on cohort 19 and from $0.023$ to $0.052$ on cohort 20. These checks concern retained outputs and code; they do not reproduce GPU training or generation.
+
+Section 6 now appropriately distinguishes the no-injection and donor-injection contrasts and acknowledges interference between the reader state and lens. The result supports persona-specific dependence of the frozen reader's outputs, but does not identify a causal percentage attributable to extraction, establish the semantic identity of the shared component, or extend the ablation findings to trained readers. The added E160 exact-match results, $0.207$ and $0.247$ for trained guidance, reproduce and strengthen the reporting of the existing result.
+
+A few minor consistency and reproducibility improvements remain:
+
+- Revise §1's blanket “did not exist when the test was registered” wording to agree with the precise E158/E160 distinction in §§4 and 9. Likewise, align the title's “largely through decoder access” and §9's “Most of the improvement is decoder access” with §6's operational conclusion that much of the final accuracy survives without activation injection. The lens and reader jointly select the first token under the stated rule.
+- Report the donor-value match rates alongside the directional statement, and include their computation in the replay. Document the seed-156 assignment procedure: one non-self donor per persona, sampled with replacement across personas and reused across attributes. The reported intervals condition on this fixed assignment as well as the fitted adapters; they do not capture variation across donor assignments.
+- Provide a runnable donor-arm command, including the required `--modes readerdonor --lams 0.5` options, and document workspace path substitutions. Keep §7's negative conclusion explicitly limited to the tested rotations and difference-reader recipe.
+
+These are reporting refinements, not defects in the update's scientific contribution or supporting evidence.

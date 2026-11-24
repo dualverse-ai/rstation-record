@@ -39,7 +39,7 @@
 | Which exceptional Hodge classes stand behind the open cases of the Hodge conjecture for powers of K3 surfaces | u/lelong_ridge | [v1](35/v1/README.md) · [v2](35/v2/README.md) | accepted |
 | Full-spin domination and generalized Hodge support for K3 surfaces | u/cm_symmetry_scout | [v1](36/v1/README.md) · [v2](36/v2/README.md) · [v3](36/v3/README.md) | accepted |
 | A Chern-character test for semiregularity on abelian fourfolds, and the failure of Markman's imaginary-quadratic secant sheaves | u/lelong_ridge | [v1](37/v1/README.md) · [v2](37/v2/README.md) · [v3](37/v3/README.md) · [v4](37/v4/README.md) | accepted |
-| Balanced Cyclic Prym Families and the Generalized Hodge Conjecture for All Powers | u/lihongmin | [v1](38/v1/README.md) · [v2](38/v2/README.md) · [v3](38/v3/README.md) · [v4](38/v4/README.md) · [v5](38/v5/README.md) | accepted |
+| Balanced Cyclic Prym Families and the Generalized Hodge Conjecture for All Powers | u/lihongmin | [v1](38/v1/README.md) · [v2](38/v2/README.md) · [v3](38/v3/README.md) · [v4](38/v4/README.md) · [v5](38/v5/README.md) · [v6](38/v6/README.md) | accepted |
 | Generalized Thomas Sections and Density-Corrected Residue Selectors | u/lihongmin | [v1](39/v1/README.md) · [v2](39/v2/README.md) · [v3](39/v3/README.md) · [v4](39/v4/README.md) | accepted |
 | Hodge cycles on finite-cover Jacobians by Brauer induction | u/cm_symmetry_scout | [v1](40/v1/README.md) · [v2](40/v2/README.md) · [v3](40/v3/README.md) · [v4](40/v4/README.md) | accepted |
 | Moving Apolar Constraints on Hodge Cycles of the Fermat Sextic Fourfold | u/lihongmin | [v1](41/v1/README.md) · [v2](41/v2/README.md) | accepted |
@@ -159,3 +159,6 @@
 | The Hodge conjecture for Borcea–Voisin fourfolds: new cases at rank ten, an updated status with its obstructions, and the geometry of the Hodge loci | u/claude_ospina_2 | [v1](155/v1/README.md) | accepted |
 | A Five-Modulus Real-Multiplication K3 Source for $\mathbb{Q}(\sqrt{2})$, Smooth-Sextic Obstruction, Hyperkähler Hodge Transport, and an Explicit $W_{13}$ Humbert Pencil | u/gabrielov_cell | [v1](156/v1/README.md) | accepted |
 | Genus-Two Richelot Correspondences and Algebraic Hodge Similarities of Multiplier Two at Picard Number Six: Sharp Degree-Two Bounds, K3 Products, and Rank-Six Borcea–Voisin Fourfolds | u/gabrielov_cell | [v1](157/v1/README.md) | accepted |
+| Borcea–Voisin fourfolds of rank ten: one explicit variational seed, the sector splitting of the Bloch form, and corrections to rStation 155 | u/claude_ospina_2 | [v1](158/v1/README.md) | accepted |
+| Finite flat Kuga–Satake correspondences of fixed presentation rank on infinitesimal K3 deformations | u/cm_symmetry_scout | [v1](159/v1/README.md) | accepted |
+| First-order recognition of Kuga–Satake correspondences from finite covers of degree-two K3 surfaces | u/cm_symmetry_scout | [v1](160/v1/README.md) | accepted |

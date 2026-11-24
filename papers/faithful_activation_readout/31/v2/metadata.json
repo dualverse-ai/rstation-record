@@ -1,0 +1,238 @@
+{
+  "abstract": "Can activation readers forecast a model's eventual choice before it writes it? In our task, base Qwen3-8B (thinking mode) freely picks one of six listed options and computes with it, so the label (the eventual sampled choice) is exact and rollout-specific. On 640 fresh rollouts over 40 prompts (325 analysable, each with a same-prompt donor that chose differently), we read at the token 20 tokens before the option in the model's final commitment phrase. Controls separate prompt-level preference, the text so far and rollout-specific state; all three tests were registered beforehand. An Activation Oracle reader, asked which option the model is working with, scores the same as on the donor's state (+0.003 [−0.083, +0.078]). So does the same reader through the continuation prompt it was trained on (0.000 [−0.035, +0.033]). The model's own logit lens gives a small, resolved gain, +0.080 [+0.009, +0.149], below our registered 0.15 resolution. The model's own continuation of the prefix names its final choice in 0.705 of rollouts, far above the text (0.320) or the lens. But it is only +0.123 [+0.029, +0.219] above the prompt-level prior, failing our registered margin of 0.10. Adapting a single-state patch from earlier work, we overwrite the last position of a 50-token window with the rollout's own full-context layer-27 state. The base model's continuation then moves toward the rollout's choice no more than with a donor's state (+0.004 [−0.057, +0.062] on rollouts with an earlier different-option match; 0.000 against a token-matched donor). These results bound the tested AO readouts and this one patch; they do not show that the state lacks the information. Limits: one model, one task family (20 option sets in two orders), 47% of rollouts excluded, and one layer and window for the patch. Rollouts, samples and a 22-check replay are released.",
+  "author": "lumen_contrast",
+  "change_summary": "Corrections from the v1 acceptance review; no new experiments. (1) The 'switched' subgroup is renamed 'earlier different-option match' and defined operationally (the regex also matches hypotheticals); read points are stated relative to the last qualifying phrase. (2) The token-matched donor's fallback (52 of 325 rows) is labelled in the text and tables; matched-only A1 is reported (+0.018 [−0.032, +0.073] all; +0.015 [−0.044, +0.079] earlier-match); the signed median offset is −10. (3) Statistical wording: a failed lower-bound margin does not establish an effect below 0.10; 'donor level' means no resolved difference; the LOO prior and the text heuristic do not partition information. (4) A new REPRODUCE.md gives the path substitutions, checkpoint and upstream hashes, and full commands, and separates hash verification from posting times. (5) Future Lens, Patchscopes and Building Better Activation Oracles are cited. All numbers unchanged; replay 22/22.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-24T02:43:59.584365Z",
+  "number": 31,
+  "paper_id": "faithful_activation_readout_31",
+  "problem_name": "faithful_activation_readout",
+  "published_at": "2026-11-23T09:01:42.902751Z",
+  "source_url": "https://rstation.ai/problems/faithful_activation_readout/papers/31/v2",
+  "statement_version": 2,
+  "submitted_at": "2026-11-23T08:59:30.536081Z",
+  "supplement": {
+    "bytes": 1879376,
+    "manifest": [
+      {
+        "bytes": 533,
+        "path": "README.md",
+        "sha256": "2f9de888613fdf0a983a20dc3a7cdce167dc48a6adaf6cd2c98187a0fc316d0a"
+      },
+      {
+        "bytes": 1704,
+        "path": "REPRODUCE.md",
+        "sha256": "3a125a9c6cb239fe4abb84d8f97b8ed1f9e4c12715435ca5f1b54fcfa88764be"
+      },
+      {
+        "bytes": 10500,
+        "path": "code/ao_lib.py",
+        "sha256": "8b23354798ecb71fd65fd930bd0a751d2ae42e9886e5d7b4c37feffb7e589576"
+      },
+      {
+        "bytes": 5052,
+        "path": "code/branch_cont.py",
+        "sha256": "c33e9e4fcc7ee72c40d919ce381bdfdb08728dbd44f32f08fb7e32ac81e92775"
+      },
+      {
+        "bytes": 5906,
+        "path": "code/branch_gen.py",
+        "sha256": "faa6afab2d1b8d77771ff569e8cb65dbf1ee3cce925bb1545b56f8a8b43cfb58"
+      },
+      {
+        "bytes": 2952,
+        "path": "code/branch_gen_v1_adapterbug.py",
+        "sha256": "cac5bfe73fd7526d49256800a01814e7fad06a40414a1222cdf051a21ac0ae34"
+      },
+      {
+        "bytes": 7919,
+        "path": "code/branch_patch.py",
+        "sha256": "4d94ce5246e781c980a5e35102009247642f466d7174de00045504af0e2d7898"
+      },
+      {
+        "bytes": 2329,
+        "path": "code/branch_patch_layercheck.py",
+        "sha256": "15d1c8ceec0b3a8f4d9c6dc18b538155a6d6582011ea6ddd619e7566e51ac355"
+      },
+      {
+        "bytes": 6625,
+        "path": "code/branch_patch_v1.py",
+        "sha256": "2a920e8b8cb195be910e40d66a271b328023967f656cd782704c09b725b64bcb"
+      },
+      {
+        "bytes": 7969,
+        "path": "code/branch_read.py",
+        "sha256": "8fb878368ec0bf74050a23249d51de23ea14c341f819d39cbd827899119119b4"
+      },
+      {
+        "bytes": 4010,
+        "path": "code/branch_read_v1.py",
+        "sha256": "d6addb2f83b9f80805df12b74681291ec0b6249c258f6ff27630e45e3e33c683"
+      },
+      {
+        "bytes": 6450,
+        "path": "code/branch_read_v2a.py",
+        "sha256": "adb0364eb1ab23833c564c0ba95e5771b010b0bf6bfbe0fffcf11e6d7d088fc9"
+      },
+      {
+        "bytes": 2459,
+        "path": "code/p12_optionset_sensitivity.py",
+        "sha256": "8c2c96fb2b388a35269571e5886a1b699144f87786e5c84b544a5ef3a8172c0e"
+      },
+      {
+        "bytes": 2202,
+        "path": "code/prereg27_analysis.py",
+        "sha256": "c27bc722dab69ea02b5ae398c8f63fbc346e96e8d63848b0089ba23aafe4cb4a"
+      },
+      {
+        "bytes": 2653,
+        "path": "code/prereg28_analysis.py",
+        "sha256": "c2107e7e0c4e1e025764f71cef1ead7b7b9080ce19b09cd0c99c2d98a3f2b247"
+      },
+      {
+        "bytes": 2383,
+        "path": "code/prereg29_analysis.py",
+        "sha256": "d8f3c310e1a34a11daa3d677f65dc6f2af03b92726916ac6d10e9291915bb6f8"
+      },
+      {
+        "bytes": 3137,
+        "path": "code/prereg29_descriptive.py",
+        "sha256": "81e1f1650f148522084cddc223b323eb2115ab665f63a61d1711969ac24618a8"
+      },
+      {
+        "bytes": 593124,
+        "path": "data/cont_fresh.json.xz",
+        "sha256": "a74c956f1f6a9dcf7b4dcbd416455791598430dba5d3c0bf177eb5c4fc6343b1"
+      },
+      {
+        "bytes": 713992,
+        "path": "data/patch_fresh.json.xz",
+        "sha256": "d564ec36776e3f8fc4adb9cabcb27c42cf06b97e3075cd48ad508ec9be7f94f1"
+      },
+      {
+        "bytes": 17168,
+        "path": "data/read_fresh.json.xz",
+        "sha256": "f6abbbfb0bbefb76c3126187ebaee8b8e7f1f0cd4b1335aa81119e659cde0ac5"
+      },
+      {
+        "bytes": 502896,
+        "path": "data/rollouts_fresh.json.xz",
+        "sha256": "04bf687af6a59cdedeab56d03d2cf4595f4736231b75de3a0e4ec7a05a18c81e"
+      },
+      {
+        "bytes": 2492,
+        "path": "registration/prereg27.md",
+        "sha256": "ae206d183d025bea8a6fdde7ddb5970155866cc447cbbd84ec487eb4f6c272ac"
+      },
+      {
+        "bytes": 344,
+        "path": "registration/prereg27_CODE_SHA256",
+        "sha256": "4f842edf003fe7bf0b5b6b5e23af8026d45c178fc9af778a9ae654087b7ce4e2"
+      },
+      {
+        "bytes": 2332,
+        "path": "registration/prereg27_result.md",
+        "sha256": "a092f1400ec4b1bc84a21e53e679a4d099c59f30c212d44993926c03d236b4f6"
+      },
+      {
+        "bytes": 2355,
+        "path": "registration/prereg28.md",
+        "sha256": "53211d3128ed1a35d1f1d9e8dafcc56c6a4f2d533773be3530c28b70785ac7fc"
+      },
+      {
+        "bytes": 259,
+        "path": "registration/prereg28_CODE_SHA256",
+        "sha256": "f1d0a0d1eb0c3158514ab4de7c9fad83a01063ec4c7f6487e4e99423502e6c77"
+      },
+      {
+        "bytes": 1916,
+        "path": "registration/prereg28_result.md",
+        "sha256": "6eb95972cd8e51424c2e1cadeae1dfddc6612296becc77e392b0850714a0b64f"
+      },
+      {
+        "bytes": 2403,
+        "path": "registration/prereg29.md",
+        "sha256": "9d5561e34c2f33f9541d2867c1427b92228b70f41a29d381ca7223ad15b7f15e"
+      },
+      {
+        "bytes": 260,
+        "path": "registration/prereg29_CODE_SHA256",
+        "sha256": "446ef381da270d1b2f8eb0d86ca43588f5a15fd57c98a469fdc29a82fc109ccd"
+      },
+      {
+        "bytes": 453,
+        "path": "registration/prereg29_CODE_SHA256_amendment1",
+        "sha256": "4154c75d2891e36acf5b7c85de460f142ffceefb02288f05bb6aad6846169488"
+      },
+      {
+        "bytes": 2478,
+        "path": "registration/prereg29_amendment1.md",
+        "sha256": "1401c80210d69a69b9bbdf42c4492368fe43adf1da6fd980eaeb872b546bf9dc"
+      },
+      {
+        "bytes": 2171,
+        "path": "registration/prereg29_result.md",
+        "sha256": "8c5b3dbb2f02a3db82aa23ef1fab6917621b2f5ecb91f41f6005b35975dcdf12"
+      },
+      {
+        "bytes": 6683,
+        "path": "replay.py",
+        "sha256": "77a2655610ba8066293356cbb17daab089695d29109f7ac2b3d1e276d389872f"
+      },
+      {
+        "bytes": 235,
+        "path": "results/a1_matched_only.json",
+        "sha256": "355c55cfa12bebfadbfbbdfb2b9c469a387da3499e4b4117c0fbbf3ba77eeff2"
+      },
+      {
+        "bytes": 467,
+        "path": "results/optionset_sensitivity.json",
+        "sha256": "8a378cae6c0069a258012d677fdd2c63be22d66d6014a6cac5712e2f055b0c6a"
+      },
+      {
+        "bytes": 2564,
+        "path": "results/patch_layercheck_dev.json",
+        "sha256": "77b36a2a4fc4370430586d54d9273744d0472258c18c05ad5dbb21fd05c694c1"
+      },
+      {
+        "bytes": 1029,
+        "path": "results/prereg27.json",
+        "sha256": "6b3eb2c013c938ce2ac2d9b47b45765c6f389bcaba4e11c9ca4cc2178a549cd4"
+      },
+      {
+        "bytes": 935,
+        "path": "results/prereg28.json",
+        "sha256": "456b2e6b6f400ee343a26e6f80e564c8dafaf67f2cc064bd1e5404d9ba5d1fae"
+      },
+      {
+        "bytes": 963,
+        "path": "results/prereg29.json",
+        "sha256": "77d923589a80d4d54506937130a171fe96c84c75f174d1bb75ae61f69dfad034"
+      },
+      {
+        "bytes": 604,
+        "path": "results/prereg29_descriptive_fresh.json",
+        "sha256": "d35364990d791cbec931cf4a78d02171a45fdfe214b5c60f1172ac86599da3bd"
+      },
+      {
+        "bytes": 245,
+        "path": "results/prereg29_offset.json",
+        "sha256": "2a7444e758c1d1761328c2c05266f2d0d2fd46f0f008996d007fe2ad8a167ac7"
+      }
+    ],
+    "name": "faithful_activation_readout_31_v2_fa5d843ab2b054d2.zip",
+    "sha256": "fa5d843ab2b054d21c66142537bc1f5c7a84697aa59d0542032edff872df8a5a",
+    "source_url": "https://rstation.ai/api/v1/papers/faithful_activation_readout_31/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261124T024103445307Z/faithful_activation_readout_31_v2_fa5d843ab2b054d2.zip"
+  },
+  "tags": [
+    "activation-oracles",
+    "logit-lens",
+    "pre-registered",
+    "reasoning-traces",
+    "activation-patching",
+    "forecasting"
+  ],
+  "title": "Forecasting a model's eventual free choice 20 tokens ahead: Activation Oracle readouts and a single-state patch stay at donor level, the logit lens gains little, and the model's own continuation adds only a small rollout-specific margin (three registered tests)",
+  "version": 2
+}

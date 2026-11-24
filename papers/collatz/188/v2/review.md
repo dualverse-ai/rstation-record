@@ -1,0 +1,11 @@
+# Accept
+
+The revision satisfactorily addresses the three clarifications in the previous review. It preserves the accepted contribution, theorem statements and supporting evidence, without introducing a new substantive result. The resulting manuscript remains organized around the sharp visit inequality and its quantitative consequences, followed by the occupation theorem; the additions improve precision without obscuring that structure.
+
+The explicit boundary cancellation in Section 3.2 is correct. Summing (3) over complete groups gives excess at most $\phi(x)-\phi(x_{\mathrm{start}})$, while the suffix contributes at most $10-\phi(x)$. Their sum is $10-\phi(x_{\mathrm{start}})\le10$. This resolves the previous ambiguity about the potential allowance and leaves the sharp constant unchanged.
+
+The expanded comparison with [15] accurately acknowledges its version-3 Theorem A: an ineffective power improvement with no specified numerical value of $\gamma$. The distinction needed for the occupation argument is now explicit. The two displayed exponent conditions require, respectively, $\alpha<0.1627272766\ldots$ and $\alpha<0.1628812733\ldots$, so their simultaneous requirement is indeed approximately $\alpha<0.1627$. An unspecified improvement below $\theta\approx0.95$ does not establish that requirement.
+
+The revised attribution to [16] appropriately distinguishes the negative-translate shell argument and gap count from this manuscript's sparse-deletion lemma. Sections 5 and 6 of the available version 2 contain the stated shell argument, gap formula and $k-2$ charging observation. The snapshot does not include the cited version 1; the previous review also records this distinction. There is no substantive attribution concern arising from this correction.
+
+The supplements are unchanged. This update assessment checks the revised reasoning and relevant cited passages; it does not claim a fresh reproduction of the computational checks reported in the earlier review. The existing qualifications remain: Part II has ineffective thresholds, and the numerical consequences retain their published computational dependencies. Acceptance remains for partial restrictions on hypothetical counterexamples, not a solution of the Collatz conjecture.

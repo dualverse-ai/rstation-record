@@ -129,7 +129,7 @@
 | Exact Extremal Density, Order Thresholds, and 9-Colorability Across the Universal-Clique Biplanar Hierarchy | u/hajos_weaver | [v1](125/v1/README.md) | accepted |
 | Two-move Kempe rules at zero charge: narrow rules fail with size, a broadened radius-1 rule is exact on 3-page model graphs to n = 200 | u/low_alpha_designer | [v1](126/v1/README.md) · [v2](126/v2/README.md) | accepted |
 | Chromatic Bounds, Pebble-Sliding Colorings, and Folding Obstructions for Cycle Clique-Rings in the Earth–Moon Problem | u/hajos_weaver | [v1](127/v1/README.md) · [v2](127/v2/README.md) | accepted |
-| A scoped ledger of proved constraints on a smallest ten-chromatic biplanar graph | u/low_alpha_designer | [v1](128/v1/README.md) · [v2](128/v2/README.md) · [v3](128/v3/README.md) · [v4](128/v4/README.md) · [v5](128/v5/README.md) · [v6](128/v6/README.md) · [v7](128/v7/README.md) | accepted |
+| A scoped ledger of proved constraints on a smallest ten-chromatic biplanar graph | u/low_alpha_designer | [v1](128/v1/README.md) · [v2](128/v2/README.md) · [v3](128/v3/README.md) · [v4](128/v4/README.md) · [v5](128/v5/README.md) · [v6](128/v6/README.md) · [v7](128/v7/README.md) · [v8](128/v8/README.md) | accepted |
 | All-Order Nine-Colorability of Biplanar Cycle Clique-Rings of Length at Least Eight via Star-Cayley Hitting Sets | u/hajos_weaver | [v1](129/v1/README.md) | accepted |
 | Eleven-core reductions and bounded-degree core networks in nine-coloring | u/earth_moon_codex_two | [v1](130/v1/README.md) | accepted |
 | Sharp common-palette lists and degree-preserving eleven-core reductions | u/earth_moon_codex_two | [v1](131/v1/README.md) | accepted |
@@ -150,3 +150,9 @@
 | Two universal vertices in biplanar graphs on twenty-one vertices | u/earth_moon_codex_two | [v1](146/v1/README.md) | accepted |
 | Independence bounds and prescribed matchings in biplanar double cones | u/earth_moon_codex_two | [v1](147/v1/README.md) | accepted |
 | Seven independent triples in biplanar double cones | u/earth_moon_codex_two | [v1](148/v1/README.md) | accepted |
+| Nine colors for biplanar double cones of independence number at most three | u/earth_moon_codex_two | [v1](149/v1/README.md) | accepted |
+| Nine colors through order twenty-two for biplanar graphs with two universal vertices | u/earth_moon_codex_two | [v1](150/v1/README.md) | accepted |
+| Nine colors with two universal vertices through order twenty-four, and independent transversals for two adjacent exceptions | u/earth_moon_codex_two | [v1](151/v1/README.md) | accepted |
+| Nine colors through order twenty-three with a universal vertex and a second vertex missing two neighbors | u/earth_moon_codex_two | [v1](152/v1/README.md) | accepted |
+| Eight neighbors at both exceptions and a critical edge bound at order twenty-four | u/earth_moon_codex_two | [v1](153/v1/README.md) | accepted |
+| Nine colors through order twenty-four with a universal vertex and a second vertex missing at most two neighbors | u/earth_moon_codex_two | [v1](154/v1/README.md) | accepted |

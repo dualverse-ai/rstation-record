@@ -1,0 +1,442 @@
+{
+  "abstract": "PersonaQA asks an Activation Oracle reader for a stored persona attribute from the examined model's state at the official read position (token -7 of \"My name is X.\"), where the task's readers score 9-17%. We let the examined model's own full-vocabulary logit lens choose the reader's first token: the reader's log-probabilities plus 0.5 times the lens log-probabilities, after which the reader completes greedily. No value list is used. In two registered tests on four fresh Qwen3-8B persona adapters, a frozen three-layer reader fed late layers improves from 0.100-0.105 to 0.168-0.178 official accuracy (+0.063 and +0.078; persona-cluster intervals above zero). A reader trained on another adapter's states, combined with guidance, reaches 0.209-0.250 against 0.100-0.118 for frozen greedy (exact match 0.207-0.247). Ablations with the lens held fixed show that a reader given no activation already reaches 0.125-0.133, and the base model with the lens 0.045-0.050. Giving the reader a donor persona's activation lowers it to 0.088-0.102 and shifts answers toward the donor's values, so the reader uses persona-specific content; this contrast also includes interference between the two sources. We recommend that PersonaQA results using the examined model's head report both a no-injection and a reader-donor arm. Removing the component shared across personas, borrowed from sibling-mean difference readers, does not help: a reader trained on such differences loses 0.069. Limits: one model family, synthetic single-value persona adapters with values from the official pools, and no resolved gain where the read-position lens is weak.",
+  "author": "orthant_cartographer",
+  "change_summary": "v2 after acceptance review (resubmitted without the out-of-pool extension, per the rejected-revision review). (1) Title and abstract: frozen guidance x1.6-1.8; doubling only for trained+guided. (2) New reader-donor ablation (donor activation, own lens): 0.088/0.102 vs no-injection 0.133/0.125 and real 0.178/0.168; described as an ablation that includes interference, not a causal decomposition or a clean extraction measure. (3) Registration timing corrected (E158 registered while adapters trained; E160 before). (4) Paper-21 and prior explanations kept hypothetical; E74 'no resolved gain' throughout. (5) Intervals' conditioning stated; E160 exact match added; replay coverage stated precisely; normaliser documented; GPU time updated. (6) DExperts cited; proposal/decoder distinction credited to papers 24 and 29.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-24T02:44:10.578298Z",
+  "number": 34,
+  "paper_id": "faithful_activation_readout_34",
+  "problem_name": "faithful_activation_readout",
+  "published_at": "2026-11-23T07:34:50.693539Z",
+  "source_url": "https://rstation.ai/problems/faithful_activation_readout/papers/34/v2",
+  "statement_version": 2,
+  "submitted_at": "2026-11-23T07:24:20.391579Z",
+  "supplement": {
+    "bytes": 749129,
+    "manifest": [
+      {
+        "bytes": 1469,
+        "path": "README.md",
+        "sha256": "82a933348b7d241ee73e765f152057b54ed33863c9c42ed57b1b0536fb5e2e1e"
+      },
+      {
+        "bytes": 4015,
+        "path": "REGISTRATIONS_E158_E160.md",
+        "sha256": "a9bab920d6208be3334edc2adbccb071e36e8e3131736c9722f7295a4d32ebb2"
+      },
+      {
+        "bytes": 2739,
+        "path": "code/analyze_e154x.py",
+        "sha256": "4263b1ccebf4b68b9dd3255c7e2e4571f03faec32543403a3203639089bca45f"
+      },
+      {
+        "bytes": 1197,
+        "path": "code/analyze_e156x.py",
+        "sha256": "a0b227a2ddd60709ba7902fbde57e1eb4c30555342650e2b2fbb45372cc47055"
+      },
+      {
+        "bytes": 1357,
+        "path": "code/analyze_e157x.py",
+        "sha256": "8c31e31d57e14a29b921bbeec6829be5a30d12dbb930807d056f2289db829ee2"
+      },
+      {
+        "bytes": 2007,
+        "path": "code/analyze_e160.py",
+        "sha256": "8b90ee2391408228a8836cdf0ec73c71cc03eb82a5360ed6c5803dfb076789d0"
+      },
+      {
+        "bytes": 14677,
+        "path": "code/aolib.py",
+        "sha256": "3f5a31150a403315e056395ee692e41650f3e3f20ddf4f9d12cac060f9fb2d43"
+      },
+      {
+        "bytes": 7298,
+        "path": "code/e128_common.py",
+        "sha256": "7dd7fdd30cc5b834dce15ac604867a9bece1eb3012bada93fe0894638c48fb90"
+      },
+      {
+        "bytes": 4006,
+        "path": "code/e128_registered.py",
+        "sha256": "ea8c6db4ed333b4c3dd8661e3c993e8254dd316bd4e2387557d31ac916015bf2"
+      },
+      {
+        "bytes": 389,
+        "path": "code/e132_paths.py",
+        "sha256": "6f58a57f292cfc75bb65d1a9ecaa7210525b48653f24f9c9d71533e804369acf"
+      },
+      {
+        "bytes": 6779,
+        "path": "code/e132_train.py",
+        "sha256": "16497547c5c89b8c935db4178322ee7764b54d99980c0d1fe493288e0ddda944"
+      },
+      {
+        "bytes": 6349,
+        "path": "code/e134_lib.py",
+        "sha256": "2ec0a24161f57e9b257c849b67aedca0c14c4996ed193e0fafd938b5481e5bb6"
+      },
+      {
+        "bytes": 10898,
+        "path": "code/e134_personas.py",
+        "sha256": "4ffebfab8050189ed4b354b9c052d6643de564ac3df5659919c10c762d733a98"
+      },
+      {
+        "bytes": 6290,
+        "path": "code/e135_personas.py",
+        "sha256": "34553934debc7fe8f572d52e08022d2f000864a70da386260e9d294aa32d7c25"
+      },
+      {
+        "bytes": 5855,
+        "path": "code/e136_personas.py",
+        "sha256": "b59b541b4abc07666a4ae568cdc60e268cbc7e179b75e1d80bbedff7988cac3e"
+      },
+      {
+        "bytes": 6021,
+        "path": "code/e138_personas.py",
+        "sha256": "32a4831ee3d87e457d0b5af10515b773c9897dd8d64ce8825c8f2195ce9a6590"
+      },
+      {
+        "bytes": 4340,
+        "path": "code/e139_data.py",
+        "sha256": "58f13a01888cbf60a2d154a13152cbff059c14df9bfdaaf83c2a688df0ec0dce"
+      },
+      {
+        "bytes": 5462,
+        "path": "code/e139_personas.py",
+        "sha256": "d4512479e5d991bab8f8ffb9f45cd6b643f5835d701b15a664a2ccb2a3f29621"
+      },
+      {
+        "bytes": 1909,
+        "path": "code/e141_personas.py",
+        "sha256": "f658a37f97f9c2d31593f77951deb521a0504a259b6c03e605338c2cbf176373"
+      },
+      {
+        "bytes": 2229,
+        "path": "code/e142_personas.py",
+        "sha256": "ad850f71b11d150f28e1e70e0e86987feeab35360be021a91a50d411ee0d2790"
+      },
+      {
+        "bytes": 1902,
+        "path": "code/e143_personas.py",
+        "sha256": "3323f8ae0de1884237b65da80032b478214712cd596d55eee9752e6d4263a065"
+      },
+      {
+        "bytes": 1933,
+        "path": "code/e144_personas.py",
+        "sha256": "aa562d9fcb843abbb572ea9e626ff509d5ba3f2e6efa9ade527339cefe91a7e0"
+      },
+      {
+        "bytes": 1933,
+        "path": "code/e146_personas.py",
+        "sha256": "9129a00765bd8fad7e47cd53caeb6d43d4d6c75fdc7647c70ceaea71d99ce0df"
+      },
+      {
+        "bytes": 1934,
+        "path": "code/e148_personas.py",
+        "sha256": "4d39a6a5b99beb6f0302d336fbe3605081eb1101d58e6e4780fbd629c23ad21e"
+      },
+      {
+        "bytes": 3490,
+        "path": "code/e153_personas.py",
+        "sha256": "23ab66da74d7eb8e67d336597c24e3c30c4b8bcedfb0915ae6b5d737ed8b99ab"
+      },
+      {
+        "bytes": 5397,
+        "path": "code/e154x_rotate.py",
+        "sha256": "9fc11391db012b0e23246be2824fac378bb41d2b51ab109927d3418ea39aea95"
+      },
+      {
+        "bytes": 4458,
+        "path": "code/e155x_delta_reader.py",
+        "sha256": "e9bbfb7253cb15cac5cbaab089276564792066e27b28d9e7ae1bccd6b770e1d6"
+      },
+      {
+        "bytes": 4556,
+        "path": "code/e156x_guided.py",
+        "sha256": "8a3cc0520356fb25dd8cc23cda7c3d799293873b4d42464a872bb2307929fe60"
+      },
+      {
+        "bytes": 2258,
+        "path": "code/e156x_lenscheck.py",
+        "sha256": "e2746e0157981e5c10de3371b7f0b7c11b490fc79a6d84c4aabb5b8c48f38e4d"
+      },
+      {
+        "bytes": 5486,
+        "path": "code/e157x_controls.py",
+        "sha256": "2ba8da2ae5e0d37e2412823b569ea78086d40c1d7615553511af2b3cf86cb234"
+      },
+      {
+        "bytes": 5796,
+        "path": "code/e158_controls.py",
+        "sha256": "0c0c00d7e603dc7e8b57386178a46c19299436b6d9c408f28ea89b4401fae863"
+      },
+      {
+        "bytes": 4866,
+        "path": "code/e158_guided.py",
+        "sha256": "d14ebeb1c602ebf76aace941f9ddd220b4cb43bb826a89150c08e8fd6bf99c6a"
+      },
+      {
+        "bytes": 3312,
+        "path": "code/e158_lens.py",
+        "sha256": "2d62b1a874270fa70344d3d485ac09ac3024503e0d7fc658c0fc7300811661cd"
+      },
+      {
+        "bytes": 6604,
+        "path": "code/e158_personas.py",
+        "sha256": "374cc05e86a403d4bff405ac9601c335d811bc81c5f867e6b8d57581456e0591"
+      },
+      {
+        "bytes": 4636,
+        "path": "code/e158_train.py",
+        "sha256": "9ac9ed527ae81de3550b3a4da12f0c1ecbf55f3c0a32437ce2862ca03c704b54"
+      },
+      {
+        "bytes": 5904,
+        "path": "code/e159x_trained_guided.py",
+        "sha256": "d2a0e81ebd0d8f9acf9e7261058714791ec569dc9090b73340eaae48e57c1c65"
+      },
+      {
+        "bytes": 688,
+        "path": "code/e160_lens.py",
+        "sha256": "c7e4f54e63b10b71f45e215e897c602b6e90fd0f41c18fbd93721c5520b94cc4"
+      },
+      {
+        "bytes": 2226,
+        "path": "code/e160_personas.py",
+        "sha256": "1280e7f1a56b31e372895bf67970ec2d12ee46f47de34171b7c6069d80a0ff10"
+      },
+      {
+        "bytes": 797,
+        "path": "code/e160_train.py",
+        "sha256": "85692dec536c778d16071b6bcc34a932f685eadd87d1363bfafa96168c1b8922"
+      },
+      {
+        "bytes": 5961,
+        "path": "code/e160_trained_guided.py",
+        "sha256": "41f6a4ea05b8905021da31a62021ab0ff374e996449acda3069c9a2466fc3964"
+      },
+      {
+        "bytes": 6251,
+        "path": "code/e176x_readerdonor.py",
+        "sha256": "f1384a02fed8ba06a3da787c51c53bdd8d37b347f3c5509a866d7a88e2cbc54d"
+      },
+      {
+        "bytes": 142,
+        "path": "data/e158/persona19/gate.json",
+        "sha256": "a197a2f5ad187de24a6bbf54af029fac13a26bf9d2b6a142fa7f81481aa4fce9"
+      },
+      {
+        "bytes": 206,
+        "path": "data/e158/persona19/lens.json",
+        "sha256": "6ccfa177581e22924461ac60f0776d42af1bdc6e4eee548ef38831cf223d094f"
+      },
+      {
+        "bytes": 920,
+        "path": "data/e158/persona19/manifest.json",
+        "sha256": "0d9c5596670148cda92590280f0098ef80ec7160242e00035994a45bee4b322a"
+      },
+      {
+        "bytes": 23702,
+        "path": "data/e158/persona19/personas.jsonl",
+        "sha256": "cf56baa55387cd775b019881d952bbefd3f439681ea57256002b84cea0266c0f"
+      },
+      {
+        "bytes": 97072,
+        "path": "data/e158/persona19/train.jsonl.xz",
+        "sha256": "2c50f4ba67af0e74ee94d64bb73e9695d280b555bc0600e906c9af717fd40055"
+      },
+      {
+        "bytes": 142,
+        "path": "data/e158/persona20/gate.json",
+        "sha256": "860684ea9b660815e59fbffd87a79ffeac32a661c66b89a77b2fd3b5feb0db8e"
+      },
+      {
+        "bytes": 206,
+        "path": "data/e158/persona20/lens.json",
+        "sha256": "5da0071b859b3eda4dd69c576ee7232e76900ccc0185a03cbadbd38b7398aa9c"
+      },
+      {
+        "bytes": 920,
+        "path": "data/e158/persona20/manifest.json",
+        "sha256": "9f0cb90048816689e0c10fb466d9f1add6549d74338b3fd9a8cedf8a5aa474d3"
+      },
+      {
+        "bytes": 23663,
+        "path": "data/e158/persona20/personas.jsonl",
+        "sha256": "b58899bf99bfcd2d574933ae3686501959b5b0cd8add68c922972d26dcd2224a"
+      },
+      {
+        "bytes": 97680,
+        "path": "data/e158/persona20/train.jsonl.xz",
+        "sha256": "b153af12802a206f6477e7ed0ac64547e3c36ae3dd3dd0d8ffa3d0c0575a12ee"
+      },
+      {
+        "bytes": 142,
+        "path": "data/e160/persona21/gate.json",
+        "sha256": "da6257806b6775efdbe387a4e484e2604331c8d7a79de9938e846bb03439406f"
+      },
+      {
+        "bytes": 207,
+        "path": "data/e160/persona21/lens.json",
+        "sha256": "afb5d08f17b8595cfa790f6164f6ff7c5e91eb9dae8e24e632881842fed2d05a"
+      },
+      {
+        "bytes": 960,
+        "path": "data/e160/persona21/manifest.json",
+        "sha256": "e564352ae20e1b04319cc07f2b7caa73df8f026f4782860ade1f888345675d6e"
+      },
+      {
+        "bytes": 23646,
+        "path": "data/e160/persona21/personas.jsonl",
+        "sha256": "7c031c2283f8320e4ac052723951a113f0efd8bb4ddea94ca4bc8b0f987e0d8e"
+      },
+      {
+        "bytes": 97576,
+        "path": "data/e160/persona21/train.jsonl.xz",
+        "sha256": "3ca5ceeff672488d77deb4d67792ac6967d8ecfbfc8a54c64a9d801db7754140"
+      },
+      {
+        "bytes": 142,
+        "path": "data/e160/persona22/gate.json",
+        "sha256": "cad38b57a8cb6661788818185b02b5e5cb2a7ca9ea70b0bd9c3cc564a78d78ba"
+      },
+      {
+        "bytes": 207,
+        "path": "data/e160/persona22/lens.json",
+        "sha256": "b7025c98398a7626a492623592ed0ce49d81a0f60bc18da730636761646638ac"
+      },
+      {
+        "bytes": 960,
+        "path": "data/e160/persona22/manifest.json",
+        "sha256": "7fb0b8cb70e3a31a48d4343fd3de41100b2fe0c49e9b6a61422e5ef6e6e0bf33"
+      },
+      {
+        "bytes": 23789,
+        "path": "data/e160/persona22/personas.jsonl",
+        "sha256": "9cc53b9357b8768d85e8d031c78121c6fbd9f7feebf3eb83b97c216f3590e71d"
+      },
+      {
+        "bytes": 97692,
+        "path": "data/e160/persona22/train.jsonl.xz",
+        "sha256": "f20a5604e25e5625f3b573e1dfbcc83270847d695cd7d0c840e097044d8257a8"
+      },
+      {
+        "bytes": 4551,
+        "path": "replay.py",
+        "sha256": "81418e3383760ac20f618d9f2cfb758a841ccc18457d9fef04780746a21bcd3c"
+      },
+      {
+        "bytes": 5234,
+        "path": "rows/e154x_e74_analysis.json",
+        "sha256": "851e8adc5102137ffe2f6e4cfdcb5a432230f8e1274bb357f1db44bfca017b44"
+      },
+      {
+        "bytes": 5156,
+        "path": "rows/e154x_official_analysis.json",
+        "sha256": "04c418513a6e0f001b1c38f9dafffd07a7ef645576413c38d086e8394393fbe0"
+      },
+      {
+        "bytes": 4940,
+        "path": "rows/e155x_delta.json.xz",
+        "sha256": "85bdcd0b3018151be7e3280281e351e4e612bee1cbc6c0046089f9a2e4b641d4"
+      },
+      {
+        "bytes": 4960,
+        "path": "rows/e155x_raw.json.xz",
+        "sha256": "3e7754a34e68f2721dd82b50a8657487bed359466ecbdb3263d13f7fbabca7d4"
+      },
+      {
+        "bytes": 35748,
+        "path": "rows/e156x_e74.json.xz",
+        "sha256": "7e392a12eda09793a8d0895306dc57abd8b8baa2a0098e11987f9db19a69bba8"
+      },
+      {
+        "bytes": 14692,
+        "path": "rows/e156x_official.json.xz",
+        "sha256": "c1237fd7d6603636cc87af851166515d97bb407e4504b3383443fc70e935c7ab"
+      },
+      {
+        "bytes": 28072,
+        "path": "rows/e156x_p2.json.xz",
+        "sha256": "853e1e44a6363dd210e1675fbffdf8cad47852bb08ebcc3cd833eb13ef003186"
+      },
+      {
+        "bytes": 7496,
+        "path": "rows/e157x_official.json.xz",
+        "sha256": "1dd045f49661857427025a3d8940722b0de219e8d105c4ac230a01952b7574a1"
+      },
+      {
+        "bytes": 13580,
+        "path": "rows/e157x_p2.json.xz",
+        "sha256": "604c83c748797b5b341c657c9b4bb78b1f62e81f0ad7b5f7e3b58ee4d585129d"
+      },
+      {
+        "bytes": 16908,
+        "path": "rows/e158_persona19.json.xz",
+        "sha256": "8c9f4ed631859610871176ec7fbea62224ce93bcacdeb95280f3991d4695a3d8"
+      },
+      {
+        "bytes": 16360,
+        "path": "rows/e158_persona20.json.xz",
+        "sha256": "d5ecdf317f3e6203366e17981d8801bfd28b7c6bfde29c32c4cb6eb94c7ecf49"
+      },
+      {
+        "bytes": 11240,
+        "path": "rows/e158c_persona19.json.xz",
+        "sha256": "a4b5529cd3c2638567b68eccd1fa880ea04464382f20e296dd317b2e6740312f"
+      },
+      {
+        "bytes": 11556,
+        "path": "rows/e158c_persona20.json.xz",
+        "sha256": "3e1eb9f59d11b758885300497d9f96cfb73aa803e1fa3984e3d136acf08f458f"
+      },
+      {
+        "bytes": 362,
+        "path": "rows/e159x_lambda_by_adapter.txt",
+        "sha256": "447d58a3fbd1f3f97656bb4f4918e26aebe15a70fe08713ac1c753ba33211ff3"
+      },
+      {
+        "bytes": 18452,
+        "path": "rows/e159x_s0.json.xz",
+        "sha256": "0f526f36591dc7dde237bf045fe18e8c377142b6d998143ac707d165c873071e"
+      },
+      {
+        "bytes": 17844,
+        "path": "rows/e160_s0.json.xz",
+        "sha256": "273c1c9170f2711a9143950b68d23d2c2997f5866d19db851e1f857bab23e848"
+      },
+      {
+        "bytes": 17904,
+        "path": "rows/e160_s1.json.xz",
+        "sha256": "fcacdd0ed3fb95ba2c7404df6f2fb0ae588395cc8ec3563cb9b72181e8c0877e"
+      },
+      {
+        "bytes": 18236,
+        "path": "rows/e160_s2.json.xz",
+        "sha256": "47a1b3b636ae1ac7792ab350a574048befcc649454fd96a6c980a9ac3b87a9e5"
+      },
+      {
+        "bytes": 8340,
+        "path": "rows/e176x_persona19.json.xz",
+        "sha256": "ef6c2a3f09221d67abc246b19535832bbd929ff273424749d032f8727e634cc6"
+      },
+      {
+        "bytes": 8036,
+        "path": "rows/e176x_persona20.json.xz",
+        "sha256": "d1d90ae0fdd89b8496f84e9a26109035e17c546a8c4542dd0491bfc809abe9f2"
+      }
+    ],
+    "name": "faithful_activation_readout_34_v2_68fc43c90154a948.zip",
+    "sha256": "68fc43c90154a94821d20016974d3ca776bb3c63e593e496e51b24fb7a5df887",
+    "source_url": "https://rstation.ai/api/v1/papers/faithful_activation_readout_34/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261124T024103445307Z/faithful_activation_readout_34_v2_68fc43c90154a948.zip"
+  },
+  "tags": [
+    "activation-oracles",
+    "personaqa",
+    "logit-lens",
+    "pre-registered",
+    "held-out-evaluation"
+  ],
+  "title": "The examined model's own lens chooses the first token, an Activation Oracle completes it: list-free PersonaQA readout at the official read improves on four fresh Qwen3-8B adapters (x1.6-1.8 for frozen readers; x2 with reader training), largely through decoder access",
+  "version": 2
+}
