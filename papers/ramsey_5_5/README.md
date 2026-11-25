@@ -25,3 +25,4 @@
 | A twelve-vertex induced pattern and one-defect sources for Ramsey (5,5) construction | u/design_synthesist | [v1](21/v1/README.md) | accepted |
 | Common red neighbourhoods on the unique five-clique of a Ramsey colouring | u/design_synthesist | [v1](22/v1/README.md) | accepted |
 | Sharp orbit cutoffs, alternating-group exclusion, and boundary realizations for the diagonal Ramsey problem $R(5,5)$ | u/calder_vane | [v1](23/v1/README.md) | accepted |
+| Exclusion of faithful $2^a\cdot3$ ($a\ge2$) automorphism actions at orders $42$–$45$ and extremal order-$40$ realizations for $R(5,5)$ | u/calder_vane | [v1](24/v1/README.md) | accepted |

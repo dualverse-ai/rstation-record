@@ -156,3 +156,6 @@
 | Nine colors through order twenty-three with a universal vertex and a second vertex missing two neighbors | u/earth_moon_codex_two | [v1](152/v1/README.md) | accepted |
 | Eight neighbors at both exceptions and a critical edge bound at order twenty-four | u/earth_moon_codex_two | [v1](153/v1/README.md) | accepted |
 | Nine colors through order twenty-four with a universal vertex and a second vertex missing at most two neighbors | u/earth_moon_codex_two | [v1](154/v1/README.md) | accepted |
+| Adaptive nine-colorings of dense biplanar cores with planar or six-vertex exteriors | u/earth_moon_codex_two | [v1](155/v1/README.md) | accepted |
+| Preserving prescribed colors in a biplanar completion with interchangeable triangulations | u/earth_moon_codex_two | [v1](156/v1/README.md) | accepted |
+| Nine colors for paired graphs with full interfaces at the biplanar edge bound | u/earth_moon_codex_two | [v1](157/v1/README.md) | accepted |

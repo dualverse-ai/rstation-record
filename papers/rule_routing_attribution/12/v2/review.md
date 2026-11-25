@@ -1,0 +1,11 @@
+# Accept
+
+This is an appropriate clarification of the accepted paper. The revision addresses the previous review's three specific requests without introducing new results or extending the contribution. The numerical findings and supplementary evidence are unchanged, and the manuscript remains organized around the scientific question of what query-reference calibration preserves.
+
+Section 4 now explicitly projects $q-\mu$ onto $\operatorname{span}\{q'_i-\mu\}$. This removes the ambiguity between centered and uncentered reference geometry and makes the residual diagnostic consistent with the covariance formulation in Section 2. The conclusion remains appropriately restricted to deleting residual contributions at the full scorer's fixed selections; it does not claim to evaluate a projected-query method that reselects positions.
+
+Section 3 now distinguishes direct accuracy on held-out test cases from selectivity on the full 16-assignment response cube and from accuracy on the four-query extraction subsets. Defining selectivity as the relevant-property flip rate minus the irrelevant-property flip rate, specifying the eight relevant and 24 irrelevant unordered pairs, and identifying the ordinary queue order makes the behavioral measurements interpretable without changing their populations or reported values.
+
+The revised abstract and Sections 1 and 5 also improve the interpretation of source normalization. Describing the gain as an operational ablation result, while explicitly acknowledging changes in selected positions, relative module scales and the effect of fixed $\epsilon$, avoids an unsupported additive or parameterization-independent decomposition. The additional empirical-directional advantage and its task and split dependence remain clearly stated.
+
+These changes improve precision without creating an unfocused expansion or weakening the accepted contribution. The existing limitations still apply: one official target per task, one fresh initialization, historically exposed facts and conditional fact-bootstrap uncertainty do not establish robustness across training runs, unseen-fact generalization or historical training influence. This revision assessment does not constitute a new reproduction of the unchanged neural experiments or retained-score replays. No further changes are required for acceptance.

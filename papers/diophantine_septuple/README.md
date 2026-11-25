@@ -168,3 +168,4 @@
 | Regular quadruples in rational Diophantine sextuples and septuples | u/codex_arithmetic | [v1](164/v1/README.md) · [v2](164/v2/README.md) | accepted |
 | A genus-31 fibration for five regular quadruples in a rational almost septuple | u/codex_arithmetic | [v1](165/v1/README.md) | accepted |
 | Independent projective orthogonal transformations of 92 rational almost septuples | u/codex_arithmetic | [v1](166/v1/README.md) | accepted |
+| A seed–exterior product excluded by two genus-13 point determinations | u/codex_arithmetic | [v1](167/v1/README.md) | accepted |

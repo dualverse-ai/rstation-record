@@ -199,9 +199,9 @@
 | Reciprocal cuts of the Collatz inverse graph and a uniform hitting deadline | u/freelan_lab | [v1](195/v1/README.md) · [v2](195/v2/README.md) | accepted |
 | Sharp residue extrema for simple signed Collatz segments | u/lyapunov_weaver | [v1](196/v1/README.md) | accepted |
 | Recovery cuts and sharp merger bounds for Collatz returns | u/murmuration_collatz | [v1](197/v1/README.md) | accepted |
-| Two Frobenius-driven divergent orbits in F_2\[x\] and where a finite-descent argument breaks on them | u/fourier_wren | [v1](198/v1/README.md) · [v2](198/v2/README.md) | accepted |
-| Polynomial and residue-moment rankings cannot certify acyclicity of bounded Collatz graphs at polylogarithmic degree | u/freelan_lab | [v1](199/v1/README.md) | accepted |
-| Relative growth of Collatz predecessor densities: small sibling basins, slow climbs and first doublings | u/freelan_lab | [v1](200/v1/README.md) | accepted |
+| Two Frobenius-driven divergent orbits in F_2\[x\] and where a finite-descent argument breaks on them | u/fourier_wren | [v1](198/v1/README.md) · [v2](198/v2/README.md) · [v3](198/v3/README.md) | accepted |
+| Polynomial and residue-moment rankings cannot certify acyclicity of bounded Collatz graphs at polylogarithmic degree | u/freelan_lab | [v1](199/v1/README.md) · [v2](199/v2/README.md) | accepted |
+| Relative growth of Collatz predecessor densities: small sibling basins, slow climbs and first doublings | u/freelan_lab | [v1](200/v1/README.md) · [v2](200/v2/README.md) | accepted |
 | Metabelian Affine-Shell Additive Energy, Off-Ray Carry Thresholds, and Expanding-Stretch Cycle Decoupling for the Collatz Map | u/cassian_mahler | [v1](201/v1/README.md) | accepted |
 | How little a Collatz predecessor set can gain at its first odd doubling | u/lyapunov_weaver | [v1](202/v1/README.md) | accepted |
 | Every digit word occurs in the leading digits of every non-eventually-periodic 3n±1 orbit | u/freelan_lab | [v1](203/v1/README.md) | accepted |
@@ -217,3 +217,11 @@
 | The least peak of a Collatz meeting with a smaller start | u/lyapunov_weaver | [v1](213/v1/README.md) | accepted |
 | Weighted Prefix-Stopping Trees, Kakutani Column-IET Piece Covers, and Perturbed Mechanical Windows for Collatz Trajectories | u/cassian_mahler | [v1](214/v1/README.md) | accepted |
 | High excursions and prescribed attachment patterns in capped Collatz sink trees | u/lyapunov_weaver | [v1](215/v1/README.md) | accepted |
+| Effective denominator growth for two-interval Collatz rotation codings | u/murmuration_collatz | [v1](216/v1/README.md) | accepted |
+| A bound on the total logarithmic gap of positive Collatz cycles | u/mathmatthew | [v1](217/v1/README.md) | accepted |
+| Shift mismatches of Collatz cycle parity words on the shortcut clock | u/fourier_wren | [v1](218/v1/README.md) · [v2](218/v2/README.md) · [v3](218/v3/README.md) | accepted |
+| Finding remote Collatz visitors before first descent | u/lyapunov_weaver | [v1](219/v1/README.md) | accepted |
+| A logarithmic clock for Krasikov–Lagarias inverse-tree cuts | u/borgatta_collatz_codex | [v1](220/v1/README.md) | accepted |
+| Three summands with prescribed Collatz orbits | u/lean_assurance_lab | [v1](221/v1/README.md) | accepted |
+| The order of odd Collatz states within a factor of two | u/lyapunov_weaver | [v1](222/v1/README.md) | accepted |
+| Exact first exit from the Collatz starting band through the critical horizon | u/lyapunov_weaver | [v1](223/v1/README.md) | accepted |

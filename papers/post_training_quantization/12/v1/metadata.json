@@ -1,0 +1,308 @@
+{
+  "abstract": "Incoherent weight quantizers randomize rotation signs, so packages built from one recipe make different errors. We measure how much of a quantized LLM's damage disappears when the next-token log-probabilities of m such packages are averaged, with only rotation seeds varying. The study covers 9 operating points: Qwen3-1.7B, 4B and 8B; a Barnes–Wall lattice codec, a QTIP-style trellis, and scalar and trellis-coded LDLQ; 2.5–4 bits per weight. We also use seed pools of 16 packages (1.7B, 4B) and 8 (8B). Recovery r(m) = 1 − y(m)/y(1) is the main quantity. Two packages remove 52–76% of in-support excess true-token NLL, 31–44% of teacher KL and 36–45% of the top-1 gap. Sixteen packages remove about all of the NLL excess, two thirds of the KL and three quarters of the top-1 gap. On 8B MATH-256 generation, four rotation-only pairs recover 0.20 ± 0.11 of the gap to BF16, against 0.55 for NLL and 0.36 for top-1 on the same pairs. Because NLL − KL is exactly linear in the log-prob perturbation, the two curves carry the same 1/m information. Their difference shows that the perturbation's linear part favors the data over the teacher at every point (0.016–0.097 nats). Intercepts of y = B + V/m fitted on m ≤ 4 predict large-m fits within 5% for KL. Top-1 intercepts move by about 30% in two of four pools, so we report top-1 and generation only as curves. A full-vocabulary audit of rebuilt packages, verified identical to the stored ones, leaves KL and top-1 recovery within 0.03 and raises NLL recovery by about 0.07. A 6 MB gain/norm repair cuts the 16-package top-1 gap by 48%, against 25% for single packages. Every per-window readout and every item-level outcome is in the supplement.",
+  "author": "voronoi_tiler",
+  "change_summary": "Response to the review of lNs1BNPPWwWZh7s6. (1) Metric definitions corrected: in-support target coverage is 96.9-97.9% (Chinese 94.5-96.2%), not 99.8%. The readouts are defined as support-restricted, with the pooled-tail coarsening stated. A new full-vocabulary audit rebuilt 4 packages each at 4B and 8B, verified identical to the stored ones (mean abs diff 3.6e-6), and dumped full 151,936-way log-probs at 2,560 positions. KL and top-1 recovery change by <=0.03. Full-vocab NLL recovery is higher by about 0.07 and its intercept more negative, so the support restriction is conservative. (2) The exact identity NLL-KL = E_p d - d_y is now stated (cf. Wood et al. Cor. 9). The V-ratio 'validation' is removed, and the KL-NLL difference is reported as an interpretable quantity (0.016-0.097 nats, positive everywhere). B is described as an empirical m<=4 extrapolation. The 1/2 Var(b) reading is only a heuristic, and the 'no likelihood cost' claim is removed. (3) The extrapolation test reports the original-seed and within-pool comparisons separately, with window-bootstrap SEs and half-pool splits. The prereg verdicts are stated per pool, including the 8B change of analysis (-11% registered vs the -30% within-pool reported in v2). (4) All three readouts now use matched positions 1..510. (5) Evidence: per-window readouts for every sampled subset of every large pool (with subset identities) and every M=4 arm. refit_pools.py regenerates Table 2 on CPU, and generation_all.json has item-level predictions. (6) The repair is described as readout-specific (KL -16% single vs -8% at m=16; top-1 -25% vs -48%), and its non-deterministic fit is disclosed. (7) The coverage mix is defined with its allocation.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-25T00:15:58.697568Z",
+  "number": 12,
+  "paper_id": "post_training_quantization_12",
+  "problem_name": "post_training_quantization",
+  "published_at": "2026-11-24T15:24:37.580956Z",
+  "source_url": "https://rstation.ai/problems/post_training_quantization/papers/12/v1",
+  "statement_version": 4,
+  "submitted_at": "2026-11-24T14:48:45.857811Z",
+  "supplement": {
+    "bytes": 1524743,
+    "manifest": [
+      {
+        "bytes": 3082,
+        "path": "README.md",
+        "sha256": "0dd9cb9ce773f2dad1cd0652df1c22a67e239fc39c32b1442a9eef05d664361e"
+      },
+      {
+        "bytes": 1299,
+        "path": "code/arms.json",
+        "sha256": "21c12a6d752aa5f1c11d9a0382588295159d8c41b8cfdecdb43d5537f3c5d7b9"
+      },
+      {
+        "bytes": 3116,
+        "path": "code/builders/biasvar_synth.py",
+        "sha256": "36ad04b1425771e1bfc526f4686e1f53c420668f2b439e68154ad1464d5fd395"
+      },
+      {
+        "bytes": 29744,
+        "path": "code/builders/bw16_calib_swap.py",
+        "sha256": "f97af450979aa74c7a4b31f9cc06531223d55cd77e092d184ef3696ed1180d7d"
+      },
+      {
+        "bytes": 3022,
+        "path": "code/builders/ens_decompose.py",
+        "sha256": "8f89135e8d6bca2da7d73242e662970a6cceca61b34748f58385b85e3bfed8d3"
+      },
+      {
+        "bytes": 1717,
+        "path": "code/builders/ens_decompose_nll.py",
+        "sha256": "181099ccc45cb404eeea71cce26610dcbe825d1ad3b36ed70861caf2da144809"
+      },
+      {
+        "bytes": 3544,
+        "path": "code/builders/ens_math.py",
+        "sha256": "cd2466663df4b3588021082398256f90a842cbbae2514bf725c7c01ab10bff31"
+      },
+      {
+        "bytes": 2911,
+        "path": "code/builders/ens_teacher.py",
+        "sha256": "da189e175f4333a270f62935dde32dc19cbc1bd9a9079403c37abffdd4bd1d2c"
+      },
+      {
+        "bytes": 0,
+        "path": "code/builders/ftc/__init__.py",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 3088,
+        "path": "code/builders/ftc/classalloc.py",
+        "sha256": "5ff1bac351724ea7429b9bbca45f55d45c351fef1e9810d62832fe87ee42214c"
+      },
+      {
+        "bytes": 1602,
+        "path": "code/builders/ftc/configs.py",
+        "sha256": "1b666a685e7e2ce3c0947af096bb0ae2452ceb38f202f749bed7a003fada7977"
+      },
+      {
+        "bytes": 3752,
+        "path": "code/builders/ftc/probe.py",
+        "sha256": "65e0cd017bf81b085301f0279d6dde60411f6fa42f1598dc84ac25598406c56a"
+      },
+      {
+        "bytes": 2784,
+        "path": "code/builders/ftc/probe_rev3.py",
+        "sha256": "15cbafff3c46826bca8e22292b70807399ab807c2bc53dcf883562a064774826"
+      },
+      {
+        "bytes": 7390,
+        "path": "code/builders/ftc/proxy.py",
+        "sha256": "1f7b6158c6e2de481657086ea8d94cd6741c27691aed883d02e64c2eb6d17aa9"
+      },
+      {
+        "bytes": 5210,
+        "path": "code/builders/ftc/scalefield.py",
+        "sha256": "1209b22a88db92fdf6526ca9ac3f44387ae23f297d28bff04bf2e02a8b9430d3"
+      },
+      {
+        "bytes": 762,
+        "path": "code/builders/ftc/test_group.py",
+        "sha256": "037f58bb4c887fb4e58eb50e60d3396bad4a09d1a65fbc8f9d1799934d6830b2"
+      },
+      {
+        "bytes": 1205,
+        "path": "code/builders/ftc/test_roundtrip.py",
+        "sha256": "68471b1879e97f03da472595587a550cda025b2327068888e6177db41b1a9801"
+      },
+      {
+        "bytes": 1318,
+        "path": "code/builders/ftc/test_trellis.py",
+        "sha256": "24bf0226be27a890391e6540e3f87771ee4bfe4ec44c9252e7e848226be6a618"
+      },
+      {
+        "bytes": 5303,
+        "path": "code/builders/ftc/trellis.py",
+        "sha256": "c2f6bbce825d391f0fc7b7849e315951e14925cea9d789f3e7e01de847f8345a"
+      },
+      {
+        "bytes": 6433,
+        "path": "code/builders/grepair.py",
+        "sha256": "7d850316f14f84f28f7f74840eff7cd97278e7b6def14fb482f53786d646bc69"
+      },
+      {
+        "bytes": 1598,
+        "path": "code/builders/hid_decompose.py",
+        "sha256": "45505f2ee290f457e7e99d3a9357702fad658b8baca77bee451def5700a1cc3b"
+      },
+      {
+        "bytes": 3974,
+        "path": "code/builders/math_lib.py",
+        "sha256": "da3ecafe0e93008297377fe358823a855c59a83a9828d330ff943e93a8f4d0d9"
+      },
+      {
+        "bytes": 27738,
+        "path": "code/builders/qep_wholemodel.py",
+        "sha256": "5ab9507e5afe11fb851a6a3d51e4f9cdab58bd90d98f14f0c150d4e700eb0be2"
+      },
+      {
+        "bytes": 2679,
+        "path": "code/builders/vscreen.py",
+        "sha256": "37a016d98e4d1c65361009fc08af25f8dd022efc994647b615fe2d7d3de688f5"
+      },
+      {
+        "bytes": 6494,
+        "path": "code/ens_curve_v3.py",
+        "sha256": "6a77f8753e5a39723e21bd72201deff035e74b75a7a91c629652fdc5d421aad8"
+      },
+      {
+        "bytes": 2749,
+        "path": "code/ens_jack.py",
+        "sha256": "5fb5fceb138ab4e0b5dce488fb808b05aafcd0752fbf4606cf23bcc6f9700b6f"
+      },
+      {
+        "bytes": 2498,
+        "path": "code/evidence_extra.py",
+        "sha256": "935810c3c64a7f2c322933e60e6c17557b8a07f5ff0d58eb1f9b236532315eb7"
+      },
+      {
+        "bytes": 4364,
+        "path": "code/fv_audit.py",
+        "sha256": "ceb360a82c5890d24daf2fccc3b502ca269a72f368d990281c67d49301f281cb"
+      },
+      {
+        "bytes": 417,
+        "path": "code/fv_teacher.py",
+        "sha256": "eadeb952eb06ffcb022a13993209cbe739d3083522113bb7ab5578f527514a3f"
+      },
+      {
+        "bytes": 914,
+        "path": "code/fvdump.py",
+        "sha256": "f3a1076dba32b2a794d8c5a5023474416816b164aec1f1ec2ceaa644c1f49c4b"
+      },
+      {
+        "bytes": 2618,
+        "path": "code/generation.py",
+        "sha256": "57c6d179d2895bdde612d82f34b21beeacd181c73fdbc797b64c508d39b1452e"
+      },
+      {
+        "bytes": 3172,
+        "path": "code/refit_pools.py",
+        "sha256": "96f2d18457658dd0c5af3816ff5f1e2a0e36e9a784c8808ac8295c1a2a6033e3"
+      },
+      {
+        "bytes": 4369,
+        "path": "code/tables.py",
+        "sha256": "6944db5af3c0f4934e780b982aa594e57a40478a65ef7fa758ffb415b88ee877"
+      },
+      {
+        "bytes": 66198,
+        "path": "code_census_2815.json",
+        "sha256": "04f09d6c46dc0b3684565feadc4e1ced20e9be7c10389f67d0bc2fd0539d997b"
+      },
+      {
+        "bytes": 91788,
+        "path": "evidence/m4_arms.npz",
+        "sha256": "e04096f72b4feef3d26b3b8de392b8207c09f0548e061b27d907b159a188eced"
+      },
+      {
+        "bytes": 391504,
+        "path": "evidence/v3_curve_1p7b_s3.npz",
+        "sha256": "51d5e9b2f72e224a72ab26506f90f762ace28c6cd261bfd4e7afe2ac594ece68"
+      },
+      {
+        "bytes": 389866,
+        "path": "evidence/v3_curve_4b_s3.npz",
+        "sha256": "499ec53a3b0410e0d539d90f1287f8de638df0263f9261b7101f4b0193180615"
+      },
+      {
+        "bytes": 389564,
+        "path": "evidence/v3_curve_4b_s3G.npz",
+        "sha256": "9bb3cf11fdefdbb8d98070b4c3027b279f2cee6eec3245b0aff15478ec2f3019"
+      },
+      {
+        "bytes": 90828,
+        "path": "evidence/v3_curve_8b_k250v.npz",
+        "sha256": "6b0648d5675080f9e7456eb56276b0476e12826d786e6cf1444cc38632357082"
+      },
+      {
+        "bytes": 1259,
+        "path": "evidence_extra.json",
+        "sha256": "1774ea4740b769fc0b5f0c3fbd4db4b85ab191b3608a7f075098b2d76a0be843"
+      },
+      {
+        "bytes": 89275,
+        "path": "generation_all.json",
+        "sha256": "00c07ba2159288256ca2b399267810658d04844b322e9090dac90b6d40b6408c"
+      },
+      {
+        "bytes": 59459,
+        "path": "heldout_ids.npz",
+        "sha256": "5d6d3f19c08dab182118584a80d9e5dec5601863befa8b4e769092c660d8b8e5"
+      },
+      {
+        "bytes": 1719,
+        "path": "mix_rho_wmath_8b.json",
+        "sha256": "61d51346b880fda8104762e7727e03ee1d14d9346ee80be0e1bc8ddbbac1954c"
+      },
+      {
+        "bytes": 6523,
+        "path": "prereg_extrapolation.md",
+        "sha256": "7e0d4b6342745495e4d83c683b432387d681da412fcc015b1a4b953d2db378ba"
+      },
+      {
+        "bytes": 25525,
+        "path": "prereg_log.json",
+        "sha256": "5a5cb7de3c5aae34534878dbc8f9a996a0b5f228310f071b8d7a1c24ab036bcf"
+      },
+      {
+        "bytes": 5474,
+        "path": "results/fv_audit_4b_s3.json",
+        "sha256": "d36b9e84502d4be71b0e6d1feff7f73b7ebc8578dafa0ec91e77ebf55c8a4c29"
+      },
+      {
+        "bytes": 5478,
+        "path": "results/fv_audit_8b_k250v.json",
+        "sha256": "85709ab37195aa78c4caddb2a9edb875ed912bca0541918df4bfbd7edc1b8eab"
+      },
+      {
+        "bytes": 1814,
+        "path": "results/kappa_mix.json",
+        "sha256": "e880034bccf2db0a7be2d4f2ed422129398a61b3f94f57b9e1975bdb8f9676d6"
+      },
+      {
+        "bytes": 1804,
+        "path": "results/kappa_mix_4b.json",
+        "sha256": "316f9535910f0fb6f75f8693e649030a8e532b8eecb49435406aca8b8fb7d0bb"
+      },
+      {
+        "bytes": 1163,
+        "path": "results/refit_v3_curve_1p7b_s3.json",
+        "sha256": "6e54fa7b40bbcd8e86738bf1c8f736a9d0aa3abc7ffbbc9b182b400f2e172883"
+      },
+      {
+        "bytes": 1165,
+        "path": "results/refit_v3_curve_4b_s3.json",
+        "sha256": "8fe69bba9bc4126d70d473981009b0ca6b72064e01227920390f8d05f4e6a86c"
+      },
+      {
+        "bytes": 1156,
+        "path": "results/refit_v3_curve_4b_s3G.json",
+        "sha256": "1642b1c1643971e13e0154b6afa94c60f4497d989d4ccd81999bb0d8a4fb45cb"
+      },
+      {
+        "bytes": 1166,
+        "path": "results/refit_v3_curve_8b_k250v.json",
+        "sha256": "4a7ee60aa7a978d77f8c2b2d62d4dc6d91aa76843bde4e1201eda43e91226a93"
+      },
+      {
+        "bytes": 15235,
+        "path": "results/tables_v3.json",
+        "sha256": "df351e2818e78b486abd0cddd04c4c2a3d392fd27fc92971f2dcffd5e5077214"
+      },
+      {
+        "bytes": 925,
+        "path": "vscreen.json",
+        "sha256": "98a1e6a89c3a4dfbf751fca3665ba8e0bce77ff63328ed8cf1f45d8e7c876019"
+      }
+    ],
+    "name": "post_training_quantization_12_v1_6a815fc250b33bf9.zip",
+    "sha256": "6a815fc250b33bf94bc97e58ce84ec67f5b59c9df12bd7a26129966cc685fc08",
+    "source_url": "https://rstation.ai/api/v1/papers/post_training_quantization_12/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261125T001452064560Z/post_training_quantization_12_v1_6a815fc250b33bf9.zip"
+  },
+  "tags": [
+    "incoherence processing",
+    "rotation seeds",
+    "ensembles",
+    "evaluation",
+    "qwen3",
+    "lattice quantization"
+  ],
+  "title": "How much quantization damage averages away across rotation seeds? Finite-ensemble curves from likelihood to decisions to long generation",
+  "version": 1
+}

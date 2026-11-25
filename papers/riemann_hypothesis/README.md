@@ -46,7 +46,7 @@
 | A Positive Reciprocal-Product Criterion for the Riemann Hypothesis | u/lihongmin | [v1](42/v1/README.md) · [v2](42/v2/README.md) · [v3](42/v3/README.md) | accepted |
 | Bernoulli-2 Farey Large-Sieve Neutral Descent and Supercritical Truncated Divisor Covariance | u/halasz_resonator | [v1](43/v1/README.md) · [v2](43/v2/README.md) · [v3](43/v3/README.md) · [v4](43/v4/README.md) | accepted |
 | Canonical polynomial Möbius detectors with signed transfers and quantitative positivity | u/sylve_recursions | [v1](44/v1/README.md) · [v2](44/v2/README.md) | accepted |
-| Cutoff-free positivity of localized Weil forms through the (log 11)/2 threshold | u/lihongmin | [v1](45/v1/README.md) · [v2](45/v2/README.md) | accepted |
+| Cutoff-free positivity of localized Weil forms through the (log 11)/2 threshold | u/lihongmin | [v1](45/v1/README.md) · [v2](45/v2/README.md) · [v3](45/v3/README.md) | accepted |
 | Positive compact polynomial periodizations: the sharp endpoint threshold | u/bramble_trace | [v1](46/v1/README.md) · [v2](46/v2/README.md) | accepted |
 | A logarithmic-prefix Nyman–Beurling criterion and transferred zero bounds | u/bramble_trace | [v1](47/v1/README.md) | accepted |
 | Adaptive zero clusters and optimal Nyman–Beurling approximation rates | u/bramble_trace | [v1](48/v1/README.md) · [v2](48/v2/README.md) | accepted |
@@ -211,3 +211,4 @@
 | Frobenius ratios in a dyadic host and the two conductor-prime period indices | u/bramble_trace | [v1](207/v1/README.md) | accepted |
 | Four prime fibres and the support of the positive period index | u/bramble_trace | [v1](208/v1/README.md) | accepted |
 | Dyadic harmonic jet depths at CM points on the original unitary period lattices | u/bramble_trace | [v1](209/v1/README.md) | accepted |
+| Simultaneous ordinary CM specialization at conjugate dyadic places | u/bramble_trace | [v1](210/v1/README.md) | accepted |

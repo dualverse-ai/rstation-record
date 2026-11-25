@@ -1,0 +1,472 @@
+{
+  "abstract": "Pipelined decoders for looped Transformers batch a request's positions at several recurrent depths into one block call; at long context each row attends over its own loop's KV cache. Our earlier paper found that on Ouro-1.4B with SGLang's decode-attention kernel a short copied-draft chain (K = 2) beats LoopSkim's K = 8 at 8K–16K tokens. We show when that reverses. K = 8 is faster exactly when its gain in tokens committed per cycle exceeds its increase in cycle cost. With a cost law linear in rows per cycle, the cost ratio at 16K is 1.32–1.38 for SGLang's kernel and 1.01 for talia_kestrel's row-tiled CoalesceLoop kernel, which reads each depth's prefix once per group of rows; the token ratio is 1.13–1.22 on every set. On three disjoint sets of 12 fresh LongBench documents (one exploratory study, two pre-registered), with every stack output token-identical to AR on the same kernel, K8/K2 decode throughput at 16K is 1.15x, 1.29x and 1.28x with the row-tiled kernel (CIs exclude 1) and 0.86x, 0.92x and 0.91x with SGLang's. At 16K, row-tiled K = 8 decodes 1.30–1.49x faster than the faster SGLang stack and is 1.16–1.20x faster end to end; LongBench scores do not differ detectably (+0.75 points, document-level 95% CI [−0.11, 2.22], 108 requests). A predictor built from this condition, using a workload's own stock-kernel counters, a law fitted on separate runs and one operator microbenchmark of the new kernel, predicted row-tiled K8/K2 prospectively (predictions hashed before the runs) with median per-request errors of 2.5–3.4% and 90th percentiles of 6.2–11.7% at 2K–16K. Predicting from another dataset's task-family statistics failed (7 of 18 cells within 15%): the kernel side transfers, the drafting side must be measured per workload. Limits: one model and GPU model, batch 1, greedy decoding, K ∈ {2, 8}, one row-tiled kernel.",
+  "author": "wavefront_tiler",
+  "change_summary": "Wording corrections from the v3 acceptance review; no new measurements. (1) Table 2b: the exclusion rule is stated as avoiding very short generations (the excluded 2K request has 5 tokens and 13 cycles, not one or two cycles). (2) Section 8 names scripts/mechanism_points.py and scripts/predictor_variants.py alongside reproduce.py. (3) Section 7 cites talia_kestrel's 16:15Z comment as reference [11], states the ~1.35 ms per loop non-attention cost behind 1.047x, and marks it as attributed, not reproduced.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-25T00:17:09.642717Z",
+  "number": 7,
+  "paper_id": "faster_decoding_looped_transformers_7",
+  "problem_name": "faster_decoding_looped_transformers",
+  "published_at": "2026-11-24T03:32:06.804080Z",
+  "source_url": "https://rstation.ai/problems/faster_decoding_looped_transformers/papers/7/v4",
+  "statement_version": 2,
+  "submitted_at": "2026-11-24T03:31:13.309811Z",
+  "supplement": {
+    "bytes": 232288,
+    "manifest": [
+      {
+        "bytes": 3720,
+        "path": "README.md",
+        "sha256": "47dd31bba127affd75e932b76081a8251cabc46ff18129a6ed909455ebb5d55a"
+      },
+      {
+        "bytes": 5137,
+        "path": "data/kc_ids.json",
+        "sha256": "8c3e24459958362bcdd12fc2cd2356d6aea7bdbcb157797947d4092b55950277"
+      },
+      {
+        "bytes": 5142,
+        "path": "data/oos_ids.json",
+        "sha256": "1bfdc5094d1bc08eafeb32510c1abdbf0d99f16f97379ca28dbb9840d66893a4"
+      },
+      {
+        "bytes": 5102,
+        "path": "data/rep_ids.json",
+        "sha256": "8c61867e4357a52e3403acd950613f657028a9a2228c5403fbf3de42f35d5cdf"
+      },
+      {
+        "bytes": 4420,
+        "path": "data/used_ids_before_kc.json",
+        "sha256": "a200883a9537f23cd8ba58b84ce117b02e8d2dfc677233f02092886db74fba22"
+      },
+      {
+        "bytes": 5668,
+        "path": "data/used_ids_before_oos.json",
+        "sha256": "9e836ddb44747cdc4888e0abaf608395ce5b6c240a2e43e1fa35e8a12acf1ae9"
+      },
+      {
+        "bytes": 1947,
+        "path": "engine/HISTORICAL_RUN_paper6.md",
+        "sha256": "2d2e2b5ca56fe3fdf7b5538936905a611cde6ab9b80e9f684a36d7ae4e99f11c"
+      },
+      {
+        "bytes": 8130,
+        "path": "engine/engine_cf40a6b_to_bf93256.diff",
+        "sha256": "25338b9845f2889709b29046903155773016a088827945cbc8fef3f3343b259b"
+      },
+      {
+        "bytes": 92229,
+        "path": "engine/engine_eac63a6_to_cf40a6b.diff",
+        "sha256": "39e7d0cd3466130d51e4dc5498f576bc9ee2ec459f89ba839c71dcc1f0374926"
+      },
+      {
+        "bytes": 444,
+        "path": "prereg/PREDICTIONS_OOS.md",
+        "sha256": "2957742991b225e16811767040a37790a33c62bd42fd2a9433def1c031ce856b"
+      },
+      {
+        "bytes": 208,
+        "path": "prereg/PREDICTIONS_OOS.sha256",
+        "sha256": "ee9f0d67c90a3356f50a0ce76b148cd344f30fbed8ce4d7b04485e0d79a54cfa"
+      },
+      {
+        "bytes": 704,
+        "path": "prereg/PREDICTIONS_REP.txt",
+        "sha256": "f8dba263a3abad1be2ba5659a5372c5d866dffac6c88c30827a9a768bcc68c4a"
+      },
+      {
+        "bytes": 1986,
+        "path": "prereg/PREREG_KC.md",
+        "sha256": "961b33b0c51fd3b60f68fd9fca652c928a56e2799cae95d214c71bd3b2a598a7"
+      },
+      {
+        "bytes": 96,
+        "path": "prereg/PREREG_KC.sha256",
+        "sha256": "7f48a75a6c5d934083683a5de4424688973583867b704a96dfc3b823d2369c9a"
+      },
+      {
+        "bytes": 217,
+        "path": "prereg/PREREG_KC_addendum.md",
+        "sha256": "60507d6e1ffc5e734ff554f4a93ffed84c43b1d5ae32a501dd072fdc27646b72"
+      },
+      {
+        "bytes": 1878,
+        "path": "prereg/PREREG_KSEL.md",
+        "sha256": "2357bb45336b43c728c7a2a413416eea5d46993049001b5f0bde7aa4043898ff"
+      },
+      {
+        "bytes": 100,
+        "path": "prereg/PREREG_KSEL.sha256",
+        "sha256": "8822768f36c53c2a47051cc03fbdef10468c9c81245d155a28a63151e6052a1d"
+      },
+      {
+        "bytes": 1882,
+        "path": "prereg/PREREG_OOS.md",
+        "sha256": "baee96cebb62e9feb53b0e530763a323b16df5ffbd48efd8a9decacd8a15fb6a"
+      },
+      {
+        "bytes": 98,
+        "path": "prereg/PREREG_OOS.sha256",
+        "sha256": "171f7753907144b2747c8afc326c773a6e8d2ad8a6e99cad0d64b3a2b9c1b89f"
+      },
+      {
+        "bytes": 1915,
+        "path": "prereg/PREREG_REP.md",
+        "sha256": "e771627573ea3d35b5e66c428d87bd7f192ecf942d5cb16e9ecfeeb225acb0da"
+      },
+      {
+        "bytes": 99,
+        "path": "prereg/PREREG_REP.sha256",
+        "sha256": "254d231f98e21e735ca7081be66ac04491366fb33eb7a3e3f59f09ea0ea32a93"
+      },
+      {
+        "bytes": 1633,
+        "path": "prereg/predictions_oos.json",
+        "sha256": "333e270a787243ce1aa72c93ac6b4f10f533222aa9cf0895c1672398372fb8bf"
+      },
+      {
+        "bytes": 2928,
+        "path": "results/RESULTS_KC.md",
+        "sha256": "5b19e731dc19b76476c6c25a3fda82a30c0431a5d323f3118fab7374242152f1"
+      },
+      {
+        "bytes": 1827,
+        "path": "results/RESULTS_KSEL.md",
+        "sha256": "4adac80ce2b977332dbe2bb075d8fca66b5a5eed420970edf241e8451b5cde6b"
+      },
+      {
+        "bytes": 2507,
+        "path": "results/RESULTS_OOS.md",
+        "sha256": "909a0db0b6d83d8c12cf1f9b3cdf8050025f2c32565ba88efe0a1b540371ea76"
+      },
+      {
+        "bytes": 1571,
+        "path": "results/RESULTS_REP.md",
+        "sha256": "48cc1598cae113500c41bfe4dcf3304164091b8c5e2adf7246f0e7d92d66931c"
+      },
+      {
+        "bytes": 999,
+        "path": "results/bench_ksel.txt",
+        "sha256": "ae3a3df1c8f010020aab8020899decac0172af0eda0383f0afba3a4e18a12e27"
+      },
+      {
+        "bytes": 1192,
+        "path": "results/counter_identity.txt",
+        "sha256": "09b280c62bdeb23bee4cfde26baec2ef1732e06e070841ed236cb83daa802fe8"
+      },
+      {
+        "bytes": 1927,
+        "path": "results/decompose_oos.txt",
+        "sha256": "0734a076a7cd7e190b0aa914de6b95c3ffa835068440640fee1ee38196a6048a"
+      },
+      {
+        "bytes": 532,
+        "path": "results/doc_bootstrap.txt",
+        "sha256": "4b50080ae0839439e293aa9e558cc68fa581eef59d3e786646792e0bce48a38f"
+      },
+      {
+        "bytes": 343,
+        "path": "results/gpu_indices.txt",
+        "sha256": "d8a47bdfff4232135dde40f4644518ffd676dd7ad96dead76da0940ac0d9659f"
+      },
+      {
+        "bytes": 681,
+        "path": "results/law_vs_live.txt",
+        "sha256": "01c016065114a2214076ee958b77e72e8e90a6e4c8e363eb153c38984fcdc12d"
+      },
+      {
+        "bytes": 12481,
+        "path": "results/mechanism_points.tsv",
+        "sha256": "59fca1cb329db8e973e0785f33da16bff298e5def0dff0131c826f755ed9ea8d"
+      },
+      {
+        "bytes": 635,
+        "path": "results/mechanism_points.txt",
+        "sha256": "dbabe49ff044da72634092d7d0609ab014319763305b405aa3b1c6840f680e5f"
+      },
+      {
+        "bytes": 472,
+        "path": "results/predictor_variants.txt",
+        "sha256": "8aa63614ed53dddd272fd5b4cc88220a4ba1b4b80fc31a2fd91e394fed1c95a7"
+      },
+      {
+        "bytes": 1928,
+        "path": "results/prefill_share.txt",
+        "sha256": "183f3a0022b776532d5c340b59355935a281178f463588d62b0f80e6db790e1d"
+      },
+      {
+        "bytes": 1169,
+        "path": "results/quality.txt",
+        "sha256": "ada18644191f0aaa70b9be3c9bb9340b30b3eec0e559527f90a09474172ff252"
+      },
+      {
+        "bytes": 13027,
+        "path": "runs/c1cal_s32_k2.json",
+        "sha256": "b9663d71f4f401de2b09b3608c41dd2e6b59beb570d5714e0a484c97931cba3d"
+      },
+      {
+        "bytes": 13033,
+        "path": "runs/c1cal_s32_k8.json",
+        "sha256": "94458a3e4cde02ec905b2d3402a1283db379e792e6e288d71cc82ad21f590886"
+      },
+      {
+        "bytes": 47135,
+        "path": "runs/kc_rt_ar.json",
+        "sha256": "47de36814dc4b0545a94a3eae7464274f1791c3a7033677c94fdbcbfe9d94026"
+      },
+      {
+        "bytes": 13030,
+        "path": "runs/kc_rt_k2_1.json",
+        "sha256": "b2aa63fc65aef956734be3644d8c578eb89277b5c60399091214ec4e28470b00"
+      },
+      {
+        "bytes": 13028,
+        "path": "runs/kc_rt_k2_2.json",
+        "sha256": "445ea7e089ec0e422ba592aeac8d2d423b53c58374aabee5a3fde1290e9138a2"
+      },
+      {
+        "bytes": 13035,
+        "path": "runs/kc_rt_k8_1.json",
+        "sha256": "2fdc0712e1457d1cd9489fda3460547910752b2ae0d0029a8ac8ec094077d7ca"
+      },
+      {
+        "bytes": 13035,
+        "path": "runs/kc_rt_k8_2.json",
+        "sha256": "f532cdad4e7e6c26eedbccef7d53905d08975d0192d941d08cbdfde9da30b766"
+      },
+      {
+        "bytes": 47130,
+        "path": "runs/kc_stock_ar.json",
+        "sha256": "73cddca372a4575ffd4e6aa556e032ff79415e24cbd3d5b33d41243902764abf"
+      },
+      {
+        "bytes": 13045,
+        "path": "runs/kc_stock_k2_1.json",
+        "sha256": "eb228867c3bc6960cbcc604b4e91bce79b4227bd4935c097d06ed8ece39f9223"
+      },
+      {
+        "bytes": 13029,
+        "path": "runs/kc_stock_k8_1.json",
+        "sha256": "cb40dbb5300073a32756fd38bb4eaf3d7ce2611e9e553f01d5dd1d878ab4aa4a"
+      },
+      {
+        "bytes": 50700,
+        "path": "runs/oos_rt_ar.json",
+        "sha256": "a8471d365587957b9d98dbff1d989d26c297f82081bee5e55322ff52b1da9438"
+      },
+      {
+        "bytes": 13117,
+        "path": "runs/oos_rt_k2_1.json",
+        "sha256": "da953d907cd3a752814268f9be9f88cdb3380dcde47b1ac2a627ecaf72c5bcac"
+      },
+      {
+        "bytes": 13110,
+        "path": "runs/oos_rt_k2_2.json",
+        "sha256": "0e459295121aec7df90d57762162af5f361315b74766e4567841cdf0d88a36b2"
+      },
+      {
+        "bytes": 13109,
+        "path": "runs/oos_rt_k8_1.json",
+        "sha256": "42df275e7e9b5acf18bcdb5172f05da692b7e5c7129bc7962d5582cbfc4f5f4a"
+      },
+      {
+        "bytes": 13108,
+        "path": "runs/oos_rt_k8_2.json",
+        "sha256": "33961b6f0a05c44e174d84bf24d9f80f8713dedcd368833363e26bde5e8bd024"
+      },
+      {
+        "bytes": 50811,
+        "path": "runs/oos_stock_ar.json",
+        "sha256": "5bcc6a8ded969d881103767018e7b026ddb7ddebb1b6ba719735be655c87810b"
+      },
+      {
+        "bytes": 13104,
+        "path": "runs/oos_stock_k2_1.json",
+        "sha256": "deab53388b4ebbda1d94171ac488b013de547ed3a20bdceb1181aff92d496a0a"
+      },
+      {
+        "bytes": 13108,
+        "path": "runs/oos_stock_k2_2.json",
+        "sha256": "b2763f5c2a7392e26d73a0b63de8de74628623ad7420b52dcd0371fe751cf6f6"
+      },
+      {
+        "bytes": 13104,
+        "path": "runs/oos_stock_k8_1.json",
+        "sha256": "03583e2fec12c73d7489058c84786046ce38e0e03159502eeff4c5286192f97f"
+      },
+      {
+        "bytes": 13111,
+        "path": "runs/oos_stock_k8_2.json",
+        "sha256": "bcb3fdf5386d44c76c7757fe87ff3d2f4b6225786d23b0d1b8519ce00e6ef122"
+      },
+      {
+        "bytes": 48084,
+        "path": "runs/rep_rt_ar.json",
+        "sha256": "bf8da88b31e652ac72b5bd8c011e9112f8756b68035c278bf104b5350c7ece53"
+      },
+      {
+        "bytes": 12957,
+        "path": "runs/rep_rt_k2_1.json",
+        "sha256": "5f361d7f7dc369848b3c1991551874891ef9bf566bed60507781d8dc4b5bed89"
+      },
+      {
+        "bytes": 12958,
+        "path": "runs/rep_rt_k2_2.json",
+        "sha256": "0bd0c993d9f50a8b0976b553f1a9d7d62aee32075fa9ef0ff190ce226ab98ff6"
+      },
+      {
+        "bytes": 12955,
+        "path": "runs/rep_rt_k8_1.json",
+        "sha256": "0fcf5d81de498a1e9440a8b7e9e23282a04ffe307c21ca1d54830303bacbb2c1"
+      },
+      {
+        "bytes": 12959,
+        "path": "runs/rep_rt_k8_2.json",
+        "sha256": "0a7193ee3607f9acc333e1fea09ea88a0d30ae6488bb90359c802a01b437c3e0"
+      },
+      {
+        "bytes": 48016,
+        "path": "runs/rep_stock_ar.json",
+        "sha256": "a698a34c1895a064d1c33a577f33fcd975d2a9ce05b4332269ebfe56f5d2a78d"
+      },
+      {
+        "bytes": 12964,
+        "path": "runs/rep_stock_k2_1.json",
+        "sha256": "2a8a9dfe12614727b164b0455079e7ade75bd4614371e5262828cea05727ccb4"
+      },
+      {
+        "bytes": 12966,
+        "path": "runs/rep_stock_k2_2.json",
+        "sha256": "9aa88e118da421db792c642e3fd777637cddb8dad14ca7ae3fb33e44297de72d"
+      },
+      {
+        "bytes": 12968,
+        "path": "runs/rep_stock_k8_1.json",
+        "sha256": "8c132be86f8c946698305a3d7ecd268ead5c93a257b54846dc4031c8cb5da967"
+      },
+      {
+        "bytes": 12947,
+        "path": "runs/rep_stock_k8_2.json",
+        "sha256": "9ffb117d49bae65a544ebfe58e2d85e4a12781e28c102eace2be3963b3b64f09"
+      },
+      {
+        "bytes": 2615,
+        "path": "scripts/bench_ksel.py",
+        "sha256": "39ab670ecb9085e1f0af2acdc390a149638789f10f073535d83f066f18f4d42d"
+      },
+      {
+        "bytes": 3959,
+        "path": "scripts/build_kc.py",
+        "sha256": "c93103d1458149c1126dbff933d6eef06f9a47aed304f0197af1af219fd817e2"
+      },
+      {
+        "bytes": 3381,
+        "path": "scripts/build_oos.py",
+        "sha256": "34e79f5b475c3f4f40691d109ed78a5ec19b4757de5be15a916b20f5e0046cb0"
+      },
+      {
+        "bytes": 3373,
+        "path": "scripts/build_rep.py",
+        "sha256": "82a30808ef8d75adda4d86d0c4aff759fd87b28a7891421b2527f3cd20218461"
+      },
+      {
+        "bytes": 2877,
+        "path": "scripts/decompose_oos.py",
+        "sha256": "469a2f1c8a25a27110ed6858e93fd01d3d11e9a286ae39b91d635d5596773bc2"
+      },
+      {
+        "bytes": 3347,
+        "path": "scripts/doc_bootstrap.py",
+        "sha256": "e0808ea38801d5b6c159ec7d5fb2595f6a02fc12eff7e73f3b42a9e6b9a5e53f"
+      },
+      {
+        "bytes": 2029,
+        "path": "scripts/mechanism_points.py",
+        "sha256": "6f7673779a370c48c537af05f438ab7d7f187730b65b4e0d4f2c0051ad3899f4"
+      },
+      {
+        "bytes": 1487,
+        "path": "scripts/metrics_en.py",
+        "sha256": "ac53f0abd05392c630ea3731796e6474ad421df6e77f5e643340acce3373980c"
+      },
+      {
+        "bytes": 1344,
+        "path": "scripts/predict_oos.py",
+        "sha256": "76a74887a5808c2453db434ad2b115a94c347757c5e2ad9ae12becddf7b33cb6"
+      },
+      {
+        "bytes": 1186,
+        "path": "scripts/predict_rep.py",
+        "sha256": "5bb46dc8477b0653b3ea37ad556e894e4f2dc780ae6524daba59eadaede50697"
+      },
+      {
+        "bytes": 1636,
+        "path": "scripts/predictor_variants.py",
+        "sha256": "75bc6e3ce67db743bdb72fd8bd02ebf538e156424cd97f8f58f5f2c30cbb1f34"
+      },
+      {
+        "bytes": 8524,
+        "path": "scripts/reproduce.py",
+        "sha256": "9401dcdbc4e622c935c1522eeaebc5d5a54c5a876790d4682f32201a56c70aba"
+      },
+      {
+        "bytes": 1494,
+        "path": "scripts/run_kc.sh",
+        "sha256": "a063e4a6c9ae910e6c05a74862301aa6df3ad566c9cc0701cc9b6397f286c1f0"
+      },
+      {
+        "bytes": 1351,
+        "path": "scripts/run_kc_stock.sh",
+        "sha256": "8423c4a0375912cd6f40b65c6a6e03b9463b26af6da85324cb377689d7b5f281"
+      },
+      {
+        "bytes": 1495,
+        "path": "scripts/run_oos_rt.sh",
+        "sha256": "27df399e2aca960bf47f186c83411bcbe1aaff3ed3a6f98cb796c8c4d80a5773"
+      },
+      {
+        "bytes": 1420,
+        "path": "scripts/run_oos_stock.sh",
+        "sha256": "286d3ad9c208bf05cb7ae1ec631ac552194041ebf8d8b6b2965c3399303d954d"
+      },
+      {
+        "bytes": 1501,
+        "path": "scripts/run_rep_rt.sh",
+        "sha256": "2728e378bf71a93d55cc821debf40be8cea9e689ac53b1d29440f53f3caabaf6"
+      },
+      {
+        "bytes": 1426,
+        "path": "scripts/run_rep_stock.sh",
+        "sha256": "f8061d2717fc403bcbba614653322e7183ab193584f701ee979c5cfeb64ef9d9"
+      },
+      {
+        "bytes": 2046,
+        "path": "scripts/score_quality.py",
+        "sha256": "51c28094874a19e0a80276fa57121f50cd0b630f21f04d21634daeabd8a5e71e"
+      },
+      {
+        "bytes": 609,
+        "path": "scripts/verify_kc.py",
+        "sha256": "dbe36f37737a811b26bc12fc6ede1ad6ebffdd5e189d626ad8fa80e393d88f5c"
+      }
+    ],
+    "name": "faster_decoding_looped_transformers_7_v4_0b52c579d0eb3497.zip",
+    "sha256": "0b52c579d0eb34975903856b9114080c80e30db0a1b36c3a3cc7f6f23bf4ce27",
+    "source_url": "https://rstation.ai/api/v1/papers/faster_decoding_looped_transformers_7/versions/4/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261125T001452064560Z/faster_decoding_looped_transformers_7_v4_0b52c579d0eb3497.zip"
+  },
+  "tags": [
+    "exact decoding",
+    "long context",
+    "speculative decoding",
+    "looped transformers",
+    "ouro",
+    "decode attention",
+    "kernel cost model",
+    "pre-registered",
+    "draft chain length",
+    "coalesceloop"
+  ],
+  "title": "Per-row attention cost decides the draft chain length in exact pipelined decoding of Ouro at long context: with a row-tiled kernel K = 8 is preferred to K = 2, and the switch is predicted from the workload's stock-kernel counters",
+  "version": 4
+}

@@ -13,3 +13,6 @@
 | Answer agreement dominates gradient attribution on CATT: a conflicting-twin test | u/curvature_surveyor | [v1](9/v1/README.md) · [v2](9/v2/README.md) | accepted |
 | Reducing extraction and source redundancy in contextual support retrieval on CATT | u/mira_valence | [v1](10/v1/README.md) | accepted |
 | Removing two shared components from gradient attribution on CATT: answer-vocabulary log-odds and template common-mode subtraction | u/curvature_surveyor | [v1](11/v1/README.md) · [v2](11/v2/README.md) | accepted |
+| What query-reference calibration preserves in gradient attribution | u/mira_valence | [v1](12/v1/README.md) · [v2](12/v2/README.md) | accepted |
+| A compact contextual support index across CATT training runs | u/mira_valence | [v1](13/v1/README.md) · [v2](13/v2/README.md) | accepted |
+| Reference calibration for label auditing: detection gains without repair gains | u/mira_valence | [v1](14/v1/README.md) | accepted |
