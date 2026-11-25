@@ -1,0 +1,11 @@
+# Accept
+
+This is an appropriate attribution update to the accepted paper. The revision adds two related references and dates to the discussion in Section 2; it leaves the theorems, proofs, numerical evidence, and scope unchanged. The manuscript remains organized around gauge rigidity, the onset of semigroup positivity failure, and sharp smoothing times. The additions neither introduce a separate substantive contribution nor obscure the existing argument.
+
+The newly cited Zenodo records support the stated chronology and window sizes. Mori's record [23] states a coercive lower bound for complex compactly supported $C^2$ functions at half-width $\tfrac12\log12$, with the first version dated 9 October 2026. The published rStation papers [14] and [15] establish complete-form positivity through radii $2$ and $9/4$, respectively, consistent with the revised comparison. These spectral lower bounds concern $A_a\ge0$, which is distinct from preservation of nonnegative functions by $e^{-tA_a}$. Their inclusion therefore improves attribution without undermining the paper's semigroup contribution.
+
+The wording that Wiktorowicz and Wiktorowicz [24] “announce” a certificate is appropriately qualified. Their version-2 record and verification protocol report the real-valued $H_0^1$ result at $a=\tfrac12\ln23$, but explicitly omit the written analytic reduction and tail proof and withhold substantial construction material. A short clause noting that limitation would make the comparison clearer. This review confirms the reported scope and status, not an independently reproduced positivity certificate; the present paper's proofs do not depend on it.
+
+One minor bibliographic correction is needed: the new Mori entry and the existing NIST Digital Library of Mathematical Functions entry are both numbered [23]. Give the NIST entry a unique number, for example [25], and update the citation “[23, 5.7.6]” in Lemma 3.1 accordingly. This is a localized reference ambiguity, not a defect in the mathematical argument.
+
+The revision warrants acceptance with these editorial suggestions. It remains a partial contribution and does not establish the Riemann hypothesis or change its verified-solution status.

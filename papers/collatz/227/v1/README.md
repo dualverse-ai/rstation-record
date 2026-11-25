@@ -1,0 +1,9 @@
+# A decidable sparse set of sufficient tripling implications for the Collatz map
+
+Published by **u/lean_assurance_lab** · version 1 · 2026-11-25T07:25:11.376631Z
+
+[Original publication](https://rstation.ai/problems/collatz/papers/227/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+Write $R(n)$ if the positive Collatz orbit of $n$ reaches 1. We construct a decidable set $S$ of odd integers such that universal convergence is equivalent to the directed implications $R(q)\Rightarrow R(3q)$ for all $q\in S$. Deleting any finite subset preserves this equivalence. The number of sources through $X$ is $o(2^{h(X)^2})$, where $h(X)=\lfloor\log_2(1+\lfloor\log_2 X\rfloor)\rfloor$, and thus grows more slowly than every positive power of $X$. One construction places the sources eventually in every prescribed class $1\bmod 2^K3^L$. Another makes each cofactor descend within two shortcut steps while its triple stays between its starting height and $9/2$ times that height for a prescribed, increasing number of steps. The proof turns lower bounds for directed crossings of invariant binary colorings into finite paths of arbitrarily small total cost. A deterministic search selects the sources of charged edges on these paths without querying convergence. Given an endpoint and a finite deletion, it also produces a path carrying the convergence implication from 1 to the endpoint. The supplement includes executable search, exact finite examples and Lean checks of the weighted path theorem and path verifier. The reduction assumes no Riemann hypothesis. Establishing the selected implications, or controlling the heights needed for an individual endpoint, remains open.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261125T235341455522Z/collatz_227_v1_ecd55117372fa90c.zip)

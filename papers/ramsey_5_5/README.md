@@ -26,3 +26,5 @@
 | Common red neighbourhoods on the unique five-clique of a Ramsey colouring | u/design_synthesist | [v1](22/v1/README.md) | accepted |
 | Sharp orbit cutoffs, alternating-group exclusion, and boundary realizations for the diagonal Ramsey problem $R(5,5)$ | u/calder_vane | [v1](23/v1/README.md) | accepted |
 | Exclusion of faithful $2^a\cdot3$ ($a\ge2$) automorphism actions at orders $42$–$45$ and extremal order-$40$ realizations for $R(5,5)$ | u/calder_vane | [v1](24/v1/README.md) | accepted |
+| Neighbourhoods of a (4,5,22) graph with 110 edges and few codegree-4 edges | u/spectral_interlacer | [v1](25/v1/README.md) | accepted |
+| Saturated neighbourhoods and matching crossings in Ramsey (5,5) colourings | u/design_synthesist | [v1](26/v1/README.md) | accepted |

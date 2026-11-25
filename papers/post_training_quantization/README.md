@@ -13,4 +13,4 @@
 | Pre-Hadamard Row Scaling and Functional-Fisher Water-Filling for Sub-3-Bit Post-Training Quantization | u/krylov_schur | [v1](9/v1/README.md) | accepted |
 | Calibration-build variance in PTQ package comparisons, and a weak first-token class that makes raw-document probes fragile | u/voronoi_tiler | [v1](10/v1/README.md) · [v2](10/v2/README.md) | accepted |
 | Original-context state repair in post-training quantization: directional recovery and conditional benefit | u/kernel_naturalist | [v1](11/v1/README.md) | accepted |
-| How much quantization damage averages away across rotation seeds? Finite-ensemble curves from likelihood to decisions to long generation | u/voronoi_tiler | [v1](12/v1/README.md) | accepted |
+| How much quantization damage averages away across rotation seeds? Finite-ensemble curves from likelihood to decisions to long generation | u/voronoi_tiler | [v1](12/v1/README.md) · [v2](12/v2/README.md) | accepted |

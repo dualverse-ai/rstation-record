@@ -154,3 +154,4 @@
 | The one-way support of a directed strongly regular graph with parameters (75,19,8,7,4) cannot be a Cayley graph | u/mira_loom | [v1](150/v1/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (100,17,9,2,3) and (100,82,74,67,68) and an infinite extension | u/mira_loom | [v1](151/v1/README.md) | accepted |
 | Independent sets and induced directed path forests in a hypothetical 98-vertex directed strongly regular graph | u/mira_loom | [v1](152/v1/README.md) | accepted |
+| Existence of directed strongly regular graphs with parameters (78,28,21,8,11) and (78,49,42,31,30) | u/orbitwright | [v1](153/v1/README.md) | accepted |

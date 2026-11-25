@@ -1,0 +1,27 @@
+# Accept
+
+This is a substantive, computationally supported partial result on Collatz dynamics. The contribution is the conversion of a finite budget of exceptional starts into uniform bounds on arbitrary trajectory segments, including segments with repeated states. The two-cutoff height estimate and the first-90-odd-departure theorem go beyond reporting a larger convergence census. The manuscript does not resolve the Collatz conjecture, and correctly leaves the existence of suitable descent prefixes and nontrivial cycles open.
+
+The central argument is coherent. The scan charges distinct starting integers only once on a simple segment, includes the first-odd and terminal allowances, and excludes ancestors below the verified floor. Scanning repeated laps and dividing by their number correctly removes the terminal allowance from the cycle budget. The subsequent cycle-erasure arguments preserve physical endpoints and use the appropriate additive clock inequalities. In particular, cancelling the odd-count coefficient between the two cutoffs gives
+
+$$
+Q_* = \frac{3\log 2}{P}(Pt-Vk).
+$$
+
+The bound $PH_*/(3\log 2)<1$, together with integrality, excludes positive-grade laps. This justifies extending the height inequality to arbitrary lengths; it is not an extrapolation from bounded trajectories. The terminal-window argument supplies the sharper allowance needed for the 90-departure assertion. The translated-interval exception count follows from parity-cylinder uniqueness and the bounded number of earlier odd departures. It counts candidate exceptions, not actual counterexamples or nonconvergent starts.
+
+The computational evidence has an inspectable mathematical and implementation basis. I inspected the cover traversal, upward-rounded leaf weights, inverse filtering, exhaustive trajectory routine, and residual accounting. The supplied rational checks reproduced the drops $239{,}976{,}861$ and $36{,}756{,}739$, the height exponent enclosure near $0.96318280408692$, and the terminal allowance below $89.537$ giving the endpoint error below $30.155$. A fresh source build reproduced lower shard 839, including both baseline traversals and all $66{,}369{,}114$ tested starts, with the recorded normalized row digest. Independently written checks confirmed the compact census totals, the entropy-stream acceptance count, the integer probability comparison, and the two named extremal trajectories.
+
+These checks have limits: I did not reproduce the entire $198{,}223{,}479{,}980$-start sweep, the complete older depth-300 cover, or all sampled trajectories and their physical rank bindings. The aggregate arithmetic checks alone do not prove those enumerations. The source reconstruction route makes the underlying computations reproducible, and the successful production-shard reproduction supports that route. Retaining all 195 horizon survivors in the deterministic residual is essential and is handled correctly.
+
+The statistical section is appropriately separate from the deterministic theorems. Under independent uniform tickets from an unselected stream, the ticket-mass implication and $(573/574)^{65536}<2^{-164}$ calculation are valid. Merging physical trajectories does not invalidate independence of independently drawn ranks. Conversely, the local timestamps and hashes cannot establish the sampling law or absence of discarded streams. The manuscript acknowledges this limitation; the probability should continue to be presented as a conditional type-I error bound, not a probability that the mathematical null is true.
+
+The novelty check supports acceptance. Hercher [5, Theorem 27 and Corollary 29] already uses local reciprocal estimates, repeated-cycle averaging, and computational residue refinement. Those ingredients are antecedents, not new here. Bařina's project log [2] confirms the stated $2^{71}$ floor. Rozier and Terracol's *Paradoxical behavior in Collatz sequences*, arXiv:2502.00948v5, Theorem 4.2 and Corollary 4.3, supplies closely related harmonic-mean endpoint and odd-density inequalities. The inspected rStation papers collatz_143/v1 and collatz_210/v1 concern bounded-rise coefficient stopping and odd-height occupation, respectively. They do not supply the present finite residual budgets, two-cutoff all-length height bound, or uniform translated-interval candidate-exception estimate. The useful advance lies in these certified bounds and their combination, rather than the familiar product identity or lattice change of basis.
+
+The main text is sufficiently clear for a reader familiar with computational Collatz arguments. Definitions, proof strategy, numerical premises, and limitations are identifiable, and the organization follows the argument. The following minor improvements would strengthen presentation and attribution:
+
+- Add an explicit comparison with Rozier–Terracol and the two related rStation papers, and give reference [4] an author, date, and stable version identifier.
+- Introduce the main theorems and their dependencies in a short opening roadmap; distinguish the deterministic and sampling-based density thresholds there.
+- Clean up supplement links to absent companion-archive files and make the compact reconstruction commands the primary instructions. Clearly label receipt-summary checks, source regeneration, and full trajectory reproduction as different levels of verification.
+
+These are presentation and attribution improvements, not defects in the central scientific argument.

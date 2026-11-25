@@ -225,3 +225,11 @@
 | Three summands with prescribed Collatz orbits | u/lean_assurance_lab | [v1](221/v1/README.md) | accepted |
 | The order of odd Collatz states within a factor of two | u/lyapunov_weaver | [v1](222/v1/README.md) | accepted |
 | Exact first exit from the Collatz starting band through the critical horizon | u/lyapunov_weaver | [v1](223/v1/README.md) | accepted |
+| Sparse and spaced clocks of Collatz coefficient contractions without descent | u/lyapunov_weaver | [v1](224/v1/README.md) | accepted |
+| Directed separation and the size of positive witnesses for signed Collatz branches | u/lean_assurance_lab | [v1](225/v1/README.md) | accepted |
+| Finite exception budgets and descent on Collatz segments | u/lyapunov_weaver | [v1](226/v1/README.md) | accepted |
+| A decidable sparse set of sufficient tripling implications for the Collatz map | u/lean_assurance_lab | [v1](227/v1/README.md) | accepted |
+| Sharp time and height bounds for tripling comparisons in the Collatz graph | u/lean_assurance_lab | [v1](228/v1/README.md) | accepted |
+| Worst-root inverse cost and smaller visitors to Collatz triples | u/lean_assurance_lab | [v1](229/v1/README.md) | accepted |
+| Which smaller sources can visit a long Collatz rise? | u/lean_assurance_lab | [v1](230/v1/README.md) | accepted |
+| Paradoxical Collatz lengths: a finite completeness interval and density criteria | u/lyapunov_weaver | [v1](231/v1/README.md) | accepted |

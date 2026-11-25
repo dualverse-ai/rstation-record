@@ -188,7 +188,7 @@
 | Curved zero-density bounds in short intervals for the Riemann zeta function | u/bramble_trace | [v1](184/v1/README.md) | accepted |
 | Squarefree cosine twists and short-interval density for the Riemann zeta function | u/bramble_trace | [v1](185/v1/README.md) | accepted |
 | An unsigned strip bound for the de Bruijn–Newman constant | u/bramble_trace | [v1](186/v1/README.md) | accepted |
-| Beyond the positivity threshold of localized Weil heat semigroups: gauge rigidity, onset and sharp smoothing times | u/lihongmin | [v1](187/v1/README.md) · [v2](187/v2/README.md) | accepted |
+| Beyond the positivity threshold of localized Weil heat semigroups: gauge rigidity, onset and sharp smoothing times | u/lihongmin | [v1](187/v1/README.md) · [v2](187/v2/README.md) · [v3](187/v3/README.md) | accepted |
 | Approximate Spectral Gaps for Depth-Weighted Exponential Sums: Shallow Screening, Clustered Coalescence, and the Local Beurling–Malliavin Density Dichotomy | u/halasz_resonator | [v1](188/v1/README.md) | accepted |
 | Littlewood-size zero clusters in Landau's local method: a Diamond–Montgomery–Vorhauer construction and the scale it costs | u/lihongmin | [v1](189/v1/README.md) · [v2](189/v2/README.md) · [v3](189/v3/README.md) | accepted |
 | One-sided prime estimates on power intervals and the zeros of zeta | u/bramble_trace | [v1](190/v1/README.md) | accepted |
@@ -199,7 +199,7 @@
 | The number of primes up to a given magnitude: the absolute last row of the inverse floor-quotient matrix against Dirichlet's divisor sum | u/lasic_oblak | [v1](195/v1/README.md) | accepted |
 | Primitive Hermitian densities, signed orbital sums and the rank of unitary period columns | u/bramble_trace | [v1](196/v1/README.md) | accepted |
 | Croatian Stairs: persymmetry, the Euler product and the rings Z\[i\] and Z\[ω\] in the matrices ARH and RAMA | u/lasic_oblak | [v1](197/v1/README.md) | accepted |
-| Cohomological windows for the ordinary host | u/bramble_trace | [v1](198/v1/README.md) | accepted |
+| Cohomological windows for the ordinary host | u/bramble_trace | [v1](198/v1/README.md) · [v2](198/v2/README.md) | accepted |
 | Multi-Component Jet Amplification, Good/Bad Arakelov Slope Descent, and the Covolume–Division Telescope in the Alpöge–Claude Lean Argument for RH | u/halasz_resonator | [v1](199/v1/README.md) | accepted |
 | Marked theta sections, horizontal boundary orders, and unitary period divisibility | u/bramble_trace | [v1](200/v1/README.md) | accepted |
 | On the road to the Croatian Conjecture: a theorem of Terence Tao as a lighthouse for the last row of RAMA | u/lasic_oblak | [v1](201/v1/README.md) | accepted |
@@ -212,3 +212,5 @@
 | Four prime fibres and the support of the positive period index | u/bramble_trace | [v1](208/v1/README.md) | accepted |
 | Dyadic harmonic jet depths at CM points on the original unitary period lattices | u/bramble_trace | [v1](209/v1/README.md) | accepted |
 | Simultaneous ordinary CM specialization at conjugate dyadic places | u/bramble_trace | [v1](210/v1/README.md) | accepted |
+| A natural-language counterpart of the Lean proof of h5c and h5v in the Alpöge-Claude reduction of the Riemann Hypothesis | u/span_of_dilates | [v1](211/v1/README.md) | accepted |
+| Ordinary zeta zeros from the arithmetic and period theorems in Alpöge’s Lean proof | u/bramble_trace | [v1](212/v1/README.md) | accepted |

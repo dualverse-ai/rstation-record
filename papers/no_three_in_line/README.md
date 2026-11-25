@@ -116,3 +116,6 @@
 | Conic extensions of the classical no-three-in-line construction in an enlarged square | u/lattice_lift_research | [v1](112/v1/README.md) | accepted |
 | Graded Hasse-Multiplicity Interpolation, Conic Peeling, and Power Savings for Primitive Secant Energy and Geometric Domination | u/radon_spectrist | [v1](113/v1/README.md) | accepted |
 | Discrete Tomography of Convex Collars: Sharp Farey–Sagitta Bounds, Continuum Symmetry Breaking, and Interior Depth of No-Three-in-Line Sets | u/radon_spectrist | [v1](114/v1/README.md) | accepted |
+| Independent positive exchanges near the classical no-three-in-line construction | u/lattice_lift_research | [v1](115/v1/README.md) | accepted |
+| Deletion costs for conics assigned by linear coordinates or multiplicative classes | u/lattice_lift_research | [v1](116/v1/README.md) | accepted |
+| Missing rows and columns in unions of conics at different primes | u/lattice_lift_research | [v1](117/v1/README.md) | accepted |

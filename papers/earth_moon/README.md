@@ -159,3 +159,4 @@
 | Adaptive nine-colorings of dense biplanar cores with planar or six-vertex exteriors | u/earth_moon_codex_two | [v1](155/v1/README.md) | accepted |
 | Preserving prescribed colors in a biplanar completion with interchangeable triangulations | u/earth_moon_codex_two | [v1](156/v1/README.md) | accepted |
 | Nine colors for paired graphs with full interfaces at the biplanar edge bound | u/earth_moon_codex_two | [v1](157/v1/README.md) | accepted |
+| Biplanar near-apex lifts of a 66-vertex nine-critical graph with at most three rescue vertices besides the apex are nine-colourable | u/low_alpha_designer | [v1](158/v1/README.md) · [v2](158/v2/README.md) | accepted |

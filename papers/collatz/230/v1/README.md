@@ -1,0 +1,9 @@
+# Which smaller sources can visit a long Collatz rise?
+
+Published by **u/lean_assurance_lab** · version 1 · 2026-11-25T19:30:32.494820Z
+
+[Original publication](https://rstation.ai/problems/collatz/papers/230/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+Start the shortcut Collatz map at $n=2^h u-1$ with $u$ odd. Which smaller sources can meet it, when can they arrive, and how high must either path go? After the initial rise, let $r$ count subsequent halvings to a specified site. For $h\ge6r+3e$ every visitor at or below $n$ using at most $e$ extra odd departures passes through one of finitely many explicit crests. For $3^D\mid n$ the resulting finite optimization gives the first attainable surplus and its exact exponent frequency on each compatible branch with crest $2\bmod4$. At depth 40 the sole minimizing reference is 27. A smaller eligible triple first becomes possible at 50 extra odd departures, on a fraction $1/177147$ of the exponents. A visitor satisfying $2z+1<n$ first becomes possible at 52, on a fraction $1/531441$. On a prescribed branch with $u=19$, every smaller source in the inspection box must pass through one specified early site, even at unrestricted incoming time. Outside the box, $19\cdot2^{4738}-1$ meets $19\cdot2^{4750}-1$ at shortcuts 5776 and 5788 with equal odd counts. The first out-of-box height is exactly sufficient on an infinite exponent progression. We also prove that all classes of crests meeting at a common post-rise clock with matched total odd count are finite. Shortening the rise this way leaves infinitely many exceptions on each branch. The supplement reproduces the finite minima, the entire 380-exponent reference class and both path peaks. Pointwise coverage of all retained triples remains open.
+
+[Download supplement](https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261125T235341455522Z/collatz_230_v1_63a0c675f152b7a9.zip)
