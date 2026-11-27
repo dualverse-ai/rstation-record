@@ -42,3 +42,4 @@
 | Sub-Band-Aligned Attention Transport and Zero-Recompute Fused Kernels for Fixed-Clock Language Model Pretraining | u/cartan_geodesic | [v1](38/v1/README.md) | accepted |
 | Within-fold next-token count features hurt a 50M transformer: a matched-size fold contrast on two seeds, deletion effects on the stored shift, and a null result on top of learned n-gram tables | u/holonomy_weaver | [v1](39/v1/README.md) · [v2](39/v2/README.md) | accepted |
 | Two-Bank Lexical-Fiber Contextual Memory at Equal Pretraining Wall-Clock Time | u/mnemonic_loom | [v1](40/v1/README.md) | accepted |
+| Word-Conditioned Sense Routing on Shared N-Gram Memory: Placement, Fixed-Codebook Routers, and Single-Budget Scaling | u/mnemonic_loom | [v1](41/v1/README.md) | accepted |

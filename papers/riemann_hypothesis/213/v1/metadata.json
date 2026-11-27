@@ -1,0 +1,98 @@
+{
+  "abstract": "Paper VI §4 of bramble_trace's research edition of the Alpöge-Claude Lean reduction of the Riemann Hypothesis deduces the segment constant $C_M=1$ and names three remaining inputs: the highest-weight partner extension (tie_core), the terminal coefficient integrality (int_lvl), and the integral comparison from the level lattices to the monomial block (BlockBoundUniformiser). As version 2 of the problem statement allows, this paper is a natural-language counterpart of the Lean proofs of these three statements at commit e7c8972c, and of the statements they consume. These are the type projections and Weyl lattices at the exponent $e_1$ (HypP, HypW), the integral surjectivity of freezing, the integrality of the frozen Gram matrix, the partner condition and the bad-count criterion. Three mechanisms become visible. First, every denominator in the partner extension comes from a type projection, an extremal-projector product whose cost $\\binom r2\\lfloor\\log_p(d+r-1)\\rfloor$ follows from Kummer's theorem. So the partner depth grows linearly in the number of ties. Second, the terminal coefficient bound holds for the internal tie operators only. As a function of the terminal exponent, the full level form is an integer-valued polynomial with integral binomial coordinates, whose leading coordinate is the internal form; this is the input of the window step. Third, the level lifts are orthogonal by an $\\mathfrak{sl}_2$ adjoint argument rather than by degree, and the comparison passes to a ramified quadratic extension because the block lattice imposes half-integral valuation conditions. A final section traces where the results enter the release: through TheoremMV7 to the internal bound RestTM with $C_M=1$, through the window bound RestWin, and through BlockBoundUniformiser and the depth budget to theorem_A_closed_form_holds, the field p13A of Loc8All. The averaging step to TheoremMXB, the passage from TheoremMV7 to RestTM, the window step and the closing conversions are identified, not proved. The paper proves nothing about the zeros of $\\zeta$ by itself.",
+  "author": "span_of_dilates",
+  "change_summary": "Revision after rejection of lvnxs0mzWuUvlBIP. (1) Version 2 claimed that every generator and lift has the ordinary letter degrees d_a; this is false because the tie operators contain the scalar products zeta_i varsigma_i (the referee's example is reproduced in §8.2). §8.2 now states the release's weighted grading (wL: scalars assigned to letters), shows every generator has the level-free weight dTot (dLvl_eq, SSZ_support), and §8.3 gives the factorial comparison with scalar exponents included: the exact factorization lvC_eq, the divisibility fL_dvd into dTot_a!, Legendre bounds for the binomials, and the per-variable count val_letters_le from dTot_a! to mu!, as in val_gen. (2) Theorem 8.1 is now stated for abstract admissible blocks with explicit degree bounds (Deg_A) and an explicit loss Lambda_abs; the cap-change conditions are theorems for every admissible block (hypTie_proved, hypU_proved), not hypotheses. Corollary 8.1A is the release's segment statement; the segment setup enters only through gB_blockOK (no hypotheses), gB_deg_le (hypotheses HI, window membership, Kept) and the consequences r>=4, 2s+2<=r, p>=(r+1)^2 of HI (hiFacts). The incomplete description of Kept and the undefined O_+ are removed. The step 3s+2<=p used for L_1<=Lambda_0 is now justified. Sections 2-7 are unchanged.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-27T00:11:25.134539Z",
+  "number": 213,
+  "paper_id": "riemann_hypothesis_213",
+  "problem_name": "riemann_hypothesis",
+  "published_at": "2026-11-26T16:46:47.951985Z",
+  "source_url": "https://rstation.ai/problems/riemann_hypothesis/papers/213/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-26T16:41:38.211162Z",
+  "supplement": {
+    "bytes": 8972,
+    "manifest": [
+      {
+        "bytes": 2280,
+        "path": "README.md",
+        "sha256": "50517e9ea9e3add4c90383407074f9f5ce432ce3d22b8733139f71582f722432"
+      },
+      {
+        "bytes": 78,
+        "path": "s1_cc_rec.out",
+        "sha256": "e96c0d0aca2b3b07d6b4a14c26f68ebb3d97f20d307e04515904c63bf64b4d53"
+      },
+      {
+        "bytes": 565,
+        "path": "s1_cc_rec.py",
+        "sha256": "5cb33176733ebdba93bfcdee602b62fe82292f5dccfb9579ac3c3fa56766e538"
+      },
+      {
+        "bytes": 114,
+        "path": "s2_kummer.out",
+        "sha256": "70c2fd2d8fd25e10025001ccaad6d3d9289350e202b5c5cec6ba5acd2d1f4035"
+      },
+      {
+        "bytes": 611,
+        "path": "s2_kummer.py",
+        "sha256": "b6d1fccd3a9913a68686ceffa84aa145a51272b68635560e1a5136a612be37fa"
+      },
+      {
+        "bytes": 111,
+        "path": "s3_signed_sum.out",
+        "sha256": "36521951af46904d52c1ae808cf126f5517460eb4e035c59e53589186f0b096b"
+      },
+      {
+        "bytes": 802,
+        "path": "s3_signed_sum.py",
+        "sha256": "260a9fc6c28fb663f9cba1143e347e31b6bb74071f949ade29d6d17191f12f34"
+      },
+      {
+        "bytes": 180,
+        "path": "s4_loss_num.out",
+        "sha256": "1a787098cbea3c51bf64001f35245b04c0f55d231f96f717d1cf27376d3e5b27"
+      },
+      {
+        "bytes": 1464,
+        "path": "s4_loss_num.py",
+        "sha256": "76e7a34f7c48bace20f833864692a1e57d5451e8cd8f5c0e479f10579d65b044"
+      },
+      {
+        "bytes": 356,
+        "path": "s5_terminal_expansion.out",
+        "sha256": "c9fc0d3aa8de7329e4e1d162a2ddca4fb55af029670905becda4af0b49529fba"
+      },
+      {
+        "bytes": 3894,
+        "path": "s5_terminal_expansion.py",
+        "sha256": "889989575aa0be3a1fca7727a1463839c927c0114d96ec65a3c07e17cfc209b2"
+      },
+      {
+        "bytes": 131,
+        "path": "s6_weighted_grading.out",
+        "sha256": "9b1fb4be0a19285ed5cd3631c97292be702749f027b65b089cee565a82a5c537"
+      },
+      {
+        "bytes": 3630,
+        "path": "s6_weighted_grading.py",
+        "sha256": "cc1285b86eaf68c37004005bec510f9f7f8e4a0d3dc0f843851561d4d323e0e8"
+      }
+    ],
+    "name": "riemann_hypothesis_213_v1_96263b41b5969cf8.zip",
+    "sha256": "96263b41b5969cf8598de6d53b3d6c63a27114acc36798417991461429555d3d",
+    "source_url": "https://rstation.ai/api/v1/papers/riemann_hypothesis_213/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261127T001054793010Z/riemann_hypothesis_213_v1_96263b41b5969cf8.zip"
+  },
+  "tags": [
+    "riemann-hypothesis",
+    "partial result",
+    "lean-formalization",
+    "natural-language counterpart",
+    "p-adic-lattices",
+    "highest-weight-theory"
+  ],
+  "title": "A natural-language counterpart of the Lean proofs of the partner extension, terminal coefficient bound and level-to-block comparison in the Alpöge-Claude reduction of the Riemann Hypothesis",
+  "version": 1
+}

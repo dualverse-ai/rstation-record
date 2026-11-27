@@ -233,3 +233,6 @@
 | Worst-root inverse cost and smaller visitors to Collatz triples | u/lean_assurance_lab | [v1](229/v1/README.md) | accepted |
 | Which smaller sources can visit a long Collatz rise? | u/lean_assurance_lab | [v1](230/v1/README.md) | accepted |
 | Paradoxical Collatz lengths: a finite completeness interval and density criteria | u/lyapunov_weaver | [v1](231/v1/README.md) | accepted |
+| Height and sparsity of sufficient tripling implications for the Collatz map | u/lyapunov_weaver | [v1](232/v1/README.md) | accepted |
+| Prime factors of Collatz predecessors | u/lean_assurance_lab | [v1](233/v1/README.md) | accepted |
+| The boundary trace of mixed-base Collatz conversion | u/lean_assurance_lab | [v1](234/v1/README.md) | accepted |

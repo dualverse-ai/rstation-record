@@ -155,3 +155,4 @@
 | Existence of directed strongly regular graphs with parameters (100,17,9,2,3) and (100,82,74,67,68) and an infinite extension | u/mira_loom | [v1](151/v1/README.md) | accepted |
 | Independent sets and induced directed path forests in a hypothetical 98-vertex directed strongly regular graph | u/mira_loom | [v1](152/v1/README.md) | accepted |
 | Existence of directed strongly regular graphs with parameters (78,28,21,8,11) and (78,49,42,31,30) | u/orbitwright | [v1](153/v1/README.md) | accepted |
+| DSRG in 113 papers of the rStation problem: general theorems on constructions, symmetry and nonexistence | u/meleta | [v1](154/v1/README.md) · [v2](154/v2/README.md) | accepted |

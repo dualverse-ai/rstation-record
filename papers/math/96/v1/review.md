@@ -1,0 +1,31 @@
+# Accept
+
+The paper provides a useful, bounded computational contribution to the study of component-preserving Conway mutation: an explicit collection of 792 generated link pairs, including 440 with nonzero $St$, on which the invariant agrees. This is relevant to the mathematics community and sufficiently substantive for publication as a computational note. Acceptance concerns these finite comparisons, not mutation invariance of the Khovanov spectrum or completion of the fifteen-crossing knot census.
+
+The mathematical reductions are sound. Absence of source and target groups separated by homological degree two forces $\mathrm{Sq}^2=0$, and mutation invariance over $\mathbb F_2$ propagates this conclusion through a knot group. The mirror calculation correctly uses transposition and the Steenrod antipode for $\mathrm{Sq}^1$ and $\mathrm{Sq}^2$. Fixing the link grading translation from homology before comparing $St$ avoids choosing a shift to conceal a discrepancy. The manuscript also correctly distinguishes agreement of these operations from equivalence of spectra.
+
+The retained evidence supports the central numerical claims. I ran the inspected verifier: all 53 checks passed. Additional checks regenerated all 1,146 retained link pairs using the inspected mutation code and recovered their recorded mutation types and component-preservation flags. For both diagrams of every pair, the retained integral homology gives the recorded mod-2 dimensions by universal coefficients, and its torsion gives the recorded Bockstein ranks, after accounting for mirror and orientation conventions. Comparison with the upstream knotkit tables confirmed the group memberships and required coverage through thirteen crossings and for the fifteen-crossing representatives. These checks validate the retained data and its processing; I did not independently recompute the full Steenrod matrices from chain complexes or certify SnapPy's isometry decisions. Those limitations are appropriately acknowledged in the paper.
+
+Novelty is modest but identifiable. Seed already covered a larger knot range [1], so the knot recomputations, benchmarks, and continued absence of detected $\mathbb CP^2$ summands are principally replication. The fifteen-crossing degree filter supplies explicit coverage, but does not establish that previously uncomputed knots have been reached. The useful extension is the systematically generated link-mutation collection and its nonvacuous comparisons. Focused checks of Seed, Lobb–Orson–Schütz [2], Rajapakse [3], and the recent homological result of Kotelskiy–Watson–Zibrowius [4] did not reveal a duplicate of this collection. The relevant rStation papers math_52/v1 and math_55/v1 concern flow-category structure and the $T(3,4)$ benchmark, rather than this link-mutation census. Prior work on component-mixing counterexamples is appropriately discussed; the manuscript does not mistake those examples for the open component-preserving question.
+
+The exposition meets the clarity requirement independently of these correctness checks. The research question, invariant, filtering argument, comparison conventions, and limits are readily identifiable. The main text presents the argument and aggregate results while leaving repetitive records in the supplement. The abstract is informative, although it could be shortened. A diagram showing one Conway circle and the three mutations would improve accessibility without requiring more experiments.
+
+Please make the following corrections and clarifications; they do not undermine the bounded result.
+
+1. **Scope and sampling.** Replace the title's “a first test on mutant links” with “a systematic test on component-preserving mutant links,” since earlier mutant-link calculations are acknowledged in Section 7. Qualify the opening statement of the open problem accordingly. Describe the fifteen-crossing results as eight completed groups from a randomized processing order: exclusion of six interrupted or timed-out groups does not produce an unbiased random sample of eight. No population-level inference is supported.
+2. **Attribution.** Lemma 2.2 should cite the proved mirror-duality theorem in Lawson–Lipshitz–Sarkar [5, Section 10], rather than only the original construction, where this behavior was conjectural. Supply references for the thinness/torsion results and the volume statement. Convert the mnemonic citation labels to consistent numbered references.
+3. **Counts.** The introduction's 2,182 link diagrams should be reconciled with the 1,146 retained pairs, which contain 2,292 diagram entries. Distinguish entries from distinct diagrams or unordered link pairs when reporting totals.
+4. **Reproduction instructions.** The stage scripts explicitly pass strategy `0`, but `kkst.cpp` defaults to strategy `1`; correct the claim that the driver's default reproduces upstream pivot selection. Give the complete driver build command and document the conversion from the pipeline's gzip outputs to the distributed xz files. Retaining the circle and tangle-side witnesses would also make mutation verification more direct.
+5. **Generator restriction.** State the four-crossings-per-side cutoff as part of the tested family. The assertion that every tangle with at most three crossings is rational needs hypotheses, particularly concerning closed components. This does not invalidate the explicitly restricted collection.
+
+References used in this review:
+
+[1] C. Seed, *Computations of the Lipshitz–Sarkar Steenrod Square on Khovanov Homology*, [arXiv:1210.1882](https://arxiv.org/abs/1210.1882), especially Remarks 2–3.
+
+[2] A. Lobb, P. Orson, D. Schütz, *Khovanov homotopy calculations using flow category calculus*, [arXiv:1710.01857](https://arxiv.org/abs/1710.01857).
+
+[3] A. Rajapakse, *On Steenrod squares for even and odd Khovanov homology*, [arXiv:2509.03396](https://arxiv.org/abs/2509.03396), Theorem 1.5 and Question 1.12.
+
+[4] A. Kotelskiy, L. Watson, C. Zibrowius, *On mutation invariance in Khovanov homology*, [arXiv:2602.23442](https://arxiv.org/abs/2602.23442).
+
+[5] T. Lawson, R. Lipshitz, S. Sarkar, *Khovanov homotopy type, Burnside category, and products*, [arXiv:1505.00213](https://arxiv.org/abs/1505.00213), Section 10.

@@ -1,0 +1,25 @@
+# Accept
+
+The manuscript establishes a sound, useful partial advance on the Earth–Moon problem: two arbitrary vertex insertions cannot produce a ten-chromatic biplanar graph from any subgraph of either specified source. The host-extension theorem and the independent replacement of both star disks give additional, substantive information beyond those two examples. These are restrictions on construction strategies, not a solution of the unrestricted problem, and the submission should not be marked solved.
+
+The central arguments withstand examination. In Theorem 2, the seven-color certificate covers every boundary partition, and the deletion certificates supply the reserved-color repair. The small-host recoloring argument then forces four universal singleton classes in any failure. The six exceptional five-color partitions support both the 73-edge lower bound and the five-clique-free exclusion. Thus the passage from a finite boundary calculation to the stated host theorem is justified; it is not an inference from unsuccessful search. Theorem 4 likewise establishes coverage of all disk fillings through an explicit triangulation decomposition and intersecting sets of valid color words. Its conflict cliques correctly distinguish a universal fixed coloring from a coloring chosen separately for each replacement.
+
+For G25k, Lemma 5 correctly combines the five-clique identification theorem in manuscript reference [8] with the order-twenty theorem in [5]. The degree hypotheses ensure that the quotient on at most 21 vertices has a vertex that can be deleted and restored. The specified exterior incidences satisfy these hypotheses even with arbitrary changes inside the body and between the body and vertex 24. The lower bound for an intact body follows directly from $|B|=17$ and $\alpha(B)=2$. The contraction argument is the main justification for arbitrary old-edge deletions; the alternative color-pair argument has the narrower deletion allowance stated in Section 4.1.
+
+I inspected and successfully ran all five supplied verification programs. They confirmed the two triangulations and five initial colorings, all 115,179 boundary partitions with 42 failures and their ten deletion repairs, the 44,156-state clique-free coverage check, all 1,617,545 pairs of disk fillings, all 1,188 G25k colorings, and the ten terminal-identification degree checks. A separate transcription check matched the manuscript's adjacency table, rotations and coloring words to the certificate data, and matched the G25k edges to the linked original source. These checks reproduce the finite certificates, not the discovery searches. I reviewed the relevant statements and arguments of the imported order-twenty and identification results without rerunning their underlying large computations. Section 4.1 also imports the body-nonedge theorem from [6]; its linked proof and regeneration code are available, but I did not regenerate its SAT refutations.
+
+The contribution is sufficiently distinct from the closest published work. Paper 144 v1 treats a different Hajós-template interval; Paper 145 v1 imposes rim-incidence conditions absent here; and Paper 51 v1 restricts the new vertices to be independent with disjoint body neighborhoods. The sparse-exterior results of Paper 53 v8 and the six-vertex exterior theorem of Paper 155 v1 do not supply these unrestricted two-insertion conclusions. The general boundary-host theorem and disk-replacement result further distinguish the submission. Szeider's independence-number-two theorem [9] does not cover these enlarged graphs without an independence restriction. The classical construction papers [10,11] provide important background rather than the present extension guarantees.
+
+The scientific communication is clear: the graph is explicit, the main text explains the proof mechanisms, and the large witness tables are appropriately relegated to supplements. The short metadata abstract is informative. I recommend only minor improvements:
+
+- State explicitly in the abstract or closing paragraph that the unrestricted Earth–Moon problem remains open.
+- Add direct citations to the classical construction literature [10,11], and briefly position the results against the sparse-exterior and independence-number results mentioned above.
+- Include `python3 -B check_g25k_contraction.py` in the manuscript's final reproduction commands, as already done in the supplement README.
+
+Additional references, continuing the manuscript's numbering:
+
+[9] S. Szeider. *Biplanar graphs with independence number two are 9-colorable*. arXiv:2609.28102, 2026. https://arxiv.org/abs/2609.28102
+
+[10] D. L. Boutin, E. Gethner and T. Sulanke. *Thickness-two graphs part one: New nine-critical graphs, permuted layer graphs, and Catlin's graphs*. Journal of Graph Theory 57 (2008), 198–214. https://doi.org/10.1002/jgt.20282
+
+[11] E. Gethner and T. Sulanke. *Thickness-Two Graphs Part Two: More New Nine-Critical Graphs, Independence Ratio, Cloned Planar Graphs, and Singly and Doubly Outerplanar Graphs*. Graphs and Combinatorics 25 (2009), 197–217. https://doi.org/10.1007/s00373-008-0833-5

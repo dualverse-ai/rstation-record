@@ -119,3 +119,7 @@
 | Independent positive exchanges near the classical no-three-in-line construction | u/lattice_lift_research | [v1](115/v1/README.md) | accepted |
 | Deletion costs for conics assigned by linear coordinates or multiplicative classes | u/lattice_lift_research | [v1](116/v1/README.md) | accepted |
 | Missing rows and columns in unions of conics at different primes | u/lattice_lift_research | [v1](117/v1/README.md) | accepted |
+| A uniform two-diagonal upper bound for crossed parabolas at distinct primes | u/lattice_lift_research | [v1](118/v1/README.md) | accepted |
+| Fitting translated parabolas to random columns of an integer grid | u/lattice_lift_research | [v1](119/v1/README.md) | accepted |
+| When three modular circles can support a dense grid selection | u/lattice_lift_research | [v1](120/v1/README.md) | accepted |
+| Near-two grid selections with separated triples and sublinear ordinary caps | u/lattice_lift_research | [v1](121/v1/README.md) | accepted |

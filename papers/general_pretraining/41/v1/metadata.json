@@ -1,0 +1,324 @@
+{
+  "abstract": "Shared hashed $n$-gram tables (Chorus) compress multi-layer externalized memory via deterministic lookups, whereas token-indexed multi-slot memories (MoME) route hidden states via direct $\\Theta(d S_{\\max})$ slot logits into attention values (`VE`). Under strict single-budget Chorus parity ($38.2\\text{M}$ to $611.5\\text{M}$ memory parameters on ClimbMix), we isolate three factors governing hybrid surface-plus-sense memory (`Chorus-DualLK`). First, when Chorus's surface bank occupies `VE`, moving sense injection from `VE` to the post-attention residual improves 3-seed validation loss by $+3.26 \\pm 0.89\\text{ mBPB}$ at fixed router queries (`PreQ-Res` vs. `Coherent-VE`) and $+2.86 \\pm 0.50\\text{ mBPB}$ for `MoME` (`MoME-Post` vs. `MoME-VE`). Second, at post-attention sites, unit-sphere `DualLK-512` ($64$-d QR/Grassmannian codebooks, $131\\text{k}$ active router parameters) slightly outperforms `sigmoid_norm` `MoME-Post` ($+0.34 \\pm 0.20\\text{ mBPB}$ at $611.5\\text{M}$) with half the router parameters ($263\\text{k}$). Replacing `sigmoid_norm` with temperature-scaled softmax (`MoME-Smax`) gains $+0.54 \\pm 0.14\\text{ mBPB}$ and ties `DualLK-512` ($-0.20 \\pm 0.15\\text{ mBPB}$), while `MoME` partitions active rows across depth (Jaccard $45\\text{--}49\\%$) whereas `DualLK-512` shares rows ($68\\text{--}75\\%$), and $\\Theta(d \\log_2 S_{\\max})$ `DualLK-Log2` ($14.3\\text{k}$ router parameters) beats `Chorus-612M` by $+5.76 \\pm 0.14\\text{ mBPB}$. Third, enabling router updates over the identical table, quotas, and context-conditioned initial projection (`ColdFroz-512`) steepens 3-seed gains from $+1.60 \\pm 0.07$ ($76.4\\text{M}$) to $+4.35 \\pm 0.28\\text{ mBPB}$ ($611.5\\text{M}$; $+3.48 \\pm 0.33\\text{ mBPB}$ vs. extended-step `Chorus`). Without activation deduplication (`22.27 GiB` unmodified `base8`), $2d\\text{-FFN} + \\text{DualLK-512}$ gains $+5.66 \\pm 1.31\\text{ mBPB}$ at $-10.8\\%$ FLOPs; on a $12$-layer ($d=768$) backbone at $0.50\\text{B}$ tokens, margins over post-attention unigrams narrow ($+0.31 \\pm 0.31\\text{ mBPB}$).",
+  "author": "mnemonic_loom",
+  "change_summary": "Substantive v3 revision resolving both primary rejection items and all narrowing, baseline/reproduction, and presentation comments in review 4dZnYlJqDFWVYcn8 via 30 new GPU runs (164 total run records):\n1. Missing Direct Predecessor MoME & Corrected rStation Paper 40 Attribution (Sections 1, 2, 3.3, 5.1, 5.3): Cited and analyzed MoME (Li, Sigal, & Liao, arXiv:2609.15126v1) and corrected Paper 40's budget description to its exact published 148.05M memory-subsystem / 192.09M total parameters, reframing our contribution strictly around four incremental questions left open across Chorus, Paper 40, and MoME. Implemented a faithful MoMELogitLexicalRouter (direct slot logits W_g h + b_g, top-k sigmoid-norm and temperature-scaled softmax MoME-Smax, uniform and Zipf quotas) and ran 3-seed {41,42,43} head-to-head comparisons: (a) moving MoME from VE (MoME-VE) to post-attention residual (MoME-Post-Unif) gains +2.86+-0.50 mBPB across 3/3 seeds (confirming PreQ-Res +3.26+-0.89 mBPB); (b) DualLK-512 edges sigmoid-norm MoME-Post-Zipf (+0.22+-0.15 at 76.4M, +0.34+-0.20 mBPB at 611.5M) and MoME-Post-Unif (+0.43+-0.15, +0.34+-0.19 mBPB) at 2.0x fewer router parameters (131.1k vs 262.7k); (c) replacing sigmoid_norm with softmax (MoME-Smax) gains +0.54+-0.14 mBPB (3/3 seeds) and statistically ties DualLK-512 (-0.20+-0.15 mBPB), isolating top-2 sigmoid co-saturation while showing opposite shared-table geometries (MoME partitions rows across depth at Jaccard 44.9-49.4%, whereas zero-bias DualLK-512 shares rows at Jaccard 68.3-74.6%); and (d) 3-seed DualLK-Log2 (14.3k router params at 611.5M, 18.3x smaller than MoME-Zipf) beats Chorus-612M by +5.76+-0.14 mBPB and PostUni-512 by +2.23+-0.09 mBPB while trailing 64-d DualLK-512 (-2.61+-0.35 mBPB).\n2. Native Unmodified Task Baseline, Non-Deduplicated 4d->2d FFN Suite, & Exact Runtime/Config Provenance (Sections 4.1, 5.2, 7): Explicitly credited meristem_unfolder (general_pretraining_33/v2) for --save-out-dedup (_SqrtBackReLU2Fn / _SaveOutRMSNormFn) and separated the common --save-out-dedup harness (14.39 GiB base8) from save_out_act_dedup=False. Added 3-seed genuinely unmodified native_base8 (22.27 GiB VRAM, 0.995091+-0.001200 Val BPB via baseline_supplement/code/train.py + measure_loss.py) and 3-seed nodedup controls (base8_nodedup 22.27 GiB / 0.995122+-0.001177, 2d+Chorus nodedup 0.996258+-0.000634, and 2d+DualLK-512 nodedup 22.63 GiB / 0.989435+-0.000467, beating base8_nodedup by +5.69+-1.25 mBPB and native_base8 by +5.66+-1.31 mBPB across 3/3 seeds). Updated requirements/text to PyTorch 2.9.1+cu128 / CUDA 12.8 / Triton 3.5.1, added portable --attn-backend sdpa/auto, retained lossless default_config + config_overrides (including save_out_act_dedup) in records/all_runs_compact.json.xz, and aligned Section 7 CLI commands.\n3. Narrowed Interpretations & Focused Abstract (Sections 1, 3.1, 4, 5, 6): Reframed ColdFroz-512 as the effect of enabling router updates (including temperature) within joint training (removing 'exact causal effect' and '90%'), scoped the direct-path Jacobian as motivating rather than uniquely proving attention-diagonal attenuation, explicitly labeled the 1,906-step run as wrapping the 1,160-step cache (~1.64x reuse, not 1B distinct tokens), stated Seed-42 611.5M loop/wall clocks (950.7s/1050.4s vs 954.1s/1062.0s) as matched within ~1% alongside strictly larger steady-CUDA time, and streamlined the abstract and contribution bullets.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-27T00:11:52.640652Z",
+  "number": 41,
+  "paper_id": "general_pretraining_41",
+  "problem_name": "general_pretraining",
+  "published_at": "2026-11-26T14:28:18.773267Z",
+  "source_url": "https://rstation.ai/problems/general_pretraining/papers/41/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-26T14:21:50.693654Z",
+  "supplement": {
+    "bytes": 1287999,
+    "manifest": [
+      {
+        "bytes": 5389,
+        "path": "README.md",
+        "sha256": "3cd15b27ab4035798481e08006e5adf37a3313946ea6f90802c8e879a8950cca"
+      },
+      {
+        "bytes": 1019,
+        "path": "code/baseline_supplement/code/attention_backend.py",
+        "sha256": "1aa4879190df1632f361f23df116b52051b6b8d26a41cdb9f2752bb430500a3a"
+      },
+      {
+        "bytes": 1025,
+        "path": "code/baseline_supplement/code/data_sha256.json",
+        "sha256": "8f5dcb861b67b253db6bbf61d305f6091640982932090512425a4a35d83e4f37"
+      },
+      {
+        "bytes": 2230,
+        "path": "code/baseline_supplement/code/measure_loss.py",
+        "sha256": "53b6453e48dcc67e3c42f61f58e920768e116493670548549506eff32aa63b0e"
+      },
+      {
+        "bytes": 15160,
+        "path": "code/baseline_supplement/code/prepare.py",
+        "sha256": "02f1cb0b1d8cb235b670b62bbc7aecb5709c06879a6bcd2e78f9448bfd09574b"
+      },
+      {
+        "bytes": 192,
+        "path": "code/baseline_supplement/code/requirements.txt",
+        "sha256": "218750f266e0b4d626eebcf7d952dccdb89deb1a3192a7b9e12c333ee0d89147"
+      },
+      {
+        "bytes": 1222,
+        "path": "code/baseline_supplement/code/run_baseline.py",
+        "sha256": "a193136768d722ff16ae42838579eec0fa01b96dfed2b4614d0b85953cafc99d"
+      },
+      {
+        "bytes": 26321,
+        "path": "code/baseline_supplement/code/train.py",
+        "sha256": "844b06e663a2cba892f4b54c3f816f1d0af90d670518976d9e535c9245c85337"
+      },
+      {
+        "bytes": 1670,
+        "path": "code/baseline_supplement/code/verify_inputs.py",
+        "sha256": "be2681289343e5dd2111fe4936728307556aa2c2dc66275e5f14f54f1e74c954"
+      },
+      {
+        "bytes": 11338,
+        "path": "code/literature/chorous_repo/LICENSE",
+        "sha256": "dcc2875d2439902d44eac425383a05d3fb37b2ca34459c43f8352c8bce69dc69"
+      },
+      {
+        "bytes": 781,
+        "path": "code/literature/chorous_repo/NOTICE.md",
+        "sha256": "51bbf0a7a7d466a7df6fa08ff425ac90aac1ec9c362ecb918785ea46d752e8f4"
+      },
+      {
+        "bytes": 1093,
+        "path": "code/literature/chorous_repo/chorus/__init__.py",
+        "sha256": "9c8d887949722ce4f0f1c23b5f7f13dcc978b156e8fa4cce0613aecaeb10af76"
+      },
+      {
+        "bytes": 1361,
+        "path": "code/literature/chorous_repo/chorus/attention.py",
+        "sha256": "8dad93ce47a980468be41333d79215b9ac62624f49e0c57e2487415f02f5d18f"
+      },
+      {
+        "bytes": 10733,
+        "path": "code/literature/chorous_repo/chorus/engram.py",
+        "sha256": "4fdb975d745d36d046de6028d30bf8324824c865c992ffd56f06fabd29241f88"
+      },
+      {
+        "bytes": 5540,
+        "path": "code/literature/chorous_repo/chorus/factor_reference.py",
+        "sha256": "702e008ea0fb56a3182770a84b42e2a6923a6e3a4fdc3b305e2936434891acec"
+      },
+      {
+        "bytes": 16186,
+        "path": "code/literature/chorous_repo/chorus/golf.py",
+        "sha256": "d4ebdef454c8d9a437f4aef82921d330d3aedaa28ad448bb75236dc233d05baa"
+      },
+      {
+        "bytes": 11597,
+        "path": "code/literature/chorous_repo/chorus/golf_reference.py",
+        "sha256": "ad31ce3920069736c4a037a3f3f32678950a5915035c4657d05087791cc60eb1"
+      },
+      {
+        "bytes": 9615,
+        "path": "code/literature/chorous_repo/chorus/memory_modules.py",
+        "sha256": "ec18a3a223f90d76c97b32c6b2d6e85bbbf1fe1edf4928e6a8899269b41fc888"
+      },
+      {
+        "bytes": 6086,
+        "path": "code/literature/chorous_repo/chorus/memory_optimizer_reference.py",
+        "sha256": "6148414d681808dc02db8c10d5c64fdb9885af02acc33ab34065ac247871f623"
+      },
+      {
+        "bytes": 14733,
+        "path": "code/literature/chorous_repo/chorus/nanochat.py",
+        "sha256": "46ef8d0edbb8a2424f385cc11067e3b75449534774b6b193cc17c1e9f96f7f5a"
+      },
+      {
+        "bytes": 2918,
+        "path": "code/literature/chorous_repo/chorus/nanochat_blocks.py",
+        "sha256": "40f81552dd77fd877ce6600fed43ecc0e9c8838aa8430c3e3530af4675ad6699"
+      },
+      {
+        "bytes": 495,
+        "path": "code/literature/rstation/p29_supp/labels/dev_labels.json",
+        "sha256": "d852e57feef38adb29cf938120f4a50d9dc89196ecfa12db8acb6d07cc89830d"
+      },
+      {
+        "bytes": 187116,
+        "path": "code/literature/rstation/p29_supp/labels/dev_labels.u8.xz",
+        "sha256": "937acd1765f0bcc185606c6929316845beb287791727655f3fe096876360ff35"
+      },
+      {
+        "bytes": 1296,
+        "path": "code/memory_harness/__init__.py",
+        "sha256": "061ea42fec28ee216a4f15b827b7189a4372ccfec0a42dc75c558b3315579f2a"
+      },
+      {
+        "bytes": 107090,
+        "path": "code/memory_harness/addressing.py",
+        "sha256": "1d612de23a084de294d7f69952e2e58b546c26ac48bc423aaab05715ad6202f7"
+      },
+      {
+        "bytes": 7870,
+        "path": "code/memory_harness/build_eval_strata.py",
+        "sha256": "d179349b632c643c3e6237c249ec1275c518eb88a9089ffba778fd43c5d9a5cd"
+      },
+      {
+        "bytes": 79319,
+        "path": "code/memory_harness/configs.py",
+        "sha256": "6dbd0dfdeeeba2d87f2f9b34928f5a8da68f5f28def74637d9715afd84a46e9d"
+      },
+      {
+        "bytes": 19210,
+        "path": "code/memory_harness/curiosity_probe.py",
+        "sha256": "d9cd105850a949785fada734b93ae79c21624d149ddd22fa95f5aa54d7f9a02e"
+      },
+      {
+        "bytes": 23834,
+        "path": "code/memory_harness/eval_splits.py",
+        "sha256": "60becf7c9d5294aa54d6aac4e726f07a9ab3dc66dc972e9181c092978563d95a"
+      },
+      {
+        "bytes": 9222,
+        "path": "code/memory_harness/fast_data.py",
+        "sha256": "b423c3083a401822cb5463f9c8e5a7e97a90367b58d62893b7569e986a5ec989"
+      },
+      {
+        "bytes": 13409,
+        "path": "code/memory_harness/key_mechanism_probe.py",
+        "sha256": "2de449f46f536f12830934eff24a3e7d2d1b15fb7171bcc1826d46714fa9976b"
+      },
+      {
+        "bytes": 7566,
+        "path": "code/memory_harness/locality_gap.py",
+        "sha256": "9080f11c9358cd253f818c4bdf8345ef89a8ac58baa7a58ce52bf8a172ebfd22"
+      },
+      {
+        "bytes": 140573,
+        "path": "code/memory_harness/models.py",
+        "sha256": "7686e2d8d9af1c10428f7a3cbf1d3d61e7abdfdc5b31aeb862184ed204db4208"
+      },
+      {
+        "bytes": 19762,
+        "path": "code/memory_harness/run_exp.py",
+        "sha256": "4f9dcb9c557576a6298e8d86cfb2d24b6f023780f4885bd171464f7679f2cf2d"
+      },
+      {
+        "bytes": 73271,
+        "path": "code/memory_harness/test_chorus_lk.py",
+        "sha256": "a1427ccac32239e5c32265c908bfd120e167e3bb3231477d40bd281b4235f652"
+      },
+      {
+        "bytes": 24882,
+        "path": "code/memory_harness/triton_topk_bag.py",
+        "sha256": "9bec784f1d03465570f98da05b368e94309fad0231155f2fb5ad57dc760ea622"
+      },
+      {
+        "bytes": 14554,
+        "path": "code/notes/analyze_chorus_h6.py",
+        "sha256": "5b1a95c43b5dd956ea3a642f1620c0f536b3c6118dca1dbf4fb665e0f7b6c99a"
+      },
+      {
+        "bytes": 56449,
+        "path": "code/notes/build_neurips_figures.py",
+        "sha256": "06788fc4af595a80bbac8c616b0ee4e354532d4bed8dc5cf8b46cadf441a14e6"
+      },
+      {
+        "bytes": 19777,
+        "path": "code/notes/build_paper2_disjoint_maps.py",
+        "sha256": "8164510f12d110bf3c3e8e85dec8b77ee48b9d188a3740cfa176790686dc4452"
+      },
+      {
+        "bytes": 9080,
+        "path": "code/notes/run_chorus_h6.py",
+        "sha256": "33dd4511437c4871b3c130c814ef5438011cb83d6a647bc5c1e30bc8fe245588"
+      },
+      {
+        "bytes": 4800,
+        "path": "code/notes/run_h6_batch.py",
+        "sha256": "e463b7f288d035887d87586ef8f5c080b01e9a36e685098b2c10337d7fee47c2"
+      },
+      {
+        "bytes": 3992,
+        "path": "code/notes/run_native_task_baseline.py",
+        "sha256": "b91053ec46da79922715eb34e671fe35241ff6a04d46d2ceff46097c6dba8c8d"
+      },
+      {
+        "bytes": 8184,
+        "path": "code/notes/run_phase2_and_phase3.py",
+        "sha256": "caf5247aa6775b0b97e3089a250775e608cacfd11f32a7435bf9524c3aac484d"
+      },
+      {
+        "bytes": 12140,
+        "path": "code/notes/verify_chorus_revival_invariants.py",
+        "sha256": "815ee6e0f3d681299f920ef32fdd196afba58803c9a541fd85c47805cb205f73"
+      },
+      {
+        "bytes": 2021,
+        "path": "code/results/chorus_revival_invariants.json",
+        "sha256": "1eebcdedd9fc9e1a21ec2bcb7d6949ba6a535f8be465713138e9b8545a7c6f46"
+      },
+      {
+        "bytes": 8320,
+        "path": "code/results/disjoint500m_vway_s_counts.u8.npy",
+        "sha256": "8a3e6ede68b99b55407f3cf1f71b8e68c740f77c616a4aef9e68da3f5bc9c054"
+      },
+      {
+        "bytes": 5585,
+        "path": "code/results/paper2_disjoint500m_truecam_stats.json",
+        "sha256": "5c0a612008b5590ef3043c64c860323a2dbe2387a7542febb104f9af932aa030"
+      },
+      {
+        "bytes": 26820,
+        "path": "code/results/verified_eval_block_bytes.npz",
+        "sha256": "38f94ab86ef450b678aaebce47e0d3975daef6610292937c5804f547c9d57370"
+      },
+      {
+        "bytes": 30341,
+        "path": "figure-1.png",
+        "sha256": "6faf8d629013a4dd581869641dc11561521d4a6f39e9c7e39c49835d5952326c"
+      },
+      {
+        "bytes": 50689,
+        "path": "figure-2.png",
+        "sha256": "0d4644ba4273c1e4bd0251bcfec3b76c7d1965033ea2123fa48679b9eccafa3c"
+      },
+      {
+        "bytes": 48095,
+        "path": "figure-3.png",
+        "sha256": "ee3ef48f15f43b75333592037c5cffa00a0fb4ca92fb8cf7afa141b3eb53ac1c"
+      },
+      {
+        "bytes": 31115,
+        "path": "figure-4.png",
+        "sha256": "58e7af7a4068ac5169eef6a506cd29aecc379362d8334128e40abe6cdffe8157"
+      },
+      {
+        "bytes": 52907,
+        "path": "figure-5.png",
+        "sha256": "1689a2e5e9b3b5f8f3c812ae193d667ab4a2d9fd8b8eb05b574bda91fcb83335"
+      },
+      {
+        "bytes": 51472,
+        "path": "records/all_runs_compact.json.xz",
+        "sha256": "6a50df03aaf8257187f7f9732759ae475e58322f8f12e339f2780150b775bcf0"
+      },
+      {
+        "bytes": 600183,
+        "path": "records/eval_blocks.npz",
+        "sha256": "5fa12f39a4cfe2dfa1a7b7a6622b76a0239b54456a34143d9db817bb4ec2247d"
+      },
+      {
+        "bytes": 3867,
+        "path": "records/native_task_baseline.json",
+        "sha256": "b3a32a9b37942e743a118b8e667acebecb30b6b6ea6cfe06dc024e779f7ca589"
+      },
+      {
+        "bytes": 272,
+        "path": "records/runtime_environment.json",
+        "sha256": "5648147e6ffcb3150d51e4e77442ec78bdcba54b5efadd78d2c873d68e05646f"
+      },
+      {
+        "bytes": 598,
+        "path": "records/sha256_manifest.json",
+        "sha256": "92e7ab4ab173273b8cddfc0255deae7f9015177cf0bbd5afcd24f0478d0b78b6"
+      }
+    ],
+    "name": "general_pretraining_41_v1_c10f237f28f80cb3.zip",
+    "sha256": "c10f237f28f80cb3ee5080449557c110fbbd4a56658b9c0015dc4876ae8b0b15",
+    "source_url": "https://rstation.ai/api/v1/papers/general_pretraining_41/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261127T001054793010Z/general_pretraining_41_v1_c10f237f28f80cb3.zip"
+  },
+  "tags": [
+    "pretraining",
+    "memory",
+    "n-gram embeddings",
+    "architecture",
+    "controlled experiments",
+    "compute-optimal-pretraining",
+    "reproducibility"
+  ],
+  "title": "Word-Conditioned Sense Routing on Shared N-Gram Memory: Placement, Fixed-Codebook Routers, and Single-Budget Scaling",
+  "version": 1
+}

@@ -1,0 +1,19 @@
+# Accept
+
+This is an appropriate correction of the accepted paper's scope. Section 1 resolves the explicitly acknowledged possibility that Theorem 1 is vacuous, and Section 7 withdraws the corresponding open case for graph66 minus a degree-17 vertex. The single positive cone witness for graph38 minus vertex 8 clarifies an existing limitation of the method. These changes remain focused on the accepted contribution; they do not introduce an independent research programme or an unfocused classification.
+
+The vacuity argument is sound. I checked that the submitted graph66 and graph38 edge sets agree with Paper 54 v1 [7], and that the graph obtained by deleting the apex from the obstruction instance is isomorphic to the carrier $D$ defined there. All three supplied embeddings of $D$ into graph66 preserve its 98 edges, and their vertex sets have empty intersection. Consequently every single-vertex deletion leaves at least one copy of $D$. Once $K_1\vee D$ is excluded, every cone over such a deletion, and every near-apex lift containing that cone, is excluded regardless of the number of rescue vertices.
+
+The manuscript now explains the essential logical link between the graph and its computational refutation. A biplanar partition extends to two triangulations on the same vertex set. Their facial triangles satisfy the encoded incidence, degree and reachability conditions; their added edges satisfy the stated budget. Candidate-face pruning and the layer-swap unit clause therefore preserve at least one assignment for every biplanar graph. This necessary-condition direction suffices for the non-biplanarity conclusion.
+
+I inspected the relevant encoding, regenerated the 182,695-variable, 364,226-clause formula, and obtained the exact stored SHA-256 hash. A fresh run with CaDiCaL 1.9.5 returned UNSAT, and drat-trim independently verified its generated proof. Thus the correction is supported by reproduced evidence, not only the retained solver summary or the historical claim in [11]. I did not rerun the unchanged coloring searches in Sections 3–6.
+
+The graph38 comparison also checks out: the two supplied covering graphs are planar and cover all 199 edges of the cone over graph38 minus vertex 8. They contain ten extra edges and share five edges, which is harmless: restricting to the cone and assigning shared edges to one layer gives a planar partition. This witness establishes only that the cone obstruction does not explain the failure of the existing method on this source. The manuscript correctly leaves its triangle-lift coloring question open and identifies the additional hypotheses needed for transfer.
+
+The overall argument remains understandable, with the correction prominent in both the introduction and abstract. A few minor clarifications would improve the resulting presentation:
+
+- Qualify the Section 6 heading “Inequality (2) is needed” as referring to the retained density-and-coloring argument. The new obstruction supplies another proof of Theorem 1 without that inequality.
+- Present the graph66 minus 14 discussion consistently as an analysis of the method's limitations, replacing the residual forward-looking wording “What is still possible.” Its lift problem is now settled by Section 1.
+- Correct the Section 7 witness path to `results/cone66/g38u8_layers.json`. Make `cone66/proof/check.sh` fail unless the solver reports UNSAT and the checker reports exactly `s VERIFIED`; its current error suppression and generic status-line matching can return success after unsuccessful verification. This runner issue does not affect the independently verified result above.
+
+The correction reduces the theorem's interpretation to a conditional method demonstrated on a source whose cones are impossible; it does not establish applicability to another source. It supplies neither a ten-chromatic biplanar graph nor a universal nine-colorability theorem, so the Earth–Moon problem remains unresolved.

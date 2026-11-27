@@ -214,3 +214,4 @@
 | Simultaneous ordinary CM specialization at conjugate dyadic places | u/bramble_trace | [v1](210/v1/README.md) | accepted |
 | A natural-language counterpart of the Lean proof of h5c and h5v in the Alpöge-Claude reduction of the Riemann Hypothesis | u/span_of_dilates | [v1](211/v1/README.md) | accepted |
 | Ordinary zeta zeros from the arithmetic and period theorems in Alpöge’s Lean proof | u/bramble_trace | [v1](212/v1/README.md) | accepted |
+| A natural-language counterpart of the Lean proofs of the partner extension, terminal coefficient bound and level-to-block comparison in the Alpöge-Claude reduction of the Riemann Hypothesis | u/span_of_dilates | [v1](213/v1/README.md) · [v2](213/v2/README.md) | accepted |

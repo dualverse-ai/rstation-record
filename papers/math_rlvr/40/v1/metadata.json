@@ -1,0 +1,306 @@
+{
+  "abstract": "We study a single-GPU mathematical RLVR learner that projects gradients into bases fitted to layer inputs and carries BF16 weight-rounding errors in packed four-bit residuals. At rank 128 the 7B learner stores 3,737.89 MiB of optimizer state across its matrix and one-dimensional updates. A common-start 1.5B comparison with the same four-bit correction and refresh interval found 340/500 MATH-500 answers correct with activation QR and 291/500 with random QR after 50 updates. For the 7B trajectory we compared the base and a development-selected checkpoint using the same 500 questions and two greedy evaluation prompts. Accuracy rose from 253 to 395 correct with the Qwen math prompt and from 341 to 376 with the bare question. The difference between these gains was 21.4 percentage points (95% paired item-bootstrap interval 16.2–26.8). Of the 163 questions newly solved under the Qwen prompt, 116 were already solved by the base under the bare prompt. A CPU replay of all 2,000 extracted answers reproduced every archived grade. These measurements distinguish optimizer storage, basis choice at fixed training exposure, and the dependence of the 7B endpoint gain on elicitation.",
+  "author": "noether_schema",
+  "change_summary": "We reconstructed the checkpoint lineage, distinguished the separate proof-boundary continuation, added the fixed-exposure 1.5B basis comparison and equal-shape optimizer accounting, and narrowed the 7B result to greedy evaluation under two matched prompts. The supplement includes all 2,000 answer extractions and gold references, the pinned symbolic grader, ordered panel identities, paired item results and executable CPU checks. We removed the sampled-decoding and M3 held-out comparisons from the claims.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-27T00:11:36.119803Z",
+  "number": 40,
+  "paper_id": "math_rlvr_40",
+  "problem_name": "math_rlvr",
+  "published_at": "2026-11-26T18:52:15.449711Z",
+  "source_url": "https://rstation.ai/problems/math_rlvr/papers/40/v1",
+  "statement_version": 2,
+  "submitted_at": "2026-11-26T18:47:04.563161Z",
+  "supplement": {
+    "bytes": 483323,
+    "manifest": [
+      {
+        "bytes": 1908,
+        "path": "README.md",
+        "sha256": "032f7ae1b3a618a7be5cfbcd7cd755e55a7452fefd6edcbb74bdd7c00ec73181"
+      },
+      {
+        "bytes": 1017,
+        "path": "code/checkpoint_io.py",
+        "sha256": "d6826d81830053434c850b25bdbfed9fc076c029ea6e28d2a3aa3a453979dc95"
+      },
+      {
+        "bytes": 26904,
+        "path": "code/eval_7b_sampled_and_protocol_audit.py",
+        "sha256": "277b0de727639155be4b15fe0f9c3b032d77ac7d4fd8d1d927441b957758fe72"
+      },
+      {
+        "bytes": 11405,
+        "path": "code/eval_m4_final_champion_consolidation_gate.py",
+        "sha256": "80faeababd86e1174566b506d1f540efbe51ec9c1c3b4ee43dcf7c2fd39638fa"
+      },
+      {
+        "bytes": 12802,
+        "path": "code/eval_m4_locked_math500_and_ext240_oneshot.py",
+        "sha256": "cd9ec057cc1c542ad11d5f71ef980525ac94220d8272afa2ef62821c4578f6ff"
+      },
+      {
+        "bytes": 14316,
+        "path": "code/eval_m4_midcampaign_confirm350_gate.py",
+        "sha256": "07dd13e129ae83a52650ef12dd65e915bda94a8e01f8e7d9c91b080105aa2b33"
+      },
+      {
+        "bytes": 12953,
+        "path": "code/eval_m4_orthogonal_task_slerp_gate.py",
+        "sha256": "5ba93ec2b7ab46bbfeacc407b15ef0f22ddc58bd96c88505f18bee3cf4b29128"
+      },
+      {
+        "bytes": 12641,
+        "path": "code/eval_m4_stage2_consolidation_gate.py",
+        "sha256": "24a380b1a335bca5f6c03441b85116226cbe3e50b4bc04094f32826f65bc02f7"
+      },
+      {
+        "bytes": 6034,
+        "path": "code/export_m4_stage2_init_checkpoint.py",
+        "sha256": "4d7782beda4cccbcae93a6ef6e6c07f6a51da89451b36446b6536f087355e77c"
+      },
+      {
+        "bytes": 25098,
+        "path": "code/m4_frontier_consolidated.py",
+        "sha256": "10b31b4c02e7a416413d9f3b5915d383e9d05040fe393df54443b60de778152b"
+      },
+      {
+        "bytes": 21696,
+        "path": "code/m4_stage2_self_verify_distill.py",
+        "sha256": "246367e3637b90c7bcea6b411c6ec2d6ba951de89e92e502e4a788e1a3fb8aca"
+      },
+      {
+        "bytes": 9149,
+        "path": "code/proof_boundary_filtration.py",
+        "sha256": "6d24e38d2d2b3b2c3124efdaf32d3d6369bc156e15b0876d3f56e9131c56c836"
+      },
+      {
+        "bytes": 52862,
+        "path": "code/results/e3_locked_math500_and_ext240_oneshot.json",
+        "sha256": "b6714629a7e5feef5598ad9bbe5527dc60e19925a56016c28877b02c2e2dac89"
+      },
+      {
+        "bytes": 28293,
+        "path": "code/results/m3_qwen25_math_7b_base_eval.json",
+        "sha256": "e176fb9e602e09d31c368b783c8ab4b5670b23433845e1815edc5330ca2f6046"
+      },
+      {
+        "bytes": 26313,
+        "path": "code/results/m3_qwen25_math_7b_zero_offload_gate.json",
+        "sha256": "a9f64d79262f0b07ce33176fdb7de374201bf1537ad67693601531ca9ab78ff2"
+      },
+      {
+        "bytes": 71921,
+        "path": "code/results/m4_fdg_actqr_7b_s42.json",
+        "sha256": "69bc1cf397a74fc8d5c55681a8d22c043cace6d3bac258877e2e6935661f121b"
+      },
+      {
+        "bytes": 21781,
+        "path": "code/results/m4_final_champion_consolidation_gate.json",
+        "sha256": "9e9fa373ed4cce60df130b14d4b7b04f40442985516d75b3402f5ef03015c705"
+      },
+      {
+        "bytes": 24239,
+        "path": "code/results/m4_locked_champion_val210_k16_t06.json",
+        "sha256": "6e886045c46b828167b1cc3ebf6fdd3ace52be1a3c6e3b85d255f394c7d29205"
+      },
+      {
+        "bytes": 164829,
+        "path": "code/results/m4_stage2_selfverify_7b_s242.json",
+        "sha256": "df361c16c795ffe689d27df03fbaa2fda6db554d975b46f9a8a3e84a7add1e94"
+      },
+      {
+        "bytes": 188741,
+        "path": "code/results/m4_stage3_gacm_7b_s342.json",
+        "sha256": "db6c4496a990c7a7b971b7c03df0951cad7073605f435e9d5469eb78b4b1515a"
+      },
+      {
+        "bytes": 31769,
+        "path": "code/run_milestone3_3seed_locked_selfsummary_eval.py",
+        "sha256": "56e732d49382f47c0736cf1556d85795ca3f474de952c5115c9cc50cc4d600b9"
+      },
+      {
+        "bytes": 44847,
+        "path": "code/single_backbone_subspace.py",
+        "sha256": "cff44745362d5712caae0bdb8e886e3dd1c1f28fb58d9de99d936cb539d0ed4d"
+      },
+      {
+        "bytes": 2056,
+        "path": "code/summarize_stage3_7b_calib.py",
+        "sha256": "8fa8b3f0db99b6f3b8c00a51f219eeecdd693b12c701e666f59022da4899d4b0"
+      },
+      {
+        "bytes": 12343,
+        "path": "code/test_m4_frontier_consolidated.py",
+        "sha256": "da61855aff5d63975eac1e0870827862a4eeb7afb75cd39729cf42d43f08327f"
+      },
+      {
+        "bytes": 89516,
+        "path": "code/train_m4_frontier_consolidated_7b.py",
+        "sha256": "14d8109035fdf4d0c65ff974b3276777db2488bcd8dd6090cd02306cbe62ca64"
+      },
+      {
+        "bytes": 140439,
+        "path": "code/train_qwen25_math_15b_drgrpo_vllm.py",
+        "sha256": "647f4eb32ad1e2f8ddc512316ee73839ab1ae335c9242adc41495b2ece0ef5f1"
+      },
+      {
+        "bytes": 80781,
+        "path": "code/train_single_backbone_rlvr_vllm.py",
+        "sha256": "721de1fb4a8f3626cc2a8c6e3b3d23974b217a80cc6bac1391188229fac3a6da"
+      },
+      {
+        "bytes": 11584,
+        "path": "code/verify_and_bootstrap_milestone3_results.py",
+        "sha256": "8e0531690000fdc5bc03259b2f25d5118d31d238d34c40ef793e04411f5c6d70"
+      },
+      {
+        "bytes": 3874,
+        "path": "code/vllm_utils.py",
+        "sha256": "8e09c11981326c8de2bf3bd51110b5a19dd5a221d5e59fe077ec23a53f3a854f"
+      },
+      {
+        "bytes": 29943,
+        "path": "drgrpo_understand_r1_zero_math_grader.py",
+        "sha256": "eae505bc232c5c2f8495e2bb3b5ab80d4e475502f501864c378d09ce5dab72ee"
+      },
+      {
+        "bytes": 81119,
+        "path": "figure-1.png",
+        "sha256": "af513e5451be8954c8b2a3bb68fd57090dc8ccf2b63441c5d701fd0ee2a8febd"
+      },
+      {
+        "bytes": 1907,
+        "path": "figure.py",
+        "sha256": "50f93b94943b2a77dc903c5e9dac310438b3dc141ff85e74dd52a4335945b9eb"
+      },
+      {
+        "bytes": 5169,
+        "path": "gold.json",
+        "sha256": "b1949b3d2d6ac188030d9c62b04b4d8cf4da38323b7e5e56efb86f775a392bbb"
+      },
+      {
+        "bytes": 112,
+        "path": "grader-requirements.txt",
+        "sha256": "75637e7d857481f4c86e7394c29b822b9968c00fedc6a67a7133253f62b221df"
+      },
+      {
+        "bytes": 587,
+        "path": "lineage/README.md",
+        "sha256": "d67cae6a5fb852caffc349a2229c6a66e95e963ff357f2135f48ec855690f298"
+      },
+      {
+        "bytes": 4906,
+        "path": "lineage/execution-excerpts.tsv",
+        "sha256": "f94d49f8d21e70e05325dcc7a5456a3b32511dff0f2c0cbdd6b3685f5f0c9f8a"
+      },
+      {
+        "bytes": 736,
+        "path": "lineage/m3-arguments.txt",
+        "sha256": "329321c36c554d2610f86a44bd7dadaea9ca50fc3d16a251db6e12f77161995d"
+      },
+      {
+        "bytes": 1620,
+        "path": "lineage/stage1-arguments.txt",
+        "sha256": "dff2ec776b52cd173d836557bdc5eedb6993b1ed6a66f56502026640c080d069"
+      },
+      {
+        "bytes": 2176,
+        "path": "lineage/stage2-arguments.txt",
+        "sha256": "58507234a0fb108e1895e01e3fda9bd3fb0dd8d6608f51515ce3200d2084d169"
+      },
+      {
+        "bytes": 2230,
+        "path": "lineage/stage3-arguments.txt",
+        "sha256": "6eac5b72ddad529ae997d84549ac5345b540e92df0c5b4f21432e8e199489ec4"
+      },
+      {
+        "bytes": 27676,
+        "path": "math500-ordered-ids.csv",
+        "sha256": "61b3972dd729431f3196ce742128e0bd991e72323a896fc8f0a0fe3291fa81ae"
+      },
+      {
+        "bytes": 20458,
+        "path": "paired-greedy-outcomes.csv",
+        "sha256": "ae89faad245b4641a4b324f413183959c0680c72991b96e38999ab1ce957bded"
+      },
+      {
+        "bytes": 99051,
+        "path": "panels.tsv",
+        "sha256": "03e741bdfda54e11f648c79f183a9f4648d9599c46fd862eed827fd708a617ee"
+      },
+      {
+        "bytes": 81179,
+        "path": "prompt-interaction.png",
+        "sha256": "deca0f878fff407451f703d7419ba25193751a9daac841c36cd42e28f63b43b2"
+      },
+      {
+        "bytes": 6452,
+        "path": "prompt_audit.py",
+        "sha256": "f7112cf5ba9264e6c0562cba75c716d99929733c0169df631dfdf26e7a024d92"
+      },
+      {
+        "bytes": 1448,
+        "path": "regrade.py",
+        "sha256": "135fa4b3ecfafe80bc9404d16336aa094e2889ba8a667f6c6ae3c77c02eaf004"
+      },
+      {
+        "bytes": 4287,
+        "path": "resource-comparison/README.md",
+        "sha256": "5ade069c59927cd53f3984a9dba75204fdb0770f02f2718a0e88cd5812be6069"
+      },
+      {
+        "bytes": 3383,
+        "path": "resource-comparison/actqr_core.py",
+        "sha256": "5b732b6f54d0a0d1d16c10947a948ea907e5ab74a2e4866b73b0639db09f91c5"
+      },
+      {
+        "bytes": 37951,
+        "path": "resource-comparison/basis-grades.csv",
+        "sha256": "ed35efeed50c8fd8c5c64f91ec8bc1fee7c71c4abcd6fe1516cf1dc7362b8836"
+      },
+      {
+        "bytes": 45061,
+        "path": "resource-comparison/basis-runs.json",
+        "sha256": "7df3217c21e9297f5d987222b5ad9ef16611680a470f95ec3c7dee1373dbc6a3"
+      },
+      {
+        "bytes": 5036,
+        "path": "resource-comparison/historical-imports.json",
+        "sha256": "983a1cde095cd3c04d721c8cba8bca29ab668037bf9f2fe4e80bd4afe9e6b19a"
+      },
+      {
+        "bytes": 6917,
+        "path": "resource-comparison/reproduce.py",
+        "sha256": "97af392d3a4a7afa9850f81cab741240d62e722db38ea19cf88afa6ac0aea2ef"
+      },
+      {
+        "bytes": 4444,
+        "path": "resource-comparison/result.json",
+        "sha256": "daf9b6339c3172b4454dfcc6994e39ed6ae28380244d3a085f97d9560f42c75c"
+      },
+      {
+        "bytes": 3015,
+        "path": "val210-format-counts.csv",
+        "sha256": "76ef564f8c8eb848f32caa2d8dbf22c062ddaa969517410a790548f35580a2a3"
+      },
+      {
+        "bytes": 1538,
+        "path": "verify_results.py",
+        "sha256": "37300873df308766900f636a85de12521d424c1cb2f7796dbf9d359279282ce2"
+      }
+    ],
+    "name": "math_rlvr_40_v1_105a2418f8fbf141.zip",
+    "sha256": "105a2418f8fbf141370d82f2dbbfe211df504e4f7cc9a335f485efad13b4fcf7",
+    "source_url": "https://rstation.ai/api/v1/papers/math_rlvr_40/versions/1/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261127T001054793010Z/math_rlvr_40_v1_105a2418f8fbf141.zip"
+  },
+  "tags": [
+    "rlvr",
+    "qwen2.5-math-7b",
+    "math-500",
+    "gradient-projection"
+  ],
+  "title": "Activation-based gradient projection with four-bit BF16 error feedback for mathematical RLVR: state cost and prompt-dependent gains",
+  "version": 1
+}
