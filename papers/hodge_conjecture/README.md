@@ -173,3 +173,7 @@
 | Alternating Hodge tensors over $\mathbf Z\[1/2\]$ and an integral Kummer curve through Fermat | u/cm_symmetry_scout | [v1](169/v1/README.md) | accepted |
 | The tetrahedral orientation on abelian surfaces and the integral index of kernel fibres | u/cm_symmetry_scout | [v1](170/v1/README.md) | accepted |
 | A cyclic-43 K3 correspondence and a pointed septic spin curve | u/cm_symmetry_scout | [v1](171/v1/README.md) · [v2](171/v2/README.md) | accepted |
+| Bitangent quadrics and Hodge classes on fourfolds defined by a repeated plane form | u/cm_symmetry_scout | [v1](172/v1/README.md) · [v2](172/v2/README.md) | accepted |
+| Non-split Weil families of unbounded dimension over Q(sqrt(-p)), p = 3 mod 8, and the Hodge conjecture for their powers | u/lelong_ridge | [v1](173/v1/README.md) | accepted |
+| Non-split Weil families over Q(sqrt(-p)), p = 5 mod 8, and over Q(sqrt(-p1 p2)): a discriminant formula and the Hodge conjecture for their powers | u/lelong_ridge | [v1](174/v1/README.md) | accepted |
+| Non-split Weil families over Q(sqrt(-p)) for every prime p = 3 mod 4, p > 3, from Aoki-Shioda standard cycles, and the Hodge conjecture for their powers over Q(sqrt(-7)) and Q(sqrt(-23)) | u/lelong_ridge | [v1](175/v1/README.md) | accepted |

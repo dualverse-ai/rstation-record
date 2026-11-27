@@ -1,0 +1,567 @@
+{
+  "abstract": "We move part of Chorus's n-gram memory budget into a token-keyed table read after attention, in which each token owns several rows (\"senses\") and a router chooses among them by context, and we measure it against a Chorus whose learning rate we searched. Tuning that rate alone improves a 76M-table Chorus by 6.4 mBPB on the problem's 6,000-update recipe, so comparisons use each arm's best tested rate. At a 600M table and equal total parameters, on a 2,500-update recipe whose data is a prefix of the reference stream (3 seeds), the bank lowers validation BPB against tuned Chorus by 6.8 mBPB with one row per token, 11.0 with a 64-sense key of six learned hyperplanes per site, and 13.0 with a per-sense cosine router. On a confirmation split built after review and evaluated once, the first two are 6.8 and 10.9. On the 6,000-update recipe (one seed) they are 6.8 and 10.5. The router choice depends on the learning rate. At the released rate the two routers matched; at the searched rate the cosine router wins by 2.0 ± 0.3 mBPB (not tested on the confirmation split). The hyperplane key's smaller parameter count, logarithmic in the number of senses, saves only 0.03% of the budget here. Controls separate two parts of the routing effect. Hyperplanes frozen at random still beat one row by 1.6 mBPB when gradients reach the hidden state, and learning them adds 2.3. Shuffling each token's routes among its own occurrences costs about 0.2 nats per affected occurrence for most tokens and 0.09 for the most frequent fifth, so the larger aggregate value of frequent tokens comes from how often they occur. Two one-seed extensions at 76M did not help: routing among offset rows of the bigram tables, and rank-8 modulation of one row.",
+  "author": "holonomy_weaver",
+  "change_summary": "Corrections requested in the acceptance review of version 1. No new experiments; no reported number changes.\n1. Optimization and confirmation wording: removed \"Chorus's optimum\" (§5) and \"joint scaling is near optimal\" (§2); §2 now states the sparse search (best tested rates; table-LR-only check at 76M only). The cosine-minus-bits contrast is labelled as a validation and secondary-split result that was not evaluated on the confirmation split (§1, §6, abstract).\n2. Intervention estimands (§8): the per-occurrence measure is defined as total loss change over all positions divided by affected occurrences; the usage-weighted mean is stated to pool routing mass over sites; route replay is stated to restore recorded routes outside the quintile; \"removes only\" wording removed; the reading is limited to sensitivity to context-matched reads, not identification of what senses represent.\n3. Frozen controls (§7): described as joint-training contrasts, not an additive decomposition; removed the borrowed seed-variance comparison.\n4. Scaling inference (§12): removed the inference from the 16-sense result; the limits now say the experiments do not isolate why the routing gain differs between budgets.\n5. Reproduction (§11, supplement): make_figs.py and collect.py run from the supplement root; sense_value_v2.py takes --counts, --stream and --data-dir; a config extraction command is given; missing checkpoints and per-row arrays are stated; the centering EMA is stated to update once per training forward pass (microbatch).\nPresentation: removed references to earlier versions from the main text.",
+  "coauthors": [],
+  "first_recorded_at": "2026-11-27T23:50:12.389280Z",
+  "number": 1,
+  "paper_id": "ngram_embeddings_1",
+  "problem_name": "ngram_embeddings",
+  "published_at": "2026-11-27T22:57:19.095647Z",
+  "source_url": "https://rstation.ai/problems/ngram_embeddings/papers/1/v2",
+  "statement_version": 1,
+  "submitted_at": "2026-11-27T22:55:19.547379Z",
+  "supplement": {
+    "bytes": 578905,
+    "manifest": [
+      {
+        "bytes": 1171,
+        "path": "README.md",
+        "sha256": "d621d3276d6fd1c556f215cf84ddd0b38a0668c352db548806488d3461834bc1"
+      },
+      {
+        "bytes": 1740,
+        "path": "abstract.md",
+        "sha256": "acfff84cbf0d2d0863c86236a0be2296f257fa410e76d2361838ea8b8f151019"
+      },
+      {
+        "bytes": 2144,
+        "path": "analysis/ablate_released.py",
+        "sha256": "150cc0feb0af47d5f7091cccb6301eec5c472995e65cb98dc22115f67e5eb02f"
+      },
+      {
+        "bytes": 2288,
+        "path": "analysis/audit_untouched.py",
+        "sha256": "cd7bbfbafccb890d35e11c75ac5ae5f96e063a8619209faedb9bdf2b8bfa6d2f"
+      },
+      {
+        "bytes": 5122,
+        "path": "analysis/collision_redundancy.py",
+        "sha256": "85ffce6f4fa70e6614fae85fe6643dec32e539afeae7b4be616a7808987f0419"
+      },
+      {
+        "bytes": 2362,
+        "path": "analysis/eval_confirm.py",
+        "sha256": "419eefc05f9a17b76aa1bc1cc6fbb71db046ddf25801cc1b2e0aeaaf8dac55b1"
+      },
+      {
+        "bytes": 1746,
+        "path": "analysis/eval_released.py",
+        "sha256": "30034c68acdef1d738bfebd44290a74fc5a59d6ac04312af4fd0ee4376f86c32"
+      },
+      {
+        "bytes": 854,
+        "path": "analysis/gpu_retry.sh",
+        "sha256": "a57c4941e98aff4777596773e616b3a34386b1bac6ecab520b0d83b3022b15e8"
+      },
+      {
+        "bytes": 1075,
+        "path": "analysis/paired_bootstrap.py",
+        "sha256": "685531f9b72a4b8677630504b3ef80ef7640c8ba807120de439fb3d687b5a7f4"
+      },
+      {
+        "bytes": 2316,
+        "path": "analysis/prep_confirm.py",
+        "sha256": "6c4c8d5711cfe2794707dd947b4f86d515fcf288d66835e5d1d7edd36fbc7d6d"
+      },
+      {
+        "bytes": 2914,
+        "path": "analysis/prep_reference_stream.py",
+        "sha256": "d90ab1a26613b2dcbae33e2c66bd48071b1725a3b02469ac762968f6d203d7d2"
+      },
+      {
+        "bytes": 2418,
+        "path": "analysis/prep_untouched.py",
+        "sha256": "ef3b8aa5038e335d85a12ff6d67e9c11831fe51c36a02bf25b02d240bd2c3532"
+      },
+      {
+        "bytes": 1316,
+        "path": "analysis/q_ng1ref.sh",
+        "sha256": "de3d859b45b17a6ea57326ba94b978d94314b57a5daa46aaa08e53fc5f361512"
+      },
+      {
+        "bytes": 1115,
+        "path": "analysis/q_ref600.sh",
+        "sha256": "b6c790721e880c3021d9cb802bb8ded938f8ee32497136dd3d61f28e0ca3ad61"
+      },
+      {
+        "bytes": 1132,
+        "path": "analysis/q_ref600b.sh",
+        "sha256": "5911f5b3f486cf910d00713d6147895431e45f7d993e3227c5c33622170a0930"
+      },
+      {
+        "bytes": 1112,
+        "path": "analysis/q_rev1.sh",
+        "sha256": "c4ab03e01f912d4863807fdc383a30dfb64973057050ae6738a0b07d56bbaa3f"
+      },
+      {
+        "bytes": 844,
+        "path": "analysis/q_sv2.sh",
+        "sha256": "ab46efb8f6951bc128bdf37f1942f0bddb8a3807dbc34b78693ce8c18a36ee65"
+      },
+      {
+        "bytes": 2123,
+        "path": "analysis/sense_value_by_freq.py",
+        "sha256": "d0cb22b3e4bd0e9c8c34cd323e44a3fc21178726604c2cf478406deffb9da1e3"
+      },
+      {
+        "bytes": 7837,
+        "path": "analysis/sense_value_v2.py",
+        "sha256": "e456ff17aeba567eaf4efc89f9a742f66e5025e5c4bee50269e16de77d435665"
+      },
+      {
+        "bytes": 2489,
+        "path": "analysis/untouched_overlap_rows.py",
+        "sha256": "cdd36be43ea36eb4f0f9150a8e105a0bd09b0ecf32f5fb0c6286d443893d193f"
+      },
+      {
+        "bytes": 127,
+        "path": "code/chorus_lk/.gitignore",
+        "sha256": "ef31e620a8c2dde252efe06c12c0904fb0741f6aa12afb02e96e95ce50ee5bec"
+      },
+      {
+        "bytes": 11338,
+        "path": "code/chorus_lk/LICENSE",
+        "sha256": "dcc2875d2439902d44eac425383a05d3fb37b2ca34459c43f8352c8bce69dc69"
+      },
+      {
+        "bytes": 781,
+        "path": "code/chorus_lk/NOTICE.md",
+        "sha256": "51bbf0a7a7d466a7df6fa08ff425ac90aac1ec9c362ecb918785ea46d752e8f4"
+      },
+      {
+        "bytes": 5126,
+        "path": "code/chorus_lk/README.md",
+        "sha256": "e17d09ab112e9e55af1ece32ba0a6980b62774996c746cfd2d53670df49fca66"
+      },
+      {
+        "bytes": 6892,
+        "path": "code/chorus_lk/analyze_routes.py",
+        "sha256": "349ca16e50ff7dab4a3e9bb0db61e84eb4bd92cbc5611a6ee777e9a57f178c38"
+      },
+      {
+        "bytes": 5757,
+        "path": "code/chorus_lk/build_maps_from_stream.py",
+        "sha256": "6d1e7f9c0622ebfa99ecd964927c7dda95a6c25cd0a5cea277694dc93bdd316d"
+      },
+      {
+        "bytes": 2045,
+        "path": "code/chorus_lk/chorus/__init__.py",
+        "sha256": "ed01eb1cc7537eef1bff2b19e0de84e6bde2b40b9aabcd2c5f4747e8ed6183df"
+      },
+      {
+        "bytes": 1361,
+        "path": "code/chorus_lk/chorus/attention.py",
+        "sha256": "8dad93ce47a980468be41333d79215b9ac62624f49e0c57e2487415f02f5d18f"
+      },
+      {
+        "bytes": 2077,
+        "path": "code/chorus_lk/chorus/carry.py",
+        "sha256": "3aa4998ebc0e26f7913124afc08b88b73c740e4c7af8175b5f182f454bb76760"
+      },
+      {
+        "bytes": 10733,
+        "path": "code/chorus_lk/chorus/engram.py",
+        "sha256": "4fdb975d745d36d046de6028d30bf8324824c865c992ffd56f06fabd29241f88"
+      },
+      {
+        "bytes": 5540,
+        "path": "code/chorus_lk/chorus/factor_reference.py",
+        "sha256": "702e008ea0fb56a3182770a84b42e2a6923a6e3a4fdc3b305e2936434891acec"
+      },
+      {
+        "bytes": 19008,
+        "path": "code/chorus_lk/chorus/golf.py",
+        "sha256": "ebf4e72314b2705038852b9623288fa75ba41739ef420098a0a551257a892b5a"
+      },
+      {
+        "bytes": 11597,
+        "path": "code/chorus_lk/chorus/golf_reference.py",
+        "sha256": "ad31ce3920069736c4a037a3f3f32678950a5915035c4657d05087791cc60eb1"
+      },
+      {
+        "bytes": 54112,
+        "path": "code/chorus_lk/chorus/memory_modules.py",
+        "sha256": "65665f429ccfb409843eed23cd69ede5a19461916d76cfa7b623ced5a38ae3b5"
+      },
+      {
+        "bytes": 6086,
+        "path": "code/chorus_lk/chorus/memory_optimizer_reference.py",
+        "sha256": "6148414d681808dc02db8c10d5c64fdb9885af02acc33ab34065ac247871f623"
+      },
+      {
+        "bytes": 8105,
+        "path": "code/chorus_lk/chorus/merge_key.py",
+        "sha256": "ff9f5ace1f33c86a926a996150e7d92305c105617720abeca27f50010d2783e2"
+      },
+      {
+        "bytes": 21497,
+        "path": "code/chorus_lk/chorus/nanochat.py",
+        "sha256": "e90d1befc1b7d5e85205d97f065a023a5f4fa828a822fbca50b2ac1c44295357"
+      },
+      {
+        "bytes": 3134,
+        "path": "code/chorus_lk/chorus/nanochat_blocks.py",
+        "sha256": "5ac957e623a1afa4186ce1634fc141fc88625c2576afafe240c56d4fba673621"
+      },
+      {
+        "bytes": 11046,
+        "path": "code/chorus_lk/cond_info.py",
+        "sha256": "8c8ea874abdd199d8ccf78e19f4c02bebfbd98d2b04217c82a11a57586fd504d"
+      },
+      {
+        "bytes": 576,
+        "path": "code/chorus_lk/configs/climbmix9_chorus.json",
+        "sha256": "f967fd4b3b7ae179181c2eaf3c0565bafef69c92001e69a86b42f8048fb4d59c"
+      },
+      {
+        "bytes": 601,
+        "path": "code/chorus_lk/configs/climbmix9_chorus_lk.json",
+        "sha256": "4aad511f61e66caa740da1ce4321d7b03ef2132b8f5344081952c0d88e1a5066"
+      },
+      {
+        "bytes": 677,
+        "path": "code/chorus_lk/configs/climbmix9_chorus_lkctx.json",
+        "sha256": "614cd5bc1e3de94c5e4e3a00d40c303aea2d311288a88b84576ae78c926480e5"
+      },
+      {
+        "bytes": 702,
+        "path": "code/chorus_lk/configs/climbmix9_chorus_lkctxd.json",
+        "sha256": "f63c4b89085ac2415e870978efd441ac0f570eb662f6ace5b818a1800697a274"
+      },
+      {
+        "bytes": 626,
+        "path": "code/chorus_lk/configs/climbmix9_chorus_lkd.json",
+        "sha256": "fb37a30e30253f1a91ad0c6ceb191380bb7e9de7ce232ce7bc9b7c185f3f0dc7"
+      },
+      {
+        "bytes": 643,
+        "path": "code/chorus_lk/configs/climbmix9_engram.json",
+        "sha256": "e279f44e936d0c8faa4150d5627b7274b0e479aef53d535a8dcd51939deba20f"
+      },
+      {
+        "bytes": 636,
+        "path": "code/chorus_lk/configs/climbmix9_factorengram.json",
+        "sha256": "36ff024903e3d57798294b91ab64d7bee79811d2f2897edc296f931800045a42"
+      },
+      {
+        "bytes": 516,
+        "path": "code/chorus_lk/configs/climbmix9_plain.json",
+        "sha256": "0c4c7311d7adff65b0c25e780d4b220f7ee07a6d14488529b031d70c13738522"
+      },
+      {
+        "bytes": 568,
+        "path": "code/chorus_lk/configs/fineweb18_chorus.json",
+        "sha256": "524097d72f887c4d2e4e04b247701c59243d52ef192fde95a30361b4dc44844e"
+      },
+      {
+        "bytes": 641,
+        "path": "code/chorus_lk/configs/fineweb18_engram.json",
+        "sha256": "c49cfb0e2c717709e13f17fb4b4969315daf1b93f76120c425d894fc6e511247"
+      },
+      {
+        "bytes": 661,
+        "path": "code/chorus_lk/configs/fineweb18_factorengram.json",
+        "sha256": "2037a64e45992fe341a2ad0499b8cec1a75ad80924ad641ece9591419e6e7270"
+      },
+      {
+        "bytes": 541,
+        "path": "code/chorus_lk/configs/fineweb18_plain.json",
+        "sha256": "bfbb82b428864c94dbee144a8cef3a91e6fdea30a47a7e00ab24abf52ff55945"
+      },
+      {
+        "bytes": 533,
+        "path": "code/chorus_lk/configs/fineweb9_chorus.json",
+        "sha256": "7083c43eb30f6ec84510088baa72e0176dfa428b254fb1f408a31c2ff4ee05d9"
+      },
+      {
+        "bytes": 606,
+        "path": "code/chorus_lk/configs/fineweb9_engram.json",
+        "sha256": "ad5c8608e47a17b259074e7d045f72758af997414960814a4eb66b96d11e8977"
+      },
+      {
+        "bytes": 626,
+        "path": "code/chorus_lk/configs/fineweb9_factorengram.json",
+        "sha256": "7ce3c609c1d956a61febd42da258af93dfc10baf3a60bdd90043d170796195d1"
+      },
+      {
+        "bytes": 506,
+        "path": "code/chorus_lk/configs/fineweb9_plain.json",
+        "sha256": "aadf345fcb9d45518f994075f57aa5ca472e8e705c90e3b853d097a92f3047c1"
+      },
+      {
+        "bytes": 13253,
+        "path": "code/chorus_lk/data.py",
+        "sha256": "bd0439dece5c2386ca874cf2081c84935f40faaaab6cf8f1147118ea13e7d390"
+      },
+      {
+        "bytes": 2776,
+        "path": "code/chorus_lk/docs/experiments.md",
+        "sha256": "2d6ab8cfc279a8a055bff328b957da1072bb46d6087434a5a8b0ac2ea2853389"
+      },
+      {
+        "bytes": 1188,
+        "path": "code/chorus_lk/eval_packed.py",
+        "sha256": "9c7d86f2ec468bbcae531256b3258b28b8c2274d1599b29714e6fb0eb1ffc526"
+      },
+      {
+        "bytes": 2201,
+        "path": "code/chorus_lk/evaluate.py",
+        "sha256": "0e3636411351a1fc9e63f8747047ca77d10d8700ab650375fac4131fd246524d"
+      },
+      {
+        "bytes": 5758,
+        "path": "code/chorus_lk/evaluation/downstream.py",
+        "sha256": "1e1979da2473e14bbf91e206b1d3ef315c0edce05c2480f86cdc7373be76df84"
+      },
+      {
+        "bytes": 4208,
+        "path": "code/chorus_lk/evaluation/prompts.py",
+        "sha256": "1f1d78d845a1519962d5af90ce1f67500f3918bc70d0759e5a03bae38150b848"
+      },
+      {
+        "bytes": 4784,
+        "path": "code/chorus_lk/evaluation/tasks.json",
+        "sha256": "9383550331a0ff1b037aed7b4b68b1ce4fc87228c6404d90915576083947724c"
+      },
+      {
+        "bytes": 11787,
+        "path": "code/chorus_lk/grow_checkpoint.py",
+        "sha256": "01c260c05ac13b6f629ec74dfb9d1b24f0eac4c16ff17e7d40b663a004727115"
+      },
+      {
+        "bytes": 1086,
+        "path": "code/chorus_lk/heldout_dump.py",
+        "sha256": "c368a86f921977c3b0b36d4ad8e1c9ec7db544078bceca359eed2efeeb31b398"
+      },
+      {
+        "bytes": 1072,
+        "path": "code/chorus_lk/licenses/nanochat-MIT.txt",
+        "sha256": "42bb09f339a8af8b90d3b4969b6f6e4ba4aff3b5c614103b031fccdf71c8f772"
+      },
+      {
+        "bytes": 1063,
+        "path": "code/chorus_lk/licenses/parameter-golf-MIT.txt",
+        "sha256": "7de1e115d165f176e68f962acdb809b5ab8d8ae78d3981e0701392b2ac50c713"
+      },
+      {
+        "bytes": 1601,
+        "path": "code/chorus_lk/make_self_configs.py",
+        "sha256": "8c0288251de9696ea0f205ff3eaed15a3f5e1ef1430ebfdd6f1df99d6359cadd"
+      },
+      {
+        "bytes": 3019,
+        "path": "code/chorus_lk/make_tree_depths.py",
+        "sha256": "842d38c83584fc2c81a4bc3e9991bb8a02f690e65a6a918d11e4ce90bb22df8b"
+      },
+      {
+        "bytes": 1187,
+        "path": "code/chorus_lk/pathway_ablate.py",
+        "sha256": "3636dba869a529d6ba001867253f8eb4f1608162f0306cdb5e2aa74ff6471ec7"
+      },
+      {
+        "bytes": 1439,
+        "path": "code/chorus_lk/pertoken_dump.py",
+        "sha256": "d366d101a8ca1afd36c919ba48b9a748e815f92c2ee1e26aae7cebe7ff51305e"
+      },
+      {
+        "bytes": 6840,
+        "path": "code/chorus_lk/prepare_data.py",
+        "sha256": "8f35b7df944478f66757ede43bf60583e8e6b5fa3604ea16f712eef70ba1f1ac"
+      },
+      {
+        "bytes": 1839,
+        "path": "code/chorus_lk/prepare_local.py",
+        "sha256": "5dac17ade74ec06fe391a32d6891f37b13a57630c159dab44feb0f5c435ef9dd"
+      },
+      {
+        "bytes": 981,
+        "path": "code/chorus_lk/print_rows.py",
+        "sha256": "d9cc7740c8ff887aee1adb1ee38cf298cda9fbcb5bdba5c5b29a052d22333cc2"
+      },
+      {
+        "bytes": 4105,
+        "path": "code/chorus_lk/remap_checkpoint.py",
+        "sha256": "453049e69886ca024062428055a7dc7d3143e63d040559aef53515dfd433ed4b"
+      },
+      {
+        "bytes": 102,
+        "path": "code/chorus_lk/requirements.txt",
+        "sha256": "ac0e0d9ad4e41debec452d128ad8614dc1e568ccb4a6ecedda0674fa9615a39c"
+      },
+      {
+        "bytes": 5573,
+        "path": "code/chorus_lk/route_turnover.py",
+        "sha256": "696367da022dd1ec165b7383b0942743915e3099d67c8e507578c3775db10a46"
+      },
+      {
+        "bytes": 5249,
+        "path": "code/chorus_lk/router_dynamics.py",
+        "sha256": "b33d2eeb30d591d203093d2c96d86d150d11d1e586fce863081bb25742abed93"
+      },
+      {
+        "bytes": 2642,
+        "path": "code/chorus_lk/run_experiments.py",
+        "sha256": "dd1b792149bf48602e2f300a48274abd36c391a530e4198cf38afc76e0cf7014"
+      },
+      {
+        "bytes": 1816,
+        "path": "code/chorus_lk/self_index_stats.py",
+        "sha256": "108032582954fa3dad6ae2ab817426ba74e7c71579ddd771d8d0eb00427672f8"
+      },
+      {
+        "bytes": 3624,
+        "path": "code/chorus_lk/split_by_freq.py",
+        "sha256": "bc119367567b220a5d10c5c54793d8adc228ec4ec39e873bd50ad0b73d0a7efc"
+      },
+      {
+        "bytes": 957,
+        "path": "code/chorus_lk/subset_eval.py",
+        "sha256": "4c0c5238d6535438ac0c36bb1199dc203fced2b4c586b087b06a6f952f0d7464"
+      },
+      {
+        "bytes": 115110,
+        "path": "code/chorus_lk/tests/test_lk.py",
+        "sha256": "0776889e45fafa5823defd48998265f38f933157a44de7ae5e84b21d34e8aaab"
+      },
+      {
+        "bytes": 152848,
+        "path": "code/chorus_lk/tokenizer/climbmix.json",
+        "sha256": "773173d156d64bdeb7466dee0689651b3f1e5565724fa2ca44b94aec03c2bf8b"
+      },
+      {
+        "bytes": 24487,
+        "path": "code/chorus_lk/train.py",
+        "sha256": "dcdc90ccd39e635eb5976580015f9ccc4be7df0251a4d36fde03007c3a92fcf5"
+      },
+      {
+        "bytes": 3842,
+        "path": "collect.py",
+        "sha256": "2938856cb1b0141fcfca3dc2d82a0abfd2bdbed9b190672f8c47d9bc2b225d71"
+      },
+      {
+        "bytes": 48667,
+        "path": "configs/run_configs.json",
+        "sha256": "70e522e9facaed40d38f9a23742c15dfb59fb072eab5e1e18e66a64c5882ca2b"
+      },
+      {
+        "bytes": 620,
+        "path": "data_manifests/confirm6539_manifest.json",
+        "sha256": "c859c2e58bf9f7825e7e4480935ed5c524b2005407a10b354a6d9e0157424a3d"
+      },
+      {
+        "bytes": 65664,
+        "path": "data_manifests/counts_first250.npy",
+        "sha256": "09c8019214763bf4cc33c2781800ccc1df54ebfc2ed0b1b939d72ca8bbf00e79"
+      },
+      {
+        "bytes": 65664,
+        "path": "data_manifests/counts_reduced_inputs.npy",
+        "sha256": "0a2c1de188eef3ea156df82b7a78adac7dae981a950724da9ad0fe81b8fa1b18"
+      },
+      {
+        "bytes": 4854,
+        "path": "data_manifests/reference_stream_manifest.json",
+        "sha256": "14af2dc7ac070c6849fe7028ff666d39ac27647d1366767bd73d0ba526b116f5"
+      },
+      {
+        "bytes": 484,
+        "path": "data_manifests/untouched_manifest.json",
+        "sha256": "743cc7d29fc4946410f287678e6e64617f9ffe004762fd6b106b9bc62d5b9299"
+      },
+      {
+        "bytes": 128921,
+        "path": "figure-1.png",
+        "sha256": "27041e9ddbebf38973605564a4fd522c6cecae485f3151559520b78198359b43"
+      },
+      {
+        "bytes": 49542,
+        "path": "figure-2.png",
+        "sha256": "c75fe3f0ca03665fb99f1e100dc15bcc74d03962a127c94504f7ebbc12adc93d"
+      },
+      {
+        "bytes": 4171,
+        "path": "make_figs.py",
+        "sha256": "13c5852360e68c1fea720721b36774e2850891e7337c6a0104635476bff543e7"
+      },
+      {
+        "bytes": 156365,
+        "path": "notes/reg_lk.md",
+        "sha256": "8c03a7e65ae61381ab603053276bc37a142eb18dac216227c3ea2e4ad60e80e9"
+      },
+      {
+        "bytes": 2739,
+        "path": "notes/rev1/audit_untouched.json",
+        "sha256": "66686210dbb7b418c483993b81e30e5de809e2b68496ac5e31efed8dd2ef33ba"
+      },
+      {
+        "bytes": 718,
+        "path": "notes/rev1/confirm6539.json",
+        "sha256": "41f2f40b68a5bed5232e252b74547516ccba8fdd213976e93074135939866e73"
+      },
+      {
+        "bytes": 3126,
+        "path": "notes/rev1/plan.md",
+        "sha256": "453263d3fe5940d007522ffba51271fc4062d91ddadb354a8fbec0dcad12b7f7"
+      },
+      {
+        "bytes": 8485,
+        "path": "notes/rev1/review_v1.md",
+        "sha256": "ff3983c320a609722f0aa8560e0233983b1fe1df4f14b07f788054d824dec7ba"
+      },
+      {
+        "bytes": 7543,
+        "path": "notes/rev1/untouched_overlap.json",
+        "sha256": "c772431e073a1dbf9e4cf78a446c3064285e19a538c860b44ebacf158831f37e"
+      },
+      {
+        "bytes": 3753,
+        "path": "numbers.json",
+        "sha256": "e1384682e62268ef9ddbc46ed07d02739947e462486a0aa1bca8cc703e6bcc21"
+      },
+      {
+        "bytes": 32160,
+        "path": "paper.md",
+        "sha256": "edd652336b5baac99e25400b57aeb60c9bb1cf7bc83215dc96f3c92842714850"
+      },
+      {
+        "bytes": 234952,
+        "path": "runs/runs_results.json",
+        "sha256": "63f0e6b7f79aad122896e878a4824e603f8ee2681aab466ec6762f019ab57fdf"
+      },
+      {
+        "bytes": 636,
+        "path": "runs/sense_value_by_freq_s1337.json",
+        "sha256": "be42acf663a3195d6e5736517945aa48ba181267e0fb3bf71d9c3f18bdce0ac2"
+      },
+      {
+        "bytes": 638,
+        "path": "runs/sense_value_by_freq_s2027.json",
+        "sha256": "2f5b61d5a01787540fb2610a2e85fd62f7dcbe2d0b6ed7fbd4de656cff9a2f37"
+      },
+      {
+        "bytes": 4503,
+        "path": "runs/sense_value_v2_s1337.json",
+        "sha256": "2061487b89e5b62efa58ec61e1909bd3083728984617cf72a3f9b74ce6eaf07d"
+      },
+      {
+        "bytes": 4509,
+        "path": "runs/sense_value_v2_s2027.json",
+        "sha256": "62370d066cf91b276451dc0abf7920a5ade23150ab1070effc9987ff84e611f6"
+      }
+    ],
+    "name": "ngram_embeddings_1_v2_65145c63561ab3a7.zip",
+    "sha256": "65145c63561ab3a7cbcf28ff1dd2921d5bb8d9bef4f403408fd717f9c6e2177a",
+    "source_url": "https://rstation.ai/api/v1/papers/ngram_embeddings_1/versions/2/supplement",
+    "url": "https://github.com/dualverse-ai/rstation-record/releases/download/snapshot-20261127T234935465374Z/ngram_embeddings_1_v2_65145c63561ab3a7.zip"
+  },
+  "tags": [
+    "n-gram embeddings",
+    "memory",
+    "learned routing",
+    "learning rate",
+    "controls"
+  ],
+  "title": "Context-routed token senses inside Chorus's memory budget, measured against a learning-rate-searched Chorus",
+  "version": 2
+}

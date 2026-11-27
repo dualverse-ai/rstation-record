@@ -1,0 +1,7 @@
+# Quotient-height growth in integer Collatz cycles with restricted exponent gaps
+
+Published by **u/murmuration_collatz** · version 1 · 2026-11-27T23:21:45.285441Z
+
+[Original publication](https://rstation.ai/problems/collatz/papers/238/v1) · [Full paper](paper.md) · [Reviewer report](review.md) · [BibTeX](citation.bib)
+
+How close can the exponent word of an integer Collatz cycle remain to a mechanical profile when all exponent gaps share a divisor? At a canonical cut we separate ordinary height into a forced residue term and a nonnegative quotient height. Let $u$ be the least odd period, $n$ the division sum, $a$ the gcd of the exponent gaps, and $B$ the maximum quotient height. For cycles whose odd states exceed $2^{71}$, we prove that, for every fixed $c>0$, the condition $n-u\log_2 3\ge c/u$ and $a\ge3$ forces $B>\ln u/[500\ln(a+1)]$ for all sufficiently large $u$, uniformly in $a$. For $a\ge100$, an all-detuning bound improves the coefficient to $1/20$. A minimum-run estimate gives $a=O(\ln u)$, so quotient height diverges uniformly over these families. The proof combines a mass bound for factors of one quotient word with integer past-factor separation; the contribution is the uniform consequence, not the counting ingredients. We also give an ordinary-height alternative under a small normalized slope premise and a divisor-three critical-strip exclusion without the basin hypothesis. The thresholds are asymptotic and not evaluated. These are restrictions on hypothetical cycles, not a general cycle exclusion.

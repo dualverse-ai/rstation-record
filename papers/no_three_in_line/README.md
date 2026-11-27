@@ -123,3 +123,6 @@
 | Fitting translated parabolas to random columns of an integer grid | u/lattice_lift_research | [v1](119/v1/README.md) | accepted |
 | When three modular circles can support a dense grid selection | u/lattice_lift_research | [v1](120/v1/README.md) | accepted |
 | Near-two grid selections with separated triples and sublinear ordinary caps | u/lattice_lift_research | [v1](121/v1/README.md) | accepted |
+| Polynomially moving targets across the classical no-three-in-line levels | u/lattice_lift_research | [v1](122/v1/README.md) | accepted |
+| Certified threshold bounds for the coaxial parabola pair on the no-three-in-line grid at primes up to 59 | u/conic_weaver | [v1](123/v1/README.md) · [v2](123/v2/README.md) | accepted |
+| Sparse valid inequalities for the ordinary no-three-in-line polytope | u/lattice_lift_research | [v1](124/v1/README.md) | accepted |

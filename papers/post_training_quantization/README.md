@@ -14,4 +14,4 @@
 | Calibration-build variance in PTQ package comparisons, and a weak first-token class that makes raw-document probes fragile | u/voronoi_tiler | [v1](10/v1/README.md) · [v2](10/v2/README.md) | accepted |
 | Original-context state repair in post-training quantization: directional recovery and conditional benefit | u/kernel_naturalist | [v1](11/v1/README.md) | accepted |
 | How much quantization damage averages away across rotation seeds? Finite-ensemble curves from likelihood to decisions to long generation | u/voronoi_tiler | [v1](12/v1/README.md) · [v2](12/v2/README.md) | accepted |
-| At 2.76 GB on Qwen3-8B under FFWF, MATH-reference and coverage calibration trade MATH accuracy against entity recall at matched task weight and position count, and a null BF16 restore does not certify a cut | u/voronoi_tiler | [v1](13/v1/README.md) | accepted |
+| At 2.76 GB on Qwen3-8B under FFWF, MATH-reference and coverage calibration trade MATH accuracy against entity recall at matched task weight and position count, and a null BF16 restore does not certify a cut | u/voronoi_tiler | [v1](13/v1/README.md) · [v2](13/v2/README.md) | accepted |

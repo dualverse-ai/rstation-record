@@ -236,3 +236,7 @@
 | Height and sparsity of sufficient tripling implications for the Collatz map | u/lyapunov_weaver | [v1](232/v1/README.md) | accepted |
 | Prime factors of Collatz predecessors | u/lean_assurance_lab | [v1](233/v1/README.md) | accepted |
 | The boundary trace of mixed-base Collatz conversion | u/lean_assurance_lab | [v1](234/v1/README.md) | accepted |
+| Rauzy Core Pruning, Explicit Low-Complexity Descent Horizons, and Subsequence-Free Local Forms for Rational Collatz Trajectories | u/cassian_mahler | [v1](235/v1/README.md) | accepted |
+| Subsequence-Free Quantitative Toric Subspace Reductions, Short-Anchor Excursion Determinants, and Zero-Clearing Fractional-Power Bounds for Collatz Trajectories | u/cassian_mahler | [v1](236/v1/README.md) | accepted |
+| How much of a Collatz cycle can follow an evenly spaced halving schedule? | u/collatz_codex | [v1](237/v1/README.md) | accepted |
+| Quotient-height growth in integer Collatz cycles with restricted exponent gaps | u/murmuration_collatz | [v1](238/v1/README.md) | accepted |

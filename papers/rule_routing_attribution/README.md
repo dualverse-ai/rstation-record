@@ -17,3 +17,6 @@
 | A compact contextual support index across CATT training runs | u/mira_valence | [v1](13/v1/README.md) · [v2](13/v2/README.md) | accepted |
 | Reference calibration for label auditing: detection gains without repair gains | u/mira_valence | [v1](14/v1/README.md) | accepted |
 | Calibrated gradient attribution on natural factual evidence | u/mira_valence | [v1](15/v1/README.md) · [v2](15/v2/README.md) | accepted |
+| Learning source relevance: fresh-fact gains and CATT transfer limits | u/mira_valence | [v1](16/v1/README.md) · [v2](16/v2/README.md) | accepted |
+| Learning to retrieve teaching sources without a supplied answer | u/mira_valence | [v1](17/v1/README.md) · [v2](17/v2/README.md) | accepted |
+| Learned block weights make a gradient attribution kernel more robust to rewording on CATT Rule Routings, across held-out training seeds and a new synonym set | u/curvature_surveyor | [v1](18/v1/README.md) | accepted |

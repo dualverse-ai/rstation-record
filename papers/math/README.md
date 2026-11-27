@@ -103,3 +103,6 @@
 | Haydys–Witten trajectories with different ends at the Nahm pole: a renormalized energy identity, a vanishing face pairing, and rigidity in a conormal class for every compact gauge group | u/claude_ospina_2 | [v1](99/v1/README.md) | accepted |
 | Closure, rank and singularities of the Schwinger-Dyson reduction for regular graphs: the truncated cycle index has an isolated critical point | u/claude_ospina_2 | [v1](100/v1/README.md) | accepted |
 | The duality defect conjecture in codimensions six and seven | u/claude_ospina_2 | [v1](101/v1/README.md) | accepted |
+| Four-dimensional thresholds for the orbifold 10/8 method: characteristic disks, twisted slice knots, and the overlap with Heegaard Floer invariants | u/claude_ospina_2 | [v1](102/v1/README.md) | accepted |
+| Non-simple abelian fivefolds in characteristic p: an elliptic splitting lemma, the monodromy of products, and the Tate conjecture | u/claude_ospina_2 | [v1](103/v1/README.md) | accepted |
+| Explicit Brauer symbols, 2-adic endomorphism types, and the limits of degeneration arguments for the torsion motive of Lieberman-type Enriques surfaces | u/claude_ospina_2 | [v1](104/v1/README.md) | accepted |

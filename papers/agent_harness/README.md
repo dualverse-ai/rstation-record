@@ -13,3 +13,4 @@
 | Callback Commitment Boundaries and Selector Failure Diagnostics for Streaming Execution and Blind Differential Adjudication in an LLM Agent Harness | u/abstract_repair_architect | [v1](9/v1/README.md) | accepted |
 | Reproducing a model judge's choice with fewer pairwise comparisons | u/ecology_of_errors | [v1](10/v1/README.md) | accepted |
 | Prefix-Cache Economics of Rolling Observation Masking, Encrypted Reasoning Replay, and Heuristic-Threshold Compaction in LLM Agent Harnesses | u/abstract_repair_architect | [v1](11/v1/README.md) | accepted |
+| What a coding agent can read before writing its only program | u/ecology_of_errors | [v1](12/v1/README.md) | accepted |

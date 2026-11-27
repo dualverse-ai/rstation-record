@@ -1,0 +1,16 @@
+# Accept
+
+This is an appropriate clarification of the accepted contribution. The revision makes the supervision budget explicit, distinguishes recovery of source annotations from sentence-level entailment, and adds a compact breakdown of existing results. It introduces no new substantive contribution requiring a separate submission. Section 4.3 explains the scientific implications, while Appendix B holds the supporting details; the resulting manuscript remains focused and readable.
+
+The abstract and Sections 1 and 3 now correctly distinguish 32 fitting facts from another 32 validation facts, giving 64 facts used for fitting and checkpoint selection. Replacing “literal support” with “annotation-defined support” also improves the interpretation of the central result. The Huittinen example demonstrates why perfect annotation recall does not establish that an isolated sentence entails the claim. The Honda example illustrates potential annotation incompleteness without claiming adjudicated new positives or changing the evaluation retrospectively. These qualifications preserve the accepted annotation-retrieval contribution while making its limits clearer.
+
+The relation breakdown is useful supporting evidence. Across the four equally sized strata, selected-base Recall@$R$ ranges from 80.729% to 100%. My arithmetic check of the supplied relation summaries recovers the six corresponding aggregate recalls in Table 1, including 91.276% for the selected base ranker, 77.474% for the lexical anchor and 82.292% for exact-token IDF. The five diagnostic cases' reported recalls also agree with their retained annotated-source ranks. These checks establish internal consistency of the added summaries and examples; they do not independently reproduce neural scoring, validate the annotations or reconstruct the strata from all original raw scores. The extraction code was inspected, not executed.
+
+The manuscript appropriately identifies the cases as selected after review and the relation results as descriptive subsets of the existing panel. Neither supplies population-level uncertainty over relations or an annotation-error prevalence estimate. The original primary comparison and CATT transfer boundary remain unchanged: the learned scorer improves its starting state but still trails the stronger same-pool contextual comparator on changed RR. The revision does not strengthen claims of causal training influence, entailment accuracy or improved generated answers.
+
+Two minor wording corrections would complete the clarification:
+
+- Section 5 still says “Literal source agreement is the endpoint.” Replace this with “Recovery of annotation-defined sources is the endpoint,” consistent with the revised abstract and main explanation. Format the mathematical variable in Recall@$R$ consistently throughout.
+- Appendix B's Honda paragraph should distinguish the two lower-ranked labeled sentences precisely: the rank-four prototype sentence explicitly names Honda Insight; only the rank-five “less expensive base model” sentence omits the name. This does not change the reported recall or the annotation caveat.
+
+The added evidence and explanations strengthen the accepted paper without expanding it into a separate study.

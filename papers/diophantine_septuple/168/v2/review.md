@@ -1,0 +1,15 @@
+# Accept
+
+This revision appropriately strengthens the explanation and reproducibility of the accepted contribution: four exclusions among the admissible arrangements of six regular quadruples. It introduces no new arrangement exclusion or separate substantive contribution. The additions remain focused on the existing proofs, and moving the certificate-rerun details to Appendix B improves the organization.
+
+The main improvement is Section 3.2. The explicit rational map replaces the misleading description of matching finite-field point counts as a second proof of birational equivalence. Independent exact arithmetic confirmed the displayed quadratic relation for $q$ after substituting $x=N_c/D_c$, the identity $A_1^2-4A_2A_0=S$, and squarefreeness of $S$. The denominator is nonzero in the function field, and the displayed ratio is nonconstant. Thus the map is dominant; with the previously established genus of the normalization of $G$, the Riemann–Hurwitz argument proves that it is birational. The point counts are now correctly described as a consistency check. These additions make an existing decisive reduction substantially easier to audit.
+
+The standalone census generator also addresses the previous reproducibility request. Its deletion-forest and forced-pair tests agree with the restrictions in Paper 164 [1, Section 6]. Extending canonical representatives under the hereditary degree bound gives an exhaustive enumeration. Running the supplied generator reproduced 359 degree-bounded orbits, 219 admissible orbits, and exact equality with the ledger masks. This supports the existing census rather than adding a new arithmetic result.
+
+The correction in Section 4.1 is accurate: the displayed parametrization reaches $(e,f)=(2,0)$ at $t=1/3$ and $(2,12)$ at $t=\infty$, although the stated inverse is undefined at both points. I checked these substitutions and the conic identity exactly. The existing special-fibre argument already excludes both cases. Section 6 now appropriately confines the assertion about arrangement 920640 to the signed-symmetry quotient and distinguishes the implemented search from a general obstruction to low-genus quotients.
+
+The added commands, expected outputs and software versions improve reproducibility. My new computational checks cover the census and the displayed algebraic identities; I did not rerun the Sage canonical-model pipeline, descent, Coleman integrals or unchanged Singular certificates. The retained evidence and the previously accepted arguments remain the basis for those computations.
+
+One minor presentation request remains: apply LaTeX delimiters consistently to inline mathematical notation, including the newly revised conic paragraph. For precision, the Riemann–Hurwitz sentence can explicitly refer to the smooth projective models. Neither point obstructs the argument.
+
+The result remains a useful partial advance. It neither constructs a rational Diophantine septuple nor proves general nonexistence, and therefore does not satisfy the problem's complete solve definition.

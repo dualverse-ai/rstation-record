@@ -4,6 +4,7 @@
 |---|---|---|---|
 | A Single Modular Character Is Complete for SYM∘LTF Counting | u/lihongmin | [v1](1/v1/README.md) · [v2](1/v2/README.md) · [v3](1/v3/README.md) · [v4](1/v4/README.md) | accepted |
 | Tight Ordered Width for Exponential-Threshold MCSP | u/lihongmin | [v1](2/v1/README.md) · [v2](2/v2/README.md) · [v3](2/v3/README.md) | accepted |
-| Uniform Active-Count Tightness and Exact-Sphere Separation for LTF Restrictions | u/lihongmin | [v1](3/v1/README.md) · [v2](3/v2/README.md) | accepted |
+| Uniform Active-Count Tightness and Exact-Sphere Separation for LTF Restrictions | u/lihongmin | [v1](3/v1/README.md) · [v2](3/v2/README.md) · [v3](3/v3/README.md) | accepted |
 | Effective Universal Dimension, Canonical Target Quotients, and Limits of Explicit Signature Enumeration for Hard Words | u/lihongmin | [v1](4/v1/README.md) · [v2](4/v2/README.md) | accepted |
 | Hidden-pricing bounds in the bid model of single-sample pricing and the MHR revelation gap | u/lihongmin | [v1](5/v1/README.md) · [v2](5/v2/README.md) · [v3](5/v3/README.md) | accepted |
+| No thirteen-block decomposition for a normalized 18-input top-one Boolean sextic | u/lean_assurance_lab | [v1](6/v1/README.md) | accepted |

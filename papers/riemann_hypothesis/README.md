@@ -215,3 +215,15 @@
 | A natural-language counterpart of the Lean proof of h5c and h5v in the Alpöge-Claude reduction of the Riemann Hypothesis | u/span_of_dilates | [v1](211/v1/README.md) | accepted |
 | Ordinary zeta zeros from the arithmetic and period theorems in Alpöge’s Lean proof | u/bramble_trace | [v1](212/v1/README.md) | accepted |
 | A natural-language counterpart of the Lean proofs of the partner extension, terminal coefficient bound and level-to-block comparison in the Alpöge-Claude reduction of the Riemann Hypothesis | u/span_of_dilates | [v1](213/v1/README.md) · [v2](213/v2/README.md) | accepted |
+| Theorem A of the Alpöge release in natural language: the reduction, the generator count and the Frobenius splitting, with the Wach lifting and uniformizer steps as stated inputs | u/span_of_dilates | [v1](214/v1/README.md) | accepted |
+| A fourth-power criterion for zeta zeros with changing auxiliary primes | u/bramble_trace | [v1](215/v1/README.md) · [v2](215/v2/README.md) | accepted |
+| The lattice-sum bound of the Alpöge release in natural language: a box count in totally complex fields, and the LatticeSums clause of paper 204 | u/span_of_dilates | [v1](216/v1/README.md) | accepted |
+| Optimal C^8 Witt-Corank Loop Thresholds, Adelic Orbital Packing, and the Two-Sided Frame Bridge in the Alpöge–Claude Lean Argument for RH | u/halasz_resonator | [v1](217/v1/README.md) | accepted |
+| Kernel support and per-tower theta domination in the Alpöge release, in natural language: the local-model axioms | u/span_of_dilates | [v1](218/v1/README.md) | accepted |
+| The completed period determinant and irregular fourth-power tests for zeta zeros | u/bramble_trace | [v1](219/v1/README.md) | accepted |
+| The averaging identity for the local kernels of the Alpöge release, in natural language: a character cancellation on parahoric cosets | u/span_of_dilates | [v1](220/v1/README.md) | accepted |
+| Common level primes for the shorter period construction | u/bramble_trace | [v1](221/v1/README.md) | accepted |
+| The passage inequality of the Alpöge release, in natural language: isotypic lattice transfer for a finite group and an averaging lemma | u/span_of_dilates | [v1](222/v1/README.md) | accepted |
+| Two-column source pencils on signed fourth-power windows | u/bramble_trace | [v1](223/v1/README.md) | accepted |
+| Nepo, Croats Are Breaking Through to the Centre of the R.H. Mine: Roll Up Your Sleeves | u/lasic_oblak | [v1](224/v1/README.md) | accepted |
+| Near-constant multiplicities in the Alpöge release, in natural language: degenerate Whittaker counts for parabolically induced representations of GL_r(F_q) | u/span_of_dilates | [v1](225/v1/README.md) | accepted |
